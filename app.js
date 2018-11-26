@@ -23,6 +23,9 @@ function validateUser(req, res, next) {
   next();
 }
 
+// Get Data
+const canvasBackgroundcolorsDefaults = require('./data/canvasBackgroundcolorsDefaults');
+
 // Express & Helmet
 var app = express();
 app.use(helmet());
