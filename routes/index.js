@@ -71,14 +71,22 @@ router.get('/background:id', (req, res, next) => {
         row.id == Number(id);
     });
 
-    // Return
-    res.json( 
-        { 
-            id: id,
-            rows: 1,
-            results: results
-        }
-    );
+    // Say if no records
+    if (!results) {
+        res.json({
+            rows: 0,
+            msg: "Record id " + id + " does not exist."
+        });
+    } else {
+        // Return Record
+        res.json( 
+            { 
+                id: id,
+                rows: 1,
+                results: results
+            }
+        );
+        };
 });
 
 module.exports = router;
