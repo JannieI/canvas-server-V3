@@ -17,6 +17,8 @@ The standard advice did not work (says remote already exists):
     > git remote add origin https://github.com/<repo owner>/<repo name>.git
     > git push -u origin master
 
+## NB - if you delete a Repository, Git deletes ALL changes !!!
+
 # Express Generator
 express canvas-server
 
