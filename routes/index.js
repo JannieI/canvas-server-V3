@@ -43,14 +43,22 @@ router.get('/background', (req, res, next) => {
     const rowStartNr = (pageStartNrRequested - 1) *20;
     const results = canvasBackgroundcolorsDefaults.slice(rowStartNr, rowStartNr + pageSize);
 
-    // Return
-    res.json( 
-        { 
-            page: pageStartNrRequested,
-            rows: pageSize,
-            results: results
-        }
-    );
+    // Say if no records
+    if (!results) {
+        res.json({
+            rows: 0,
+            msg: "No records found"
+        });
+    } else {
+        // Return Data
+        res.json( 
+            { 
+                page: pageStartNrRequested,
+                rows: pageSize,
+                results: results
+            }
+        );
+    };
 });
 
 // Get SINGLE canvasBackgroundcolorsDefaults
