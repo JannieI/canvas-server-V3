@@ -10,11 +10,24 @@ function validateUser(req, res, next) {
     next();
 }
 
+function requireJSON(req, res, next) {
+    // NB req.is returns false if there is no body !
+    if (!req.is('application/json')) {
+        res.json({msg: "Content type my be JSON"})
+    } else {
+        next();
+    };
+}
 // Get Data
 const canvasBackgroundcolorsDefaults = require('../data/canvasBackgroundcolorsDefaults');
 
 // Runs for ALL routes
 router.use(validateUser);
+
+router.param(('id'), (reg, res, next) => {
+    // Update analytics in db as someone hit this ID
+    next();
+})
 
 /* POST home page. */
 router.post('/', function(req, res, next) {
@@ -62,6 +75,7 @@ router.get('/background', (req, res, next) => {
 });
 
 // Get SINGLE canvasBackgroundcolorsDefaults
+// This has to come LAST in .../something
 router.get('/background:id', (req, res, next) => {
     // Get the page nr to start from the query string
 
@@ -87,6 +101,32 @@ router.get('/background:id', (req, res, next) => {
             }
         );
         };
+});
+
+// ADD a record
+router.post(':id', requireJSON, (req, res, next) => {
+    const id = req.params.id;
+    const rate = req.body.value;
+    if (rate < 10) {
+        res.json( {msg: "Rating must be greater 10"} );
+    } else {
+        res.json( 
+            { 
+                statusCode: 200,
+                msg: "Rating updated"
+            } 
+        );
+    };
+});
+
+router.delete(':id', (req, res, next) => {
+    res.json( 
+        { 
+            statusCode: 200,
+            msg: "Rating Deleted !"
+        } 
+    );
+
 });
 
 module.exports = router;
