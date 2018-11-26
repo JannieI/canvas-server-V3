@@ -29,6 +29,16 @@ router.param(('id'), (reg, res, next) => {
     next();
 })
 
+// Used for ALL routes in this module
+router.use((req, res, next) => {
+    const searchTerm = req.query.query;
+    if (!searchTerm) {
+        res.json( {msg: "Search term required"} )
+    } else {
+        next();
+    };
+});
+
 /* POST home page. */
 router.post('/', function(req, res, next) {
     console.log('I AM in Post ...')
@@ -110,6 +120,7 @@ router.post(':id', requireJSON, (req, res, next) => {
     if (rate < 10) {
         res.json( {msg: "Rating must be greater 10"} );
     } else {
+        res.status(300);
         res.json( 
             { 
                 statusCode: 200,
