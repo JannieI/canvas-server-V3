@@ -1,35 +1,46 @@
+// Import Express and related modules -----------------------------------------------------------
 var express = require('express');
 var router = express.Router();
 
-// Functions
+
+// Functions -----------------------------------------------------------
+
+// Validate the user
 function validateUser(req, res, next) {
     // Get info out of req object
-    // Check against DB
-    // Store the answer in the res object
+    // Check against DB ...
+    // Store the answer in the res object for further Middleware to use
     res.locals.validatedUser = true;
     next();
 }
- 
+
+// Check that data of HTTP message is JSON
 function requireJSON(req, res, next) {
     // NB req.is returns false if there is no body !
     if (!req.is('application/json')) {
-        res.json({msg: "Content type my be JSON"})
+        res.json({msg: "Content type must be JSON"})
     } else {
         next();
     };
 }
-// Get Data
+
+
+// Get Data -----------------------------------------------------------
 const canvasBackgroundcolorsDefaults = require('../data/canvasBackgroundcolorsDefaults');
 
-// Runs for ALL routes
+
+// Runs for ALL routes -----------------------------------------------------------
+
+// Validate the user
 router.use(validateUser);
 
+// Get Parameters
 router.param(('id'), (reg, res, next) => {
     // Update analytics in db as someone hit this ID
     next();
 })
 
-// Used for ALL routes in this module
+// Check the Query input
 router.use((req, res, next) => {
     const searchTerm = req.query.query;
     if (!searchTerm) {
@@ -39,20 +50,23 @@ router.use((req, res, next) => {
     };
 });
 
-/* POST home page. */
+
+// Methods for this Router -----------------------------------------------------------
+
+// POST / page
 router.post('/', function(req, res, next) {
     console.log('I AM in Post ...')
     res.type('html');
     res.send(`<h1> POST Home Page </h1>`);
 });
 
-/* GET home page. */
+// GET / page
 router.get('/', function(req, res, next) {
     res.render('index', { title: 'Express' });
 });
 
 
-// Get ALL / SELECTED canvasBackgroundcolorsDefaults
+// Get ALL / SELECTED /background
 router.get('/background', (req, res, next) => {
     // Get the page nr to start from the query string
     let pageStartNrRequested = req.query.page;
@@ -74,8 +88,8 @@ router.get('/background', (req, res, next) => {
         });
     } else {
         // Return Data
-        res.json( 
-            { 
+        res.json(
+            {
                 page: pageStartNrRequested,
                 rows: pageSize,
                 results: results
@@ -84,7 +98,7 @@ router.get('/background', (req, res, next) => {
     };
 });
 
-// Get SINGLE canvasBackgroundcolorsDefaults
+// Get SINGLE /background
 // This has to come LAST in .../something
 router.get('/background:id', (req, res, next) => {
     // Get the page nr to start from the query string
@@ -103,8 +117,8 @@ router.get('/background:id', (req, res, next) => {
         });
     } else {
         // Return Record
-        res.json( 
-            { 
+        res.json(
+            {
                 id: id,
                 rows: 1,
                 results: results
@@ -113,7 +127,7 @@ router.get('/background:id', (req, res, next) => {
         };
 });
 
-// ADD a record
+// POST /background
 router.post(':id', requireJSON, (req, res, next) => {
     const id = req.params.id;
     const rate = req.body.value;
@@ -121,23 +135,26 @@ router.post(':id', requireJSON, (req, res, next) => {
         res.json( {msg: "Rating must be greater 10"} );
     } else {
         res.status(300);
-        res.json( 
-            { 
+        res.json(
+            {
                 statusCode: 200,
                 msg: "Rating updated"
-            } 
+            }
         );
     };
 });
 
+// DELETE /background
 router.delete(':id', (req, res, next) => {
-    res.json( 
-        { 
+    res.json(
+        {
             statusCode: 200,
             msg: "Rating Deleted !"
-        } 
+        }
     );
 
 });
 
+
+// Export -----------------------------------------------------------
 module.exports = router;
