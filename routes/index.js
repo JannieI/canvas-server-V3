@@ -5,15 +5,6 @@ var router = express.Router();
 
 // Functions -----------------------------------------------------------
 
-// Validate the user
-function validateUser(req, res, next) {
-    // Get info out of req object
-    // Check against DB ...
-    // Store the answer in the res object for further Middleware to use
-    res.locals.validatedUser = true;
-    next();
-}
-
 // Check that data of HTTP message is JSON
 function requireJSON(req, res, next) {
     // NB req.is returns false if there is no body !
@@ -30,9 +21,6 @@ const canvasBackgroundcolorsDefaults = require('../data/canvasBackgroundcolorsDe
 
 
 // Runs for ALL routes -----------------------------------------------------------
-
-// Validate the user
-router.use(validateUser);
 
 // Get Parameters
 router.param(('id'), (reg, res, next) => {
@@ -128,8 +116,7 @@ router.get('/background:id', (req, res, next) => {
 });
 
 // POST /background
-router.post(':id', requireJSON, (req, res, next) => {
-    const id = req.params.id;
+router.post('/background', requireJSON, (req, res, next) => {
     const rate = req.body.value;
     if (rate < 10) {
         res.json( {msg: "Rating must be greater 10"} );
@@ -145,7 +132,7 @@ router.post(':id', requireJSON, (req, res, next) => {
 });
 
 // DELETE /background
-router.delete(':id', (req, res, next) => {
+router.delete('/background', (req, res, next) => {
     res.json(
         {
             statusCode: 200,
