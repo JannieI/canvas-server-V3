@@ -58,7 +58,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //   console.log(message)
 //   next();
 // });
-
+ 
 // Example for Parameters - looks if any route any method has a :id parameter
 // app.param('id', (req, res, next, id) => {
 //   // Store, validate this
@@ -78,8 +78,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 // });
 
 // Routing
-app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/', indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

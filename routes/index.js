@@ -9,7 +9,7 @@ function validateUser(req, res, next) {
     res.locals.validatedUser = true;
     next();
 }
-
+ 
 function requireJSON(req, res, next) {
     // NB req.is returns false if there is no body !
     if (!req.is('application/json')) {
