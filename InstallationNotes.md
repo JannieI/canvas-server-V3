@@ -35,6 +35,8 @@ npm install passport-github --save
 # Express-Session
 npm install express-session --save
 
+# MongoDB
+npm install mongodb --save
 
 // Native modules
 import path from 'path';
