@@ -35,6 +35,9 @@ npm install passport-github --save
 # Express-Session
 npm install express-session --save
 
+# Postgress
+npm install pg --save
+
 # MongoDB
 npm install mongodb --save
 
