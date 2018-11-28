@@ -18,9 +18,9 @@ const mongoClient = mongodb.MongoClient;
 const mongoUrl = `mongodb://localhost:27017`;
 
 let db;
-// mongoClient.connect(mongoUrl,(error, databaseConn)=>{
-//     db = databaseConn.db('test');
-// });
+mongoClient.connect(mongoUrl,(error, databaseConn)=>{
+    db = databaseConn.db('test');
+});
 
 
 // Postgress
@@ -63,6 +63,20 @@ router.get('/mongo',(req, res)=>{
         res.json(carsResults)
     })
 })
+
+
+// MySQL
+const mysqlDb = require('../databaseConnectors/dbMySQLTodo');
+
+/* GET home page. */
+router.get('/mysql', function(req, res, next) {
+  // res.render('index', { title: 'Express' });
+//   const queryText= 'SELECT * FROM tasks WHERE id > ? AND taskName';
+  const queryText= 'SELECT "ttt" As taskName';
+  mysqlDb.query(queryText,[3],(error,results)=>{
+    res.json(results)
+  })
+});
 
 // Runs for ALL routes -----------------------------------------------------------
 

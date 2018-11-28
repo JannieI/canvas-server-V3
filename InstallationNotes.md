@@ -41,6 +41,9 @@ npm install pg --save
 # MongoDB
 npm install mongodb --save
 
+# Install MySQL
+npm install mysql --save
+
 // Native modules
 import path from 'path';
 import dotenv from 'dotenv';
