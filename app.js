@@ -7,12 +7,17 @@ var cookieParser = require('cookie-parser');
 var express = require('express');
 
 // Require Third party apps
-var logger = require('morgan');
 const helmet = require('helmet');
+var logger = require('morgan');
+const passport = require('passport');
+var GitHubStrategy = require('passport-github').Strategy;
+const passportConfig = require('./configPassport');
+
 
 // Require Routers
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+
 
 // Functions
 function validateUser(req, res, next) {
@@ -23,9 +28,16 @@ function validateUser(req, res, next) {
     next();
 }
 
-// Express & Helmet
+// Express & Helmet & Passport
 var app = express();
 app.use(helmet());
+
+passport.use(new GitHubStrategy(passportConfig,
+  function(accessToken, refreshToken, profile, cb) {
+    console.log(profile)
+  }
+));
+
 
 // Cors
 app.use(function(req, res, next) {

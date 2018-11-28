@@ -2,6 +2,8 @@
 var express = require('express');
 var router = express.Router();
 
+// Third Party modules
+const passport = require('passport');
 
 // Functions -----------------------------------------------------------
 
@@ -141,6 +143,7 @@ router.delete('/background', (req, res, next) => {
     );
 
 });
+
 
 
 // Export -----------------------------------------------------------
