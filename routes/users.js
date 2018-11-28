@@ -18,9 +18,9 @@ const mongoClient = mongodb.MongoClient;
 const mongoUrl = `mongodb://localhost:27017`;
 
 let db;
-mongoClient.connect(mongoUrl,(error, databaseConn)=>{
-    db = databaseConn.db('test');
-});
+// mongoClient.connect(mongoUrl,(error, databaseConn)=>{
+//     db = databaseConn.db('test');
+// });
 
 
 // Postgress
@@ -43,7 +43,7 @@ router.get('/pg',(req, res)=>{
     const scaryDataFromInternet = 36;
     // pool.query(query,[scaryDataFromInternet],(error, dbResponse)=>{
     // pool.query('SELECT $1::text as message', ['Hello world!'],(error, dbResponse)=>{
-    dbPgWeather.query('SELECT $1::text as message', ['Hello world!'],(error, dbResponse)=>{
+    dbPgWeather.query(query,(error, dbResponse)=>{
       if (dbResponse != undefined) {  
           console.log(dbResponse.rows)
           res.json(dbResponse.rows)
@@ -54,7 +54,7 @@ router.get('/pg',(req, res)=>{
     })
 
     // Release module
-    pool.end();
+    // pool.end();
 })
 
 router.get('/mongo',(req, res)=>{
