@@ -72,8 +72,10 @@ router.post('/loginLocal',(req, res, next)=>{
 
 // logoutLocal
 router.get('/logoutLocal',(req, res, next)=>{
-    res.clearCookie('username');
-    res.json({msg: ' Logged out'})
+    console.log('/logoutLocal')
+    // res.clearCookie('username');
+    // res.json({msg: ' Logged out'})
+    res.send('Done')
 })
 
 // loginGitHub
