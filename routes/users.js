@@ -24,24 +24,26 @@ mongoClient.connect(mongoUrl,(error, databaseConn)=>{
 
 
 // Postgress
-const PoolClass = require('pg').Pool;
+const dbPgWeather = require('../databaseConnectors/dbPgWeather');
+// const PoolClass = require('pg').Pool;
 
-// const { Pool } = require('pg')
-// const pg = require('pg');
-// const pgPool = pg.Pool;
-const pool = new PoolClass({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'weatherTiler_development',
-    port: 5432,
-    password: ''
-});
+// // const { Pool } = require('pg')
+// // const pg = require('pg');
+// // const pgPool = pg.Pool;
+// const pool = new PoolClass({
+//     user: 'postgres',
+//     host: 'localhost',
+//     database: 'weatherTiler_development',
+//     port: 5432,
+//     password: ''
+// });
 
 router.get('/pg',(req, res)=>{
     const query = 'SELECT * FROM city_weathers WHERE id > $1'
     const scaryDataFromInternet = 36;
     // pool.query(query,[scaryDataFromInternet],(error, dbResponse)=>{
-    pool.query('SELECT $1::text as message', ['Hello world!'],(error, dbResponse)=>{
+    // pool.query('SELECT $1::text as message', ['Hello world!'],(error, dbResponse)=>{
+    dbPgWeather.query('SELECT $1::text as message', ['Hello world!'],(error, dbResponse)=>{
       if (dbResponse != undefined) {  
           console.log(dbResponse.rows)
           res.json(dbResponse.rows)
