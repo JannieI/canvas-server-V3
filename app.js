@@ -32,9 +32,12 @@ function validateUser(req, res, next) {
 var app = express();
 app.use(helmet());
 
+app.use(passport.initialize());
+app.use(passport.session());
 passport.use(new GitHubStrategy(passportConfig,
   function(accessToken, refreshToken, profile, cb) {
     console.log(profile)
+    return cb(null, profile);
   }
 ));
 
@@ -113,7 +116,7 @@ app.use(function(err, req, res, next) {
 
     // render the error page
     res.status(err.status || 500);
-    res.json({msg: 'error'});
+    res.json({msg: 'error', err});
 });
 
 // For bin/www.js

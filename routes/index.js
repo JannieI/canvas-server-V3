@@ -89,6 +89,10 @@ router.get('/auth',passport.authenticate('github',{
   failureRedirect: '/loginFailed'
 }))
 
+router.get('loginFailed'), function(req, res, next) {
+    res.json({msg: 'Login failed'})
+}
+
 // logoutGitHug
 
 // POST / page
