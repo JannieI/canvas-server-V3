@@ -43,6 +43,47 @@ router.use((req, res, next) => {
 
 // Methods for this Router -----------------------------------------------------------
 
+
+// loginLocal
+router.post('/loginLocal',(req, res, next)=>{
+    // req.body is made by urlencoded, which parses the http message for sent data!
+    const password = req.body.password;
+    const username = req.body.username;
+    // check the db to see if user credentials are valid
+    // if they are valid...
+        // - save their username in a cookie    
+        // - is send them to the welcome page
+    if(password === "x"){
+        // res.cookie takes 2 args:
+        // 1. name of the cookie
+        // 2. value to set it to 
+        res.cookie('username',username)
+        // res.redirect takes 1 arg:
+        // 1. Where to send the brower
+        res.json({msg: 'Logged in'})
+    }else{
+        // The "?" is a special character in a URL
+        res.json({msg: 'Logged failed'})
+    }
+    // res.json(req.body)
+})
+
+// logoutLocal
+router.get('/logoutLocal',(req, res, next)=>{
+    res.clearCookie('username');
+    res.json({msg: ' Logged out'})
+})
+
+// loginGitHub
+router.get('/loginGitHub',passport.authenticate('github'))
+
+router.get('/auth',passport.authenticate('github',{
+  successRedirect: '/',
+  failureRedirect: '/loginFailed'
+}))
+
+// logoutGitHug
+
 // POST / page
 router.post('/', function(req, res, next) {
     console.log('I AM in Post ...')
