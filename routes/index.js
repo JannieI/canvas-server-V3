@@ -33,8 +33,11 @@ router.param(('id'), (reg, res, next) => {
 // Check the Query input
 router.use((req, res, next) => {
     const searchTerm = req.query.query;
-    if (!searchTerm) {
-        res.json( {msg: "Search term required"} )
+    // console.log(req.originalUrl == '/background')
+    if(req.originalUrl == '/background') {
+        if (!searchTerm) {
+            res.json( {msg: "Search term required"} )
+        };
     } else {
         next();
     };

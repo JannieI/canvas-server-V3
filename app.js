@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 
 // Require Express
-var express = require('express');
+const express = require('express');
 
 // Require Third party apps
 const helmet = require('helmet');
