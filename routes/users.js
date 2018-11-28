@@ -11,6 +11,22 @@ function validateUser(req, res, next) {
   next();
 }
 
+const mongodb = require('mongodb');
+const mongoClient = mongodb.MongoClient;
+const mongoUrl = `mongodb://localhost:27017`;
+
+let db;
+mongoClient.connect(mongoUrl,(error, databaseConn)=>{
+    db = databaseConn.db('test');
+});
+
+router.get('/mongo',(req, res)=>{
+    db.collection('contacts').find({}).toArray((queryError, carsResults)=>{
+        console.log(carsResults)
+        res.json(carsResults)
+    })
+})
+
 // Runs for ALL routes -----------------------------------------------------------
 
 // Validate the user
