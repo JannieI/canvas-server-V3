@@ -28,7 +28,12 @@ npm install dotenv --save
 # Helmet:
 npm install helmet --save
 
+# GitHub Auth0
+npm install passport-github --save
+npm install passport-github --save
 
+# Express-Session
+npm install express-session --save
 
 
 // Native modules

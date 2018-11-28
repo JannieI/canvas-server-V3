@@ -9,6 +9,7 @@ const express = require('express');
 // Require Third party apps
 const helmet = require('helmet');
 var logger = require('morgan');
+const session = require('express-session');
 const passport = require('passport');
 var GitHubStrategy = require('passport-github').Strategy;
 const passportConfig = require('./configPassport');
@@ -32,6 +33,11 @@ function validateUser(req, res, next) {
 var app = express();
 app.use(helmet());
 
+app.use(session({
+    secret: 'I love Canvas!',
+    resave: false,
+    saveUninitialized: true,
+}))
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new GitHubStrategy(passportConfig,
@@ -40,7 +46,19 @@ passport.use(new GitHubStrategy(passportConfig,
     return cb(null, profile);
   }
 ));
-
+// passport.serializeUser( (user, cb) => {
+//     cb(null, user);
+//   });
+  
+// passport.deserializeUser(function(user, cb) {
+//     cb(null, user);
+// });
+passport.serializeUser((user, cb)=>{
+    cb(null,user);
+})
+  passport.deserializeUser((user,cb)=>{
+    cb(null,user)
+})
 
 // Cors
 app.use(function(req, res, next) {
