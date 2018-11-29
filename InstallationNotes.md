@@ -59,11 +59,13 @@ Remove MongoDB databases and log files:
     sudo rm -r /var/lib/mongodb
 
 # Import JSON Array to local DB
-mongoimport --host=127.0.0.1  --db Canvas --collection Canvas --drop --file bgColourImport.json  --jsonArray
+mongoimport --host=127.0.0.1  --db Canvas  --collection Canvas --drop --file bgColourImport.json --jsonArray
+
+mongoexport --host=127.0.0.1 --db Canvas --collection Canvas  --out bgColourExport.json --pretty --jsonArray
 
 mongoimport --host cluster0-shard-00-00-wnczk.azure.mongodb.net:27017   --username JannieI --password JannieI  --collection bgColours  --db Canvas  --file bgColourImport.json --jsonArray  --authenticationDatabase admin  --ssl
 
-mongoexport --host=127.0.0.1  --db Canvas --collection Canvas  >  FILENAME.json
+bash list.txt to import all in txt file
 
 HOST (--host): cluster0-shard-00-00-wnczk.azure.mongodb.net:27017
 
