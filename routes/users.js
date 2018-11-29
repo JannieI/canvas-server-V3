@@ -11,15 +11,23 @@ function validateUser(req, res, next) {
   next();
 }
 
+// Runs for ALL routes -----------------------------------------------------------
+
+// Get Parameters
+router.param(('collection'), (reg, res, next) => {
+    // Update analytics in db as someone hit this ID
+    next();
+})
+
 
 // Mongo
 const mongodb = require('mongodb');
 const mongoClient = mongodb.MongoClient;
-const mongoUrl = `mongodb://localhost:27017`;
+const mongoUrl = `mongodb://127.0.0.1:27017`;
 
 let db;
 mongoClient.connect(mongoUrl,(error, databaseConn)=>{
-    db = databaseConn.db('test');
+    db = databaseConn.db('Canvas');
 });
 
 
@@ -27,16 +35,6 @@ mongoClient.connect(mongoUrl,(error, databaseConn)=>{
 const dbPgWeather = require('../databaseConnectors/dbPgWeather');
 // const PoolClass = require('pg').Pool;
 
-// // const { Pool } = require('pg')
-// // const pg = require('pg');
-// // const pgPool = pg.Pool;
-// const pool = new PoolClass({
-//     user: 'postgres',
-//     host: 'localhost',
-//     database: 'weatherTiler_development',
-//     port: 5432,
-//     password: ''
-// });
 
 router.get('/pg',(req, res)=>{
     const query = 'SELECT * FROM city_weathers WHERE id > $1'
@@ -57,8 +55,19 @@ router.get('/pg',(req, res)=>{
     // pool.end();
 })
 
+
+router.get('/mongo:collection',(req, res)=>{
+    let collection = req.params.collection.substring(1);
+    console.log(req.params, collection.substring(1))
+    db.collection(collection).find({}).toArray((queryError, carsResults)=>{
+        console.log(carsResults)
+        res.json(carsResults)
+    })
+})
+
 router.get('/mongo',(req, res)=>{
-    db.collection('contacts').find({}).toArray((queryError, carsResults)=>{
+    let collection = 'contacts';
+    db.collection(collection).find({}).toArray((queryError, carsResults)=>{
         console.log(carsResults)
         res.json(carsResults)
     })
