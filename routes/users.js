@@ -86,7 +86,35 @@ router.use(validateUser);
 
 
 // Emailer
+router.get('/email', function(req, res, next) {
 
+    var nodemailer = require('nodemailer');
+
+    var transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'jimmelman@gmail.com',
+        pass: ''
+      }
+    });
+
+    var mailOptions = {
+      from: 'jimmelman@gmail.com',
+      to: 'jimmelman@gmail.com',
+      subject: 'Sending Email using Node.js',
+      text: 'That was easy!'
+    };
+
+    transporter.sendMail(mailOptions, function(error, info){
+      if (error) {
+        console.log(error);
+        res.send('Error: ', error)
+      } else {
+        console.log('Email sent: ' + info.response);
+        res.send('Email Send!')
+      }
+    });
+})
 
 // Methods for this Router -----------------------------------------------------------
 
