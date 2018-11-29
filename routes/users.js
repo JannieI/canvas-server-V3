@@ -88,9 +88,9 @@ router.use(validateUser);
 // Emailer
 router.get('/email', function(req, res, next) {
 
-    var nodemailer = require('nodemailer');
+    const nodemailer = require('nodemailer');
 
-    var transporter = nodemailer.createTransport({
+    const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
         user: 'jimmelman@gmail.com',
@@ -98,20 +98,21 @@ router.get('/email', function(req, res, next) {
       }
     });
 
-    var mailOptions = {
+    const mailOptions = {
       from: 'jimmelman@gmail.com',
       to: 'jimmelman@gmail.com',
       subject: 'Sending Email using Node.js',
       text: 'That was easy!'
+      // html: '<p>Your html here</p>'// plain text body
     };
 
     transporter.sendMail(mailOptions, function(error, info){
       if (error) {
         console.log(error);
-        res.send('Error: ', error)
+        res.json({ msg: 'Error: '})
       } else {
         console.log('Email sent: ' + info.response);
-        res.send('Email Send!')
+        res.json({ msg: 'Email Send!'})
       }
     });
 })

@@ -47,6 +47,28 @@ npm install mysql --save
 # Node Mailer
 npm install nodemailer --save
 
+<!-- -------------MONGO INFO START ------------------------ -->
+# Install MongoDB 4.04 - OUTSIDE of Node
+See:  https://askubuntu.com/questions/842592/apt-get-fails-on-16-04-or-18-04-installing-mongodb
+
+Did not work as kept old verson:
+https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/#begin-using-mongodb
+
+Remove MongoDB databases and log files:
+    sudo rm -r /var/log/mongodb
+    sudo rm -r /var/lib/mongodb
+
+# Import JSON Array to local DB
+mongoimport --host=127.0.0.1  --db Canvas --collection Canvas --drop --file bgColourImport.json  --jsonArray
+
+mongoimport --host cluster0-shard-00-00-wnczk.azure.mongodb.net:27017   --username JannieI --password JannieI  --collection bgColours  --db Canvas  --file bgColourImport.json --jsonArray  --authenticationDatabase admin  --ssl
+
+mongoexport --host=127.0.0.1  --db Canvas --collection Canvas  >  FILENAME.json
+
+HOST (--host): cluster0-shard-00-00-wnczk.azure.mongodb.net:27017
+
+<!-- ------------------- MONGO ENDS------------------------ -->
+
 
 // Native modules
 import path from 'path';
