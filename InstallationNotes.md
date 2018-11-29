@@ -44,6 +44,10 @@ npm install mongodb --save
 # Install MySQL
 npm install mysql --save
 
+# Node Mailer
+npm install nodemailer --save
+
+
 // Native modules
 import path from 'path';
 import dotenv from 'dotenv';

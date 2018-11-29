@@ -70,12 +70,13 @@ const mysqlDb = require('../databaseConnectors/dbMySQLTodo');
 
 /* GET home page. */
 router.get('/mysql', function(req, res, next) {
-  // res.render('index', { title: 'Express' });
-//   const queryText= 'SELECT * FROM tasks WHERE id > ? AND taskName';
-  const queryText= 'SELECT "ttt" As taskName';
-  mysqlDb.query(queryText,[3],(error,results)=>{
-    res.json(results)
-  })
+    // res.render('index', { title: 'Express' });
+    //   const queryText= 'SELECT * FROM tasks WHERE id > ? AND taskName';
+    const queryText= 'SELECT 1 As taskName';
+    mysqlDb.query(queryText,[3],(error,results)=>{
+        console.log(results)
+        res.json(results)
+    })
 });
 
 // Runs for ALL routes -----------------------------------------------------------
@@ -84,12 +85,15 @@ router.get('/mysql', function(req, res, next) {
 router.use(validateUser);
 
 
+// Emailer
+
+
 // Methods for this Router -----------------------------------------------------------
 
 // GET / page
 router.get('/', function(req, res, next) {
-  console.log('In Users Route')
-  res.send('respond with a resource');
+    console.log('In Users Route')
+    res.send('respond with a resource');
 });
 
 module.exports = router;
