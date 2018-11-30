@@ -54,7 +54,7 @@ router.use((req, res, next) => {
 // Methods for this Router -----------------------------------------------------------
 
 // loginLocal
-router.post('/loginLocal', (req, res, next)=>{
+router.post('/loginLocal', (req, res, next) => {
     console.log('/loginLocal');
     // req.body is made by urlencoded, which parses the http message for sent data!
     const password = req.body.password;
@@ -100,7 +100,14 @@ router.get('loginFailed'), (req, res, next) => {
     res.json({msg: 'Login failed'});
 };
 
-// logoutGitHug
+// logoutGitHub
+router.get('/logoutGitHub', (req, res, next) => {
+    req.logout();
+    req.session.destroy( () => {
+        res.clearCookie('connect.sid');
+        res.redirect('/');
+    });
+});
 
 // POST / page
 router.post('/', (req, res, next) => {
