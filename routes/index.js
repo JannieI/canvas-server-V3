@@ -37,7 +37,7 @@ router.param(('id'), (reg, res, next) => {
     next();
 })
 
-// Check the Query input
+// Check the Query input for /background
 router.use((req, res, next) => {
     const searchTerm = req.query.query;
     // console.log(req.originalUrl == '/background')
@@ -54,7 +54,7 @@ router.use((req, res, next) => {
 // Methods for this Router -----------------------------------------------------------
 
 // loginLocal
-router.post('/loginLocal',(req, res, next)=>{
+router.post('/loginLocal', (req, res, next)=>{
     console.log('/loginLocal');
     // req.body is made by urlencoded, which parses the http message for sent data!
     const password = req.body.password;
@@ -81,7 +81,7 @@ router.post('/loginLocal',(req, res, next)=>{
 })
 
 // logoutLocal
-router.get('/logoutLocal',(req, res, next)=>{
+router.get('/logoutLocal', (req, res, next)=>{
     console.log('/logoutLocal');
     // res.clearCookie('username');
     // res.json({msg: ' Logged out'})
@@ -89,28 +89,29 @@ router.get('/logoutLocal',(req, res, next)=>{
 })
 
 // loginGitHub
-router.get('/loginGitHub',passport.authenticate('github'));
+router.get('/loginGitHub', passport.authenticate('github'));
 
-router.get('/auth',passport.authenticate('github',{
+router.get('/auth', passport.authenticate('github',{
     successRedirect: '/',
     failureRedirect: '/loginFailed'
 }));
 
-router.get('loginFailed'), function(req, res, next) {
+router.get('loginFailed'), (req, res, next) => {
     res.json({msg: 'Login failed'});
 };
 
 // logoutGitHug
 
 // POST / page
-router.post('/', function(req, res, next) {
+router.post('/', (req, res, next) => {
     console.log('I AM in Post ...')
     res.type('html');
     res.send(`<h1> POST Home Page </h1>`);
 });
 
 // GET / page
-router.get('/', function(req, res, next) {
+router.get('/', (req, res, next) => {
+    console.log('user = ', req.user)
     res.render('index', { title: 'Express' });
 });
 

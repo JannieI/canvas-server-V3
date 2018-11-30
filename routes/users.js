@@ -74,7 +74,7 @@ router.get('/mongo',(req, res)=>{
 const mysqlDb = require('../databaseConnectors/dbMySQLTodo');
 
 /* GET home page. */
-router.get('/mysql', function(req, res, next) {
+router.get('/mysql', (req, res, next) => {
     // res.render('index', { title: 'Express' });
     //   const queryText= 'SELECT * FROM tasks WHERE id > ? AND taskName';
     const queryText= 'SELECT 1 As taskName';
@@ -91,7 +91,7 @@ router.use(validateUser);
 
 
 // Emailer
-router.get('/email', function(req, res, next) {
+router.get('/email', (req, res, next) => {
 
     const nodemailer = require('nodemailer');
 
@@ -111,7 +111,7 @@ router.get('/email', function(req, res, next) {
       // html: '<p>Your html here</p>'// plain text body
     };
 
-    transporter.sendMail(mailOptions, function(error, info){
+    transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
             console.log(error);
             res.json({ msg: 'Error: '});
@@ -125,7 +125,7 @@ router.get('/email', function(req, res, next) {
 // Methods for this Router -----------------------------------------------------------
 
 // GET / page
-router.get('/', function(req, res, next) {
+router.get('/', (req, res, next) => {
     console.log('In Users Route');
     res.send('respond with a resource');
 });

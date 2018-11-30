@@ -29,7 +29,7 @@ npm install dotenv --save
 npm install helmet --save
 
 # GitHub Auth0
-npm install passport-github --save
+npm install passport --save
 npm install passport-github --save
 
 # Express-Session
