@@ -32,23 +32,29 @@ passport.use(new GoogleStrategy(passportConfig,
 ));
 
 passport.serializeUser( (user, cb)=>{
-    cb(null,user);
+    cb(null, user);
 });
 
 passport.deserializeUser((user,cb)=>{
-    cb(null,user)
+    cb(null, user)
 });
 
 
 // Methods for this Router -----------------------------------------------------------
 
 // authGoogle/login
-authGoogleRouter.get('/login', passport.authenticate('google'));
+authGoogleRouter.get('/login', passport.authenticate('google', {
+    scope: ['profile'] // Used to specify the required data
+}));
 
 authGoogleRouter.get('/callback', passport.authenticate('google',{
     successRedirect: '/',
     failureRedirect: '/loginFailed'
 }));
+
+// app.get('/auth/google/callback', passport.authenticate('google'), (req, res) => {
+//     res.redirect('/secret');
+// });
 
 authGoogleRouter.get('/loginSuccess', (req, res, next) => {
     res.json( {msg: 'Login worked !'} );

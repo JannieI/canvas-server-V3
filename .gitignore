@@ -1,3 +1,4 @@
 node_modules/
 data/
-configPassport.js
+configuration/configPassportGitHub.js
+configuration/authGoogleRouter.js
