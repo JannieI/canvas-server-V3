@@ -16,6 +16,7 @@ const passportConfig = require('./configPassport');
 // Require Routers ---------------------------------------------------------------
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var usersRouter = require('./routes/authGitHub');
 
 
 // Functions ---------------------------------------------------------------------
@@ -118,6 +119,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Routing ------------------------------------------------------------------------
 app.use('/users', usersRouter);
+app.use('/logoutGitHub', authGitHub);
 app.use('/', indexRouter);
 
 // catch 404 and forward to error handler
