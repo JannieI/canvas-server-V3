@@ -3,7 +3,7 @@ var express = require('express');
 var router = express.Router();
 
 // Third Party modules -----------------------------------------------------------
-const passport = require('passport');
+// const passport = require('passport');
 
 
 // Functions ---------------------------------------------------------------------
@@ -54,6 +54,7 @@ router.use((req, res, next) => {
 // Methods for this Router -----------------------------------------------------------
 
 // loginLocal
+// curl -v -X POST http://localhost:8000/loginLoce: application/json" -d '{"username":"111", "password":"x"}'
 router.post('/loginLocal', (req, res, next) => {
     console.log('/loginLocal');
     // req.body is made by urlencoded, which parses the http message for sent data!
@@ -89,25 +90,25 @@ router.get('/logoutLocal', (req, res, next)=>{
 })
 
 // loginGitHub
-router.get('/loginGitHub', passport.authenticate('github'));
+// router.get('/loginGitHub', passport.authenticate('github'));
 
 // router.get('/auth', passport.authenticate('github',{
 //     successRedirect: '/',
 //     failureRedirect: '/loginFailed'
 // }));
 
-router.get('loginFailed'), (req, res, next) => {
-    res.json({msg: 'Login failed'});
-};
+// router.get('loginFailed'), (req, res, next) => {
+//     res.json({msg: 'Login failed'});
+// };
 
 // logoutGitHub
-router.get('/logoutGitHub', (req, res, next) => {
-    req.logout();
-    req.session.destroy( () => {
-        res.clearCookie('connect.sid');
-        res.json( {msg: "Logged out"} );
-    });
-});
+// router.get('/logoutGitHub', (req, res, next) => {
+//     req.logout();
+//     req.session.destroy( () => {
+//         res.clearCookie('connect.sid');
+//         res.json( {msg: "Logged out"} );
+//     });
+// });
 
 // POST / page
 router.post('/', (req, res, next) => {

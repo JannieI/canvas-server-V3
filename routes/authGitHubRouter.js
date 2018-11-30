@@ -4,12 +4,40 @@ var authGitHubRouter = express.Router();
 
 // Third Party modules -----------------------------------------------------------
 const passport = require('passport');
+const session = require('express-session');
+var GitHubStrategy = require('passport-github').Strategy;
+const passportConfig = require('../configPassport');
 
 
 // Functions ---------------------------------------------------------------------
 
 
 // Runs for ALL routes ----------------------------------------------------------
+
+// Setup Session for Passport
+authGitHubRouter.use(session({
+    secret: 'I love Canvas!',
+    resave: false,
+    saveUninitialized: true,
+}))
+
+// Passport related 
+authGitHubRouter.use(passport.initialize());
+authGitHubRouter.use(passport.session());
+passport.use(new GitHubStrategy(passportConfig,
+  (accessToken, refreshToken, profile, cb) => {
+    console.log(profile)
+    return cb(null, profile);
+  }
+));
+
+passport.serializeUser( (user, cb)=>{
+    cb(null,user);
+});
+
+passport.deserializeUser((user,cb)=>{
+    cb(null,user)
+});
 
 
 // Methods for this Router -----------------------------------------------------------

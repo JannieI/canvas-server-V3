@@ -8,9 +8,9 @@ const express = require('express');
 const helmet = require('helmet');
 var logger = require('morgan');
 const session = require('express-session');
-const passport = require('passport');
-var GitHubStrategy = require('passport-github').Strategy;
-const passportConfig = require('./configPassport');
+// const passport = require('passport');
+// var GitHubStrategy = require('passport-github').Strategy;
+// const passportConfig = require('./configPassport');
 
 
 // Require Routers ---------------------------------------------------------------
@@ -29,7 +29,7 @@ function validateUser(req, res, next) {
 }
 
 
-// Express & Helmet & Passport --------------------------------------------------
+// Express & Helmet -------------------------------------------------------------
 var app = express();
 app.use(helmet());
 
@@ -37,27 +37,29 @@ app.use(helmet());
 // Runs for ALL routes ----------------------------------------------------------
 
 // Setup Session for Passport
-app.use(session({
-    secret: 'I love Canvas!',
-    resave: false,
-    saveUninitialized: true,
-}))
+// app.use(session({
+//     secret: 'I love Canvas!',
+//     resave: false,
+//     saveUninitialized: true,
+// }))
 
 // Passport related 
-app.use(passport.initialize());
-app.use(passport.session());
-passport.use(new GitHubStrategy(passportConfig,
-  (accessToken, refreshToken, profile, cb) => {
-    console.log(profile)
-    return cb(null, profile);
-  }
-));
-passport.serializeUser( (user, cb)=>{
-    cb(null,user);
-})
-  passport.deserializeUser((user,cb)=>{
-    cb(null,user)
-})
+// app.use(passport.initialize());
+// app.use(passport.session());
+// passport.use(new GitHubStrategy(passportConfig,
+//   (accessToken, refreshToken, profile, cb) => {
+//     console.log(profile)
+//     return cb(null, profile);
+//   }
+// ));
+
+// passport.serializeUser( (user, cb)=>{
+//     cb(null,user);
+// });
+
+// passport.deserializeUser((user,cb)=>{
+//     cb(null,user)
+// });
 
 // Cors 
 app.use( (req, res, next) => {
