@@ -25,6 +25,12 @@ const canvasBackgroundcolorsDefaults = require('../data/canvasBackgroundcolorsDe
 
 // Runs for ALL routes ----------------------------------------------------------
 
+// For Testing only
+// router.use( (req, res, next) => {
+//     console.log('req', req);
+//     next();
+// });
+
 // Get Parameters
 router.param(('id'), (reg, res, next) => {
     // Update analytics in db as someone hit this ID
@@ -49,11 +55,13 @@ router.use((req, res, next) => {
 
 // loginLocal
 router.post('/loginLocal',(req, res, next)=>{
+    console.log('/loginLocal');
     // req.body is made by urlencoded, which parses the http message for sent data!
     const password = req.body.password;
     const username = req.body.username;
     console.log(username);
     console.log(password);
+    // res.send('Done ...');
     // check the db to see if user credentials are valid
     // if they are valid...
         // - save their username in a cookie    
@@ -70,7 +78,6 @@ router.post('/loginLocal',(req, res, next)=>{
         // The "?" is a special character in a URL
         res.json({msg: 'Login failed'})
     };
-    // res.json(req.body)
 })
 
 // logoutLocal
@@ -78,7 +85,7 @@ router.get('/logoutLocal',(req, res, next)=>{
     console.log('/logoutLocal');
     // res.clearCookie('username');
     // res.json({msg: ' Logged out'})
-    res.send('Done');
+    res.send('Done Logout');
 })
 
 // loginGitHub

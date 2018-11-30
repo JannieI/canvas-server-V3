@@ -3,8 +3,9 @@ var express = require('express');
 var router = express.Router();
 
 // Login to local Node Server
-router.post('/loginLocal',(req, res, next)=>{
+router.post('/loginLocalXXX',(req, res, next)=>{
     // req.body is made by urlencoded, which parses the http message for sent data!
+    console.log('body', body)
     const password = req.body.password;
     const username = req.body.username;
     // check the db to see if user credentials are valid
@@ -27,7 +28,7 @@ router.post('/loginLocal',(req, res, next)=>{
 })
 
 // Logout
-router.get('/logout',(req, res, next)=>{
+router.get('/logoutXXX',(req, res, next)=>{
     // res.clearCookie takes 1 arg: 
     // 1. Cookie to clear (by name)
     res.clearCookie('username');
