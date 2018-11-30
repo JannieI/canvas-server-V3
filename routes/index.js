@@ -105,7 +105,7 @@ router.get('/logoutGitHub', (req, res, next) => {
     req.logout();
     req.session.destroy( () => {
         res.clearCookie('connect.sid');
-        res.redirect('/');
+        res.json( {msg: "Logged out"} );
     });
 });
 
