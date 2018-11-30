@@ -91,10 +91,10 @@ router.get('/logoutLocal', (req, res, next)=>{
 // loginGitHub
 router.get('/loginGitHub', passport.authenticate('github'));
 
-router.get('/auth', passport.authenticate('github',{
-    successRedirect: '/',
-    failureRedirect: '/loginFailed'
-}));
+// router.get('/auth', passport.authenticate('github',{
+//     successRedirect: '/',
+//     failureRedirect: '/loginFailed'
+// }));
 
 router.get('loginFailed'), (req, res, next) => {
     res.json({msg: 'Login failed'});
