@@ -11,7 +11,7 @@ function validateUser(req, res, next) {
   // Store the answer in the res object for further Middleware to use
   res.locals.validatedUser = true;
   next();
-}
+};
 
 // Runs for ALL routes -----------------------------------------------------------
 
@@ -19,7 +19,7 @@ function validateUser(req, res, next) {
 router.param(('collection'), (reg, res, next) => {
     // Update analytics in db as someone hit this ID
     next();
-})
+});
 
 
 // Mongo
@@ -35,44 +35,38 @@ mongoClient.connect(mongoUrl,(error, databaseConn)=>{
 
 // Postgress
 const dbPgWeather = require('../databaseConnectors/dbPgWeather');
-// const PoolClass = require('pg').Pool;
-
 
 router.get('/pg',(req, res)=>{
     const query = 'SELECT * FROM city_weathers WHERE id > $1'
     const scaryDataFromInternet = 36;
-    // pool.query(query,[scaryDataFromInternet],(error, dbResponse)=>{
-    // pool.query('SELECT $1::text as message', ['Hello world!'],(error, dbResponse)=>{
+
     dbPgWeather.query(query,(error, dbResponse)=>{
         if (dbResponse != undefined) {  
-            console.log(dbResponse.rows)
-            res.json(dbResponse.rows)
+            console.log(dbResponse.rows);
+            res.json(dbResponse.rows);
         } else {
             console.log(dbResponse)
             res.json({msg: "Query ran, no data to return"})
-        }
+        };
     })
-
-    // Release module
-    // pool.end();
 })
 
-
+// Mongo
 router.get('/mongo:collection',(req, res)=>{
     let collection = req.params.collection.substring(1);
     console.log(req.params, collection.substring(1))
     db.collection(collection).find({}).toArray((queryError, carsResults)=>{
-        console.log(carsResults)
-        res.json(carsResults)
-    })
+        console.log(carsResults);
+        res.json(carsResults);
+    });
 })
 
 router.get('/mongo',(req, res)=>{
     let collection = 'contacts';
     db.collection(collection).find({}).toArray((queryError, carsResults)=>{
-        console.log(carsResults)
-        res.json(carsResults)
-    })
+        console.log(carsResults);
+        res.json(carsResults);
+    });
 })
 
 
@@ -85,9 +79,9 @@ router.get('/mysql', function(req, res, next) {
     //   const queryText= 'SELECT * FROM tasks WHERE id > ? AND taskName';
     const queryText= 'SELECT 1 As taskName';
     mysqlDb.query(queryText,[3],(error,results)=>{
-        console.log(results)
-        res.json(results)
-    })
+        console.log(results);
+        res.json(results);
+    });
 });
 
 // Runs for ALL routes -----------------------------------------------------------
@@ -120,11 +114,11 @@ router.get('/email', function(req, res, next) {
     transporter.sendMail(mailOptions, function(error, info){
         if (error) {
             console.log(error);
-            res.json({ msg: 'Error: '})
+            res.json({ msg: 'Error: '});
         } else {
             console.log('Email sent: ' + info.response);
-            res.json({ msg: 'Email Send!'})
-        }
+            res.json({ msg: 'Email Send!'});
+        };
     });
 })
 
@@ -132,7 +126,7 @@ router.get('/email', function(req, res, next) {
 
 // GET / page
 router.get('/', function(req, res, next) {
-    console.log('In Users Route')
+    console.log('In Users Route');
     res.send('respond with a resource');
 });
 

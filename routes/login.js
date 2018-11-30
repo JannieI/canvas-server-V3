@@ -15,10 +15,10 @@ router.post('/loginLocal',(req, res, next)=>{
         // res.cookie takes 2 args:
         // 1. name of the cookie
         // 2. value to set it to 
-        res.cookie('username',username)
+        res.cookie('username',username);
         // res.redirect takes 1 arg:
         // 1. Where to send the brower
-        res.redirect('/welcome')
+        res.redirect('/welcome');
     }else{
         // The "?" is a special character in a URL
         res.redirect('/login?msg=fail&test=hello')

@@ -13,7 +13,7 @@ module.exports = {
     query: (queryText,params,callback)=>{
         return pool.query(queryText, params, callback);
     }
-}
+};
 // pool.query('SELECT * FROM tasks WHERE id > ?', [dataFromTheScaryInternet], function (error, results, fields) {
 //   if (error) throw error;
 //   console.log(results[0]);

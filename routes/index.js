@@ -52,8 +52,8 @@ router.post('/loginLocal',(req, res, next)=>{
     // req.body is made by urlencoded, which parses the http message for sent data!
     const password = req.body.password;
     const username = req.body.username;
-    console.log(username)
-    console.log(password)
+    console.log(username);
+    console.log(password);
     // check the db to see if user credentials are valid
     // if they are valid...
         // - save their username in a cookie    
@@ -69,29 +69,29 @@ router.post('/loginLocal',(req, res, next)=>{
     }else{
         // The "?" is a special character in a URL
         res.json({msg: 'Login failed'})
-    }
+    };
     // res.json(req.body)
 })
 
 // logoutLocal
 router.get('/logoutLocal',(req, res, next)=>{
-    console.log('/logoutLocal')
+    console.log('/logoutLocal');
     // res.clearCookie('username');
     // res.json({msg: ' Logged out'})
-    res.send('Done')
+    res.send('Done');
 })
 
 // loginGitHub
-router.get('/loginGitHub',passport.authenticate('github'))
+router.get('/loginGitHub',passport.authenticate('github'));
 
 router.get('/auth',passport.authenticate('github',{
     successRedirect: '/',
     failureRedirect: '/loginFailed'
-}))
+}));
 
 router.get('loginFailed'), function(req, res, next) {
-    res.json({msg: 'Login failed'})
-}
+    res.json({msg: 'Login failed'});
+};
 
 // logoutGitHug
 
