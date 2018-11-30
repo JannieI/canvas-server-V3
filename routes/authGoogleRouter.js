@@ -5,7 +5,7 @@ var authGoogleRouter = express.Router();
 // Third Party modules -----------------------------------------------------------
 const passport = require('passport');
 const session = require('express-session');
-var GoogleStrategy = require('passport-passport-google-oauth20').Strategy;
+var GoogleStrategy = require('passport-google-oauth20').Strategy;
 const passportConfig = require('../configuration/configPassportGoogle');
 
 

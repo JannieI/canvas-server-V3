@@ -47,6 +47,10 @@ npm install mysql --save
 # Node Mailer
 npm install nodemailer --save
 
+## Google OAuth2
+npm install passport-google-oauth20 --save
+
+
 <!-- -------------MONGO INFO START ------------------------ -->
 # Install MongoDB 4.04 - OUTSIDE of Node
 See:  https://askubuntu.com/questions/842592/apt-get-fails-on-16-04-or-18-04-installing-mongodb
