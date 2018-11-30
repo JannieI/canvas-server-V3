@@ -6,7 +6,7 @@ var authGitHubRouter = express.Router();
 const passport = require('passport');
 const session = require('express-session');
 var GitHubStrategy = require('passport-github').Strategy;
-const passportConfig = require('../configPassport');
+const passportConfig = require('../configuration/configPassportGitHub');
 
 
 // Functions ---------------------------------------------------------------------
