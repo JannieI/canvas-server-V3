@@ -17,6 +17,7 @@ const session = require('express-session');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var authGitHubRouter = require('./routes/authGitHubRouter');
+var authGoogleRouter = require('./routes/authGoogleRouter');
 
 
 // Functions ---------------------------------------------------------------------
@@ -123,6 +124,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/users', usersRouter);
 app.use('/auth/github/', authGitHubRouter);
+app.use('/auth/authGoogle/', authGoogleRouter);
 app.use('/', indexRouter);
 
 
