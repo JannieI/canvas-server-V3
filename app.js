@@ -1,12 +1,10 @@
-// Require Native modules
+// Basic imports -----------------------------------------------------------------
 var createError = require('http-errors');
 var path = require('path');
 var cookieParser = require('cookie-parser');
-
-// Require Express
 const express = require('express');
 
-// Require Third party apps
+// Third Party modules -----------------------------------------------------------
 const helmet = require('helmet');
 var logger = require('morgan');
 const session = require('express-session');
@@ -15,12 +13,12 @@ var GitHubStrategy = require('passport-github').Strategy;
 const passportConfig = require('./configPassport');
 
 
-// Require Routers
+// Require Routers ---------------------------------------------------------------
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 
-// Functions
+// Functions ---------------------------------------------------------------------
 function validateUser(req, res, next) {
     // Get info out of req object
     // Check against DB
@@ -29,15 +27,22 @@ function validateUser(req, res, next) {
     next();
 }
 
-// Express & Helmet & Passport
+
+// Express & Helmet & Passport --------------------------------------------------
 var app = express();
 app.use(helmet());
 
+
+// Runs for ALL routes ----------------------------------------------------------
+
+// Setup Session for Passport
 app.use(session({
     secret: 'I love Canvas!',
     resave: false,
     saveUninitialized: true,
 }))
+
+// Passport related 
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new GitHubStrategy(passportConfig,
@@ -46,13 +51,6 @@ passport.use(new GitHubStrategy(passportConfig,
     return cb(null, profile);
   }
 ));
-// passport.serializeUser( (user, cb) => {
-//     cb(null, user);
-//   });
-  
-// passport.deserializeUser(function(user, cb) {
-//     cb(null, user);
-// });
 passport.serializeUser((user, cb)=>{
     cb(null,user);
 })
@@ -60,17 +58,18 @@ passport.serializeUser((user, cb)=>{
     cb(null,user)
 })
 
-// Cors
+// Cors 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
 
-// view engine setup
+// View engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+// Runs for ALL routes ----------------------------------------------------------
 // Initial middleware on ALL routes and ALL methods
 //  For ONE route: app.use('/admin', validateUser);
 //  For ONE method, ALL routes: app.get(validateUser);
@@ -117,7 +116,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //   // res.json({ "name": "Jannie"})
 // });
 
-// Routing
+// Routing ------------------------------------------------------------------------
 app.use('/users', usersRouter);
 app.use('/', indexRouter);
 
@@ -126,7 +125,7 @@ app.use(function(req, res, next) {
     next(createError(404));
 });
 
-// error handler
+// Error handler
 app.use(function(err, req, res, next) {
     // set locals, only providing error in development
     res.locals.message = err.message;
@@ -137,5 +136,5 @@ app.use(function(err, req, res, next) {
     res.json({msg: 'error', err});
 });
 
-// For bin/www.js
+// Export for bin/www.js
 module.exports = app;

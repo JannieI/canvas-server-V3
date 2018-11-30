@@ -1,11 +1,12 @@
-// Import Express and related modules -----------------------------------------------------------
+// Basic imports -----------------------------------------------------------------
 var express = require('express');
 var router = express.Router();
 
-// Third Party modules
+// Third Party modules -----------------------------------------------------------
 const passport = require('passport');
 
-// Functions -----------------------------------------------------------
+
+// Functions ---------------------------------------------------------------------
 
 // Check that data of HTTP message is JSON
 function requireJSON(req, res, next) {
@@ -18,11 +19,11 @@ function requireJSON(req, res, next) {
 }
 
 
-// Get Data -----------------------------------------------------------
+// Get Data ---------------------------------------------------------------------
 const canvasBackgroundcolorsDefaults = require('../data/canvasBackgroundcolorsDefaults');
 
 
-// Runs for ALL routes -----------------------------------------------------------
+// Runs for ALL routes ----------------------------------------------------------
 
 // Get Parameters
 router.param(('id'), (reg, res, next) => {
@@ -45,7 +46,6 @@ router.use((req, res, next) => {
 
 
 // Methods for this Router -----------------------------------------------------------
-
 
 // loginLocal
 router.post('/loginLocal',(req, res, next)=>{
@@ -85,8 +85,8 @@ router.get('/logoutLocal',(req, res, next)=>{
 router.get('/loginGitHub',passport.authenticate('github'))
 
 router.get('/auth',passport.authenticate('github',{
-  successRedirect: '/',
-  failureRedirect: '/loginFailed'
+    successRedirect: '/',
+    failureRedirect: '/loginFailed'
 }))
 
 router.get('loginFailed'), function(req, res, next) {
@@ -166,7 +166,7 @@ router.get('/background:id', (req, res, next) => {
                 results: results
             }
         );
-        };
+    };
 });
 
 // POST /background

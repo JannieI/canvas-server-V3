@@ -1,6 +1,8 @@
+// Basic imports -----------------------------------------------------------------
 var express = require('express');
 var router = express.Router();
-// Functions -----------------------------------------------------------
+
+// Functions ---------------------------------------------------------------------
 
 // Validate the user
 function validateUser(req, res, next) {
@@ -42,13 +44,13 @@ router.get('/pg',(req, res)=>{
     // pool.query(query,[scaryDataFromInternet],(error, dbResponse)=>{
     // pool.query('SELECT $1::text as message', ['Hello world!'],(error, dbResponse)=>{
     dbPgWeather.query(query,(error, dbResponse)=>{
-      if (dbResponse != undefined) {  
-          console.log(dbResponse.rows)
-          res.json(dbResponse.rows)
-      } else {
-          console.log(dbResponse)
-          res.json({msg: "Query ran, no data to return"})
-      }
+        if (dbResponse != undefined) {  
+            console.log(dbResponse.rows)
+            res.json(dbResponse.rows)
+        } else {
+            console.log(dbResponse)
+            res.json({msg: "Query ran, no data to return"})
+        }
     })
 
     // Release module
@@ -100,11 +102,11 @@ router.get('/email', function(req, res, next) {
     const nodemailer = require('nodemailer');
 
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: 'jimmelman@gmail.com',
-        pass: ''
-      }
+        service: 'gmail',
+        auth: {
+            user: 'jimmelman@gmail.com',
+            pass: ''
+        }
     });
 
     const mailOptions = {
@@ -116,13 +118,13 @@ router.get('/email', function(req, res, next) {
     };
 
     transporter.sendMail(mailOptions, function(error, info){
-      if (error) {
-        console.log(error);
-        res.json({ msg: 'Error: '})
-      } else {
-        console.log('Email sent: ' + info.response);
-        res.json({ msg: 'Email Send!'})
-      }
+        if (error) {
+            console.log(error);
+            res.json({ msg: 'Error: '})
+        } else {
+            console.log('Email sent: ' + info.response);
+            res.json({ msg: 'Email Send!'})
+        }
     });
 })
 
