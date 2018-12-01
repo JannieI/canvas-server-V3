@@ -29,7 +29,9 @@ const mongoUrl = `mongodb://127.0.0.1:27017`;
 
 let db;
 mongoClient.connect(mongoUrl,(error, databaseConn)=>{
-    db = databaseConn.db('Canvas');
+    if (databaseConn != null) {
+        db = databaseConn.db('Canvas');
+    };
 });
 
 
@@ -91,17 +93,49 @@ router.use(validateUser);
 
 
 // Emailer
+// To set Google:
+// unCapcha: https://accounts.google.com/b/0/DisplayUnlockCaptcha
+// Less secure: https://myaccount.google.com/lesssecureapps
 router.get('/email', (req, res, next) => {
 
     const nodemailer = require('nodemailer');
 
+    // Works pre OAuth
+    // const transporter = nodemailer.createTransport({
+    //     service: 'gmail',
+    //     auth: {
+    //         user: 'jimmelman@gmail.com',
+    //         pass: 'positif!01'
+    //     }
+    // });
+
+
+
+
+
+    // OAuth Example
+    // For Gmail Auth, see:
+    // https://developers.google.com/identity/protocols/OAuth2
+    // https://stackoverflow.com/questions/24098461/nodemailer-gmail-what-exactly-is-a-refresh-token-and-how-do-i-get-one
+    // http://masashi-k.blogspot.com/2013/06/sending-mail-with-gmail-using-xoauth2.html
+    // For second auth, see: https://stackoverflow.com/questions/10827920/not-receiving-google-oauth-refresh-token
+    // See config file for details
+    var auth = {
+        type: 'oauth2',
+        user: '',
+        clientId: '',
+        clientSecret: '',
+        refreshToken: '',
+    };
+
     const transporter = nodemailer.createTransport({
         service: 'gmail',
-        auth: {
-            user: 'jimmelman@gmail.com',
-            pass: ''
-        }
+        auth: auth
     });
+
+
+
+
 
     const mailOptions = {
       from: 'jimmelman@gmail.com',
@@ -114,7 +148,7 @@ router.get('/email', (req, res, next) => {
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
             console.log(error);
-            res.json({ msg: 'Error: '});
+            res.json({ msg: 'Error: ', error: error});
         } else {
             console.log('Email sent: ' + info.response);
             res.json({ msg: 'Email Send!'});
