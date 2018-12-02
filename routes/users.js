@@ -30,10 +30,15 @@ const mongoUrl = `mongodb+srv://cluster0-wnczk.azure.mongodb.net/Canvas --userna
 
 let db;
 mongoClient.connect(mongoUrl,(error, databaseConn)=>{
-    console.log('mongo connect', error, databaseConn)
+    console.log('mongo connect error: ', error==null?  ''  :  error)
+    console.log('mongo connect url', databaseConn.s.url)
     if (databaseConn != null) {
         db = databaseConn.db('Canvas');
+        console.log('db', db.s.databaseName)
     };
+    console.log('')
+    console.log('----------------------------------------------------------------')
+    console.log('')
 });
 
 
