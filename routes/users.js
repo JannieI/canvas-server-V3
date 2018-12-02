@@ -25,8 +25,8 @@ router.param(('collection'), (reg, res, next) => {
 // Mongo
 const mongodb = require('mongodb');
 const mongoClient = mongodb.MongoClient;
-// const mongoUrl = `mongodb://127.0.0.1:27017`;
-const mongoUrl = `mongodb+srv://cluster0-wnczk.azure.mongodb.net/Canvas --username JannieI --password JannieI`
+const mongoUrl = `mongodb://127.0.0.1:27017`;
+// const mongoUrl = `mongodb+srv://cluster0-wnczk.azure.mongodb.net/Canvas --username JannieI --password JannieI`
 
 let db;
 mongoClient.connect(mongoUrl,(error, databaseConn)=>{
@@ -74,11 +74,10 @@ router.get('/pg',(req, res)=>{
 
 router.get('/mongo:collection',(req, res)=>{
     let collection = req.params.collection.substring(1);
-    console.log('mongo', collection)
-    console.log(req.params, collection.substring(1))
-    db.collection(collection).find({}).toArray((queryError, carsResults)=>{
-        console.log(carsResults);
-        res.json(carsResults);
+    console.log('mongo connection to collection: ', collection)
+    db.collection(collection).find({}).toArray((queryError, res)=>{
+        console.log('mongo results ', res);
+        res.json(res);
     });
 })
 
@@ -86,7 +85,10 @@ router.get('/mongo',(req, res)=>{
     let collection = 'contacts';
     db.collection(collection).find({}).toArray((queryError, carsResults)=>{
         console.log(carsResults);
-        res.json(carsResults);
+        console.log('')
+        console.log('----------------------------------------------------------------')
+        console.log('')
+            res.json(carsResults);
     });
 })
 
