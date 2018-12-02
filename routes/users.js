@@ -54,6 +54,15 @@ router.get('/pg',(req, res)=>{
 })
 
 // Mongo
+// Notes:
+// Edit Aliases with sudo nano ~/.bashrc
+//  msc = Mongo Server Client for user JannieI
+//  mls = Mongo Logcal Server for --dbpath ~/Projects/canvas-mongoDB
+//        default in config /etc/mongodb.conf
+//  mlc = Mongo Local Client
+// Bulk import in bulkImportInstructions.sh 
+// /home/jannie/Projects/canvas-server/data/Import Data 2018-11-29
+
 router.get('/mongo:collection',(req, res)=>{
     let collection = req.params.collection.substring(1);
     console.log(req.params, collection.substring(1))
