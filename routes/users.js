@@ -31,10 +31,10 @@ const mongoUrl = `mongodb://127.0.0.1:27017`;
 let db;
 mongoClient.connect(mongoUrl,(error, databaseConn)=>{
     console.log('mongo connect error: ', error==null?  ''  :  error)
-    console.log('mongo connect url', databaseConn.s.url)
+    console.log('mongo connected to url: ', databaseConn.s.url)
     if (databaseConn != null) {
         db = databaseConn.db('Canvas');
-        console.log('db', db.s.databaseName)
+        console.log('mongo connected to db: ', db.s.databaseName)
     };
     console.log('')
     console.log('----------------------------------------------------------------')
@@ -75,9 +75,9 @@ router.get('/pg',(req, res)=>{
 router.get('/mongo:collection',(req, res)=>{
     let collection = req.params.collection.substring(1);
     console.log('mongo connection to collection: ', collection)
-    db.collection(collection).find({}).toArray((queryError, res)=>{
-        console.log('mongo results ', res);
-        res.json(res);
+    db.collection(collection).find({}).toArray((queryError, queryResult)=>{
+        console.log('mongo results from server: ', queryResult);
+        res.json(queryResult);
     });
 })
 
