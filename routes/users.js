@@ -25,10 +25,12 @@ router.param(('collection'), (reg, res, next) => {
 // Mongo
 const mongodb = require('mongodb');
 const mongoClient = mongodb.MongoClient;
-const mongoUrl = `mongodb://127.0.0.1:27017`;
+// const mongoUrl = `mongodb://127.0.0.1:27017`;
+const mongoUrl = `mongodb+srv://cluster0-wnczk.azure.mongodb.net/Canvas --username JannieI --password JannieI`
 
 let db;
 mongoClient.connect(mongoUrl,(error, databaseConn)=>{
+    console.log('mongo connect', error, databaseConn)
     if (databaseConn != null) {
         db = databaseConn.db('Canvas');
     };
@@ -57,14 +59,17 @@ router.get('/pg',(req, res)=>{
 // Notes:
 // Edit Aliases with sudo nano ~/.bashrc
 //  msc = Mongo Server Client for user JannieI
+//        mongo mongodb+srv://cluster0-wnczk.azure.mongodb.net/text --username JannieI --password JannieI
 //  mls = Mongo Logcal Server for --dbpath ~/Projects/canvas-mongoDB
 //        default in config /etc/mongodb.conf
 //  mlc = Mongo Local Client
 // Bulk import in bulkImportInstructions.sh 
 // /home/jannie/Projects/canvas-server/data/Import Data 2018-11-29
 
+
 router.get('/mongo:collection',(req, res)=>{
     let collection = req.params.collection.substring(1);
+    console.log('mongo', collection)
     console.log(req.params, collection.substring(1))
     db.collection(collection).find({}).toArray((queryError, carsResults)=>{
         console.log(carsResults);
