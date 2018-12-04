@@ -54,7 +54,8 @@ router.use((req, res, next) => {
 // Methods for this Router -----------------------------------------------------------
 
 // loginLocal
-// curl -v -X POST http://localhost:8000/loginLoce: application/json" -d '{"username":"111", "password":"x"}'
+//curl -v -X POST http://localhost:"application/json" -d 'password=x'  -d 'username=JannieI'
+
 router.post('/loginLocal', (req, res, next) => {
     console.log('/loginLocal');
     // req.body is made by urlencoded, which parses the http message for sent data!
@@ -74,7 +75,7 @@ router.post('/loginLocal', (req, res, next) => {
         res.cookie('username',username)
         // res.redirect takes 1 arg:
         // 1. Where to send the brower
-        res.json({msg: 'Logged in'})
+        res.json({msg: 'Logged in ' + username})
     }else{
         // The "?" is a special character in a URL
         res.json({msg: 'Login failed'})
