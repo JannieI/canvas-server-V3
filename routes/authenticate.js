@@ -7,15 +7,19 @@ const router = express.Router();
 
 //When the user sends a post request to this route, passport authenticates the user based on the
 //middleware created previously
+// curl -v -X POST http://localhost:8000/signup -H "application/json" -d 'password=jannie' -d 'email=jannie@gmail.com'
 router.post('/signup', passport.authenticate('signup', { session : false }) , async (req, res, next) => {
-  res.json({ 
+    console.log('authenticate signup', req)
+    res.json({ 
     message : 'Signup successful',
     user : req.user 
   });
 });
 
-router.post('/login', async (req, res, next) => {
-    passport.authenticate('login', async (err, user, info) => {     
+// curl -v -X POST http://localhost:8000/login -H "application/json" -d 'password=jannie' -d 'email=jannie@gmail.com'
+router.post('/login', (req, res, next) => {
+    console.log('/login (authenticate)');
+    passport.authenticate('login', (err, user, info) => {     
         try 
             {
 

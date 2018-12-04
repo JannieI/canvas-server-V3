@@ -8,7 +8,9 @@ const express = require('express');
 const helmet = require('helmet');
 var logger = require('morgan');
 const session = require('express-session');
-// const passport = require('passport');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const passport = require('passport');
 // var GitHubStrategy = require('passport-github').Strategy;
 // const passportConfig = require('./configPassport');
 
@@ -18,6 +20,9 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var authGitHubRouter = require('./routes/authGitHubRouter');
 var authGoogleRouter = require('./routes/authGoogleRouter');
+const authenticateRouter = require('./routes/authenticate');
+const secureRouter = require('./routes/secure-route');
+require('./auth/auth');
 
 
 // Functions ---------------------------------------------------------------------
@@ -29,38 +34,23 @@ function validateUser(req, res, next) {
     next();
 }
 
+const UserModel = require('./model/models');
+mongoose.connect('mongodb://127.0.0.1:27017/passport-jwt', { useMongoClient : true });
+mongoose.connection.on('error', error => console.log('Mongoose Connection error: ',error) );
+mongoose.Promise = global.Promise;
 
 // Express & Helmet -------------------------------------------------------------
 var app = express();
 app.use(helmet());
 
+// Parse form data to create req.body
+// app.use( bodyParser.urlencoded({ extended : false }) );
+
 
 // Runs for ALL routes ----------------------------------------------------------
-
-// Setup Session for Passport
-// app.use(session({
-//     secret: 'I love Canvas!',
-//     resave: false,
-//     saveUninitialized: true,
-// }))
-
-// Passport related 
-// app.use(passport.initialize());
-// app.use(passport.session());
-// passport.use(new GitHubStrategy(passportConfig,
-//   (accessToken, refreshToken, profile, cb) => {
-//     console.log(profile)
-//     return cb(null, profile);
-//   }
-// ));
-
-// passport.serializeUser( (user, cb)=>{
-//     cb(null,user);
-// });
-
-// passport.deserializeUser((user,cb)=>{
-//     cb(null,user)
-// });
+// Initial middleware on ALL routes and ALL methods
+//  For ONE route: app.use('/admin', validateUser);
+//  For ONE method, ALL routes: app.get(validateUser);
 
 // Cors 
 app.use( (req, res, next) => {
@@ -73,10 +63,6 @@ app.use( (req, res, next) => {
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-// Runs for ALL routes ----------------------------------------------------------
-// Initial middleware on ALL routes and ALL methods
-//  For ONE route: app.use('/admin', validateUser);
-//  For ONE method, ALL routes: app.get(validateUser);
 app.use(logger('dev'));
 app.use(cookieParser());
 app.use(validateUser);
@@ -121,6 +107,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 // });
 
 // Routing ------------------------------------------------------------------------
+app.use('/signup', authenticateRouter);
+app.use('/login', authenticateRouter);
+app.use('/', passport.authenticate('jwt', { session : false }), secureRouter );
 
 app.use('/users', usersRouter);
 app.use('/auth/github/', authGitHubRouter);
@@ -140,6 +129,8 @@ app.use( (err, req, res, next) => {
     res.locals.error = req.app.get('env') === 'development' ? err : {};
 
     // render the error page
+    console.log('app.js error req.body: ', req.body)
+
     res.status(err.status || 500);
     res.json({msg: 'error', err});
 });

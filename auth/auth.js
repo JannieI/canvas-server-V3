@@ -12,9 +12,11 @@ passport.use('signup', new localStrategy(
             //Save the information provided by the user to the the database
             const user = await UserModel.create({ email, password });
             //Send the user information to the next middleware
+            console.log('passport.use.signup', user)
             return done(null, user);
         } catch (error) {
-            done(error);
+          console.log('passport.use.signup error: ', error)
+          done(error);
         }
     }
 ));
