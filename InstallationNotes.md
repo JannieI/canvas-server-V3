@@ -47,9 +47,26 @@ npm install mysql --save
 # Node Mailer
 npm install nodemailer --save
 
-## Google OAuth2
+# Google OAuth2
 npm install passport-google-oauth20 --save
 
+# Encryption 
+npm install bcrypt --save
+
+# Body Parser
+npm install body-parser --save
+
+# JWT
+npm install jsonwebtoken --save
+
+# Mongoose
+npm install mongoose --save
+
+# Passport local Strategy
+npm install passport-local --save
+
+# Passport JWT Strategy
+npm install passport-jwt --save
 
 <!-- -------------MONGO INFO START ------------------------ -->
 # Install MongoDB 4.04 - OUTSIDE of Node
