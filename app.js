@@ -107,9 +107,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 // });
 
 // Routing ------------------------------------------------------------------------
-app.use('/signup', authLocalRouter);
-app.use('/login', authLocalRouter);
-app.use('/profile', passport.authenticate('jwt', { session : false }), secureRouter );
+app.use('/auth/local/signup', authLocalRouter);
+app.use('/auth/local/login', authLocalRouter);
+app.use('/auth/local/profile', passport.authenticate('jwt', { session : false }), secureRouter );
 
 app.use('/users', usersRouter);
 app.use('/auth/github/', authGitHubRouter);
