@@ -20,7 +20,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var authGitHubRouter = require('./routes/authGitHubRouter');
 var authGoogleRouter = require('./routes/authGoogleRouter');
-const authenticateRouter = require('./routes/authenticate');
+const authLocalRouter = require('./routes/authLocalRouter');
 const secureRouter = require('./routes/secure-route');
 require('./auth/auth');
 
@@ -107,8 +107,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 // });
 
 // Routing ------------------------------------------------------------------------
-app.use('/signup', authenticateRouter);
-app.use('/login', authenticateRouter);
+app.use('/signup', authLocalRouter);
+app.use('/login', authLocalRouter);
 app.use('/profile', passport.authenticate('jwt', { session : false }), secureRouter );
 
 app.use('/users', usersRouter);
