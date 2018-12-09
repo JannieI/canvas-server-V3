@@ -1,7 +1,6 @@
 ###
 
 POST http://localhost:8000/auth/local/signup -H "application/json" -d 'password=jannie' -d 'email=jannie@gmail.com'
-
 ###
 
 POST http://localhost:8000/auth/local/login -H "application/json" -d 'password=jannie' -d 'email=jannie@gmail.com'
