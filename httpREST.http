@@ -11,6 +11,6 @@ GET http://localhost:8000/loginLocal
 
 ###
 
-GET http://localhost:8000/verify
+GET http://localhost:8000/auth/local/verify
 
 ###
