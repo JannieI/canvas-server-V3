@@ -11,9 +11,9 @@ const router = express.Router();
 router.post('/signup', passport.authenticate('signup', { session : false }) , async (req, res, next) => {
     console.log('authenticate signup', req)
     res.json({ 
-    message : 'Signup successful',
-    user : req.user 
-  });
+        message : 'Signup successful',
+        user : req.user 
+    });
 });
 
 // curl -v -X POST http://localhost:8000/login -H "application/json" -d 'password=jannie' -d 'email=jannie@gmail.com'

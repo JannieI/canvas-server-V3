@@ -52,7 +52,7 @@ passport.use('login', new localStrategy(
       }
 ));
 
-  const JWTstrategy = require('passport-jwt').Strategy;
+const JWTstrategy = require('passport-jwt').Strategy;
 //We use this to extract the JWT sent by the user
 const ExtractJWT = require('passport-jwt').ExtractJwt;
 
@@ -65,9 +65,11 @@ passport.use(new JWTstrategy({
 }, async (token, done) => 
     {
       try {
-          //Pass the user details to the next middleware
+            console.log('SUCCESS in auth.passport.use')
+            //Pass the user details to the next middleware
           return done(null, token.user);
       } catch (error) {
+          console.log('Error in auth.passport.use')
           done(error);
       }
     }

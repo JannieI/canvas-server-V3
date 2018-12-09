@@ -107,8 +107,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 // });
 
 // Routing ------------------------------------------------------------------------
-app.use('/auth/local/signup', authLocalRouter);
-app.use('/auth/local/login', authLocalRouter);
+app.get('/verify', (req, res, next) => {
+    console.log('/verify')
+    res.send({msg: "at last !"})
+});
+
+app.use('/auth/local/', authLocalRouter);
 app.use('/auth/local/profile', passport.authenticate('jwt', { session : false }), secureRouter );
 
 app.use('/users', usersRouter);
