@@ -1,0 +1,87 @@
+===============================================================================
+EXTENSION NAME : linecount
+EXTENSION VERSION : 0.1.7
+-------------------------------------------------------------------------------
+count time : 2018-12-10 14:28:56
+count workspace : /home/jannie/Projects/canvas-server
+total files : 75
+total code lines : 830772
+total comment lines : 318
+total blank lines : 443
+
+.env, code is 2, comment is 0, blank is 0.
+.gitignore, code is 4, comment is 0, blank is 0.
+app.js, code is 57, comment is 54, blank is 28.
+auth/auth.js, code is 59, comment is 14, blank is 8.
+bin/www, code is 54, comment is 26, blank is 21.
+configuration/configPassportGitHub.js, code is 5, comment is 1, blank is 1.
+configuration/configPassportGoogle.js, code is 12, comment is 10, blank is 4.
+data/bgColourExport.json, code is 1341, comment is 0, blank is 1.
+data/bgColourImport.json, code is 896, comment is 0, blank is 0.
+data/canvasBackgroundcolorsDefaults.js, code is 897, comment is 0, blank is 1.
+data/Import Data 2018-11-29/bulkImportInstructions.sh, code is 1, comment is 0, blank is 0.
+data/Import Data 2018-11-29/bulkImportInstructions.txt, code is 46, comment is 0, blank is 0.
+data/Import Data 2018-11-29/dumpCanvasAuditTrails.json, code is 8902, comment is 0, blank is 0.
+data/Import Data 2018-11-29/dumpCanvasBackgroundcolors.json, code is 1028, comment is 0, blank is 0.
+data/Import Data 2018-11-29/dumpCanvasBackgroundcolorsDefault.json, code is 896, comment is 0, blank is 0.
+data/Import Data 2018-11-29/dumpCanvasComments.json, code is 162, comment is 0, blank is 0.
+data/Import Data 2018-11-29/dumpCanvasGroups.json, code is 26, comment is 0, blank is 0.
+data/Import Data 2018-11-29/dumpCanvasMessages.json, code is 324, comment is 0, blank is 0.
+data/Import Data 2018-11-29/dumpCanvasSettings.json, code is 17, comment is 0, blank is 0.
+data/Import Data 2018-11-29/dumpCanvasTasks.json, code is 200, comment is 0, blank is 8.
+data/Import Data 2018-11-29/dumpCanvasUsers.json, code is 269, comment is 0, blank is 3.
+data/Import Data 2018-11-29/dumpContainerStyles.json, code is 87, comment is 0, blank is 0.
+data/Import Data 2018-11-29/dumpDashboardLayouts.json, code is 36, comment is 0, blank is 0.
+data/Import Data 2018-11-29/dumpDashboardPermissions.json, code is 107, comment is 0, blank is 0.
+data/Import Data 2018-11-29/dumpDashboards.json, code is 1222, comment is 0, blank is 0.
+data/Import Data 2018-11-29/dumpDashboardScheduleLog.json, code is 38, comment is 0, blank is 0.
+data/Import Data 2018-11-29/dumpDashboardSchedules.json, code is 68, comment is 0, blank is 0.
+data/Import Data 2018-11-29/dumpDashboardSnapshots.json, code is 2, comment is 0, blank is 0.
+data/Import Data 2018-11-29/dumpDashboardsRecent.json, code is 352, comment is 0, blank is 0.
+data/Import Data 2018-11-29/dumpDashboardSubscriptions.json, code is 46, comment is 0, blank is 0.
+data/Import Data 2018-11-29/dumpDashboardTabs.json, code is 753, comment is 0, blank is 0.
+data/Import Data 2018-11-29/dumpDashboardTags.json, code is 42, comment is 0, blank is 0.
+data/Import Data 2018-11-29/dumpDashboardThemes.json, code is 7, comment is 0, blank is 0.
+data/Import Data 2018-11-29/dumpData.json, code is 322385, comment is 0, blank is 0.
+data/Import Data 2018-11-29/dumpDataCachingTable.json, code is 15, comment is 0, blank is 0.
+data/Import Data 2018-11-29/dumpDataConnections.json, code is 26, comment is 0, blank is 0.
+data/Import Data 2018-11-29/dumpDataFields.json, code is 332, comment is 0, blank is 0.
+data/Import Data 2018-11-29/dumpDataOwnerships.json, code is 50, comment is 0, blank is 0.
+data/Import Data 2018-11-29/dumpDataQualityIssues.json, code is 54, comment is 0, blank is 0.
+data/Import Data 2018-11-29/dumpDatasets.json, code is 391, comment is 0, blank is 0.
+data/Import Data 2018-11-29/dumpDatasourceFilters.json, code is 16, comment is 0, blank is 0.
+data/Import Data 2018-11-29/dumpDatasourcePermissions.json, code is 153, comment is 0, blank is 0.
+data/Import Data 2018-11-29/dumpDatasourcePivots.json, code is 20, comment is 0, blank is 0.
+data/Import Data 2018-11-29/dumpDatasources.json, code is 2019, comment is 0, blank is 70.
+data/Import Data 2018-11-29/dumpDatasourceScheduleLog.json, code is 1, comment is 0, blank is 0.
+data/Import Data 2018-11-29/dumpDatasourceSchedules.json, code is 66, comment is 0, blank is 0.
+data/Import Data 2018-11-29/dumpDatasourceTransformations.json, code is 61, comment is 0, blank is 4.
+data/Import Data 2018-11-29/dumpDataTables.json, code is 119, comment is 0, blank is 0.
+data/Import Data 2018-11-29/dumpPaletteButtonBars.json, code is 2824, comment is 0, blank is 0.
+data/Import Data 2018-11-29/dumpPaletteButtonsSelecteds.json, code is 268, comment is 0, blank is 0.
+data/Import Data 2018-11-29/dumpStatusBarMessageLogs.json, code is 158, comment is 0, blank is 0.
+data/Import Data 2018-11-29/dumpTransformations.json, code is 800, comment is 0, blank is 95.
+data/Import Data 2018-11-29/dumpUserPreferences.json, code is 15, comment is 0, blank is 0.
+data/Import Data 2018-11-29/dumpWidgetCheckpoints.json, code is 9828, comment is 0, blank is 0.
+data/Import Data 2018-11-29/dumpWidgetGraphs.json, code is 1235, comment is 0, blank is 6.
+data/Import Data 2018-11-29/dumpWidgetLayouts.json, code is 190, comment is 0, blank is 0.
+data/Import Data 2018-11-29/dumpWidgets.json, code is 469383, comment is 0, blank is 0.
+data/Import Data 2018-11-29/dumpWidgetStoredTemplates.json, code is 13, comment is 0, blank is 0.
+databaseConnectors/dbMySQLTodo.js, code is 13, comment is 5, blank is 2.
+databaseConnectors/dbPgWeather.js, code is 13, comment is 0, blank is 2.
+httpREST.http, code is 9, comment is 4, blank is 6.
+InstallationNotes.md, code is 109, comment is 36, blank is 50.
+model/models.js, code is 27, comment is 10, blank is 5.
+package-lock.json, code is 1814, comment is 0, blank is 0.
+package.json, code is 32, comment is 0, blank is 0.
+public/stylesheets/style.css, code is 7, comment is 0, blank is 1.
+routes/authGitHubRouter.js, code is 44, comment is 10, blank is 18.
+routes/authGoogleRouter.js, code is 46, comment is 14, blank is 19.
+routes/authLocalRouter.js, code is 37, comment is 9, blank is 10.
+routes/index.js, code is 116, comment is 70, blank is 35.
+routes/secure-route.js, code is 10, comment is 4, blank is 4.
+routes/users.js, code is 99, comment is 51, blank is 39.
+views/error.jade, code is 5, comment is 0, blank is 1.
+views/index.jade, code is 4, comment is 0, blank is 1.
+views/layout.jade, code is 7, comment is 0, blank is 0.
+===============================================================================

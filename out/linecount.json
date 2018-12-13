@@ -1,0 +1,467 @@
+{
+    "extension": "linecount",
+    "version": "0.1.7",
+    "workspace": "/home/jannie/Projects/canvas-server",
+    "linecount": [
+        {
+            "version": "0.1.7",
+            "counttime": "2018-12-10 14:28:56",
+            "filesum": 75,
+            "codesum": 830772,
+            "commentsum": 318,
+            "blanksum": 443,
+            "filelist": [
+                {
+                    "blank": 0,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": ".env"
+                },
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": ".gitignore"
+                },
+                {
+                    "blank": 28,
+                    "code": 57,
+                    "comment": 54,
+                    "filename": "app.js"
+                },
+                {
+                    "blank": 8,
+                    "code": 59,
+                    "comment": 14,
+                    "filename": "auth/auth.js"
+                },
+                {
+                    "blank": 21,
+                    "code": 54,
+                    "comment": 26,
+                    "filename": "bin/www"
+                },
+                {
+                    "blank": 1,
+                    "code": 5,
+                    "comment": 1,
+                    "filename": "configuration/configPassportGitHub.js"
+                },
+                {
+                    "blank": 4,
+                    "code": 12,
+                    "comment": 10,
+                    "filename": "configuration/configPassportGoogle.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 1341,
+                    "comment": 0,
+                    "filename": "data/bgColourExport.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 896,
+                    "comment": 0,
+                    "filename": "data/bgColourImport.json"
+                },
+                {
+                    "blank": 1,
+                    "code": 897,
+                    "comment": 0,
+                    "filename": "data/canvasBackgroundcolorsDefaults.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/bulkImportInstructions.sh"
+                },
+                {
+                    "blank": 0,
+                    "code": 46,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/bulkImportInstructions.txt"
+                },
+                {
+                    "blank": 0,
+                    "code": 8902,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/dumpCanvasAuditTrails.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 1028,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/dumpCanvasBackgroundcolors.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 896,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/dumpCanvasBackgroundcolorsDefault.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 162,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/dumpCanvasComments.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 26,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/dumpCanvasGroups.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 324,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/dumpCanvasMessages.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 17,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/dumpCanvasSettings.json"
+                },
+                {
+                    "blank": 8,
+                    "code": 200,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/dumpCanvasTasks.json"
+                },
+                {
+                    "blank": 3,
+                    "code": 269,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/dumpCanvasUsers.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 87,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/dumpContainerStyles.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 36,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/dumpDashboardLayouts.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 107,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/dumpDashboardPermissions.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 1222,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/dumpDashboards.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 38,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/dumpDashboardScheduleLog.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 68,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/dumpDashboardSchedules.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/dumpDashboardSnapshots.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 352,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/dumpDashboardsRecent.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 46,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/dumpDashboardSubscriptions.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 753,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/dumpDashboardTabs.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 42,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/dumpDashboardTags.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/dumpDashboardThemes.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 322385,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/dumpData.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/dumpDataCachingTable.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 26,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/dumpDataConnections.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 332,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/dumpDataFields.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 50,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/dumpDataOwnerships.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 54,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/dumpDataQualityIssues.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 391,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/dumpDatasets.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 16,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/dumpDatasourceFilters.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 153,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/dumpDatasourcePermissions.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/dumpDatasourcePivots.json"
+                },
+                {
+                    "blank": 70,
+                    "code": 2019,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/dumpDatasources.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/dumpDatasourceScheduleLog.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 66,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/dumpDatasourceSchedules.json"
+                },
+                {
+                    "blank": 4,
+                    "code": 61,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/dumpDatasourceTransformations.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 119,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/dumpDataTables.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 2824,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/dumpPaletteButtonBars.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 268,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/dumpPaletteButtonsSelecteds.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 158,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/dumpStatusBarMessageLogs.json"
+                },
+                {
+                    "blank": 95,
+                    "code": 800,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/dumpTransformations.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/dumpUserPreferences.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 9828,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/dumpWidgetCheckpoints.json"
+                },
+                {
+                    "blank": 6,
+                    "code": 1235,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/dumpWidgetGraphs.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 190,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/dumpWidgetLayouts.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 469383,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/dumpWidgets.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 13,
+                    "comment": 0,
+                    "filename": "data/Import Data 2018-11-29/dumpWidgetStoredTemplates.json"
+                },
+                {
+                    "blank": 2,
+                    "code": 13,
+                    "comment": 5,
+                    "filename": "databaseConnectors/dbMySQLTodo.js"
+                },
+                {
+                    "blank": 2,
+                    "code": 13,
+                    "comment": 0,
+                    "filename": "databaseConnectors/dbPgWeather.js"
+                },
+                {
+                    "blank": 6,
+                    "code": 9,
+                    "comment": 4,
+                    "filename": "httpREST.http"
+                },
+                {
+                    "blank": 50,
+                    "code": 109,
+                    "comment": 36,
+                    "filename": "InstallationNotes.md"
+                },
+                {
+                    "blank": 5,
+                    "code": 27,
+                    "comment": 10,
+                    "filename": "model/models.js"
+                },
+                {
+                    "blank": 0,
+                    "code": 1814,
+                    "comment": 0,
+                    "filename": "package-lock.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 32,
+                    "comment": 0,
+                    "filename": "package.json"
+                },
+                {
+                    "blank": 1,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "public/stylesheets/style.css"
+                },
+                {
+                    "blank": 18,
+                    "code": 44,
+                    "comment": 10,
+                    "filename": "routes/authGitHubRouter.js"
+                },
+                {
+                    "blank": 19,
+                    "code": 46,
+                    "comment": 14,
+                    "filename": "routes/authGoogleRouter.js"
+                },
+                {
+                    "blank": 10,
+                    "code": 37,
+                    "comment": 9,
+                    "filename": "routes/authLocalRouter.js"
+                },
+                {
+                    "blank": 35,
+                    "code": 116,
+                    "comment": 70,
+                    "filename": "routes/index.js"
+                },
+                {
+                    "blank": 4,
+                    "code": 10,
+                    "comment": 4,
+                    "filename": "routes/secure-route.js"
+                },
+                {
+                    "blank": 39,
+                    "code": 99,
+                    "comment": 51,
+                    "filename": "routes/users.js"
+                },
+                {
+                    "blank": 1,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "views/error.jade"
+                },
+                {
+                    "blank": 1,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "views/index.jade"
+                },
+                {
+                    "blank": 0,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "views/layout.jade"
+                }
+            ]
+        }
+    ]
+}

@@ -8,7 +8,11 @@ const router = express.Router();
 
 router.get('/verify', (req, res, next) => {
     console.log('/verify')
-    res.send({msg: "at last !"})
+    if (req.body.userID == 'JannieI') {
+        res.send(true);
+    } else {
+        res.send(false);
+    }
 });
 
 
