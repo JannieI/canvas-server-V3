@@ -1,3 +1,5 @@
+@host = http://localhost:8000
+
 ###
 
 POST http://localhost:8000/auth/local/signup -H "application/json" -d 'password=jannie' -d 'email=jannie@gmail.com'
@@ -10,10 +12,10 @@ GET http://localhost:8000/loginLocal
 
 ###
 
-GET http://localhost:8000/auth/local/verify?userID=JannieI
+GET {{host}}/auth/local/verify?userID=JannieI
 
 ###
-POST http://localhost:8000/auth/local/verify
+POST {{host}}/auth/local/verify
 content-type: application/json
 
 {
