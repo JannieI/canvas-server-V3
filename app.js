@@ -31,7 +31,9 @@ function validateUser(req, res, next) {
     // Check against DB
     // Store the answer in the res object
     res.locals.validatedUser = true;
-    console.log('In validateUser req.body', req.body, req.body.userID)
+    if (req.method == 'POST') {
+        console.log('In validateUser req.body', req.body, req.body.userID);
+    };
     next();
 };
 
