@@ -18,7 +18,7 @@ router.get('/verify', (req, res, next) => {
     }
 });
 router.post('/verify', (req, res, next) => {
-    console.log('POST /verify')
+    console.log('Router: POST /verify', req.body)
     console.log('')
 
     if (req.body.userID == 'JannieI') {

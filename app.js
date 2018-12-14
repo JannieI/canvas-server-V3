@@ -33,7 +33,7 @@ function validateUser(req, res, next) {
     res.locals.validatedUser = true;
     if (req.method == 'POST') {
         console.log('In validateUser ');
-        console.log('In validateUser req.body', req.body);
+        console.log('');
     };
     next();
 };
@@ -65,29 +65,29 @@ app.use( (req, res, next) => {
     next();
 });
 
-// Log details
+// Logging details
 app.use( (req, res, next) => {
-    console.log('')
-    console.log('req.baseUrl', req.baseUrl);
-    console.log('req.cookies', req.cookies);
-    console.log('req.fresh', req.fresh);
-    console.log('req.hostname', req.hostname);
-    console.log('req.ip', req.ip);
-    console.log('req.ips', req.ips);
-    console.log('req.method', req.method);
-    console.log('req.originalUrl', req.originalUrl);
-    console.log('req.params', req.params);
-    console.log('req.path', req.path);
-    console.log('req.protocol', req.protocol);
-    console.log('req.query', req.query);
-    console.log('req.route', req.route);
-    console.log('req.secure', req.secure);
-    console.log('req.subdomains', req.subdomains);
-    console.log('req.xhr', req.xhr);
-    console.log('req.get(Content-Type)', req.get('Content-Type') );
-    console.log('req.is(html)', req.is('html') );
-    console.log('req.is(text/html)', req.is('text/html') );
-    console.log('req.is(application/json)', req.is('application/json') );
+    console.log('Logging details')
+    console.log('    req.baseUrl', req.baseUrl);
+    console.log('    req.cookies', req.cookies);
+    console.log('    req.fresh', req.fresh);
+    console.log('    req.hostname', req.hostname);
+    console.log('    req.ip', req.ip);
+    console.log('    req.ips', req.ips);
+    console.log('    req.method', req.method);
+    console.log('    req.originalUrl', req.originalUrl);
+    console.log('    req.params', req.params);
+    console.log('    req.path', req.path);
+    console.log('    req.protocol', req.protocol);
+    console.log('    req.query', req.query);
+    console.log('    req.route', req.route);
+    console.log('    req.secure', req.secure);
+    console.log('    req.subdomains', req.subdomains);
+    console.log('    req.xhr', req.xhr);
+    console.log('    req.get(Content-Type)', req.get('Content-Type') );
+    console.log('    req.is(html)', req.is('html') );
+    console.log('    req.is(text/html)', req.is('text/html') );
+    console.log('    req.is(application/json)', req.is('application/json') );
     console.log('')
 
     next();
