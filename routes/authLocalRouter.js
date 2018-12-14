@@ -17,11 +17,11 @@ router.get('/verify', (req, res, next) => {
 });
 router.post('/verify', (req, res, next) => {
     console.log('POST /verify')
-    // if (req.body.userID == 'JannieI') {
-    //     res.send(true);
-    // } else {
+    if (req.body.userID == 'JannieI') {
+        res.send(true);
+    } else {
         res.send(false);
-    // }
+    }
 });
 
 //When the user sends a post request to this route, passport authenticates the user based on the
