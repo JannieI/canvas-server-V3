@@ -31,8 +31,9 @@ function validateUser(req, res, next) {
     // Check against DB
     // Store the answer in the res object
     res.locals.validatedUser = true;
+    console.log('In validateUser')
     next();
-}
+};
 
 const UserModel = require('./model/models');
 mongoose.connect('mongodb://127.0.0.1:27017/passport-jwt', { useMongoClient : true });

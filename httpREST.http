@@ -13,7 +13,12 @@ GET http://localhost:8000/loginLocal
 GET http://localhost:8000/auth/local/verify?userID=JannieI
 
 ###
-POST http://localhost:8000/auth/local/verify  -d 'userID=JannieI'
+POST http://localhost:8000/auth/local/verify
+content-type: application/json
+
+{
+    "userID": "JannieI"
+}
 
 ###
 
