@@ -32,7 +32,8 @@ function validateUser(req, res, next) {
     // Store the answer in the res object
     res.locals.validatedUser = true;
     if (req.method == 'POST') {
-        console.log('In validateUser req.body', req.body, req.body.userID);
+        console.log('In validateUser ');
+        console.log('In validateUser req.body', req.body);
     };
     next();
 };
@@ -60,11 +61,13 @@ app.use( (req, res, next) => {
     console.log('Inside CORS');
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    console.log('')
     next();
 });
 
 // Log details
 app.use( (req, res, next) => {
+    console.log('')
     console.log('req.baseUrl', req.baseUrl);
     console.log('req.cookies', req.cookies);
     console.log('req.fresh', req.fresh);
@@ -82,10 +85,11 @@ app.use( (req, res, next) => {
     console.log('req.subdomains', req.subdomains);
     console.log('req.xhr', req.xhr);
     console.log('req.get(Content-Type)', req.get('Content-Type') );
-    console.log('Content-Type', Content-Type);
     console.log('req.is(html)', req.is('html') );
     console.log('req.is(text/html)', req.is('text/html') );
     console.log('req.is(application/json)', req.is('application/json') );
+    console.log('')
+
     next();
 });
 
@@ -160,10 +164,13 @@ app.use( (err, req, res, next) => {
     res.locals.error = req.app.get('env') === 'development' ? err : {};
 
     // render the error page
-    console.log('app.js error req.body: ', req.body)
-
+    console.log('Error: ', err)
+    if (req.method == 'POST') {
+        console.log('app.js error req.body: ', req.body)
+    };
     res.status(err.status || 500);
     res.json({msg: 'error', err});
+    console.log('')
 });
 
 // Export for bin/www.js

@@ -7,7 +7,9 @@ const router = express.Router();
 
 
 router.get('/verify', (req, res, next) => {
+
     console.log('GET /verify', req.body, req.params, req.query)
+    console.log('')
 
     if (req.query.userID == 'JannieI') {
         res.send(true);
@@ -17,6 +19,8 @@ router.get('/verify', (req, res, next) => {
 });
 router.post('/verify', (req, res, next) => {
     console.log('POST /verify')
+    console.log('')
+
     if (req.body.userID == 'JannieI') {
         res.send(true);
     } else {
@@ -29,6 +33,8 @@ router.post('/verify', (req, res, next) => {
 // curl -v -X POST http://localhost:8000/signup -H "application/json" -d 'password=jannie' -d 'email=jannie@gmail.com'
 router.post('/signup', passport.authenticate('signup', { session : false }) , async (req, res, next) => {
     console.log('authenticate signup', req)
+    console.log('')
+
     res.json({ 
         message : 'Signup successful',
         user : req.user 
@@ -38,6 +44,7 @@ router.post('/signup', passport.authenticate('signup', { session : false }) , as
 // curl -v -X POST http://localhost:8000/login -H "application/json" -d 'password=jannie' -d 'email=jannie@gmail.com'
 router.post('/login', (req, res, next) => {
     console.log('/login (authenticate)');
+    console.log('')
     passport.authenticate('login', (err, user, info) => {     
         try 
             {
