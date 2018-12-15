@@ -47,7 +47,7 @@ router.post('/signup', (req, res, next) => {
                 // Mongo Error
                 console.log('    Error in Find ', err);
                 res.json({
-                    "statusCode": "failed",
+                    "statusCode": "error",
                     "message" : "Error in DB Find: " + err.message,
                     "data": null,
                     "error": err
