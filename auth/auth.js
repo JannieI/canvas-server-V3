@@ -22,7 +22,7 @@ passport.use('signup', new localStrategy(
 
             // create a new user
             var newUser = UserModel({
-                companyName: req.body.companyName,
+                companyName: '',
                 userID: username,
                 email: '',
                 password: password,
@@ -49,8 +49,8 @@ passport.use('signup', new localStrategy(
 
 
             //Send the user information to the next middleware
-            console.log('passport.use.signup', user)
-            return done(null, user);
+            console.log('Success in passport.use.signup for ', newUser);
+            return done(null, newUser);;
         } catch (error) {
             console.log('In auth.js SIGNUP try block start passport.use.signup error: ', error)
             done(error);
