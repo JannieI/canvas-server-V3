@@ -31,9 +31,17 @@ router.post('/verify', (req, res, next) => {
 //When the user sends a post request to this route, passport authenticates the user based on the
 //middleware created previously
 // curl -v -X POST http://localhost:8000/signup -H "application/json" -d 'password=jannie' -d 'email=jannie@gmail.com'
-router.post('/signup', passport.authenticate('signup', { session : false }) , async (req, res, next) => {
-    console.log('authenticate signup', req)
+// router.post('/signup', passport.authenticate('signup', { session : false }) , async (req, res, next) => {
+router.post('/signup', (req, res, next) => {
+    console.log('Router: POST signup', req)
     console.log('')
+
+    // Add to MongoDB
+    // {
+    //     "companyName": givenCompanyName,
+    //     "userID": givenUserID,
+    //     "password": givenPassword 
+    // } 
 
     res.json({ 
         message : 'Signup successful',

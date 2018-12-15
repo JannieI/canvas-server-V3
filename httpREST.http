@@ -1,33 +1,52 @@
+// File Variables
 @host = http://localhost:8000
-
 ###
 
-POST http://localhost:8000/auth/local/signup -H "application/json" -d 'password=jannie' -d 'email=jannie@gmail.com'
+
+// Signup
+POST {{host}}/auth/local/signup
+content-type: application/json 
+
+{
+    "companyName": "Clarity Analytics",
+    "userID": "JannieI",
+    "password": "xxx" 
+} 
 ###
 
-POST http://localhost:8000/auth/local/login -H "application/json" -d 'password=jannie' -d 'email=jannie@gmail.com'
+
+// Local Login
+POST {{host}}/auth/local/login
+content-type: application/json
+
+{
+    "password": "jannie",
+    "email": "jannie@gmail.com"
+}
 ###
 
-GET http://localhost:8000/loginLocal
 
+// Local Login
+GET {{host}}/loginLocal
 ###
 
-GET {{host}}/auth/local/verify?userID=JannieI
 
-###
+// Verify
 POST {{host}}/auth/local/verify
 content-type: application/json
 
 {
     "userID": "JannieI"
 }
-
 ###
 
-GET http://localhost:8000/users
 
+// Users
+GET {{host}}/users
 ###
 
-POST http://localhost:8000/
+
+// ....
+POST {{host}}/
 
 ###
