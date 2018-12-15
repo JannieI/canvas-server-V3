@@ -5,14 +5,49 @@ const UserModel = require('../model/models');
 //Create a passport middleware to handle user registration
 passport.use('signup', new localStrategy(
     {
-        usernameField : 'email',
-        passwordField : 'password'
-    }, async (email, password, done) => {
+        usernameField: 'userID',
+        passwordField: 'password',
+        }, async (username, password, done) => {
         try {
             console.log('In auth.js SIGNUP try block start')
+            console.log('');
 
             //Save the information provided by the user to the the database
-            const user = await UserModel.create({ email, password });
+            // const user = await UserModel.create({ email, password });
+
+
+
+            // grab the user model
+            // var User = require('./app/models/user');
+
+            // create a new user
+            var newUser = UserModel({
+                companyName: req.body.companyName,
+                userID: username,
+                email: '',
+                password: password,
+                createdBy: '',
+                createdOn: null,
+                updatedBy: '',
+                updatedOn: null
+
+            });
+
+            // save the user
+            newUser.save((err) => {
+                if (err) {
+                    console.log('passport use signup failed: ', err);
+                    throw err;
+                };
+
+                console.log('.save: User created!');
+            });
+
+
+
+
+
+
             //Send the user information to the next middleware
             console.log('passport.use.signup', user)
             return done(null, user);
@@ -22,6 +57,26 @@ passport.use('signup', new localStrategy(
         };
     }
 ));
+
+// passport.use('signup', new localStrategy(
+//     {
+//         usernameField : 'email',
+//         passwordField : 'password'
+//     }, async (email, password, done) => {
+//         try {
+//             console.log('In auth.js SIGNUP try block start')
+
+//             //Save the information provided by the user to the the database
+//             const user = await UserModel.create({ email, password });
+//             //Send the user information to the next middleware
+//             console.log('passport.use.signup', user)
+//             return done(null, user);
+//         } catch (error) {
+//             console.log('In auth.js SIGNUP try block start passport.use.signup error: ', error)
+//             done(error);
+//         }
+//     }
+// ));
 
 
 //Create a passport middleware to handle User login
