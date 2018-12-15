@@ -3,7 +3,8 @@ const localStrategy = require('passport-local').Strategy;
 const UserModel = require('../model/models');
 
 //Create a passport middleware to handle user registration
-passport.use('signup', new localStrategy(
+// TODO - remove XXX in route (else it fires), or whole function
+passport.use('signupXXX', new localStrategy(
     {
         usernameField: 'userID',
         passwordField: 'password',

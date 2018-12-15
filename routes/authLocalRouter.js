@@ -39,7 +39,7 @@ router.post('/signup', (req, res, next) => {
                 var newUser = UserModel({
                     companyName: req.body.companyName,
                     userID: username,
-                    email: username + '@clarityanalytics.xyz',
+                    email: 'Unknown',
                     password: req.body.password,
                     createdBy: '',
                     createdOn: null,
@@ -48,7 +48,7 @@ router.post('/signup', (req, res, next) => {
 
                 });
 
-                // save the user
+                // Save the record
                 newUser.save((err) => {
                     if (err) {
                         console.log('    signup failed: ', err);
