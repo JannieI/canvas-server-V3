@@ -44,8 +44,9 @@ router.post('/signup', (req, res, next) => {
     // } 
 
     res.json({ 
-        message : 'Signup successful',
-        user : req.user 
+        "message" : "Signup successful !",
+        "companyName": req.body.companyName,
+        "userID": req.body.userID
     });
 });
 
