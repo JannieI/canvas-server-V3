@@ -23,12 +23,12 @@ router.post('/verify', (req, res, next) => {
 // curl -v -X POST http://localhost:8000/signup -H "application/json" -d 'password=jannie' -d 'email=jannie@gmail.com'
 // router.post('/signup', passport.authenticate('signup', { session : false }) , async (req, res, next) => {
 router.post('/signup', (req, res, next) => {
-    console.log('Router: POST signup', req.body.companyName, req.body.userID, req.body.password)
+    console.log('authLocalRouter: POST signup', req.body.companyName, req.body.userID, req.body.password)
     console.log('')
 
-    try {
-        console.log('    try block starts')
-        console.log('');
+    // try {
+        // console.log('    try block starts')
+        // console.log('');
 
         // Determine if user already exists in the database
         UserModel.find( { companyName: req.body.companyName, userID: req.body.userID }, 
@@ -45,52 +45,45 @@ router.post('/signup', (req, res, next) => {
                     createdOn: null,
                     updatedBy: '',
                     updatedOn: null
-
                 });
 
                 // Save the record
-                newUser.save((err) => {
-                    if (err) {
-                        console.log('    signup failed: ', err);
-                        return err;
-                    };
+                newUser.save()
+                    .then(user => {
 
-                    console.log('    User created!');
-                }); 
-
-                //Send the user information to the next middleware
-                console.log('    auth.signup: Success for ', newUser);
-                res.json({ 
-                    "message" : "Signup successful !",
-                    "user": newUser
-                });
-
+                        //Success
+                        console.log('    Success for ', user);
+                        res.json({ 
+                            "message" : "Signup successful !",
+                            "user": user
+                        });
+                    })
+                    .catch(err => {
+                        // Save Failed
+                        console.log('    Save user failed: ', err);
+                        res.json({ 
+                            "message" : "Registration failed !",
+                            "error": err
+                        });
+                    });
             } else {;            
                 // User found
-                console.log('    auth.signup: User Already exists ', user);
+                console.log('    User Already exists ', user);
                 res.json({ 
-                    "message" : "User already exists for this Company"
+                    "message" : "User already exists for this Company: " + user.userID
                 });
             };
         });
 
-        // //Send the user information to the next middleware
-        // console.log('    auth.signup: Success for ', newUser);
-        // return done(null, newUser);;
-    } catch (error) {
-        console.log('    Error: ', error)
-        res.json({ 
-            "message" : "Error: " ,
-            error: error
-        });
-};
 
+    // } catch (error) {
+    //     console.log('    Error: ', error)
+    //     res.json({ 
+    //         "message" : "Error: " ,
+    //         error: error
+    //     });
+    // };
 
-    res.json({ 
-        "message" : "Signup successful !",
-        "companyName": req.body.companyName,
-        "userID": req.body.userID
-    });
 });
 
 // curl -v -X POST http://localhost:8000/login -H "application/json" -d 'password=jannie' -d 'email=jannie@gmail.com'
