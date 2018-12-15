@@ -42,19 +42,23 @@ router.post('/signup', (req, res, next) => {
         //   })
         UserModel.find( { companyName: req.body.companyName, userID: req.body.userID },
             (err, user) => {
-            console.log('after Find: ',err, user);
+
             if (err) {
-                // User found
+                // Mongo Error
                 console.log('    Error in Find ', err);
                 res.json({
-                    "message" : "Error in DB Find: " + err.message
+                    "statusCode": "failed",
+                    "message" : "Error in DB Find: " + err.message,
+                    "data": null,
+                    "error": err
                 });
             };
+
             if (user.length == 0) {
                 // Create a new user record since it does not exist
                 var newUser = UserModel({
                     companyName: req.body.companyName,
-                    userID: username,
+                    userID: req.body.userID,
                     email: 'Unknown',
                     password: req.body.password,
                     createdBy: '',
@@ -70,35 +74,33 @@ router.post('/signup', (req, res, next) => {
                         //Success
                         console.log('    Success for ', user);
                         res.json({
+                            "statusCode": "success",
                             "message" : "Signup successful !",
-                            "user": user
+                            "data": user,
+                            "error": null
                         });
                     })
                     .catch(err => {
                         // Save Failed
                         console.log('    Save user failed: ', err);
                         res.json({
-                            "message" : "Registration failed !",
+                            "statusCode": "failed",
+                            "message" : "Registration failed, cannot save user !",
+                            "data": null,
                             "error": err
                         });
                     });
             } else {
-                // User found
+                // User already exists
                 console.log('    User Already exists ', user);
                 res.json({
-                    "message" : "User already exists for this Company: " + user.userID
+                    "statusCode": "failed",
+                    "message" : "User already exists for this Company: " + user.userID,
+                    "data": user,
+                    "error": null
                 });
             };
     });
-
-
-    // } catch (error) {
-    //     console.log('    Error: ', error)
-    //     res.json({
-    //         "message" : "Error: " ,
-    //         error: error
-    //     });
-    // };
 
 });
 
