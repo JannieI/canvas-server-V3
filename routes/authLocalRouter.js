@@ -31,10 +31,26 @@ router.post('/signup', (req, res, next) => {
         // console.log('');
 
         // Determine if user already exists in the database
-        UserModel.find( { companyName: req.body.companyName, userID: req.body.userID }, 
-            (err, user) => {
-            if (err) {
+        // UserModel.find( { companyName: req.body.companyName, userID: req.body.userID } )
+        UserModel.find( { "userID": req.body.userID } )
 
+        //   .then(doc => {
+        //     console.log('Found: ', doc, req.body.companyName, req.body.userID)
+        //   })
+        //   .catch(err => {
+        //     console.error('Error: ', err)
+        //   })
+        UserModel.find( { companyName: req.body.companyName, userID: req.body.userID },
+            (err, user) => {
+            console.log('after Find: ',err, user);
+            if (err) {
+                // User found
+                console.log('    Error in Find ', err);
+                res.json({
+                    "message" : "Error in DB Find: " + err.message
+                });
+            };
+            if (user.length == 0) {
                 // Create a new user record since it does not exist
                 var newUser = UserModel({
                     companyName: req.body.companyName,
@@ -53,7 +69,7 @@ router.post('/signup', (req, res, next) => {
 
                         //Success
                         console.log('    Success for ', user);
-                        res.json({ 
+                        res.json({
                             "message" : "Signup successful !",
                             "user": user
                         });
@@ -61,24 +77,24 @@ router.post('/signup', (req, res, next) => {
                     .catch(err => {
                         // Save Failed
                         console.log('    Save user failed: ', err);
-                        res.json({ 
+                        res.json({
                             "message" : "Registration failed !",
                             "error": err
                         });
                     });
-            } else {;            
+            } else {
                 // User found
                 console.log('    User Already exists ', user);
-                res.json({ 
+                res.json({
                     "message" : "User already exists for this Company: " + user.userID
                 });
             };
-        });
+    });
 
 
     // } catch (error) {
     //     console.log('    Error: ', error)
-    //     res.json({ 
+    //     res.json({
     //         "message" : "Error: " ,
     //         error: error
     //     });
@@ -92,8 +108,8 @@ router.post('/login', (req, res, next) => {
     console.log('')
 
     // Do the login via Passport
-    passport.authenticate('login', (err, user, info) => {     
-        try 
+    passport.authenticate('login', (err, user, info) => {
+        try
             {
 
                 if(err || !user){
@@ -102,7 +118,7 @@ router.post('/login', (req, res, next) => {
                 };
                 req.login(user, { session : false }, async (error) => {
                     if( error ) return next(error)
-                    
+
                     //We don't want to store the sensitive information such as the
                     //user password in the token so we pick only the email and id
                     const body = { _id : user._id, email : user.email };
@@ -110,13 +126,13 @@ router.post('/login', (req, res, next) => {
                     const token = jwt.sign({ user : body },'top_secret');
                     //Send back the token to the user
                     return res.json({ token });
-                });     
-            } 
+                });
+            }
         catch (error) {
             return next(error);
         };
     })(req, res, next);
   });
-  
-  
+
+
   module.exports = router;
