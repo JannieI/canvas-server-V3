@@ -3,28 +3,28 @@ const bcrypt = require('bcrypt');
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
-  companyName: {
-    type: String,
-    required: true
-  },
-  userID: {
-    type: String,
-    required: true,
-    unique: true
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true
-  },
-  password: {
-    type: String,
-    required: true 
-  },
-  createdBy: String,
-  createdOn: Date,
-  updatedBy: String,
-  updatedOn: Date
+    companyName: {
+        type: String,
+        required: true
+    },
+    userID: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    password: {
+        type: String,
+        required: true 
+    },
+    createdBy: String,
+    createdOn: Date,
+    updatedBy: String,
+    updatedOn: Date
 });
 
 //This is called a pre-hook, before the user information is saved in the database
@@ -37,6 +37,19 @@ UserSchema.pre('save', async function(next){
     const hash = await bcrypt.hash(this.password, 10);
     //Replace the plain text password with the hash and then store it
     this.password = hash;
+
+
+    // Get the current date
+    var currentDate = new Date();
+
+    // Change the updated_at field to current date
+    this.updatedOn = currentDate;
+
+    // If created_at doesn't exist, add to that field
+    if (!this.createdOn) {
+        this.createdOn = currentDate;
+    };
+
     //Indicates we're done and moves on to the next middleware
     next();
 });
