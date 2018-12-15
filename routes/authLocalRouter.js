@@ -33,7 +33,7 @@ router.post('/verify', (req, res, next) => {
 // curl -v -X POST http://localhost:8000/signup -H "application/json" -d 'password=jannie' -d 'email=jannie@gmail.com'
 // router.post('/signup', passport.authenticate('signup', { session : false }) , async (req, res, next) => {
 router.post('/signup', (req, res, next) => {
-    console.log('Router: POST signup', req)
+    console.log('Router: POST signup', req.body.companyName, req.body.userID, req.body.password)
     console.log('')
 
     // Add to MongoDB
