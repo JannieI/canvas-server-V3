@@ -3,24 +3,28 @@ const bcrypt = require('bcrypt');
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
-  companyName : {
-    type : String,
-    required : true
+  companyName: {
+    type: String,
+    required: true
   },
-  userID : {
-    type : String,
-    required : true,
-    unique : true
+  userID: {
+    type: String,
+    required: true,
+    unique: true
   },
-  email : {
-    type : String,
-    required : true,
-    unique : true
+  email: {
+    type: String,
+    required: true,
+    unique: true
   },
-  password : {
-    type : String,
-    required : true 
-  }
+  password: {
+    type: String,
+    required: true 
+  },
+  createdBy: String,
+  createdOn: Date,
+  updatedBy: String,
+  updatedOn: Date
 });
 
 //This is called a pre-hook, before the user information is saved in the database

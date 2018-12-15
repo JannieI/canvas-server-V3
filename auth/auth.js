@@ -19,7 +19,7 @@ passport.use('signup', new localStrategy(
         } catch (error) {
             console.log('In auth.js SIGNUP try block start passport.use.signup error: ', error)
             done(error);
-        }
+        };
     }
 ));
 
