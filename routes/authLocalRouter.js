@@ -6,17 +6,17 @@ const jwt = require('jsonwebtoken');
 const router = express.Router();
 
 
-router.get('/verify', (req, res, next) => {
+// router.get('/verify', (req, res, next) => {
 
-    console.log('GET /verify', req.body, req.params, req.query)
-    console.log('')
+//     console.log('GET /verify', req.body, req.params, req.query)
+//     console.log('')
 
-    if (req.query.userID == 'JannieI') {
-        res.send(true);
-    } else {
-        res.send(false);
-    }
-});
+//     if (req.query.userID == 'JannieI') {
+//         res.send(true);
+//     } else {
+//         res.send(false);
+//     }
+// });
 router.post('/verify', (req, res, next) => {
     console.log('Router: POST /verify', req.body)
     console.log('')
