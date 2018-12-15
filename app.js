@@ -39,7 +39,7 @@ function validateUser(req, res, next) {
 };
 
 const UserModel = require('./model/models');
-mongoose.connect('mongodb://127.0.0.1:27017/passport-jwt', { useMongoClient : true });
+mongoose.connect('mongodb://127.0.0.1:27017/Canvas', { useMongoClient : true });
 mongoose.connection.on('error', error => console.log('Mongoose Connection error: ',error) );
 mongoose.Promise = global.Promise;
 

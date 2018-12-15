@@ -9,50 +9,53 @@ passport.use('signup', new localStrategy(
         passwordField: 'password',
         }, async (username, password, done) => {
         try {
-            console.log('In auth.js SIGNUP try block start')
+            console.log('auth.signup: try block start')
             console.log('');
 
-            //Save the information provided by the user to the the database
-            // const user = await UserModel.create({ email, password });
-
-
-
-            // grab the user model
-            // var User = require('./app/models/user');
-
-            // create a new user
-            var newUser = UserModel({
-                companyName: '',
-                userID: username,
-                email: '',
-                password: password,
-                createdBy: '',
-                createdOn: null,
-                updatedBy: '',
-                updatedOn: null
-
-            });
-
-            // save the user
-            newUser.save((err) => {
+            // Determine if user already exists in the database
+            UserModel.find( { companyName: 'Clarity Analytics', userID: username }, 
+                (err, user) => {
                 if (err) {
-                    console.log('passport use signup failed: ', err);
-                    throw err;
-                };
 
-                console.log('.save: User created!');
+                    // Create a new user record since it does not exist
+                    var newUser = UserModel({
+                        companyName: 'Clarity Analytics',
+                        userID: username,
+                        email: username + '@clarityanalytics.xyz',
+                        password: password,
+                        createdBy: '',
+                        createdOn: null,
+                        updatedBy: '',
+                        updatedOn: null
+
+                    });
+
+                    // save the user
+                    newUser.save((err) => {
+                        if (err) {
+                            console.log('passport use signup failed: ', err);
+                            throw err;
+                        };
+
+                        console.log('.save: User created!');
+                    }); 
+
+                    //Send the user information to the next middleware
+                    console.log('    auth.signup: Success for ', newUser);
+                    return done(null, newUser);;
+
+                } else {;            
+                    // User found
+                    console.log('    auth.signup: User Already exists ', user);
+                    return done(null, user);;
+                };
             });
 
-
-
-
-
-
-            //Send the user information to the next middleware
-            console.log('Success in passport.use.signup for ', newUser);
-            return done(null, newUser);;
+            // //Send the user information to the next middleware
+            // console.log('    auth.signup: Success for ', newUser);
+            // return done(null, newUser);;
         } catch (error) {
-            console.log('In auth.js SIGNUP try block start passport.use.signup error: ', error)
+            console.log('auth.signup: Error: ', error)
             done(error);
         };
     }
