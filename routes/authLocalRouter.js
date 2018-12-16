@@ -95,7 +95,7 @@ router.post('/signup', (req, res, next) => {
                 console.log('    User Already exists ', user);
                 res.json({
                     "statusCode": "failed",
-                    "message" : "User already exists for this Company: " + user.userID,
+                    "message" : "User already exists for this Company",
                     "data": user,
                     "error": null
                 });
