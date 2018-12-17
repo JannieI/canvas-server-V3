@@ -3,6 +3,7 @@ var createError = require('http-errors');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 const express = require('express');
+const favicon = require('serve-favicon')
 
 // Third Party modules -----------------------------------------------------------
 const helmet = require('helmet');
@@ -46,6 +47,7 @@ mongoose.Promise = global.Promise;
 // Express & Helmet -------------------------------------------------------------
 var app = express();
 app.use(helmet());
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 // Parse form data to create req.body
 // app.use( bodyParser.urlencoded({ extended : false }) );

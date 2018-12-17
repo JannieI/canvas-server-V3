@@ -90,6 +90,7 @@ passport.use('login', new localStrategy(
         passwordField : 'password'
     }, async (email, password, done) => 
         {
+            console.log('auth.use.login starts')
             try 
                 {
 
