@@ -8,7 +8,7 @@ passport.use('XXXsignupXXX', new localStrategy(
     {
         usernameField: 'userID',
         passwordField: 'password',
-        }, async (username, password, done) => {
+    }, async (username, password, done) => {
         try {
             console.log('auth.signup: try block start')
             console.log('');
@@ -86,9 +86,9 @@ passport.use('XXXsignupXXX', new localStrategy(
 //Create a passport middleware to handle User login
 passport.use('login', new localStrategy(
     {
-        usernameField : 'email',
+        usernameField : 'userID',
         passwordField : 'password'
-    }, async (email, password, done) => 
+    }, async (userID, password, done) => 
         {
             console.log('auth.use.login starts')
             try 
@@ -97,7 +97,7 @@ passport.use('login', new localStrategy(
                     console.log('In auth.js LOGIN try block start')
 
                     //Find the user associated with the email provided by the user
-                    const user = await UserModel.findOne({ email });
+                    const user = await UserModel.findOne({ userID });
                     if( !user ){
                         //If the user isn't found in the database, return a message
                         return done(null, false, { message : 'User not found'});

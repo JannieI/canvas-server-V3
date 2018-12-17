@@ -7,7 +7,6 @@ const favicon = require('serve-favicon')
 
 // Third Party modules -----------------------------------------------------------
 const helmet = require('helmet');
-var logger = require('morgan');
 const session = require('express-session');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -101,7 +100,7 @@ app.use( (req, res, next) => {
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-app.use(logger('dev'));
+app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(validateUser);
 
