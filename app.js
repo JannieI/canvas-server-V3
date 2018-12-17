@@ -16,8 +16,8 @@ const passport = require('passport');
 const morgan = require('morgan');
 
 // Require Routers ---------------------------------------------------------------
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
 var authGitHubRouter = require('./routes/authGitHubRouter');
 var authGoogleRouter = require('./routes/authGoogleRouter');
 const authLocalRouter = require('./routes/authLocalRouter');
@@ -148,6 +148,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/auth/local', authLocalRouter);
 app.use('/auth/local/profile', passport.authenticate('jwt', { session : false }), secureRouter );
 
+app.get('/canvas', (req, res, next) => {
+    res.sendFile(path.join(__dirname, '/public/dist', 'index.html'))
+});
 app.use('/users', usersRouter);
 app.use('/auth/github/', authGitHubRouter);
 app.use('/auth/google/', authGoogleRouter);
