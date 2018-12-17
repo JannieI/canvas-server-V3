@@ -124,10 +124,10 @@ router.post('/login', (req, res, next) => {
                     const token = jwt.sign({ user : body },'top_secret');
                     //Send back the token to the user
                     return res.json({
-                        "statusCode": "failed",
-                        "message" : "Login failed",
+                        "statusCode": "success",
+                        "message" : "User Logged in",
                         "data": null,
-                        "error": error,
+                        "error": null,
                         "token": token 
                     });
                 });
