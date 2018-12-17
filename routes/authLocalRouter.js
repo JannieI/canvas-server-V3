@@ -123,7 +123,13 @@ router.post('/login', (req, res, next) => {
                     //Sign the JWT token and populate the payload with the user email and id
                     const token = jwt.sign({ user : body },'top_secret');
                     //Send back the token to the user
-                    return res.json({ token });
+                    return res.json({
+                        "statusCode": "failed",
+                        "message" : "Login failed",
+                        "data": null,
+                        "error": error,
+                        "token": token 
+                    });
                 });
             }
         catch (error) {
