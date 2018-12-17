@@ -14,7 +14,7 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 // var GitHubStrategy = require('passport-github').Strategy;
 // const passportConfig = require('./configPassport');
-
+const morgan = require('morgan');
 
 // Require Routers ---------------------------------------------------------------
 var indexRouter = require('./routes/index');
@@ -48,6 +48,7 @@ mongoose.Promise = global.Promise;
 var app = express();
 app.use(helmet());
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(morgan('tiny'));
 
 // Parse form data to create req.body
 // app.use( bodyParser.urlencoded({ extended : false }) );
