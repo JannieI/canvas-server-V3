@@ -1,4 +1,4 @@
-// Authenticate (signup, login) routes
+// Authenticate (verify, signup, login) routes
 const express = require('express');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
@@ -20,11 +20,12 @@ router.post('/verify', (req, res, next) => {
 
 // Register (Signup) a new user to a given Canvas-Server and CompanyName
 // curl -v -X POST http://localhost:8000/signup -H "application/json" -d 'password=jannie' -d 'email=jannie@gmail.com'
-
-// router.post('/signup', passport.authenticate('signup', { session : false }) , async (req, res, next) => {
 router.post('/signup', (req, res, next) => {
     console.log('authLocalRouter: POST signup', req.body.companyName, req.body.userID, req.body.password)
     console.log('')
+
+    // Note: we are not using passport.authenticate('signup'... to validate and add the user 
+    //       (see /login route)
 
     // Find the user: add if not found, else raise message
     UserModel.find( { companyName: req.body.companyName, userID: req.body.userID },
@@ -92,6 +93,7 @@ router.post('/signup', (req, res, next) => {
 
 });
 
+// Login with userId and password
 // curl -v -X POST http://localhost:8000/login -H "application/json" -d 'password=jannie' -d 'email=jannie@gmail.com'
 router.post('/login', (req, res, next) => {
     console.log('/login');
@@ -105,31 +107,35 @@ router.post('/login', (req, res, next) => {
 
                 if(err || !user){
                     console.log('authLocalRouter Error after passport.authenticate')
-                    const error = new Error('An Error occured')
+
                     // return next(error);
                     return res.json({
                         "statusCode": "failed",
                         "message" : "Login failed",
                         "data": null,
-                        "error": error
+                        "error": err
                     });
                 };
                 req.login(user, { session : false }, async (error) => {
                     if( error ) return next(error)
 
-                    //We don't want to store the sensitive information such as the
-                    //user password in the token so we pick only the email and id
+                    // The payload is part of the Token (Header, Payload, Verify Signature).  Store  
+                    // enough about the user profile, but DONT include sensitive information like
+                    // password.
                     const body = { _id : user._id, userID : user.userID };
                     const payload = {
                         "sub": "1234567890",
                         "_id" : user._id, 
                         "userID" : user.userID,
                         "name": user.name
-                      };
-                    //Sign the JWT token and populate the payload with the user email and id
-                    // const token = jwt.sign({ user : body },'top_secret');
+                    };
+
+                    // Sign the JWT token and populate the payload, expiring in 1d
+                    // TODO 1d has to be parameterised in the System settings
                     const token = jwt.sign(payload,'top_secret', {expiresIn: '1d'});
-                    //Send back the token to the user
+
+                    // Send back info, which includes the token.  Client side we have a standard message
+                    // layout, where the token is optional.
                     return res.json({
                         "statusCode": "success",
                         "message" : "User Logged in",
@@ -145,7 +151,7 @@ router.post('/login', (req, res, next) => {
 
     })(req, res, next);
 
-  });
+});
 
-
-  module.exports = router;
+// Export
+module.exports = router;

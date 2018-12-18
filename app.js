@@ -145,8 +145,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Routing ------------------------------------------------------------------------
 
-app.use('/auth/local', authLocalRouter);
 app.use('/auth/local/profile', passport.authenticate('jwt', { session : false }), secureRouter );
+app.use('/auth/local', authLocalRouter);
 
 app.get('/canvas', (req, res, next) => {
     res.sendFile(path.join(__dirname, '/public/dist', 'index.html'))

@@ -1,3 +1,5 @@
+// Passport (and JWT ) related functions for login, jwt-verify
+
 const passport = require('passport');
 const localStrategy = require('passport-local').Strategy;
 const UserModel = require('../model/models');
@@ -62,60 +64,41 @@ passport.use('XXXsignupXXX', new localStrategy(
     }
 ));
 
-// passport.use('signup', new localStrategy(
-//     {
-//         usernameField : 'email',
-//         passwordField : 'password'
-//     }, async (email, password, done) => {
-//         try {
-//             console.log('In auth.js SIGNUP try block start')
-
-//             //Save the information provided by the user to the the database
-//             const user = await UserModel.create({ email, password });
-//             //Send the user information to the next middleware
-//             console.log('passport.use.signup', user)
-//             return done(null, user);
-//         } catch (error) {
-//             console.log('In auth.js SIGNUP try block start passport.use.signup error: ', error)
-//             done(error);
-//         }
-//     }
-// ));
-
-
 //Create a passport middleware to handle User login
 passport.use('login', new localStrategy(
     {
         usernameField : 'userID',
         passwordField : 'password'
-    }, async (userID, password, done) => 
-        {
-            console.log('auth.use.login starts')
-            try 
-                {
+    }, async (userID, password, done) => {
+        console.log('auth.use.login starts')
+        try 
+            {
+                console.log('In auth.js LOGIN try block start')
 
-                    console.log('In auth.js LOGIN try block start')
+                // Find the user in the DB
+                const user = await UserModel.findOne({ userID });
 
-                    //Find the user associated with the email provided by the user
-                    const user = await UserModel.findOne({ userID });
-                    if( !user ){
-                        //If the user isn't found in the database, return a message
-                        return done(null, false, { message : 'User not found'});
-                    }
-                    //Validate password and make sure it matches with the corresponding hash stored in the database
-                    //If the passwords match, it returns a value of true.
-                    const validate = await user.isValidPassword(password);
-                    if( !validate ){
-                        return done(null, false, { message : 'Wrong Password'});
-                    }
-                    //Send the user information to the next middleware
-                    return done(null, user, { message : 'Logged in Successfully'});
-                } 
-              catch (error) {
-                  return done(error);
-              }
-      }
-));
+                // Error in interaction with DB
+                if( !user ){
+                    //If the user isn't found in the database, return a message
+                    return done(null, false, { message : 'User not found'});
+                };
+
+                // Validate password and make sure it matches with the corresponding hash stored in the DB
+                // If the passwords match, it returns a value of true.
+                const validate = await user.isValidPassword(password);
+                if( !validate ){
+                    return done(null, false, { message : 'Wrong Password'});
+                };
+
+                //Send the user information to the next middleware
+                return done(null, user, { message : 'Logged in Successfully'});
+            } 
+            catch (error) {
+                return done(error);
+            };
+    })
+);
 
 const JWTstrategy = require('passport-jwt').Strategy;
 //We use this to extract the JWT sent by the user
@@ -129,13 +112,14 @@ passport.use(new JWTstrategy({
     jwtFromRequest : ExtractJWT.fromUrlQueryParameter('secret_token')
 }, async (token, done) => 
     {
-      try {
+    console.log('auth.use.jwt-verify starts')
+        try {
             console.log('SUCCESS in auth.passport.use')
             //Pass the user details to the next middleware
-          return done(null, token.user);
-      } catch (error) {
-          console.log('Error in auth.passport.use')
-          done(error);
-      }
+            return done(null, token.user);
+        } catch (error) {
+            console.log('Error in auth.passport.use')
+            done(error);
+        }
     }
 ));
