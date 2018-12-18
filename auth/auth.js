@@ -114,9 +114,9 @@ passport.use(new JWTstrategy({
     {
     console.log('auth.use.jwt-verify starts')
         try {
-            console.log('SUCCESS in auth.passport.use')
+            console.log('SUCCESS in auth.passport.use', token.userID)
             //Pass the user details to the next middleware
-            return done(null, token.user);
+            return done(null, token.userID);
         } catch (error) {
             console.log('Error in auth.passport.use')
             done(error);
