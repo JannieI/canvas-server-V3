@@ -52,3 +52,9 @@ POST {{host}}/
 GET {{host}}/auth/local/profile?secret_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwiX2lkIjoiNWMxNWY4ODVmYmE4ZDQ3ZjY3YzI5NTEzIiwidXNlcklEIjoiSmFubmllSSIsImlhdCI6MTU0NTEyMDk2OSwiZXhwIjoxNTQ1MjA3MzY5fQ.1QRX0PNJjWT_QYd7IrEe7FbpbpYODUqD4-s7KnvR7Qc
 
 ###
+
+
+// Canvas Data
+GET {{host}}/canvasdata
+
+###

@@ -7,7 +7,7 @@ const UserModel = require('../model/models');
 
 // Verify User as valid (exists in Canvas DB)
 router.get('/', (req, res, next) => {
-    console.log('Router: GET ', req.body)
+    console.log('Router: GET ')
     console.log('')
 
     res.send( 
@@ -16,3 +16,6 @@ router.get('/', (req, res, next) => {
         }
     );
 });
+
+// Export
+module.exports = router;
