@@ -155,6 +155,7 @@ app.get('/canvas', (req, res, next) => {
 app.use('/users', usersRouter);
 app.use('/auth/github/', authGitHubRouter);
 app.use('/auth/google/', authGoogleRouter);
+app.use('/canvasdata', canvasDataRouter);
 app.use('/', indexRouter);
 
 
