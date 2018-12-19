@@ -114,7 +114,7 @@ app.use(express.urlencoded({ extended: false }));
 // 3. Can have more than one, just add another app.use
 // 4. Public obviously cannot contain sensitive info
 // 5. Place under app line
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '/public/dist/')));
 
 // Example for Query parameters
 // app.use( (req, res, next) => {
@@ -150,7 +150,7 @@ app.use('/auth/local/profile', passport.authenticate('jwt', { session : false })
 app.use('/auth/local', authLocalRouter);
 
 app.get('/canvas', (req, res, next) => {
-    res.sendFile(path.join(__dirname, '/public/dist', 'index.html'))
+    res.sendFile(path.join(__dirname, '/public/dist/', 'index.html'))
 });
 app.use('/users', usersRouter);
 app.use('/auth/github/', authGitHubRouter);
