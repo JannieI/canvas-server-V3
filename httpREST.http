@@ -55,6 +55,6 @@ GET {{host}}/auth/local/profile?secret_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ
 
 
 // Canvas Data
-GET {{host}}/canvasdata
+GET {{host}}/canvasdata/:data?id=2
 
 ###
