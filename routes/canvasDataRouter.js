@@ -26,6 +26,32 @@ const testSchema = new Schema({
 router.get('/:resource', (req, res, next) => {
     console.log('Router: GET ')
     console.log('')
+    const path = req.param('resource').substring(1)
+    console.log('xx ', req.query, req.params, path)
+
+    
+    const schemaPath1 = '../model/' + path;
+    const theSchema1 = require(schemaPath1);
+    theSchema1.find({}, (err, docs) => {
+        console.log('MAGIC !', docs)
+    });
+
+    // Works
+    // const schemaPath1 = '../model/testSchema1';
+    // const theSchema1 = require(schemaPath1);
+    // theSchema1.find({}, (err, docs) => {
+    //     console.log('MAGIC !', docs)
+    // });
+
+    // const schemaPath2 = '../model/testSchema2';
+    // const theSchema2 = require(schemaPath2);
+    // theSchema2.find({}, (err, docs) => {
+    //     console.log('MAGIC !', docs)
+    // });
+
+
+    console.log('---------------------------------------')
+
 
     const useThisSchema = 'testSchema'
     var testModel = mongoose.model('test', testSchema);
@@ -56,21 +82,6 @@ router.get('/:resource', (req, res, next) => {
     // });
 
 
-    const schemaPath1 = '../model/testSchema1';
-    const theSchema1 = require(schemaPath1);
-    theSchema1.find({}, (err, docs) => {
-        console.log('MAGIC !', docs)
-    });
-
-    const schemaPath2 = '../model/testSchema2';
-    const theSchema2 = require(schemaPath2);
-    theSchema2.find({}, (err, docs) => {
-        console.log('MAGIC !', docs)
-    });
-
-    console.log('---------------------------------------')
-
-    console.log('xx ', req.query, req.params)
 
     username = 'JannieI'
     
