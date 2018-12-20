@@ -27,13 +27,20 @@ router.get('/:resource', (req, res, next) => {
     console.log('Router: GET ')
     console.log('')
     const path = req.param('resource').substring(1)
-    console.log('xx ', req.query, req.params, path)
+    const query = req.query;
+    console.log('xx ', req.query, query, req.params, path)
 
     
     const schemaPath1 = '../model/' + path;
     const theSchema1 = require(schemaPath1);
-    theSchema1.find({}, (err, docs) => {
+    theSchema1.find( query, (err, docs) => {
         console.log('MAGIC !', docs)
+        res.send( 
+            {
+                message: "It works!",
+                data: docs
+            }
+        );
     });
 
     // Works
@@ -53,28 +60,32 @@ router.get('/:resource', (req, res, next) => {
     console.log('---------------------------------------')
 
 
-    const useThisSchema = 'testSchema'
-    var testModel = mongoose.model('test', testSchema);
-    const query = req.query;
 
-    testCompanyName = 'Ryan'
+    // Works
+    // const useThisSchema = 'testSchema'
+    // var testModel = mongoose.model('test', testSchema);
 
-    if (testCompanyName == 'Brie') {
-        let rec = new testModel({
-            companyName: testCompanyName
-        })
-        rec.save()
-            .then(doc => {
-            console.log('saved', doc)
-            testModel.find( {query} , (err, user) => {
-                console.log('found', err, user)
-            });
+    // testCompanyName = 'Ryan'
 
-            })
-            .catch(err => {
-            console.error('err', err)
-            })
-    };
+    // if (testCompanyName == 'Brie') {
+    //     let rec = new testModel({
+    //         companyName: testCompanyName
+    //     })
+    //     rec.save()
+    //         .then(doc => {
+    //         console.log('saved', doc)
+    //         testModel.find( {query} , (err, user) => {
+    //             console.log('found', err, user)
+    //         });
+
+    //         })
+    //         .catch(err => {
+    //         console.error('err', err)
+    //         })
+    // };
+
+
+
 
     // Works Find according to the query, unparsed
     // testModel.find( query , (err, user) => {
@@ -89,46 +100,38 @@ router.get('/:resource', (req, res, next) => {
     // var authColl = db.getCollection("auth")
     // authColl.update ...console
 
-    UserModel.find( { companyName: 'Clarity Analytics', userID: username }, 
-        (err, user) => {
-        if (err) {
-            console.log('err: ', err);
 
-            // // Create a new user record since it does not exist
-            // var newUser = UserModel({
-            //     companyName: 'Clarity Analytics',
-            //     userID: username,
-            //     email: username + '@clarityanalytics.xyz',
-            //     password: password,
-            //     createdBy: '',
-            //     createdOn: null,
-            //     updatedBy: '',
-            //     updatedOn: null
+    // Works
+    // UserModel.find( { companyName: 'Clarity Analytics', userID: username }, 
+    //     (err, user) => {
+    //     if (err) {
+    //         console.log('err: ', err);
 
-            // });
+    //         // // Create a new user record since it does not exist
+    //         // var newUser = UserModel({
+    //         //     companyName: 'Clarity Analytics',
+    //         //     userID: username,
+    //         //     email: username + '@clarityanalytics.xyz',
+    //         //     password: password,
+    //         //     createdBy: '',
+    //         //     createdOn: null,
+    //         //     updatedBy: '',
+    //         //     updatedOn: null
 
-
-        } else {;            
-            // User found
-            console.log('success user: ', user);
-        };
-    });
+    //         // });
 
 
+    //     } else {;            
+    //         // User found
+    //         console.log('success user: ', user);
+    //     };
+    // });
 
-
-
-
-
-
-
-
-
-    res.send( 
-        {
-            message: "It works!"
-        }
-    );
+    // res.send( 
+    //     {
+    //         message: "It works!"
+    //     }
+    // );
 });
 
 // Export
