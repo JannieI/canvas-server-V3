@@ -8,7 +8,10 @@ const favicon = require('serve-favicon')
 // Third Party modules -----------------------------------------------------------
 const helmet = require('helmet');
 const session = require('express-session');
-const mongoose = require('mongoose');
+
+// const mongoose = require('mongoose');
+const mongoDatabase = require('./databaseConnectors/mongoLocalDatabase');
+
 const bodyParser = require('body-parser');
 const passport = require('passport');
 // var GitHubStrategy = require('passport-github').Strategy;
@@ -40,9 +43,9 @@ function validateUser(req, res, next) {
 };
 
 const UserModel = require('./model/models');
-mongoose.connect('mongodb://127.0.0.1:27017/Canvas');
-mongoose.connection.on('error', error => console.log('Mongoose Connection error: ',error) );
-mongoose.Promise = global.Promise;
+// mongoose.connect('mongodb://127.0.0.1:27017/Canvas');
+// mongoose.connection.on('error', error => console.log('Mongoose Connection error: ',error) );
+// mongoose.Promise = global.Promise;
 
 // Express & Helmet -------------------------------------------------------------
 var app = express();

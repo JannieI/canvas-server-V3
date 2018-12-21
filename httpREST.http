@@ -61,7 +61,7 @@ GET {{host}}/canvasdata/:tests?companyName=Ryan
 
 
 // Canvas Data (:canvasdata works)
-GET {{host}}/canvasdata/:canvasgroupsx?name=Engineering
+GET {{host}}/canvasdata/:canvasgroups?name=Engineering
 
 ###
 

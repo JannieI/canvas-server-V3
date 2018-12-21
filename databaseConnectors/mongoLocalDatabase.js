@@ -1,4 +1,4 @@
-// Database object for Mongo
+// Local Database object for Mongo
 
 // Notes from https://medium.freecodecamp.org/introduction-to-mongoose-for-mongodb-d2a7aa593c57:
 //

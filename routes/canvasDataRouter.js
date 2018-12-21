@@ -5,14 +5,16 @@ const express = require('express');
 const passport = require('passport');
 const router = express.Router();
 const Joi = require('joi');
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
+// const mongoose = require('../databaseConnectors/mongoLocalDatabase');
 
 // Configure Mongoose
 // TODO - this should be done once
 // TODO - do we need the .Promise?
-mongoose.connect('mongodb://127.0.0.1:27017/Canvas');
-mongoose.connection.on('error', error => console.log('Mongoose Connection error: ',error) );
-mongoose.Promise = global.Promise;
+// mongoose.connect('mongodb://127.0.0.1:27017/Canvas');
+// mongoose.connection.on('error', error => console.log('Mongoose Connection error: ',error) );
+// mongoose.Promise = global.Promise;
+
 
 // Validate route
 function validateRoute(course) {
@@ -27,6 +29,8 @@ function validateRoute(course) {
  
 // GET route
 router.get('/:resource', (req, res, next) => {
+
+    // console.log(mongoDatabase.connect)
 
     // Validate Params
     if (!req.params) {
