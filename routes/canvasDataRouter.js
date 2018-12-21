@@ -94,7 +94,7 @@ router.post('/:resource', (req, res, next) => {
     // Extract: body, route (params without :)
     const resource = req.param('resource').substring(1);
     const body = req.body;
-    console.log('Router: GET for resource:', resource, 'body:', body)
+    console.log('Router: POST for resource:', resource, 'body:', body)
     console.log('');
 
     // Try, in case model file does not exist
@@ -110,7 +110,7 @@ router.post('/:resource', (req, res, next) => {
                 console.log('saved', doc)
                 res.json({
                     "statusCode": "success",
-                    "message" : "Added record for resource " + resource,
+                    "message" : "Added record for resource: " + resource,
                     "data": doc,
                     "error": null
                 });         
@@ -119,7 +119,57 @@ router.post('/:resource', (req, res, next) => {
                 console.error(err)
                 res.json({
                     "statusCode": "error",
-                    "message" : "Error: Could not add record for resource " + resource,
+                    "message" : "Error: Could not add record for resource: " + resource,
+                    "data": null,
+                    "error": err
+                });         
+        });
+    }
+    catch (error) {
+        res.status(400).json({
+            "statusCode": "error",
+            "message" : "No model file for resource: " + resource,
+            "data": null,
+            "error": error
+        });
+    
+        return;
+    };
+
+});
+
+// DELETE route
+router.delete('/:resource', (req, res, next) => {
+
+    // Extract: body, route (params without :)
+    const resource = req.param('resource').substring(1);
+    const query = req.query;
+    const id = 4;
+    console.log('Router: DELETE for resource:', resource, 'query:', query);
+    console.log('');
+
+    // Try, in case model file does not exist
+    try {
+        // Get the model dynamically (take note of file spelling = resource)
+        const canvasSchema = '../model/' + resource;
+        const canvasModel = require(canvasSchema);
+
+        // Find and Delete from DB
+        canvasModel.findOneAndRemove({id: id})
+            .then(doc => {
+                console.log('deleted', doc)
+                res.json({
+                    "statusCode": "success",
+                    "message" : "Deleted record for resource: " + resource + 'id: ', id,
+                    "data": doc,
+                    "error": null
+                });         
+            })
+            .catch(err => {
+                console.error(err)
+                res.json({
+                    "statusCode": "error",
+                    "message" : "Error: Could not delete record for resource: " + resource + 'id: ', id,
                     "data": null,
                     "error": err
                 });         
