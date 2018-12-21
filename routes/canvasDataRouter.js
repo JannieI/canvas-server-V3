@@ -38,19 +38,30 @@ router.get('/:resource', (req, res, next) => {
     const { error } = validateRoute(req.params);
     if (error) {
         res.status(400).send(error.details[0].message);
+        // res.json({
+        //     "statusCode": "error",
+        //     "message" : "Error in DB Find: " + err.message,
+        //     "data": null,
+        //     "error": err
+        // });
+    
         return;
     };
 
+    // Get the model dynamically (take note of file spelling = resource)
     const canvasSchema = '../model/' + resource;
     const canvasModel = require(canvasSchema);
+
+    // Find the data (using the standard query JSON object)
     canvasModel.find( query, (err, docs) => {
-        console.log('MAGIC !', docs)
-        res.send( 
-            {
-                message: "It works!",
-                data: docs
-            }
-        );
+        
+        // Return the data
+        res.json({
+            "statusCode": "success",
+            "message" : "Retrieve resource " + resource,
+            "data": docs,
+            "error": null
+        });
     });
 })
 
