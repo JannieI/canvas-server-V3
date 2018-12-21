@@ -39,9 +39,10 @@ router.use('/:resource', (req, res, next) => {
 router.get('/:resource', (req, res, next) => {
     
     var cache = require('../utils/cachingTableMemory');
-    cache.set('1234', 'value I want to share');
+    // cache.set('1234', 'value I want to share');
     cache.get('1234');  // 'value I want to share'
-    console.log('Hier cache', cache)
+    cache.get('abc');  
+    console.log('Hier cache', cache.get('1234'), cache.get('abc'))
 
     // Extract: query, route (params without :)
     const resource = req.param('resource').substring(1);
@@ -68,8 +69,13 @@ router.get('/:resource', (req, res, next) => {
         const canvasSchema = '../model/' + resource;
         const canvasModel = require(canvasSchema);
 
+    
         // Find the data (using the standard query JSON object)
         canvasModel.find( query, (err, docs) => {
+
+            // Store in cache
+            cache.set('1234', 'docs.id');
+            cache.set('abc', 'a b & c');
         
             // Return the data
             res.json({
