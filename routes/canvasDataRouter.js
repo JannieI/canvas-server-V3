@@ -80,7 +80,7 @@ router.get('/:resource', (req, res, next) => {
     catch (error) {
         res.status(400).json({
             "statusCode": "error",
-            "message" : "No model file for resource",
+            "message" : "No model file for resource: " + resource,
             "data": null,
             "error": error
         });

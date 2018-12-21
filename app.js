@@ -165,15 +165,6 @@ app.use( (req, res, next) => {
     next(createError(404));
 });
 
-// app.use('/', (req, res, next) => {
-//     res.status(404).json({
-//         "statusCode": "error",
-//         "message" : "Error: Resource not provided",
-//         "data": null,
-//         "error": "Error: Resource not provided"
-//     });
-// })
-
 // Error handler
 app.use( (err, req, res, next) => {
     // set locals, only providing error in development
