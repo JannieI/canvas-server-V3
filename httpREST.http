@@ -68,5 +68,11 @@ GET {{host}}/canvasdata/:canvasgroups?name=Engineering
 
 // Canvas Data (:tests works)
 POST {{host}}/canvasdata/:canvasgroups?name=Engineering
+content-type: application/json
+
+{
+    "id": 4,
+    "name": "Engineering"
+}
 
 ###

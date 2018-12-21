@@ -40,18 +40,17 @@ router.use('/:resource', (req, res, next) => {
 // GET route
 router.get('/:resource', (req, res, next) => {
 
-    // TODO - this must happen
-
+    // TODO - this must happen once
     // Validate Params
-    if (!req.params) {
-        res.status(400).json({
-            "statusCode": "error",
-            "message" : "Error: Resource not provided",
-            "data": null,
-            "error": "Error: Resource not provided"
-        });
-        return;
-    };
+    // if (!req.params) {
+    //     res.status(400).json({
+    //         "statusCode": "error",
+    //         "message" : "Error: Resource not provided",
+    //         "data": null,
+    //         "error": "Error: Resource not provided"
+    //     });
+    //     return;
+    // };
 
     // Extract: query, route (params without :)
     const resource = req.param('resource').substring(1)
@@ -105,6 +104,12 @@ router.get('/:resource', (req, res, next) => {
 })
 
 
+
+
+
+
+
+
 // POST route
 // TODO - code this
 router.post('/:resource', (req, res, next) => {
@@ -114,12 +119,34 @@ router.post('/:resource', (req, res, next) => {
     const query = req.query;
     console.log('xx ', req.query, query, req.params, path)
 
-    // Validate
+
+    // Extract: body, route (params without :)
+    const resource = req.param('resource').substring(1)
+    const body = req.body;
+    console.log('Router: GET for resource', resource, 'body', body)
+    console.log('')
 
 
 
     console.log('---------------------------------------')
 
+    
+    // Return the data
+    res.json({
+        "statusCode": "success",
+        "message" : "Added record for resource " + resource,
+        "data": body,
+        "error": null
+    });
+// });
+// }
+// catch (error) {
+// res.status(400).json({
+//     "statusCode": "error",
+//     "message" : "No model file for resource: " + resource,
+//     "data": null,
+//     "error": error
+// });
 
 
     // Works
@@ -147,7 +174,6 @@ router.post('/:resource', (req, res, next) => {
 
 
 
-
     // Works Find according to the query, unparsed
     // testModel.find( query , (err, user) => {
     //     console.log('test Listing', user)
@@ -155,7 +181,7 @@ router.post('/:resource', (req, res, next) => {
 
 
 
-    username = 'JannieI'
+    // username = 'JannieI'
     
     // Determine if user already exists in the database
     // var authColl = db.getCollection("auth")
