@@ -37,32 +37,47 @@ router.get('/:resource', (req, res, next) => {
     // Validate
     const { error } = validateRoute(req.params);
     if (error) {
-        res.status(400).send(error.details[0].message);
-        // res.json({
-        //     "statusCode": "error",
-        //     "message" : "Error in DB Find: " + err.message,
-        //     "data": null,
-        //     "error": err
-        // });
+        // res.status(400).send(error.details[0].message);
+        res.status(400).json({
+            "statusCode": "error",
+            "message" : error.details[0].message,
+            "data": null,
+            "error": err
+        });
     
         return;
     };
 
     // Get the model dynamically (take note of file spelling = resource)
-    const canvasSchema = '../model/' + resource;
-    const canvasModel = require(canvasSchema);
+    // Try, in case model file does not exist
+    try {
+        const canvasSchema = '../model/' + resource;
+        const canvasModel = require(canvasSchema);
 
-    // Find the data (using the standard query JSON object)
-    canvasModel.find( query, (err, docs) => {
+        // Find the data (using the standard query JSON object)
+        canvasModel.find( query, (err, docs) => {
         
-        // Return the data
-        res.json({
-            "statusCode": "success",
-            "message" : "Retrieve resource " + resource,
-            "data": docs,
-            "error": null
+            // Return the data
+            res.json({
+                "statusCode": "success",
+                "message" : "Retrieve resource " + resource,
+                "data": docs,
+                "error": null
+            });
         });
-    });
+    }
+    catch (error) {
+        res.status(400).json({
+            "statusCode": "error",
+            "message" : "No model file for resource",
+            "data": null,
+            "error": err
+        });
+    
+        return;
+
+    }
+
 })
 
 
