@@ -14,12 +14,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/Canvas');
 mongoose.connection.on('error', error => console.log('Mongoose Connection error: ',error) );
 mongoose.Promise = global.Promise;
 
-
-
-
-
-
-
+// Validate route
 function validateRoute(course) {
 
 	// Schema of what to validate
@@ -30,13 +25,14 @@ function validateRoute(course) {
 	return Joi.validate(course, schema);
 }
  
-// Verify User as valid (exists in Canvas DB)
+// GET route
 router.get('/:resource', (req, res, next) => {
-    console.log('Router: GET ')
-    console.log('')
-    const path = req.param('resource').substring(1)
+
+    // Extract: query, route (params without :)
+    const resource = req.param('resource').substring(1)
     const query = req.query;
-    console.log('xx ', req.query, query, req.params, path)
+    console.log('Router: GET for resource', resource, 'query', query)
+    console.log('')
 
     // Validate
     const { error } = validateRoute(req.params);
@@ -45,9 +41,9 @@ router.get('/:resource', (req, res, next) => {
         return;
     };
 
-    const schemaPath1 = '../model/' + path;
-    const theSchema1 = require(schemaPath1);
-    theSchema1.find( query, (err, docs) => {
+    const canvasSchema = '../model/' + resource;
+    const canvasModel = require(canvasSchema);
+    canvasModel.find( query, (err, docs) => {
         console.log('MAGIC !', docs)
         res.send( 
             {
@@ -58,15 +54,8 @@ router.get('/:resource', (req, res, next) => {
     });
 })
 
-const UserModel = require('../model/models');
-const Schema = mongoose.Schema;
-const testSchema = new Schema({
-    companyName: {
-        type: String,
-        required: true
-    }
-})
 
+// POST route
 router.post('/:resource', (req, res, next) => {
     console.log('Router: GET ')
     console.log('')
