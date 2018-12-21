@@ -188,5 +188,63 @@ router.delete('/:resource', (req, res, next) => {
 
 });
 
+// PUT route
+router.put('/:resource', (req, res, next) => {
+
+    // Extract: body, route (params without :)
+    const resource = req.param('resource').substring(1);
+    const query = req.query;
+    const body = req.body;
+
+    const id = 4;
+    console.log('Router: PUT for resource:', resource, 'query:', query, 'body:', body);
+    console.log('');
+
+    // Try, in case model file does not exist
+    try {
+        // Get the model dynamically (take note of file spelling = resource)
+        const canvasSchema = '../model/' + resource;
+        const canvasModel = require(canvasSchema);
+
+        // Find and Update DB
+        canvasModel.findOneAndUpdate( 
+            {id: id}, 
+            body,
+            {
+              new: true,                       // return updated doc
+              runValidators: true              // validate before update
+            })
+            .then(doc => {
+                console.log('updated', doc)
+                res.json({
+                    "statusCode": "success",
+                    "message" : "Updated record for resource: " + resource + 'id: ', id,
+                    "data": doc,
+                    "error": null
+                });         
+            })
+            .catch(err => {
+                console.error(err)
+                res.json({
+                    "statusCode": "error",
+                    "message" : "Error: Could not update record for resource: " + resource + 'id: ', id,
+                    "data": null,
+                    "error": err
+                });         
+        });
+    }
+    catch (error) {
+        res.status(400).json({
+            "statusCode": "error",
+            "message" : "No model file for resource: " + resource,
+            "data": null,
+            "error": error
+        });
+    
+        return;
+    };
+
+});
+
 // Export
 module.exports = router;

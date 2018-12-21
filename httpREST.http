@@ -81,3 +81,13 @@ content-type: application/json
 DELETE {{host}}/canvasdata/:canvasgroups?id=4
 
 ###
+
+// PUT Canvas Data ()
+PUT {{host}}/canvasdata/:canvasgroups?id=4
+content-type: application/json
+
+{
+    "name": "AN Engineering"
+}
+
+###
