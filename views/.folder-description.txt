@@ -1,0 +1,2 @@
+The files in this folder are views that are served by Node as web pages.  
+We currently dont use any views.

@@ -1,0 +1,2 @@
+The files in this folder are for scripts (Windows and Bash).  These are typically scripts for 
+installation, deployment, migration, etc.

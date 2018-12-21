@@ -37,7 +37,8 @@ router.use('/:resource', (req, res, next) => {
 
 // GET route
 router.get('/:resource', (req, res, next) => {
-
+    console.log('Hier', port)
+    
     // Extract: query, route (params without :)
     const resource = req.param('resource').substring(1);
     const query = req.query;

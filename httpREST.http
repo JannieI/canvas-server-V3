@@ -87,7 +87,7 @@ PUT {{host}}/canvasdata/:canvasgroups?id=4
 content-type: application/json
 
 {
-    "name": "AN Engineering"
+    "name": "AnOther Engineering"
 }
 
 ###

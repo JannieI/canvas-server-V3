@@ -148,7 +148,6 @@ app.use(express.static(path.join(__dirname, '/public/dist/')));
 // });
 
 // Routing ------------------------------------------------------------------------
-
 app.use('/auth/local/profile', passport.authenticate('jwt', { session : false }), authLocalRouter );
 // app.use('/auth/local/profile', passport.authenticate('jwt', { session : false }), secureRouter );
 app.use('/auth/local', authLocalRouter);
@@ -170,6 +169,7 @@ app.use( (req, res, next) => {
 
 // Error handler
 app.use( (err, req, res, next) => {
+
     // set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};

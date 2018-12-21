@@ -1,0 +1,1 @@
+The files in this folder are routes.  Each file contains all the HTTP methods for that route.

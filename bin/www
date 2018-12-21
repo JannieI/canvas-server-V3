@@ -10,7 +10,7 @@ var http = require('http');
 const dotenv = require('dotenv');
 
 dotenv.config();
-// port is now available to the Node.js runtime 
+// port is now available to the Node.js runtime
 // as if it were an environment variable
 
 /**
