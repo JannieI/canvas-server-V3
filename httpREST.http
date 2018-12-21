@@ -67,7 +67,7 @@ GET {{host}}/canvasdata/:canvasgroups?name=Engineering
 
 
 // POST Canvas Data ()
-POST {{host}}/canvasdata/:canvasgroups?name=Engineering
+POST {{host}}/canvasdata/:canvasgroups
 content-type: application/json
 
 {

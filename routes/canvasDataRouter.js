@@ -55,7 +55,7 @@ router.get('/:resource', (req, res, next) => {
     // Extract: query, route (params without :)
     const resource = req.param('resource').substring(1)
     const query = req.query;
-    console.log('Router: GET for resource', resource, 'query', query)
+    console.log('Router: GET for resource:', resource, 'query:', query)
     console.log('')
 
     // Validate
@@ -84,7 +84,7 @@ router.get('/:resource', (req, res, next) => {
             // Return the data
             res.json({
                 "statusCode": "success",
-                "message" : "Retrieve resource " + resource,
+                "message" : "Retrieve resource: " + resource,
                 "data": docs,
                 "error": null
             });
@@ -103,27 +103,13 @@ router.get('/:resource', (req, res, next) => {
 
 })
 
-
-
-
-
-
-
-
 // POST route
-// TODO - code this
 router.post('/:resource', (req, res, next) => {
-    console.log('Router: GET ')
-    console.log('')
-    const path = req.param('resource').substring(1)
-    const query = req.query;
-    console.log('xx ', req.query, query, req.params, path)
-
 
     // Extract: body, route (params without :)
     const resource = req.param('resource').substring(1)
     const body = req.body;
-    console.log('Router: GET for resource', resource, 'body', body)
+    console.log('Router: GET for resource:', resource, 'body:', body)
     console.log('')
 
 
@@ -133,11 +119,14 @@ router.post('/:resource', (req, res, next) => {
     // Get the model dynamically (take note of file spelling = resource)
     // Try, in case model file does not exist
     try {
+
         const canvasSchema = '../model/' + resource;
         const canvasModel = require(canvasSchema);
+        console.log('hier',canvasModel)
 
-        // Find the data (using the standard query JSON object)
-        canvasModel.save()
+        // Create object and save to DB
+        let canvasAdd = new canvasModel(body);
+        canvasAdd.save()
             .then(doc => {
                 console.log('saved', doc)
                 res.json({
