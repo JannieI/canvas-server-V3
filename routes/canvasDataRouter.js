@@ -1,26 +1,24 @@
-// All Canvas (application-specific) data routes
+// Router for All Canvas (application-specific) data routes
+
+// Imports
 const express = require('express');
 const passport = require('passport');
 const router = express.Router();
 const Joi = require('joi');
-
 const mongoose = require('mongoose');
+
+// Configure Mongoose
+// TODO - this should be done once
+// TODO - do we need the .Promise?
 mongoose.connect('mongodb://127.0.0.1:27017/Canvas');
 mongoose.connection.on('error', error => console.log('Mongoose Connection error: ',error) );
 mongoose.Promise = global.Promise;
 
 
-const UserModel = require('../model/models');
-const Schema = mongoose.Schema;
 
 
 
-const testSchema = new Schema({
-    companyName: {
-        type: String,
-        required: true
-    }
-})
+
 
 function validateRoute(course) {
 
@@ -31,7 +29,7 @@ function validateRoute(course) {
 
 	return Joi.validate(course, schema);
 }
-
+ 
 // Verify User as valid (exists in Canvas DB)
 router.get('/:resource', (req, res, next) => {
     console.log('Router: GET ')
@@ -41,14 +39,12 @@ router.get('/:resource', (req, res, next) => {
     console.log('xx ', req.query, query, req.params, path)
 
     // Validate
-    if (path == 'tests') {
-        const { error } = validateRoute(req.params);
-        if (error) {
-            res.status(400).send(error.details[0].message);
-            return;
-        };
+    const { error } = validateRoute(req.params);
+    if (error) {
+        res.status(400).send(error.details[0].message);
+        return;
     };
-    
+
     const schemaPath1 = '../model/' + path;
     const theSchema1 = require(schemaPath1);
     theSchema1.find( query, (err, docs) => {
@@ -60,19 +56,26 @@ router.get('/:resource', (req, res, next) => {
             }
         );
     });
+})
 
-    // Works
-    // const schemaPath1 = '../model/testSchema1';
-    // const theSchema1 = require(schemaPath1);
-    // theSchema1.find({}, (err, docs) => {
-    //     console.log('MAGIC !', docs)
-    // });
+const UserModel = require('../model/models');
+const Schema = mongoose.Schema;
+const testSchema = new Schema({
+    companyName: {
+        type: String,
+        required: true
+    }
+})
 
-    // const schemaPath2 = '../model/testSchema2';
-    // const theSchema2 = require(schemaPath2);
-    // theSchema2.find({}, (err, docs) => {
-    //     console.log('MAGIC !', docs)
-    // });
+router.post('/:resource', (req, res, next) => {
+    console.log('Router: GET ')
+    console.log('')
+    const path = req.param('resource').substring(1)
+    const query = req.query;
+    console.log('xx ', req.query, query, req.params, path)
+
+    // Validate
+
 
 
     console.log('---------------------------------------')

@@ -58,3 +58,9 @@ GET {{host}}/auth/local/profile?secret_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ
 GET {{host}}/canvasdata/:canvasgroups?name=Engineering
 
 ###
+
+
+// Canvas Data (:tests works)
+POST {{host}}/canvasdata/:canvasgroups?name=Engineering
+
+###
