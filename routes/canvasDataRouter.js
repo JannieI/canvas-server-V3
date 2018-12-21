@@ -2,6 +2,7 @@
 const express = require('express');
 const passport = require('passport');
 const router = express.Router();
+const Joi = require('joi');
 
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://127.0.0.1:27017/Canvas');
@@ -21,6 +22,15 @@ const testSchema = new Schema({
     }
 })
 
+function validateCourse(course) {
+
+	// Schema of what to validate
+	const schema = {
+		name: Joi.string().min(3).required()
+	};
+
+	return Joi.validate(course, schema);
+}
 
 // Verify User as valid (exists in Canvas DB)
 router.get('/:resource', (req, res, next) => {
@@ -30,6 +40,11 @@ router.get('/:resource', (req, res, next) => {
     const query = req.query;
     console.log('xx ', req.query, query, req.params, path)
 
+    const { error } = validateCourse(req.body);
+    if (error) {
+        res.status(400).send(error.details[0].message);
+        return;
+    };
     
     const schemaPath1 = '../model/' + path;
     const theSchema1 = require(schemaPath1);
@@ -133,6 +148,7 @@ router.get('/:resource', (req, res, next) => {
     //     }
     // );
 });
+
 
 // Export
 module.exports = router;

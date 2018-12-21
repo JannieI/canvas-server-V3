@@ -74,6 +74,9 @@ npm install serve-favicon --save
 # morgan
 npm install morgan --save
 
+# joi
+npm install joi 
+
 
 <!-- -------------MONGO INFO START ------------------------ -->
 # Install MongoDB 4.04 - OUTSIDE of Node
