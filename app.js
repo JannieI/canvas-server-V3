@@ -165,6 +165,15 @@ app.use( (req, res, next) => {
     next(createError(404));
 });
 
+// app.use('/', (req, res, next) => {
+//     res.status(404).json({
+//         "statusCode": "error",
+//         "message" : "Error: Resource not provided",
+//         "data": null,
+//         "error": "Error: Resource not provided"
+//     });
+// })
+
 // Error handler
 app.use( (err, req, res, next) => {
     // set locals, only providing error in development
@@ -177,7 +186,14 @@ app.use( (err, req, res, next) => {
         console.log('app.js error req.body: ', req.body)
     };
     res.status(err.status || 500);
-    res.json({msg: 'error', err});
+    // res.json({message: 'error', err});
+    res.json({
+        "statusCode": "error",
+        "message" : "Error: " + err.status,
+        "data": null,
+        "error": err
+    });
+
     console.log('')
 });
 
