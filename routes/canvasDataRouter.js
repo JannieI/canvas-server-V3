@@ -38,13 +38,26 @@ router.use('/:resource', (req, res, next) => {
 // GET route
 router.get('/:resource', (req, res, next) => {
     
+    // Works
     var cache = require('../utils/cachingTableMemory');
     // cache.set('1234', 'value I want to share');
     cache.get('1234');  // 'value I want to share'
     cache.get('abc');  
     console.log('Hier cache', cache.get('1234'), cache.get('abc'))
 
-    // Extract: query, route (params without :)
+
+    var cache2 = require('../utils/cachingTableMemory2');
+    // cache2.set({
+    //     "id": 4,
+    //     "name": "Engineering"
+    // });
+    cache2.get(); 
+    console.log('Hier cache2 ', cache2.get())
+
+
+
+
+    // Extract: query, route (params without the :)
     const resource = req.param('resource').substring(1);
     const query = req.query;
     console.log('Router: GET for resource:', resource, 'query:', query);
@@ -73,10 +86,20 @@ router.get('/:resource', (req, res, next) => {
         // Find the data (using the standard query JSON object)
         canvasModel.find( query, (err, docs) => {
 
+
+
+            
             // Store in cache
             cache.set('1234', 'docs.id');
             cache.set('abc', 'a b & c');
-        
+            cache2.set({
+                "id": 4,
+                "name": "Engineering"
+            });
+
+            
+
+
             // Return the data
             res.json({
                 "statusCode": "success",
