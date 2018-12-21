@@ -17,10 +17,30 @@ function validateRoute(course) {
 	return Joi.validate(course, schema);
 }
  
+// Runs for ALL requests
+router.use('/:resource', (req, res, next) => {
+
+    // TODO - this must happen
+
+    // Validate Params
+    if (!req.params) {
+        res.status(400).json({
+            "statusCode": "error",
+            "message" : "Error: Resource not provided",
+            "data": null,
+            "error": "Error: Resource not provided"
+        });
+        return;
+    };
+
+    // Continue
+    next();
+})
+
 // GET route
 router.get('/:resource', (req, res, next) => {
 
-    // console.log(mongoDatabase.connect)
+    // TODO - this must happen
 
     // Validate Params
     if (!req.params) {
