@@ -16,7 +16,7 @@ function validateRoute(course) {
 
 	return Joi.validate(course, schema);
 }
- 
+
 // Runs for ALL requests
 router.use('/:resource', (req, res, next) => {
 
@@ -37,12 +37,12 @@ router.use('/:resource', (req, res, next) => {
 
 // GET route
 router.get('/:resource', (req, res, next) => {
-    
+
     // Works
     var cache = require('../utils/cachingTableMemory');
     // cache.set('1234', 'value I want to share');
     cache.get('1234');  // 'value I want to share'
-    cache.get('abc');  
+    cache.get('abc');
     console.log('Hier cache', cache.get('1234'), cache.get('abc'))
 
 
@@ -51,7 +51,7 @@ router.get('/:resource', (req, res, next) => {
     //     "id": 4,
     //     "name": "Engineering"
     // });
-    cache2.get(); 
+    cache2.get();
     console.log('Hier cache2 ', cache2.get())
 
 
@@ -72,7 +72,7 @@ router.get('/:resource', (req, res, next) => {
             "data": null,
             "error": err
         });
-    
+
         return;
     };
 
@@ -82,13 +82,13 @@ router.get('/:resource', (req, res, next) => {
         const canvasSchema = '../model/' + resource;
         const canvasModel = require(canvasSchema);
 
-    
+
         // Find the data (using the standard query JSON object)
         canvasModel.find( query, (err, docs) => {
 
 
 
-            
+
             // Store in cache
             cache.set('1234', 'docs.id');
             cache.set('abc', 'a b & c');
@@ -97,7 +97,7 @@ router.get('/:resource', (req, res, next) => {
                 "name": "Engineering"
             });
 
-            
+
 
 
             // Return the data
@@ -116,7 +116,7 @@ router.get('/:resource', (req, res, next) => {
             "data": null,
             "error": error
         });
-    
+
         return;
     };
 
@@ -147,7 +147,7 @@ router.post('/:resource', (req, res, next) => {
                     "message" : "Added record for resource: " + resource,
                     "data": doc,
                     "error": null
-                });         
+                });
             })
             .catch(err => {
                 console.error(err)
@@ -156,7 +156,7 @@ router.post('/:resource', (req, res, next) => {
                     "message" : "Error: Could not add record for resource: " + resource,
                     "data": null,
                     "error": err
-                });         
+                });
         });
     }
     catch (error) {
@@ -166,7 +166,7 @@ router.post('/:resource', (req, res, next) => {
             "data": null,
             "error": error
         });
-    
+
         return;
     };
 
@@ -185,7 +185,7 @@ router.delete('/:resource', (req, res, next) => {
             "message" : "Error: no ID provided for resource: " + resource + 'id: ', id,
             "data": null,
             "error": "Error: no ID query-param provided for resource: " + resource + 'id: ', id
-        }); 
+        });
     };
 
     console.log('Router: DELETE for resource:', resource, 'query:', query);
@@ -206,7 +206,7 @@ router.delete('/:resource', (req, res, next) => {
                     "message" : "Deleted record for resource: " + resource + ', id: ', id,
                     "data": doc,
                     "error": null
-                });         
+                });
             })
             .catch(err => {
                 console.error(err)
@@ -215,7 +215,7 @@ router.delete('/:resource', (req, res, next) => {
                     "message" : "Error: Could not delete record for resource: " + resource + 'id: ', id,
                     "data": null,
                     "error": err
-                });         
+                });
         });
     }
     catch (error) {
@@ -225,7 +225,7 @@ router.delete('/:resource', (req, res, next) => {
             "data": null,
             "error": error
         });
-    
+
         return;
     };
 
@@ -246,7 +246,7 @@ router.put('/:resource', (req, res, next) => {
             "message" : "Error: no ID provided for resource: " + resource + 'id: ', id,
             "data": null,
             "error": "Error: no ID query-param provided for resource: " + resource + 'id: ', id
-        }); 
+        });
     };
 
     console.log('Router: PUT for resource:', resource, 'query:', query, 'body:', body);
@@ -259,8 +259,8 @@ router.put('/:resource', (req, res, next) => {
         const canvasModel = require(canvasSchema);
 
         // Find and Update DB
-        canvasModel.findOneAndUpdate( 
-            {id: id}, 
+        canvasModel.findOneAndUpdate(
+            {id: id},
             body,
             {
               new: true,                       // return updated doc
@@ -273,7 +273,7 @@ router.put('/:resource', (req, res, next) => {
                     "message" : "Updated record for resource: " + resource + 'id: ', id,
                     "data": doc,
                     "error": null
-                });         
+                });
             })
             .catch(err => {
                 console.error(err)
@@ -282,7 +282,7 @@ router.put('/:resource', (req, res, next) => {
                     "message" : "Error: Could not update record for resource: " + resource + 'id: ', id,
                     "data": null,
                     "error": err
-                });         
+                });
         });
     }
     catch (error) {
@@ -292,7 +292,7 @@ router.put('/:resource', (req, res, next) => {
             "data": null,
             "error": error
         });
-    
+
         return;
     };
 
