@@ -145,6 +145,15 @@ router.delete('/:resource', (req, res, next) => {
     const resource = req.param('resource').substring(1);
     const query = req.query;
     const id = req.query.id;
+    if (id == null) {
+        res.json({
+            "statusCode": "error",
+            "message" : "Error: no ID provided for resource: " + resource + 'id: ', id,
+            "data": null,
+            "error": "Error: no ID query-param provided for resource: " + resource + 'id: ', id
+        }); 
+    };
+
     console.log('Router: DELETE for resource:', resource, 'query:', query);
     console.log('');
 
@@ -160,7 +169,7 @@ router.delete('/:resource', (req, res, next) => {
                 console.log('deleted', doc)
                 res.json({
                     "statusCode": "success",
-                    "message" : "Deleted record for resource: " + resource + 'id: ', id,
+                    "message" : "Deleted record for resource: " + resource + ', id: ', id,
                     "data": doc,
                     "error": null
                 });         
