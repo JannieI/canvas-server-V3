@@ -130,23 +130,44 @@ router.post('/:resource', (req, res, next) => {
 
     console.log('---------------------------------------')
 
+    // Get the model dynamically (take note of file spelling = resource)
+    // Try, in case model file does not exist
+    try {
+        const canvasSchema = '../model/' + resource;
+        const canvasModel = require(canvasSchema);
+
+        // Find the data (using the standard query JSON object)
+        canvasModel.save()
+            .then(doc => {
+                console.log('saved', doc)
+                res.json({
+                    "statusCode": "success",
+                    "message" : "Added record for resource " + resource,
+                    "data": doc,
+                    "error": null
+                });         
+            })
+            .catch(err => {
+                console.error(err)
+                res.json({
+                    "statusCode": "error",
+                    "message" : "Error: Could not add record for resource " + resource,
+                    "data": null,
+                    "error": err
+                });         
+        })
+    }
+    catch (error) {
+        res.status(400).json({
+            "statusCode": "error",
+            "message" : "No model file for resource: " + resource,
+            "data": null,
+            "error": error
+        });
     
-    // Return the data
-    res.json({
-        "statusCode": "success",
-        "message" : "Added record for resource " + resource,
-        "data": body,
-        "error": null
-    });
-// });
-// }
-// catch (error) {
-// res.status(400).json({
-//     "statusCode": "error",
-//     "message" : "No model file for resource: " + resource,
-//     "data": null,
-//     "error": error
-// });
+        return;
+    };
+
 
 
     // Works

@@ -60,13 +60,13 @@ GET {{host}}/canvasdata/:tests?companyName=Ryan
 ###
 
 
-// Canvas Data (:canvasdata works)
+// GET Canvas Data (:canvasdata works)
 GET {{host}}/canvasdata/:canvasgroups?name=Engineering
 
 ###
 
 
-// Canvas Data (:tests works)
+// POST Canvas Data ()
 POST {{host}}/canvasdata/:canvasgroups?name=Engineering
 content-type: application/json
 
