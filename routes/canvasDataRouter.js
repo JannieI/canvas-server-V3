@@ -28,6 +28,17 @@ function validateRoute(course) {
 // GET route
 router.get('/:resource', (req, res, next) => {
 
+    // Validate Params
+    if (!req.params) {
+        res.status(400).json({
+            "statusCode": "error",
+            "message" : "Error: Resource not provided",
+            "data": null,
+            "error": "Error: Resource not provided"
+        });
+        return;
+    };
+
     // Extract: query, route (params without :)
     const resource = req.param('resource').substring(1)
     const query = req.query;
@@ -71,11 +82,10 @@ router.get('/:resource', (req, res, next) => {
             "statusCode": "error",
             "message" : "No model file for resource",
             "data": null,
-            "error": err
+            "error": error
         });
     
         return;
-
     }
 
 })
