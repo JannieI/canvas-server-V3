@@ -54,7 +54,7 @@ GET {{host}}/auth/local/profile?secret_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ
 ###
 
 
-// Canvas Data
-GET {{host}}/canvasdata/:usermodel?companyName=Ryan
+// Canvas Data (:tests works)
+GET {{host}}/canvasdata/:canvasgroups?name=Engineering
 
 ###

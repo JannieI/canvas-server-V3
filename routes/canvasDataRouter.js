@@ -41,10 +41,12 @@ router.get('/:resource', (req, res, next) => {
     console.log('xx ', req.query, query, req.params, path)
 
     // Validate
-    const { error } = validateRoute(req.params);
-    if (error) {
-        res.status(400).send(error.details[0].message);
-        return;
+    if (path == 'tests') {
+        const { error } = validateRoute(req.params);
+        if (error) {
+            res.status(400).send(error.details[0].message);
+            return;
+        };
     };
     
     const schemaPath1 = '../model/' + path;

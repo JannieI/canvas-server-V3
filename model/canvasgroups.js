@@ -16,6 +16,6 @@ const CanvasGroupSchema = new Schema({
 
 
 // Create Model
-const CanvasGroupModel = mongoose.model('CanvasGroup', CanvasGroupSchema, canvasgroups);
+const CanvasGroupModel = mongoose.model('canvasgroups', CanvasGroupSchema, 'canvasgroups');
 
 module.exports = CanvasGroupModel;
