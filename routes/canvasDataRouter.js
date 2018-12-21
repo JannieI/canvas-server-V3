@@ -47,7 +47,7 @@ router.get('/:resource', (req, res, next) => {
     cache.get('companyName'));
 
 
-    var cache2 = require('../utils/cachingTableMemory2');
+    var cache2 = require('../utils/dataCachingTableMemory2');
     // cache2.set({
     //     "id": 4,
     //     "name": "Engineering"
