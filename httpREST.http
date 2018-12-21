@@ -77,7 +77,7 @@ content-type: application/json
 
 ###
 
-// DELETE Canvas Data ()
+// DELETE Canvas Data (:canvasdata works)
 DELETE {{host}}/canvasdata/:canvasgroups?id=4
 
 ###
