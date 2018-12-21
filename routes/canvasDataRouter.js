@@ -144,7 +144,7 @@ router.delete('/:resource', (req, res, next) => {
     // Extract: body, route (params without :)
     const resource = req.param('resource').substring(1);
     const query = req.query;
-    const id = 4;
+    const id = req.query.id;
     console.log('Router: DELETE for resource:', resource, 'query:', query);
     console.log('');
 
