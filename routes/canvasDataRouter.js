@@ -205,7 +205,16 @@ router.put('/:resource', (req, res, next) => {
     const query = req.query;
     const body = req.body;
 
-    const id = 4;
+    const id = req.query.id;
+    if (id == null) {
+        res.json({
+            "statusCode": "error",
+            "message" : "Error: no ID provided for resource: " + resource + 'id: ', id,
+            "data": null,
+            "error": "Error: no ID query-param provided for resource: " + resource + 'id: ', id
+        }); 
+    };
+
     console.log('Router: PUT for resource:', resource, 'query:', query, 'body:', body);
     console.log('');
 
