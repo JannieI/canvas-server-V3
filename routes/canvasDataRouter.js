@@ -39,11 +39,12 @@ router.use('/:resource', (req, res, next) => {
 router.get('/:resource', (req, res, next) => {
 
     // Works
-    var cache = require('../utils/cachingTableMemory');
+    var cache = require('../utils/serverVariablesMemory');
     // cache.set('1234', 'value I want to share');
     cache.get('1234');  // 'value I want to share'
     cache.get('abc');
-    console.log('Hier cache', cache.get('1234'), cache.get('abc'))
+    console.log('Hier cache', cache.get('1234'), cache.get('abc'), 
+    cache.get('companyName'));
 
 
     var cache2 = require('../utils/cachingTableMemory2');
