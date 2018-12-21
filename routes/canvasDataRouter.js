@@ -22,11 +22,11 @@ const testSchema = new Schema({
     }
 })
 
-function validateCourse(course) {
+function validateRoute(course) {
 
 	// Schema of what to validate
 	const schema = {
-		name: Joi.string().min(3).required()
+		resource: Joi.string().min(3).required()
 	};
 
 	return Joi.validate(course, schema);
@@ -40,7 +40,8 @@ router.get('/:resource', (req, res, next) => {
     const query = req.query;
     console.log('xx ', req.query, query, req.params, path)
 
-    const { error } = validateCourse(req.body);
+    // Validate
+    const { error } = validateRoute(req.params);
     if (error) {
         res.status(400).send(error.details[0].message);
         return;
