@@ -74,6 +74,8 @@ npm install morgan --save
 # joi
 npm install joi 
 
+# config
+npm i config
 
 <!-- -------------MONGO INFO START ------------------------ -->
 # Install MongoDB 4.04 - OUTSIDE of Node
