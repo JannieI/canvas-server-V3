@@ -109,8 +109,8 @@ app.use(cookieParser());
 app.use(validateUser);
 
 // JSON & URLencoded to create req.body (in right format)
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.json());   // Create req.body
+app.use(express.urlencoded({ extended: true }));  // Take key-value from form into req.body.  Extended = arrays too
 
 // Statics: Can access all info in this folder:
 // 1. Dont need to include public in the path

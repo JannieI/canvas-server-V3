@@ -1,4 +1,4 @@
-// cache/memoryCache.js
+// dataCacheTableMemory.js
 module.exports = function () {
     var cache = {};
     return {

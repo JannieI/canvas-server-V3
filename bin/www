@@ -45,19 +45,19 @@ console.log('')
  */
 
 function normalizePort(val) {
-  var port = parseInt(val, 10);
+    var port = parseInt(val, 10);
 
-  if (isNaN(port)) {
-    // named pipe
-    return val;
-  }
+    if (isNaN(port)) {
+        // named pipe
+        return val;
+    };
 
-  if (port >= 0) {
-    // port number
-    return port;
-  }
+    if (port >= 0) {
+        // port number
+        return port;
+    };
 
-  return false;
+    return false;
 }
 
 /**
@@ -65,27 +65,27 @@ function normalizePort(val) {
  */
 
 function onError(error) {
-  if (error.syscall !== 'listen') {
-    throw error;
-  }
+    if (error.syscall !== 'listen') {
+        throw error;
+    };
 
-  var bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port;
+    var bind = typeof port === 'string'
+        ? 'Pipe ' + port
+        : 'Port ' + port;
 
-  // handle specific listen errors with friendly messages
-  switch (error.code) {
-    case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
-      process.exit(1);
-      break;
-    case 'EADDRINUSE':
-      console.error(bind + ' is already in use');
-      process.exit(1);
-      break;
-    default:
-      throw error;
-  }
+    // handle specific listen errors with friendly messages
+    switch (error.code) {
+        case 'EACCES':
+            console.error(bind + ' requires elevated privileges');
+            process.exit(1);
+            break;
+        case 'EADDRINUSE':
+            console.error(bind + ' is already in use');
+            process.exit(1);
+            break;
+        default:
+            throw error;
+    }
 }
 
 /**
@@ -94,15 +94,23 @@ function onError(error) {
 
 function onListening() {
 
-  var cache2 = require('../utils/dataCachingTableMemory2');
-  cache2.set({
-      "id": 15,
-      "name": "eEngineering"
-  });
+    var cache2 = require('../utils/dataCachingTableMemory');
+    cache2.set({
+        "id": 15,
+        "name": "eEngineering"
+    });
 
-  var addr = server.address();
-  var bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port;
-  debug('Listening on ' + bind);
+    const dataCachingTableSchema = '../model/dataCachingTable';
+    const dataCachingTableModel = require(dataCachingTableSchema);
+
+
+    // Find the data (using the standard query JSON object)
+    dataCachingTableModel.find( {}, (err, docs) => {
+      console.log('dataCachingTableModel: ', docs)
+      var addr = server.address();
+      var bind = typeof addr === 'string'
+          ? 'pipe ' + addr
+          : 'port ' + addr.port;
+      debug('Listening on ' + bind);
+    });
 }
