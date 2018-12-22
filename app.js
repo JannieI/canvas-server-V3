@@ -94,6 +94,7 @@ app.use( (req, res, next) => {
     console.log('    req.is(text/html)', req.is('text/html') );
     console.log('    req.is(application/json)', req.is('application/json') );
     console.log('')
+    console.log('env', process.env.NODE_ENV, app.get('env'));
 
     next();
 });
@@ -145,6 +146,9 @@ app.use(express.static(path.join(__dirname, '/public/dist/')));
 //   // res.sendFile(path.join(__dirname + '/public/Photo1.JPG'));
 //   // res.json({ "name": "Jannie"})
 // });
+
+
+
 
 // Routing ------------------------------------------------------------------------
 app.use('/auth/local/profile', passport.authenticate('jwt', { session : false }), authLocalRouter );

@@ -38,29 +38,26 @@ router.use('/:resource', (req, res, next) => {
 // GET route
 router.get('/:resource', (req, res, next) => {
 
-    // Load global var caching table
+    // Load global var caching table - to be used later
     var dataCachingTable = require('../utils/dataCachingTableMemory');
-
     const localDataCachingTable = dataCachingTable.get();
     console.log('The localDataCachingTable.length: ', localDataCachingTable.length);
 
-
-    // Works
-    var cache = require('../utils/serverVariablesMemory');
-    // cache.set('1234', 'value I want to share');
-    cache.get('1234');  // 'value I want to share'
-    cache.get('abc');
-    console.log('Hier cache', cache.get('1234'), cache.get('abc'), 
-    cache.get('companyName'));
-
-
-    var cache2 = require('../utils/dataCachingTableMemory');
+    // Test: Works
+    // console.log('env', process.env.NODE_ENV);
+    // var cache = require('../utils/serverVariablesMemory');
+    // // cache.set('1234', 'value I want to share');
+    // cache.get('1234');  // 'value I want to share'
+    // cache.get('abc');
+    // console.log('Hier cache', cache.get('1234'), cache.get('abc'), 
+    // cache.get('companyName'));
+    // var cache2 = require('../utils/dataCachingTableMemory');
     // cache2.set({
     //     "id": 4,
     //     "name": "Engineering"
     // });
-    cache2.get();
-    console.log('Hier cache2 ', cache2.get())
+    // cache2.get();
+    // console.log('Hier cache2 ', cache2.get())
 
 
 
@@ -94,19 +91,13 @@ router.get('/:resource', (req, res, next) => {
         // Find the data (using the standard query JSON object)
         canvasModel.find( query, (err, docs) => {
 
-
-
-
-            // Store in cache
-            cache.set('1234', 'docs.id');
-            cache.set('abc', 'a b & c');
-            cache2.set({
-                "id": 4,
-                "name": "Engineering"
-            });
-
-
-
+            // Test: Store in cache Works
+            // cache.set('1234', 'docs.id');
+            // cache.set('abc', 'a b & c');
+            // cache2.set({
+            //     "id": 4,
+            //     "name": "Engineering"
+            // });
 
             // Return the data
             res.json({
