@@ -38,6 +38,13 @@ router.use('/:resource', (req, res, next) => {
 // GET route
 router.get('/:resource', (req, res, next) => {
 
+    // Load global var caching table
+    var dataCachingTable = require('../utils/dataCachingTableMemory');
+
+    const localDataCachingTable = dataCachingTable.get();
+    console.log('The localDataCachingTable: ', localDataCachingTable);
+
+
     // Works
     var cache = require('../utils/serverVariablesMemory');
     // cache.set('1234', 'value I want to share');
