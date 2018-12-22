@@ -60,8 +60,8 @@ app.use(helmet());      // NB: Place this first thing
 
 // Logging
 if (app.get('env') == 'development') {
-    app.use(morgan('tiny'));
-}
+    app.use(morgan(':method :url :status :res[content-length] - :response-time ms ON [:date[clf]] FROM :remote-addr - :remote-user'));
+};
 
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
