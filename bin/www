@@ -59,8 +59,6 @@ function onListening() {
             console.log('');
             console.log('SERIOUS ERROR: The dataCachingTable is empty!');
             console.log('');
-        } else {
-            console.log('dataCachingTable loaded');
         };
 
         // Put data into global variable
@@ -72,10 +70,9 @@ function onListening() {
         
         // Log for user to see
         const cacheMessage = docs.length >= 0?  '(with data caching on server)'  :  '(NO data caching on server)';
-        console.log('Canvas Server started ' + cacheMessage);
-        console.log('Listening on port ' + port);
+        console.log('Canvas Server started ' + cacheMessage + '. Listening on port ' + port);
         console.log('----------------------------------------------------------------')
-        console.log('')
+        console.log('');
 
     });
 }

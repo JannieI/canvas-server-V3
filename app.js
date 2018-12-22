@@ -9,7 +9,7 @@ const favicon = require('serve-favicon')
 const helmet = require('helmet');               // Security & Protection
 const session = require('express-session');
 const morgan = require('morgan');               // Used for logging
-const config = require('config');
+const config = require('config');               // Configuration
 
 // const mongoose = require('mongoose');
 const mongoDatabase = require('./databaseConnectors/mongoLocalDatabase');
@@ -62,7 +62,7 @@ app.use(helmet());      // NB: Place this first thing
 // Logging: use export NODE_ENV to set app.get('env') in Node Terminal !
 if (app.get('env') == 'development') {
     app.use(morgan(':method :url :status :res[content-length] - :response-time ms ON [:date[iso]] FROM :remote-addr - :remote-user'));
-}
+};
 
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
@@ -71,46 +71,48 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 // Cors 
 app.use( (req, res, next) => {
-    console.log('Inside CORS');
+    // console.log('Inside CORS');
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     console.log('')
     next();
 });
 
-// Logging details
-app.use( (req, res, next) => {
-    console.log('Logging details for mode: ', app.get('env'))
-    console.log('    req.baseUrl', req.baseUrl);
-    console.log('    req.cookies', req.cookies);
-    console.log('    req.fresh', req.fresh);
-    console.log('    req.hostname', req.hostname);
-    console.log('    req.ip', req.ip);
-    console.log('    req.ips', req.ips);
-    console.log('    req.method', req.method);
-    console.log('    req.originalUrl', req.originalUrl);
-    console.log('    req.params', req.params);
-    console.log('    req.path', req.path);
-    console.log('    req.protocol', req.protocol);
-    console.log('    req.query', req.query);
-    console.log('    req.route', req.route);
-    console.log('    req.secure', req.secure);
-    console.log('    req.subdomains', req.subdomains);
-    console.log('    req.xhr', req.xhr);
-    console.log('    req.get(Content-Type)', req.get('Content-Type') );
-    console.log('    req.is(html)', req.is('html') );
-    console.log('    req.is(text/html)', req.is('text/html') );
-    console.log('    req.is(application/json)', req.is('application/json') );
-    console.log('')
+// Logging details - Leave here for testing
+// app.use( (req, res, next) => {
+//     console.log('Logging details for mode: ', app.get('env'))
+//     console.log('    req.baseUrl', req.baseUrl);
+//     console.log('    req.cookies', req.cookies);
+//     console.log('    req.fresh', req.fresh);
+//     console.log('    req.hostname', req.hostname);
+//     console.log('    req.ip', req.ip);
+//     console.log('    req.ips', req.ips);
+//     console.log('    req.method', req.method);
+//     console.log('    req.originalUrl', req.originalUrl);
+//     console.log('    req.params', req.params);
+//     console.log('    req.path', req.path);
+//     console.log('    req.protocol', req.protocol);
+//     console.log('    req.query', req.query);
+//     console.log('    req.route', req.route);
+//     console.log('    req.secure', req.secure);
+//     console.log('    req.subdomains', req.subdomains);
+//     console.log('    req.xhr', req.xhr);
+//     console.log('    req.get(Content-Type)', req.get('Content-Type') );
+//     console.log('    req.is(html)', req.is('html') );
+//     console.log('    req.is(text/html)', req.is('text/html') );
+//     console.log('    req.is(application/json)', req.is('application/json') );
+//     console.log('')
 
-    next();
-});
+//     next();
+// });
 
-// Configuration
-console.log('xxx Config', config.get('name'))
+// Configuration: change NODE_ENV to development/production to use the data in the configuration
+// files stored in config/development.json and config/production.json  default.json is over-written
+// with the latter.
+console.log('xxx Config', config.get('appName'), config.get('mongo.password'));
 
 // View engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'jade');
 
 app.use(cookieParser());
