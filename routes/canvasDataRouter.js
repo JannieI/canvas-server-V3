@@ -22,7 +22,7 @@ router.use('/:resource', (req, res, next) => {
 
     // Validate Params
     if (!req.params) {
-        res.status(400).json({
+        return res.status(400).json({
             "statusCode": "error",
             "message" : "Error: Resource not provided",
             "data": null,
@@ -52,7 +52,7 @@ router.get('/:resource', (req, res, next) => {
     // Validate
     const { error } = validateRoute(req.params);
     if (error) {
-        res.status(400).json({
+        return res.status(400).json({
             "statusCode": "error",
             "message" : error.details[0].message,
             "data": null,
@@ -73,7 +73,7 @@ router.get('/:resource', (req, res, next) => {
         canvasModel.find( query, (err, docs) => {
 
             // Return the data
-            res.json({
+            return res.json({
                 "statusCode": "success",
                 "message" : "Retrieve resource: " + resource,
                 "data": docs,
@@ -82,14 +82,12 @@ router.get('/:resource', (req, res, next) => {
         });
     }
     catch (error) {
-        res.status(400).json({
+        return res.status(400).json({
             "statusCode": "error",
             "message" : "No model file for resource: " + resource,
             "data": null,
             "error": error
         });
-
-        return;
     };
 
 })
@@ -114,7 +112,7 @@ router.post('/:resource', (req, res, next) => {
         canvasAdd.save()
             .then(doc => {
                 console.log('saved', doc)
-                res.json({
+                return res.json({
                     "statusCode": "success",
                     "message" : "Added record for resource: " + resource,
                     "data": doc,
@@ -123,7 +121,7 @@ router.post('/:resource', (req, res, next) => {
             })
             .catch(err => {
                 console.error(err)
-                res.json({
+                return res.json({
                     "statusCode": "error",
                     "message" : "Error: Could not add record for resource: " + resource,
                     "data": null,
@@ -132,14 +130,12 @@ router.post('/:resource', (req, res, next) => {
         });
     }
     catch (error) {
-        res.status(400).json({
+        return res.status(400).json({
             "statusCode": "error",
             "message" : "No model file for resource: " + resource,
             "data": null,
             "error": error
         });
-
-        return;
     };
 
 });
@@ -152,7 +148,7 @@ router.delete('/:resource', (req, res, next) => {
     const query = req.query;
     const id = req.query.id;
     if (id == null) {
-        res.json({
+        return res.json({
             "statusCode": "error",
             "message" : "Error: no ID provided for resource: " + resource + 'id: ', id,
             "data": null,
@@ -173,7 +169,7 @@ router.delete('/:resource', (req, res, next) => {
         canvasModel.findOneAndRemove({id: id})
             .then(doc => {
                 console.log('deleted', doc)
-                res.json({
+                return res.json({
                     "statusCode": "success",
                     "message" : "Deleted record for resource: " + resource + ', id: ', id,
                     "data": doc,
@@ -182,7 +178,7 @@ router.delete('/:resource', (req, res, next) => {
             })
             .catch(err => {
                 console.error(err)
-                res.json({
+                return res.json({
                     "statusCode": "error",
                     "message" : "Error: Could not delete record for resource: " + resource + 'id: ', id,
                     "data": null,
@@ -191,14 +187,12 @@ router.delete('/:resource', (req, res, next) => {
         });
     }
     catch (error) {
-        res.status(400).json({
+        return res.status(400).json({
             "statusCode": "error",
             "message" : "No model file for resource: " + resource,
             "data": null,
             "error": error
         });
-
-        return;
     };
 
 });
@@ -213,7 +207,7 @@ router.put('/:resource', (req, res, next) => {
 
     const id = req.query.id;
     if (id == null) {
-        res.json({
+        return res.json({
             "statusCode": "error",
             "message" : "Error: no ID provided for resource: " + resource + 'id: ', id,
             "data": null,
@@ -240,7 +234,7 @@ router.put('/:resource', (req, res, next) => {
             })
             .then(doc => {
                 console.log('updated', doc)
-                res.json({
+                return res.json({
                     "statusCode": "success",
                     "message" : "Updated record for resource: " + resource + 'id: ', id,
                     "data": doc,
@@ -249,7 +243,7 @@ router.put('/:resource', (req, res, next) => {
             })
             .catch(err => {
                 console.error(err)
-                res.json({
+                return res.json({
                     "statusCode": "error",
                     "message" : "Error: Could not update record for resource: " + resource + 'id: ', id,
                     "data": null,
@@ -258,14 +252,12 @@ router.put('/:resource', (req, res, next) => {
         });
     }
     catch (error) {
-        res.status(400).json({
+        return res.status(400).json({
             "statusCode": "error",
             "message" : "No model file for resource: " + resource,
             "data": null,
             "error": error
         });
-
-        return;
     };
 
 });

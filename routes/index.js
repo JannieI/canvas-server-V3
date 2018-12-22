@@ -12,7 +12,7 @@ var router = express.Router();
 function requireJSON(req, res, next) {
     // NB req.is returns false if there is no body !
     if (!req.is('application/json')) {
-        res.json({msg: "Content type must be JSON"})
+        return res.json({msg: "Content type must be JSON"})
     } else {
         next();
     };
@@ -75,10 +75,10 @@ router.post('/loginLocal', (req, res, next) => {
         res.cookie('username',username)
         // res.redirect takes 1 arg:
         // 1. Where to send the brower
-        res.json({msg: 'Logged in ' + username})
+        return res.json({msg: 'Logged in ' + username})
     }else{
         // The "?" is a special character in a URL
-        res.json({msg: 'Login failed'})
+        return res.json({msg: 'Login failed'})
     };
 })
 
@@ -147,7 +147,7 @@ router.get('/background', (req, res, next) => {
         });
     } else {
         // Return Data
-        res.json(
+        return res.json(
             {
                 page: pageStartNrRequested,
                 rows: pageSize,
@@ -170,13 +170,13 @@ router.get('/background:id', (req, res, next) => {
 
     // Say if no records
     if (!results) {
-        res.json({
+        return res.json({
             rows: 0,
             msg: "Record id " + id + " does not exist."
         });
     } else {
         // Return Record
-        res.json(
+        return res.json(
             {
                 id: id,
                 rows: 1,
@@ -190,10 +190,10 @@ router.get('/background:id', (req, res, next) => {
 router.post('/background', requireJSON, (req, res, next) => {
     const rate = req.body.value;
     if (rate < 10) {
-        res.json( {msg: "Rating must be greater 10"} );
+        return res.json( {msg: "Rating must be greater 10"} );
     } else {
         res.status(300);
-        res.json(
+        return res.json(
             {
                 statusCode: 200,
                 msg: "Rating updated"

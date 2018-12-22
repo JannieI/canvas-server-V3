@@ -52,10 +52,10 @@ router.get('/pg',(req, res)=>{
     dbPgWeather.query(query,(error, dbResponse)=>{
         if (dbResponse != undefined) {  
             console.log(dbResponse.rows);
-            res.json(dbResponse.rows);
+            return res.json(dbResponse.rows);
         } else {
             console.log(dbResponse)
-            res.json({msg: "Query ran, no data to return"})
+            return res.json({msg: "Query ran, no data to return"})
         };
     })
 })
@@ -169,10 +169,10 @@ router.get('/email', (req, res, next) => {
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
             console.log(error);
-            res.json({ msg: 'Error: ', error: error});
+            return res.json({ msg: 'Error: ', error: error});
         } else {
             console.log('Email sent: ' + info.response);
-            res.json({ msg: 'Email Send!'});
+            return res.json({ msg: 'Email Send!'});
         };
     });
 })

@@ -10,9 +10,9 @@ const UserModel = require('../model/models');
 router.post('/verify', (req, res, next) => {
 
     if (req.body.userID == 'JannieI') {
-        res.send(true);
+        return res.send(true);
     } else {
-        res.send(false);
+        return res.send(false);
     }
 });
 
@@ -32,7 +32,7 @@ router.post('/signup', (req, res, next) => {
         // Mongo Error
         if (err) {
             console.log('    Error in Find ', err);
-            res.json({
+            return res.json({
                 "statusCode": "error",
                 "message" : "Error in DB Find: " + err.message,
                 "data": null,
@@ -59,7 +59,7 @@ router.post('/signup', (req, res, next) => {
 
                     //Success
                     console.log('    Success for ', user);
-                    res.json({
+                    return res.json({
                         "statusCode": "success",
                         "message" : "Signup successful !",
                         "data": user,
@@ -69,7 +69,7 @@ router.post('/signup', (req, res, next) => {
                 .catch(err => {
                     // Save Failed
                     console.log('    Save user failed: ', err);
-                    res.json({
+                    return res.json({
                         "statusCode": "failed",
                         "message" : "Registration failed, cannot save user !",
                         "data": null,
@@ -80,7 +80,7 @@ router.post('/signup', (req, res, next) => {
             
             // User already exists
             console.log('    User Already exists ', user);
-            res.json({
+            return res.json({
                 "statusCode": "failed",
                 "message" : "User already exists for this Company",
                 "data": user,
