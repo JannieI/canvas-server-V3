@@ -1,22 +1,21 @@
-// Basic imports -----------------------------------------------------------------
+// Basic Express imports -----------------------------------------------------------------
 var createError = require('http-errors');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 const express = require('express');
 const favicon = require('serve-favicon')
 
-// Third Party modules -----------------------------------------------------------
-const helmet = require('helmet');
+// Third Party imports -------------------------------------------------------------------
+const helmet = require('helmet');               // Security & Protection
 const session = require('express-session');
+const morgan = require('morgan');               // Used for logging
 
 // const mongoose = require('mongoose');
 const mongoDatabase = require('./databaseConnectors/mongoLocalDatabase');
 
-const bodyParser = require('body-parser');
 const passport = require('passport');
 // var GitHubStrategy = require('passport-github').Strategy;
 // const passportConfig = require('./configPassport');
-const morgan = require('morgan');
 
 // Require Routers ---------------------------------------------------------------
 const indexRouter = require('./routes/index');
@@ -47,20 +46,20 @@ const UserModel = require('./model/models');
 // mongoose.connection.on('error', error => console.log('Mongoose Connection error: ',error) );
 // mongoose.Promise = global.Promise;
 
-// Express & Helmet -------------------------------------------------------------
+// Start Express -------------------------------------------------------------
 var app = express();
-app.use(helmet());
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(morgan('tiny'));
-
-// Parse form data to create req.body
-// app.use( bodyParser.urlencoded({ extended : false }) );
 
 
 // Runs for ALL routes ----------------------------------------------------------
 // Initial middleware on ALL routes and ALL methods
 //  For ONE route: app.use('/admin', validateUser);
 //  For ONE method, ALL routes: app.get(validateUser);
+app.use(helmet());      // NB: Place this first thing
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(morgan('tiny'));
+
+// Note: for now, we dont use bodyParser.urlencoded as we only send and receive json
+//       If we POST web forms, this will convert the key-value pairs to json objects
 
 // Cors 
 app.use( (req, res, next) => {
@@ -104,7 +103,7 @@ app.use( (req, res, next) => {
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-app.use(morgan('dev'));
+app.use(morgan('tiny'));
 app.use(cookieParser());
 app.use(validateUser);
 

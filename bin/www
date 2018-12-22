@@ -1,5 +1,5 @@
 // Imports
-var app = require('../app');
+var app = require('../app');    // This is where all the routing happens
 var debug = require('debug')('canvas-server:server');
 var http = require('http');
 
