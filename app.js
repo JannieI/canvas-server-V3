@@ -1,3 +1,5 @@
+// Main middleware that handles all routes
+
 // Basic Express imports -----------------------------------------------------------------
 var createError = require('http-errors');
 var path = require('path');
@@ -39,7 +41,6 @@ function validateUser(req, res, next) {
     res.locals.validatedUser = true;
     if (req.method == 'POST') {
         debugDev('In validateUser ');
-        debugDev('');
     };
     next();
 };
@@ -77,7 +78,6 @@ app.use( (req, res, next) => {
     // debugDev('Inside CORS');
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    debugDev('')
     next();
 });
 
@@ -104,7 +104,6 @@ app.use( (req, res, next) => {
 //     debugDev('    req.is(html)', req.is('html') );
 //     debugDev('    req.is(text/html)', req.is('text/html') );
 //     debugDev('    req.is(application/json)', req.is('application/json') );
-//     debugDev('')
 
 //     next();
 // });
@@ -171,7 +170,6 @@ app.use( (err, req, res, next) => {
         "error": err
     });
 
-    debugDev('');
 });
 
 // Export for bin/www

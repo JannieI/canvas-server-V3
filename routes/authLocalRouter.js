@@ -1,8 +1,13 @@
 // Authenticate (verify, signup, login) routes
+
+// Basic Express imports -----------------------------------------------------------------
 const express = require('express');
+const router = express.Router();
+
+// Third Party imports -------------------------------------------------------------------
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
-const router = express.Router();
+const debugDev = require('debug')('app:dev');
 
 const UserModel = require('../model/models');
 
@@ -19,8 +24,6 @@ router.post('/verify', (req, res, next) => {
 // Register (Signup) a new user to a given Canvas-Server and CompanyName
 // curl -v -X POST http://localhost:8000/signup -H "application/json" -d 'password=jannie' -d 'email=jannie@gmail.com'
 router.post('/signup', (req, res, next) => {
-    console.log('authLocalRouter: POST signup', req.body.companyName, req.body.userID, req.body.password)
-    console.log('')
 
     // Note: we are not using passport.authenticate('signup'... to validate and add the user 
     //       (see /login route)
@@ -31,7 +34,7 @@ router.post('/signup', (req, res, next) => {
 
         // Mongo Error
         if (err) {
-            console.log('    Error in Find ', err);
+            debugDev('    Error in Find ', err);
             return res.json({
                 "statusCode": "error",
                 "message" : "Error in DB Find: " + err.message,
@@ -58,7 +61,7 @@ router.post('/signup', (req, res, next) => {
                 .then(user => {
 
                     //Success
-                    console.log('    Success for ', user);
+                    debugDev('    Success for ', user);
                     return res.json({
                         "statusCode": "success",
                         "message" : "Signup successful !",
@@ -68,7 +71,7 @@ router.post('/signup', (req, res, next) => {
                 })
                 .catch(err => {
                     // Save Failed
-                    console.log('    Save user failed: ', err);
+                    debugDev('    Save user failed: ', err);
                     return res.json({
                         "statusCode": "failed",
                         "message" : "Registration failed, cannot save user !",
@@ -79,7 +82,7 @@ router.post('/signup', (req, res, next) => {
         } else {
             
             // User already exists
-            console.log('    User Already exists ', user);
+            debugDev('    User Already exists ', user);
             return res.json({
                 "statusCode": "failed",
                 "message" : "User already exists for this Company",
@@ -102,7 +105,7 @@ router.post('/login', (req, res, next) => {
             {
 
                 if(err || !user){
-                    console.log('authLocalRouter Error after passport.authenticate')
+                    debugDev('authLocalRouter Error after passport.authenticate')
 
                     // return next(error);
                     return res.json({
