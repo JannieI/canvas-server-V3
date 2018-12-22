@@ -1,4 +1,4 @@
-// Ivan, ignore this one - just testing something
+// Model for CanvasGroups collection
 
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
@@ -14,6 +14,6 @@ const CanvasGroupSchema = new Schema({
 
 
 // Create Model: modelName, schema, collection
-const CanvasGroupModel = mongoose.model('canvasgroups', CanvasGroupSchema, 'canvasgroups');
+const CanvasGroupModel = mongoose.model('canvasgroups', CanvasGroupSchema, 'canvasGroups');
 
 module.exports = CanvasGroupModel;

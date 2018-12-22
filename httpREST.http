@@ -62,7 +62,7 @@ GET {{host}}/canvasdata/:tests?companyName=Ryan
 
 
 // GET Canvas Data (:canvasdata works)
-GET {{host}}/canvasdata/:canvasgroups?name=Engineering
+GET {{host}}/canvasdata/:canvasGroups?name=Engineering
 
 ###
 
@@ -94,6 +94,6 @@ content-type: application/json
 ###
 
 
-// GET Canvas Data (:canvasdata works)
+// GET Canvas Data
 GET {{host}}/canvasdata/:canvasusers?userID=JannieI
 ###
