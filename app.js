@@ -9,6 +9,7 @@ const favicon = require('serve-favicon')
 const helmet = require('helmet');               // Security & Protection
 const session = require('express-session');
 const morgan = require('morgan');               // Used for logging
+const config = require('config');
 
 // const mongoose = require('mongoose');
 const mongoDatabase = require('./databaseConnectors/mongoLocalDatabase');
@@ -105,6 +106,8 @@ app.use( (req, res, next) => {
     next();
 });
 
+// Configuration
+console.log('xxx Config', config.get('name'))
 
 // View engine setup
 app.set('views', path.join(__dirname, 'views'));
