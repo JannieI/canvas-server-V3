@@ -94,19 +94,30 @@ function onError(error) {
 
 function onListening() {
 
-    var cache2 = require('../utils/dataCachingTableMemory');
-    cache2.set({
-        "id": 15,
-        "name": "eEngineering"
-    });
+    var dataCachingTable = require('../utils/dataCachingTableMemory');
+
 
     const dataCachingTableSchema = '../model/dataCachingTable';
     const dataCachingTableModel = require(dataCachingTableSchema);
 
 
-    // Find the data (using the standard query JSON object)
+    // Find the DataCachingTable
     dataCachingTableModel.find( {}, (err, docs) => {
-      console.log('dataCachingTableModel: ', docs)
+
+      // Warn if empty
+      if (docs.length == 0) {
+        console.log('');
+        console.log('SERIOUS ERROR: The dataCachingTable is empty!');
+        console.log('');
+      };
+
+      // Put data into global variable
+      dataCachingTable.set(docs);
+
+      // Store global variable in local and show (not really needed here)
+      const localDataCachingTable = dataCachingTable.get();
+      console.log('The localDataCachingTable: ', localDataCachingTable);
+
       var addr = server.address();
       var bind = typeof addr === 'string'
           ? 'pipe ' + addr
