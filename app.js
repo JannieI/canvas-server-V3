@@ -111,8 +111,13 @@ app.use( (req, res, next) => {
 // with the latter.
 // NB - NEVER store sensitive info in these files as they are part of source control
 //      Create Environment variables, and map them using the custom-environment-variables.json
-//      file in the config folder.
-console.log('xxx Config', config.get('appName'), config.get('mongo.serverAddress'));
+//      file in the config folder.  For example, export MONGO_PASSWORD=abc in the terminal before
+//      starting Node.  Then use config.has('mongo.password') to test if it exists, and 
+//      config.get('mongo.password') to retrieve it (as per mapping in custom-environment-variables.json)
+
+// Leave for testing
+// console.log('xxx Config', config.get('appName'), config.get('mongo.serverAddress')
+// , config.get('mongo.password'));
 
 // View engine setup
 app.set('views', path.join(__dirname, 'views'))

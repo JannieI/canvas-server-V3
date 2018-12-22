@@ -1,5 +1,5 @@
 {
     "mongo": {
-        "password": "1234"
+        "password": "MONGO_PASSWORD"
     }
 }
