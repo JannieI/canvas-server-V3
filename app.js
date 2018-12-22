@@ -54,9 +54,16 @@ var app = express();
 // Initial middleware on ALL routes and ALL methods
 //  For ONE route: app.use('/admin', validateUser);
 //  For ONE method, ALL routes: app.get(validateUser);
+
+// Security
 app.use(helmet());      // NB: Place this first thing
+
+// Logging
+if (app.get('env') == 'development') {
+    app.use(morgan('tiny'));
+};
+
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(morgan('tiny'));
 
 // Note: for now, we dont use bodyParser.urlencoded as we only send and receive json
 //       If we POST web forms, this will convert the key-value pairs to json objects
@@ -72,7 +79,7 @@ app.use( (req, res, next) => {
 
 // Logging details
 app.use( (req, res, next) => {
-    console.log('Logging details')
+    console.log('Logging details for mode: ', app.get('env'))
     console.log('    req.baseUrl', req.baseUrl);
     console.log('    req.cookies', req.cookies);
     console.log('    req.fresh', req.fresh);
@@ -94,7 +101,6 @@ app.use( (req, res, next) => {
     console.log('    req.is(text/html)', req.is('text/html') );
     console.log('    req.is(application/json)', req.is('application/json') );
     console.log('')
-    console.log('env', process.env.NODE_ENV, app.get('env'));
 
     next();
 });
@@ -104,7 +110,6 @@ app.use( (req, res, next) => {
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-app.use(morgan('tiny'));
 app.use(cookieParser());
 app.use(validateUser);
 
@@ -112,49 +117,13 @@ app.use(validateUser);
 app.use(express.json());   // Create req.body
 app.use(express.urlencoded({ extended: true }));  // Take key-value from form into req.body.  Extended = arrays too
 
-// Statics: Can access all info in this folder:
-// 1. Dont need to include public in the path
-// 2. Dont need a path for it.
-// 3. Can have more than one, just add another app.use
-// 4. Public obviously cannot contain sensitive info
-// 5. Place under app line
+// Statics: Can access all info in this folder(s) below (ie is Public):
 app.use(express.static(path.join(__dirname, '/public/dist/')));
-
-// Example for Query parameters
-// app.use( (req, res, next) => {
-//   user = req.query.name?  req.query.name  :  ''; 
-//   message = req.query.msg?  req.query.msg  :  '';
-//   console.log(user)
-//   console.log(message)
-//   next();
-// });
- 
-// Example for Parameters - looks if any route any method has a :id parameter
-// app.param('id', (req, res, next, id) => {
-//   // Store, validate this
-//   next();
-// });
-
-// Example with NO Router
-// app.get('/', (req, res, next) => {
-//   console.log(req.query, res.locals.validatedUser)
-//   res.send('Canvas-Server running on port ' + port + 
-//       ', validated: ' + ' ' + 
-//       (res.locals.validatedUser!=undefined?  res.locals.validatedUser  :  '') 
-//       + ' ' + user + ' ' + message);
-
-//   // res.sendFile(path.join(__dirname + '/public/Photo1.JPG'));
-//   // res.json({ "name": "Jannie"})
-// });
-
-
 
 
 // Routing ------------------------------------------------------------------------
 app.use('/auth/local/profile', passport.authenticate('jwt', { session : false }), authLocalRouter );
-// app.use('/auth/local/profile', passport.authenticate('jwt', { session : false }), secureRouter );
 app.use('/auth/local', authLocalRouter);
-
 app.get('/canvas', (req, res, next) => {
     res.sendFile(path.join(__dirname, '/public/dist/', 'index.html'))
 });
@@ -173,17 +142,12 @@ app.use( (req, res, next) => {
 // Error handler
 app.use( (err, req, res, next) => {
 
-    // set locals, only providing error in development
-    res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-    // render the error page
+    // Log, set status and return Error
     console.log('Error: ', err)
     if (req.method == 'POST') {
         console.log('app.js error req.body: ', req.body)
     };
     res.status(err.status || 500);
-    // res.json({message: 'error', err});
     res.json({
         "statusCode": "error",
         "message" : "Error: " + err.status,
@@ -194,5 +158,5 @@ app.use( (err, req, res, next) => {
     console.log('')
 });
 
-// Export for bin/www.js
+// Export for bin/www
 module.exports = app;
