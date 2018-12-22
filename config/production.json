@@ -1,6 +1,6 @@
 {
     "appName": "Canvas - Production",
     "mongo": {
-        "password": 5678
+        "serverAddress": "https://localhost/"
     }
 }

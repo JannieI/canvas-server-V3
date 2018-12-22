@@ -109,7 +109,10 @@ app.use( (req, res, next) => {
 // Configuration: change NODE_ENV to development/production to use the data in the configuration
 // files stored in config/development.json and config/production.json  default.json is over-written
 // with the latter.
-console.log('xxx Config', config.get('appName'), config.get('mongo.password'));
+// NB - NEVER store sensitive info in these files as they are part of source control
+//      Create Environment variables, and map them using the custom-environment-variables.json
+//      file in the config folder.
+console.log('xxx Config', config.get('appName'), config.get('mongo.serverAddress'));
 
 // View engine setup
 app.set('views', path.join(__dirname, 'views'))
