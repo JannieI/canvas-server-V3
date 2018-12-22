@@ -13,55 +13,26 @@ dotenv.config();
 // port is now available to the Node.js runtime
 // as if it were an environment variable
 
-/**
- * Get port from environment and store in Express.
- */
-
-const port = normalizePort(process.env.SERVER_PORT || '8000');
-
-app.set('port', port);
+// Get port from environment, else use default
+const port = typeof process.env.SERVER_PORT == 'number'?  process.env.SERVER_PORT  :  8000;
 
 // Create HTTP server.
 const server = http.createServer(app);
 
-/**
- * Listen on provided port, on all network interfaces.
- */
-
+// Listen on provided port, on all network interfaces.
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
-console.log('Canvas server started');
+console.log('Canvas Server started');
 console.log('Listening on port ' + port);
 console.log('')
 console.log('----------------------------------------------------------------')
 console.log('')
 
 
-/**
- * Normalize a port into a number, string, or false.
- */
 
-function normalizePort(val) {
-    var port = parseInt(val, 10);
 
-    if (isNaN(port)) {
-        // named pipe
-        return val;
-    };
-
-    if (port >= 0) {
-        // port number
-        return port;
-    };
-
-    return false;
-}
-
-/**
- * Event listener for HTTP server "error" event.
- */
-
+// Event listener for HTTP server "error" event.
 function onError(error) {
     if (error.syscall !== 'listen') {
         throw error;
@@ -86,18 +57,13 @@ function onError(error) {
     }
 }
 
-/**
- * Event listener for HTTP server "listening" event.
- */
-
+// Event listener for HTTP server "listening" event.
 function onListening() {
 
-    var dataCachingTable = require('../utils/dataCachingTableMemory');
-
-
+    // Read the caching table, and store into global variable
+    const dataCachingTable = require('../utils/dataCachingTableMemory');
     const dataCachingTableSchema = '../model/dataCachingTable';
     const dataCachingTableModel = require(dataCachingTableSchema);
-
 
     // Find the DataCachingTable
     dataCachingTableModel.find( {}, (err, docs) => {
@@ -107,6 +73,8 @@ function onListening() {
         console.log('');
         console.log('SERIOUS ERROR: The dataCachingTable is empty!');
         console.log('');
+      } else {
+        console.log('dataCachingTable loaded');
       };
 
       // Put data into global variable
@@ -114,7 +82,7 @@ function onListening() {
 
       // Store global variable in local and show (not really needed here)
       const localDataCachingTable = dataCachingTable.get();
-      console.log('The localDataCachingTable: ', localDataCachingTable);
+      // console.log('The localDataCachingTable: ', localDataCachingTable);
 
       var addr = server.address();
       var bind = typeof addr === 'string'

@@ -42,7 +42,7 @@ router.get('/:resource', (req, res, next) => {
     var dataCachingTable = require('../utils/dataCachingTableMemory');
 
     const localDataCachingTable = dataCachingTable.get();
-    console.log('The localDataCachingTable: ', localDataCachingTable);
+    console.log('The localDataCachingTable.length: ', localDataCachingTable.length);
 
 
     // Works
