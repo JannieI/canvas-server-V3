@@ -77,6 +77,9 @@ npm install joi
 # config
 npm i config
 
+# debug
+npm i debug
+
 <!-- -------------MONGO INFO START ------------------------ -->
 # Install MongoDB 4.04 - OUTSIDE of Node
 See:  https://askubuntu.com/questions/842592/apt-get-fails-on-16-04-or-18-04-installing-mongodb
