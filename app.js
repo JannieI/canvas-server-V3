@@ -20,8 +20,8 @@ const passport = require('passport');
 // Require Routers ---------------------------------------------------------------
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-var authGitHubRouter = require('./routes/authGitHubRouter');
-var authGoogleRouter = require('./routes/authGoogleRouter');
+const authGitHubRouter = require('./routes/authGitHubRouter');
+const authGoogleRouter = require('./routes/authGoogleRouter');
 const authLocalRouter = require('./routes/authLocalRouter');
 const canvasDataRouter = require('./routes/canvasDataRouter');
 const secureRouter = require('./routes/secure-route');
@@ -61,7 +61,7 @@ app.use(helmet());      // NB: Place this first thing
 // Logging
 if (app.get('env') == 'development') {
     app.use(morgan('tiny'));
-};
+}
 
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
@@ -155,7 +155,7 @@ app.use( (err, req, res, next) => {
         "error": err
     });
 
-    console.log('')
+    console.log('');
 });
 
 // Export for bin/www

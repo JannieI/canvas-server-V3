@@ -46,7 +46,7 @@ router.get('/:resource', (req, res, next) => {
     // Extract: query, route (params without the :)
     const resource = req.param('resource').substring(1);
     const query = req.query;
-    console.log('Router: GET for resource:', resource, 'query:', query);
+    console.log('canvasDataRouter.GET for resource:', resource, 'query:', query);
     console.log('');
 
     // Validate
@@ -160,8 +160,8 @@ router.delete('/:resource', (req, res, next) => {
         });
     };
 
-    console.log('Router: DELETE for resource:', resource, 'query:', query);
-    console.log('');
+    // console.log('Router: DELETE for resource:', resource, 'query:', query);
+    // console.log('');
 
     // Try, in case model file does not exist
     try {
@@ -221,8 +221,8 @@ router.put('/:resource', (req, res, next) => {
         });
     };
 
-    console.log('Router: PUT for resource:', resource, 'query:', query, 'body:', body);
-    console.log('');
+    // console.log('Router: PUT for resource:', resource, 'query:', query, 'body:', body);
+    // console.log('');
 
     // Try, in case model file does not exist
     try {

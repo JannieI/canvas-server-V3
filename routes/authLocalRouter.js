@@ -8,8 +8,6 @@ const UserModel = require('../model/models');
 
 // Verify User as valid (exists in Canvas DB)
 router.post('/verify', (req, res, next) => {
-    console.log('Router: POST /verify', req.body)
-    console.log('')
 
     if (req.body.userID == 'JannieI') {
         res.send(true);
@@ -96,8 +94,6 @@ router.post('/signup', (req, res, next) => {
 // Login with userId and password
 // curl -v -X POST http://localhost:8000/login -H "application/json" -d 'password=jannie' -d 'email=jannie@gmail.com'
 router.post('/login', (req, res, next) => {
-    console.log('/login');
-    console.log('')
 
     // Do the login via Passport
     passport.authenticate('login', (err, user, info) => {
@@ -155,7 +151,7 @@ router.post('/login', (req, res, next) => {
 
 router.get('/profile', (req, res, next) => {
     //We'll just send back the user details and the token
-    console.log('secure-route start')
+
     res.json({
       message : 'You made it to the secure route',
       user : req.user,
