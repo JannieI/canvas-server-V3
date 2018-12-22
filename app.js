@@ -10,6 +10,8 @@ const helmet = require('helmet');               // Security & Protection
 const session = require('express-session');
 const morgan = require('morgan');               // Used for logging
 const config = require('config');               // Configuration
+const debugDev = require('debug')('app:dev');
+const debugDB = require('debug')('app:db');
 
 // const mongoose = require('mongoose');
 const mongoDatabase = require('./databaseConnectors/mongoLocalDatabase');
@@ -36,15 +38,15 @@ function validateUser(req, res, next) {
     // Store the answer in the res object
     res.locals.validatedUser = true;
     if (req.method == 'POST') {
-        console.log('In validateUser ');
-        console.log('');
+        debugDev('In validateUser ');
+        debugDev('');
     };
     next();
 };
 
 const UserModel = require('./model/models');
 // mongoose.connect('mongodb://127.0.0.1:27017/Canvas');
-// mongoose.connection.on('error', error => console.log('Mongoose Connection error: ',error) );
+// mongoose.connection.on('error', error => debugDB.log('Mongoose Connection error: ',error) );
 // mongoose.Promise = global.Promise;
 
 // Start Express -------------------------------------------------------------
@@ -61,6 +63,7 @@ app.use(helmet());      // NB: Place this first thing
 
 // Logging: use export NODE_ENV to set app.get('env') in Node Terminal !
 if (app.get('env') == 'development') {
+    debugDev('Morgan is on')
     app.use(morgan(':method :url :status :res[content-length] - :response-time ms ON [:date[iso]] FROM :remote-addr - :remote-user'));
 };
 
@@ -71,37 +74,37 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 // Cors 
 app.use( (req, res, next) => {
-    // console.log('Inside CORS');
+    // debugDev('Inside CORS');
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    console.log('')
+    debugDev('')
     next();
 });
 
 // Logging details - Leave here for testing
 // app.use( (req, res, next) => {
-//     console.log('Logging details for mode: ', app.get('env'))
-//     console.log('    req.baseUrl', req.baseUrl);
-//     console.log('    req.cookies', req.cookies);
-//     console.log('    req.fresh', req.fresh);
-//     console.log('    req.hostname', req.hostname);
-//     console.log('    req.ip', req.ip);
-//     console.log('    req.ips', req.ips);
-//     console.log('    req.method', req.method);
-//     console.log('    req.originalUrl', req.originalUrl);
-//     console.log('    req.params', req.params);
-//     console.log('    req.path', req.path);
-//     console.log('    req.protocol', req.protocol);
-//     console.log('    req.query', req.query);
-//     console.log('    req.route', req.route);
-//     console.log('    req.secure', req.secure);
-//     console.log('    req.subdomains', req.subdomains);
-//     console.log('    req.xhr', req.xhr);
-//     console.log('    req.get(Content-Type)', req.get('Content-Type') );
-//     console.log('    req.is(html)', req.is('html') );
-//     console.log('    req.is(text/html)', req.is('text/html') );
-//     console.log('    req.is(application/json)', req.is('application/json') );
-//     console.log('')
+//     debugDev('Logging details for mode: ', app.get('env'))
+//     debugDev('    req.baseUrl', req.baseUrl);
+//     debugDev('    req.cookies', req.cookies);
+//     debugDev('    req.fresh', req.fresh);
+//     debugDev('    req.hostname', req.hostname);
+//     debugDev('    req.ip', req.ip);
+//     debugDev('    req.ips', req.ips);
+//     debugDev('    req.method', req.method);
+//     debugDev('    req.originalUrl', req.originalUrl);
+//     debugDev('    req.params', req.params);
+//     debugDev('    req.path', req.path);
+//     debugDev('    req.protocol', req.protocol);
+//     debugDev('    req.query', req.query);
+//     debugDev('    req.route', req.route);
+//     debugDev('    req.secure', req.secure);
+//     debugDev('    req.subdomains', req.subdomains);
+//     debugDev('    req.xhr', req.xhr);
+//     debugDev('    req.get(Content-Type)', req.get('Content-Type') );
+//     debugDev('    req.is(html)', req.is('html') );
+//     debugDev('    req.is(text/html)', req.is('text/html') );
+//     debugDev('    req.is(application/json)', req.is('application/json') );
+//     debugDev('')
 
 //     next();
 // });
@@ -116,8 +119,8 @@ app.use( (req, res, next) => {
 //      config.get('mongo.password') to retrieve it (as per mapping in custom-environment-variables.json)
 
 // Leave for testing
-// console.log('xxx Config', config.get('appName'), config.get('mongo.serverAddress')
-// , config.get('mongo.password'));
+debugDev('xxx Config', config.get('appName'), config.get('mongo.serverAddress')
+, config.get('mongo.password'));
 
 // View engine setup
 app.set('views', path.join(__dirname, 'views'))
@@ -156,9 +159,9 @@ app.use( (req, res, next) => {
 app.use( (err, req, res, next) => {
 
     // Log, set status and return Error
-    console.log('Error: ', err)
+    debugDev('Error: ', err)
     if (req.method == 'POST') {
-        console.log('app.js error req.body: ', req.body)
+        debugDev('app.js error req.body: ', req.body)
     };
     res.status(err.status || 500);
     res.json({
@@ -168,7 +171,7 @@ app.use( (err, req, res, next) => {
         "error": err
     });
 
-    console.log('');
+    debugDev('');
 });
 
 // Export for bin/www
