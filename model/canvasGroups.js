@@ -9,11 +9,15 @@ const CanvasGroupSchema = new Schema({
     editedBy: String,                       // Last user who edited this task
     editedOn: Date,                         // Date this task was last edited
     createdBy: String,                      // UserID who created this task, can be System
-    createdOn: Date                         // Date task was created
+    createdOn: {                            // Date task was created
+        type: Date,
+        // `Date.now()` returns the current unix timestamp as a number
+        default: Date.now
+      }
 });
 
 
 // Create Model: modelName, schema, collection
-const CanvasGroupModel = mongoose.model('canvasgroups', CanvasGroupSchema, 'canvasGroups');
+const CanvasGroupModel = mongoose.model('canvasGroups', CanvasGroupSchema, 'canvasGroups');
 
 module.exports = CanvasGroupModel;

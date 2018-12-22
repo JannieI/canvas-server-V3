@@ -68,23 +68,23 @@ GET {{host}}/canvasdata/:canvasGroups?name=Engineering
 
 
 // POST Canvas Data (:canvasdata works)
-POST {{host}}/canvasdata/:canvasgroups
+POST {{host}}/canvasdata/:canvasGroups
 content-type: application/json
 
 {
-    "id": 4,
+    "id": 14,
     "name": "Engineering"
 }
 
 ###
 
 // DELETE Canvas Data (:canvasdata works)
-DELETE {{host}}/canvasdata/:canvasgroups?xid=4
+DELETE {{host}}/canvasdata/:canvasGroups?id=14
 
 ###
 
 // PUT Canvas Data ()
-PUT {{host}}/canvasdata/:canvasgroups?id=4
+PUT {{host}}/canvasdata/:canvasGroups?id=4
 content-type: application/json
 
 {
