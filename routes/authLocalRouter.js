@@ -156,7 +156,7 @@ router.post('/login', (req, res, next) => {
                     // layout, where the token is optional.
                     return res.json({
                         "statusCode": "success",
-                        "message" : "User Logged in",
+                        "message" : "User Logged into Server",
                         "data": null,
                         "error": null,
                         "token": token 
