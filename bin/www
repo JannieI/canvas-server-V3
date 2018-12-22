@@ -1,17 +1,7 @@
-#!/usr/bin/env node
-
-/**
- * Module dependencies.
- */
-
+// Imports
 var app = require('../app');
 var debug = require('debug')('canvas-server:server');
 var http = require('http');
-const dotenv = require('dotenv');
-
-dotenv.config();
-// port is now available to the Node.js runtime
-// as if it were an environment variable
 
 // Get port from environment, else use default
 const port = typeof process.env.SERVER_PORT == 'number'?  process.env.SERVER_PORT  :  8000;
@@ -25,6 +15,7 @@ server.on('error', onError);
 server.on('listening', onListening);
 
 
+// Functions to follow:
 
 
 // Event listener for HTTP server "error" event.
