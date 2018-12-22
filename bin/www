@@ -23,11 +23,6 @@ const server = http.createServer(app);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
-console.log('Canvas Server started');
-console.log('Listening on port ' + port);
-console.log('')
-console.log('----------------------------------------------------------------')
-console.log('')
 
 
 
@@ -84,10 +79,12 @@ function onListening() {
       const localDataCachingTable = dataCachingTable.get();
       // console.log('The localDataCachingTable: ', localDataCachingTable);
 
-      var addr = server.address();
-      var bind = typeof addr === 'string'
-          ? 'pipe ' + addr
-          : 'port ' + addr.port;
-      debug('Listening on ' + bind);
+      // Log for user to see
+      console.log('Canvas Server started');
+      console.log('Listening on port ' + port);
+      console.log('----------------------------------------------------------------')
+      console.log('')
+      
+
     });
 }
