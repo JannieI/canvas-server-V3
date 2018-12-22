@@ -14,6 +14,7 @@ const UserModel = require('../model/models');
 // Verify User as valid (exists in Canvas DB)
 router.post('/verify', (req, res, next) => {
 
+    debugDev('body:', req.body);
     // Find the user: add if not found, else raise message
     UserModel.find( { companyName: req.body.companyName, userID: req.body.userID },
         (err, user) => {
