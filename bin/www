@@ -17,14 +17,12 @@ dotenv.config();
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.SERVER_PORT || '8000');
+const port = normalizePort(process.env.SERVER_PORT || '8000');
+
 app.set('port', port);
 
-/**
- * Create HTTP server.
- */
-
-var server = http.createServer(app);
+// Create HTTP server.
+const server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
