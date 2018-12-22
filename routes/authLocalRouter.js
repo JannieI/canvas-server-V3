@@ -14,12 +14,30 @@ const UserModel = require('../model/models');
 // Verify User as valid (exists in Canvas DB)
 router.post('/verify', (req, res, next) => {
 
-    if (req.body.userID == 'JannieI') {
-        return res.send(true);
-    } else {
-        return res.send(false);
-    }
+    // Find the user: add if not found, else raise message
+    UserModel.find( { companyName: req.body.companyName, userID: req.body.userID },
+        (err, user) => {
+
+        // Mongo Error
+        if (err) {
+            debugDev('    Error in Find ', err);
+            return res.json({
+                "statusCode": "error",
+                "message" : "Error in DB Find: " + err.message,
+                "data": null,
+                "error": err
+            });
+        };
+
+        // Create a new user record since it does not exist
+        if (user.length != 0) {
+            return res.send(true);
+        } else {
+            return res.send(false);
+        };
+    });
 });
+
 
 // Register (Signup) a new user to a given Canvas-Server and CompanyName
 // curl -v -X POST http://localhost:8000/signup -H "application/json" -d 'password=jannie' -d 'email=jannie@gmail.com'

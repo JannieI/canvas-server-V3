@@ -32,6 +32,7 @@ POST {{host}}/auth/local/verify
 content-type: application/json
 
 {
+    "companyName": "Clarity Analytics",
     "userID": "JannieI"
 }
 ###
