@@ -95,5 +95,5 @@ content-type: application/json
 
 
 // GET Canvas Data
-GET {{host}}/canvasdata/:canvasusers?userID=JannieI
+GET {{host}}/canvasdata/:canvasUsers?userID=JannieI
 ###
