@@ -29,7 +29,7 @@ const mongoUrl = `mongodb://127.0.0.1:27017`;
 // const mongoUrl = `mongodb+srv://cluster0-wnczk.azure.mongodb.net/Canvas --username JannieI --password JannieI`
 
 let db;
-mongoClient.connect(mongoUrl,(error, databaseConn)=>{
+mongoClient.connect(mongoUrl, { useNewUrlParser: true }, (error, databaseConn)=>{
     console.log('mongo connect error: ', error==null?  ''  :  error)
     console.log('mongo connected to url: ', databaseConn.s.url)
     if (databaseConn != null) {
