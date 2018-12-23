@@ -5,6 +5,7 @@ const express = require('express');
 const passport = require('passport');
 const router = express.Router();
 const Joi = require('joi');
+const debugDev = require('debug')('app:dev');
 
 // Validate route
 function validateRoute(course) {
@@ -41,13 +42,14 @@ router.get('/:resource', (req, res, next) => {
     // Load global var caching table - to be used later
     var dataCachingTable = require('../utils/dataCachingTableMemory');
     const localDataCachingTable = dataCachingTable.get();
-    console.log('The localDataCachingTable.length: ', localDataCachingTable.length);
+    debugDev('The localDataCachingTable.length: ', localDataCachingTable.length, req.param);
 
     // Extract: query, route (params without the :)
-    const resource = req.param('resource').substring(1);
+    const resource = req.param.resource;
+    resource = resource.substring(1);
     const query = req.query;
-    console.log('canvasDataRouter.GET for resource:', resource, 'query:', query);
-    console.log('');
+    debugDev('canvasDataRouter.GET for resource:', resource, 'query:', query);
+    debugDev('');
 
     // Validate
     const { error } = validateRoute(req.params);
@@ -98,8 +100,8 @@ router.post('/:resource', (req, res, next) => {
     // Extract: body, route (params without :)
     const resource = req.param('resource').substring(1);
     const body = req.body;
-    console.log('Router: POST for resource:', resource, 'body:', body)
-    console.log('');
+    debugDev('Router: POST for resource:', resource, 'body:', body)
+    debugDev('');
 
     // Try, in case model file does not exist
     try {
@@ -111,7 +113,7 @@ router.post('/:resource', (req, res, next) => {
         let canvasAdd = new canvasModel(body);
         canvasAdd.save()
             .then(doc => {
-                console.log('saved', doc)
+                debugDev('saved', doc)
                 return res.json({
                     "statusCode": "success",
                     "message" : "Added record for resource: " + resource,
@@ -156,8 +158,8 @@ router.delete('/:resource', (req, res, next) => {
         });
     };
 
-    // console.log('Router: DELETE for resource:', resource, 'query:', query);
-    // console.log('');
+    // debugDev('Router: DELETE for resource:', resource, 'query:', query);
+    // debugDev('');
 
     // Try, in case model file does not exist
     try {
@@ -168,7 +170,7 @@ router.delete('/:resource', (req, res, next) => {
         // Find and Delete from DB
         canvasModel.findOneAndRemove({id: id})
             .then(doc => {
-                console.log('deleted', doc)
+                debugDev('deleted', doc)
                 return res.json({
                     "statusCode": "success",
                     "message" : "Deleted record for resource: " + resource + ', id: ', id,
@@ -215,8 +217,8 @@ router.put('/:resource', (req, res, next) => {
         });
     };
 
-    // console.log('Router: PUT for resource:', resource, 'query:', query, 'body:', body);
-    // console.log('');
+    // debugDev('Router: PUT for resource:', resource, 'query:', query, 'body:', body);
+    // debugDev('');
 
     // Try, in case model file does not exist
     try {
@@ -233,7 +235,7 @@ router.put('/:resource', (req, res, next) => {
               runValidators: true              // validate before update
             })
             .then(doc => {
-                console.log('updated', doc)
+                debugDev('updated', doc)
                 return res.json({
                     "statusCode": "success",
                     "message" : "Updated record for resource: " + resource + 'id: ', id,
