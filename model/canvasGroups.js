@@ -1,8 +1,10 @@
 // Model for CanvasGroups collection
 
+// Imports
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
+// Schema
 const CanvasGroupSchema = new Schema({
     id: Number,                             // Unique Group ID
     name: String,                           // Group name
@@ -20,4 +22,5 @@ const CanvasGroupSchema = new Schema({
 // Create Model: modelName, schema, collection
 const CanvasGroupModel = mongoose.model('canvasGroups', CanvasGroupSchema, 'canvasGroups');
 
+// Export
 module.exports = CanvasGroupModel;

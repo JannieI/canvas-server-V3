@@ -1,16 +1,33 @@
 // Model for CanvasUsers collection
 
+// Imports
 const mongoose = require('mongoose')
+const bcrypt = require('bcrypt');
 const Schema = mongoose.Schema;
 
+// Schema
 const CanvasUserSchema = new Schema({
     id: Number,                             // Unique record ID
-    userID: String,                         // Unique UserID
-    password: String,                       // Password
+    companyName: {                          // Company name, for multi tenant
+        type: String,
+        required: true
+    },
+    userID: {                               // userID in Canvas, could be email address via Google
+        type: String,
+        required: true,
+        unique: true
+    },
+    email: {                                // Email, defaults to Unknown
+        type: String,
+        required: true
+    },
+    password: {                             // Encrypted user password
+        type: String,
+        required: true 
+    },
     firstName: String,                      // First Name
     lastName: String,                       // Last Name
     nickName: String,                       // Nickname
-    email: String,                          // Email Address
     workNumber: String,                     // Work Telephone number
     cellNumber: String,                     // Cell number
     groups: [{type: String}],               // Groups to which user belongs
@@ -114,4 +131,5 @@ CanvasUserSchema.methods.isValidPassword = async function(password){
 // Create Model: modelName, schema, collection
 const CanvasUserModel = mongoose.model('canvasUsers', CanvasUserSchema, 'canvasUsers');
 
+// Export
 module.exports = CanvasUserModel;

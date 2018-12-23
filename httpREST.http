@@ -10,7 +10,7 @@ content-type: application/json
 {
     "companyName": "Clarity Analytics",
     "userID": "JannieI",
-    "password": "xxx" 
+    "password": "123" 
 } 
 ###
 
