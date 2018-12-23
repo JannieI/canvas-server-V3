@@ -14,14 +14,13 @@ const UserModel = require('../model/models');
 // Verify User as valid (exists in Canvas DB)
 router.post('/verify', (req, res, next) => {
 
-    debugDev('body:', req.body);
     // Find the user: add if not found, else raise message
     UserModel.find( { companyName: req.body.companyName, userID: req.body.userID },
         (err, user) => {
 
         // Mongo Error
         if (err) {
-            debugDev('    Error in Find ', err);
+            debugDev('    Error DB in Find ', err, 'body', req.body);
             return res.json({
                 "statusCode": "error",
                 "message" : "Error in DB Find: " + err.message,

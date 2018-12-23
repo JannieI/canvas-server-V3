@@ -78,7 +78,7 @@ passport.use('login', new localStrategy(
 
                 // Find the user in the DB
                 const user = await UserModel.findOne({ userID });
-                debugDev('auth.js, user:', userID, user)
+                debugDev('auth.js, user:', userID)
 
                 // Error in interaction with DB
                 if( !user ){
