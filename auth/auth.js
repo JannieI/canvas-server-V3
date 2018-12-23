@@ -1,8 +1,10 @@
 // Passport (and JWT ) related functions for login, jwt-verify
 
+// Imports
 const passport = require('passport');
 const localStrategy = require('passport-local').Strategy;
 const UserModel = require('../model/models');
+const debugDev = require('debug')('app:dev');
 
 //Create a passport middleware to handle user registration
 // TODO - remove XXX in route (else it fires), or whole function
@@ -12,8 +14,8 @@ passport.use('XXXsignupXXX', new localStrategy(
         passwordField: 'password',
     }, async (username, password, done) => {
         try {
-            console.log('auth.signup: try block start')
-            console.log('');
+            debugDev('auth.signup: try block start')
+            debugDev('');
 
             // Determine if user already exists in the database
             UserModel.find( { companyName: 'Clarity Analytics', userID: username }, 
@@ -36,29 +38,29 @@ passport.use('XXXsignupXXX', new localStrategy(
                     // save the user
                     newUser.save((err) => {
                         if (err) {
-                            console.log('passport use signup failed: ', err);
+                            debugDev('passport use signup failed: ', err);
                             throw err;
                         };
 
-                        console.log('.save: User created!');
+                        debugDev('.save: User created!');
                     }); 
 
                     //Send the user information to the next middleware
-                    console.log('    auth.signup: Success for ', newUser);
+                    debugDev('    auth.signup: Success for ', newUser);
                     return done(null, newUser);;
 
                 } else {;            
                     // User found
-                    console.log('    auth.signup: User Already exists ', user);
+                    debugDev('    auth.signup: User Already exists ', user);
                     return done(null, user);;
                 };
             });
 
             // //Send the user information to the next middleware
-            // console.log('    auth.signup: Success for ', newUser);
+            // debugDev('    auth.signup: Success for ', newUser);
             // return done(null, newUser);;
         } catch (error) {
-            console.log('auth.signup: Error: ', error)
+            debugDev('auth.signup: Error: ', error)
             done(error);
         };
     }
@@ -70,13 +72,14 @@ passport.use('login', new localStrategy(
         usernameField : 'userID',
         passwordField : 'password'
     }, async (userID, password, done) => {
-        console.log('auth.use.login starts')
+        debugDev('auth.use.login starts')
         try 
             {
-                console.log('In auth.js LOGIN try block start')
+                debugDev('In auth.js LOGIN try block start')
 
                 // Find the user in the DB
                 const user = await UserModel.findOne({ userID });
+                debugDev('user', userID, user)
 
                 // Error in interaction with DB
                 if( !user ){
@@ -112,13 +115,13 @@ passport.use(new JWTstrategy({
     jwtFromRequest : ExtractJWT.fromUrlQueryParameter('secret_token')
 }, async (token, done) => 
     {
-    console.log('auth.use.jwt-verify starts')
+    debugDev('auth.use.jwt-verify starts')
         try {
-            console.log('SUCCESS in auth.passport.use', token.userID)
+            debugDev('SUCCESS in auth.passport.use', token.userID)
             //Pass the user details to the next middleware
             return done(null, token.userID);
         } catch (error) {
-            console.log('Error in auth.passport.use')
+            debugDev('Error in auth.passport.use')
             done(error);
         }
     }
