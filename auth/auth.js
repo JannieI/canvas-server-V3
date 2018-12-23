@@ -72,14 +72,13 @@ passport.use('login', new localStrategy(
         usernameField : 'userID',
         passwordField : 'password'
     }, async (userID, password, done) => {
-        debugDev('auth.use.login starts')
+
         try 
             {
-                debugDev('In auth.js LOGIN try block start')
 
                 // Find the user in the DB
                 const user = await UserModel.findOne({ userID });
-                debugDev('user', userID, user)
+                debugDev('auth.js, user:', userID, user)
 
                 // Error in interaction with DB
                 if( !user ){
