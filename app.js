@@ -150,28 +150,52 @@ app.use('/canvasdata', canvasDataRouter);
 app.use('/', indexRouter);
 
 
-// catch 404 and forward to error handler
-app.use( (req, res, next) => {
-    next(createError(404));
-});
-
-// Error handler
-app.use( (err, req, res, next) => {
-
-    // Log, set status and return Error
-    debugDev('Error: ', err)
-    if (req.method == 'POST') {
-        debugDev('app.js error req.body: ', req.body)
-    };
+// Dev error handler
+if (app.get('env') === 'development') {
+    app.use(function(err, req, res, next) {
+        res.status(err.status || 500);
+        res.json({
+            "statusCode": "error",
+            "message" : "Error: " + err.status,
+            "data": null,
+            "error": err
+        });
+    });
+};
+  
+// Production error handler: no stacktraces leaked to user
+app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.json({
         "statusCode": "error",
         "message" : "Error: " + err.status,
         "data": null,
-        "error": err
+        "error": null
     });
-
 });
+
+// catch 404 and forward to error handler
+// app.use( (req, res, next) => {
+//     next(createError(404));
+// });
+
+// Error handler
+// app.use( (err, req, res, next) => {
+
+//     // Log, set status and return Error
+//     debugDev('Error: ', err)
+//     if (req.method == 'POST') {
+//         debugDev('app.js error req.body: ', req.body)
+//     };
+//     res.status(err.status || 500);
+//     res.json({
+//         "statusCode": "error",
+//         "message" : "Error: " + err.status,
+//         "data": null,
+//         "error": err
+//     });
+
+// });
 
 // Export for bin/www
 module.exports = app;
