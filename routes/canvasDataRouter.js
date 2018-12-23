@@ -42,11 +42,10 @@ router.get('/:resource', (req, res, next) => {
     // Load global var caching table - to be used later
     var dataCachingTable = require('../utils/dataCachingTableMemory');
     const localDataCachingTable = dataCachingTable.get();
-    debugDev('The localDataCachingTable.length: ', localDataCachingTable.length, req.param);
+    debugDev('The localDataCachingTable.length: ', localDataCachingTable.length, req.params);
 
     // Extract: query, route (params without the :)
-    const resource = req.param.resource;
-    resource = resource.substring(1);
+    const resource = req.params.resource.substring(1);
     const query = req.query;
     debugDev('canvasDataRouter.GET for resource:', resource, 'query:', query);
     debugDev('');
@@ -98,7 +97,7 @@ router.get('/:resource', (req, res, next) => {
 router.post('/:resource', (req, res, next) => {
 
     // Extract: body, route (params without :)
-    const resource = req.param('resource').substring(1);
+    const resource = req.params.resource.substring(1);
     const body = req.body;
     debugDev('Router: POST for resource:', resource, 'body:', body)
     debugDev('');
@@ -146,7 +145,8 @@ router.post('/:resource', (req, res, next) => {
 router.delete('/:resource', (req, res, next) => {
 
     // Extract: body, route (params without :)
-    const resource = req.param('resource').substring(1);
+    const resource = req.params.resource.substring(1);
+    
     const query = req.query;
     const id = req.query.id;
     if (id == null) {
@@ -203,7 +203,7 @@ router.delete('/:resource', (req, res, next) => {
 router.put('/:resource', (req, res, next) => {
 
     // Extract: body, route (params without :)
-    const resource = req.param('resource').substring(1);
+    const resource = req.params.resource.substring(1);
     const query = req.query;
     const body = req.body;
 
