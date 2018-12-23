@@ -38,8 +38,8 @@ content-type: application/json
 ###
 
 
-// Users
-GET {{host}}/users
+// Users - Works (just for testing)
+GET {{host}}/users/mongo:canvasGroups
 ###
 
 
@@ -94,6 +94,11 @@ content-type: application/json
 ###
 
 
-// GET Canvas Data
+// GET Canvas Data: TEST any ROUTE
+GET {{host}}/canvasdata/:canvasUsers?userID=JannieI
+###
+
+
+// GET canvasData: canvasUsers 
 GET {{host}}/canvasdata/:canvasUsers?userID=JannieI
 ###

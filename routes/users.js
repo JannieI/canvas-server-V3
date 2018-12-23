@@ -1,6 +1,23 @@
-// Basic imports -----------------------------------------------------------------
+// This is a testing module:  All the Mongo functions uses MongoClient should rather be handled by 
+// Mongoose in canvasDataRouter 
+
+// Imports -----------------------------------------------------------------
 var express = require('express');
 var router = express.Router();
+const debugDev = require('debug')('app:dev');
+const debugDB = require('debug')('app:db');
+
+
+// Notes:
+// Edit Aliases with sudo nano ~/.bashrc
+//  msc = Mongo Server Client for user JannieI
+//        mongo mongodb+srv://cluster0-wnczk.azure.mongodb.net/text --username JannieI --password JannieI
+//  mls = Mongo Logcal Server for --dbpath ~/Projects/canvas-mongoDB
+//        default in config /etc/mongodb.conf
+//  mlc = Mongo Local Client
+// Bulk import in bulkImportInstructions.sh 
+// /home/jannie/Projects/canvas-server/data/Import Data 2018-11-29
+
 
 // Functions ---------------------------------------------------------------------
 
@@ -22,24 +39,6 @@ router.param(('collection'), (reg, res, next) => {
 });
 
 
-// Mongo
-const mongodb = require('mongodb');
-const mongoClient = mongodb.MongoClient;
-const mongoUrl = `mongodb://127.0.0.1:27017`;
-// const mongoUrl = `mongodb+srv://cluster0-wnczk.azure.mongodb.net/Canvas --username JannieI --password JannieI`
-
-let db;
-mongoClient.connect(mongoUrl, { useNewUrlParser: true, useCreateIndex: true }, (error, databaseConn)=>{
-    console.log('mongo connect error: ', error==null?  ''  :  error)
-    console.log('mongo connected to url: ', databaseConn.s.url)
-    if (databaseConn != null) {
-        db = databaseConn.db('Canvas');
-        console.log('mongo connected to db: ', db.s.databaseName)
-    };
-    console.log('')
-    console.log('----------------------------------------------------------------')
-    console.log('')
-});
 
 
 // Postgress
@@ -51,32 +50,51 @@ router.get('/pg',(req, res)=>{
 
     dbPgWeather.query(query,(error, dbResponse)=>{
         if (dbResponse != undefined) {  
-            console.log(dbResponse.rows);
+            debugDB(dbResponse.rows);
             return res.json(dbResponse.rows);
         } else {
-            console.log(dbResponse)
+            debugDB(dbResponse)
             return res.json({msg: "Query ran, no data to return"})
         };
     })
 })
 
-// Mongo
-// Notes:
-// Edit Aliases with sudo nano ~/.bashrc
-//  msc = Mongo Server Client for user JannieI
-//        mongo mongodb+srv://cluster0-wnczk.azure.mongodb.net/text --username JannieI --password JannieI
-//  mls = Mongo Logcal Server for --dbpath ~/Projects/canvas-mongoDB
-//        default in config /etc/mongodb.conf
-//  mlc = Mongo Local Client
-// Bulk import in bulkImportInstructions.sh 
-// /home/jannie/Projects/canvas-server/data/Import Data 2018-11-29
+
+// Mongo - uses MongoClient (not Mongoose)
+
+// This is a local Mongo connection, just for testing
+// TODO - remove, and use central one
+const mongodb = require('mongodb');
+const mongoClient = mongodb.MongoClient;
+const mongoUrl = `mongodb://127.0.0.1:27017`;
+// const mongoUrl = `mongodb+srv://cluster0-wnczk.azure.mongodb.net/Canvas --username JannieI --password JannieI`
+
+let db;
+mongoClient.connect(mongoUrl, { useNewUrlParser: true, useCreateIndex: true }, (error, databaseConn)=>{
+
+    if (error != null) {
+        debugDB('Error connecting to Mongo: ', error);
+    };
+
+    // debugDB('mongo connected to url: ', databaseConn.s.url)
+    if (databaseConn != null) {
+        db = databaseConn.db('Canvas');
+        debugDB('Mongo connected to server/database: ', mongoUrl, '/', db.s.databaseName)
+    } else {
+        debugDB('Mongo connection object empty');
+    };
+    // debugDB('')
+    // debugDB('----------------------------------------------------------------')
+    // debugDB('')
+});
 
 
 router.get('/mongo:collection',(req, res)=>{
     let collection = req.params.collection.substring(1);
-    console.log('mongo connection to collection: ', collection)
+    debugDB('Mongo connected to server/database: ', mongoUrl, '/', db.s.databaseName)
+ 
     db.collection(collection).find({}).toArray((queryError, queryResult)=>{
-        console.log('mongo results from server: ', queryResult);
+        debugDB('Mongo results from server (length): ', queryResult.length);
         res.json(queryResult);
     });
 })
@@ -84,10 +102,10 @@ router.get('/mongo:collection',(req, res)=>{
 router.get('/mongo',(req, res)=>{
     let collection = 'contacts';
     db.collection(collection).find({}).toArray((queryError, carsResults)=>{
-        console.log(carsResults);
-        console.log('')
-        console.log('----------------------------------------------------------------')
-        console.log('')
+        debugDB(carsResults);
+        debugDB('')
+        debugDB('----------------------------------------------------------------')
+        debugDB('')
             res.json(carsResults);
     });
 })
@@ -102,7 +120,7 @@ router.get('/mysql', (req, res, next) => {
     //   const queryText= 'SELECT * FROM tasks WHERE id > ? AND taskName';
     const queryText= 'SELECT 1 As taskName';
     mysqlDb.query(queryText,[3],(error,results)=>{
-        console.log(results);
+        debugDB(results);
         res.json(results);
     });
 });
@@ -168,10 +186,10 @@ router.get('/email', (req, res, next) => {
 
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
-            console.log(error);
+            debugDB(error);
             return res.json({ msg: 'Error: ', error: error});
         } else {
-            console.log('Email sent: ' + info.response);
+            debugDB('Email sent: ' + info.response);
             return res.json({ msg: 'Email Send!'});
         };
     });
@@ -181,7 +199,7 @@ router.get('/email', (req, res, next) => {
 
 // GET / page
 router.get('/', (req, res, next) => {
-    console.log('In Users Route');
+    debugDB('In Users Route');
     res.send('respond with a resource');
 });
 
