@@ -64,7 +64,7 @@ app.use(helmet());      // NB: Place this first thing
 
 // Logging: use export NODE_ENV to set app.get('env') in Node Terminal !
 if (app.get('env') == 'development') {
-    debugDev('Morgan is on')
+    debugDev('Morgan is on in the development env')
     app.use(morgan(':method :url :status :res[content-length] - :response-time ms ON [:date[iso]] FROM :remote-addr - :remote-user'));
 };
 
@@ -118,8 +118,9 @@ app.use( (req, res, next) => {
 //      config.get('mongo.password') to retrieve it (as per mapping in custom-environment-variables.json)
 
 // Leave for testing
-debugDev('xxx Config', config.get('appName'), config.get('mongo.serverAddress')
-, config.get('mongo.password'));
+debugDev('Example of reading the Config, app:', config.get('appName'), 
+    '"mongoServer address:"', config.get('mongo.serverAddress'), '"mongoPassword"', 
+    config.get('mongo.password'));
 
 // View engine setup
 app.set('views', path.join(__dirname, 'views'))
