@@ -1,6 +1,6 @@
 {
     "appName": "Canvas - Development",
     "mongo": {
-        "serverAddress": "https://localhost/"
+        "serverAddress": "127.0.0.1:27017"
     }
 }

@@ -7,8 +7,12 @@
 // On subsequent calls, it will return the same instance that was created and returned to you the
 // first time because of how module import/export works in ES6.
 
-
+// Import modules
 let mongoose = require('mongoose');
+const debugDev = require('debug')('app:dev');
+
+// Constants
+// TODO - this must be read from ENV
 const server = '127.0.0.1:27017';
 const database = 'Canvas';
 class MongoDatabase {
@@ -18,12 +22,13 @@ class MongoDatabase {
 _connect() {
      mongoose.connect(`mongodb://${server}/${database}`, { useNewUrlParser: true, useCreateIndex: true })
        .then(() => {
-         console.log('Database connection successful')
+        debugDev('Database connection successful');
        })
        .catch(err => {
-         console.error('Database connection error')
+         console.error('Database connection error');
        })
   }
 }
 
+// Exports
 module.exports = new MongoDatabase()
