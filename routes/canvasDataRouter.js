@@ -10,6 +10,8 @@ const debugDev = require('debug')('app:dev');
 // Validate route
 function validateRoute(course) {
 
+    // TODO -validate resource = real route, ie dashboars, widgets, etc
+
 	// Schema of what to validate
 	const schema = {
 		resource: Joi.string().min(3).required()

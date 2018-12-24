@@ -62,7 +62,8 @@ GET {{host}}/canvasdata/:tests?companyName=Ryan
 
 
 // GET Canvas Data (:canvasdata works)
-GET {{host}}/canvasdata/:canvasGroups?name=Engineering
+GET {{host}}/canvasdata/:canvasGroups
+    ?name=Engineering
 
 ###
 
@@ -95,7 +96,7 @@ content-type: application/json
 
 
 // GET Canvas Data: TEST any ROUTE
-GET {{host}}/canvasdata/:canvasUsers?userID=JannieI
+GET {{host}}/canvasdata/:canvasBackgroundcolors?name=Blue
 ###
 
 

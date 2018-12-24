@@ -65,7 +65,7 @@ app.use(helmet());      // NB: Place this first thing
 // Logging: use export NODE_ENV to set app.get('env') in Node Terminal !
 if (app.get('env') == 'development') {
     debugDev('Morgan is on in the development env')
-    app.use(morgan('# :method :url :status :res[content-length] - :response-time ms ON [:date[iso]] FROM :remote-addr - :remote-user'));
+    app.use(morgan('## :method :url :status :res[content-length] - :response-time ms ON [:date[iso]] FROM :remote-addr - :remote-user'));
 };
 
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -123,7 +123,7 @@ debugDev('Example of reading the Config, app:', config.get('appName'),
     '"mongoServer address:"', config.get('mongo.serverAddress'), '"mongoPassword"', 
     config.get('mongo.password'));
 
-// View engine setup
+// View engine setup - only used to render a web page, maybe for fancy 404 ....
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'jade');
 
@@ -141,12 +141,14 @@ app.use(express.static(path.join(__dirname, '/public/dist/')));
 // Routing ------------------------------------------------------------------------
 app.use('/auth/local/profile', passport.authenticate('jwt', { session : false }), authLocalRouter );
 app.use('/auth/local', authLocalRouter);
+// Show Canvas Workstation page
 app.get('/canvas', (req, res, next) => {
     res.sendFile(path.join(__dirname, '/public/dist/', 'index.html'))
 });
 app.use('/users', usersRouter);
 app.use('/auth/github/', authGitHubRouter);
 app.use('/auth/google/', authGoogleRouter);
+// ALL Canvas data-related API calls
 app.use('/canvasdata', canvasDataRouter);
 app.use('/', indexRouter);
 

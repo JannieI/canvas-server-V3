@@ -4,18 +4,12 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
-// Schema
+// Schema - corresponds to CSScolor model on Workstation
 const CanvasBackgroundcolorSchema = new Schema({
-    id: Number,                             // Unique Backgroundcolor ID
-    name: String,                           // Backgroundcolor name
-    editedBy: String,                       // Last user who edited this task
-    editedOn: Date,                         // Date this task was last edited
-    createdBy: String,                      // UserID who created this task, can be System
-    createdOn: {                            // Date task was created
-        type: Date,
-        // `Date.now()` returns the current unix timestamp as a number
-        default: Date.now
-      }
+    id: Number,                             // Unique record ID
+    name: String,                           // Name, ie brown
+    cssCode: String,                        // CSS code, as name, hex, rgb.  ie transparent, rgb(111,52,78)
+    shortList: Boolean,                     // True if part of shorter list
 });
 
 

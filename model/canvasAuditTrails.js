@@ -6,8 +6,8 @@ const Schema = mongoose.Schema;
 
 // Schema
 const CanvasAuditTrailSchema = new Schema({
-    id: Number,                             // Unique Group ID
-    name: String,                           // Group name
+    id: Number,                             // Unique ID
+    name: String,                           // Name
     editedBy: String,                       // Last user who edited this task
     editedOn: Date,                         // Date this task was last edited
     createdBy: String,                      // UserID who created this task, can be System
