@@ -21,25 +21,25 @@ There are 3 types or families of API calls:
 
 The general format of each authentication-related API call is:
 
-    HTTP-Method {{host}}/auth/provider-name/function
+    HTTP-Method {{ host }} / auth / {{ provider-name }} / {{ function }}
 
     WHERE
         HTTP-Method - GET, PUT, POST, DELETE 
-        {{host}} - the url for the Canvas Server, which could be http://localhost:8000 for the local server running Node & Express.
+        {{ host }} - the url for the Canvas Server, which could be http://localhost:8000 for the local server running Node & Express.
         auth - fixed part of the route indicating that it is authentication-related
-        provider-name - provide of authentication service.  Currently we have Google, GitHub and Local.  Local indicates that authentication is provided by the Canvas Server itself, in which case a user-id and password must be provided.
-        function - can be login, verify, signup (to registr a new user).
+        {{ provider-name }} - provide of authentication service.  Currently we have Google, GitHub and Local.  Local indicates that authentication is provided by the Canvas Server itself, in which case a user-id and password must be provided.
+        {{ function }} - can be login, verify, signup (to registr a new user).
 
 
 #### Client data-related API calls:
 
 The general format of each client data-related API call is:
 
-    HTTP-Method {{host}}/data/?query-string
+    HTTP-Method {{ host }} / data / ?query-string
 
     WHERE
         HTTP-Method - GET, PUT, POST, DELETE 
-        {{host}} - the url for the Canvas Server, which could be http://localhost:8000 for the local server running Node & Express.
+        {{ host }} - the url for the Canvas Server, which could be http://localhost:8000 for the local server running Node & Express.
         data - fixed part of the url
         query-string - identifies the data that is requested.  Maybe ?datasourceID=1.  However we need to sort this out at a later stage.
 
@@ -48,13 +48,13 @@ The general format of each client data-related API call is:
 
 The general format of each Canvas-related API call is:
 
-    HTTP-Method {{host}}/canvasdata/:resource-name?query-string,
+    HTTP-Method {{ host }} / canvasdata / {{ :resource-name }} ?query-string
 
     WHERE:
         HTTP-Method - GET, PUT, POST, DELETE 
-        {{host}} - the url for the Canvas Server, which could be http://localhost:8000 for the local server running Node & Express.
+        {{ host }} - the url for the Canvas Server, which could be http://localhost:8000 for the local server running Node & Express.
         canvasdata - fixed portion of the route
-        :resource-name - a value from the list of resources provided below, ie dashboards, widgets, etc.
+        {{ :resource-name }} - a value from the list of resources provided below, ie dashboards, widgets, etc.
         ?query-string - optional identification of a specific resource required.  For example, when adding a new record this is not filled in.  When deleting a record, one has to identify the record, for example ?id=1
 
 *Notes:*
