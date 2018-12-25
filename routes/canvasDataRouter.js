@@ -151,6 +151,8 @@ router.delete('/:resource', (req, res, next) => {
     
     const query = req.query;
     const id = req.query.id;
+    debugDev('const ',req.query, id);
+
     if (id == null) {
         return res.json({
             "statusCode": "error",
@@ -173,18 +175,28 @@ router.delete('/:resource', (req, res, next) => {
         canvasModel.findOneAndRemove({id: id})
             .then(doc => {
                 debugDev('deleted', doc)
-                return res.json({
-                    "statusCode": "success",
-                    "message" : "Deleted record for resource: " + resource + ', id: ', id,
-                    "data": doc,
-                    "error": null
-                });
+
+                if (doc == null) {
+                    return res.json({
+                        "statusCode": "error",
+                        "message" : "Deletion of " + resource + " failed: could not find id = " + id,
+                        "data": doc,
+                        "error": null
+                    });
+                } else {
+                    return res.json({
+                        "statusCode": "success",
+                        "message" : "Deleted record for resource: " + resource + ', id: ', id,
+                        "data": doc,
+                        "error": null
+                    });
+                };
             })
             .catch(err => {
                 console.error(err)
                 return res.json({
                     "statusCode": "error",
-                    "message" : "Error: Could not delete record for resource: " + resource + 'id: ', id,
+                    "message" : "Error: Could not delete record for resource: " + resource + ', id: ', id,
                     "data": null,
                     "error": err
                 });
