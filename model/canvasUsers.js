@@ -2,8 +2,9 @@
 
 // Imports
 const mongoose = require('mongoose')
-const bcrypt = require('bcrypt');
 const Schema = mongoose.Schema;
+const AutoIncrement = require('mongoose-sequence')(mongoose);
+const bcrypt = require('bcrypt');
 
 // Schema
 const CanvasUserSchema = new Schema({
@@ -127,6 +128,9 @@ CanvasUserSchema.methods.isValidPassword = async function(password){
     const compare = await bcrypt.compare(password, user.password);
     return compare;
 }
+
+// Auto-Incement the id field
+CanvasCommentSchema.plugin(AutoIncrement, {inc_field: 'id'});
 
 // Create Model: modelName, schema, collection
 const CanvasUserModel = mongoose.model('canvasUsers', CanvasUserSchema, 'canvasUsers');

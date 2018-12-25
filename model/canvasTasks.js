@@ -3,6 +3,7 @@
 // Imports
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 // Schema
 const CanvasTaskSchema = new Schema({
@@ -31,6 +32,8 @@ const CanvasTaskSchema = new Schema({
     }
 });
 
+// Auto-Incement the id field
+CanvasCommentSchema.plugin(AutoIncrement, {inc_field: 'id'});
 
 // Create Model: modelName, schema, collection
 const CanvasTaskModel = mongoose.model('canvasTasks', CanvasTaskSchema, 'canvasTasks');

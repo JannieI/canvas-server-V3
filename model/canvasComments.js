@@ -2,10 +2,8 @@
 
 // Imports
 const mongoose = require('mongoose');
-// autoIncrement = require('mongoose-auto-increment');
-const AutoIncrement = require('mongoose-sequence')(mongoose);
-
 const Schema = mongoose.Schema;
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 // Schema
 const CanvasCommentSchema = new Schema({
@@ -21,8 +19,6 @@ const CanvasCommentSchema = new Schema({
 
 // Auto-Incement the id field
 CanvasCommentSchema.plugin(AutoIncrement, {inc_field: 'id'});
-
-// CanvasCommentSchema.plugin(AutoIncrement, 'id');
 
 // Create Model: modelName, schema, collection
 const CanvasCommentModel = mongoose.model('canvasComments', CanvasCommentSchema, 'canvasComments');
