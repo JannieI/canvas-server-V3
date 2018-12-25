@@ -15,7 +15,7 @@ const CanvasGroupSchema = new Schema({
         type: Date,
         // `Date.now()` returns the current unix timestamp as a number
         default: Date.now
-      }
+    }
 });
 
 

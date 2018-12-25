@@ -96,7 +96,8 @@ content-type: application/json
 
 
 // GET Canvas Data: TEST any ROUTE
-GET {{host}}/canvasdata/:canvasBackgroundcolors?name=Blue
+GET {{host}}/canvasdata/:canvasBackgroundcolorsDefault
+    ?name=Blue
 ###
 
 
