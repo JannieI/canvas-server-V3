@@ -2,11 +2,15 @@
 
 // Imports
 const mongoose = require('mongoose')
+const AutoIncrement = require('mongoos-sequence')(mongoose);
+
 const Schema = mongoose.Schema;
+
+// Auto-Incement the id field
+// UserSchema.plugin(AutoIncrement, {inc_field: 'id'});
 
 // Schema
 const CanvasCommentSchema = new Schema({
-    id: Number,                             // Unique ID
     dashboardID: Number,                    // Dashboard to which comment is linked
     widgetID: Number,                       // Optional Widget linked
     comment: String,                        // Comment Text

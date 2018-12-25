@@ -83,6 +83,8 @@ npm i debug
 # mongoose-sequence
 npm install --save mongoose-sequence
 
+# mongoose-auto-increment
+npm install mongoose-auto-increment
 
 
 
