@@ -1,5 +1,6 @@
 // Ivan, ignore this one - just testing something
 
+// Schema for Datacaching table
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 

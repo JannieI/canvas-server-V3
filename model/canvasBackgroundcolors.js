@@ -1,4 +1,4 @@
-// Model for CanvasGroups collection
+// Model for CanvasBackgroundcolours collection
 
 // Imports
 const mongoose = require('mongoose')
