@@ -20,7 +20,7 @@ const CanvasGroupSchema = new Schema({
 });
 
 // Auto-Incement the id field
-CanvasCommentSchema.plugin(AutoIncrement, {inc_field: 'id'});
+CanvasGroupSchema.plugin(AutoIncrement, {inc_field: 'id'});
 
 // Create Model: modelName, schema, collection
 const CanvasGroupModel = mongoose.model('canvasGroups', CanvasGroupSchema, 'canvasGroups');

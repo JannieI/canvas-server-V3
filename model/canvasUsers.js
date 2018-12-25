@@ -130,7 +130,7 @@ CanvasUserSchema.methods.isValidPassword = async function(password){
 }
 
 // Auto-Incement the id field
-CanvasCommentSchema.plugin(AutoIncrement, {inc_field: 'id'});
+CanvasUserSchema.plugin(AutoIncrement, {inc_field: 'id'});
 
 // Create Model: modelName, schema, collection
 const CanvasUserModel = mongoose.model('canvasUsers', CanvasUserSchema, 'canvasUsers');

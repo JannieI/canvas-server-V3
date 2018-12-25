@@ -14,7 +14,7 @@ const CanvasBackgroundcolorsDefaultSchema = new Schema({
 });
 
 // Auto-Incement the id field
-CanvasCommentSchema.plugin(AutoIncrement, {inc_field: 'id'});
+CanvasBackgroundcolorsDefaultSchema.plugin(AutoIncrement, {inc_field: 'id'});
 
 // Create Model: modelName, schema, collection
 const CanvasBackgroundcolorsDefaultModel = mongoose.model(

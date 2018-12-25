@@ -20,7 +20,7 @@ const CanvasAuditTrailSchema = new Schema({
 });
 
 // Auto-Incement the id field
-CanvasCommentSchema.plugin(AutoIncrement, {inc_field: 'id'});
+CanvasAuditTrailSchema.plugin(AutoIncrement, {inc_field: 'id'});
 
 // Create Model: modelName, schema, collection
 const CanvasAuditTrailModel = mongoose.model('canvasAuditTrails', CanvasAuditTrailSchema, 'canvasAuditTrails');

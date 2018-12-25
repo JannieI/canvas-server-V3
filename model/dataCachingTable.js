@@ -3,7 +3,6 @@
 // Schema for Datacaching table
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
-const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 const DataCachingTableSchema = new Schema({
     key: String,                            // Unique key
@@ -25,9 +24,6 @@ const DataCachingTableSchema = new Schema({
     localTableName: String,                 // Optional name of Table in IndexedDB
     localLastWebSocketNumber: Number        // Last WS number processed
 });
-
-// Auto-Incement the id field
-CanvasCommentSchema.plugin(AutoIncrement, {inc_field: 'id'});
 
 // Create Model: modelName, schema, collection
 const DataCachingTableModel = mongoose.model('DataCachingTables', DataCachingTableSchema, 'datacachingtable');

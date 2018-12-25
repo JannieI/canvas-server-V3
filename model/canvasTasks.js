@@ -33,7 +33,7 @@ const CanvasTaskSchema = new Schema({
 });
 
 // Auto-Incement the id field
-CanvasCommentSchema.plugin(AutoIncrement, {inc_field: 'id'});
+CanvasTaskSchema.plugin(AutoIncrement, {inc_field: 'id'});
 
 // Create Model: modelName, schema, collection
 const CanvasTaskModel = mongoose.model('canvasTasks', CanvasTaskSchema, 'canvasTasks');
