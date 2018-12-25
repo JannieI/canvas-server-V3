@@ -45,7 +45,6 @@ function validateUser(req, res, next) {
     next();
 };
 
-const UserModel = require('./model/models');
 // mongoose.connect('mongodb://127.0.0.1:27017/Canvas');
 // mongoose.connection.on('error', error => debugDB.log('Mongoose Connection error: ',error) );
 // mongoose.Promise = global.Promise;
