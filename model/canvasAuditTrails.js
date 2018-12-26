@@ -3,7 +3,6 @@
 // Imports
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
-const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 // Schema
 const CanvasAuditTrailSchema = new Schema({
@@ -18,9 +17,6 @@ const CanvasAuditTrailSchema = new Schema({
         default: Date.now
     }
 });
-
-// Auto-Incement the id field
-CanvasAuditTrailSchema.plugin(AutoIncrement, {inc_field: 'id'});
 
 // Create Model: modelName, schema, collection
 const CanvasAuditTrailModel = mongoose.model('canvasAuditTrails', CanvasAuditTrailSchema, 'canvasAuditTrails');
