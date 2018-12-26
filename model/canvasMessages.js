@@ -17,7 +17,7 @@ const CanvasMessageSchema = new Schema({
             readOn: Date,       // dateTime read, null if not read
         }
     ],
-    toGroups: [ {type: String], // Original list of Groups
+    toGroups: [ {type: String} ], // Original list of Groups
     subject: String,            // Message Subject
     body: String,               // Message body
     dashboardID: Number,        // Optional Dashboard linked to this message
