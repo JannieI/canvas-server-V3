@@ -22,13 +22,18 @@ const CanvasCommentSchema = new Schema({
 CanvasCommentSchema.pre('save', function(next) {
     var doc = this;
     console.log('xx', doc)
-    counterModel.findOneAndDelete({_id: 'canvasComments.id'}, {$inc: { seq: 1} }, function(error, counter)   {
-        if(error)
-            return next(error);
-        console.log('xx seq', counter)
-        doc.id = counter.seq;
-        next();
-    });
+    counterModel.findByIdAndUpdate(
+        {_id: 'canvasComments.id'}, 
+        {$inc: { seq: 1} }, 
+        { upsert: true, new: true },
+        function(error, counter)   {
+            if(error)
+                return next(error);
+            console.log('xx seq', counter)
+            doc.id = counter.seq;
+            next();
+        }
+    );
 });
 
 // Create Model: modelName, schema, collection
