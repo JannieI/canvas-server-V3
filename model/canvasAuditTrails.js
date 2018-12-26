@@ -1,4 +1,4 @@
-// Model for CanvasAuditTrails collection
+// Model for canvasAuditTrails collection
 
 // Imports
 const mongoose = require('mongoose')

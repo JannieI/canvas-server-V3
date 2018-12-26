@@ -49,7 +49,7 @@ router.get('/:resource', (req, res, next) => {
     // Extract: query, route (params without the :)
     const resource = req.params.resource.substring(1);
     const query = req.query;
-    debugDev('canvasDataRouter.GET for resource:', resource, 'query:', query);
+    debugDev('canvasDataRouter.GET for resource:', resource, ', query:', query);
     debugDev('');
 
     // Validate
@@ -69,6 +69,7 @@ router.get('/:resource', (req, res, next) => {
     try {
         // Get the model dynamically (take note of file spelling = resource)
         const canvasSchema = '../model/' + resource;
+        debugDev('xx ', canvasSchema)
         const canvasModel = require(canvasSchema);
 
 

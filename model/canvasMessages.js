@@ -1,4 +1,4 @@
-// Model for CanvasMessages collection
+// Model for canvasMessages collection
 
 // Imports
 const mongoose = require('mongoose');

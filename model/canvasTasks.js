@@ -1,4 +1,4 @@
-// Model for CanvasTasks collection
+// Model for canvasTasks collection
 
 // Imports
 const mongoose = require('mongoose')

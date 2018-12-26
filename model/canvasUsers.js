@@ -1,4 +1,4 @@
-// Model for CanvasUsers collection
+// Model for canvasUsers collection
 
 // Imports
 const mongoose = require('mongoose')

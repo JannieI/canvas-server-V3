@@ -1,4 +1,4 @@
-// Model for CanvasComments collection
+// Model for canvasComments collection
 
 // Imports
 const mongoose = require('mongoose');
@@ -18,7 +18,7 @@ const CanvasCommentSchema = new Schema({
 });
 
 // Auto-Incement the id field
-CanvasCommentSchema.plugin(AutoIncrement, {inc_field: 'id'});
+// CanvasCommentSchema.plugin(AutoIncrement, {inc_field: 'id'});
 
 // Create Model: modelName, schema, collection
 const CanvasCommentModel = mongoose.model('canvasComments', CanvasCommentSchema, 'canvasComments');
