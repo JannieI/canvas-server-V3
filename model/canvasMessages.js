@@ -3,7 +3,6 @@
 // Imports
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 // Schema
 const CanvasMessageSchema = new Schema({
@@ -31,9 +30,6 @@ const CanvasMessageSchema = new Schema({
     replySender: String,        // Optional, sender of message to which this is a reply
     replyMessageStart: String,  // Optional, first 50 chars of message to which this is a reply
 });
-
-// Auto-Incement the id field
-CanvasMessageSchema.plugin(AutoIncrement, {inc_field: 'id'});
 
 // Create Model: modelName, schema, collection
 const CanvasMessageModel = mongoose.model('canvasMessages', CanvasMessageSchema, 'canvasMessages');
