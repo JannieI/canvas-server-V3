@@ -7,6 +7,7 @@ const counterModel = require('./counters')
 
 // Schema
 const CanvasCommentSchema = new Schema({
+    id: Number,                             // Unique record / document ID
     dashboardID: Number,                    // Dashboard to which comment is linked
     widgetID: Number,                       // Optional Widget linked
     comment: String,                        // Comment Text
@@ -20,10 +21,12 @@ const CanvasCommentSchema = new Schema({
 // This pre-hook is called before the information is saved into the database
 CanvasCommentSchema.pre('save', function(next) {
     var doc = this;
-    counterModel.findByIdAndUpdate({_id: 'canvasComments.id'}, {$inc: { seq: 1} }, function(error, counter)   {
+    console.log('xx', doc)
+    counterModel.findOneAndDelete({_id: 'canvasComments.id'}, {$inc: { seq: 1} }, function(error, counter)   {
         if(error)
             return next(error);
-        doc.id = counterModel.seq;
+        console.log('xx seq', counter)
+        doc.id = counter.seq;
         next();
     });
 });

@@ -80,8 +80,6 @@ npm i config
 # debug
 npm i debug
 
-# mongoose-sequence
-npm install --save mongoose-sequence
 
 
 

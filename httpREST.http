@@ -101,6 +101,7 @@ POST {{host}}/canvasdata/:canvasComments
 content-type: application/json
 
 {
+    "id": 1,
     "dashboardID": 68,
     "widgetID": null,
     "comment": "Via REST a",
