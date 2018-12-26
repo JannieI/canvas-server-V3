@@ -3,7 +3,6 @@
 // Imports
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
-const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 // Schema
 const CanvasGroupSchema = new Schema({
@@ -18,9 +17,6 @@ const CanvasGroupSchema = new Schema({
         default: Date.now
     }
 });
-
-// Auto-Incement the id field
-CanvasGroupSchema.plugin(AutoIncrement, {inc_field: 'id'});
 
 // Create Model: modelName, schema, collection
 const CanvasGroupModel = mongoose.model('canvasGroups', CanvasGroupSchema, 'canvasGroups');
