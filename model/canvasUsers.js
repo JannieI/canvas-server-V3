@@ -3,6 +3,7 @@
 // Imports
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
+const counterModel = require('./counters')
 const bcrypt = require('bcrypt');
 
 // Schema
@@ -115,8 +116,26 @@ CanvasUserSchema.pre('save', async function(next){
         this.createdOn = currentDate;
     };
 
+    var doc = this;
+
+    // Find in the counters collection, increment and update
+    counterModel.findOneAndUpdate(
+        {_id: 'canvasUsers.id'},
+        {$inc: { seq: 1} },
+        { upsert: true, new: true },
+        function(error, counter)   {
+            console.log('doc', doc)
+            if(error) {
+                return next(error);
+            };
+
+            doc.id = counter.seq;
+            next();
+        }
+    );
+
     //Indicates we're done and moves on to the next middleware
-    next();
+    // next();
 });
 
 //We'll use this later on to make sure that the user trying to log in has the correct credentials
@@ -127,7 +146,7 @@ CanvasUserSchema.methods.isValidPassword = async function(password){
     const compare = await bcrypt.compare(password, user.password);
     return compare;
 }
-
+ 
 // Create Model: modelName, schema, collection
 const CanvasUserModel = mongoose.model('canvasUsers', CanvasUserSchema, 'canvasUsers');
 

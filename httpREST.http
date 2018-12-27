@@ -97,31 +97,82 @@ GET {{host}}/canvasdata/:canvasComments
 
 
 // Testing canvasData 
-POST {{host}}/canvasdata/:canvasMessages
+POST {{host}}/canvasdata/:canvasUsers
 content-type: application/json
 
 {
     "id" : 1,
-    "threadID" : 14,
-    "sender" : "JenS",
-    "sentOn" : "2018/05/05 7:37:11",
-    "recipients" : [ 
-        {
-            "userID" : "JannieI",
-            "readOn" : ""
-        }
+    "userID" : "JannieI1",
+    "password" : "$2b$10$GGLzEExcoRMtJae9ZXo3Y.Eiyc6O.Ou74kHtguc9M84nTAwtBm7fy",
+    "companyName" : "Clarity Analytics",
+    "firstName" : "",
+    "lastName" : "",
+    "nickName" : "",
+    "email" : "jannie.immelman@clarityanalytics.xyz",
+    "workNumber" : "",
+    "cellNumber" : "",
+    "groups" : [ 
+        "everyone", 
+        "admin", 
+        "marketing"
     ],
-    "toGroups" : [],
-    "subject" : "Review of upcoming budget",
-    "body" : "Please review and add missing logistics figures",
-    "dashboardID" : 6,
-    "dashboardTabID" : 9,
-    "url" : null,
-    "replyToMessageID" : null,
-    "iHaveReadThis" : false,
-    "dashboardName" : null,
-    "replySender" : null,
-    "replyMessageStart" : ""
+    "isSuperuser" : false,
+    "isStaff" : false,
+    "isActive" : false,
+    "dateJoined" : "2016-12-31",
+    "lastLogin" : "2018-05-01",
+    "lastPaletteLeft" : 898,
+    "lastPaletteTop" : 69,
+    "colorScheme" : "",
+    "startupDashboardID" : 6,
+    "startupDashboardTabID" : null,
+    "gridSize" : 3,
+    "environment" : "",
+    "profilePicture" : "",
+    "queryRuntimeWarning" : 3,
+    "snapToGrid" : false,
+    "favouriteDashboards" : [ 
+        1
+    ],
+    "isFirstTimeUser" : false,
+    "isAdministrator" : false,
+    "dashboardCanCreateRole" : true,
+    "dashboardCanViewRole" : true,
+    "dashboardCanEditRole" : true,
+    "dashboardCanSaveRole" : true,
+    "dashboardCanDeleteRole" : true,
+    "dashboardCanGrantAccess" : true,
+    "dashboardCanAddDatasource" : true,
+    "canManageGroupRole" : true,
+    "datasourceCanCreateRole" : true,
+    "datasourceCanViewRole" : true,
+    "datasourceCanEditRole" : true,
+    "datasourceCanDeleteRole" : true,
+    "datasourceCanGrantAccessRole" : true,
+    "offlineData" : true,
+    "offlineSchema" : true,
+    "offlineLogin" : true,
+    "preferencePaletteHorisontal" : true,
+    "preferenceAutoSync" : true,
+    "preferenceShowOpenStartupMessage" : false,
+    "preferenceShowOpenDataCombinationMessage" : true,
+    "preferenceShowViewStartupMessage" : true,
+    "preferenceShowDiscardStartupMessage" : true,
+    "preferenceDefaultTemplate" : null,
+    "preferenceDefaultDateformat" : "YYYY/MM/DD",
+    "preferenceDefaultFolder" : "1",
+    "preferenceDefaultPrinter" : "HP 650",
+    "preferenceDefaultPageSize" : "A4",
+    "preferenceDefaultPageLayout" : "Portrait",
+    "preferenceDefaultSnapshotMins" : 0,
+    "dashboardCanAddDatasourceRole" : true,
+    "dashboardCanGrantAccessRole" : true,
+    "preferenceDefaultTemplateID" : 175,
+    "lastAppShowPopupMessageGotIt" : true,
+    "preferenceStartupDashboardID" : 68,
+    "preferenceStartupDashboardTabID" : 175,
+    "preferenceShowWidgetEditorLite" : false,
+    "createdOn" : "2016-12-31"
 }
 
 ###
