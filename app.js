@@ -160,7 +160,10 @@ if (app.get('env') === 'development') {
             "statusCode": "error",
             "message" : "Error: " + err.status,
             "data": null,
-            "error": err
+            "error": 
+                {
+                    "errorObject": err
+                }
         });
     });
 };
@@ -172,32 +175,12 @@ app.use(function(err, req, res, next) {
         "statusCode": "error",
         "message" : "Error: " + err.status,
         "data": null,
-        "error": null
+        "error": 
+            {
+                "errorObject": err
+            }
     });
 });
-
-// catch 404 and forward to error handler
-// app.use( (req, res, next) => {
-//     next(createError(404));
-// });
-
-// Error handler
-// app.use( (err, req, res, next) => {
-
-//     // Log, set status and return Error
-//     debugDev('Error: ', err)
-//     if (req.method == 'POST') {
-//         debugDev('app.js error req.body: ', req.body)
-//     };
-//     res.status(err.status || 500);
-//     res.json({
-//         "statusCode": "error",
-//         "message" : "Error: " + err.status,
-//         "data": null,
-//         "error": err
-//     });
-
-// });
 
 // Export for bin/www
 module.exports = app;
