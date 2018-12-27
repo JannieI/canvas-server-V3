@@ -32,6 +32,12 @@ CanvasBackgroundcolorsDefaultSchema.pre('save', function(next) {
         }
     );
 });
+ 
+// CanvasUserSchema.methods.getSchema = async function(){
+//     const doc = this;
+//     var props = Object.keys(canvasSchema.schema.paths);
+//     console.log('xx getSchema', props)
+// }
 
 // Create Model: modelName, schema, collection
 const CanvasBackgroundcolorsDefaultModel = mongoose.model(

@@ -69,18 +69,49 @@ router.get('/:resource', (req, res, next) => {
     try {
         // Get the model dynamically (take note of file spelling = resource)
         const canvasSchema = '../model/' + resource;
-        debugDev('xx ', canvasSchema)
+        debugDev('Using Model ', canvasSchema)
         const canvasModel = require(canvasSchema);
 
 
         // Find the data (using the standard query JSON object)
         canvasModel.find( query, (err, docs) => {
 
-            // Return the data
+            // Extract metodata from the Schema, using one document
+            const oneDoc = canvasModel.findOne();
+
+            // Empty Array of fields
+            var fields = [];
+
+            // Loop on metatdata
+            for (var key in oneDoc.schema.obj) {
+                var value = oneDoc.schema.obj[key];
+
+                fields.push(
+                    {
+                        "fieldName": key,
+                        "fieldType": value.name,
+                        "average": null,
+                        "max": null,
+                        "median": null,
+                        "min": null,
+                        "sum": null
+                    }
+                );
+            };
+
+            // console.log('xx COUNT', fields, oneDoc.mongooseCollection.collectionName, docs.length)
+            // Return the data with metadata
             return res.json({
                 "statusCode": "success",
                 "message" : "Retrieved data for resource: " + resource,
                 "data": docs,
+                "metaData": {
+                    "table": {
+                        "tableName": oneDoc.mongooseCollection.collectionName,
+                        "nrRecordsReturned":docs.length
+                    },
+                    "fields": fields
+                },
                 "error": null
             });
         });
@@ -129,7 +160,7 @@ router.post('/:resource', (req, res, next) => {
                     "statusCode": "error",
                     "message" : "Error: Could not add record for resource: " + resource,
                     "data": null,
-                    "error": 
+                    "error":
                         {
                             "errorObject": err
                         }
@@ -152,7 +183,7 @@ router.delete('/:resource', (req, res, next) => {
 
     // Extract: body, route (params without :)
     const resource = req.params.resource.substring(1);
-    
+
     const query = req.query;
     const id = req.query.id;
     debugDev('const ',req.query, id);
@@ -202,7 +233,7 @@ router.delete('/:resource', (req, res, next) => {
                     "statusCode": "error",
                     "message" : "Error: Could not delete record for resource: " + resource + ', id: ', id,
                     "data": null,
-                    "error": 
+                    "error":
                         {
                             "errorObject": err
                         }
@@ -270,7 +301,7 @@ router.put('/:resource', (req, res, next) => {
                     "statusCode": "error",
                     "message" : "Error: Could not update record for resource: " + resource + 'id: ', id,
                     "data": null,
-                    "error": 
+                    "error":
                         {
                             "errorObject": err
                         }

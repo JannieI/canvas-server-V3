@@ -137,7 +137,7 @@ CanvasUserSchema.pre('save', async function(next){
     //Indicates we're done and moves on to the next middleware
     // next();
 });
-
+ 
 //We'll use this later on to make sure that the user trying to log in has the correct credentials
 CanvasUserSchema.methods.isValidPassword = async function(password){
     const user = this;

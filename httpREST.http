@@ -90,8 +90,8 @@ content-type: application/json
 
 
 // GET Canvas Data: TEST any ROUTE
-GET {{host}}/canvasdata/:canvasComments
-?dashboardID=68
+GET {{host}}/canvasdata/:canvasBackgroundcolorsDefault
+
     
 ###
 
