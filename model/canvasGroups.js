@@ -3,6 +3,7 @@
 // Imports
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
+const counterModel = require('./counters')
 
 // Schema
 const CanvasGroupSchema = new Schema({
@@ -18,8 +19,28 @@ const CanvasGroupSchema = new Schema({
     }
 });
 
+// This pre-hook is called before the information is saved into the database
+CanvasGroupSchema.pre('save', function(next) {
+    var doc = this;
+
+    // Find in the counters collection, increment and update
+    counterModel.findOneAndUpdate(
+        {_id: 'canvasGroups.id'},
+        {$inc: { seq: 1} },
+        { upsert: true, new: true },
+        function(error, counter)   {
+            if(error) {
+                return next(error);
+            };
+
+            doc.id = counter.seq;
+            next();
+        }
+    );
+});
+
 // Create Model: modelName, schema, collection
 const CanvasGroupModel = mongoose.model('canvasGroups', CanvasGroupSchema, 'canvasGroups');
 
 // Export
-module.exports = CanvasGroupModel;
+module.exports = CanvasGroupModel; 

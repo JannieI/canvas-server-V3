@@ -97,14 +97,12 @@ GET {{host}}/canvasdata/:canvasComments
 
 
 // Testing canvasData 
-POST {{host}}/canvasdata/:canvasBackgroundcolorsDefault
+POST {{host}}/canvasdata/:canvasGroups
 content-type: application/json
 
 {
-    "id" : 4,
-    "name" : "Aqua",
-    "cssCode" : "#00FFFF",
-    "shortList" : true
+   "id" : 0,
+    "name" : "Research"
 }
 
 ###
