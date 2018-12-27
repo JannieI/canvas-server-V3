@@ -97,12 +97,31 @@ GET {{host}}/canvasdata/:canvasComments
 
 
 // Testing canvasData 
-POST {{host}}/canvasdata/:canvasGroups
+POST {{host}}/canvasdata/:canvasMessages
 content-type: application/json
 
 {
-   "id" : 0,
-    "name" : "Research"
+    "id" : 1,
+    "threadID" : 14,
+    "sender" : "JenS",
+    "sentOn" : "2018/05/05 7:37:11",
+    "recipients" : [ 
+        {
+            "userID" : "JannieI",
+            "readOn" : ""
+        }
+    ],
+    "toGroups" : [],
+    "subject" : "Review of upcoming budget",
+    "body" : "Please review and add missing logistics figures",
+    "dashboardID" : 6,
+    "dashboardTabID" : 9,
+    "url" : null,
+    "replyToMessageID" : null,
+    "iHaveReadThis" : false,
+    "dashboardName" : null,
+    "replySender" : null,
+    "replyMessageStart" : ""
 }
 
 ###

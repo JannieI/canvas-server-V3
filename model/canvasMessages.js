@@ -3,6 +3,7 @@
 // Imports
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const counterModel = require('./counters')
 
 // Schema
 const CanvasMessageSchema = new Schema({
@@ -31,8 +32,28 @@ const CanvasMessageSchema = new Schema({
     replyMessageStart: String,  // Optional, first 50 chars of message to which this is a reply
 });
 
+// This pre-hook is called before the information is saved into the database
+CanvasMessageSchema.pre('save', function(next) {
+    var doc = this;
+
+    // Find in the counters collection, increment and update
+    counterModel.findOneAndUpdate(
+        {_id: 'canvasMessages.id'},
+        {$inc: { seq: 1} },
+        { upsert: true, new: true },
+        function(error, counter)   {
+            if(error) {
+                return next(error);
+            };
+
+            doc.id = counter.seq;
+            next();
+        }
+    );
+});
+
 // Create Model: modelName, schema, collection
 const CanvasMessageModel = mongoose.model('canvasMessages', CanvasMessageSchema, 'canvasMessages');
-
+ 
 // Export
 module.exports = CanvasMessageModel;
