@@ -97,16 +97,14 @@ GET {{host}}/canvasdata/:canvasComments
 
 
 // Testing canvasData 
-POST {{host}}/canvasdata/:canvasAuditTrails
+POST {{host}}/canvasdata/:canvasBackgroundcolorsDefault
 content-type: application/json
 
 {
-    "id": 1,
-    "name": 68,
-    "editedBy": "Janneman",
-    "editedOn": null,
-    "creator": "JannieI",
-    "createdOn": null
+    "id" : 4,
+    "name" : "Aqua",
+    "cssCode" : "#00FFFF",
+    "shortList" : true
 }
 
 ###
