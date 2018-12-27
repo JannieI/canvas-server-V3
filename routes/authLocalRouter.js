@@ -25,7 +25,10 @@ router.post('/verify', (req, res, next) => {
                 "statusCode": "error",
                 "message" : "Error in DB Find: " + err.message,
                 "data": null,
-                "error": err
+                "error": 
+                    {
+                        "errorObject": err
+                    }
             });
         };
 
@@ -57,8 +60,11 @@ router.post('/signup', (req, res, next) => {
                 "statusCode": "error",
                 "message" : "Error in DB Find: " + err.message,
                 "data": null,
-                "error": err
-            });
+                "error": 
+                    {
+                        "errorObject": err
+                    }
+                });
         };
 
         // Create a new user record since it does not exist
@@ -94,7 +100,10 @@ router.post('/signup', (req, res, next) => {
                         "statusCode": "failed",
                         "message" : "Registration failed, cannot save user !",
                         "data": null,
-                        "error": err
+                        "error": 
+                            {
+                                "errorObject": err
+                            }
                     });
                 });
         } else {
@@ -130,7 +139,10 @@ router.post('/login', (req, res, next) => {
                         "statusCode": "failed",
                         "message" : "Login failed",
                         "data": null,
-                        "error": err
+                        "error": 
+                            {
+                                "errorObject": err
+                            }
                     });
                 };
                 req.login(user, { session : false }, async (error) => {
