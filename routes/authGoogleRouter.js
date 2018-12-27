@@ -57,11 +57,21 @@ authGoogleRouter.get('/callback', passport.authenticate('google',{
 // });
 
 authGoogleRouter.get('/loginSuccess', (req, res, next) => {
-    res.json( {msg: 'Login worked !'} );
+    res.json({
+        "statusCode": "success",
+        "message" : "Login worked",
+        "data": null,
+        "error": null
+    });
 });
 
 authGoogleRouter.get('/loginFailed', (req, res, next) => {
-    res.json( {msg: 'Login failed'} );
+    res.json({
+        "statusCode": "failed",
+        "message" : "Login failed",
+        "data": null,
+        "error": null
+    });
 });
 
 // authGoogle/logout
@@ -69,7 +79,12 @@ authGoogleRouter.get('/logout', (req, res, next) => {
     req.logout();
     req.session.destroy( () => {
         res.clearCookie('connect.sid');
-        res.json( {msg: "Logged out"} );
+        res.json({
+            "statusCode": "success",
+            "message" : "Logged out",
+            "data": null,
+            "error": null
+        });
     });
 });
 
