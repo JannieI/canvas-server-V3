@@ -1,13 +1,14 @@
-// Model for canvasGroups collection
+// Model for canvasSettings collection
 
 // Imports
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const counterModel = require('./counters')
+// const counterModel = require('./counters')
 
 // Schema
-const CanvasGroupSchema = new Schema({
-    _id?: String,                           // Mongo ID (read only)
+const CanvasSettingSchema = new Schema({
+    _id: String,                           // Mongo ID (read only)
+    id: Number,                             // Unique record ID (for consistency)
     companyName: String,                    // Company Name
     companyLogo: String,                    // Optional file name for Company logo
     dashboardTemplate: String,              // Default Dashboard Template (later use)
@@ -37,29 +38,27 @@ const CanvasGroupSchema = new Schema({
     }
 });
 
+// TODO - When sure not needed, delete this
 // This pre-hook is called before the information is saved into the database
-CanvasGroupSchema.pre('save', function(next) {
-    var doc = this;
-
-    // TODO - When sure not needed, delete this
+// CanvasSettingSchema.pre('save', function(next) {
+//     var doc = this;
     // Find in the counters collection, increment and update
     // counterModel.findOneAndUpdate(
-    //     {_id: 'canvasGroups.id'},
+    //     {_id: 'canvasSettings.id'},
     //     {$inc: { seq: 1} },
     //     { upsert: true, new: true },
     //     function(error, counter)   {
     //         if(error) {
     //             return next(error);
     //         };
-
     //         doc.id = counter.seq;
     //         next();
     //     }
     // );
-});
+// });
 
 // Create Model: modelName, schema, collection
-const CanvasGroupModel = mongoose.model('canvasGroups', CanvasGroupSchema, 'canvasGroups');
+const CanvasSettingModel = mongoose.model('canvasSettings', CanvasSettingSchema, 'canvasSettings');
 
 // Export
-module.exports = CanvasGroupModel;
+module.exports = CanvasSettingModel;
