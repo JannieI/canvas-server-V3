@@ -129,7 +129,10 @@ router.post('/:resource', (req, res, next) => {
                     "statusCode": "error",
                     "message" : "Error: Could not add record for resource: " + resource,
                     "data": null,
-                    "error": err
+                    "error": 
+                        {
+                            "errorObject": err
+                        }
                 });
         });
     }
@@ -156,10 +159,10 @@ router.delete('/:resource', (req, res, next) => {
 
     if (id == null) {
         return res.json({
-            "statusCode": "error",
+            "statusCode": "failed",
             "message" : "Error: no ID provided for resource: " + resource + 'id: ', id,
             "data": null,
-            "error": "Error: no ID query-param provided for resource: " + resource + 'id: ', id
+            "error": null
         });
     };
 
@@ -199,7 +202,10 @@ router.delete('/:resource', (req, res, next) => {
                     "statusCode": "error",
                     "message" : "Error: Could not delete record for resource: " + resource + ', id: ', id,
                     "data": null,
-                    "error": err
+                    "error": 
+                        {
+                            "errorObject": err
+                        }
                 });
         });
     }
@@ -225,10 +231,10 @@ router.put('/:resource', (req, res, next) => {
     const id = req.query.id;
     if (id == null) {
         return res.json({
-            "statusCode": "error",
+            "statusCode": "failed",
             "message" : "Error: no ID provided for resource: " + resource + 'id: ', id,
             "data": null,
-            "error": "Error: no ID query-param provided for resource: " + resource + 'id: ', id
+            "error": null
         });
     };
 
@@ -264,7 +270,10 @@ router.put('/:resource', (req, res, next) => {
                     "statusCode": "error",
                     "message" : "Error: Could not update record for resource: " + resource + 'id: ', id,
                     "data": null,
-                    "error": err
+                    "error": 
+                        {
+                            "errorObject": err
+                        }
                 });
         });
     }
