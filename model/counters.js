@@ -11,7 +11,7 @@ const CounterSchema = Schema({
 });
 
 // Create Model: modelName, schema, collection
-const CounterModel = mongoose.model('counter', CounterSchema, 'counter');
+const CounterModel = mongoose.model('counters', CounterSchema, 'counters');
 
 // Export
 module.exports = CounterModel;

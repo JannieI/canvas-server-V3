@@ -21,15 +21,17 @@ const CanvasCommentSchema = new Schema({
 // This pre-hook is called before the information is saved into the database
 CanvasCommentSchema.pre('save', function(next) {
     var doc = this;
-    console.log('xx', doc)
-    counterModel.findByIdAndUpdate(
-        {_id: 'canvasComments.id'}, 
-        {$inc: { seq: 1} }, 
+
+    // Find in the counters collection, increment and update
+    counterModel.findOneAndUpdate(
+        {_id: 'canvasComments.id'},
+        {$inc: { seq: 1} },
         { upsert: true, new: true },
         function(error, counter)   {
-            if(error)
+            if(error) {
                 return next(error);
-            console.log('xx seq', counter)
+            };
+
             doc.id = counter.seq;
             next();
         }

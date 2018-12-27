@@ -3,6 +3,7 @@
 // Imports
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
+const counterModel = require('./counters')
 
 // Schema
 const CanvasAuditTrailSchema = new Schema({
@@ -16,6 +17,27 @@ const CanvasAuditTrailSchema = new Schema({
         // `Date.now()` returns the current unix timestamp as a number
         default: Date.now
     }
+});
+
+// This pre-hook is called before the information is saved into the database
+CanvasAuditTrailSchema.pre('save', function(next) {
+    var doc = this;
+
+    // Find in the counters collection, increment and update
+    counterModel.findOneAndUpdate(
+        {_id: 'canvasAuditTrails.id'},
+        {$inc: { seq: 1} },
+        { upsert: true, new: true },
+        function(error, counter)   {
+            if(error) {
+                console.error('Error: findOneAndUpdate in canvasAuditTrails failed.' + error.message);
+                return next(error);
+            };
+
+            doc.id = counter.seq;
+            next();
+        }
+    );
 });
 
 // Create Model: modelName, schema, collection

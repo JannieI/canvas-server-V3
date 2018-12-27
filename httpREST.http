@@ -97,14 +97,14 @@ GET {{host}}/canvasdata/:canvasComments
 
 
 // Testing canvasData 
-POST {{host}}/canvasdata/:canvasComments
+POST {{host}}/canvasdata/:canvasAuditTrails
 content-type: application/json
 
 {
     "id": 1,
-    "dashboardID": 68,
-    "widgetID": null,
-    "comment": "Via REST a",
+    "name": 68,
+    "editedBy": "Janneman",
+    "editedOn": null,
     "creator": "JannieI",
     "createdOn": null
 }
