@@ -79,7 +79,7 @@ router.get('/:resource', (req, res, next) => {
             // Return the data
             return res.json({
                 "statusCode": "success",
-                "message" : "Retrieve resource: " + resource,
+                "message" : "Retrieved data for resource: " + resource,
                 "data": docs,
                 "error": null
             });
