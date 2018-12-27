@@ -51,11 +51,21 @@ authGitHubRouter.get('/callback', passport.authenticate('github',{
 }));
 
 authGitHubRouter.get('/loginSuccess', (req, res, next) => {
-    res.json( {msg: 'Login worked !'} );
+    res.json({
+        "statusCode": "success",
+        "message" : "Login worked",
+        "data": null,
+        "error": null
+    });
 });
 
 authGitHubRouter.get('/loginFailed', (req, res, next) => {
-    res.json( {msg: 'Login failed'} );
+    res.json({
+        "statusCode": "failed",
+        "message" : "Login failed",
+        "data": null,
+        "error": null
+    });
 });
 
 // authGitHub/logout
@@ -63,7 +73,12 @@ authGitHubRouter.get('/logout', (req, res, next) => {
     req.logout();
     req.session.destroy( () => {
         res.clearCookie('connect.sid');
-        res.json( {msg: "Logged out"} );
+        res.json({
+            "statusCode": "success",
+            "message" : "Logged out",
+            "data": null,
+            "error": null
+        });
     });
 });
 
