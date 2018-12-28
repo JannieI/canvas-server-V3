@@ -7,7 +7,6 @@ const Schema = mongoose.Schema;
 
 // Schema
 const CanvasSettingSchema = new Schema({
-    _id: String,                           // Mongo ID (read only)
     id: Number,                             // Unique record ID (for consistency)
     companyName: String,                    // Company Name
     companyLogo: String,                    // Optional file name for Company logo
