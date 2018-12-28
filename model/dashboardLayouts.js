@@ -1,4 +1,4 @@
-// Model for DashboardLayouts collection
+// Model for dashboardLayouts collection
 
 // Imports
 const mongoose = require('mongoose');

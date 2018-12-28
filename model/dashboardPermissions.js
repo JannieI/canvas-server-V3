@@ -1,4 +1,4 @@
-// Model for DashboardPermissions collection
+// Model for dashboardPermissions collection
 
 // Imports
 const mongoose = require('mongoose');
