@@ -90,7 +90,7 @@ content-type: application/json
 
 
 // GET Canvas Data: TEST any ROUTE
-GET {{host}}/canvasdata/:dashboards
+GET {{host}}/canvasdata/:dashboardScheduleLog
                          
     
 ###
