@@ -7,6 +7,7 @@ const counterModel = require('./counters')
 
 // Schema
 const containStyleSchema = new Schema({
+    _id: String,                           // Mongo ID (read only)
     id: Number,                             // Unique ID
     name: String,                           // Unique Name of style
 
