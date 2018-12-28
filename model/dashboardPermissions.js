@@ -1,4 +1,4 @@
-// Model for DashboardPermisions collection
+// Model for DashboardPermissions collection
 
 // Imports
 const mongoose = require('mongoose');
@@ -6,10 +6,10 @@ const Schema = mongoose.Schema;
 const counterModel = require('./counters')
 
 // Schema
-const DashboardPermisionSchema = new Schema({
+const DashboardPermissionSchema = new Schema({
     id: Number,                             // Unique ID
     dashboardID: Number,                    // FK to D
-    dashboardName: String,                 // Filled in @RunTime
+    dashboardName: String,                  // Filled in @RunTime
     userID: String,                         // UserID - NB: 1 of usr/grp filled in, one blank
     groupID: Number,                        // Group ID
     groupName: String,                      // Filled in @RunTime
@@ -33,7 +33,7 @@ const DashboardPermisionSchema = new Schema({
 });
 
 // This pre-hook is called before the information is saved into the database
-DashboardPermisionSchema.pre('save', function(next) {
+DashboardPermissionSchema.pre('save', function(next) {
     var doc = this;
 
     // Find in the counters collection, increment and update
@@ -53,7 +53,7 @@ DashboardPermisionSchema.pre('save', function(next) {
 });
 
 // Create Model: modelName, schema, collection
-const DashboardPermisionModel = mongoose.model('DashboardPermisions', DashboardPermisionSchema, 'DashboardPermisions');
+const DashboardPermissionModel = mongoose.model('dashboardPermissions', DashboardPermissionSchema, 'dashboardPermissions');
 
 // Export
-module.exports = DashboardPermisionModel;
+module.exports = DashboardPermissionModel;
