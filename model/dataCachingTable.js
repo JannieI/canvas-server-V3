@@ -1,4 +1,4 @@
-// Ivan, ignore this one - just testing something
+// Model for dataCachingTable collection
 
 // Schema for Datacaching table
 const mongoose = require('mongoose')
