@@ -7,6 +7,7 @@ const counterModel = require('./counters')
 
 // Schema
 const DataQualityIssueSchema = new Schema({
+    id: Number,                             // Unique record ID
     name: String,                           // Short name to identify issue
     datasourceID: Number,                   // DS to which the issue relates
     status: String,                         // Status: Logged, InProgress, Solved
