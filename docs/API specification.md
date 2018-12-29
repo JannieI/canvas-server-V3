@@ -170,7 +170,6 @@ This list is not exhaustive, but will remain unchanged until we do the redesign:
     dataFields
 
 ### Datasource-related:
-	datasourceFilters
     datasourcePermissions
     datasourceSchedules
     datasourceScheduleLog
