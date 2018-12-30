@@ -55,13 +55,6 @@ router.get('/', (req, res, next) => {
         // Find the data (using the standard query JSON object)
         clientModel.find( query, (err, docs) => {
  
-            // TODO - there must be a cleaner way !
-            // Extract the data
-            let dataString = JSON.stringify(docs);
-            let dataObject = JSON.parse(dataString);
-            let data = dataObject.data;
-            debugData('docs A', dataString, dataObject, data, JSON.stringify(data));
-
             // Extract metodata from the Schema, using one document
             // const oneDoc = clientModel.findOne();
 
@@ -90,7 +83,7 @@ router.get('/', (req, res, next) => {
             return res.json({
                 "statusCode": "success",
                 "message" : "Retrieved data for id:" + id,
-                "data": data,
+                "data": docs[0].data,
                 "metaData": {
                     "table": {
                         "tableName": "", //oneDoc.mongooseCollection.collectionName,
@@ -105,7 +98,7 @@ router.get('/', (req, res, next) => {
     catch (error) {
         return res.status(400).json({
             "statusCode": "error",
-            "message" : "Model clientData does not exist",
+            "message" : "Model clientData does not exist, or contains errors",
             "data": null,
             "error": error
         });
