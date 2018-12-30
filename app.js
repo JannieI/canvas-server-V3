@@ -29,6 +29,7 @@ const authGitHubRouter = require('./routes/authGitHubRouter');
 const authGoogleRouter = require('./routes/authGoogleRouter');
 const authLocalRouter = require('./routes/authLocalRouter');
 const canvasDataRouter = require('./routes/canvasDataRouter');
+const clientDataRouter = require('./routes/clientDataRouter');
 const secureRouter = require('./routes/secure-route');
 require('./auth/auth');
 
