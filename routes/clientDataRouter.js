@@ -9,25 +9,25 @@ const debugData = require('debug')('app:data');
 // Runs for ALL requests
 router.use('/', (req, res, next) => {
 
-    // Validate datasourceID
-    const datasourceID = req.query.datasourceID;
-    debugData('query is ', datasourceID);
+    // Validate id of clientData provided
+    const id = req.query.id;
+    debugData('query is ', id);
 
-	if (datasourceID == null) {
+	if (id == null) {
         return res.status(400).json({
             "statusCode": "error",
-            "message" : "No datasourceID provided in query string",
+            "message" : "No id provided in query string",
             "data": null,
-            "error": "No datasourceID provided in query string"
+            "error": "No id provided in query string"
         });
     };
 
-	if (isNaN(datasourceID)) {
+	if (isNaN(id)) {
         return res.status(400).json({
             "statusCode": "error",
-            "message" : "datasourceID must be a number",
+            "message" : "id parameter must be a number",
             "data": null,
-            "error": "datasourceID must be a number"
+            "error": "id parameter must be a number"
         });
     };
 
@@ -40,9 +40,9 @@ router.get('/', (req, res, next) => {
 
     // Extract: query, route (params without the :)
     const query = req.query;
-    const datasourceID = req.query.datasourceID;
+    const id = req.query.id;
 
-    debugData('clientDataRouter.GET for datasourceID:', datasourceID, ', query:', query);
+    debugData('clientDataRouter.GET for id:', id, ', query:', query);
     debugData('');
 
     // Try, in case model file does not exist
@@ -52,9 +52,15 @@ router.get('/', (req, res, next) => {
         const clientModel = require(clientSchema);
         debugData('Using Schema clientData');
 
-
         // Find the data (using the standard query JSON object)
         clientModel.find( query, (err, docs) => {
+ 
+            // TODO - there must be a cleaner way !
+            // Extract the data
+            let dataString = JSON.stringify(docs);
+            let dataObject = JSON.parse(dataString);
+            let data = dataObject.data;
+            debugData('docs A', dataString, dataObject, data, JSON.stringify(data));
 
             // Extract metodata from the Schema, using one document
             // const oneDoc = clientModel.findOne();
@@ -83,8 +89,8 @@ router.get('/', (req, res, next) => {
             // Return the data with metadata
             return res.json({
                 "statusCode": "success",
-                "message" : "Retrieved data for datasourceID:", datasourceID,
-                "data": docs.data,
+                "message" : "Retrieved data for id:" + id,
+                "data": data,
                 "metaData": {
                     "table": {
                         "tableName": "", //oneDoc.mongooseCollection.collectionName,
@@ -113,8 +119,8 @@ router.post('/', (req, res, next) => {
     // Extract: body, route (params without :)
     const body = req.body;
     const query = req.query;
-    const datasourceID = req.query.datasourceID;
-    debugData('clientDataRouter: POST for datasourceID:', datasourceID, 'body:', body)
+    const id = req.query.id;
+    debugData('clientDataRouter: POST for id:', id, 'body:', body)
     debugData('');
 
     // Try, in case model file does not exist
@@ -140,7 +146,7 @@ router.post('/', (req, res, next) => {
                 console.error(err)
                 return res.json({
                     "statusCode": "error",
-                    "message" : "Error: Could not add record for datasourceID:", datasourceID,
+                    "message" : "Error: Could not add record for id:", id,
                     "data": null,
                     "error":
                         {
@@ -152,7 +158,7 @@ router.post('/', (req, res, next) => {
     catch (error) {
         return res.status(400).json({
             "statusCode": "error",
-            "message" : "No model file for datasourceID:", datasourceID,
+            "message" : "No model file for id:", id,
             "data": null,
             "error": error
         });
@@ -165,15 +171,15 @@ router.delete('/', (req, res, next) => {
 
     // Extract: body, route (params without :)
     const query = req.query;
-    const datasourceID = req.query.datasourceID;
+    const id = req.query.id;
 
-    debugData('clientDataRouter: DELETE for datasourceID:', datasourceID, 'body:', body, 'query:', query)
+    debugData('clientDataRouter: DELETE for id:', id, 'body:', body, 'query:', query)
     debugData('');
 
     if (id == null) {
         return res.json({
             "statusCode": "failed",
-            "message" : "Error: no datasourceID provided:" + datasourceID,
+            "message" : "Error: no id provided:" + id,
             "data": null,
             "error": null
         });
@@ -187,21 +193,21 @@ router.delete('/', (req, res, next) => {
         debugData('Using Schema clientData');
 
         // Find and Delete from DB
-        clientModel.findOneAndRemove({datasourceID: datasourceID})
+        clientModel.findOneAndRemove({id: id})
             .then(doc => {
                 debugData('deleted', doc)
 
                 if (doc == null) {
                     return res.json({
                         "statusCode": "error",
-                        "message" : "Deletion of data failed: could not find datasourceID = " + datasourceID,
+                        "message" : "Deletion of data failed: could not find id = " + id,
                         "data": doc,
                         "error": null
                     });
                 } else {
                     return res.json({
                         "statusCode": "success",
-                        "message" : "Deleted record for datasourceID:" + datasourceID,
+                        "message" : "Deleted record for id:" + id,
                         "data": doc,
                         "error": null
                     });
@@ -211,7 +217,7 @@ router.delete('/', (req, res, next) => {
                 console.error(err)
                 return res.json({
                     "statusCode": "error",
-                    "message" : "Error: Could not delete record for datasourceID:" + datasourceID ,
+                    "message" : "Error: Could not delete record for id:" + id ,
                     "data": null,
                     "error":
                         {
@@ -223,7 +229,7 @@ router.delete('/', (req, res, next) => {
     catch (error) {
         return res.status(400).json({
             "statusCode": "error",
-            "message" : "No model file for datasourceID:", datasourceID,
+            "message" : "No model file for id:", id,
             "data": null,
             "error": error
         });
@@ -238,9 +244,9 @@ router.put('/', (req, res, next) => {
     const resource = req.params.resource.substring(1);
     const body = req.body;
     const query = req.query;
-    const datasourceID = req.query.datasourceID;
-    
-    debugData('clientDataRouter: PUT for datasourceID:', datasourceID, 'body:', body, 'query:', query)
+    const id = req.query.id;
+
+    debugData('clientDataRouter: PUT for id:', id, 'body:', body, 'query:', query)
     debugData('');
 
     // Try, in case model file does not exist
@@ -252,7 +258,7 @@ router.put('/', (req, res, next) => {
 
         // Find and Update DB
         clientModel.findOneAndUpdate(
-            {datasourceID: datasourceID},
+            {id: id},
             body,
             {
               new: true,                       // return updated doc
@@ -262,7 +268,7 @@ router.put('/', (req, res, next) => {
                 debugData('updated', doc)
                 return res.json({
                     "statusCode": "success",
-                    "message" : "Updated record for datasourceID:", datasourceID,
+                    "message" : "Updated record for id:", id,
                     "data": doc,
                     "error": null
                 });
@@ -271,7 +277,7 @@ router.put('/', (req, res, next) => {
                 console.error(err)
                 return res.json({
                     "statusCode": "error",
-                    "message" : "Error: Could not update record for datasourceID:", datasourceID,
+                    "message" : "Error: Could not update record for id:", id,
                     "data": null,
                     "error":
                         {
@@ -283,7 +289,7 @@ router.put('/', (req, res, next) => {
     catch (error) {
         return res.status(400).json({
             "statusCode": "error",
-            "message" : "No model file for datasourceID:", datasourceID,
+            "message" : "No model file for id:", id,
             "data": null,
             "error": error
         });

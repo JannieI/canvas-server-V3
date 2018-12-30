@@ -82,6 +82,7 @@ router.get('/:resource', (req, res, next) => {
             // Empty Array of fields
             var fields = [];
 
+            // TODO - make this work for all data
             // Loop on metatdata
             // for (var key in oneDoc.schema.obj) {
             //     var value = oneDoc.schema.obj[key];
