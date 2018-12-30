@@ -4,7 +4,6 @@
 const express = require('express');
 const passport = require('passport');
 const router = express.Router();
-const Joi = require('joi');
 const config = require('config');
 const debugDev = require('debug')('app:dev');
 
@@ -12,12 +11,11 @@ const debugDev = require('debug')('app:dev');
 function validateRoute(route) {
 
     // TODO -validate resource = real route, ie dashboars, widgets, etc
-console.log('hier', route)
+
     // Return error; null means NO errors found
     let error = null;
 
     if (route == null  ||  route == ''  ||  route.length < 3) {
-        console.log('error !')
         return 'The route of min length 3 is compulsory';
     };
 
@@ -29,7 +27,6 @@ console.log('hier', route)
 
     // Return
     return error;
-
 }
 
 // Runs for ALL requests
@@ -66,7 +63,7 @@ router.get('/:resource', (req, res, next) => {
 
     // Validate
     const error = validateRoute(resource);
-    console.log('daar', error)
+
     if (error) {
         return res.status(400).json({
             "statusCode": "error",

@@ -3,7 +3,6 @@
 // Imports
 const express = require('express');
 const router = express.Router();
-const Joi = require('joi');
 const debugData = require('debug')('app:data');
 
 // Runs for ALL requests
