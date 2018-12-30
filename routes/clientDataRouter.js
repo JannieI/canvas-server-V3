@@ -6,17 +6,21 @@ const router = express.Router();
 const Joi = require('joi');
 const debugData = require('debug')('app:data');
 
-// Validate route
-function validateRoute(course) {
+// Validate datasourceID: returns error as string.  If error = null, then all good
+function validateDatasourceID(datasourceID) {
 
-    // TODO -validate resource = real route, ie dashboars, widgets, etc
+    let error = null;
 
-	// Schema of what to validate
-	const schema = {
-		resource: Joi.string().min(3).required()
-	};
+	if (datasourceID == null) {
+        error = 'No datasourceID provided in query string';
+    };
 
-	return Joi.validate(course, schema);
+	if (isNaN(datasourceID)) {
+        error = 'datasourceID must be a number';
+    };
+
+    // Return
+	return error;
 }
 
 // Runs for ALL requests
@@ -52,7 +56,7 @@ router.get('/', (req, res, next) => {
     debugData('');
 
     // Validate
-    const { error } = validateRoute(req.params);
+    const { error } = validateDatasourceID(req.params);
     if (error) {
         return res.status(400).json({
             "statusCode": "error",
