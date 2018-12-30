@@ -52,8 +52,27 @@ router.get('/:resource', (req, res, next) => {
 
     // Load global var caching table - to be used later
     var dataCachingTable = require('../utils/dataCachingTableMemory');
-    const localDataCachingTable = dataCachingTable.get();
-    debugDev('The localDataCachingTable.length: ', localDataCachingTable.length, req.params);
+    const localDataCachingTableArray = dataCachingTable.get();
+    let localDataCachingTable = null;
+    inCachingTable = false;
+    // debugDev('The localDataCachingTable.length: ', localDataCachingTableArray.length, req.params);
+
+    for (var i = 0; i < localDataCachingTableArray.length; i++) {
+        if (localDataCachingTableArray[i].key == 'dashboards') {
+            localDataCachingTable = localDataCachingTableArray[i];
+            inCachingTable = true;
+        };
+    };
+
+    // let cachingIndex = dataCachingTable.findIndex(dc => dc.key == 'dashboards')
+    // console.log('xx index', cachingIndex)
+    if (inCachingTable) {
+        debugDev('This resource uses caching', localDataCachingTable);
+    } else {
+        debugDev('This resource does NOT use caching');
+    };
+    // console.log('xx RESULT', localDataCachingTable)
+
 
     // Extract: query, route (params without the :)
     const resource = req.params.resource.substring(1);
