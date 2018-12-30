@@ -67,7 +67,7 @@ function onListening() {
         // Store global variable in local and show (not really needed here)
         const localDataCachingTable = dataCachingTable.get();
         // console.log('The localDataCachingTable: ', localDataCachingTable);
-        
+
         // Log for user to see
         const cacheMessage = docs.length >= 0?  '(with data caching on server)'  :  '(NO data caching on server)';
         console.log('');
