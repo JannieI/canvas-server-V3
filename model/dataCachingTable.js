@@ -26,6 +26,10 @@ const DataCachingTableSchema = new Schema({
 });
 
 // Create Model: modelName, schema, collection
-const DataCachingTableModel = mongoose.model('DataCachingTables', DataCachingTableSchema, 'datacachingtable');
+const DataCachingTableModel = mongoose.model(
+    'dataCachingTable', 
+    DataCachingTableSchema, 
+    'dataCachingTable'
+);
 
 module.exports = DataCachingTableModel;
