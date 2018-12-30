@@ -50,16 +50,6 @@ router.use('/:resource', (req, res, next) => {
 // GET route
 router.get('/:resource', (req, res, next) => {
 
-
-    const dataCachingTableSchema = '../model/dataCachingTable';
-    const dataCachingTableModel = require(dataCachingTableSchema);
-
-    // Find the DataCachingTable
-    dataCachingTableModel.find( {}, (err, docs) => {
-        console.log('caching', docs)
-    })
-
-
     // Load global var caching table - to be used later
     var dataCachingTable = require('../utils/dataCachingTableMemory');
     const localDataCachingTable = dataCachingTable.get();
