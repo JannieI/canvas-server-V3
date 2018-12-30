@@ -5,19 +5,31 @@ const express = require('express');
 const passport = require('passport');
 const router = express.Router();
 const Joi = require('joi');
+const config = require('config');
 const debugDev = require('debug')('app:dev');
 
 // Validate route
-function validateRoute(course) {
+function validateRoute(route) {
 
     // TODO -validate resource = real route, ie dashboars, widgets, etc
 
-	// Schema of what to validate
-	const schema = {
-		resource: Joi.string().min(3).required()
-	};
+    // Return error; null means NO errors found
+    let error = null;
 
-	return Joi.validate(course, schema);
+    if (route == null  ||  route == ''  ||  route.length < 3) {
+        error = 'The route of min length 3 is compulsory';
+    };
+
+
+    const validRoutes = config.get('validRoutes')
+    let routesIndex = validRoutes.indexOf(route);
+    if (routesIndex < 0) {
+        error = 'Route not in our Configuration file';
+    };
+
+    // Return
+    return error;
+
 }
 
 // Runs for ALL requests
