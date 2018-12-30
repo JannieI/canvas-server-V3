@@ -6,35 +6,29 @@ const router = express.Router();
 const Joi = require('joi');
 const debugData = require('debug')('app:data');
 
-// Validate datasourceID: returns error as string.  If error = null, then all good
-function validateDatasourceID(datasourceID) {
-
-    let error = null;
-
-	if (datasourceID == null) {
-        error = 'No datasourceID provided in query string';
-    };
-
-	if (isNaN(datasourceID)) {
-        error = 'datasourceID must be a number';
-    };
-
-    // Return
-	return error;
-}
-
 // Runs for ALL requests
 router.use('/', (req, res, next) => {
 
-    // Validate Params
-    if (!req.params) {
+    // Validate datasourceID
+    const datasourceID = req.query.datasourceID;
+    debugData('query is ', datasourceID);
+
+	if (datasourceID == null) {
         return res.status(400).json({
             "statusCode": "error",
-            "message" : "Error: Resource not provided",
+            "message" : "No datasourceID provided in query string",
             "data": null,
-            "error": "Error: Resource not provided"
+            "error": "No datasourceID provided in query string"
         });
-        return;
+    };
+
+	if (isNaN(datasourceID)) {
+        return res.status(400).json({
+            "statusCode": "error",
+            "message" : "datasourceID must be a number",
+            "data": null,
+            "error": "datasourceID must be a number"
+        });
     };
 
     // Continue
@@ -44,43 +38,27 @@ router.use('/', (req, res, next) => {
 // GET route
 router.get('/', (req, res, next) => {
 
-    // Load global var caching table - to be used later
-    var dataCachingTable = require('../utils/dataCachingTableMemory');
-    const localDataCachingTable = dataCachingTable.get();
-    debugData('The localDataCachingTable.length: ', localDataCachingTable.length, req.params);
-
     // Extract: query, route (params without the :)
     const resource = req.params.resource.substring(1);
     const query = req.query;
+    const datasourceID = req.query.datasourceID;
+
     debugData('clientDataRouter.GET for resource:', resource, ', query:', query);
     debugData('');
-
-    // Validate
-    const { error } = validateDatasourceID(req.params);
-    if (error) {
-        return res.status(400).json({
-            "statusCode": "error",
-            "message" : error.details[0].message,
-            "data": null,
-            "error": err
-        });
-
-        return;
-    };
 
     // Try, in case model file does not exist
     try {
         // Get the model dynamically (take note of file spelling = resource)
-        const canvasSchema = '../model/' + resource;
-        debugData('Using Model ', canvasSchema)
-        const canvasModel = require(canvasSchema);
+        const clientSchema = '../model/clientData';
+        debugData('Using Model ', clientSchema)
+        const clientModel = require(clientSchema);
 
 
         // Find the data (using the standard query JSON object)
-        canvasModel.find( query, (err, docs) => {
+        clientModel.find( query, (err, docs) => {
 
             // Extract metodata from the Schema, using one document
-            // const oneDoc = canvasModel.findOne();
+            // const oneDoc = clientModel.findOne();
 
             // Empty Array of fields
             var fields = [];
@@ -107,7 +85,7 @@ router.get('/', (req, res, next) => {
             return res.json({
                 "statusCode": "success",
                 "message" : "Retrieved data for resource: " + resource,
-                "data": docs,
+                "data": docs.data,
                 "metaData": {
                     "table": {
                         "tableName": "", //oneDoc.mongooseCollection.collectionName,
@@ -122,7 +100,7 @@ router.get('/', (req, res, next) => {
     catch (error) {
         return res.status(400).json({
             "statusCode": "error",
-            "message" : "No model file for resource: " + resource,
+            "message" : "Model clientData does not exist",
             "data": null,
             "error": error
         });
@@ -142,11 +120,11 @@ router.post('/', (req, res, next) => {
     // Try, in case model file does not exist
     try {
         // Get the model dynamically (take note of file spelling = resource)
-        const canvasSchema = '../model/' + resource;
-        const canvasModel = require(canvasSchema);
+        const clientSchema = '../model/' + resource;
+        const clientModel = require(clientSchema);
 
         // Create object and save to DB
-        let canvasAdd = new canvasModel(body);
+        let canvasAdd = new clientModel(body);
         canvasAdd.save()
             .then(doc => {
                 debugData('saved', doc)
@@ -208,11 +186,11 @@ router.delete('/', (req, res, next) => {
     // Try, in case model file does not exist
     try {
         // Get the model dynamically (take note of file spelling = resource)
-        const canvasSchema = '../model/' + resource;
-        const canvasModel = require(canvasSchema);
+        const clientSchema = '../model/' + resource;
+        const clientModel = require(clientSchema);
 
         // Find and Delete from DB
-        canvasModel.findOneAndRemove({id: id})
+        clientModel.findOneAndRemove({id: id})
             .then(doc => {
                 debugData('deleted', doc)
 
@@ -283,11 +261,11 @@ router.put('/', (req, res, next) => {
     // Try, in case model file does not exist
     try {
         // Get the model dynamically (take note of file spelling = resource)
-        const canvasSchema = '../model/' + resource;
-        const canvasModel = require(canvasSchema);
+        const clientSchema = '../model/' + resource;
+        const clientModel = require(clientSchema);
 
         // Find and Update DB
-        canvasModel.findOneAndUpdate(
+        clientModel.findOneAndUpdate(
             {id: id},
             body,
             {
