@@ -90,7 +90,7 @@ content-type: application/json
 
 
 // GET Canvas Data: TEST any ROUTE
-GET {{host}}/clientdata/?id=3
+GET {{host}}/canvasdata/:canvasComments
                          
     
 ###

@@ -12,14 +12,14 @@ const debugDev = require('debug')('app:dev');
 function validateRoute(route) {
 
     // TODO -validate resource = real route, ie dashboars, widgets, etc
-
+console.log('hier', route)
     // Return error; null means NO errors found
     let error = null;
 
     if (route == null  ||  route == ''  ||  route.length < 3) {
-        error = 'The route of min length 3 is compulsory';
+        console.log('error !')
+        return 'The route of min length 3 is compulsory';
     };
-
 
     const validRoutes = config.get('validRoutes')
     let routesIndex = validRoutes.indexOf(route);
@@ -65,13 +65,14 @@ router.get('/:resource', (req, res, next) => {
     debugDev('');
 
     // Validate
-    const { error } = validateRoute(req.params);
+    const error = validateRoute(resource);
+    console.log('daar', error)
     if (error) {
         return res.status(400).json({
             "statusCode": "error",
-            "message" : error.details[0].message,
+            "message" : error,
             "data": null,
-            "error": err
+            "error": error
         });
 
         return;
