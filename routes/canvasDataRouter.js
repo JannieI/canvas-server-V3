@@ -155,17 +155,18 @@ router.get('/:resource', (req, res, next) => {
 // alert(this.article_count);
                         console.warn('xx VAR dashboards', dashboards, eval(serverVariableName) )
 
+                        const fields = [];
                         return res.json({
                             "statusCode": "success",
                             "message" : "Retrieved data for resource: " + resource,
                             "data": eval(serverVariableName),
-                            // "metaData": {
-                            //     "table": {
-                            //         "tableName": "", //oneDoc.mongooseCollection.collectionName,
-                            //         "nrRecordsReturned":docs.length
-                            //     },
-                            //     "fields": fields
-                            // },
+                            "metaData": {
+                                "table": {
+                                    "tableName": serverVariableName, //oneDoc.mongooseCollection.collectionName,
+                                    "nrRecordsReturned":eval(serverVariableName).length
+                                },
+                                "fields": fields
+                            },
                             "error": null
                         });
                         // return;
