@@ -18,7 +18,7 @@ var dataCachingTableArray = null;   // Local copy of dataCachingTable
 var serverMemoryCache = {
     dashboards: null,       // Corresponds to serverVariableName in dataCachingTable
     datasources: null,
-   
+
     get: function(varName) {
         return serverMemoryCache.varName;
     },
@@ -75,9 +75,9 @@ function initialLoadOfCachingTable () {
     debugDev('Initialise dataCachingTableArray ...')
     dataCachingTableArray = dataCachingTableVariable.get();
 
-    // Reset the serverExpiryDateTime: 
+    // Reset the serverExpiryDateTime:
     // - on the first request, load data from the DB
-    // - subsequently, refresh it after expiry period 
+    // - subsequently, refresh it after expiry period
     let dn = new Date();
     let tn = dn.getTime()
     for (var i = 0; i < dataCachingTableArray.length; i++) {
@@ -98,7 +98,7 @@ router.use('/:resource', (req, res, next) => {
         });
         return;
     };
-    
+
     // Validate resource (route)
     const resource = req.params.resource.substring(1);
     const error = validateRoute(resource);
@@ -131,21 +131,7 @@ router.get('/:resource', (req, res, next) => {
     // Load global variable for cachingTable into an Array ONCE
     if (dataCachingTableArray == null) {
         initialLoadOfCachingTable();
-    //     debugDev('Initialise dataCachingTableArray ...')
-    //     dataCachingTableArray = dataCachingTableVariable.get();
-
-    //     // Reset the serverExpiryDateTime: 
-    //     // - on the first request, load data from the DB
-    //     // - subsequently, refresh it after expiry period 
-    //     let dn = new Date();
-    //     let tn = dn.getTime()
-    //     for (var i = 0; i < dataCachingTableArray.length; i++) {
-    //         dataCachingTableArray[i].serverExpiryDateTime = tn;
-    //     };
     };
-    
-    // Assume worse case
-    isFresh = false;
 
     // TODO - should be easier with TS
     // Single instance (row) in cachingTable for current resource
@@ -162,7 +148,7 @@ router.get('/:resource', (req, res, next) => {
             serverDataCachingTable = dataCachingTableArray[i];
             serverCacheableMemory = serverDataCachingTable.serverCacheableMemory;
             serverVariableName = serverDataCachingTable.serverVariableName;
-            
+
             // The table is cached on the server
             if (serverCacheableMemory) {
 
@@ -184,8 +170,8 @@ router.get('/:resource', (req, res, next) => {
                             (serverVariableName.length != 0)
                         ) {
                             debugDev(
-                                '  Return', 
-                                serverMemoryCache.get(serverVariableName).length, 
+                                '  Return',
+                                serverMemoryCache.get(serverVariableName).length,
                                 'records from cache!'
                             );
 
@@ -231,9 +217,9 @@ router.get('/:resource', (req, res, next) => {
             if (serverCacheableMemory  &&  !isFresh) {
                 serverMemoryCache.set(serverVariableName, docs)
                 debugDev(
-                    'Loaded', 
-                    serverMemoryCache.get(serverVariableName).length, 
-                    'records into cache for', 
+                    'Loaded',
+                    serverMemoryCache.get(serverVariableName).length,
+                    'records into cache for',
                     serverVariableName
                 );
 
