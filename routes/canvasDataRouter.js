@@ -7,6 +7,9 @@ const router = express.Router();
 const config = require('config');
 const debugDev = require('debug')('app:dev');
 
+// Variables
+let dashboards = []; // [ {id:1, name: "name1"}, {id:2, name: "name2"}, ]
+
 // Validate route
 function validateRoute(route) {
 
@@ -61,13 +64,20 @@ router.get('/:resource', (req, res, next) => {
         if (localDataCachingTableArray[i].key == 'dashboards') {
             localDataCachingTable = localDataCachingTableArray[i];
             inCachingTable = true;
+            if (dashboards.length > 0) {
+                console.log('D from last time:', dashboards)
+            };
+            if (dashboards.length == 0) {
+                dashboards = [ {id:1, name: "name1"}, {id:2, name: "name2"}, ]
+                console.log('D initialize:', dashboards)
+            };
         };
     };
 
     // let cachingIndex = dataCachingTable.findIndex(dc => dc.key == 'dashboards')
     // console.log('xx index', cachingIndex)
     if (inCachingTable) {
-        debugDev('This resource uses caching', localDataCachingTable);
+        debugDev('This resource uses caching');
     } else {
         debugDev('This resource does NOT use caching');
     };
