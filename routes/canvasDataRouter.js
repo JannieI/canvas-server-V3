@@ -109,12 +109,8 @@ router.get('/:resource', (req, res, next) => {
         let tn = dn.getTime()
         for (var i = 0; i < dataCachingTableArray.length; i++) {
             dataCachingTableArray[i].serverExpiryDateTime = tn;
-
-            var dt = new Date("December 30, 2017 11:20:25");
-            dt.setSeconds( dt.getSeconds() + 10 );
-
-
         };
+        console.log('xx dC @ Strt', dataCachingTableArray)
     };
     
     // Assume worse case
@@ -209,6 +205,18 @@ router.get('/:resource', (req, res, next) => {
                     'records into cache for', 
                     serverVariableName
                 );
+
+                for (var i = 0; i < dataCachingTableArray.length; i++) {
+
+                    // Find the single instance (row) for current resource: it uses caching
+                    if (dataCachingTableArray[i].key == resource) {
+                        dataCachingTableArray[i].serverExpiryDateTime = new Date();
+                        dataCachingTableArray[i].serverExpiryDateTime.setSeconds(
+                            dataCachingTableArray[i].serverExpiryDateTime.getSeconds() 
+                            + dataCachingTableArray[i].serverLifeSpan
+                        );
+                        console.log('xx new Exp Dt', dataCachingTableArray[i])
+                        };
             };
 
             // Empty Array of fields
