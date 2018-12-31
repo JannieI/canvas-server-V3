@@ -90,7 +90,7 @@ content-type: application/json
 
 
 // GET Canvas Data: TEST any ROUTE
-GET {{host}}/canvasdata/:dashboards
+GET {{host}}/canvasdata/:canvasComments
                          
     
 ###
@@ -102,7 +102,7 @@ content-type: application/json
 
 {
     "id" : null,
-    "dashboardID" : 68,
+    "dashboardID" : "68",
     "widgetID" : null,
     "comment" : "Via REST b",
     "creator" : "JannieI",

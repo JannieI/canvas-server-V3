@@ -55,7 +55,14 @@ The general format of each Canvas-related API call is:
         {{ host }} - the url for the Canvas Server, which could be http://localhost:8000 for the local server running Node & Express.
         canvasdata - fixed portion of the route
         {{ :resource-name }} - a value from the list of resources provided below, ie dashboards, widgets, etc.
-        ?query-string - optional identification of a specific resource required.  For example, when adding a new record this is not filled in.  When deleting a record, one has to identify the record, for example ?id=1
+        ?query-string - optional string that specifies further qualification of what must be returned.  It consists of:
+        - identification of a specific resource required.  There are two formats allows: id=x  or  { query-object}, where query-object is in Mongoose query filter format, ie { id: 1 }.  The reason that id=1 works, is because Express converts it to the desired Mongoose query filter format.  For example, when deleting a record, one has to identify the record, for example ?id=1.  When adding a new record this is not filled in.  
+        - *sorting of the result, in Mongoose format
+        - *fields to be returned, in Mongoose projection format
+        - *aggregation of the result, in Mongoose aggregation format
+        
+        * these are planned, but not finalised.  More to follow later once we have actually coded it.
+
 
 *Notes:*
 *1. The body of the request contains the data that the browser sends to the server.  This data will be the complete new record when adding, or the changed record when updating.  The GET and DELETE methods do not have a body.*
@@ -70,6 +77,21 @@ Each HTTP-method returns a JSON object according to the following model specifie
         "statusCode": string;                   // Returned from server: failed, success, error
         "message" : string;                     // Text message
         "data": any;                            // Data returned, ie Json Array
+        "metaData"?: {                          // Optional meta data
+        "table"?: {                             // Table properties
+            "tableName": string;
+            "nrRecordsReturned": number;
+        },
+        "fields"?: {                            // Array of fields, each with properties
+            "fieldName": string;
+            "fieldType": string;
+            "average": number;
+            "max": number;
+            "median": number;
+            "min": number;
+            "sum": number;
+        }[]
+    }
         "error": any;                           // Error message, else null
         "token"?: string;                       // Token, only provided by Login
     }

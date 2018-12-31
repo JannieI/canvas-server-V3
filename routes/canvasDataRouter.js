@@ -55,6 +55,21 @@ router.use('/:resource', (req, res, next) => {
         });
         return;
     };
+    
+    // Validate
+    const resource = req.params.resource.substring(1);
+    const error = validateRoute(resource);
+
+    if (error) {
+        return res.status(400).json({
+            "statusCode": "error",
+            "message" : error,
+            "data": null,
+            "error": error
+        });
+
+        return;
+    };
 
     // Continue
     next();
@@ -69,19 +84,6 @@ router.get('/:resource', (req, res, next) => {
     debugDev('canvasDataRouter.GET for resource:', resource, ', query:', query);
     debugDev('');
 
-    // Validate
-    const error = validateRoute(resource);
-
-    if (error) {
-        return res.status(400).json({
-            "statusCode": "error",
-            "message" : error,
-            "data": null,
-            "error": error
-        });
-
-        return;
-    };
 
 
 
