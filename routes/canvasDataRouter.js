@@ -14,8 +14,24 @@ const debugDev = require('debug')('app:dev');
 // CACHING BITS HERE
 // Variables
 let dashboards = []; // [ {id:1, name: "name1"}, {id:2, name: "name2"}, ]
+let serverCacheableMemory
+var serverVariableName
+var isFresh
 
-
+// Variable to store the cached value.  Startup values are null.
+var serverMemoryCache = {
+    dashboards: null,
+    datasources: null,
+   
+    get: function(varName) {
+        // code
+        return serverMemoryCache.varName;
+    },
+    set: function(varName, input) {
+        // code
+        serverMemoryCache.varName = input;
+    }
+};
 
 
 
@@ -90,15 +106,14 @@ router.get('/:resource', (req, res, next) => {
 
 
 
-
     // CACHING BITS HERE
 
     // Load global variable for cachingTable into an Array
     const dataCachingTableVariable = require('../utils/dataCachingTableMemory');
     const dataCachingTableArray = dataCachingTableVariable.get();
-
+    
     // Assume worse case
-    let isFresh = false;
+    isFresh = false;
 
     // TODO - should be easier with TS
     // Single instance (row) in cachingTable for current resource
@@ -115,18 +130,9 @@ router.get('/:resource', (req, res, next) => {
 
             // Extract info into variables
             serverDataCachingTable = dataCachingTableArray[i];
-            let serverCacheableMemory = serverDataCachingTable.serverCacheableMemory;
-            let serverVariableName = serverDataCachingTable.serverVariableName;
+            serverCacheableMemory = serverDataCachingTable.serverCacheableMemory;
+            serverVariableName = serverDataCachingTable.serverVariableName;
             
-            inCachingTable = true;
-            if (dashboards.length > 0) {
-                console.log('D from last time:', dashboards, serverCacheableMemory, serverVariableName)
-            };
-            if (dashboards.length == 0) {
-                dashboards = [ {id:1, name: "name1"}, {id:2, name: "name2"}, ]
-                console.log('D initialize:', dashboards, serverCacheableMemory, serverVariableName)
-            };
-
             // The table is cached on the server
             if (serverCacheableMemory) {
 
@@ -140,21 +146,16 @@ router.get('/:resource', (req, res, next) => {
                 } else {
                     isFresh = false;
                 };
-                console.log('xx freshness', isFresh)
 
-
-                // Use server cache variable or table if fresh
-                if (!isFresh) {
+                // Use server cache variable or table if fresh, AND something loaded in cache
+                if (!isFresh  &&  serverMemoryCache.get(serverVariableName) != null) {
                     if ( (serverVariableName != null)
                             &&
                             (serverVariableName.length != 0)
                         ) {
-                        console.warn('xx return from VAR ****************');
-// var type = 'article';
-// this[type+'_count'] = 1000;  // in a function we use "this";
-// alert(this.article_count);
-                        console.warn('xx VAR dashboards', dashboards, eval(serverVariableName) )
+                            debugDev('  return data from cache');
 
+                        // TODO - decide whether to fill the fields in the metaData
                         const fields = [];
                         return res.json({
                             "statusCode": "success",
@@ -172,32 +173,16 @@ router.get('/:resource', (req, res, next) => {
                         // return;
                     };
                 };
-
-
-            }
-
-
+            };
 
         };
     };
-
-    // let cachingIndex = dataCachingTable.findIndex(dc => dc.key == 'dashboards')
-    // console.log('xx index', cachingIndex)
-    if (inCachingTable) {
-        debugDev('This resource uses caching');
-    } else {
-        debugDev('This resource does NOT use caching');
-    };
-    // console.log('xx RESULT', localDataCachingTable)
-
-
-
 
     // Try, in case model file does not exist
     try {
         // Get the model dynamically (take note of file spelling = resource)
         const canvasSchema = '../model/' + resource;
-        debugDev('Using Model ', canvasSchema)
+        debugDev('Using Model ', canvasSchema, serverCacheableMemory?  'with caching'  :  'WITHOUT cache')
         const canvasModel = require(canvasSchema);
 
 
@@ -206,6 +191,16 @@ router.get('/:resource', (req, res, next) => {
 
             // Extract metodata from the Schema, using one document
             // const oneDoc = canvasModel.findOne();
+
+            // Load Cache
+            if (serverCacheableMemory  &&  !isFresh) {
+                serverMemoryCache.set(serverVariableName, docs)
+                console.log('xx cache loaded', serverVariableName, serverMemoryCache.get(serverVariableName).length )
+            };
+
+
+
+
 
             // Empty Array of fields
             var fields = [];
