@@ -13,9 +13,11 @@ const debugDev = require('debug')('app:dev');
 
 // CACHING BITS HERE
 // Variables
-let serverCacheableMemory;  // True if the current resource is cached
-var serverVariableName;     // Variable name for the current resource - cahced here
-var isFresh;                // True if the cache for the current resource is fresh (not expired)
+const dataCachingTableVariable = require('../utils/dataCachingTableMemory');  // Var loaded at startup
+let serverCacheableMemory;          // True if the current resource is cached
+var serverVariableName;             // Variable name for the current resource - cahced here
+var isFresh;                        // True if the cache for the current resource is fresh (not expired)
+var dataCachingTableArray = null;   // Local copy of dataCachingTable
 
 // Variable to store the cached value.  Startup values are null.
 var serverMemoryCache = {
@@ -96,8 +98,13 @@ router.get('/:resource', (req, res, next) => {
     debugDev('## GET Starting with resource:', resource, ', query:', query);
 
     // Load global variable for cachingTable into an Array
-    const dataCachingTableVariable = require('../utils/dataCachingTableMemory');
-    const dataCachingTableArray = dataCachingTableVariable.get();
+    if (dataCachingTableArray == null) {
+        debugDev('Initialise dataCachingTableArray ...')
+        dataCachingTableArray = dataCachingTableVariable.get();
+        for (var i = 0; i < dataCachingTableArray.length; i++) {
+
+        };
+    };
     
     // Assume worse case
     isFresh = false;
