@@ -126,7 +126,6 @@ router.get('/:resource', (req, res, next) => {
         for (var i = 0; i < dataCachingTableArray.length; i++) {
             dataCachingTableArray[i].serverExpiryDateTime = tn;
         };
-        console.log('xx dC @ Strt', dataCachingTableArray)
     };
     
     // Assume worse case
@@ -163,7 +162,7 @@ router.get('/:resource', (req, res, next) => {
                 };
 
                 // Use server cache variable or table if fresh, AND something loaded in cache
-                if (!isFresh  &&  serverMemoryCache.get(serverVariableName) != null) {
+                if (isFresh  &&  serverMemoryCache.get(serverVariableName) != null) {
                     if ( (serverVariableName != null)
                             &&
                             (serverVariableName.length != 0)
