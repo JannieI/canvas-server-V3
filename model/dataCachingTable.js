@@ -12,12 +12,14 @@ const DataCachingTableSchema = new Schema({
     serverThresholdLines: Number,           // Max Nr lines that may be cached on Server
     serverLastUpdatedDateTime: Date,        // When cached last refreshed on server
     serverExpiryDateTime: Date,             // When cache expires on server
+    serverLifeSpan: Number,                 // Period in seconds before Server cache must be refreshed
     serverLastWSsequenceNr: Number,         // Last WSockets message nr sent for this
     serverVariableName: String,             // VariableName for the data on the server
     localCacheableMemory: Boolean,          // True if cached locally, ie IndexedDB in RAM
     localCacheableDisc: Boolean,            // True if cached locally, ie IndexedDB on Disc (DB)
     localThresholdLines: Number,            // Max Nr lines that may be cached on Workstation
     localLastUpdatedDateTime: Date,         // When local cache last refreshed
+    localLifeSpan: Number,                  // Period in seconds before Workstation cache must be refreshed
     localExpiryDateTime: Date,              // When local cache expries
     localVariableName: String,              // Optional name of memory variable
     localCurrentVariableName: String,       // Optional name of memory current variable

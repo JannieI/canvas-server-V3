@@ -97,11 +97,22 @@ router.get('/:resource', (req, res, next) => {
     debugDev('## --------------------------');
     debugDev('## GET Starting with resource:', resource, ', query:', query);
 
-    // Load global variable for cachingTable into an Array
+    // Load global variable for cachingTable into an Array ONCE
     if (dataCachingTableArray == null) {
         debugDev('Initialise dataCachingTableArray ...')
         dataCachingTableArray = dataCachingTableVariable.get();
+
+        // Reset the serverExpiryDateTime: 
+        // - on the first request, load data from the DB
+        // - subsequently, refresh it after expiry period 
+        let dn = new Date();
+        let tn = dn.getTime()
         for (var i = 0; i < dataCachingTableArray.length; i++) {
+            dataCachingTableArray[i].serverExpiryDateTime = tn;
+
+            var dt = new Date("December 30, 2017 11:20:25");
+            dt.setSeconds( dt.getSeconds() + 10 );
+
 
         };
     };
