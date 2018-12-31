@@ -13,28 +13,22 @@ const debugDev = require('debug')('app:dev');
 
 // CACHING BITS HERE
 // Variables
-let dashboards = []; // [ {id:1, name: "name1"}, {id:2, name: "name2"}, ]
-let serverCacheableMemory
-var serverVariableName
-var isFresh
+let serverCacheableMemory;  // True if the current resource is cached
+var serverVariableName;     // Variable name for the current resource - cahced here
+var isFresh;                // True if the cache for the current resource is fresh (not expired)
 
 // Variable to store the cached value.  Startup values are null.
 var serverMemoryCache = {
-    dashboards: null,
+    dashboards: null,       // Corresponds to serverVariableName in dataCachingTable
     datasources: null,
    
     get: function(varName) {
-        // code
         return serverMemoryCache.varName;
     },
     set: function(varName, input) {
-        // code
         serverMemoryCache.varName = input;
     }
 };
-
-
-
 
 // Validate route
 function validateRoute(route) {
@@ -72,7 +66,7 @@ router.use('/:resource', (req, res, next) => {
         return;
     };
     
-    // Validate
+    // Validate resource (route)
     const resource = req.params.resource.substring(1);
     const error = validateRoute(resource);
 
@@ -101,13 +95,6 @@ router.get('/:resource', (req, res, next) => {
     debugDev('## --------------------------');
     debugDev('## GET Starting with resource:', resource, ', query:', query);
 
-
-
-
-
-
-    // CACHING BITS HERE
-
     // Load global variable for cachingTable into an Array
     const dataCachingTableVariable = require('../utils/dataCachingTableMemory');
     const dataCachingTableArray = dataCachingTableVariable.get();
@@ -118,8 +105,6 @@ router.get('/:resource', (req, res, next) => {
     // TODO - should be easier with TS
     // Single instance (row) in cachingTable for current resource
     let serverDataCachingTable = null;
-    inCachingTable = false;
-    // debugDev('The localDataCachingTable.length: ', localDataCachingTableArray.length, req.params);
 
     // TODO - use findIndex in TS
     // Loop on cachingTableArray
@@ -153,18 +138,22 @@ router.get('/:resource', (req, res, next) => {
                             &&
                             (serverVariableName.length != 0)
                         ) {
-                            debugDev('  return data from cache');
+                            debugDev(
+                                '  Return', 
+                                serverMemoryCache.get(serverVariableName).length, 
+                                'records from cache!'
+                            );
 
                         // TODO - decide whether to fill the fields in the metaData
                         const fields = [];
                         return res.json({
                             "statusCode": "success",
                             "message" : "Retrieved data for resource: " + resource,
-                            "data": eval(serverVariableName),
+                            "data": serverMemoryCache.get(serverVariableName),
                             "metaData": {
                                 "table": {
                                     "tableName": serverVariableName, //oneDoc.mongooseCollection.collectionName,
-                                    "nrRecordsReturned":eval(serverVariableName).length
+                                    "nrRecordsReturned":serverMemoryCache.get(serverVariableName).length
                                 },
                                 "fields": fields
                             },
@@ -189,22 +178,25 @@ router.get('/:resource', (req, res, next) => {
         // Find the data (using the standard query JSON object)
         canvasModel.find( query, (err, docs) => {
 
+            // KEEP for later !
             // Extract metodata from the Schema, using one document
             // const oneDoc = canvasModel.findOne();
 
-            // Load Cache
+            // Load Cache from data in DB
             if (serverCacheableMemory  &&  !isFresh) {
                 serverMemoryCache.set(serverVariableName, docs)
-                console.log('xx cache loaded', serverVariableName, serverMemoryCache.get(serverVariableName).length )
+                debugDev(
+                    'Loaded', 
+                    serverMemoryCache.get(serverVariableName).length, 
+                    'records into cache for', 
+                    serverVariableName
+                );
             };
-
-
-
-
 
             // Empty Array of fields
             var fields = [];
 
+            // KEEP for later !
             // TODO - make this work for all data
             // Loop on metatdata
             // for (var key in oneDoc.schema.obj) {
