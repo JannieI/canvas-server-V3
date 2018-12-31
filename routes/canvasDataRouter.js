@@ -7,12 +7,7 @@ const router = express.Router();
 const config = require('config');
 const debugDev = require('debug')('app:dev');
 
-
-
-
-
-// CACHING BITS HERE
-// Variables
+// Caching Variables
 const dataCachingTableVariable = require('../utils/dataCachingTableMemory');  // Var loaded at startup
 let serverCacheableMemory;          // True if the current resource is cached
 var serverVariableName;             // Variable name for the current resource - cahced here
@@ -52,6 +47,27 @@ function validateRoute(route) {
 
     // Return
     return error;
+}
+
+// See: https://stackoverflow.com/questions/1197928/how-to-add-30-minutes-to-a-javascript-date-object
+// * @param interval  One of: year, quarter, month, week, day, hour, minute, second
+// * @param units  Number of units of the given interval to add.
+// */
+function dateAdd(date, interval, units) {
+ var ret = new Date(date); //don't change original date
+ var checkRollover = function() { if(ret.getDate() != date.getDate()) ret.setDate(0);};
+ switch(interval.toLowerCase()) {
+   case 'year'   :  ret.setFullYear(ret.getFullYear() + units); checkRollover();  break;
+   case 'quarter':  ret.setMonth(ret.getMonth() + 3*units); checkRollover();  break;
+   case 'month'  :  ret.setMonth(ret.getMonth() + units); checkRollover();  break;
+   case 'week'   :  ret.setDate(ret.getDate() + 7*units);  break;
+   case 'day'    :  ret.setDate(ret.getDate() + units);  break;
+   case 'hour'   :  ret.setTime(ret.getTime() + units*3600000);  break;
+   case 'minute' :  ret.setTime(ret.getTime() + units*60000);  break;
+   case 'second' :  ret.setTime(ret.getTime() + units*1000);  break;
+   default       :  ret = undefined;  break;
+ }
+ return ret;
 }
 
 // Runs for ALL requests
@@ -208,15 +224,12 @@ router.get('/:resource', (req, res, next) => {
 
                 for (var i = 0; i < dataCachingTableArray.length; i++) {
 
-                    // Find the single instance (row) for current resource: it uses caching
+                    // Find the row and set the serverExpiryDateTime
                     if (dataCachingTableArray[i].key == resource) {
-                        dataCachingTableArray[i].serverExpiryDateTime = new Date();
-                        dataCachingTableArray[i].serverExpiryDateTime.setSeconds(
-                            dataCachingTableArray[i].serverExpiryDateTime.getSeconds() 
-                            + dataCachingTableArray[i].serverLifeSpan
-                        );
-                        console.log('xx new Exp Dt', dataCachingTableArray[i])
-                        };
+                        let dt = new Date();
+                        dataCachingTableArray[i].serverExpiryDateTime = dateAdd(dt, 'second', 86400);
+                    };
+                };
             };
 
             // Empty Array of fields
