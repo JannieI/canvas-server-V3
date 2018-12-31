@@ -15,11 +15,6 @@ const debugDev = require('debug')('app:dev');
 // Variables
 let dashboards = []; // [ {id:1, name: "name1"}, {id:2, name: "name2"}, ]
 
-// Assume worse case
-let isFresh = false;
-let localCacheableMemory = false;
-let localVariableName = null;
-
 
 
 
@@ -94,26 +89,39 @@ router.get('/:resource', (req, res, next) => {
 
 
     // CACHING BITS HERE
-    // Load global var caching table - to be used later
-    var dataCachingTable = require('../utils/dataCachingTableMemory');
-    const localDataCachingTableArray = dataCachingTable.get();
 
+    // Load global variable for cachingTable into an Array
+    const dataCachingTableVariable = require('../utils/dataCachingTableMemory');
+    const dataCachingTableArray = dataCachingTableVariable.get();
 
-    let localDataCachingTable = null;
+    // Assume worse case
+    let isFresh = false;
+
+    // TODO - should be easier with TS
+    // Single instance (row) in cachingTable for current resource
+    let serverDataCachingTable = null;
     inCachingTable = false;
     // debugDev('The localDataCachingTable.length: ', localDataCachingTableArray.length, req.params);
 
     // TODO - use findIndex in TS
-    for (var i = 0; i < localDataCachingTableArray.length; i++) {
-        if (localDataCachingTableArray[i].key == resource) {
-            localDataCachingTable = localDataCachingTableArray[i];
+    // Loop on cachingTableArray
+    for (var i = 0; i < dataCachingTableArray.length; i++) {
+
+        // Find the single instance (row) for current resource: it uses caching
+        if (dataCachingTableArray[i].key == resource) {
+
+            // Extract info into variables
+            serverDataCachingTable = dataCachingTableArray[i];
+            let serverCacheableMemory = serverDataCachingTable.serverCacheableMemory;
+            let serverVariableName = serverDataCachingTable.serverVariableName;
+            
             inCachingTable = true;
             if (dashboards.length > 0) {
                 console.log('D from last time:', dashboards)
             };
             if (dashboards.length == 0) {
                 dashboards = [ {id:1, name: "name1"}, {id:2, name: "name2"}, ]
-                console.log('D initialize:', dashboards)
+                console.log('D initialize:', dashboards, serverCacheableMemory, serverVariableName)
             };
         };
     };
