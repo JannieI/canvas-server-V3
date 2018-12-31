@@ -7,8 +7,23 @@ const router = express.Router();
 const config = require('config');
 const debugDev = require('debug')('app:dev');
 
+
+
+
+
+// CACHING BITS HERE
 // Variables
 let dashboards = []; // [ {id:1, name: "name1"}, {id:2, name: "name2"}, ]
+
+// Assume worse case
+let isFresh = false;
+let localCacheableMemory = false;
+let localVariableName = null;
+
+
+
+
+
 
 // Validate route
 function validateRoute(route) {
@@ -53,15 +68,44 @@ router.use('/:resource', (req, res, next) => {
 // GET route
 router.get('/:resource', (req, res, next) => {
 
+    // Extract: query, route (params without the :) and validate
+    const resource = req.params.resource.substring(1);
+    const query = req.query;
+    debugDev('canvasDataRouter.GET for resource:', resource, ', query:', query);
+    debugDev('');
+
+    // Validate
+    const error = validateRoute(resource);
+
+    if (error) {
+        return res.status(400).json({
+            "statusCode": "error",
+            "message" : error,
+            "data": null,
+            "error": error
+        });
+
+        return;
+    };
+
+
+
+
+
+
+    // CACHING BITS HERE
     // Load global var caching table - to be used later
     var dataCachingTable = require('../utils/dataCachingTableMemory');
     const localDataCachingTableArray = dataCachingTable.get();
+
+
     let localDataCachingTable = null;
     inCachingTable = false;
     // debugDev('The localDataCachingTable.length: ', localDataCachingTableArray.length, req.params);
 
+    // TODO - use findIndex in TS
     for (var i = 0; i < localDataCachingTableArray.length; i++) {
-        if (localDataCachingTableArray[i].key == 'dashboards') {
+        if (localDataCachingTableArray[i].key == resource) {
             localDataCachingTable = localDataCachingTableArray[i];
             inCachingTable = true;
             if (dashboards.length > 0) {
@@ -84,25 +128,7 @@ router.get('/:resource', (req, res, next) => {
     // console.log('xx RESULT', localDataCachingTable)
 
 
-    // Extract: query, route (params without the :)
-    const resource = req.params.resource.substring(1);
-    const query = req.query;
-    debugDev('canvasDataRouter.GET for resource:', resource, ', query:', query);
-    debugDev('');
 
-    // Validate
-    const error = validateRoute(resource);
-
-    if (error) {
-        return res.status(400).json({
-            "statusCode": "error",
-            "message" : error,
-            "data": null,
-            "error": error
-        });
-
-        return;
-    };
 
     // Try, in case model file does not exist
     try {
