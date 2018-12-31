@@ -81,8 +81,9 @@ router.get('/:resource', (req, res, next) => {
     // Extract: query, route (params without the :) and validate
     const resource = req.params.resource.substring(1);
     const query = req.query;
-    debugDev('canvasDataRouter.GET for resource:', resource, ', query:', query);
-    debugDev('');
+
+    debugDev('## --------------------------');
+    debugDev('## GET Starting with resource:', resource, ', query:', query);
 
 
 
@@ -119,12 +120,31 @@ router.get('/:resource', (req, res, next) => {
             
             inCachingTable = true;
             if (dashboards.length > 0) {
-                console.log('D from last time:', dashboards)
+                console.log('D from last time:', dashboards, serverCacheableMemory, serverVariableName)
             };
             if (dashboards.length == 0) {
                 dashboards = [ {id:1, name: "name1"}, {id:2, name: "name2"}, ]
                 console.log('D initialize:', dashboards, serverCacheableMemory, serverVariableName)
             };
+
+            // The table is cached on the server
+            if (serverCacheableMemory) {
+
+                // Check if fresh (not expired)
+                let dn = new Date();
+                let tn = dn.getTime()
+                let dl = new Date(serverDataCachingTable.serverExpiryDateTime);
+                let tl = dl.getTime();
+                if (tl >= tn) {
+                    isFresh = true;
+                } else {
+                    isFresh = false;
+                };
+                console.log('xx freshness', isFresh)
+            }
+
+
+
         };
     };
 
