@@ -256,8 +256,13 @@ router.get('/:resource', (req, res, next) => {
                             serverVariableName
                         );
                                 
+                        // TODO - fix hardcode
                         let dt = new Date();
-                        serverDataCachingTable.serverExpiryDateTime = dateAdd(dt, 'second', 86400);
+                        let seconds = 86400;
+                        if (serverDataCachingTable.localLifeSpan) {
+                            seconds = serverDataCachingTable.localLifeSpan;
+                        };
+                    serverDataCachingTable.serverExpiryDateTime = dateAdd(dt, 'second', 86400);
                     };
                 };
             };
