@@ -56,7 +56,7 @@ GET {{host}}/auth/local/profile?secret_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ
 
 
 // GET Canvas Data (:canvasdata works)
-GET {{host}}/canvasdata/:datasource
+GET {{host}}/canvasdata/:dashboards
     
 
 ###

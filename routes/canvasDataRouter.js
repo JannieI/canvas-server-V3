@@ -159,12 +159,14 @@ router.get('/:resource', (req, res, next) => {
     // Loop on cachingTableArray
     for (var i = 0; i < dataCachingTableArray.length; i++) {
 
+        serverDataCachingTable = dataCachingTableArray[i];
+
         // Find the single instance (row) for current resource.  
         // If the key is there, it uses caching
-        if (dataCachingTableArray[i].key == resource) {
+        if (serverDataCachingTable.key == resource) {
 
+            console.log('Inside IF')
             // Extract info into local variables
-            serverDataCachingTable = dataCachingTableArray[i];
             serverCacheableMemory = serverDataCachingTable.serverCacheableMemory;
             serverVariableName = serverDataCachingTable.serverVariableName;
 
