@@ -2,21 +2,20 @@
 
 // Imports
 const express = require('express');
-const passport = require('passport');
 const router = express.Router();
 const config = require('config');
 const debugDev = require('debug')('app:dev');
 
 // Caching Variables
 const dataCachingTableVariable = require('../utils/dataCachingTableMemory');  // Var loaded at startup
-let serverCacheableMemory;          // True if the current resource is cached
-var serverVariableName;             // Variable name for the current resource - cahced here
-var isFresh;                        // True if the cache for the current resource is fresh (not expired)
-var dataCachingTableArray = null;   // Local copy of dataCachingTable
+var dataCachingTableArray = null;   // Local copy of dataCachingTable - STRUCTURE
+var serverCacheableMemory;          // True if the current resource is cached - CURRENT VAR
+var serverVariableName;             // Name in serverMemoryCache to store data for the current resource: cahced here - CURRENT VAR
+var isFresh;                        // True if the cache for the current resource is fresh (not expired) - CURRENT VAR
 
-// Variable to store the cached value.  Startup values are null.
+// Variable to store the cached DATA.  Startup values are null.
 var serverMemoryCache = {
-    dashboards: null,       // Corresponds to serverVariableName in dataCachingTable
+    dashboards: null,       // Corresponds to serverVariableName in dataCachingTable, holds DATA
     datasources: null,
 
     get: function(varName) {
@@ -49,6 +48,7 @@ function validateRoute(route) {
     return error;
 }
 
+// Dates in JS is Difficult.Very !!
 // See: https://stackoverflow.com/questions/1197928/how-to-add-30-minutes-to-a-javascript-date-object
 // * @param interval  One of: year, quarter, month, week, day, hour, minute, second
 // * @param units  Number of units of the given interval to add.
@@ -70,18 +70,23 @@ function dateAdd(date, interval, units) {
     return ret;
 }
 
-// Initial load of dataCaching table
+// TODO - this whole thing is much easier in TS methinks
+// Initial load of dataCaching table STRUCTURE from global variable
 function initialLoadOfCachingTable () {
     debugDev('Initialise dataCachingTableArray ...')
     dataCachingTableArray = dataCachingTableVariable.get();
 
-    // Reset the serverExpiryDateTime:
-    // - on the first request, load data from the DB
-    // - subsequently, refresh it after expiry period
+    // Reset the serverExpiryDateTime to now.  This is used to determine if the DATA is fresh,
+    // ie should be reloaded from the DB after the expiry data
     let dn = new Date();
     let tn = dn.getTime()
     for (var i = 0; i < dataCachingTableArray.length; i++) {
         dataCachingTableArray[i].serverExpiryDateTime = tn;
+    };
+
+    // Safeguard
+    if (dataCachingTableArray == null) {
+        dataCachingTableArray = [];
     };
 }
 
@@ -128,12 +133,11 @@ router.get('/:resource', (req, res, next) => {
     debugDev('## --------------------------');
     debugDev('## GET Starting with resource:', resource, ', query:', query);
 
-    // Load global variable for cachingTable into an Array ONCE
+    // Load global variable for cachingTable STRUCTURE into an Array ONCE
     if (dataCachingTableArray == null) {
         initialLoadOfCachingTable();
     };
 
-    // TODO - should be easier with TS
     // Single instance (row) in cachingTable for current resource
     let serverDataCachingTable = null;
 
