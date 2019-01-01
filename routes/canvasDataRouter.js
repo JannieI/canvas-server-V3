@@ -6,6 +6,12 @@ const router = express.Router();
 const config = require('config');
 const debugDev = require('debug')('app:dev');
 
+// Note: for now, cache has NO DATA on startup, and is only filled the first time data is read from
+//       the DB.  Subsequently, the data is provided from cache until it is not fresh any longer (past
+//       the expiry data), at which point it is read from the DB again.
+//       When the data is updated (PUT or POST), the cache is updated in sync 
+//       TODO - consider if we should not read the whole cache from DB after an update?
+
 // Caching Variables
 const dataCachingTableVariable = require('../utils/dataCachingTableMemory');  // Var loaded at startup
 var dataCachingTableArray = null;   // Local copy of dataCachingTable - STRUCTURE
@@ -145,15 +151,16 @@ router.get('/:resource', (req, res, next) => {
     // Loop on cachingTableArray
     for (var i = 0; i < dataCachingTableArray.length; i++) {
 
-        // Find the single instance (row) for current resource: it uses caching
+        // Find the single instance (row) for current resource.  
+        // If the key is there, it uses caching
         if (dataCachingTableArray[i].key == resource) {
 
-            // Extract info into variables
+            // Extract info into local variables
             serverDataCachingTable = dataCachingTableArray[i];
             serverCacheableMemory = serverDataCachingTable.serverCacheableMemory;
             serverVariableName = serverDataCachingTable.serverVariableName;
 
-            // The table is cached on the server
+            // The resource is cached on the server
             if (serverCacheableMemory) {
 
                 // Check if fresh (not expired)
@@ -167,7 +174,7 @@ router.get('/:resource', (req, res, next) => {
                     isFresh = false;
                 };
 
-                // Use server cache variable or table if fresh, AND something loaded in cache
+                // If cache is fresh, and DATA already loaded in cache
                 if (isFresh  &&  serverMemoryCache.get(serverVariableName) != null) {
                     if ( (serverVariableName != null)
                             &&
