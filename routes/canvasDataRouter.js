@@ -32,10 +32,21 @@ var serverMemoryCache = {
     datasources: null,
 
     get: function(varName) {
-        return serverMemoryCache.varName;
+        if (varName == 'dashboards') {
+            return serverMemoryCache.dashboards;
+        };
+        if (varName == 'datasources') {
+            return serverMemoryCache.datasources;
+        };
+        return [];
     },
     set: function(varName, input) {
-        serverMemoryCache.varName = input;
+        if (varName == 'dashboards') {
+            serverMemoryCache.dashboards = input;
+        };
+        if (varName == 'datasources') {
+            serverMemoryCache.datasources = input;
+        };
     }
 };
 
@@ -165,7 +176,6 @@ router.get('/:resource', (req, res, next) => {
         // If the key is there, it uses caching
         if (serverDataCachingTable.key == resource) {
 
-            console.log('Inside IF')
             // Extract info into local variables
             serverCacheableMemory = serverDataCachingTable.serverCacheableMemory;
             serverVariableName = serverDataCachingTable.serverVariableName;
@@ -236,9 +246,9 @@ router.get('/:resource', (req, res, next) => {
                 if (serverDataCachingTable.key == resource) {
                     serverCacheableMemory = serverDataCachingTable.serverCacheableMemory;
                     serverVariableName = serverDataCachingTable.serverVariableName;
-        
                     if (serverCacheableMemory  &&  !isFresh  &&  serverVariableName != null) {
-                        serverMemoryCache.set(serverVariableName, docs)
+                        serverMemoryCache.set(serverVariableName, docs);
+
                         debugDev(
                             'Loaded',
                             serverMemoryCache.get(serverVariableName).length,

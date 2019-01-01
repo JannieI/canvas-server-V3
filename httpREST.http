@@ -60,6 +60,10 @@ GET {{host}}/canvasdata/:dashboards
     
 
 ###
+GET {{host}}/canvasdata/:datasources
+    
+
+###
 
 
 // POST Canvas Data (:canvasdata works)
