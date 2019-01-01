@@ -54,7 +54,7 @@ function validateRoute(route) {
     const validRoutes = config.get('validRoutes')
     let routesIndex = validRoutes.indexOf(route);
     if (routesIndex < 0) {
-        error = 'Route not in our Configuration file';
+        error = 'Route ' + route + ' not in our Configuration file';
     };
 
     // Return
