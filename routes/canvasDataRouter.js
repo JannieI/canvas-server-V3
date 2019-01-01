@@ -12,6 +12,13 @@ const debugDev = require('debug')('app:dev');
 //       When the data is updated (PUT or POST), the cache is updated in sync 
 //       TODO - consider if we should not read the whole cache from DB after an update?
 
+
+// NB to Ivan
+// BIG TODO note - I havent changed the cache with updates - it is messy in JS and we will rewrite 
+//                 in any case in TS, probably improving it as well.
+//
+
+
 // Caching Variables
 const dataCachingTableVariable = require('../utils/dataCachingTableMemory');  // Var loaded at startup
 var dataCachingTableArray = null;   // Local copy of dataCachingTable - STRUCTURE
@@ -160,15 +167,15 @@ router.get('/:resource', (req, res, next) => {
             serverCacheableMemory = serverDataCachingTable.serverCacheableMemory;
             serverVariableName = serverDataCachingTable.serverVariableName;
 
-            // The resource is cached on the server
-            if (serverCacheableMemory) {
+            // The resource is cached on the server: it has a valid server variable, and is marked True
+            if (serverCacheableMemory  &&  serverVariableName != null) {
 
-                // Check if fresh (not expired)
+                // Check if fresh (not expired).  The first time it will be expired by design.
                 let dn = new Date();
                 let tn = dn.getTime()
                 let dl = new Date(serverDataCachingTable.serverExpiryDateTime);
                 let tl = dl.getTime();
-                if (tl >= tn) {
+                if (tl > tn) {
                     isFresh = true;
                 } else {
                     isFresh = false;
@@ -176,36 +183,29 @@ router.get('/:resource', (req, res, next) => {
 
                 // If cache is fresh, and DATA already loaded in cache
                 if (isFresh  &&  serverMemoryCache.get(serverVariableName) != null) {
-                    if ( (serverVariableName != null)
-                            &&
-                            (serverVariableName.length != 0)
-                        ) {
-                            debugDev(
-                                '  Return',
-                                serverMemoryCache.get(serverVariableName).length,
-                                'records from cache!'
-                            );
+                    debugDev(
+                        '  Returned',
+                        serverMemoryCache.get(serverVariableName).length,
+                        'records from cache!'
+                    );
 
-                        // TODO - decide whether to fill the fields in the metaData
-                        const fields = [];
-                        return res.json({
-                            "statusCode": "success",
-                            "message" : "Retrieved data for resource: " + resource,
-                            "data": serverMemoryCache.get(serverVariableName),
-                            "metaData": {
-                                "table": {
-                                    "tableName": serverVariableName, //oneDoc.mongooseCollection.collectionName,
-                                    "nrRecordsReturned":serverMemoryCache.get(serverVariableName).length
-                                },
-                                "fields": fields
+                    // TODO - decide whether to fill the fields in the metaData
+                    const fields = [];
+                    return res.json({
+                        "statusCode": "success",
+                        "message" : "Retrieved data for resource: " + resource,
+                        "data": serverMemoryCache.get(serverVariableName),
+                        "metaData": {
+                            "table": {
+                                "tableName": serverVariableName, //oneDoc.mongooseCollection.collectionName,
+                                "nrRecordsReturned":serverMemoryCache.get(serverVariableName).length
                             },
-                            "error": null
-                        });
-                        // return;
-                    };
+                            "fields": fields
+                        },
+                        "error": null
+                    });
                 };
             };
-
         };
     };
 
@@ -224,25 +224,43 @@ router.get('/:resource', (req, res, next) => {
             // Extract metodata from the Schema, using one document
             // const oneDoc = canvasModel.findOne();
 
-            // Load Cache from data in DB
-            if (serverCacheableMemory  &&  !isFresh) {
-                serverMemoryCache.set(serverVariableName, docs)
-                debugDev(
-                    'Loaded',
-                    serverMemoryCache.get(serverVariableName).length,
-                    'records into cache for',
-                    serverVariableName
-                );
+            // Load DATA into Cache if this resource is cached and not fresh.  Then set the expiryDateTime
+            for (var i = 0; i < dataCachingTableArray.length; i++) {
 
-                for (var i = 0; i < dataCachingTableArray.length; i++) {
+                serverDataCachingTable = dataCachingTableArray[i];
 
-                    // Find the row and set the serverExpiryDateTime
-                    if (dataCachingTableArray[i].key == resource) {
+                // Find the row and set the serverExpiryDateTime
+                if (serverDataCachingTable.key == resource) {
+                    serverCacheableMemory = serverDataCachingTable.serverCacheableMemory;
+                    serverVariableName = serverDataCachingTable.serverVariableName;
+        
+                    if (serverCacheableMemory  &&  !isFresh  &&  serverVariableName != null) {
+                        serverMemoryCache.set(serverVariableName, docs)
+                        debugDev(
+                            'Loaded',
+                            serverMemoryCache.get(serverVariableName).length,
+                            'records into cache for',
+                            serverVariableName
+                        );
+                                
                         let dt = new Date();
-                        dataCachingTableArray[i].serverExpiryDateTime = dateAdd(dt, 'second', 86400);
+                        serverDataCachingTable.serverExpiryDateTime = dateAdd(dt, 'second', 86400);
                     };
                 };
             };
+
+
+            // for (var i = 0; i < dataCachingTableArray.length; i++) {
+            // if (dataCachingTableArray[i].key == resource) {
+
+            //     // Extract info into local variables
+            //     serverDataCachingTable = dataCachingTableArray[i];
+            //     serverCacheableMemory = serverDataCachingTable.serverCacheableMemory;
+            //     serverVariableName = serverDataCachingTable.serverVariableName;
+    
+            //     // The resource is cached on the server: it has a valid server variable, and is marked True
+            //     if (serverCacheableMemory  &&  serverVariableName != null) {
+    
 
             // Empty Array of fields
             var fields = [];
