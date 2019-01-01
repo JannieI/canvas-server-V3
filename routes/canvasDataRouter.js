@@ -54,7 +54,8 @@ function validateRoute(route) {
     const validRoutes = config.get('validRoutes')
     let routesIndex = validRoutes.indexOf(route);
     if (routesIndex < 0) {
-        error = 'Route ' + route + ' not in our Configuration file';
+        let possibleMatches = validRoutes.filter(r => r.indexOf(route) >= 0).toString();
+        error = 'Route ' + route + ' not in our Configuration file.  Did you mean: ' + possibleMatches;
     };
 
     // Return
