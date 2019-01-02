@@ -1,4 +1,5 @@
 {
+    "morgan": "morgan",
     "mongo": {
         "password": "MONGO_PASSWORD"
     }

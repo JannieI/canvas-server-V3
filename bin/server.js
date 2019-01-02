@@ -3,7 +3,7 @@ var app = require('../app');    // This is where all the routing happens
 var debug = require('debug')('canvas-server:server');
 var http = require('http');
 const socketio = require('socket.io');
-const debugWs = require('debug')('app:Ws');
+const debugWs = require('debug')('app:ws');
 
 // Get port from environment, else use default
 const port = typeof process.env.SERVER_PORT == 'number'?  process.env.SERVER_PORT  :  8000;
