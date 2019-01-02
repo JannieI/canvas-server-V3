@@ -2,12 +2,28 @@
 var app = require('../app');    // This is where all the routing happens
 var debug = require('debug')('canvas-server:server');
 var http = require('http');
+const socketio = require('socket.io');
+const debugWs = require('debug')('app:Ws');
 
 // Get port from environment, else use default
 const port = typeof process.env.SERVER_PORT == 'number'?  process.env.SERVER_PORT  :  8000;
 
-// Create HTTP server.
+// Create HTTP server
 const server = http.createServer(app);
+
+
+// Socket.io server
+const io = socketio(server);
+
+io.on('connect', (socket, req) => {
+    socket.emit('welcome', 'Welcome to web socket server');
+    socket.on('message', (msg) => {
+        debugWs(msg);
+    });
+});
+
+
+
 
 // Listen on provided port, on all network interfaces.
 server.listen(port);

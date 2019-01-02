@@ -260,7 +260,7 @@ router.get('/:resource', (req, res, next) => {
                         let dt = new Date();
                         let seconds = 86400;
                         if (serverDataCachingTable.localLifeSpan) {
-                            seconds = serverDataCachingTable.localLifeSpan;
+                            seconds = +serverDataCachingTable.localLifeSpan;
                         };
                     serverDataCachingTable.serverExpiryDateTime = dateAdd(dt, 'second', 86400);
                     };
