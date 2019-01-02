@@ -52,7 +52,8 @@ io.on('connect', (socket, req) => {
     // Join the Canvas room.  All clients belong to this room, but with socket.to(room).emit(), 
     // the message is send to all clients, except this socket (sender).  Makes it easier since
     // the client does not have to cater for it receiving its own messages
-    this.socket.join('Canvas');
+    socket.join('Canvas');
+    socket.to('Canvas').emit('joined', 'Client has joined Canvas room');
 
     // ,on registers a new handler for the given event name.  The callback will get whatever data 
     // was sent over by the client, ie msg below.
