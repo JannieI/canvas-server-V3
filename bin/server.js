@@ -1,9 +1,10 @@
 // Imports
-var app = require('../app');    // This is where all the routing happens
+var app = require('../app');                    // This is where all the routing happens
 var debug = require('debug')('canvas-server:server');
 var http = require('http');
-const socketio = require('socket.io');      // Socket Server
-const debugWs = require('debug')('app:ws');
+const socketio = require('socket.io');          // Socket Server
+const debugWs = require('debug')('app:ws');     
+const config = require('config');               // Configuration
 
 // Get port from environment, else use default
 const portFromConfig = +config.get('canvasServerPort');
@@ -172,9 +173,12 @@ function onListening() {
         // console.log('The localDataCachingTable: ', localDataCachingTable);
 
         // Log for user to see
-        const cacheMessage = docs.length >= 0?  '(with data caching on server)'  :  '(NO data caching on server)';
+        const cacheMessage = docs.length >= 0?  'With data caching on server'  :  'NO data caching on server';
         console.log('');
-        console.log('Canvas Server started ' + cacheMessage + '. Listening on port ' + port);
+        console.log('Canvas Server started ...');
+        console.log('       Listening on port ' + port);
+        console.log('       ' + cacheMessage);
+        console.log('       morgan (HTTP method logging) is', config.get('morgan'))
         console.log('----------------------------------------------------------------')
         console.log('');
 

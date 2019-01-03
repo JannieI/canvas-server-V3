@@ -64,7 +64,6 @@ app.use(helmet());      // NB: Place this first thing
 
 // Logging: use export NODE_ENV to set app.get('env') in Node Terminal !
 if (app.get('env') == 'development') {
-    console.log('morgan is', config.get('morgan'))
     if (config.get('morgan') == "on") {
         debugDev('Morgan is on in the development env, export morgan=on')
         app.use(morgan('## :method :url :status :res[content-length] - :response-time ms ON [:date[iso]] FROM :remote-addr - :remote-user'));
