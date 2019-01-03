@@ -1,5 +1,6 @@
 {
     "appName": "Canvas - Production",
+    "canvasServerPort": "3000",
     "mongo": {
         "serverAddress": "https://localhost/"
     }

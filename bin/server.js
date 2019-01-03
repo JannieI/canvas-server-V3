@@ -6,7 +6,8 @@ const socketio = require('socket.io');      // Socket Server
 const debugWs = require('debug')('app:ws');
 
 // Get port from environment, else use default
-const port = typeof process.env.SERVER_PORT == 'number'?  process.env.SERVER_PORT  :  8000;
+let portFromConfig = config.get(';
+const port = typeof process.env.SERVER_PORT == 'number'?  process.env.SERVER_PORT  :  3000;
 
 // Create HTTP server
 const server = http.createServer(app);
@@ -84,7 +85,6 @@ io.on('connect', (socket, req) => {
             }
         )
     }, 9000);
-
 
     // Broadcast to all users
     setTimeout( () => {
