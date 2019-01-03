@@ -6,8 +6,8 @@ const socketio = require('socket.io');      // Socket Server
 const debugWs = require('debug')('app:ws');
 
 // Get port from environment, else use default
-let portFromConfig = config.get(';
-const port = typeof process.env.SERVER_PORT == 'number'?  process.env.SERVER_PORT  :  3000;
+const portFromConfig = +config.get('canvasServerPort');
+const port = typeof portFromConfig == 'number'?  portFromConfig  :  8000;
 
 // Create HTTP server
 const server = http.createServer(app);
