@@ -65,7 +65,7 @@ io.on('connect', (socket, req) => {
 
     // Response to Sender
     setTimeout( () => {
-        console.log('Response to Sender')
+        debugWs('Response to Sender')
         socket.emit('update',
             {
                 messageType: 'Update',
@@ -77,7 +77,7 @@ io.on('connect', (socket, req) => {
 
     // Response to others (excluding Sender)
     setTimeout( () => {
-        console.log(' Response to others (excluding Sender)')
+        debugWs(' Response to others (excluding Sender)')
         socket.to('Canvas').emit('update',
             {
                 messageType: 'Update',
@@ -89,7 +89,7 @@ io.on('connect', (socket, req) => {
 
     // Broadcast to all users
     setTimeout( () => {
-        console.log('Broadcast to all users')
+        debugWs('Broadcast to all users')
         io.emit('update', 'Please take a break, now')
     }, 10000);
 

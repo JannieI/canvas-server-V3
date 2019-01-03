@@ -7,23 +7,23 @@ const Schema = mongoose.Schema;
 const DataCachingTableSchema = new Schema({
     key: String,                            // Unique key
     objectID: Number,                       // Optional record ID, ie for Data
-    localCacheableMemory: Boolean,          // True if cached locally, ie IndexedDB in RAM
+    messageDateTime: Date,                  // DateTime message was sent
     localCacheableDisc: Boolean,            // True if cached locally, ie IndexedDB on Disc (DB)
-    localThresholdLines: Number,            // Max Nr lines that may be cached on Workstation
+    localCacheableMemory: Boolean,          // True if cached locally, ie IndexedDB in RAM
+    localCurrentVariableName: String,       // Optional name of memory current variable
+    localExpiryDateTime: Date,              // When local cache expries
     localLastUpdatedDateTime: Date,         // When local cache last refreshed
     localLifeSpan: Number,                  // Period in seconds before Workstation cache must be refreshed
-    localExpiryDateTime: Date,              // When local cache expries
-    localVariableName: String,              // Optional name of memory variable
-    localCurrentVariableName: String,       // Optional name of memory current variable
     localTableName: String,                 // Optional name of Table in IndexedDB
-    localLastWebSocketNumber: Number,       // Last WS number processed
-    serverCacheableMemory: Boolean,         // True if cached on server in RAM
+    localThresholdLines: Number,            // Max Nr lines that may be cached on Workstation
+    localVariableName: String,              // Optional name of memory variable
     serverCacheableDisc: Boolean,           // True if cached on server on Disc (DB)
-    serverThresholdLines: Number,           // Max Nr lines that may be cached on Server
-    serverLastUpdatedDateTime: Date,        // When cached last refreshed on server
+    serverCacheableMemory: Boolean,         // True if cached on server in RAM
     serverExpiryDateTime: Date,             // When cache expires on server
-    serverLifeSpan: Number,                 // Period in seconds before Server cache must be refreshed
+    serverLastUpdatedDateTime: Date,        // When cached last refreshed on server
     serverLastWSsequenceNr: Number,         // Last WSockets message nr sent for this
+    serverLifeSpan: Number,                 // Period in seconds before Server cache must be refreshed
+    serverThresholdLines: Number,           // Max Nr lines that may be cached on Server
     serverVariableName: String              // VariableName for the data on the server
 });
 
