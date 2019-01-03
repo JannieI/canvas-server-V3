@@ -15,19 +15,36 @@ const debugDev = require('debug')('app:dev');
 // TODO - this must be read from ENV
 const server = '127.0.0.1:27017';
 const database = 'Canvas';
+
+// Note from Mongoose docs/deprecations.html: Mongoose's findOneAndUpdate() long pre-dates the MongoDB 
+// driver's findOneAndUpdate() function, so it uses the MongoDB driver's findAndModify() function 
+// instead. You can opt in to using using the MongoDB driver's findOneAndUpdate() function using the 
+// useFindAndModify global option.
+
+// By default, Mongoose 5.x calls the MongoDB driver's ensureIndex() function. The MongoDB driver 
+// deprecated this function in favor of createIndex(). Set the useCreateIndex global option to opt in
+// to making Mongoose use createIndex() instead.
+
+// DeprecationWarning: collection.remove is deprecated. Use deleteOne, deleteMany, or bulkWrite instead.
+// To remove this deprecation warning, replace any usage of remove() with deleteMany(), unless you 
+// specify the single option to remove(). The single option limited remove() to deleting at most one 
+// document, so you should replace remove(filter, { single: true }) with deleteOne(filter).
 class MongoDatabase {
-  constructor() {
-    this._connect()
-  }
+    constructor() {
+        this._connect()
+    }
 _connect() {
-     mongoose.connect(`mongodb://${server}/${database}`, { useNewUrlParser: true, useCreateIndex: true })
-       .then(() => {
-        debugDev('Database connection successful');
-       })
-       .catch(err => {
-         console.error('Database connection error');
-       })
-  }
+    mongoose.connect(`mongodb://${server}/${database}`, { useNewUrlParser: true, useCreateIndex: true })
+        .then(() => {
+            mongoose.set('useFindAndModify', false);
+            mongoose.set('useCreateIndex', true);
+            debugDev('Database connection successful');
+        })
+        .catch(err => {
+            console.error('Database connection error');
+        })
+    }
+    
 }
 
 // Exports

@@ -21,16 +21,16 @@ const io = socketio(server);
 
 // Names spaces defines different endpoints or paths to group connections together.
 // It minimizes TCP connections (resources), and introduces separate communication
-// channels.  io.on creates the default (/) namespace.  Each namespace may optionally have a 
+// channels.  io.on creates the default (/) namespace.  Each namespace may optionally have a
 // number of rooms, which clients can join or leave.  io.emit references the default /
 // namespace. It is the same as io.of('/').emit   Similarly, socket. works on /
 // as io.on = io.of('/').on
 // Use const chat = io.of('/chat') to reference the /chat namespace.  And then
 // chat.emit('text') to send a message to all connected clients in the namespace.  Note that
-// namespace.emit does not support acknowlegements / callbacks.  The socket ID for / is the 
+// namespace.emit does not support acknowlegements / callbacks.  The socket ID for / is the
 // same as the /chat namespace, just with /chat# prefixed.
-// The server can communicate across different namespaces with io.of('/admin').emit('ns', text'), 
-// but the client socket is defined for // ONE namespace.  One has to define more than one 
+// The server can communicate across different namespaces with io.of('/admin').emit('ns', text'),
+// but the client socket is defined for // ONE namespace.  One has to define more than one
 // socket to listen to different name spaces on the client.
 io.on('connect', (socket, req) => {
 
@@ -49,17 +49,48 @@ io.on('connect', (socket, req) => {
     // socket.join(room, [callback]) - to join a room
     // socket.leave(room, [callback])
 
-    // Join the Canvas room.  All clients belong to this room, but with socket.to(room).emit(), 
+    // Join the Canvas room.  All clients belong to this room, but with socket.to(room).emit(),
     // the message is send to all clients, except this socket (sender).  Makes it easier since
     // the client does not have to cater for it receiving its own messages
     socket.join('Canvas');
-    socket.to('Canvas').emit('joined', 'Client has joined Canvas room');
+    socket.to('Canvas').emit('joined', 'Another Client has joined the Canvas room');
 
-    // ,on registers a new handler for the given event name.  The callback will get whatever data 
+    // ,on registers a new handler for the given event name.  The callback will get whatever data
     // was sent over by the client, ie msg below.
-    socket.on('message', (msg) => {
-        debugWs(msg);
+    socket.on('message', (messageFromClient) => {
+        debugWs(messageFromClient);
     });
+
+    // Response to Sender
+    setTimeout( () => {
+        console.log('Response to Sender')
+        socket.emit('update',
+            {
+                messageType: 'Update',
+                resource: 'dashboard' ,
+                data: {id: 1, name: 'updatedDashboard'}
+            }
+        )
+    }, 8000);
+
+    // Response to others (excluding Sender)
+    setTimeout( () => {
+        console.log(' Response to others (excluding Sender)')
+        socket.to('Canvas').emit('update',
+            {
+                messageType: 'Update',
+                resource: 'dashboard' ,
+                data: {id: 1, name: 'updatedDashboard'}
+            }
+        )
+    }, 9000);
+
+
+    // Broadcast to all users
+    setTimeout( () => {
+        console.log('Broadcast to all users')
+        io.emit('update', 'Please take a break, now')
+    }, 10000);
 
     // Standard event names
     socket.on('disconnecting', (reason) => {

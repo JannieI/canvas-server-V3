@@ -70,6 +70,10 @@ const mongoUrl = `mongodb://127.0.0.1:27017`;
 // const mongoUrl = `mongodb+srv://cluster0-wnczk.azure.mongodb.net/Canvas --username JannieI --password JannieI`
 
 let db;
+// Note from Mongoose docs/deprecations.html: The MongoDB Node.js driver rewrote the tool it uses to 
+// parse MongoDB connection strings. Because this is such a big change, they put the new connection 
+// string parser behind a flag. To turn on this option, pass the useNewUrlParser option to 
+// mongoose.connect() or mongoose.createConnection().
 mongoClient.connect(mongoUrl, { useNewUrlParser: true, useCreateIndex: true }, (error, databaseConn)=>{
 
     if (error != null) {
