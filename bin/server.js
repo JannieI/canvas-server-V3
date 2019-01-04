@@ -80,7 +80,7 @@ io.on('connect', (socket, req) => {
         debugWs('Response to Sender')
         socket.emit('canvasNS',
         {
-            sender: sender,
+            sender: 'sender',
             messageText: 'Another Client has joined the Canvas room',
             content: null,
             messageType: 'canvasSystem',
@@ -98,7 +98,7 @@ io.on('connect', (socket, req) => {
         debugWs(' Response to others (excluding Sender)')
         socket.to('canvasRoom').emit('canvasNS',
         {
-            sender: sender,
+            sender: 'sender',
             messageText: 'Another Client has joined the Canvas room',
             content: null,
             messageType: 'canvasSystem',
@@ -114,7 +114,17 @@ io.on('connect', (socket, req) => {
     // Broadcast to all users
     setTimeout( () => {
         debugWs('Broadcast to all users')
-        io.emit('canvasNS', 'Please take a break, now')
+        io.emit('canvasNS', {
+            sender: 'sender',
+            messageText: 'Please take a break, now',
+            content: null,
+            messageType: 'canvasSystem',
+            action: null,
+            objectName: null,
+            objectID: null,
+            severity: 'low',
+            messageDateTime: new Date()
+        })
     }, 10000);
 
     // Standard event names
