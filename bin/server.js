@@ -22,9 +22,9 @@ const io = socketio(server);
 // from the Node.jse EventEmitter
 
 // Names spaces defines different endpoints or paths to group connections together.
-// It minimizes TCP connections (resources), and introduces separate communication
+// It minimizes TCP connections  (resources), and introduces separate communication
 // channels.  io.on creates the default (/) namespace.  Each namespace may optionally have a
-// number of rooms, which clients can join or leave.  io.emit references the default /
+// number of rooms, which clients   can join or leave.  io.emit references the default /
 // namespace. It is the same as io.of('/').emit   Similarly, socket. works on /
 // as io.on = io.of('/').on
 // Use const chat = io.of('/chat') to reference the /chat namespace.  And then
@@ -68,17 +68,6 @@ io.on('connect', (socket, req) => {
     // the message is send to all clients, except this socket (sender).  Makes it easier since
     // the client does not have to cater for it receiving its own messages
     socket.join('canvasRoom');
-    socket.to('canvasRoom').emit('canvasNS', {
-        sender: sender,
-        messageText: 'Another Client has joined the Canvas room',
-        content: null,
-        messageType: 'canvasSystem',
-        action: null,
-        objectName: null,
-        objectID: null,
-        severity: 'low',
-        messageDateTime: new Date()
-    });
 
     // ,on registers a new handler for the given event name.  The callback will get whatever data
     // was sent over by the client, ie msg below.
