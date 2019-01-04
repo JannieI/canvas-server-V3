@@ -1,12 +1,30 @@
-// Model for widgets collection - all the fields, hangs my PC.  Don't Delete !
+// Model for widgets collection - a portion of the fields to try to get it working
 
 // Imports
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const counterModel = require('./counters')
 
+// Sub-Schemas
+const dataSchemaInterface = new Schema({
+    name: String,                           // Name of Field (DB or Calculated)
+    typeName: String,                       // ie String
+    type: String,                           // ie string
+    length: Number,                         // Optional field length
+    isCalculated: Boolean,                  // True if calculated
+    calculatedExpression: String            // Formula for calculated fields
+})
 
-// Sub-Schema
+const DataParameters = new Schema({
+    field: String, 
+    value: String
+})
+
+const GraphTransformations = new Schema({
+    id: Number,                     // Unique ID
+    sequence: Number,               // Sequence Nr
+    transformationType: String      // ie Calculat, Filter aka Vega-Lite spec
+})
 
 const GraphCalculation = new Schema({
     id: Number,                             // Unique ID
@@ -28,16 +46,7 @@ const GraphFilter = new Schema({
     isActive: Boolean                       // True if activated, else not used
 })
 
-const dataSchemaInterface = new Schema({
-    name: String,                           // Name of Field (DB or Calculated)
-    typeName: String,                       // ie String
-    type: String,                           // ie string
-    length: Number,                         // Optional field length
-    isCalculated: Boolean,                  // True if calculated
-    calculatedExpression: String            // Formula for calculated fields
-})
-
-const widgetGraphSpecification = new Schema({
+const WidgetGraphSpecification = new Schema({
 
     // Optional Specification, used for Custom graphTypes
     graphSpecification: Object,             // Vega specification
@@ -200,25 +209,13 @@ const widgetGraphSpecification = new Schema({
     conditionValue: String,                 // Condition Value
     conditionValueFrom: String,             // Condition From Value
     conditionValueTo: String,               // Condition To Value
-
-})
-
-const DataParameters = new Schema({
-    field: String, 
-    value: String
-})
-
-const GraphTransformations = new Schema({
-    id: Number,                     // Unique ID
-    sequence: Number,               // Sequence Nr
-    transformationType: String      // ie Calculat, Filter aka Vega-Lite spec
 })
 
 const SlicerBins = new Schema({
     isSelected: Boolean, 
     name: String, 
     fromValue: Number, 
-    toValue: number
+    toValue: Number
 })
 
 const SlicerSelection = new Schema({
@@ -230,7 +227,7 @@ const ShapeBullet = new Schema({
     text: String,                   // Text to show
     linkedTabID: Number,            // Optionally lined TabID
     color: String,                  // Colour of text
-    jumpedColor: string             // Colour when jumped
+    jumpedColor: String             // Colour when jumped
 })
 
 // Schema
@@ -389,7 +386,7 @@ const WidgetSchema = new Schema({
 
     // Layers
     graphLayerFacet: String,                // Facet: Single, Layer, Hconcet, Vconcat
-    graphLayers: [ widgetGraphSpecification ], // Info and optional spec for each Layer
+    graphLayers: [ WidgetGraphSpecification ], // Info and optional spec for each Layer
 
     // Table - to be determined later ...
     tableBackgroundColor: String,           // Actual colour (CSS name or HEX code)

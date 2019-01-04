@@ -7,7 +7,6 @@ const counterModel = require('./counters')
 
 
 // Sub-Schema
-
 const GraphCalculation = new Schema({
     id: Number,                             // Unique ID
     sequence: Number,                       // Sequence Nr - for LATER user
@@ -37,7 +36,7 @@ const dataSchemaInterface = new Schema({
     calculatedExpression: String            // Formula for calculated fields
 })
 
-const widgetGraphSpecification = new Schema({
+const WidgetGraphSpecification = new Schema({
 
     // Optional Specification, used for Custom graphTypes
     graphSpecification: Object,             // Vega specification
@@ -389,7 +388,7 @@ const WidgetSchema = new Schema({
 
     // Layers
     graphLayerFacet: String,                // Facet: Single, Layer, Hconcet, Vconcat
-    graphLayers: [ widgetGraphSpecification ], // Info and optional spec for each Layer
+    graphLayers: [ WidgetGraphSpecification ], // Info and optional spec for each Layer
 
     // Table - to be determined later ...
     tableBackgroundColor: String,           // Actual colour (CSS name or HEX code)
