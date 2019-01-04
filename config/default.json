@@ -42,6 +42,7 @@
         "widgetCheckpoints",
         "widgetGraphs",
         "widgetLayouts",
+        "widgets",
         "widgetStoredTemplates"
        ]
 }
