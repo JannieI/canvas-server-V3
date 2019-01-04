@@ -214,6 +214,13 @@ const GraphTransformations = new Schema({
     transformationType: String      // ie Calculat, Filter aka Vega-Lite spec
 })
 
+const SlicerBins = new Schema({
+    isSelected: Boolean, 
+    name: String, 
+    fromValue: Number, 
+    toValue: number
+})
+
 const SlicerSelection = new Schema({
     isSelected: Boolean, 
     fieldValue: String 
@@ -403,7 +410,7 @@ const WidgetSchema = new Schema({
     slicerAddRest: Boolean,                 // True to add everything NOT in slicerSelection
     slicerAddRestValue: Boolean,            // True means add all NOT in Sl
     // 1. All in Sl selected + AddRest = 100% of data)  2. None in Sl + AddRest = Compliment
-    slicerBins: [ {isSelected: Boolean, name: String, fromValue: Number, toValue: number} ],
+    slicerBins: [ SlicerBins ],
     slicerColor: String,                    // Text Color
     slicerFieldName: String,                // Name to filter on
     slicerNumberToShow: String,             // Nr fields (values) to show in Slicer - default = All
