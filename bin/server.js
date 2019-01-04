@@ -34,6 +34,19 @@ const io = socketio(server);
 // The server can communicate across different namespaces with io.of('/admin').emit('ns', text'),
 // but the client socket is defined for // ONE namespace.  One has to define more than one
 // socket to listen to different name spaces on the client.
+
+// The return ws message corresponds to the shape expected by the ws-client:
+// Class WebSocketMessage {
+//     sender,
+//     messageText,
+//     content,
+//     messageType,
+//     action,
+//     objectName,
+//     objectID,
+//     severity,
+//     messageDateTime
+// }
 io.on('connect', (socket, req) => {
 
     // .emit emits an event to the socket identified by the event name (ie welcome below).  It
@@ -51,46 +64,68 @@ io.on('connect', (socket, req) => {
     // socket.join(room, [callback]) - to join a room
     // socket.leave(room, [callback])
 
-    // Join the Canvas room.  All clients belong to this room, but with socket.to(room).emit(),
+    // Join the canvasRoom room.  All clients belong to this room, but with socket.to(room).emit(),
     // the message is send to all clients, except this socket (sender).  Makes it easier since
     // the client does not have to cater for it receiving its own messages
-    socket.join('Canvas');
-    socket.to('Canvas').emit('joined', 'Another Client has joined the Canvas room');
+    socket.join('canvasRoom');
+    socket.to('canvasRoom').emit('canvasNS', {
+        sender: sender,
+        messageText: 'Another Client has joined the Canvas room',
+        content: null,
+        messageType: 'canvasSystem',
+        action: null,
+        objectName: null,
+        objectID: null,
+        severity: 'low',
+        messageDateTime: new Date()
+    });
 
     // ,on registers a new handler for the given event name.  The callback will get whatever data
     // was sent over by the client, ie msg below.
-    socket.on('message', (messageFromClient) => {
+    socket.on('canvasNS', (messageFromClient) => {
         debugWs(messageFromClient);
     });
 
     // Response to Sender
     setTimeout( () => {
         debugWs('Response to Sender')
-        socket.emit('update',
-            {
-                messageType: 'Update',
-                resource: 'dashboard' ,
-                data: {id: 1, name: 'updatedDashboard'}
-            }
+        socket.emit('canvasNS',
+        {
+            sender: sender,
+            messageText: 'Another Client has joined the Canvas room',
+            content: null,
+            messageType: 'canvasSystem',
+            action: null,
+            objectName: null,
+            objectID: null,
+            severity: 'low',
+            messageDateTime: new Date()
+        }
         )
     }, 8000);
 
     // Response to others (excluding Sender)
     setTimeout( () => {
         debugWs(' Response to others (excluding Sender)')
-        socket.to('Canvas').emit('update',
-            {
-                messageType: 'Update',
-                resource: 'dashboard' ,
-                data: {id: 1, name: 'updatedDashboard'}
-            }
+        socket.to('canvasRoom').emit('canvasNS',
+        {
+            sender: sender,
+            messageText: 'Another Client has joined the Canvas room',
+            content: null,
+            messageType: 'canvasSystem',
+            action: null,
+            objectName: null,
+            objectID: null,
+            severity: 'low',
+            messageDateTime: new Date()
+        }
         )
     }, 9000);
 
     // Broadcast to all users
     setTimeout( () => {
         debugWs('Broadcast to all users')
-        io.emit('update', 'Please take a break, now')
+        io.emit('canvasNS', 'Please take a break, now')
     }, 10000);
 
     // Standard event names
