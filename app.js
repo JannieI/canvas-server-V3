@@ -72,6 +72,19 @@ if (app.get('env') == 'development') {
 
 };
 
+// Show the url
+app.use( (req, res, next) => {
+    var url = require('url');
+
+    console.log('Url',url.format(
+        {
+            protocol: req.protocol,
+            host: req.get('host'),
+            pathname: req.originalUrl
+        })
+    )
+    next();
+});
 
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
