@@ -81,12 +81,12 @@ io.on('connect', (socket, req) => {
         socket.emit('canvasNS',
         {
             sender: 'sender',
-            messageText: 'Another Client has joined the Canvas room',
+            messageText: 'Dashboard has been amended',
             content: null,
-            messageType: 'canvasSystem',
-            action: null,
-            objectName: null,
-            objectID: null,
+            messageType: 'canvasData',
+            action: 'update',
+            objectName: 'dashboards',
+            objectID: 68,
             severity: 'low',
             messageDateTime: new Date()
         }
@@ -118,7 +118,7 @@ io.on('connect', (socket, req) => {
             sender: 'sender',
             messageText: 'Please take a break, now',
             content: null,
-            messageType: 'canvasSystem',
+            messageType: 'canvasMessages',
             action: null,
             objectName: null,
             objectID: null,
