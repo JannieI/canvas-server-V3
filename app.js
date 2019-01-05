@@ -72,9 +72,9 @@ if (app.get('env') == 'development') {
 
 };
 
-// Show the url
+// Show the url & path - just for info
 app.use( (req, res, next) => {
-    var url = require('url');
+    const url = require('url');
 
     console.log('Url',url.format(
         {
@@ -83,6 +83,7 @@ app.use( (req, res, next) => {
             pathname: req.originalUrl
         })
     )
+    console.log('Path', req.path)
     next();
 });
 
