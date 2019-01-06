@@ -1,5 +1,8 @@
 {
-    "morgan": "morgan",
+    "morgan": {
+        "logging": "MORGAN_LOGGING",
+        "resource": "MORGAN_RESOURCE"
+    },
     "mongo": {
         "password": "MONGO_PASSWORD"
     }

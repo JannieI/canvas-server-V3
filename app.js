@@ -64,26 +64,33 @@ app.use(helmet());      // NB: Place this first thing
 
 // Logging: use export NODE_ENV to set app.get('env') in Node Terminal !
 if (app.get('env') == 'development') {
-    if (config.get('morgan') == "on") {
-        debugDev('Morgan is on in the development env, export morgan=on')
+    if (config.get('morgan.logging') == "on") {
         app.use(morgan('## :method :url :status :res[content-length] - :response-time ms ON [:date[iso]] FROM :remote-addr - :remote-user'));
         app.use(morgan('##'));
     };
 
+    // Single resource logging
+    // TODO - make this dynamic
+
+    
+    if (config.get('morgan.resource') =="widgets") {
+        app.use(morgan('## :method :url :status :res[content-length] - :response-time ms ON [:date[iso]] FROM :remote-addr - :remote-user'));
+    };
 };
+
 
 // Show the url & path - just for info
 app.use( (req, res, next) => {
     const url = require('url');
 
-    console.log('Url:',url.format(
+    console.log('  Url:',url.format(
         {
             protocol: req.protocol,
             host: req.get('host'),
             pathname: req.originalUrl
         })
     )
-    console.log('Path:', req.path)
+    console.log('  Path:', req.path)
     next();
 });
 

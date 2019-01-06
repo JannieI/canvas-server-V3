@@ -3,7 +3,7 @@ var app = require('../app');                    // This is where all the routing
 var debug = require('debug')('canvas-server:server');
 var http = require('http');
 const socketio = require('socket.io');          // Socket Server
-const debugWs = require('debug')('app:ws');     
+const debugWs = require('debug')('app:ws');
 const config = require('config');               // Configuration
 
 // Get port from environment, else use default
@@ -82,11 +82,11 @@ io.on('connect', (socket, req) => {
         {
             sender: 'sender',
             messageText: 'Dashboard has been amended',
-            content: null,
+            content: { id: 101, name: "sent from Canvas Server 2" },
             messageType: 'canvasData',
-            action: 'update',
+            action: 'Add',
             objectName: 'dashboards',
-            objectID: 68,
+            objectID: 101,
             severity: 'low',
             messageDateTime: new Date()
         }
@@ -212,7 +212,7 @@ function onListening() {
         console.log('Canvas Server started ...');
         console.log('       Listening on port ' + port);
         console.log('       ' + cacheMessage);
-        console.log('       morgan (HTTP method logging) is', config.get('morgan'))
+        console.log('       morgan (HTTP method logging) is', config.get('morgan.logging'))
         console.log('----------------------------------------------------------------')
         console.log('');
 
