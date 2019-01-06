@@ -71,9 +71,7 @@ if (app.get('env') == 'development') {
 
     // Single resource logging
     // TODO - make this dynamic
-
-    
-    if (config.get('morgan.resource') =="widgets") {
+    if (config.get('validRoutes').indexOf(config.get('morgan.resource')) >= 0) {
         app.use(morgan('## :method :url :status :res[content-length] - :response-time ms ON [:date[iso]] FROM :remote-addr - :remote-user'));
     };
 };
