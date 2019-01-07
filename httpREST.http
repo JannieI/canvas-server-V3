@@ -71,10 +71,13 @@ POST {{host}}/canvasdata/:canvasGroups
 content-type: application/json
 
 {
-    "id": 14,
-    "name": "Engineering"
+  "id": null,
+  "name": "HR2",
+  "editedBy": "JannieI",
+  "editedOn": "2019-01-06T19:12:12.918Z",
+  "createdBy": "JannieI",
+  "createdOn": "2019-01-06T19:05:41.363Z"
 }
-
 ###
 
 // DELETE Canvas Data (:canvasdata works)

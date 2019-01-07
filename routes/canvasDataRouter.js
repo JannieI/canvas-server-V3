@@ -349,7 +349,7 @@ router.post('/:resource', (req, res, next) => {
         let canvasAdd = new canvasModel(body);
         canvasAdd.save()
             .then(doc => {
-                debugDev('saved', doc)
+                debugDev('added', doc)
                 return res.json({
                     "statusCode": "success",
                     "message" : "Added record for resource: " + resource,

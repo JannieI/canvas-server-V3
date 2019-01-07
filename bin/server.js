@@ -209,8 +209,9 @@ function onListening() {
         console.log('Canvas Server started ...');
         console.log('       Listening on port ' + port);
         console.log('       ' + cacheMessage);
-        console.log('       morgan (HTTP method logging) is', config.get('morgan.logging'))
-        console.log('----------------------------------------------------------------')
+        console.log('       morgan (HTTP method logging) is', config.get('morgan.logging'));
+        console.log('       DEBUG var is',process.env.DEBUG);
+        console.log('----------------------------------------------------------------');
         console.log('');
 
     });
