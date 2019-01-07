@@ -2,12 +2,38 @@ var mysql = require('mysql');
 var pool  = mysql.createPool({
   connectionLimit : 10,
   host            : '127.0.0.1',
-  user            : 'x',
-  password        : 'x',
-  database        : 'todo'
+  user            : 'user',
+  password        : 'positif',
+  database        : 'mysql'
 });
 
 // const dataFromTheScaryInternet = 3
+
+// Ubuntu
+// - to see if running: systemctl status mysql.service
+// - to get running again:
+//      systemctl unmask mysql.service
+//      service mysql start
+//
+// If permissions issues:
+// - sudo /etc/init.d/mysql start
+// - sudo /etc/init.d/mysql restart
+// - sudo systemctl start mysql
+//
+// To see if running, etc:
+// - service mysqld status
+// - service mysqld stop
+// - service mysqld start
+//
+// MySQL defaults to port 3306 unless you specify another line in the /etc/my.cnf config file.
+// To change it:
+// - Log in to your server using SSH.
+// - At the command prompt, use your preferred text editor to open the /etc/mysql/my.cnf file.
+//   ie vi /etc/my.cnf
+// - Locate the bind-address line in the my.cnf file.
+// - 
+// -
+// -
 
 module.exports = {
     query: (queryText,params,callback)=>{

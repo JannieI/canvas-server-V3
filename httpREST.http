@@ -141,3 +141,6 @@ content-type: application/json
     "createdOn": null,
     "id": 21
 }
+
+###
+GET {{host}}/users/mysql
