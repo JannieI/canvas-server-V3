@@ -67,12 +67,15 @@ GET {{host}}/canvasdata/:datasources
 
 
 // POST Canvas Data (:canvasdata works)
-POST {{host}}/canvasdata/:canvasGroups
+POST {{host}}/canvasdata/:canvasUsers
 content-type: application/json
 
 {
-  "id": null,
-  "name": "HR2",
+  "name": "HR3",
+  "password": 123,
+  "email": "j@ca",
+  "userID": "HR3",
+  "companyName": "Clar Anal",
   "editedBy": "JannieI",
   "editedOn": "2019-01-06T19:12:12.918Z",
   "createdBy": "JannieI",

@@ -95,15 +95,18 @@ const CanvasUserSchema = new Schema({
 
 //This is called a pre-hook, before the user information is saved in the database
 //this function will be called, we'll get the plain text password, hash it and store it.
-CanvasUserSchema.pre('save', async function(next){
+CanvasUserSchema.pre('save', function(next) {
     //'this' refers to the current document about to be saved
     const user = this;
-    //Hash the password with a salt round of 10, the higher the rounds the more secure, but the slower
-    //your application becomes.
-    const hash = await bcrypt.hash(this.password, 10);
-    //Replace the plain text password with the hash and then store it
-    this.password = hash;
+    // Hash the password with a salt round of 10, the higher the rounds the more secure, but the slower
+    // your application becomes.
+    // Note: we use this synchronously (thus blocking).  To use ... hash = await bcrypt ... one must
+    // change to ... async function ... at the top.  And then the id is not renerated correctly.  Some
+    // more work needed here.
+    const hash = bcrypt.hash(this.password, 10);
 
+    // Replace the plain text password with the hash and then store it
+    this.password = hash;
 
     // Get the current date
     var currentDate = new Date();
