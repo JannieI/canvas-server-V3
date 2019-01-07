@@ -144,3 +144,8 @@ content-type: application/json
 
 ###
 GET {{host}}/users/mysql
+###
+GET {{host}}/users/mysqlexpress
+###
+GET {{host}}/users/mysqlexpress
+?sql=SELECT User, Host, authentication_string FROM user

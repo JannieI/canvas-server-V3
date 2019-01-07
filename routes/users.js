@@ -124,7 +124,7 @@ router.get('/mysql', (req, res, next) => {
     // res.render('index', { title: 'Express' });
     //   const queryText= 'SELECT * FROM tasks WHERE id > ? AND taskName';
     const queryText= 'SELECT 1 As taskName';
-    // queryText= 'SELECT User, Host, authentication_string FROM user';
+    queryText= 'SELECT User, Host, authentication_string FROM user';
 
     mysqlDb.query(queryText,[3],(error,results)=>{
         debugDB('After DB error, results', error, results);
@@ -136,6 +136,38 @@ router.get('/mysql', (req, res, next) => {
     });
 });
 
+router.get('/mysqlexpress', (req, res, next) => {
+    console.log('xx in mySql')
+    let mysql = require('mysql');
+    let sql = req.query.sql
+    console.log('xx sql', sql)
+
+    var connection = mysql.createConnection({
+        host     : 'localhost',
+        user     : 'janniei',
+        password : 'janniei',
+        database : 'mysql'
+    });
+
+    connection.connect()
+
+    // connection.query('SELECT User, Host, authentication_string FROM user', function (err, rows, fields) {
+    connection.query(sql, function (err, rows, fields) {
+        if (err) {
+            res.json("Error:", err.message)
+        };
+
+        console.log('The solution is: ', rows[0].solution)
+        res.json({
+            "statusCode": "success",
+            "message" : "Executed query",
+            "data": rows,
+            "error": null
+        });
+    })
+
+    connection.end()
+})
 // Runs for ALL routes -----------------------------------------------------------
 
 // Validate the user
