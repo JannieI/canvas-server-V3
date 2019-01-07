@@ -124,7 +124,7 @@ router.get('/mysql', (req, res, next) => {
     // res.render('index', { title: 'Express' });
     //   const queryText= 'SELECT * FROM tasks WHERE id > ? AND taskName';
     const queryText= 'SELECT 1 As taskName';
-    // queryText= 'SELECT User, Host, authentication_string FROM mysql.user';
+    // queryText= 'SELECT User, Host, authentication_string FROM user';
 
     mysqlDb.query(queryText,[3],(error,results)=>{
         debugDB('After DB error, results', error, results);

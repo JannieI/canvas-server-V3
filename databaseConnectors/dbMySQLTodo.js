@@ -1,9 +1,12 @@
 var mysql = require('mysql');
+const config = require('config');               // Configuration
+
+let psw = config.get('password.janniei');
 var pool  = mysql.createPool({
   connectionLimit : 10,
   host            : '127.0.0.1',
-  user            : 'user',
-  password        : 'positif',
+  user            : 'janniei',
+  password        : psw,
   database        : 'mysql'
 });
 
@@ -31,9 +34,9 @@ var pool  = mysql.createPool({
 // - At the command prompt, use your preferred text editor to open the /etc/mysql/my.cnf file.
 //   ie vi /etc/my.cnf
 // - Locate the bind-address line in the my.cnf file.
-// - 
-// -
-// -
+// 
+// Alter Password with 
+// - ALTER USER 'userName'@'localhost' IDENTIFIED BY 'New-Password-Here';
 
 module.exports = {
     query: (queryText,params,callback)=>{

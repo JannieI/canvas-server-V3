@@ -1,4 +1,7 @@
 {
+    "password": {
+        "janniei": "PASSWORD_JANNIEI"
+    },
     "morgan": {
         "logging": "MORGAN_LOGGING",
         "resource": "MORGAN_RESOURCE"
