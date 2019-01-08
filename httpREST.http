@@ -151,3 +151,5 @@ GET {{host}}/users/mysqlexpress
 ?sql=SELECT User, Host, authentication_string FROM user
 ###
 GET {{host}}/users/mysqlpool
+###
+GET {{host}}/users/mysqlpool2

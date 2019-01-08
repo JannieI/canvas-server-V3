@@ -172,9 +172,6 @@ router.get('/mysqlexpress', (req, res, next) => {
 })
 
 
-// MySQL with pools
-var dbMySQL = require('../databaseConnectors/mySQL.connector.js');
-
 router.get('/mysqlpool', (req, res, next) => {
     console.log('xx in mysqlpool')
 
@@ -198,10 +195,6 @@ router.get('/mysqlpool', (req, res, next) => {
             res.json('Error getConnection')
         };
         console.log('After getConnection - if (err)')
-
-        // make the query
-        // connection.query(sql, [city], function(err, results) {
-        //     console.log('After query')
         
         // Make the query
         let user = 'janniei';
@@ -224,6 +217,27 @@ router.get('/mysqlpool', (req, res, next) => {
     //         res.json(results);
     //     };
     // });
+});
+
+
+router.get('/mysqlpool2', (req, res, next) => {
+    console.log('mysqlpool2 Start')
+
+    // MySQL with pools
+    var dbMySQL = require('../databaseConnectors/mySQL.connector.js');
+
+    dbMySQL.getRecords("janniei", (err, results) => {
+        console.log('mysqlpool2 After .getRecords')
+        if(err) { 
+            console.log('mysqlpool2 in Error')
+            res.send("Server Error"); 
+            return;
+        };
+        // Respond with results as JSON
+        res.json(results);
+    });
+
+    console.log("mysqlpool2 @End");
 });
 
 
