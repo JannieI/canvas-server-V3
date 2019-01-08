@@ -29,6 +29,18 @@ const database = 'Canvas';
 // To remove this deprecation warning, replace any usage of remove() with deleteMany(), unless you 
 // specify the single option to remove(). The single option limited remove() to deleting at most one 
 // document, so you should replace remove(filter, { single: true }) with deleteOne(filter).
+
+// Cloud MongoDB:
+// Owner: Jimmelman@gmail.com
+// PSW: JxX7Krw.-ZDj4Qd
+
+// User: JannieI (my login)
+// PSW: J...I (JSE login ID) 
+
+// URI Shell 3.6: mongo "mongodb+srv://cluster0-wnczk.azure.mongodb.net/test" --username JannieI
+
+// Browser: https://cloud.mongodb.com/v2/5bff91d89ccf64766173a1a1#clusters
+
 class MongoDatabase {
     constructor() {
         this._connect()
