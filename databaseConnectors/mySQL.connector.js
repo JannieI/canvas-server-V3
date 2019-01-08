@@ -37,7 +37,7 @@ var pool  = mysql.createPool({
 //     });
 // }; 
 
-exports.getRecords = function(city, callback) {
+exports.getRecords = function(sql, user, callback) {
 
     pool.getConnection((err, connection) => {
         console.log('  mySQL.connector getConnection Start')
@@ -48,8 +48,8 @@ exports.getRecords = function(city, callback) {
         console.log('  mySQL.connector After getConnection - if (err)')
         
         // Make the query
-        let user = 'janniei';
-        connection.query('SELECT User, Host, authentication_string FROM user WHERE User=?', [user], (err, results) => {
+        // let user = 'janniei';
+        connection.query(sql, [user], (err, results) => {
             console.log('  mySQL.connector After query')
             if (err) { 
                 console.log('  mySQL.connector Error in query', err)

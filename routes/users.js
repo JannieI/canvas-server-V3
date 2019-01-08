@@ -226,7 +226,11 @@ router.get('/mysqlpool2', (req, res, next) => {
     // MySQL with pools
     var dbMySQL = require('../databaseConnectors/mySQL.connector.js');
 
-    dbMySQL.getRecords("janniei", (err, results) => {
+    let user = 'janniei';
+    let sql = 'SELECT User, Host, authentication_string FROM user WHERE User=?';
+    user = 'First';
+    sql = 'SELECT * FROM Canvas.test WHERE name=?'
+    dbMySQL.getRecords(sql, user, (err, results) => {
         console.log('mysqlpool2 After .getRecords')
         if(err) { 
             console.log('mysqlpool2 in Error')
