@@ -107,7 +107,7 @@ GET {{host}}/canvasdata/:canvasComments
 
 
 // Testing canvasData 
-POST {{host}}/canvasdata/:canvasComments
+POST {{host}}/canvasdata/canvasComments
 content-type: application/json
 
 {
@@ -123,8 +123,8 @@ content-type: application/json
 
 
 // GET Canvas Data: TEST any ROUTE
-DELETE {{host}}/canvasdata/:canvasComments
-?id=21&dashboardID=68
+DELETE {{host}}/canvasdata/canvasComments
+?id=15&dashboardID=68
     
 ###
 

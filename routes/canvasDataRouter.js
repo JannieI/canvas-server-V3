@@ -9,12 +9,12 @@ const debugDev = require('debug')('app:dev');
 // Note: for now, cache has NO DATA on startup, and is only filled the first time data is read from
 //       the DB.  Subsequently, the data is provided from cache until it is not fresh any longer (past
 //       the expiry data), at which point it is read from the DB again.
-//       When the data is updated (PUT or POST), the cache is updated in sync 
+//       When the data is updated (PUT or POST), the cache is updated in sync
 //       TODO - consider if we should not read the whole cache from DB after an update?
 
 
 // NB to Ivan
-// BIG TODO note - I havent changed the cache with updates - it is messy in JS and we will rewrite 
+// BIG TODO note - I havent changed the cache with updates - it is messy in JS and we will rewrite
 //                 in any case in TS, probably improving it as well.
 //
 
@@ -130,7 +130,13 @@ router.use('/:resource', (req, res, next) => {
     };
 
     // Validate resource (route)
-    const resource = req.params.resource.substring(1);
+    let resource;
+    if (req.params.resource.substr(0, 1) === ':') {
+        resource = req.params.resource.substr(1);
+    } else {
+        resource = req.params.resource;
+    };
+
     const error = validateRoute(resource);
 
     if (error) {
@@ -152,7 +158,12 @@ router.use('/:resource', (req, res, next) => {
 router.get('/:resource', (req, res, next) => {
 
     // Extract: query, route (params without the :) and validate
-    const resource = req.params.resource.substring(1);
+    let resource;
+    if (req.params.resource.substr(0, 1) === ':') {
+        resource = req.params.resource.substr(1);
+    } else {
+        resource = req.params.resource;
+    };
     const query = req.query;
 
     debugDev('## --------------------------');
@@ -172,7 +183,7 @@ router.get('/:resource', (req, res, next) => {
 
         serverDataCachingTable = dataCachingTableArray[i];
 
-        // Find the single instance (row) for current resource.  
+        // Find the single instance (row) for current resource.
         // If the key is there, it uses caching
         if (serverDataCachingTable.key == resource) {
 
@@ -255,7 +266,7 @@ router.get('/:resource', (req, res, next) => {
                             'records into cache for',
                             serverVariableName
                         );
-                                
+
                         // TODO - fix hardcode
                         let dt = new Date();
                         let seconds = 86400;
@@ -275,10 +286,10 @@ router.get('/:resource', (req, res, next) => {
             //     serverDataCachingTable = dataCachingTableArray[i];
             //     serverCacheableMemory = serverDataCachingTable.serverCacheableMemory;
             //     serverVariableName = serverDataCachingTable.serverVariableName;
-    
+
             //     // The resource is cached on the server: it has a valid server variable, and is marked True
             //     if (serverCacheableMemory  &&  serverVariableName != null) {
-    
+
 
             // Empty Array of fields
             var fields = [];
@@ -334,7 +345,12 @@ router.get('/:resource', (req, res, next) => {
 router.post('/:resource', (req, res, next) => {
 
     // Extract: body, route (params without :)
-    const resource = req.params.resource.substring(1);
+    let resource;
+    if (req.params.resource.substr(0, 1) === ':') {
+        resource = req.params.resource.substr(1);
+    } else {
+        resource = req.params.resource;
+    };
     const body = req.body;
     debugDev('Router: POST for resource:', resource, 'body:', body)
     debugDev('');
@@ -385,7 +401,12 @@ router.post('/:resource', (req, res, next) => {
 router.delete('/:resource', (req, res, next) => {
 
     // Extract: body, route (params without :)
-    const resource = req.params.resource.substring(1);
+    let resource;
+    if (req.params.resource.substr(0, 1) === ':') {
+        resource = req.params.resource.substr(1);
+    } else {
+        resource = req.params.resource;
+    };
 
     const query = req.query;
     const id = req.query.id;
@@ -458,7 +479,12 @@ router.delete('/:resource', (req, res, next) => {
 router.put('/:resource', (req, res, next) => {
 
     // Extract: body, route (params without :)
-    const resource = req.params.resource.substring(1);
+    let resource;
+    if (req.params.resource.substr(0, 1) === ':') {
+        resource = req.params.resource.substr(1);
+    } else {
+        resource = req.params.resource;
+    };
     const query = req.query;
     const body = req.body;
 
