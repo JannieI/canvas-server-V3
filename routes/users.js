@@ -136,6 +136,8 @@ router.get('/mysql', (req, res, next) => {
     });
 });
 
+
+// MySQL Express route
 router.get('/mysqlexpress', (req, res, next) => {
     console.log('xx in mySql')
     let mysql = require('mysql');
@@ -168,6 +170,63 @@ router.get('/mysqlexpress', (req, res, next) => {
 
     connection.end()
 })
+
+
+// MySQL with pools
+var dbMySQL = require('../databaseConnectors/mySQL.connector.js');
+
+router.get('/mysqlpool', (req, res, next) => {
+    console.log('xx in mysqlpool')
+
+    let mysql = require('mysql');
+    const config = require('config');               // Configuration
+
+    let psw = config.get('password.janniei');
+    var pool  = mysql.createPool({
+        connectionLimit : 10,
+        host            : '127.0.0.1',
+        user            : 'janniei',
+        password        : psw,
+        database        : 'mysql',
+        connectionLimit: 10,
+        supportBigNumbers: true
+    });
+    pool.getConnection((err, connection) => {
+        console.log('Start getConnection')
+        if (err) { 
+            console.log('Error in getConnection', err)
+            res.json('Error getConnection')
+        };
+        console.log('After getConnection - if (err)')
+
+        // make the query
+        // connection.query(sql, [city], function(err, results) {
+        //     console.log('After query')
+        
+        // Make the query
+        let user = 'janniei';
+        connection.query('SELECT User, Host, authentication_string FROM user WHERE User=?', [user], (err, results) => {
+            console.log('After query')
+            if (err) { 
+                console.log('Error in query', err)
+                res.json('Error query')
+            };
+            res.json(results);
+        });
+        // });
+    });
+
+    console.log("@End of Code");
+
+    // dbMySQL.getRecords("localhost", function(err, results) {
+    //     if(err) { res.send(500,"Server Error"); return;
+    //         // Respond with results as JSON
+    //         res.json(results);
+    //     };
+    // });
+});
+
+
 // Runs for ALL routes -----------------------------------------------------------
 
 // Validate the user

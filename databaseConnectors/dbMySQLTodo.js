@@ -2,13 +2,13 @@ var mysql = require('mysql');
 const config = require('config');               // Configuration
 
 let psw = config.get('password.janniei');
-// var pool  = mysql.createPool({
-//   connectionLimit : 10,
-//   host            : '127.0.0.1',
-//   user            : 'janniei',
-//   password        : psw,
-//   database        : 'mysql'
-// });
+var pool  = mysql.createPool({
+  connectionLimit : 10,
+  host            : '127.0.0.1',
+  user            : 'janniei',
+  password        : psw,
+  database        : 'mysql'
+});
 
 // const dataFromTheScaryInternet = 3
 
