@@ -49,6 +49,8 @@ exports.createConnectionDefinition = function(host, user, password, database, op
 // exports.select = function(host, user, password, database, options, sql, sqlParams) {
 exports.select = function(databaseObject, table, fields, queryString, sqlParameters) {
 // Selects the records from the MySQL database according to the given parameters.
+// Inputs: DATABASE_OBJECT, TABLE, FIELDS, QUERY_STRING, SQL_PARAMETERS
+
     return new Promise((resolve, reject) => {
 
         let host = '127.0.0.1';
@@ -70,14 +72,15 @@ exports.select = function(databaseObject, table, fields, queryString, sqlParamet
             if (databaseObject.database != null) {
                 database = databaseObject.database;
             };
-        };
 
-        // Decompose the options
-        if (sqlParameters != null) {
-            Object.keys(sqlParameters).forEach(function(key) {
-                var val = sqlParameters[key];
-                console.log('va', val);
-            });
+            // Decompose the options
+            // TODO - what structure should optons take - list, array, Object?
+            if (databaseObject.options != null) {
+                Object.keys(databaseObject.options).forEach(function(key) {
+                    var val = databaseObject.options[key];
+                    console.log('Options:', key, val);
+                });
+            };
         };
 
         const pool = mysql.createPool({

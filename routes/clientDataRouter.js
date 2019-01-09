@@ -195,16 +195,22 @@ router.get('/', (req, res, next) => {
             //         console.log('createConnectionDefinition Error', err)
             //     })
             const datalayer = require('../databaseConnectors/mysql.datalayer');
-            // Inputs: host, user, password, database, options, sql, sqlParams
-            const result = datalayer.select(null, null, null, "SELECT 1 + 1", "janniei", )
-                .then(res => {
-                    results = res;
+            // Inputs: DATABASE_OBJECT, TABLE, FIELDS, QUERY_STRING, SQL_PARAMETERS
+            // let databaseObject = { host: '127.0.0.1', user: 'janniei', password: 'janniei', database: 'mysql'}
+            let databaseObject = null;
+            const result = datalayer.select(databaseObject, null, null, "SELECT 1 + 1", "janniei", )
+                .then(returnedData => {
+                    results = returnedData;
                     console.log('results', results);
+                    res.json(results);
+                    return;
                 })
                 .catch(err =>{
                     console.log('Err after .select in router', err);
                 });
-
+            
+            return;
+            
 
 
 
