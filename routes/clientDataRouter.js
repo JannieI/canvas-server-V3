@@ -198,10 +198,10 @@ router.get('/', (req, res, next) => {
             // Inputs: DATABASE_OBJECT, TABLE, FIELDS, QUERY_STRING, SQL_PARAMETERS
             // let databaseObject = { host: '127.0.0.1', user: 'janniei', password: 'janniei', database: 'mysql'}
             let databaseObject = null;
-            const result = datalayer.select(databaseObject, null, null, "SELECT 1 + 1", "janniei", )
+            const result = datalayer.select(databaseObject, null, null, "SELECT * FROM mysql.user", "janniei", )
                 .then(returnedData => {
                     results = returnedData;
-                    console.log('results', results);
+                    console.log('Number of results:', results.length);
                     res.json(results);
                     return;
                 })
@@ -209,8 +209,28 @@ router.get('/', (req, res, next) => {
                     console.log('Err after .select in router', err);
                 });
             
-            return;
             
+            //     Now, results = [data]
+            // 4. Do the Transformations according to the Tr loaded in step 1
+            // 5. Decompose the query string in req.query into SORT_OBJECT, FIELDS_STRING, FILTER_OBJECT, 
+            //    AGGREGATION_OBJECT
+            const sortObject = req.query.sortObject;
+            const fields = req.query.fields;
+            const filterObject = req.query.filterObject;
+            const aggregationObject = req.query.aggregationObject;
+
+            console.log('rest', sortObject, fields, filterObject, aggregationObject)
+            // 6. If (SORT_OBJECT) then results = results.sort()
+            // 7. If (FIELDS_STRING) then results = results[fields]
+            // 8. If (FILTER_OBJECT) then results = results.filter()
+            // 9. If (AGGREGATION_OBJECT) then results = results.clever-thing
+            // 10. Add metadata, hopefully obtained directly from the source DB, or from the DS (if pre-stored), 
+            //     with prudent defaults where unknown.
+            // 11. Return results according to the CanvasHttpResponse interface
+            // 12. If any error, return err according to the CanvasHttpResponse interface
+
+            return;
+
 
 
 
@@ -246,25 +266,6 @@ router.get('/', (req, res, next) => {
             //     else call the correct data-layer-function depending on the DB type (ie MySQL or Mongo).
 
         };
-
-
-        //     Now, results = [data]
-        // 4. Do the Transformations according to the Tr loaded in step 1
-        // 5. Decompose the query string in req.query into SORT_OBJECT, FIELDS_STRING, FILTER_OBJECT, 
-        //    AGGREGATION_OBJECT
-        // 6. If (SORT_OBJECT) then results = results.sort()
-        // 7. If (FIELDS_STRING) then results = results[fields]
-        // 8. If (FILTER_OBJECT) then results = results.filter()
-        // 9. If (AGGREGATION_OBJECT) then results = results.clever-thing
-        // 10. Add metadata, hopefully obtained directly from the source DB, or from the DS (if pre-stored), 
-        //     with prudent defaults where unknown.
-        // 11. Return results according to the CanvasHttpResponse interface
-        // 12. If any error, return err according to the CanvasHttpResponse interface
-
-
-
-
-
     });
 
 
