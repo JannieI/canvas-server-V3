@@ -55,7 +55,7 @@ router.get('/', (req, res, next) => {
     //       The naming convention of the data-layer-function is databaseConnectors/DB.datalayer.js,
     //       where DB is the type of source (mysql, postgress, mssql, etc).  Inside each function,
     //       a number of METHOD are exported.  These are:
-    //       insert, update, delete, or a special one.  The special methods can be:
+    //       select, insert, update, delete, or a special one.  The special methods can be:
     //         - createConnectionDefinition
     //         - 
     //         - listDatabases: lists all the databases on the given Database Server
@@ -170,6 +170,14 @@ router.get('/', (req, res, next) => {
         //       Caching works the same as on Workstation: read the dataCachingTable (already loaded into
         //       memory), check if isCached and isFresh, and provide from Memory or Disc.  
         if (useCachingDisc  &&  isFresh) {
+
+
+
+            const datalayer = require('../databaseConnectors/mysql.datalayer');
+            const pool = datalayer.createConnectionDefinition()
+            console.log('pool', pool)
+            const result = datalayer.getRecords(pool, "SELECT 1 + 1", "janniei", )
+
 
             // Get the model
             const clientSchema = '../model/clientData';

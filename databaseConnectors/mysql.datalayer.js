@@ -5,7 +5,7 @@ const mysql = require('mysql');
 const config = require('config');               // Configuration
 
 // createConnectionDefinition
-exports.createConnectionDefinition = function(host, user, password, database, options, callback) {
+exports.createConnectionDefinition = async function(host, user, password, database, options) {
 
     // TODO - find a better way to do these !!!
     if (host == undefined) {
@@ -21,19 +21,54 @@ exports.createConnectionDefinition = function(host, user, password, database, op
         database = 'mysql';
     };
 
-    var pool  = mysql.createPool({
-        connectionLimit : 10,
-        host            : '127.0.0.1',
-        user            : 'janniei',
-        password        : password,
-        database        : 'mysql',
-        connectionLimit: 10,
+    // Decompose the options
+    if (options != null) {
+        Object.keys(options).forEach(function(key) {
+            var val = options[key];
+            console.log('va', val);
+        });
+    };
+
+    const pool = await mysql.createPool({
+        connectionLimit  : 10,
+        host             : '127.0.0.1',
+        user             : 'janniei',
+        password         : password,
+        database         : 'mysql',
+        connectionLimit  : 10,
         supportBigNumbers: true
     });
 
     // Return
-    callback(false, pool);
+    return(pool);
 };
+
+exports.select = function(pool, sql, user, callback) {
+// Selects the records from the MySQL database according to the given parameters.
+    return new Promise((resolve, reject) => {
+
+        pool.getConnection((err, connection) => {
+            console.log('  mySQL.connector getConnection Start')
+            if (err) { 
+                console.log('  mySQL.connector Error in getConnection', err)
+                reject(err);
+            };
+            console.log('  mySQL.connector After getConnection - if (err)')
+            
+            // Make the query
+            // let user = 'janniei';
+            connection.query(sql, [user], (err, results) => {
+                console.log('  mySQL.connector After query')
+                if (err) { 
+                    console.log('  mySQL.connector Error in query', err)
+                    reject(err);
+                };
+                console.log('  mySQL.connector End query')
+                resolve(results);
+            });
+        });
+    });
+}
 
 exports.getRecords = function(sql, user, callback) {
 
