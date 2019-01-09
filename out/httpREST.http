@@ -143,7 +143,7 @@ content-type: application/json
 }
 
 ###
-GET {{host}}/clientData/?id=3
+GET {{host}}/clientData/?id=3&datasourceID=3
 ###
 GET {{host}}/users/mysqlexpress
 ###

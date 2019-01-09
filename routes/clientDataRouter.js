@@ -39,10 +39,10 @@ router.get('/', (req, res, next) => {
 
     // The structure of this route is as follows:
     // 1. Preparation: 
-    //    - get the datasourceID from req.query
-    //    - get the DS (Datasource) record for the given datasourceID in req.query.  
-    //    Note, it is necessary to get auxilliary information, like Tr (Transformations), 
-    //    dSet (datasets).
+    //    1.1 Get the datasourceID from req.query
+    //    1.2 Get the DS (Datasource) record for the given datasourceID in req.query.  
+    //    1.3 Get auxilliary information, like Tr (Transformations), 
+    //        dSet (datasets).
     // 2. Set results = [] (data block to return to Workstation)
     // 3. Get the data:
     //     if cached and isFresh, result = cache
@@ -114,77 +114,172 @@ router.get('/', (req, res, next) => {
 
 
     // 1. Preparation: 
-    //    - get the datasourceID from req.query
-    //    - get the DS (Datasource) record for the given datasourceID in req.query.  
-    //    Note, it is necessary to get auxilliary information, like Tr (Transformations), 
-    //    dSet (datasets).
-
-    // Extract: query, route (params without the :)
-    const query = req.query;
+    //    1.1 Get the datasourceID from req.query
+    const reqQuery = req.query;
     const id = req.query.id;
     const datasourceID = req.query.datasourceID;
 
-    debugData('clientDataRouter.GET for id:', id, ', query:', query, 'datasourceID:', datasourceID);
-    debugData('');
+    //    1.2 Get the DS (Datasource) record for the given datasourceID in req.query.  
+    const datasourceSchema = '../model/datasources';
+    const datasourceModel = require(datasourceSchema);
 
-    // Try, in case model file does not exist
-    try {
-        // Get the model
-        const clientSchema = '../model/clientData';
-        const clientModel = require(clientSchema);
-        debugData('Using Schema clientData');
-
-        // Find the data (using the standard query JSON object)
-        clientModel.find( query, (err, docs) => {
-
-            // Extract metodata from the Schema, using one document
-            // const oneDoc = clientModel.findOne();
-
-            // Empty Array of fields
-            var fields = [];
-
-            // Loop on metatdata
-            // for (var key in oneDoc.schema.obj) {
-            //     var value = oneDoc.schema.obj[key];
-
-            //     fields.push(
-            //         {
-            //             "fieldName": key,
-            //             "fieldType": value.name,
-            //             "average": null,
-            //             "max": null,
-            //             "median": null,
-            //             "min": null,
-            //             "sum": null
-            //         }
-            //     );
-            // };
-
-            // console.log('xx COUNT', fields, oneDoc.mongooseCollection.collectionName, docs.length)
-            // Return the data with metadata
-            return res.json({
-                "statusCode": "success",
-                "message" : "Retrieved data for id:" + id,
-                "data": docs[0].data,
-                "metaData": {
-                    "table": {
-                        "tableName": "", //oneDoc.mongooseCollection.collectionName,
-                        "nrRecordsReturned":docs.length
-                    },
-                    "fields": fields
-                },
-                "error": null
+    const mongoQuery = { id };
+    datasourceModel.find( mongoQuery, (err, datasourceArray) => {
+        if (err) {
+            console.log('Error:', err)
+            res.json({
+                "statusCode": "error",
+                "message" : "Error finding Datasource in Mongo DB",
+                "data": null,
+                "error": err
             });
-        });
-    }
-    catch (error) {
-        return res.status(400).json({
-            "statusCode": "error",
-            "message" : "Model clientData does not exist, or contains errors",
-            "data": null,
-            "error": error
-        });
-    };
+            return;
+        };
+        if (datasourceArray.length != 1) {
+            console.log('Error:', err)
+            res.json({
+                "statusCode": "error",
+                "message" : "Expect EXACTLY one Datasource in Mongo DB, not " + datasourceArray.length,
+                "data": null,
+                "error": err
+            });
+            return;
+        }
+
+        // Set variable for easier reference
+        const datasource = datasourceArray[0];
+
+        //    1.3 Get auxilliary information, like Tr (Transformations), 
+        //        dSet (datasets).
+
+        // TODO later ...
+
+        
+        // 2. Set results = [] (data block to return to Workstation)
+        let results = [];
+
+        // 3. Get the data with ASYNC AWAIT:
+        //    TODO - fix this later when we ready
+        let useCachingDisc = true;
+        let isFresh = true;
+        
+        //     if cached and isFresh, result = cache
+        //       Caching works the same as on Workstation: read the dataCachingTable (already loaded into
+        //       memory), check if isCached and isFresh, and provide from Memory or Disc.  
+        if (useCachingDisc  &&  isFresh) {
+
+            // Get the model
+            const clientSchema = '../model/clientData';
+            const clientModel = require(clientSchema);
+            debugData('Using Schema clientData');
+
+            // Find the data (using the standard query JSON object)
+            clientModel.find( { id } , (err, docs) => {
+
+                // Return the data with metadata
+                return res.json({
+                    "statusCode": "success",
+                    "message" : "Retrieved data for id:" + id,
+                    "data": docs[0].data,
+                    "metaData": {
+                        "table": {
+                            "tableName": "", //oneDoc.mongooseCollection.collectionName,
+                            "nrRecordsReturned":docs.length
+                        },
+                        "fields": []
+                    },
+                    "error": null
+                });
+            });
+        } else {
+
+            //     else call the correct data-layer-function depending on the DB type (ie MySQL or Mongo).
+
+        };
+
+
+        //     Now, results = [data]
+        // 4. Do the Transformations according to the Tr loaded in step 1
+        // 5. Decompose the query string in req.query into SORT_OBJECT, FIELDS_STRING, FILTER_OBJECT, 
+        //    AGGREGATION_OBJECT
+        // 6. If (SORT_OBJECT) then results = results.sort()
+        // 7. If (FIELDS_STRING) then results = results[fields]
+        // 8. If (FILTER_OBJECT) then results = results.filter()
+        // 9. If (AGGREGATION_OBJECT) then results = results.clever-thing
+        // 10. Add metadata, hopefully obtained directly from the source DB, or from the DS (if pre-stored), 
+        //     with prudent defaults where unknown.
+        // 11. Return results according to the CanvasHttpResponse interface
+        // 12. If any error, return err according to the CanvasHttpResponse interface
+
+
+
+
+
+    });
+
+
+    // KEEP !!!  
+    // This is the code to get /data?id=x from the Mongo data  ~  Disc Caching.
+    // It works !!!
+    //
+    // Try, in case model file does not exist
+    // try {
+    //     // Get the model
+    //     const clientSchema = '../model/clientData';
+    //     const clientModel = require(clientSchema);
+    //     debugData('Using Schema clientData');
+
+    //     // Find the data (using the standard query JSON object)
+    //     clientModel.find( reqQuery, (err, docs) => {
+
+    //         // Extract metodata from the Schema, using one document
+    //         // const oneDoc = clientModel.findOne();
+
+    //         // Empty Array of fields
+    //         var fields = [];
+
+    //         // Loop on metatdata
+    //         // for (var key in oneDoc.schema.obj) {
+    //         //     var value = oneDoc.schema.obj[key];
+
+    //         //     fields.push(
+    //         //         {
+    //         //             "fieldName": key,
+    //         //             "fieldType": value.name,
+    //         //             "average": null,
+    //         //             "max": null,
+    //         //             "median": null,
+    //         //             "min": null,
+    //         //             "sum": null
+    //         //         }
+    //         //     );
+    //         // };
+
+    //         // console.log('xx COUNT', fields, oneDoc.mongooseCollection.collectionName, docs.length)
+    //         // Return the data with metadata
+    //         return res.json({
+    //             "statusCode": "success",
+    //             "message" : "Retrieved data for id:" + id,
+    //             "data": docs[0].data,
+    //             "metaData": {
+    //                 "table": {
+    //                     "tableName": "", //oneDoc.mongooseCollection.collectionName,
+    //                     "nrRecordsReturned":docs.length
+    //                 },
+    //                 "fields": fields
+    //             },
+    //             "error": null
+    //         });
+    //     });
+    // }
+    // catch (error) {
+    //     return res.status(400).json({
+    //         "statusCode": "error",
+    //         "message" : "Model clientData does not exist, or contains errors",
+    //         "data": null,
+    //         "error": error
+    //     });
+    // };
 
 })
 

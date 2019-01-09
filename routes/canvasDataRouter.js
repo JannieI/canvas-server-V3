@@ -240,7 +240,6 @@ router.get('/:resource', (req, res, next) => {
         debugDev('Using Model ', canvasSchema, serverCacheableMemory?  'with caching'  :  'WITHOUT cache')
         const canvasModel = require(canvasSchema);
 
-
         // Find the data (using the standard query JSON object)
         canvasModel.find( query, (err, docs) => {
 
