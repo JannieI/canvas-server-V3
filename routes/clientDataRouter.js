@@ -177,12 +177,15 @@ router.get('/', (req, res, next) => {
             datalayer.createConnectionDefinition()
                 .then(res => {
                     console.log('createConnectionDefinition res on host:', res.config.connectionConfig.host)
+
+                    const result = datalayer.select(pool, "SELECT 1 + 1", "janniei", )
+                    console.log('pool', pool)
+
+
                 })
                 .catch(err => {
                     console.log('createConnectionDefinition Error', err)
                 })
-            // console.log('pool', pool)
-            // const result = datalayer.getRecords(pool, "SELECT 1 + 1", "janniei", )
 
 
 

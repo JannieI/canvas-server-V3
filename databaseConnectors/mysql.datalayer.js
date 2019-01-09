@@ -46,7 +46,7 @@ exports.createConnectionDefinition = function(host, user, password, database, op
     });
 }
 
-exports.select = function(pool, sql, user, callback) {
+exports.select = function(pool, sql, user) {
 // Selects the records from the MySQL database according to the given parameters.
     return new Promise((resolve, reject) => {
 
