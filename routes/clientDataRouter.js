@@ -46,10 +46,10 @@ router.get('/', (req, res, next) => {
     // 2. Set results = [] (data block to return to Workstation)
     // 3. Get the data:
     //     if cached and isFresh, result = cache
-    //       Caching works the same as Workstation: read the dataCachingTable (already loaded into
-    //       memory), check if isFresh, and provide from Memory or Disc.  
+    //       Caching works the same as on Workstation: read the dataCachingTable (already loaded into
+    //       memory), check if isCached and isFresh, and provide from Memory or Disc.  
 
-    //       For now, all DS will be set to cache from Disc, since this is were the data is already stored.
+    //       For now, all DS will be set to cache from Disc, since this is where the data is already stored.
 
     //     else call the correct data-layer-function depending on the DB type (ie MySQL or Mongo).
     //       The naming convention of the data-layer-function is databaseConnectors/DB.METHOD.js,
@@ -59,12 +59,24 @@ router.get('/', (req, res, next) => {
     //         - listTables: takes as input the database name, and lists all tables in the SQL 
     //         - database, all the  collections in the Mongo database, all the worksheets in the 
     //           given Excel workbook, etc.
-    //         - listFields: list all the columns for a given SQL Table, Mongo Collection, Excel 
-    //           worksheet.  Not sure if this will contain metadata as well.
+    //         - listFields: list all the columns for a given DB and SQL Table, Mongo Collection, Excel 
+    //           worksheet, etc.  Not sure if this will contain metadata as well.
     //       Note, the case of the methods.  
     //       The data-layer-function is generic and has no DB specific info - all the DB info must
     //       be provided by the calling function.  It takes the following inputs:
-    //       - DATABASE_OBJECT
+    //       - DATABASE_OBJECT is required, and contains all the necessary information to connect to
+    //         the source, including connection options.  Fields required for the different types of
+    //         databases will vary.  Current fields are:
+    //         Required:
+    //           host: ie '127.0.0.1',
+    //           user: ie 'janniei',
+    //           password: ie psw,                        NOT sure how to handle this at moment
+    //           database: ie 'mysql',
+    //             
+    //         Optional: 
+    //           table name: ie XIS-Trades   
+    //           mysql-connectionLimit 10,  
+    //           mysql-supportBigNumbers true
     //       - TABLE is an optional string with the name of a SQL DB table, or equivalent.  For Mongo 
     //            it will be Collection, for files (Excel, CSV, etc that resiced on the Server) it 
     //            will be the full path (folder + filename), for Web tables it will be the URL, for
@@ -101,12 +113,18 @@ router.get('/', (req, res, next) => {
 
 
 
+    // 1. Preparation: 
+    //    - get the datasourceID from req.query
+    //    - get the DS (Datasource) record for the given datasourceID in req.query.  
+    //    Note, it is necessary to get auxilliary information, like Tr (Transformations), 
+    //    dSet (datasets).
 
     // Extract: query, route (params without the :)
     const query = req.query;
     const id = req.query.id;
+    const datasourceID = req.query.datasourceID;
 
-    debugData('clientDataRouter.GET for id:', id, ', query:', query);
+    debugData('clientDataRouter.GET for id:', id, ', query:', query, 'datasourceID:', datasourceID);
     debugData('');
 
     // Try, in case model file does not exist
