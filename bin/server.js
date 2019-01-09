@@ -47,6 +47,7 @@ const io = socketio(server);
 //     severity,
 //     messageDateTime
 // }
+
 io.on('connect', (socket, req) => {
 
     // .emit emits an event to the socket identified by the event name (ie welcome below).  It
