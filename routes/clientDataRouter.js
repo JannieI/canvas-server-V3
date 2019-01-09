@@ -174,9 +174,17 @@ router.get('/', (req, res, next) => {
 
 
             const datalayer = require('../databaseConnectors/mysql.datalayer');
-            const pool = datalayer.createConnectionDefinition()
-            console.log('pool', pool)
-            const result = datalayer.getRecords(pool, "SELECT 1 + 1", "janniei", )
+            datalayer.createConnectionDefinition()
+                .then(res => {
+                    console.log('createConnectionDefinition res on host:', res.config.connectionConfig.host)
+                })
+                .catch(err => {
+                    console.log('createConnectionDefinition Error', err)
+                })
+            // console.log('pool', pool)
+            // const result = datalayer.getRecords(pool, "SELECT 1 + 1", "janniei", )
+
+
 
 
             // Get the model

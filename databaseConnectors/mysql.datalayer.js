@@ -5,43 +5,46 @@ const mysql = require('mysql');
 const config = require('config');               // Configuration
 
 // createConnectionDefinition
-exports.createConnectionDefinition = async function(host, user, password, database, options) {
+exports.createConnectionDefinition = function(host, user, password, database, options) {
+// Defines the pool object ~ connection string to connect to MySQL
+    return new Promise((resolve, reject) => {
 
-    // TODO - find a better way to do these !!!
-    if (host == undefined) {
-        host = '127.0.0.1';
-    };
-    if (user  == undefined) {
-        user = 'janniei';
-    };
-    if (password == undefined) {
-        password = config.get('password.janniei');
-    };
-    if (database == undefined) {
-        database = 'mysql';
-    };
+        // TODO - find a better way to do these !!!
+        if (host == undefined) {
+            host = '127.0.0.1';
+        };
+        if (user  == undefined) {
+            user = 'janniei';
+        };
+        if (password == undefined) {
+            password = config.get('password.janniei');
+        };
+        if (database == undefined) {
+            database = 'mysql';
+        };
 
-    // Decompose the options
-    if (options != null) {
-        Object.keys(options).forEach(function(key) {
-            var val = options[key];
-            console.log('va', val);
+        // Decompose the options
+        if (options != null) {
+            Object.keys(options).forEach(function(key) {
+                var val = options[key];
+                console.log('va', val);
+            });
+        };
+
+        const pool = mysql.createPool({
+            connectionLimit  : 10,
+            host             : '127.0.0.1',
+            user             : 'janniei',
+            password         : password,
+            database         : 'mysql',
+            connectionLimit  : 10,
+            supportBigNumbers: true
         });
-    };
 
-    const pool = await mysql.createPool({
-        connectionLimit  : 10,
-        host             : '127.0.0.1',
-        user             : 'janniei',
-        password         : password,
-        database         : 'mysql',
-        connectionLimit  : 10,
-        supportBigNumbers: true
+        // Return
+        resolve(pool);
     });
-
-    // Return
-    return(pool);
-};
+}
 
 exports.select = function(pool, sql, user, callback) {
 // Selects the records from the MySQL database according to the given parameters.
