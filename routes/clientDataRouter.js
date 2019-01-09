@@ -175,12 +175,17 @@ router.get('/', (req, res, next) => {
 
             const datalayer = require('../databaseConnectors/mysql.datalayer');
             datalayer.createConnectionDefinition()
-                .then(res => {
-                    console.log('createConnectionDefinition res on host:', res.config.connectionConfig.host)
+                .then(pool => {
+                    console.log('createConnectionDefinition res on host:', pool.config.connectionConfig.host)
 
                     const result = datalayer.select(pool, "SELECT 1 + 1", "janniei", )
-                    console.log('pool', pool)
-
+                        .then(res => {
+                            results = res;
+                            console.log('results', results);
+                        })
+                        .catch(err =>{
+                            console.log('Err after .select in router', err);
+                        });
 
                 })
                 .catch(err => {
