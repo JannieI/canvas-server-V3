@@ -56,8 +56,6 @@ router.get('/', (req, res, next) => {
     //       where DB is the type of source (mysql, postgress, mssql, etc).  Inside each function,
     //       a number of METHOD are exported.  These are:
     //       select, insert, update, delete, or a special one.  The special methods can be:
-    //         - createConnectionDefinition
-    //         - 
     //         - listDatabases: lists all the databases on the given Database Server
     //         - listTables: takes as input the database name, and lists all tables in the SQL 
     //         - database, all the  collections in the Mongo database, all the worksheets in the 
@@ -90,6 +88,7 @@ router.get('/', (req, res, next) => {
     //         Note that either TABLE (and optionally Fields) or QUERY_STRING must be provided.  The 
     //              data-layer-function will convert TABLE and FIELDS to a QUERY_STRING using the 
     //              relevant format for the given type of source data.
+    //       - SQL_PARAMETERS is optional params for the ? in the SQL
     //       The data-layer-function has the following steps:
     //       - config database object, using DATABASE_OBJECT info provided
     //       - connects to database
@@ -198,6 +197,11 @@ router.get('/', (req, res, next) => {
             const datalayer = require('../databaseConnectors/mysql.datalayer');
             // Inputs: host, user, password, database, options, sql, sqlParams
             const result = datalayer.select(null, null, null, null, null, "SELECT 1 + 1", "janniei", )
+            DATABASE_OBJECT
+TABLE
+FIELDS
+QUERY_STRING
+SQL_PARAMETERS
                 .then(res => {
                     results = res;
                     console.log('results', results);

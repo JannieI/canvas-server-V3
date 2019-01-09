@@ -46,22 +46,28 @@ exports.createConnectionDefinition = function(host, user, password, database, op
     });
 }
 
-exports.select = function(host, user, password, database, options, sql, sqlParams) {
+// exports.select = function(host, user, password, database, options, sql, sqlParams) {
+exports.select = function(databaseObject, table, fields, queryString, sqlParameters) {
 // Selects the records from the MySQL database according to the given parameters.
     return new Promise((resolve, reject) => {
 
+        let host = '127.0.0.1';
+        let user = 'janniei';
+        let password = config.get('password.janniei');
+        let database = 'mysql';
+
         // TODO - find a better way to do these !!!
-        if (host == undefined) {
-            host = '127.0.0.1';
+        if (databaseObject.host != null) {
+            host = databaseObject.host;
         };
-        if (user  == undefined) {
-            user = 'janniei';
+        if (databaseObject.user != null) {
+            user = databaseObject.user;
         };
-        if (password == undefined) {
-            password = config.get('password.janniei');
+        if (databaseObject.password != null) {
+            password = databaseObject.password;
         };
-        if (database == undefined) {
-            database = 'mysql';
+        if (databaseObject.database != null) {
+            database = databaseObject.database;
         };
 
         // Decompose the options
