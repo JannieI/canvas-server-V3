@@ -57,50 +57,52 @@ exports.select = function(databaseObject, table, fields, queryString, sqlParamet
         let database = 'mysql';
 
         // TODO - find a better way to do these !!!
-        if (databaseObject.host != null) {
-            host = databaseObject.host;
-        };
-        if (databaseObject.user != null) {
-            user = databaseObject.user;
-        };
-        if (databaseObject.password != null) {
-            password = databaseObject.password;
-        };
-        if (databaseObject.database != null) {
-            database = databaseObject.database;
+        if ( databaseObject != null) {
+            if (databaseObject.host != null) {
+                host = databaseObject.host;
+            };
+            if (databaseObject.user != null) {
+                user = databaseObject.user;
+            };
+            if (databaseObject.password != null) {
+                password = databaseObject.password;
+            };
+            if (databaseObject.database != null) {
+                database = databaseObject.database;
+            };
         };
 
         // Decompose the options
-        if (options != null) {
-            Object.keys(options).forEach(function(key) {
-                var val = options[key];
+        if (sqlParameters != null) {
+            Object.keys(sqlParameters).forEach(function(key) {
+                var val = sqlParameters[key];
                 console.log('va', val);
             });
         };
 
         const pool = mysql.createPool({
             connectionLimit  : 10,
-            host             : '127.0.0.1',
-            user             : 'janniei',
+            host             : host,
+            user             : user,
             password         : password,
-            database         : 'mysql',
+            database         : database,
             connectionLimit  : 10,
             supportBigNumbers: true
         });
 
         pool.getConnection((err, connection) => {
             console.log('  mySQL.connector getConnection Start')
-            if (err) { 
+            if (err) {
                 console.log('  mySQL.connector Error in getConnection', err)
                 reject(err);
             };
             console.log('  mySQL.connector After getConnection - if (err)')
-            
+
             // Make the query
             // let sqlParams = 'janniei';
-            connection.query(sql, [sqlParams], (err, results) => {
+            connection.query(queryString, [sqlParameters], (err, results) => {
                 console.log('  mySQL.connector After query')
-                if (err) { 
+                if (err) {
                     console.log('  mySQL.connector Error in query', err)
                     reject(err);
                 };
@@ -115,17 +117,17 @@ exports.getRecords = function(sql, user, callback) {
 
     pool.getConnection((err, connection) => {
         console.log('  mySQL.connector getConnection Start')
-        if (err) { 
+        if (err) {
             console.log('  mySQL.connector Error in getConnection', err)
             callback(true); return;
         };
         console.log('  mySQL.connector After getConnection - if (err)')
-        
+
         // Make the query
         // let user = 'janniei';
         connection.query(sql, [user], (err, results) => {
             console.log('  mySQL.connector After query')
-            if (err) { 
+            if (err) {
                 console.log('  mySQL.connector Error in query', err)
                 callback(true); return;
             };
