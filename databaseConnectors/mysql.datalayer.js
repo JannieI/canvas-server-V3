@@ -10,6 +10,47 @@ exports.createConnectionDefinition = function(host, user, password, database, op
     return new Promise((resolve, reject) => {
 
         // TODO - find a better way to do these !!!
+        if (host == undefined  ||  host == null) {
+            host = '127.0.0.1';
+        };
+        if (user  == undefined  ||  user  == null) {
+            user = 'janniei';
+        };
+        if (password == undefined  ||  password == null) {
+            password = config.get('password.janniei');
+        };
+        if (database == undefined  ||  database == null) {
+            database = 'mysql';
+        };
+
+        // Decompose the options
+        if (options != null) {
+            Object.keys(options).forEach(function(key) {
+                var val = options[key];
+                console.log('va', val);
+            });
+        };
+
+        const pool = mysql.createPool({
+            connectionLimit  : 10,
+            host             : '127.0.0.1',
+            user             : 'janniei',
+            password         : password,
+            database         : 'mysql',
+            connectionLimit  : 10,
+            supportBigNumbers: true
+        });
+
+        // Return
+        resolve(pool);
+    });
+}
+
+exports.select = function(host, user, password, database, options, sql, sqlParams) {
+// Selects the records from the MySQL database according to the given parameters.
+    return new Promise((resolve, reject) => {
+
+        // TODO - find a better way to do these !!!
         if (host == undefined) {
             host = '127.0.0.1';
         };
@@ -41,15 +82,6 @@ exports.createConnectionDefinition = function(host, user, password, database, op
             supportBigNumbers: true
         });
 
-        // Return
-        resolve(pool);
-    });
-}
-
-exports.select = function(pool, sql, user) {
-// Selects the records from the MySQL database according to the given parameters.
-    return new Promise((resolve, reject) => {
-
         pool.getConnection((err, connection) => {
             console.log('  mySQL.connector getConnection Start')
             if (err) { 
@@ -59,8 +91,8 @@ exports.select = function(pool, sql, user) {
             console.log('  mySQL.connector After getConnection - if (err)')
             
             // Make the query
-            // let user = 'janniei';
-            connection.query(sql, [user], (err, results) => {
+            // let sqlParams = 'janniei';
+            connection.query(sql, [sqlParams], (err, results) => {
                 console.log('  mySQL.connector After query')
                 if (err) { 
                     console.log('  mySQL.connector Error in query', err)

@@ -176,6 +176,7 @@ router.get('/', (req, res, next) => {
 
 
 
+            // KEEP - this is part of non-cached method
             // const datalayer = require('../databaseConnectors/mysql.datalayer');
             // datalayer.createConnectionDefinition()
             //     .then(pool => {
@@ -194,6 +195,16 @@ router.get('/', (req, res, next) => {
             //     .catch(err => {
             //         console.log('createConnectionDefinition Error', err)
             //     })
+            const datalayer = require('../databaseConnectors/mysql.datalayer');
+            // Inputs: host, user, password, database, options, sql, sqlParams
+            const result = datalayer.select(null, , "SELECT 1 + 1", "janniei", )
+                .then(res => {
+                    results = res;
+                    console.log('results', results);
+                })
+                .catch(err =>{
+                    console.log('Err after .select in router', err);
+                });
 
 
 
