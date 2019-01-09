@@ -1,4 +1,5 @@
 // Connector for MySQL database
+// Note: at the moment this is not used - consider whether necessary at Architecture design
 
 const mysql = require('mysql');
 const config = require('config');               // Configuration
@@ -13,29 +14,6 @@ var pool  = mysql.createPool({
     connectionLimit: 10,
     supportBigNumbers: true
 });
-
-// Get records from a user
-// exports.getRecords = function(city, callback) {
-//     var sql = "SELECT * FROM user WHERE Host=?";
-//     // get a connection from the pool
-//     pool.getConnection(function(err, connection) {
-//         console.log('Start getConnection')
-//         if (err) { console.log(err); callback(true); return; }
-//         console.log('After getConnection - if (err)')
-//         // make the query
-//         connection.query(sql, [city], function(err, results) {
-//         console.log('After query')
-
-//         connection.release();
-//         console.log('After getConnection - release')
-
-//         if (err) { console.log(err); callback(true); return; }
-//         console.log('After release - if (err)')
-//         callback(false, results);
-//         console.log('@End not callable')
-//         });
-//     });
-// }; 
 
 exports.getRecords = function(sql, user, callback) {
 
