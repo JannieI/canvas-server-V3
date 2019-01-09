@@ -38,7 +38,21 @@ router.use('/', (req, res, next) => {
 router.get('/', (req, res, next) => {
 
     // The structure of this route is as follows:
+    // 1. Preparation: get the DS (Datasource) record for the given datasourceID in req.query
+    // 2. Set results = [] (data block to return to Workstation)
+    // 3. Get the data:
+    //     if cached and isFresh, result = cache
+    //     else call the correct function depending on the DB type (ie MySQL or Mongo)
 
+    //     Now, results = [data]
+    // 4. Do the Transformations according to the DS spec
+    // 5. Fecompose the query string in req.query into SORT_OBJECT, FIELDS_STRING, FILTER_OBJECT, AGGREGATION_OBJECT
+    // 6. If (SORT_OBJECT) then results = results.sort()
+    // 7. If (FIELDS_STRING) then results = results[fields]
+    // 8. If (FILTER_OBJECT) then results = results.filter()
+    // 9. If (AGGREGATION_OBJECT) then results = results.clever-thing
+    // 10. Add metadata (with prudent defaults)
+    // 11. Return results according to the CanvasHttpResponse interface
 
 
 
