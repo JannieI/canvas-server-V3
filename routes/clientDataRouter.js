@@ -38,13 +38,53 @@ router.use('/', (req, res, next) => {
 router.get('/', (req, res, next) => {
 
     // The structure of this route is as follows:
-    // 1. Preparation: get the DS (Datasource) record for the given datasourceID in req.query.  
+    // 1. Preparation: 
+    //    - get the datasourceID from req.query
+    //    - get the DS (Datasource) record for the given datasourceID in req.query.  
     //    Note, it is necessary to get auxilliary information, like Tr (Transformations), 
     //    dSet (datasets).
     // 2. Set results = [] (data block to return to Workstation)
     // 3. Get the data:
     //     if cached and isFresh, result = cache
-    //     else call the correct function depending on the DB type (ie MySQL or Mongo)
+    //       Caching works the same as Workstation: read the dataCachingTable (already loaded into
+    //       memory), check if isFresh, and provide from Memory or Disc.  
+
+    //       For now, all DS will be set to cache from Disc, since this is were the data is already stored.
+
+    //     else call the correct data-layer-function depending on the DB type (ie MySQL or Mongo).
+    //       The naming convention of the data-layer-function is databaseConnectors/DB.METHOD.js,
+    //       where DB is the type of source (mysql, postgress, mssql, etc) and METHOD is get,
+    //       insert, update, delete, or a special one.  The special methods can be:
+    //         - listDatabases: lists all the databases on the given Database Server
+    //         - listTables: takes as input the database name, and lists all tables in the SQL 
+    //         - database, all the  collections in the Mongo database, all the worksheets in the 
+    //           given Excel workbook, etc.
+    //         - listFields: list all the columns for a given SQL Table, Mongo Collection, Excel 
+    //           worksheet.  Not sure if this will contain metadata as well.
+    //       Note, the case of the methods.  
+    //       The data-layer-function is generic and has no DB specific info - all the DB info must
+    //       be provided by the calling function.  It takes the following inputs:
+    //       - DATABASE_OBJECT
+    //       - TABLE is an optional string with the name of a SQL DB table, or equivalent.  For Mongo 
+    //            it will be Collection, for files (Excel, CSV, etc that resiced on the Server) it 
+    //            will be the full path (folder + filename), for Web tables it will be the URL, for
+    //            services it will be the URL with options.  
+    //       - FIELDS is an optional array of fields, ie [field1, field2] that must be extracted.
+    //       - QUERY_STRING is an optional string that contains the SQL statement for a SQL database,
+    //            Mongo Query, from:to rows and columns for Excel, etc.  
+    //         Note that either TABLE (and optionally Fields) or QUERY_STRING must be provided.  The 
+    //              data-layer-function will convert TABLE and FIELDS to a QUERY_STRING using the 
+    //              relevant format for the given type of source data.
+    //       The data-layer-function has the following steps:
+    //       - config database object, using DATABASE_OBJECT info provided
+    //       - connects to database
+    //       - queries, inserts, updates, deletes, special-methods the data
+    //       - return the results (or error)
+
+    //     Important point to solve: how does clientRouter get the DATABASE_OBJECT info:
+    //     - from DS, from env params, from a connection table (each DS only has an ID to the )
+    //     connection table, which has all the info (and maybe encoded passwords)
+    
     //     Now, results = [data]
     // 4. Do the Transformations according to the Tr loaded in step 1
     // 5. Decompose the query string in req.query into SORT_OBJECT, FIELDS_STRING, FILTER_OBJECT, 
