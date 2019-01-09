@@ -52,9 +52,12 @@ router.get('/', (req, res, next) => {
     //       For now, all DS will be set to cache from Disc, since this is where the data is already stored.
 
     //     else call the correct data-layer-function depending on the DB type (ie MySQL or Mongo).
-    //       The naming convention of the data-layer-function is databaseConnectors/DB.METHOD.js,
-    //       where DB is the type of source (mysql, postgress, mssql, etc) and METHOD is get,
+    //       The naming convention of the data-layer-function is databaseConnectors/DB.datalayer.js,
+    //       where DB is the type of source (mysql, postgress, mssql, etc).  Inside each function,
+    //       a number of METHOD are exported.  These are:
     //       insert, update, delete, or a special one.  The special methods can be:
+    //         - createConnectionDefinition
+    //         - 
     //         - listDatabases: lists all the databases on the given Database Server
     //         - listTables: takes as input the database name, and lists all tables in the SQL 
     //         - database, all the  collections in the Mongo database, all the worksheets in the 
