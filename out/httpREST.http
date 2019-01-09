@@ -145,7 +145,7 @@ content-type: application/json
 ###
 GET {{host}}/clientData/?id=3&datasourceID=3
 ###
-GET {{host}}/users/mysqlexpress
+GET {{host}}/canvasData/widgetLayouts
 ###
 GET {{host}}/users/mysqlexpress
 ?sql=SELECT User, Host, authentication_string FROM user

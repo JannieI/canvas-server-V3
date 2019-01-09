@@ -44,7 +44,7 @@ DashboardLayoutSchema.pre('save', function(next) {
 });
 
 // Create Model: modelName, schema, collection
-const DashboardLayoutModel = mongoose.model('DashboardLayouts', DashboardLayoutSchema, 'DashboardLayouts');
+const DashboardLayoutModel = mongoose.model('dashboardLayouts', DashboardLayoutSchema, 'dashboardLayouts');
 
 // Export
 module.exports = DashboardLayoutModel;

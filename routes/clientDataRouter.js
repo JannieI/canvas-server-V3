@@ -173,6 +173,9 @@ router.get('/', (req, res, next) => {
 
 
 
+
+
+
             const datalayer = require('../databaseConnectors/mysql.datalayer');
             datalayer.createConnectionDefinition()
                 .then(pool => {
@@ -194,6 +197,10 @@ router.get('/', (req, res, next) => {
 
 
 
+
+
+
+                
 
             // Get the model
             const clientSchema = '../model/clientData';
