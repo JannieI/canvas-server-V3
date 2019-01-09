@@ -197,7 +197,7 @@ router.get('/', (req, res, next) => {
             //     })
             const datalayer = require('../databaseConnectors/mysql.datalayer');
             // Inputs: host, user, password, database, options, sql, sqlParams
-            const result = datalayer.select(null, , "SELECT 1 + 1", "janniei", )
+            const result = datalayer.select(null, null, null, null, null, "SELECT 1 + 1", "janniei", )
                 .then(res => {
                     results = res;
                     console.log('results', results);
