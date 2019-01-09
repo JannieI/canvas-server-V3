@@ -53,7 +53,7 @@ router.get('/', (req, res, next) => {
 
         // Find the data (using the standard query JSON object)
         clientModel.find( query, (err, docs) => {
- 
+
             // Extract metodata from the Schema, using one document
             // const oneDoc = clientModel.findOne();
 

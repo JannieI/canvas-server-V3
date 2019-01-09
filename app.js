@@ -167,7 +167,7 @@ app.use('/auth/local/profile', passport.authenticate('jwt', { session : false })
 app.use('/auth/local', authLocalRouter);
 // Show Canvas Workstation page
 app.get('/canvas', (req, res, next) => {
-    res.sendFile(path.join(__dirname, '/public/dist/', 'index.html'))
+    // res.sendFile(path.join(__dirname, '/public/dist/', 'index.html'))
 });
 app.use('/users', usersRouter);
 app.use('/auth/github/', authGitHubRouter);

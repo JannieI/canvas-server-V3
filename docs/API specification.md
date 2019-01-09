@@ -35,13 +35,18 @@ The general format of each authentication-related API call is:
 
 The general format of each client data-related API call is:
 
-    HTTP-Method {{ host }} / data / ?query-string
+    HTTP-Method {{ host }} / clientdata / ?query-string
 
     WHERE
         HTTP-Method - GET, PUT, POST, DELETE 
         {{ host }} - the url for the Canvas Server, which could be http://localhost:8000 for the local server running Node & Express.
         data - fixed part of the url
-        query-string - identifies the data that is requested.  Maybe ?datasourceID=1.  However we need to sort this out at a later stage.
+        query-string - specifies the data block that must be returned
+            - ?datasourceID=x is required, and identifies the Datasource, which will contain information about the data (location, type of database, etc)
+            - sort=SORT_OBJECT is optional, and specifies how the data must be sorted prior to returning to Workstation.  SORT_OBJECT could be { name:1, user: -1} where 1 and -1 indicates ascending and descending respetively.   These should mimic Mongo style sorting.
+            - fields=FIELDS_STRING is optional, and indicates which fields must be returned.  For example, FIELDS_STRING=name,user will only return these two fields in the data block.
+            - aggregate=AGGREGATION_OBJECT is optional, and indicates how the data must be aggregated before the data block is returned.  For example, AGGREGATION_OBJECT = { sum: Field1, groupby: Field2 }.   These should mimic Mongo style projection.
+            - filters=FILTER_OBJECT is optional, and specifies how rows must be filtered before the data block is returned.  For example, FILTER_OBJECT = { name: {eq: 'JohnS' }} will only return records for JohnS.  These should mimic Mongo style filters.
 
 
 #### Canvas-related API calls:
