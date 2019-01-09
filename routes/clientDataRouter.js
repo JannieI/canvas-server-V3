@@ -176,31 +176,31 @@ router.get('/', (req, res, next) => {
 
 
 
-            const datalayer = require('../databaseConnectors/mysql.datalayer');
-            datalayer.createConnectionDefinition()
-                .then(pool => {
-                    console.log('createConnectionDefinition res on host:', pool.config.connectionConfig.host)
+            // const datalayer = require('../databaseConnectors/mysql.datalayer');
+            // datalayer.createConnectionDefinition()
+            //     .then(pool => {
+            //         console.log('createConnectionDefinition res on host:', pool.config.connectionConfig.host)
 
-                    const result = datalayer.select(pool, "SELECT 1 + 1", "janniei", )
-                        .then(res => {
-                            results = res;
-                            console.log('results', results);
-                        })
-                        .catch(err =>{
-                            console.log('Err after .select in router', err);
-                        });
+            //         const result = datalayer.select(pool, "SELECT 1 + 1", "janniei", )
+            //             .then(res => {
+            //                 results = res;
+            //                 console.log('results', results);
+            //             })
+            //             .catch(err =>{
+            //                 console.log('Err after .select in router', err);
+            //             });
 
-                })
-                .catch(err => {
-                    console.log('createConnectionDefinition Error', err)
-                })
-
-
+            //     })
+            //     .catch(err => {
+            //         console.log('createConnectionDefinition Error', err)
+            //     })
 
 
 
 
-                
+
+
+
 
             // Get the model
             const clientSchema = '../model/clientData';
