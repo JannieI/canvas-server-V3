@@ -37,6 +37,13 @@ router.use('/', (req, res, next) => {
 // GET route
 router.get('/', (req, res, next) => {
 
+    // The structure of this route is as follows:
+
+
+
+
+
+
     // Extract: query, route (params without the :)
     const query = req.query;
     const id = req.query.id;
