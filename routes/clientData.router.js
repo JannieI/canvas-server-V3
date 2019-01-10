@@ -160,9 +160,7 @@ router.get('/', (req, res, next) => {
         const serverName = datasourceArray[0].serverName;
         const dataTableName = datasourceArray[0].dataTableName;
         const dataSQLStatement = datasourceArray[0].dataSQLStatement;
-
-        let datasource = JSON.parse(JSON.stringify(datasourceArray[0]));
-        debugDev('properties from DS', datasource, username, password, databaseName, port, serverType, serverName, dataTableName, dataSQLStatement, )
+        debugDev('properties from DS', username, password, databaseName, port, serverType, serverName, dataTableName, dataSQLStatement, )
         
         
         //    1.3 Get auxilliary information, like Tr (Transformations), 
@@ -241,19 +239,18 @@ router.get('/', (req, res, next) => {
                 const datalayer = require('../databaseConnectors/mysql.datalayer');
                 // Inputs: DATABASE_OBJECT, TABLE, FIELDS, QUERY_STRING, SQL_PARAMETERS
                 
-                deug
                 // Create databaseObject
                 // Sample: databaseObject = { host: '127.0.0.1', user: 'janniei', password: 'janniei', database: 'mysql'}
                 let databaseObject = 
                     { 
-                        host: '127.0.0.1', 
+                        host: serverName, 
                         user: username, 
                         password: null,  // password !?? 
                         database: databaseName,
                         port: port==null?  3306  :  port
                     };
                 debugDev('databaseObject',databaseObject)
-                // TODO - how do we use the serverName ??  ~ host !??
+                // TODO - do we use the serverName (in Workstation)    OR    host !??
                 // TODO - what about parameters?  Must we cater for it !??
 
 
