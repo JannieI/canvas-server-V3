@@ -1,50 +1,38 @@
 // Connector for MySQL database
-// Note: at the moment this is not used - consider whether necessary at Architecture design
+// This handles all DB related actions, include connecting
+
+// TODO - move this to a better place once we are more familiar with it
+// Some Docs on how to handle MySQL 
+
+// Ubuntu
+// - to see if running: systemctl status mysql.service
+// - to get running again:
+//      systemctl unmask mysql.service
+//      service mysql start
+//
+// If permissions issues:
+// - sudo /etc/init.d/mysql start
+// - sudo /etc/init.d/mysql restart
+// - sudo systemctl start mysql
+//
+// To see if running, etc:
+// - service mysql status
+// - service mysql stop
+// - service mysql start
+//
+// MySQL defaults to port 3306 unless you specify another line in the /etc/my.cnf config file.
+// To change it:
+// - Log in to your server using SSH.
+// - At the command prompt, use your preferred text editor to open the /etc/mysql/my.cnf file.
+//   ie vi /etc/my.cnf
+// - Locate the bind-address line in the my.cnf file.
+// 
+// Alter Password with 
+// - ALTER USER 'userName'@'localhost' IDENTIFIED BY 'New-Password-Here';
+
 
 const mysql = require('mysql');
 const config = require('config');               // Configuration
-
-// createConnectionDefinition
-exports.createConnectionDefinition = function(host, user, password, database, options) {
-// Defines the pool object ~ connection string to connect to MySQL
-    return new Promise((resolve, reject) => {
-
-        // TODO - find a better way to do these !!!
-        if (host == undefined  ||  host == null) {
-            host = '127.0.0.1';
-        };
-        if (user  == undefined  ||  user  == null) {
-            user = 'janniei';
-        };
-        if (password == undefined  ||  password == null) {
-            password = config.get('password.janniei');
-        };
-        if (database == undefined  ||  database == null) {
-            database = 'mysql';
-        };
-
-        // Decompose the options
-        if (options != null) {
-            Object.keys(options).forEach(function(key) {
-                var val = options[key];
-                console.log('va', val);
-            });
-        };
-
-        const pool = mysql.createPool({
-            connectionLimit  : 10,
-            host             : '127.0.0.1',
-            user             : 'janniei',
-            password         : password,
-            database         : 'mysql',
-            connectionLimit  : 10,
-            supportBigNumbers: true
-        });
-
-        // Return
-        resolve(pool);
-    });
-}
 
 // exports.select = function(host, user, password, database, options, sql, sqlParams) {
 exports.select = function(databaseObject, table, fields, queryString, sqlParameters) {
@@ -94,22 +82,22 @@ exports.select = function(databaseObject, table, fields, queryString, sqlParamet
         });
 
         pool.getConnection((err, connection) => {
-            console.log('  mySQL.connector getConnection Start')
+            console.log('  mySQL.datalayer getConnection Start')
             if (err) {
-                console.log('  mySQL.connector Error in getConnection', err)
+                console.log('  mySQL.datalayer Error in getConnection', err)
                 reject(err);
             };
-            console.log('  mySQL.connector After getConnection - if (err)')
+            console.log('  mySQL.datalayer After getConnection - if (err)')
 
             // Make the query
             // let sqlParams = 'janniei';
             connection.query(queryString, [sqlParameters], (err, results) => {
-                console.log('  mySQL.connector After query')
+                console.log('  mySQL.datalayer After query')
                 if (err) {
-                    console.log('  mySQL.connector Error in query', err)
+                    console.log('  mySQL.datalayer Error in query', err)
                     reject(err);
                 };
-                console.log('  mySQL.connector End query')
+                console.log('  mySQL.datalayer End query')
                 resolve(results);
             });
         });
@@ -119,22 +107,22 @@ exports.select = function(databaseObject, table, fields, queryString, sqlParamet
 exports.getRecords = function(sql, user, callback) {
 
     pool.getConnection((err, connection) => {
-        console.log('  mySQL.connector getConnection Start')
+        console.log('  mySQL.datalayer getConnection Start')
         if (err) {
-            console.log('  mySQL.connector Error in getConnection', err)
+            console.log('  mySQL.datalayer Error in getConnection', err)
             callback(true); return;
         };
-        console.log('  mySQL.connector After getConnection - if (err)')
+        console.log('  mySQL.datalayer After getConnection - if (err)')
 
         // Make the query
         // let user = 'janniei';
         connection.query(sql, [user], (err, results) => {
-            console.log('  mySQL.connector After query')
+            console.log('  mySQL.datalayer After query')
             if (err) {
-                console.log('  mySQL.connector Error in query', err)
+                console.log('  mySQL.datalayer Error in query', err)
                 callback(true); return;
             };
-            console.log('  mySQL.connector End query')
+            console.log('  mySQL.datalayer End query')
             callback(false, results);
         });
     });
