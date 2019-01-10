@@ -150,22 +150,19 @@ router.get('/', (req, res, next) => {
             });
             return;
         }
-
-        // Set variable for easier reference
-        let datasource = JSON.parse(JSON.stringify(datasourceArray))[0];
-        debugDev('datasource', datasource)
  
         // Get the DB-related vars
-        const username = datasource.username;
-        const password = datasource.password;
-        const databaseName = datasource.databaseName;
-        const port = datasource.port;
-        const serverType = datasource.serverType;
-        const serverName = datasource.serverName;
-        const dataTableName = datasource.dataTableName;
-        const dataSQLStatement = datasource.dataSQLStatement;
+        const username = datasourceArray[0].username;
+        const password = datasourceArray[0].password;
+        const databaseName = datasourceArray[0].databaseName;
+        const port = datasourceArray[0].port;
+        const serverType = datasourceArray[0].serverType;
+        const serverName = datasourceArray[0].serverName;
+        const dataTableName = datasourceArray[0].dataTableName;
+        const dataSQLStatement = datasourceArray[0].dataSQLStatement;
 
-        debugDev('properties from DS', username, password, databaseName, port, serverType, serverName, dataTableName, dataSQLStatement, )
+        let datasource = JSON.parse(JSON.stringify(datasourceArray[0]));
+        debugDev('properties from DS', datasource, username, password, databaseName, port, serverType, serverName, dataTableName, dataSQLStatement, )
         
         
         //    1.3 Get auxilliary information, like Tr (Transformations), 
