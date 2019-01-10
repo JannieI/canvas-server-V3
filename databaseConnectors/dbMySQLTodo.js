@@ -24,9 +24,9 @@ var pool  = mysql.createPool({
 // - sudo systemctl start mysql
 //
 // To see if running, etc:
-// - service mysqld status
-// - service mysqld stop
-// - service mysqld start
+// - service mysql status
+// - service mysql stop
+// - service mysql start
 //
 // MySQL defaults to port 3306 unless you specify another line in the /etc/my.cnf config file.
 // To change it:
