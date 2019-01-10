@@ -15,27 +15,3 @@ var pool  = mysql.createPool({
     supportBigNumbers: true
 });
 
-exports.getRecords = function(sql, user, callback) {
-
-    pool.getConnection((err, connection) => {
-        console.log('  mySQL.connector getConnection Start')
-        if (err) { 
-            console.log('  mySQL.connector Error in getConnection', err)
-            callback(true); return;
-        };
-        console.log('  mySQL.connector After getConnection - if (err)')
-        
-        // Make the query
-        // let user = 'janniei';
-        connection.query(sql, [user], (err, results) => {
-            console.log('  mySQL.connector After query')
-            if (err) { 
-                console.log('  mySQL.connector Error in query', err)
-                callback(true); return;
-            };
-            console.log('  mySQL.connector End query')
-            callback(false, results);
-        });
-    });
-
-}
