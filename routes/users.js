@@ -173,29 +173,6 @@ router.get('/mysqlexpress', (req, res, next) => {
 
 
 
-router.get('/mysqlpool2', (req, res, next) => {
-    console.log('mysqlpool2 Start')
-
-    // MySQL with pools
-    var dbMySQL = require('../databaseConnectors/mySQL.connector.js');
-
-    let user = 'janniei';
-    let sql = 'SELECT User, Host, authentication_string FROM user WHERE User=?';
-    user = 'First';
-    sql = 'SELECT * FROM Canvas.test WHERE name=?'
-    dbMySQL.getRecords(sql, user, (err, results) => {
-        console.log('mysqlpool2 After .getRecords')
-        if(err) { 
-            console.log('mysqlpool2 in Error')
-            res.send("Server Error"); 
-            return;
-        };
-        // Respond with results as JSON
-        res.json(results);
-    });
-
-    console.log("mysqlpool2 @End");
-});
 
 
 // Runs for ALL routes -----------------------------------------------------------
