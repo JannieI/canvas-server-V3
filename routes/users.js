@@ -115,26 +115,6 @@ router.get('/mongo',(req, res)=>{
 })
 
 
-// MySQL
-const mysqlDb = require('../databaseConnectors/dbMySQLTodo');
-
-/* GET home page. */
-router.get('/mysql', (req, res, next) => {
-    console.log('xx in mySql')
-    // res.render('index', { title: 'Express' });
-    //   const queryText= 'SELECT * FROM tasks WHERE id > ? AND taskName';
-    const queryText= 'SELECT 1 As taskName';
-    queryText= 'SELECT User, Host, authentication_string FROM user';
-
-    mysqlDb.query(queryText,[3],(error,results)=>{
-        debugDB('After DB error, results', error, results);
-        if (error) {
-            console.log("Error:", error);
-            res.json(error);
-        };
-        res.json(results);
-    });
-});
 
 
 // MySQL Express route
