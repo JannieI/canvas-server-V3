@@ -52,10 +52,6 @@ router.use((req, res, next) => {
 
 
 // Methods for this Router -----------------------------------------------------------
-
-// loginLocal
-//curl -v -X POST http://localhost:"application/json" -d 'password=x'  -d 'username=JannieI'
-
 router.post('/loginLocal', (req, res, next) => {
     console.log('/loginLocal');
     // req.body is made by urlencoded, which parses the http message for sent data!

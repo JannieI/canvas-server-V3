@@ -71,6 +71,7 @@ exports.select = function(databaseObject, table, fields, queryString, sqlParamet
             };
         };
 
+        // Create pool Object
         const pool = mysql.createPool({
             connectionLimit  : 10,
             host             : host,
@@ -81,6 +82,7 @@ exports.select = function(databaseObject, table, fields, queryString, sqlParamet
             supportBigNumbers: true
         });
 
+        // Connect to DB
         pool.getConnection((err, connection) => {
             console.log('  mySQL.datalayer getConnection Start')
             if (err) {
@@ -90,7 +92,6 @@ exports.select = function(databaseObject, table, fields, queryString, sqlParamet
             console.log('  mySQL.datalayer After getConnection - if (err)')
 
             // Make the query
-            // let sqlParams = 'janniei';
             connection.query(queryString, [sqlParameters], (err, results) => {
                 console.log('  mySQL.datalayer After query')
                 if (err) {
