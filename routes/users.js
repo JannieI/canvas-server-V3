@@ -117,39 +117,6 @@ router.get('/mongo',(req, res)=>{
 
 
 
-// MySQL Express route
-router.get('/mysqlexpress', (req, res, next) => {
-    console.log('xx in mySql')
-    let mysql = require('mysql');
-    let sql = req.query.sql
-    console.log('xx sql', sql)
-
-    var connection = mysql.createConnection({
-        host     : 'localhost',
-        user     : 'janniei',
-        password : 'janniei',
-        database : 'mysql'
-    });
-
-    connection.connect()
-
-    // connection.query('SELECT User, Host, authentication_string FROM user', function (err, rows, fields) {
-    connection.query(sql, function (err, rows, fields) {
-        if (err) {
-            res.json("Error:", err.message)
-        };
-
-        console.log('The solution is: ', rows[0].solution)
-        res.json({
-            "statusCode": "success",
-            "message" : "Executed query",
-            "data": rows,
-            "error": null
-        });
-    })
-
-    connection.end()
-})
 
 
 
