@@ -27,6 +27,7 @@ var serverVariableName;             // Name in serverMemoryCache to store data f
 var isFresh;                        // True if the cache for the current resource is fresh (not expired) - CURRENT VAR
 
 // Variable to store the cached DATA.  Startup values are null.
+// TODO - expand to ALL resources, or do differently ...
 var serverMemoryCache = {
     dashboards: null,       // Corresponds to serverVariableName in dataCachingTable, holds DATA
     datasources: null,
