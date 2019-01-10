@@ -103,28 +103,3 @@ exports.select = function(databaseObject, table, fields, queryString, sqlParamet
         });
     });
 }
-
-exports.getRecords = function(sql, user, callback) {
-
-    pool.getConnection((err, connection) => {
-        console.log('  mySQL.datalayer getConnection Start')
-        if (err) {
-            console.log('  mySQL.datalayer Error in getConnection', err)
-            callback(true); return;
-        };
-        console.log('  mySQL.datalayer After getConnection - if (err)')
-
-        // Make the query
-        // let user = 'janniei';
-        connection.query(sql, [user], (err, results) => {
-            console.log('  mySQL.datalayer After query')
-            if (err) {
-                console.log('  mySQL.datalayer Error in query', err)
-                callback(true); return;
-            };
-            console.log('  mySQL.datalayer End query')
-            callback(false, results);
-        });
-    });
-
-}
