@@ -160,7 +160,7 @@ router.get('/', (req, res, next) => {
         const serverName = datasourceArray[0].serverName;
         const dataTableName = datasourceArray[0].dataTableName;
         const dataSQLStatement = datasourceArray[0].dataSQLStatement;
-        debugDev('properties from DS', username, password, databaseName, port, serverType, serverName, dataTableName, dataSQLStatement, )
+        debugDev('Properties read from DS', username, password, databaseName, port, serverType, serverName, dataTableName, dataSQLStatement, )
         
         
         //    1.3 Get auxilliary information, like Tr (Transformations), 
@@ -249,50 +249,51 @@ router.get('/', (req, res, next) => {
                         database: databaseName,
                         port: port==null?  3306  :  port
                     };
-                debugDev('databaseObject',databaseObject)
+                debugDev('Prior to calling .select, databaseObject =',databaseObject)
                 // TODO - do we use the serverName (in Workstation)    OR    host !??
                 // TODO - what about parameters?  Must we cater for it !??
-
-
 
                 const result = datalayer.select(databaseObject, dataTableName, null, dataSQLStatement, "janniei", )
                     .then(returnedData => {
                         results = returnedData;
                         console.log('Number of results:', results.length);
+
+
+                
+                        //     Now, results = [data]
+                        // 4. Do the Transformations according to the Tr loaded in step 1
+                        // 5. Decompose the query string in req.query into SORT_OBJECT, FIELDS_STRING, FILTER_OBJECT, 
+                        //    AGGREGATION_OBJECT
+                        const sortObject = req.query.sortObject;
+                        const fields = req.query.fields;
+                        const filterObject = req.query.filterObject;
+                        const aggregationObject = req.query.aggregationObject;
+
+                        let sort = JSON.parse(sortObject)
+                        console.log('rest', sortObject, fields, filterObject, aggregationObject)
+                        console.log('sortObject', sort)
+                        // 6. If (SORT_OBJECT) then results = results.sort()
+                        
+
+
+
+                        // 7. If (FIELDS_STRING) then results = results[fields]
+                        // 8. If (FILTER_OBJECT) then results = results.filter()
+                        // 9. If (AGGREGATION_OBJECT) then results = results.clever-thing
+                        // 10. Add metadata, hopefully obtained directly from the source DB, or from the DS (if pre-stored), 
+                        //     with prudent defaults where unknown.
+                        // 11. Return results according to the CanvasHttpResponse interface
+                        // 12. If any error, return err according to the CanvasHttpResponse interface
+
+
                         res.json(results);
                         return;
+
                     })
                     .catch(err =>{
                         console.log('Err after .select in router', err);
                     });
                 
-                
-                //     Now, results = [data]
-                // 4. Do the Transformations according to the Tr loaded in step 1
-                // 5. Decompose the query string in req.query into SORT_OBJECT, FIELDS_STRING, FILTER_OBJECT, 
-                //    AGGREGATION_OBJECT
-                const sortObject = req.query.sortObject;
-                const fields = req.query.fields;
-                const filterObject = req.query.filterObject;
-                const aggregationObject = req.query.aggregationObject;
-
-                let sort = JSON.parse(sortObject)
-                console.log('rest', sortObject, fields, filterObject, aggregationObject)
-                console.log('sortObject', sort)
-                // 6. If (SORT_OBJECT) then results = results.sort()
-                
-
-
-
-                // 7. If (FIELDS_STRING) then results = results[fields]
-                // 8. If (FILTER_OBJECT) then results = results.filter()
-                // 9. If (AGGREGATION_OBJECT) then results = results.clever-thing
-                // 10. Add metadata, hopefully obtained directly from the source DB, or from the DS (if pre-stored), 
-                //     with prudent defaults where unknown.
-                // 11. Return results according to the CanvasHttpResponse interface
-                // 12. If any error, return err according to the CanvasHttpResponse interface
-
-                return;
             };
 
 
