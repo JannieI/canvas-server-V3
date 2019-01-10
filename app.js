@@ -25,11 +25,11 @@ const passport = require('passport');
 // Require Routers ---------------------------------------------------------------
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-const authGitHubRouter = require('./routes/authGitHubRouter');
-const authGoogleRouter = require('./routes/authGoogleRouter');
-const authLocalRouter = require('./routes/authLocalRouter');
-const canvasDataRouter = require('./routes/canvasDataRouter');
-const clientDataRouter = require('./routes/clientDataRouter');
+const authGitHubRouter = require('./routes/authGitHub.router');
+const authGoogleRouter = require('./routes/authGoogle.router');
+const authLocalRouter = require('./routes/authLocal.router');
+const canvasDataRouter = require('./routes/canvasData.router');
+const clientDataRouter = require('./routes/clientData.router');
 const secureRouter = require('./routes/secure-route');
 require('./auth/auth');
 
