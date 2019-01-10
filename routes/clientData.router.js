@@ -4,6 +4,7 @@
 const express = require('express');
 const router = express.Router();
 const debugData = require('debug')('app:data');
+const debugDev = require('debug')('app:dev');
 
 // Runs for ALL requests
 router.use('/', (req, res, next) => {
@@ -120,12 +121,14 @@ router.get('/', (req, res, next) => {
     const reqQuery = req.query;
     const id = req.query.id;
     const datasourceID = req.query.datasourceID;
-
+    
     //    1.2 Get the DS (Datasource) record for the given datasourceID in req.query.  
     const datasourceSchema = '../model/datasources';
     const datasourceModel = require(datasourceSchema);
-
-    const mongoQuery = { id };
+   
+    const mongoQuery = { id: datasourceID };
+    
+    // properties.find(searchParams).toArray(function (err, result) {
     datasourceModel.find( mongoQuery, (err, datasourceArray) => {
         if (err) {
             console.log('Error:', err)
@@ -149,8 +152,22 @@ router.get('/', (req, res, next) => {
         }
 
         // Set variable for easier reference
-        const datasource = datasourceArray[0];
+        let datasource = JSON.parse(JSON.stringify(datasourceArray))[0];
+        debugDev('datasource', datasource)
+ 
+        // Get the DB-related vars
+        const username = datasource.username;
+        const password = datasource.password;
+        const databaseName = datasource.databaseName;
+        const port = datasource.port;
+        const serverType = datasource.serverType;
+        const serverName = datasource.serverName;
+        const dataTableName = datasource.dataTableName;
+        const dataSQLStatement = datasource.dataSQLStatement;
 
+        debugDev('properties from DS', username, password, databaseName, port, serverType, serverName, dataTableName, dataSQLStatement, )
+        
+        
         //    1.3 Get auxilliary information, like Tr (Transformations), 
         //        dSet (datasets).
 
@@ -206,18 +223,6 @@ router.get('/', (req, res, next) => {
 
             //     else call the correct data-layer-function depending on the DB type (ie MySQL or Mongo).
 
-            // Get the DB-related vars
-            const username = datasource.username;
-            const password = datasource.password;
-            const databaseName = datasource.databaseName;
-            const port = datasource.port;
-            const serverType = datasource.serverType;
-            const serverName = datasource.serverName;
-            const dataTableName = datasource.dataTableName;
-            const dataSQLStatement = datasource.dataSQLStatement;
-
-            console.log('properties from DS', username, password, databaseName, port, serverType, serverName, dataTableName, dataSQLStatement, )
-            
             // TODO - this must be done with separate routines per serverType
             if (serverType == 'PostgresSQL') {
                 // Do thing here
@@ -239,6 +244,7 @@ router.get('/', (req, res, next) => {
                 const datalayer = require('../databaseConnectors/mysql.datalayer');
                 // Inputs: DATABASE_OBJECT, TABLE, FIELDS, QUERY_STRING, SQL_PARAMETERS
                 
+                deug
                 // Create databaseObject
                 // Sample: databaseObject = { host: '127.0.0.1', user: 'janniei', password: 'janniei', database: 'mysql'}
                 let databaseObject = 
@@ -249,7 +255,7 @@ router.get('/', (req, res, next) => {
                         database: databaseName,
                         port: port==null?  3306  :  port
                     };
-                
+                debugDev('databaseObject',databaseObject)
                 // TODO - how do we use the serverName ??  ~ host !??
                 // TODO - what about parameters?  Must we cater for it !??
 
