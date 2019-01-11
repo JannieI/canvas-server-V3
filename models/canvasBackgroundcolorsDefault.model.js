@@ -1,30 +1,29 @@
-// Model for canvasBackgroundcolours collection
+// Model for canvasBackgroundcoloursDefault collection
 
 // Imports
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
-const counterModel = require('./counters')
+const counterModel = require('./counters.model')
 
-// Schema - corresponds to CSScolor model on Workstation
-const CanvasBackgroundcolorSchema = new Schema({
+// Schema
+const CanvasBackgroundcolorsDefaultSchema = new Schema({
     id: Number,                             // Unique record ID
     name: String,                           // Name, ie brown
     cssCode: String,                        // CSS code, as name, hex, rgb.  ie transparent, rgb(111,52,78)
     shortList: Boolean,                     // True if part of shorter list
-});
+}); 
 
 // This pre-hook is called before the information is saved into the database
-CanvasBackgroundcolorSchema.pre('save', function(next) {
+CanvasBackgroundcolorsDefaultSchema.pre('save', function(next) {
     var doc = this;
 
     // Find in the counters collection, increment and update
     counterModel.findOneAndUpdate(
-        {_id: 'canvasBackgroundcolors.id'},
+        {_id: 'canvasBackgroundcolorsDefault.id'},
         {$inc: { seq: 1} },
         { upsert: true, new: true },
         function(error, counter)   {
             if(error) {
-                console.error('Error: findOneAndUpdate in canvasAuditTrails failed.' + error.message);
                 return next(error);
             };
 
@@ -33,10 +32,19 @@ CanvasBackgroundcolorSchema.pre('save', function(next) {
         }
     );
 });
+ 
+// CanvasUserSchema.methods.getSchema = async function(){
+//     const doc = this;
+//     var props = Object.keys(canvasSchema.schema.paths);
+//     console.log('xx getSchema', props)
+// }
 
 // Create Model: modelName, schema, collection
-const CanvasBackgroundcolorModel = mongoose.model(
-    'canvasBackgroundcolors', CanvasBackgroundcolorSchema, 'canvasBackgroundcolors');
+const CanvasBackgroundcolorsDefaultModel = mongoose.model(
+    'canvasBackgroundcolorsDefault', 
+    CanvasBackgroundcolorsDefaultSchema, 
+    'canvasBackgroundcolorsDefault'
+);
 
 // Export
-module.exports = CanvasBackgroundcolorModel;
+module.exports = CanvasBackgroundcolorsDefaultModel;

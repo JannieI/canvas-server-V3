@@ -15,6 +15,7 @@ const morgan = require('morgan');               // Used for logging
 const config = require('config');               // Configuration
 const debugDev = require('debug')('app:dev');
 const debugDB = require('debug')('app:db');
+const compression = require('compression');
 
 // const mongoose = require('mongoose');
 const mongoDatabase = require('./databaseConnectors/mongoLocalDatabase');
@@ -65,7 +66,8 @@ var app = express();
 // Security
 app.use(helmet());      // NB: Place this first thing
 
-// setup the logger
+// Compression on
+app.use(compression());
 
 // Logging: use export NODE_ENV to set app.get('env') in Node Terminal !
 if (app.get('env') == 'development') {
@@ -82,7 +84,7 @@ if (app.get('env') == 'development') {
 };
 
 // Log to out/access.log
-app.use(morgan('# :method #:url #:status #:res[content-length] #:response-time[3] #:date[iso] #:remote-addr #:remote-user #:referrer #:res[header] #:user-agent', { stream: accessLogStream }));
+app.use(morgan(' :method #:url #:status #:res[content-length] #:response-time[3] #:date[iso] #:remote-addr #:remote-user #:referrer #:res[header] #:user-agent', { stream: accessLogStream }));
 
 // Show the url & path - just for info
 app.use( (req, res, next) => {

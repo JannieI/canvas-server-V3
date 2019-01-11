@@ -11,7 +11,7 @@ content-type: application/json
     "companyName": "Clarity Analytics",
     "userID": "JannieI",
     "password": "123" 
-} 
+# } 
 ###
 
 
@@ -152,4 +152,6 @@ GET {{host}}/clientData/
 &aggregationObject=aggregationObject
 ###
 GET {{host}}/canvasdata/datasources?id=82
-  
+###
+GET {{host}}/canvasdata/canvasComments
+###

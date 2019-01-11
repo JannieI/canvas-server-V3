@@ -237,7 +237,7 @@ router.get('/:resource', (req, res, next) => {
     // Try, in case model file does not exist
     try {
         // Get the model dynamically (take note of file spelling = resource)
-        const canvasSchema = '../model/' + resource;
+        const canvasSchema = '../model/' + resource + '.model';
         debugDev('Using Model ', canvasSchema, serverCacheableMemory?  'with caching'  :  'WITHOUT cache')
         const canvasModel = require(canvasSchema);
 
@@ -331,6 +331,7 @@ router.get('/:resource', (req, res, next) => {
         });
     }
     catch (error) {
+        console.log('WHY ?', error.message)
         return res.status(400).json({
             "statusCode": "error",
             "message" : "No model file for resource: " + resource,
