@@ -284,28 +284,24 @@ router.get('/', (req, res, next) => {
                         const clientModel = require(clientSchema);
                         debugData('Using Schema clientData');
 
-                        // Create object and save to DB
-                        // id: null,
+                        // Data to upsert
                         const dataToSave = {
                             id: datasourceID,
                             data: results
-                        }
-                        let canvasAdd = new clientModel(dataToSave);
-                        canvasAdd.save()
-                            .then(doc => {
-                                debugData('Saved MySQL data into Canvas clientData', doc)
-                            })
-                            .catch(err => {
-                                console.error(err)
-                                return res.json({
-                                    "statusCode": "error",
-                                    "message" : "Error: Could not save MySQL data into Canvas clientData:", id,
-                                    "data": null,
-                                    "error":
-                                        {
-                                            "errorObject": err
-                                        }
-                                });
+                        };
+
+                        clientModel.update(
+                            { id: datasourceID },
+                            dataToSave, 
+                            { upsert: true }, (err, res) => {
+                                console.log('HERE !!!!!', res)
+                                if(!err && !!res.upserted){
+                                    // no document was found hence inserted
+                                }else if(!err && !res.upserted){
+                                    // already existing
+                                }else{
+                                    //  something wicked happend
+                                }
                         });
                 
                         //     Now, results = [data]

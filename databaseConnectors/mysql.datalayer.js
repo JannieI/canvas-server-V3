@@ -101,6 +101,6 @@ exports.select = function(databaseObject, table, fields, queryString, sqlParamet
                 console.log('  mySQL.datalayer End query')
                 resolve(results);
             });
-        });
+        }); 
     });
 }

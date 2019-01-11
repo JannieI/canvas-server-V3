@@ -6,6 +6,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 const express = require('express');
 const favicon = require('serve-favicon')
+const fs = require('fs')
 
 // Third Party imports -------------------------------------------------------------------
 const helmet = require('helmet');               // Security & Protection
@@ -17,6 +18,8 @@ const debugDB = require('debug')('app:db');
 
 // const mongoose = require('mongoose');
 const mongoDatabase = require('./databaseConnectors/mongoLocalDatabase');
+// create a write stream (in append mode)
+var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
 
 const passport = require('passport');
 // var GitHubStrategy = require('passport-github').Strategy;
@@ -61,6 +64,9 @@ var app = express();
 
 // Security
 app.use(helmet());      // NB: Place this first thing
+
+// setup the logger
+app.use(morgan('combined', { stream: accessLogStream }));
 
 // Logging: use export NODE_ENV to set app.get('env') in Node Terminal !
 if (app.get('env') == 'development') {
