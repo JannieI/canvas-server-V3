@@ -153,5 +153,5 @@ GET {{host}}/clientData/
 ###
 GET {{host}}/canvasdata/datasources?id=82
 ###
-GET {{host}}/canvasdata/dataCachingTable
+GET {{host}}/canvasdata/**************
 ###

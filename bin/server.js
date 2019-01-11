@@ -151,9 +151,29 @@ server.on('error', onError);
 server.on('listening', onListening);
 
 
+// listen for TERM signal .e.g. kill 
+process.on ('SIGTERM', gracefulShutdown);
+
+// listen for INT signal e.g. Ctrl-C
+process.on ('SIGINT', gracefulShutdown); 
+
 // Functions to follow:
 
-
+// Called when the server shuts down gracefully
+var gracefulShutdown = function() {
+    console.log("Received kill signal, shutting down gracefully.");
+    server.close(function() {
+        console.log("Closed out remaining connections.");
+        process.exit()
+    });
+    
+    // if after 
+    setTimeout(function() {
+        console.error("Could not close connections in time, forcefully shutting down");
+        process.exit()
+    }, 10*1000);
+}
+  
 // Event listener for HTTP server "error" event.
 function onError(error) {
     if (error.syscall !== 'listen') {
@@ -181,7 +201,7 @@ function onError(error) {
 
 // Event listener for HTTP server "listening" event.
 function onListening() {
-
+ 
     // Read the caching table, and store into global variable
     const dataCachingTable = require('../utils/dataCachingTableMemory');
     const dataCachingTableSchema = '../models/dataCachingTable.model';
