@@ -45,7 +45,7 @@ router.get('/', (req, res, next) => {
     //    1.3 Get auxilliary information, like Tr (Transformations), 
     //        dSet (datasets).
     // 2. Set results = [] (data block to return to Workstation)
-    // 3. Get the data:
+    // 3. Get the data from Source (MySQL, etc):
     //     if cached and isFresh, result = cache
     //       Caching works the same as on Workstation: read the dataCachingTable (already loaded into
     //       memory), check if isCached and isFresh, and provide from Memory or Disc.  
@@ -100,7 +100,25 @@ router.get('/', (req, res, next) => {
     //     - from DS, from env params, from a connection table (each DS only has an ID to the )
     //     connection table, which has all the info (and maybe encoded passwords)
     
-    //     Now, results = [data]
+    //  Now, results = [data] from Source.
+
+    // Two options on how to proceed:
+    // 1. Load results into the Canvas.clientData collection.  The rational is this:
+    // - it is easier to do the Transformations on Disc (and we can have seriously large datasets)
+    // - it is easier to code the filter, sort using standard mongo instructions than Array
+    // - then the ServerDisc caching is already done
+    // Cons:
+    // - performance will be slower as we have a write to DB, and 2nd Query !!!
+    // - what if we are not allowed to store data on Disc (sensitive)
+    // - may cause a bottleneck on the server ...
+    // - still limited by Memory if a dataset is very large
+
+    // 2. Manipulate the results in Memory:
+    // - much, much faster
+    // - performance hit on Server, and huge potential for bottleneck...
+
+    // ?? Can be stream directly from MySQL into Mongo ... ??
+
     // 4. Do the Transformations according to the Tr loaded in step 1
     // 5. Decompose the query string in req.query into SORT_OBJECT, FIELDS_STRING, FILTER_OBJECT, 
     //    AGGREGATION_OBJECT
@@ -259,6 +277,36 @@ router.get('/', (req, res, next) => {
                         console.log('Number of results:', results.length);
 
 
+
+                        // Store the data in Canvas ClientData
+                        // Get the model
+                        const clientSchema = '../model/clientData';
+                        const clientModel = require(clientSchema);
+                        debugData('Using Schema clientData');
+
+                        // Create object and save to DB
+                        // id: null,
+                        const dataToSave = {
+                            id: datasourceID,
+                            data: results
+                        }
+                        let canvasAdd = new clientModel(dataToSave);
+                        canvasAdd.save()
+                            .then(doc => {
+                                debugData('Saved MySQL data into Canvas clientData', doc)
+                            })
+                            .catch(err => {
+                                console.error(err)
+                                return res.json({
+                                    "statusCode": "error",
+                                    "message" : "Error: Could not save MySQL data into Canvas clientData:", id,
+                                    "data": null,
+                                    "error":
+                                        {
+                                            "errorObject": err
+                                        }
+                                });
+                        });
                 
                         //     Now, results = [data]
                         // 4. Do the Transformations according to the Tr loaded in step 1
@@ -272,6 +320,9 @@ router.get('/', (req, res, next) => {
                         let sort = JSON.parse(sortObject)
                         console.log('rest', sortObject, fields, filterObject, aggregationObject)
                         console.log('sortObject', sort)
+
+
+
                         // 6. If (SORT_OBJECT) then results = results.sort()
                         
 
@@ -293,15 +344,7 @@ router.get('/', (req, res, next) => {
                     .catch(err =>{
                         console.log('Err after .select in router', err);
                     });
-                
             };
-
-
-
-
-
-
-
         };
     });
 

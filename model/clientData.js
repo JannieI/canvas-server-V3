@@ -15,6 +15,7 @@ const ClientDataSchema = new Schema({
 ClientDataSchema.pre('save', function(next) {
     var doc = this;
 
+    if (doc.id == null) {
     // Find in the counters collection, increment and update
     counterModel.findOneAndUpdate(
         {_id: 'clientData.id'},
@@ -29,6 +30,7 @@ ClientDataSchema.pre('save', function(next) {
             next();
         }
     );
+    } else { next() }
 });
 
 // Create Model: modelName, schema, collection
