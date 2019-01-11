@@ -1,1 +1,0 @@
-::ffff:127.0.0.1 - - [11/Jan/2019:14:29:13 +0000] "GET /clientData/?id=3&datasourceID=82&sortObject=%7B%20%22name%22:%201%20%7D&fields=fields&filterObject=filterObject&aggregationObject=aggregationObject HTTP/1.1" 200 5335 "-" "vscode-restclient"

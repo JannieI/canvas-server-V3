@@ -19,7 +19,7 @@ const debugDB = require('debug')('app:db');
 // const mongoose = require('mongoose');
 const mongoDatabase = require('./databaseConnectors/mongoLocalDatabase');
 // create a write stream (in append mode)
-var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
+var accessLogStream = fs.createWriteStream(path.join(__dirname, 'out/access.log'), { flags: 'a' })
 
 const passport = require('passport');
 // var GitHubStrategy = require('passport-github').Strategy;
@@ -66,7 +66,6 @@ var app = express();
 app.use(helmet());      // NB: Place this first thing
 
 // setup the logger
-app.use(morgan('combined', { stream: accessLogStream }));
 
 // Logging: use export NODE_ENV to set app.get('env') in Node Terminal !
 if (app.get('env') == 'development') {
@@ -81,6 +80,7 @@ if (app.get('env') == 'development') {
         app.use(morgan('## :method :url :status :res[content-length] - :response-time ms ON [:date[iso]] FROM :remote-addr - :remote-user'));
     };
 };
+app.use(morgan('# :method #:url #:status #:res[content-length] #:response-time ms #[:date[iso]] #:remote-addr #:remote-user', { stream: accessLogStream }));
 
 
 // Show the url & path - just for info
