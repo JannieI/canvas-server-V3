@@ -80,7 +80,7 @@ if (app.get('env') == 'development') {
         app.use(morgan('## :method :url :status :res[content-length] - :response-time ms ON [:date[iso]] FROM :remote-addr - :remote-user'));
     };
 };
-app.use(morgan('# :method #:url #:status #:res[content-length] #:response-time ms #[:date[iso]] #:remote-addr #:remote-user', { stream: accessLogStream }));
+app.use(morgan('# :method #:url #:status #:res[content-length] #:response-time[3] #:date[iso] #:remote-addr #:remote-user #:referrer #:res[header] #:user-agent', { stream: accessLogStream }));
 
 
 // Show the url & path - just for info

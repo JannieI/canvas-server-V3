@@ -1,8 +1,5 @@
-# GET #/clientData/?id=3&datasourceID=82&sortObject=%7B%20%22name%22:%201%20%7D&fields=fields&filterObject=filterObject&aggregationObject=aggregationObject #200 #5335 #132.815 ms #[2019-01-11T15:04:45.892Z] #::ffff:127.0.0.1 #-
-# GET #/clientData/?id=3&datasourceID=82&sortObject=%7B%20%22name%22:%201%20%7D&fields=fields&filterObject=filterObject&aggregationObject=aggregationObject #200 #5335 #8.321 ms #[2019-01-11T15:04:50.084Z] #::ffff:127.0.0.1 #-
-# GET #/clientData/?id=3&datasourceID=82&sortObject=%7B%20%22name%22:%201%20%7D&fields=fields&filterObject=filterObject&aggregationObject=aggregationObject #200 #5335 #7.128 ms #[2019-01-11T15:04:50.670Z] #::ffff:127.0.0.1 #-
-# GET #/canvasdata/:widgets?id=3 #200 #3441 #93.360 ms #[2019-01-11T15:05:02.173Z] #::ffff:127.0.0.1 #-
-# GET #/canvasdata/:datasources #200 #39257 #159.085 ms #[2019-01-11T15:05:09.272Z] #::ffff:127.0.0.1 #-
-# GET #/canvasdata/canvasComments #200 #460 #4.096 ms #[2019-01-11T15:05:18.566Z] #::ffff:127.0.0.1 #-
-# GET #/canvasdataXX/datasources?id=82 #404 #163 #10.322 ms #[2019-01-11T15:05:38.663Z] #::ffff:127.0.0.1 #-
-# GET #/canvasdata/datasources?id=82 #200 #39268 #17.554 ms #[2019-01-11T15:05:45.882Z] #::ffff:127.0.0.1 #-
+# method #url #status #res[content-length] #response-time ms#[date[iso]] #remote-addr #remote-user #referrer #res[header] #user-agent
+# GET #/canvasdata/datasources?id=82 #200 #1547 #48.834 #[2019-01-11T151241.255Z] #ffff127.0.0.1 #- #- #- #vscode-restclient
+# GET #/canvasdata/datasources?id=82 #200 #1558 #3.490 #[2019-01-11T151244.415Z] #ffff127.0.0.1 #- #- #- #vscode-restclient
+# GET #/canvasdata/datasources?id=82 #200 #1547 #48.471 #[2019-01-11T15:14:58.372Z] #::ffff:127.0.0.1 #- #- #- #vscode-restclient
+# GET #/canvasdata/datasources?id=82 #200 #1547 #31.887 #2019-01-11T15:17:32.037Z #::ffff:127.0.0.1 #- #- #- #vscode-restclient
