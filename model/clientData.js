@@ -16,21 +16,23 @@ ClientDataSchema.pre('save', function(next) {
     var doc = this;
 
     if (doc.id == null) {
-    // Find in the counters collection, increment and update
-    counterModel.findOneAndUpdate(
-        {_id: 'clientData.id'},
-        {$inc: { seq: 1} },
-        { upsert: true, new: true },
-        function(error, counter)   {
-            if(error) {
-                return next(error);
-            };
+        // Find in the counters collection, increment and update
+        counterModel.findOneAndUpdate(
+            {_id: 'clientData.id'},
+            {$inc: { seq: 1} },
+            { upsert: true, new: true },
+            function(error, counter)   {
+                if(error) {
+                    return next(error);
+                };
 
-            doc.id = counter.seq;
-            next();
-        }
-    );
-    } else { next() }
+                doc.id = counter.seq;
+                next();
+            }
+        );
+    } else { 
+        next();
+    }
 });
 
 // Create Model: modelName, schema, collection
