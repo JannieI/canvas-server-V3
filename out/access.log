@@ -1,8 +1,0 @@
-# method #url #status #res[content-length] #response-time ms#[date[iso]] #remote-addr #remote-user #referrer #res[header] #user-agent
-# GET #/canvasdata/datasources?id=82 #200 #1547 #48.834 #[2019-01-11T151241.255Z] #ffff127.0.0.1 #- #- #- #vscode-restclient
-# GET #/canvasdata/datasources?id=82 #200 #1558 #3.490 #[2019-01-11T151244.415Z] #ffff127.0.0.1 #- #- #- #vscode-restclient
-# GET #/canvasdata/datasources?id=82 #200 #1547 #48.471 #[2019-01-11T15:14:58.372Z] #::ffff:127.0.0.1 #- #- #- #vscode-restclient
-# GET #/canvasdata/datasources?id=82 #200 #1547 #31.887 #2019-01-11T15:17:32.037Z #::ffff:127.0.0.1 #- #- #- #vscode-restclient
-# GET #/canvasdata/datasources?id=82 #200 #1558 #1.648 #2019-01-11T15:22:57.134Z #::ffff:127.0.0.1 #- #- #- #vscode-restclient
-# GET #/canvasdata/datasources?id=82 #200 #1558 #2.366 #2019-01-11T15:22:58.435Z #::ffff:127.0.0.1 #- #- #- #vscode-restclient
-# GET #/canvasdata/datasources?id=82 #200 #1558 #2.669 #2019-01-11T15:22:59.240Z #::ffff:127.0.0.1 #- #- #- #vscode-restclient
