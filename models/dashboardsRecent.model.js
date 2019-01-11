@@ -3,7 +3,7 @@
 // Imports
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const counterModel = require('./counters')
+const counterModel = require('./counters.model')
 
 // Schema
 const DashboardsRecentSchema = new Schema({

@@ -3,7 +3,7 @@
 // Imports
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
-const counterModel = require('./counters.model')
+const counterModel = require('./counters.model.model')
 
 // Schema - corresponds to CSScolor model on Workstation
 const CanvasBackgroundcolorSchema = new Schema({
