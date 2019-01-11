@@ -141,7 +141,7 @@ router.get('/', (req, res, next) => {
     const datasourceID = req.query.datasourceID;
     
     //    1.2 Get the DS (Datasource) record for the given datasourceID in req.query.  
-    const datasourceSchema = '../model/datasources';
+    const datasourceSchema = '../models/datasources.model';
     const datasourceModel = require(datasourceSchema);
    
     const mongoQuery = { id: datasourceID };
@@ -210,7 +210,7 @@ router.get('/', (req, res, next) => {
         if (useCachingDisc  &&  isFresh) {
 
             // Get the model
-            const clientSchema = '../model/clientData';
+            const clientSchema = '../models/clientData.model';
             const clientModel = require(clientSchema);
             debugData('Using Schema clientData');
 
@@ -280,7 +280,7 @@ router.get('/', (req, res, next) => {
 
                         // Store the data in Canvas ClientData
                         // Get the model
-                        const clientSchema = '../model/clientData';
+                        const clientSchema = '../models/clientData.model';
                         const clientModel = require(clientSchema);
                         debugData('Using Schema clientData');
 
@@ -352,7 +352,7 @@ router.get('/', (req, res, next) => {
     // Try, in case model file does not exist
     // try {
     //     // Get the model
-    //     const clientSchema = '../model/clientData';
+    //     const clientSchema = '../model.model/clientData.model';
     //     const clientModel = require(clientSchema);
     //     debugData('Using Schema clientData');
 
@@ -423,7 +423,7 @@ router.post('/', (req, res, next) => {
     // Try, in case model file does not exist
     try {
         // Get the model
-        const clientSchema = '../model/clientData';
+        const clientSchema = '../models/clientData.model';
         const clientModel = require(clientSchema);
         debugData('Using Schema clientData');
 
@@ -485,7 +485,7 @@ router.delete('/', (req, res, next) => {
     // Try, in case model file does not exist
     try {
         // Get the model
-        const clientSchema = '../model/clientData';
+        const clientSchema = '../models/clientData.model';
         const clientModel = require(clientSchema);
         debugData('Using Schema clientData');
 
@@ -549,7 +549,7 @@ router.put('/', (req, res, next) => {
     // Try, in case model file does not exist
     try {
         // Get the model
-        const clientSchema = '../model/clientData';
+        const clientSchema = '../models/clientData.model';
         const clientModel = require(clientSchema);
         debugData('Using Schema clientData');
 

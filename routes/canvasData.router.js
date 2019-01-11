@@ -237,7 +237,7 @@ router.get('/:resource', (req, res, next) => {
     // Try, in case model file does not exist
     try {
         // Get the model dynamically (take note of file spelling = resource)
-        const canvasSchema = '../model/' + resource + '.model';
+        const canvasSchema = '../models/' + resource + '.model';
         debugDev('Using Model ', canvasSchema, serverCacheableMemory?  'with caching'  :  'WITHOUT cache')
         const canvasModel = require(canvasSchema);
 
@@ -359,7 +359,7 @@ router.post('/:resource', (req, res, next) => {
     // Try, in case model file does not exist
     try {
         // Get the model dynamically (take note of file spelling = resource)
-        const canvasSchema = '../model/' + resource;
+        const canvasSchema = '../models/' + resource + '.model';
         const canvasModel = require(canvasSchema);
 
         // Create object and save to DB
@@ -428,7 +428,7 @@ router.delete('/:resource', (req, res, next) => {
     // Try, in case model file does not exist
     try {
         // Get the model dynamically (take note of file spelling = resource)
-        const canvasSchema = '../model/' + resource;
+        const canvasSchema = '../models/' + resource + '.model';
         const canvasModel = require(canvasSchema);
 
         // Find and Delete from DB
@@ -505,7 +505,7 @@ router.put('/:resource', (req, res, next) => {
     // Try, in case model file does not exist
     try {
         // Get the model dynamically (take note of file spelling = resource)
-        const canvasSchema = '../model/' + resource;
+        const canvasSchema = '../models/' + resource + '.model';
         const canvasModel = require(canvasSchema);
 
         // Find and Update DB

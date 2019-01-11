@@ -3,7 +3,7 @@
 // Imports
 const passport = require('passport');
 const localStrategy = require('passport-local').Strategy;
-const UserModel = require('../model/canvasUsers');
+const UserModel = require('../models/canvasUsers.model');
 const debugDev = require('debug')('app:dev');
 
 //Create a passport middleware to handle user registration
