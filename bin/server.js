@@ -159,14 +159,18 @@ process.on ('SIGINT', gracefulShutdown);
 
 // Functions to follow:
 
-// TODO - this is not working perfectly: maybe WebSockets keeps things open
 // Called when the server shuts down gracefully
 function gracefulShutdown() {
-    console.log("Received kill signal, shutting down gracefully.");
+    console.log("Received kill signal (Ctrl-C), shutting down gracefully.");
+
+    // Close HTTP Server
     server.close(function() {
         console.log("Closed out remaining connections.");
         process.exit()
     });
+
+    // Close WebSocket
+    io.close();
     
     // if after 
     setTimeout(function() {
