@@ -8,7 +8,7 @@ const counterModel = require('./counters.model')
 // Schema
 const ClientDataSchema = new Schema({
     id: Number,                             // Unique record / document ID
-    data: [ {"Month": String, "Profit": Number} ],                            // Data Array (of json objects)
+    data: Array,                            // Data Array (of json objects)
 });
 
 // This pre-hook is called before the information is saved into the database
