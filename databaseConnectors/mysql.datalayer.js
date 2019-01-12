@@ -41,25 +41,29 @@ exports.select = function(databaseObject, table, fields, queryString, sqlParamet
 
     return new Promise((resolve, reject) => {
 
-        let host = '127.0.0.1';
-        let user = 'janniei';
+        // Load defaults, set in startup.sh (via custom-environment-variables.js)
+        let host = config.get('mysqlLocal.local.startup.host');
         let user = config.get('mysqlLocal.local.startup.user');
         let password = config.get('mysqlLocal.local.startup.password');
-        let database = 'mysql';
+        let database = config.get('mysqlLocal.local.startup.database');
+        let port = config.get('mysqlLocal.local.startup.port');
 
-        // TODO - find a better way to do these !!!
+        // Load params if provided by calling routine
         if ( databaseObject != null) {
-            if (databaseObject.host != null) {
+            if (databaseObject.host != null  &&  databaseObject.host != '') {
                 host = databaseObject.host;
             };
-            if (databaseObject.user != null) {
+            if (databaseObject.user != null  &&  databaseObject.user != '') {
                 user = databaseObject.user;
             };
-            if (databaseObject.password != null) {
+            if (databaseObject.password != null  &&  databaseObject.password != '') {
                 password = databaseObject.password;
             };
-            if (databaseObject.database != null) {
+            if (databaseObject.database != null  &&  databaseObject.database != '') {
                 database = databaseObject.database;
+            };
+            if (databaseObject.port != null  &&  databaseObject.port != '') {
+                port = databaseObject.port;
             };
 
             // Decompose the options
@@ -79,6 +83,7 @@ exports.select = function(databaseObject, table, fields, queryString, sqlParamet
             user             : user,
             password         : password,
             database         : database,
+            port             : port,           
             connectionLimit  : 10,
             supportBigNumbers: true
         });
