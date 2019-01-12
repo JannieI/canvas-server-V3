@@ -178,7 +178,7 @@ router.get('/', (req, res, next) => {
         const serverName = datasourceArray[0].serverName;
         const dataTableName = datasourceArray[0].dataTableName;
         const dataSQLStatement = datasourceArray[0].dataSQLStatement;
-        debugDev('Properties read from DS', username, password, databaseName, port, serverType, serverName, dataTableName, dataSQLStatement, )
+        debugDev('Properties read from DS id:', datasourceArray[0].id, username, password, databaseName, port, serverType, serverName, dataTableName, dataSQLStatement, )
         
         
         //    1.3 Get auxilliary information, like Tr (Transformations), 
@@ -263,9 +263,9 @@ router.get('/', (req, res, next) => {
                     { 
                         host: serverName, 
                         user: username, 
-                        password: null,  // password !?? 
+                        password: password, 
                         database: databaseName,
-                        port: port==null?  3306  :  port
+                        port: port
                     };
                 debugDev('Prior to calling .select, databaseObject =',databaseObject)
                 // TODO - do we use the serverName (in Workstation)    OR    host !??
