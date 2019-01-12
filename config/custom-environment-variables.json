@@ -1,6 +1,19 @@
 {
-    "password": {
-        "janniei": "PASSWORD_JANNIEI"
+    "mongoLocal": {
+        "password": {
+            "janniei": "MONGO_LOCAL_PASSWORD_JANNIEI"
+        }
+    },
+    "mongoCloud": {
+        "password": {
+            "janniei": "MONGO_CLOUD_PASSWORD_JANNIEI"
+        }
+        
+    },
+    "mysql": {
+        "password": {
+            "janniei": "MYSQL_PASSWORD_JANNIEI"
+        }
     },
     "morgan": {
         "logging": "MORGAN_LOGGING",
