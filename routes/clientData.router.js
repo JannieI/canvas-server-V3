@@ -158,6 +158,7 @@ router.get('/', (req, res, next) => {
             });
             return;
         };
+        console.log('datasourceArray', datasourceArray)
         if (datasourceArray.length != 1) {
             console.log('Error:', err)
             res.json({
