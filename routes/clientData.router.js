@@ -273,7 +273,7 @@ router.get('/', (req, res, next) => {
 
                 const result = datalayer.select(databaseObject, dataTableName, null, dataSQLStatement, "janniei", )
                     .then(returnedData => {
-                        results = returnedData;
+                        results = JSON.parse(JSON.stringify(returnedData));
                         console.log('Number of results:', results.length);
 
 
@@ -289,7 +289,8 @@ router.get('/', (req, res, next) => {
                             id: datasourceID,
                             data: results
                         };
-
+                        console.log('')
+console.log(' dataToSave ......', results[0])
                         clientModel.update(
                             { id: datasourceID },
                             dataToSave, 
