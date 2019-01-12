@@ -1,7 +1,5 @@
 {
     "mongoLocal": {
-        "password": "MONGO_PASSWORD"
-
         "password": {
             "janniei": "MONGO_LOCAL_PASSWORD_JANNIEI"
         }
