@@ -42,11 +42,11 @@ exports.select = function(databaseObject, table, fields, queryString, sqlParamet
     return new Promise((resolve, reject) => {
 
         // Load defaults, set in startup.sh (via custom-environment-variables.js)
-        let host = config.get('mysqlLocal.local.startup.host');
-        let user = config.get('mysqlLocal.local.startup.user');
-        let password = config.get('mysqlLocal.local.startup.password');
-        let database = config.get('mysqlLocal.local.startup.database');
-        let port = config.get('mysqlLocal.local.startup.port');
+        let host = config.get('mysqlLocal.startup.host');
+        let user = config.get('mysqlLocal.startup.user');
+        let password = config.get('mysqlLocal.startup.password');
+        let database = config.get('mysqlLocal.startup.database');
+        let port = config.get('mysqlLocal.startup.port');
 
         // Load params if provided by calling routine
         if ( databaseObject != null) {
