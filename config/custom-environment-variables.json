@@ -1,36 +1,40 @@
 {
     "mongoLocal": {
         "startup": {
-            "user": "MONGO_LOCAL_STARTUP_USER",
-            "password": "MONGO_LOCAL_STARTUP_PASSWORD"
+            "user":     "MONGO_LOCAL_STARTUP_USER",
+            "password": "MONGO_LOCAL_STARTUP_PASSWORD",
+            "database": "MONGO_LOCAL_STARTUP_DATABASE",
+            "port":     "MONGO_LOCAL_STARTUP_PORT"
         },
         "passwords": {
-            "user1": "MONGO_LOCAL_PASSWORD_USER1"
+            "user1":    "MONGO_LOCAL_PASSWORD_USER1"
         }
     },
     "mongoCloud": {
         "startup": {
-            "user": "MONGO_CLOUD_STARTUP_USER",
-            "password": "MONGO_CLOUD_STARTUP_PASSWORD"
+            "user":     "MONGO_CLOUD_STARTUP_USER",
+            "password": "MONGO_CLOUD_STARTUP_PASSWORD",
+            "database": "MONGO_CLOUD_STARTUP_DATABASE",
+            "port":     "MONGO_CLOUD_STARTUP_PORT"
         },
         "passwords": {
-            "user1": "MYSQL_CLOUD_PASSWORD_USER1"
-        },
-        "passwordS": {
-            "user1": "MONGO_CLOUD_PASSWORD_USER1"
+            "user1":    "MYSQL_CLOUD_PASSWORD_USER1"
         }
     },
     "mysqlLocal": {
         "startup": {
-            "user": "MYSQL_LOCAL_STARTUP_USER",
-            "password": "MYSQL_LOCAL_STARTUP_PASSWORD"
+            "user":     "MYSQL_LOCAL_STARTUP_USER",
+            "password": "MYSQL_LOCAL_STARTUP_PASSWORD",
+            "database": "MYSQL_LOCAL_STARTUP_DATABASE",
+            "port":     "MYSQL_LOCAL_STARTUP_PORT"
+
         },
         "passwords": {
-            "user1": "MYSQL_PASSWORD_USER1"
+            "user1":    "MYSQL_PASSWORD_USER1"
         }
     },
     "morgan": {
-        "logging": "MORGAN_LOGGING",
-        "resource": "MORGAN_RESOURCE"
+        "logging":      "MORGAN_LOGGING",
+        "resource":     "MORGAN_RESOURCE"
     }
 }
