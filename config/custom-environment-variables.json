@@ -20,7 +20,7 @@
             "port":     "MONGO_CLOUD_STARTUP_PORT"
         },
         "passwords": {
-            "user1":    "MYSQL_CLOUD_PASSWORD_USER1"
+            "user1":    "MONGO_CLOUD_PASSWORD_USER1"
         }
     },
     "mysqlLocal": {
@@ -33,7 +33,7 @@
 
         },
         "passwords": {
-            "user1":    "MYSQL_PASSWORD_USER1"
+            "user1":    "MYSQL_LOCAL_PASSWORD_USER1"
         }
     },
     "morgan": {
