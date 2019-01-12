@@ -1,6 +1,7 @@
 {
     "mongoLocal": {
         "startup": {
+            "host":     "MONGO_LOCAL_STARTUP_HOST",
             "user":     "MONGO_LOCAL_STARTUP_USER",
             "password": "MONGO_LOCAL_STARTUP_PASSWORD",
             "database": "MONGO_LOCAL_STARTUP_DATABASE",
@@ -12,6 +13,7 @@
     },
     "mongoCloud": {
         "startup": {
+            "host":     "MONGO_CLOUD_STARTUP_HOST",
             "user":     "MONGO_CLOUD_STARTUP_USER",
             "password": "MONGO_CLOUD_STARTUP_PASSWORD",
             "database": "MONGO_CLOUD_STARTUP_DATABASE",
@@ -23,6 +25,7 @@
     },
     "mysqlLocal": {
         "startup": {
+            "host":     "MYSQL_LOCAL_STARTUP_HOST",
             "user":     "MYSQL_LOCAL_STARTUP_USER",
             "password": "MYSQL_LOCAL_STARTUP_PASSWORD",
             "database": "MYSQL_LOCAL_STARTUP_DATABASE",
