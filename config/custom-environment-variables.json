@@ -1,5 +1,7 @@
 {
     "mongoLocal": {
+        "password": "MONGO_PASSWORD"
+
         "password": {
             "janniei": "MONGO_LOCAL_PASSWORD_JANNIEI"
         }
@@ -18,8 +20,5 @@
     "morgan": {
         "logging": "MORGAN_LOGGING",
         "resource": "MORGAN_RESOURCE"
-    },
-    "mongo": {
-        "password": "MONGO_PASSWORD"
     }
 }

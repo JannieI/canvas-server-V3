@@ -153,8 +153,7 @@ app.use( (req, res, next) => {
 
 // Leave for testing
 debugDev('Example of reading the Config, app:', config.get('appName'), 
-    '"mongoServer address:"', config.get('mongo.serverAddress'), '"mongoPassword"', 
-    config.get('mongo.password'));
+    '"mongoServer address:"', config.get('mongo.serverAddress'));
 
 // View engine setup - only used to render a web page, maybe for fancy 404 ....
 app.set('views', path.join(__dirname, 'views'))
