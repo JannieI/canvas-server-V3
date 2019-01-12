@@ -1,18 +1,32 @@
 {
     "mongoLocal": {
-        "password": {
-            "janniei": "MONGO_LOCAL_PASSWORD_JANNIEI"
+        "startup": {
+            "user": "MONGO_LOCAL_STARTUP_USER",
+            "password": "MONGO_LOCAL_STARTUP_PASSWORD"
+        },
+        "passwords": {
+            "user1": "MONGO_LOCAL_PASSWORD_USER1"
         }
     },
     "mongoCloud": {
-        "password": {
-            "janniei": "MONGO_CLOUD_PASSWORD_JANNIEI"
+        "startup": {
+            "user": "MONGO_CLOUD_STARTUP_USER",
+            "password": "MONGO_CLOUD_STARTUP_PASSWORD"
+        },
+        "passwords": {
+            "user1": "MYSQL_CLOUD_PASSWORD_USER1"
+        },
+        "passwordS": {
+            "user1": "MONGO_CLOUD_PASSWORD_USER1"
         }
-        
     },
-    "mysql": {
-        "password": {
-            "janniei": "MYSQL_PASSWORD_JANNIEI"
+    "mysqlLocal": {
+        "startup": {
+            "user": "MYSQL_LOCAL_STARTUP_USER",
+            "password": "MYSQL_LOCAL_STARTUP_PASSWORD"
+        },
+        "passwords": {
+            "user1": "MYSQL_PASSWORD_USER1"
         }
     },
     "morgan": {

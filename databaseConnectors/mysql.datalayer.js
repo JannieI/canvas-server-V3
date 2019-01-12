@@ -43,7 +43,7 @@ exports.select = function(databaseObject, table, fields, queryString, sqlParamet
 
         let host = '127.0.0.1';
         let user = 'janniei';
-        let password = config.get('password.janniei');
+        let password = config.get('mysql.password.janniei');
         let database = 'mysql';
 
         // TODO - find a better way to do these !!!
