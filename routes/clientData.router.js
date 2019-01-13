@@ -285,11 +285,11 @@ router.get('/', (req, res, next) => {
                         };
 
                         // Insert the data into the Server cache (in Mongo)
-                        clientModel.update(
+                        clientModel.updateMany(
                             { id: datasourceID },
                             dataToSave, 
-                            { upsert: true }, (err, resultAfterUpsert) => {
-                                console.log('HERE !!!!!', resultAfterUpsert)
+                            { upsert: true }, (err, updateStats) => {
+                                console.log('HERE !!!!!', updateStats)
                                 if(err){
 
                                     // Return an error
@@ -309,9 +309,7 @@ router.get('/', (req, res, next) => {
                                 const filterObject = req.query.filterObject;
                                 const aggregationObject = req.query.aggregationObject;
 
-                                let sort = JSON.parse(sortObject)
                                 console.log('rest', sortObject, fields, filterObject, aggregationObject)
-                                console.log('sortObject', sort)
 
                                 // 6. If (SORT_OBJECT) then results = results.sort()
                                 // 7. If (FIELDS_STRING) then results = results[fields]
@@ -323,22 +321,20 @@ router.get('/', (req, res, next) => {
                                 // 12. If any error, return err according to the CanvasHttpResponse interface
 
                                 // Return the data with metadata
-                                return resultAfterUpsert.json({
+                                return res.json({
                                     "statusCode": "success",
                                     "message" : "Retrieved data for id:" + id,
-                                    "data": resultAfterUpsert,
+                                    "data": results,
                                     "metaData": {
                                         "table": {
                                             "tableName": "", //oneDoc.mongooseCollection.collectionName,
-                                            "nrRecordsReturned":resultAfterUpsert.length
+                                            "nrRecordsReturned":updateStats.length
                                         },
                                         "fields": []
                                     },
                                     "error": null
                                 });
                         });
-                
-
                     })
                     .catch(err =>{
                         console.log('Err after datalayer.select called from clientData.router', err);
