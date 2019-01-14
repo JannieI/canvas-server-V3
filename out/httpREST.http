@@ -147,7 +147,7 @@ content-type: application/json
 GET {{host}}/clientData/
 ?id=82
 &datasourceID=82
-&sortObject={ "name": 1 }
+&sortObject={ "data.User": 1 }
 &fields="' data.User '"
 &filterObject=filterObject
 &aggregationObject=aggregationObject

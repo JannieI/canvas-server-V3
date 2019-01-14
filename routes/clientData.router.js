@@ -352,11 +352,17 @@ router.get('/', (req, res, next) => {
                                 // });
 
                                 var query = clientModel.findOne({ id: datasourceID });
-                                query.select( fieldsObject );
-                                query.exec( (err, finalResults) => {
-                                // clientModel.find({ id: datasourceID }).select( { User: 1 }
-                                //     , (err, finalResults) => {
 
+                                if (fieldsObject != null) {
+                                    query.select( fieldsObject );
+                                };
+
+                                if (sortObject != null) {
+                                    query.sort(sortObject);
+                                };
+                                
+                                query.exec( (err, finalResults) => {
+    
                                 console.log('xx xxxxxxxxxxxxxxx finalResults', finalResults)
                                     results = [];
                                     let nrRecordsReturned = 0;
