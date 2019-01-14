@@ -181,12 +181,12 @@ router.get('/', (req, res, next) => {
         const dataTableName = datasourceArray[0].dataTableName;
         const dataSQLStatement = datasourceArray[0].dataSQLStatement;
         const cacheResultsOnServer = datasourceArray[0].cacheResultsOnServer;
+        const serverExpiryDateTime = datasourceArray[0].serverExpiryDateTime
         debugDev('Properties read from DS id:', datasourceArray[0].id, username, password, databaseName, port, serverType, serverName, dataTableName, dataSQLStatement, cacheResultsOnServer)
         
         
         //    1.3 Get auxilliary information, like Tr (Transformations), 
         //        dSet (datasets).
-
         // TODO later ...
 
         
@@ -194,12 +194,22 @@ router.get('/', (req, res, next) => {
         let results = [];
 
         // 3. Get the data - either cached or from DB:
-        // TODO - CALC this ....
-        let isFresh = true;
+        let isFresh = false;
 
-        //     if cached and isFresh, result = cache
-        //       Caching works the same as on Workstation: read the dataCachingTable (already loaded into
-        //       memory), check if isCached and isFresh, and provide from Memory or Disc.  
+        // Fresh if not expired as yet
+        let dn = new Date();
+        let tn = dn.getTime()
+        let dl = new Date(serverExpiryDateTime);
+        let tl = dl.getTime();
+        if (tl >= tn) {
+            isFresh = true;
+        } else {
+            isFresh = false;
+        };
+
+        console.log('xx fresh vars', dn, tn, dl, tl, isFresh)
+
+        // If cached and isFresh, result = cache
         if (cacheResultsOnServer  &&  isFresh) {
 
             // Get the model
@@ -227,7 +237,7 @@ router.get('/', (req, res, next) => {
             });
         } else {
 
-            //     else call the correct data-layer-function depending on the DB type (ie MySQL or Mongo).
+            // Else, get from Source using the correct data-layer-function depending on the DB type (ie MySQL or Mongo).
 
             // TODO - this must be done with separate routines per serverType
             if (serverType == 'PostgresSQL') {

@@ -144,7 +144,7 @@ content-type: application/json
 
 ###
 GET {{host}}/clientData/
-?id=3
+?id=82
 &datasourceID=82
 &sortObject={ "name": 1 }
 &fields=fields

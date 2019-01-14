@@ -42,6 +42,7 @@ const DatasourceSchema = new Schema({
 
     // Caching info
     cacheResultsOnServer: Boolean,          // True if results may be cached on server. Each Tr is decided separately
+    serverExpiryDateTime: Date,             // When cache expires on server
     unRefreshable: Boolean,                 // Can create once, but cannot Refresh after that
     cacheResultsLocal: Boolean,             // True if Local results must be cached
     nrCacheCopies: Number,                  // Nr Cache copies kept, 0 means none
