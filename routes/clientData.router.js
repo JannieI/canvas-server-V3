@@ -181,6 +181,9 @@ router.get('/', (req, res, next) => {
         const dataSQLStatement = datasourceArray[0].dataSQLStatement;
         const cacheResultsOnServer = datasourceArray[0].cacheResultsOnServer;
         const serverExpiryDateTime = datasourceArray[0].serverExpiryDateTime
+        const dataFields = datasourceArray[0].dataFields;
+        const dataFieldTypes = datasourceArray[0].dataFieldTypes;
+        const dataFieldLengths = datasourceArray[0].dataFieldLengths;
         debugDev('Properties read from DS id:', datasourceArray[0].id, username, password, databaseName, port, serverType, serverName, dataTableName, dataSQLStatement, cacheResultsOnServer)
         
         
@@ -409,6 +412,46 @@ router.get('/', (req, res, next) => {
 
                                     // 10. Add metadata, hopefully obtained directly from the source DB, or from the DS (if pre-stored), 
                                     //     with prudent defaults where unknown.
+
+                                    
+                                    if (dataFields != null) {
+                                        if (dataFieldTypes == null) {
+                                            dataFieldTypes = [];
+                                        };
+                                        if (dataFieldLengths == null) {
+                                            dataFieldLengths = [];
+                                        };
+                                        dataFieldLengths
+                                        var fields = [];
+
+                                        // Loop on metatdata
+                                        for (var i; i < dataFields.length in dataFields; i++) {
+                                            const fieldName = dataFields[i];
+                                            const fieldType = '';
+                                            if (i < dataFieldTypes.length) {
+                                                fieldType = dataFieldTypes[i];
+                                            };
+                                            const fieldLength = '';
+                                            if (i < dataFieldLengths.length) {
+                                                fieldType = dataFieldLengths[i];
+                                            };
+
+                                            fields.push(
+                                                {
+                                                    "fieldName": fieldName,
+                                                    "fieldType": fieldType,
+                                                    "length": fieldLength,
+                                                    "average": null,
+                                                    "max": null,
+                                                    "median": null,
+                                                    "min": null,
+                                                    "sum": null
+                                                }
+                                            );
+                                        };
+                                    };
+
+
                                     // 11. Return results according to the CanvasHttpResponse interface
 
                                     // Return the data with metadata
