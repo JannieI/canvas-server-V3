@@ -352,7 +352,7 @@ router.get('/', (req, res, next) => {
                                 // });
 
                                 var query = clientModel.findOne({ id: datasourceID });
-                                // query.select( { User: 1 } );
+                                query.select( { "data.User": 1 } );
                                 query.exec( (err, finalResults) => {
                                 // clientModel.find({ id: datasourceID }).select( { User: 1 }
                                 //     , (err, finalResults) => {
@@ -362,7 +362,9 @@ router.get('/', (req, res, next) => {
                                     let nrRecordsReturned = 0;
                                     if (finalResults != null) {
                                         results = finalResults.data;
-                                        nrRecordsReturned = results.length;
+                                        if (results != null) {
+                                            nrRecordsReturned = results.length;
+                                        };
                                     };
 
                                     // Return the data with metadata
