@@ -149,7 +149,7 @@ GET {{host}}/clientData/
 &datasourceID=82
 &sortObject=-User
 &fields="' data.User data.Delete_priv '"
-&filterObject={ "data.User": "root" }
+&filterObject={"User":"root"}
 &aggregationObject=aggregationObject
 ###
 GET {{host}}/canvasdata/datasources?id=82

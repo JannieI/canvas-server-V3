@@ -326,26 +326,20 @@ router.get('/', (req, res, next) => {
                                 if (fieldsObject != null) {
                                     fieldsObject = JSON.parse(JSON.stringify(fieldsObject));
                                 };
-                                const filterObject = req.query.filterObject;
+                                let filterObject = req.query.filterObject;
                                 const aggregationObject = req.query.aggregationObject;
 
                                 console.log('rest', sortObject, typeof fieldsObject, filterObject, aggregationObject)
 
-                                // 6. If (SORT_OBJECT) then results = results.sort()
-                                // 7. If (FIELDS_STRING) then results = results[fields]
-                                // 8. If (FILTER_OBJECT) then results = results.filter()
-                                // 9. If (AGGREGATION_OBJECT) then results = results.clever-thing
-                                // 10. Add metadata, hopefully obtained directly from the source DB, or from the DS (if pre-stored), 
-                                //     with prudent defaults where unknown.
-                                // 11. Return results according to the CanvasHttpResponse interface
-                                // 12. If any error, return err according to the CanvasHttpResponse interface
-
-
-                                // // find each person with a last name matching 'Ghost'
-                                // var query = Person.findOne({ 'name.last': 'Ghost' });
-
+                                // Optional steps:
+                                //   6. Sort on SORT_OBJECT
+                                //   7. Extract only the requested FIELDS_STRING
+                                //   8. Filter on FILTER_OBJECT
+                                //   9. Aggregate according to AGGREGATION_OBJECT
 
                                 var query = clientModel.findOne({ id: datasourceID });
+
+                                // TODO: get FILTER and SORT working via Mongo 
 
                                 // if (filterObject != null) {
                                 //     query.findOne( { "data.User": {"eq":"root"} } );
@@ -361,6 +355,9 @@ router.get('/', (req, res, next) => {
                                 
                                 query.exec( (err, finalResults) => {
     
+
+                                   
+
                                 console.log('xx xxxxxxxxxxxxxxx finalResults', finalResults)
                                     results = [];
                                     let nrRecordsReturned = 0;
@@ -370,7 +367,21 @@ router.get('/', (req, res, next) => {
                                             nrRecordsReturned = results.length;
                                         };
                                     };
-                                    
+
+                                    // Filter Array
+                                    if (filterObject != null  &&  results != null) {
+                                        filterObject = JSON.parse(filterObject)
+                                        Object.keys(filterObject).forEach( key => {
+                                            let value = filterObject[key];
+                                            console.log('xx key', filterObject.User, key, value)
+
+                                            results = results.filter(r => {
+                                                console.log('xx key', filterObject, key, value)
+                                                return r[key] == value;                                            
+                                            })
+                                        });
+                                    };
+
                                     // Sort ASC on given field, -field means DESC
                                     // TODO - return sortOrder = 1 depending on - in field, see TypeScript
                                     if (sortObject != null  &&  results != null) {
@@ -402,6 +413,10 @@ router.get('/', (req, res, next) => {
                                     };
                                     console.log('xx xxxxxxxxxxxxxxx results', results)
 
+                                    // 10. Add metadata, hopefully obtained directly from the source DB, or from the DS (if pre-stored), 
+                                    //     with prudent defaults where unknown.
+                                    // 11. Return results according to the CanvasHttpResponse interface
+
                                     // Return the data with metadata
                                     return res.json({
                                         "statusCode": "success",
@@ -419,6 +434,7 @@ router.get('/', (req, res, next) => {
                                 });
                         });
                     })
+                    // 12. If any error, return err according to the CanvasHttpResponse interface
                     .catch(err =>{
                         console.log('Err after datalayer.select called from clientData.router', err);
                     });
