@@ -331,10 +331,14 @@ router.get('/', (req, res, next) => {
                                 // 12. If any error, return err according to the CanvasHttpResponse interface
 
                                 clientModel.find({ id: datasourceID }
+                                    , { User: 1}
                                     , (err, finalResults) => {
 
                                     results = finalResults[0].data;
-                                    let nrRecordsReturned = 0'
+                                    let nrRecordsReturned = 0;
+                                    if (results != null) {
+                                        nrRecordsReturned = results.length;
+                                    };
 
                                     // Return the data with metadata
                                     return res.json({
@@ -344,7 +348,7 @@ router.get('/', (req, res, next) => {
                                         "metaData": {
                                             "table": {
                                                 "tableName": "", //oneDoc.mongooseCollection.collectionName,
-                                                "nrRecordsReturned": 44
+                                                "nrRecordsReturned": nrRecordsReturned
                                             },
                                             "fields": []
                                         },
