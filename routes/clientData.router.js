@@ -145,12 +145,11 @@ router.get('/', (req, res, next) => {
     const datasourceModel = require(datasourceSchema);
    
     const mongoQuery = { id: datasourceID };
-    console.log('clientData.router: datasourceID', datasourceID, mongoQuery)
     
     // properties.find(searchParams).toArray(function (err, result) {
     datasourceModel.find( mongoQuery, (err, datasourceArray) => {
         if (err) {
-            console.log('Error:', err)
+            console.error('Error:', err)
             res.json({
                 "statusCode": "error",
                 "message" : "Error finding Datasource in Mongo DB",
@@ -160,7 +159,7 @@ router.get('/', (req, res, next) => {
             return;
         };
         if (datasourceArray.length != 1) {
-            console.log('Error:', err)
+            console.error('Error:', err)
             res.json({
                 "statusCode": "error",
                 "message" : "Expected EXACTLY one Datasource in Mongo DB, not " 
@@ -206,8 +205,6 @@ router.get('/', (req, res, next) => {
         } else {
             isFresh = false;
         };
-
-        console.log('xx fresh vars', dn, tn, dl, tl, isFresh)
 
         // If cached and isFresh, result = cache
         if (cacheResultsOnServer  &&  isFresh) {
@@ -286,7 +283,6 @@ router.get('/', (req, res, next) => {
 
                         //  Now, results = [data]
                         results = JSON.parse(JSON.stringify(returnedData));
-                        console.log('Number of results:', results.length);
 
                         // Store the data in Canvas ClientData
                         // Get the model
@@ -305,7 +301,7 @@ router.get('/', (req, res, next) => {
                             { id: datasourceID },
                             dataToSave, 
                             { upsert: true }, (err, updateStats) => {
-                                console.log('HERE !!!!!', updateStats)
+
                                 if(err){
 
                                     // Return an error
@@ -322,14 +318,14 @@ router.get('/', (req, res, next) => {
                                 //    AGGREGATION_OBJECT
                                 let sortObject = req.query.sortObject;
                                 let fieldsObject = req.query.fields;
-                                console.log('xxxxxxxxxxxx fieldsObject', fieldsObject)
+
                                 if (fieldsObject != null) {
                                     fieldsObject = JSON.parse(JSON.stringify(fieldsObject));
                                 };
                                 let filterObject = req.query.filterObject;
                                 const aggregationObject = req.query.aggregationObject;
 
-                                console.log('rest', sortObject, typeof fieldsObject, filterObject, aggregationObject)
+                                // TODO - if no optional parameters, dont query Mongo - just use results we have
 
                                 // Optional steps:
                                 //   6. Sort on SORT_OBJECT
@@ -340,7 +336,6 @@ router.get('/', (req, res, next) => {
                                 var query = clientModel.findOne({ id: datasourceID });
 
                                 // TODO: get FILTER and SORT working via Mongo 
-
                                 // if (filterObject != null) {
                                 //     query.findOne( { "data.User": {"eq":"root"} } );
                                 // };
@@ -349,16 +344,14 @@ router.get('/', (req, res, next) => {
                                     query.select( fieldsObject );
                                 };
 
+                                // TODO - get Mongo sort going
                                 // if (sortObject != null) {
                                 //     query.sort(sortObject);
                                 // };
                                 
                                 query.exec( (err, finalResults) => {
     
-
-                                   
-
-                                console.log('xx xxxxxxxxxxxxxxx finalResults', finalResults)
+                                    // Set the results, nrRecords while catering for an empty set
                                     results = [];
                                     let nrRecordsReturned = 0;
                                     if (finalResults != null) {
@@ -369,21 +362,23 @@ router.get('/', (req, res, next) => {
                                     };
 
                                     // Filter Array
+                                    // TODO - do this via Mongo
                                     if (filterObject != null  &&  results != null) {
                                         filterObject = JSON.parse(filterObject)
                                         Object.keys(filterObject).forEach( key => {
+                                            // Get the key-value pair
                                             let value = filterObject[key];
-                                            console.log('xx key', filterObject.User, key, value)
 
                                             results = results.filter(r => {
-                                                console.log('xx key', filterObject, key, value)
                                                 return r[key] == value;                                            
                                             })
                                         });
                                     };
 
                                     // Sort ASC on given field, -field means DESC
-                                    // TODO - return sortOrder = 1 depending on - in field, see TypeScript
+                                    // TODO 
+                                    //  - ideally do this via Mongo
+                                    //  - else, return sortOrder = 1 depending on - in field, see TypeScript
                                     if (sortObject != null  &&  results != null) {
 
                                         // DESC, and take off -
@@ -411,7 +406,6 @@ router.get('/', (req, res, next) => {
                                             });
                                         };
                                     };
-                                    console.log('xx xxxxxxxxxxxxxxx results', results)
 
                                     // 10. Add metadata, hopefully obtained directly from the source DB, or from the DS (if pre-stored), 
                                     //     with prudent defaults where unknown.
@@ -436,7 +430,7 @@ router.get('/', (req, res, next) => {
                     })
                     // 12. If any error, return err according to the CanvasHttpResponse interface
                     .catch(err =>{
-                        console.log('Err after datalayer.select called from clientData.router', err);
+                        console.error('Err after datalayer.select called from clientData.router', err);
                     });
             };
         };
