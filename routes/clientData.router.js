@@ -321,11 +321,11 @@ router.get('/', (req, res, next) => {
                                 // 5. Decompose the query string in req.query into SORT_OBJECT, FIELDS_STRING, FILTER_OBJECT, 
                                 //    AGGREGATION_OBJECT
                                 const sortObject = req.query.sortObject;
-                                const fields = req.query.fields;
+                                const fieldsObject = JSON.parse(JSON.stringify(req.query.fields));
                                 const filterObject = req.query.filterObject;
                                 const aggregationObject = req.query.aggregationObject;
 
-                                console.log('rest', sortObject, fields, filterObject, aggregationObject)
+                                console.log('rest', sortObject, typeof fieldsObject, filterObject, aggregationObject)
 
                                 // 6. If (SORT_OBJECT) then results = results.sort()
                                 // 7. If (FIELDS_STRING) then results = results[fields]
@@ -352,7 +352,7 @@ router.get('/', (req, res, next) => {
                                 // });
 
                                 var query = clientModel.findOne({ id: datasourceID });
-                                query.select( { "data.User": 1 } );
+                                query.select( fieldsObject );
                                 query.exec( (err, finalResults) => {
                                 // clientModel.find({ id: datasourceID }).select( { User: 1 }
                                 //     , (err, finalResults) => {

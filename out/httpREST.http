@@ -143,11 +143,12 @@ content-type: application/json
 }
 
 ###
+// NOTE spaces in fields !!!
 GET {{host}}/clientData/
 ?id=82
 &datasourceID=82
 &sortObject={ "name": 1 }
-&fields=fields
+&fields="' data.User '"
 &filterObject=filterObject
 &aggregationObject=aggregationObject
 ###
