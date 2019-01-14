@@ -320,7 +320,7 @@ router.get('/', (req, res, next) => {
                                 // 4. Do the Transformations according to the Tr loaded in step 1
                                 // 5. Decompose the query string in req.query into SORT_OBJECT, FIELDS_STRING, FILTER_OBJECT, 
                                 //    AGGREGATION_OBJECT
-                                const sortObject = req.query.sortObject;
+                                let sortObject = req.query.sortObject;
                                 let fieldsObject = req.query.fields;
                                 console.log('xxxxxxxxxxxx fieldsObject', fieldsObject)
                                 if (fieldsObject != null) {
@@ -355,9 +355,9 @@ router.get('/', (req, res, next) => {
                                     query.select( fieldsObject );
                                 };
 
-                                if (sortObject != null) {
-                                    query.sort(sortObject);
-                                };
+                                // if (sortObject != null) {
+                                //     query.sort(sortObject);
+                                // };
                                 
                                 query.exec( (err, finalResults) => {
     
@@ -371,15 +371,35 @@ router.get('/', (req, res, next) => {
                                         };
                                     };
                                     
-                                    results.sort( (a,b) => {
-                                        if (a.User > b.User) {
-                                            return 1;
+                                    // Sort ASC on given field, -field means DESC
+                                    // TODO - return sortOrder = 1 depending on - in field, see TypeScript
+                                    if (sortObject != null  &&  results != null) {
+
+                                        // DESC, and take off -
+                                        if (sortObject[0] === "-") {
+                                            sortOrder = 1;
+                                            sortObject = sortObject.substr(1);
+                                            results.sort( (a,b) => {
+                                                if (a[sortObject] > b[sortObject]) {
+                                                    return -1;
+                                                };
+                                                if (a[sortObject] < b[sortObject]) {
+                                                    return 1;
+                                                };
+                                                return 0;
+                                            });
+                                        } else {
+                                            results.sort( (a,b) => {
+                                                if (a[sortObject] > b[sortObject]) {
+                                                    return 1;
+                                                };
+                                                if (a[sortObject] < b[sortObject]) {
+                                                    return -1;
+                                                };
+                                                return 0;
+                                            });
                                         };
-                                        if (a.User < b.User) {
-                                            return -1;
-                                        };
-                                        return 0;
-                                    })
+                                    };
                                     console.log('xx xxxxxxxxxxxxxxx results', results)
 
                                     // Return the data with metadata
