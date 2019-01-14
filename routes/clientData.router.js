@@ -220,6 +220,12 @@ router.get('/', (req, res, next) => {
             // Find the data (using the standard query JSON object)
             clientModel.find( { id } , (err, docs) => {
 
+                // Calc how many records are returned
+                let nrRecordsReturned = 0;
+                if (docs != null) {
+                    nrRecordsReturned = docs.length;
+                };
+                
                 // Return the data with metadata
                 return res.json({
                     "statusCode": "success",
@@ -228,7 +234,7 @@ router.get('/', (req, res, next) => {
                     "metaData": {
                         "table": {
                             "tableName": "", //oneDoc.mongooseCollection.collectionName,
-                            "nrRecordsReturned":docs.length
+                            "nrRecordsReturned": nrRecordsReturned
                         },
                         "fields": []
                     },
@@ -330,13 +336,32 @@ router.get('/', (req, res, next) => {
                                 // 11. Return results according to the CanvasHttpResponse interface
                                 // 12. If any error, return err according to the CanvasHttpResponse interface
 
-                                clientModel.find({ id: datasourceID }
-                                    , { User: 1}
-                                    , (err, finalResults) => {
 
-                                    results = finalResults[0].data;
+                                // // find each person with a last name matching 'Ghost'
+                                // var query = Person.findOne({ 'name.last': 'Ghost' });
+
+                                // // selecting the `name` and `occupation` fields
+                                // query.select('name occupation');
+
+                                // // execute the query at a later time
+                                // query.exec(function (err, person) {
+                                //   if (err) return handleError(err);
+                                //   // Prints "Space Ghost is a talk show host."
+                                //   console.log('%s %s is a %s.', person.name.first, person.name.last,
+                                //     person.occupation);
+                                // });
+
+                                var query = clientModel.findOne({ id: datasourceID });
+                                // query.select( { User: 1 } );
+                                query.exec( (err, finalResults) => {
+                                // clientModel.find({ id: datasourceID }).select( { User: 1 }
+                                //     , (err, finalResults) => {
+
+                                console.log('xx xxxxxxxxxxxxxxx finalResults', finalResults)
+                                    results = [];
                                     let nrRecordsReturned = 0;
-                                    if (results != null) {
+                                    if (finalResults != null) {
+                                        results = finalResults.data;
                                         nrRecordsReturned = results.length;
                                     };
 
