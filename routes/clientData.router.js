@@ -321,7 +321,11 @@ router.get('/', (req, res, next) => {
                                 // 5. Decompose the query string in req.query into SORT_OBJECT, FIELDS_STRING, FILTER_OBJECT, 
                                 //    AGGREGATION_OBJECT
                                 const sortObject = req.query.sortObject;
-                                const fieldsObject = JSON.parse(JSON.stringify(req.query.fields));
+                                let fieldsObject = req.query.fields;
+                                console.log('xxxxxxxxxxxx fieldsObject', fieldsObject)
+                                if (fieldsObject != null) {
+                                    fieldsObject = JSON.parse(JSON.stringify(fieldsObject));
+                                };
                                 const filterObject = req.query.filterObject;
                                 const aggregationObject = req.query.aggregationObject;
 
@@ -340,18 +344,12 @@ router.get('/', (req, res, next) => {
                                 // // find each person with a last name matching 'Ghost'
                                 // var query = Person.findOne({ 'name.last': 'Ghost' });
 
-                                // // selecting the `name` and `occupation` fields
-                                // query.select('name occupation');
-
-                                // // execute the query at a later time
-                                // query.exec(function (err, person) {
-                                //   if (err) return handleError(err);
-                                //   // Prints "Space Ghost is a talk show host."
-                                //   console.log('%s %s is a %s.', person.name.first, person.name.last,
-                                //     person.occupation);
-                                // });
 
                                 var query = clientModel.findOne({ id: datasourceID });
+
+                                // if (filterObject != null) {
+                                //     query.findOne( { "data.User": {"eq":"root"} } );
+                                // };
 
                                 if (fieldsObject != null) {
                                     query.select( fieldsObject );
@@ -372,6 +370,17 @@ router.get('/', (req, res, next) => {
                                             nrRecordsReturned = results.length;
                                         };
                                     };
+                                    
+                                    results.sort( (a,b) => {
+                                        if (a.User > b.User) {
+                                            return 1;
+                                        };
+                                        if (a.User < b.User) {
+                                            return -1;
+                                        };
+                                        return 0;
+                                    })
+                                    console.log('xx xxxxxxxxxxxxxxx results', results)
 
                                     // Return the data with metadata
                                     return res.json({
