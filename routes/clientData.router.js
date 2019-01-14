@@ -413,7 +413,6 @@ router.get('/', (req, res, next) => {
                                     // 10. Add metadata, hopefully obtained directly from the source DB, or from the DS (if pre-stored), 
                                     //     with prudent defaults where unknown.
 
-                                    
                                     if (dataFields != null) {
                                         if (dataFieldTypes == null) {
                                             dataFieldTypes = [];
@@ -425,13 +424,15 @@ router.get('/', (req, res, next) => {
                                         var fields = [];
 
                                         // Loop on metatdata
-                                        for (var i; i < dataFields.length in dataFields; i++) {
+                                        for (var i = 0; i < dataFields.length; i++) {
                                             const fieldName = dataFields[i];
-                                            const fieldType = '';
+
+                                            let fieldType = '';
                                             if (i < dataFieldTypes.length) {
                                                 fieldType = dataFieldTypes[i];
                                             };
-                                            const fieldLength = '';
+
+                                            let fieldLength = '';
                                             if (i < dataFieldLengths.length) {
                                                 fieldType = dataFieldLengths[i];
                                             };
@@ -464,7 +465,7 @@ router.get('/', (req, res, next) => {
                                                 "tableName": "", //oneDoc.mongooseCollection.collectionName,
                                                 "nrRecordsReturned": nrRecordsReturned
                                             },
-                                            "fields": []
+                                            "fields": fields
                                         },
                                         "error": null
                                     });
