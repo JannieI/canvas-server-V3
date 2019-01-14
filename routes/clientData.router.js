@@ -330,19 +330,26 @@ router.get('/', (req, res, next) => {
                                 // 11. Return results according to the CanvasHttpResponse interface
                                 // 12. If any error, return err according to the CanvasHttpResponse interface
 
-                                // Return the data with metadata
-                                return res.json({
-                                    "statusCode": "success",
-                                    "message" : "Retrieved data for id:" + id,
-                                    "data": results,
-                                    "metaData": {
-                                        "table": {
-                                            "tableName": "", //oneDoc.mongooseCollection.collectionName,
-                                            "nrRecordsReturned":updateStats.length
+                                clientModel.find({ id: datasourceID }
+                                    , (err, finalResults) => {
+
+                                    results = finalResults[0].data;
+                                    let nrRecordsReturned = 0'
+
+                                    // Return the data with metadata
+                                    return res.json({
+                                        "statusCode": "success",
+                                        "message" : "Retrieved data for id:" + id,
+                                        "data": results,
+                                        "metaData": {
+                                            "table": {
+                                                "tableName": "", //oneDoc.mongooseCollection.collectionName,
+                                                "nrRecordsReturned": 44
+                                            },
+                                            "fields": []
                                         },
-                                        "fields": []
-                                    },
-                                    "error": null
+                                        "error": null
+                                    });
                                 });
                         });
                     })
