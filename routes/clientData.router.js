@@ -77,12 +77,15 @@ router.get('/', (req, res, next) => {
             });
             return;
         }
+ 
+        // Set the DS var
+        const datasource = datasourceArray[0];
 
     //  3. Get the data from the correct location: Canvas Cache, or Source (one of many types)
-        let isFresh = isDateInFuture(datasourceArray[0].serverExpiryDateTime);
+        let isFresh = isDateInFuture(datasource.serverExpiryDateTime);
 
         // If cached and isFresh, result = cache
-        if (cacheResultsOnServer  &&  isFresh) {
+        if (datasource.cacheResultsOnServer  &&  isFresh) {
             debugDev(' <- Getting data from Server Cache on Disc')
 
             // Get the model
@@ -116,9 +119,6 @@ router.get('/', (req, res, next) => {
             });
         } else {
             // Else, get from Source using the correct data-layer-function depending on the DB type (ie MySQL or Mongo).
- 
-            // Get the DS var
-            const datasource = datasourceArray[0];
             debugDev(' <- Getting data from Source')
 
             // Get the data from Source, depending on the serverType
