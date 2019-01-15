@@ -2,7 +2,7 @@
 // This handles all DB related actions, include connecting
 
 // TODO - move this to a better place once we are more familiar with it
-// Some Docs on how to handle MySQL 
+// Some Docs on how to handle MySQL
 
 // Ubuntu
 // - to see if running: systemctl status mysql.service
@@ -26,8 +26,8 @@
 // - At the command prompt, use your preferred text editor to open the /etc/mysql/my.cnf file.
 //   ie vi /etc/my.cnf
 // - Locate the bind-address line in the my.cnf file.
-// 
-// Alter Password with 
+//
+// Alter Password with
 // - ALTER USER 'userName'@'localhost' IDENTIFIED BY 'New-Password-Here';
 
 
@@ -83,7 +83,7 @@ exports.select = function(databaseObject, table, fields, queryString, sqlParamet
             user             : user,
             password         : password,
             database         : database,
-            port             : port,           
+            port             : port,
             connectionLimit  : 10,
             supportBigNumbers: true
         });
@@ -107,268 +107,224 @@ exports.select = function(databaseObject, table, fields, queryString, sqlParamet
                 console.log('  mySQL.datalayer End query')
                 resolve(results);
             });
-        }); 
+        });
     });
 }
 
-exports.getData = function(databaseObject, table, fields, queryString, sqlParameters) {
+exports.getData = function(datasource, queryObject) {
     // Gets (Selects) the data; either from cache or from Source
+    // Inputs: DATASOURCE (for which to get the data), QUERYOBJECT provided by HTTP GET request
+
+    // Selects the records from the MySQL database according to the given parameters.
     // Inputs: DATABASE_OBJECT, TABLE, FIELDS, QUERY_STRING, SQL_PARAMETERS
-    datasource) {
-        // Selects the records from the MySQL database according to the given parameters.
-        // Inputs: DATABASE_OBJECT, TABLE, FIELDS, QUERY_STRING, SQL_PARAMETERS
-    
-        return new Promise((resolve, reject) => {
-            
-        //  3. Get auxilliary information, like Tr (Transformations), dSet (datasets).
-            
-            //    1.3 Get auxilliary information, like Tr (Transformations), 
-            //        dSet (datasets).
-            // TODO later ...
-            // 2. Set results = [] (data block to return to Workstation)
-            // 3. Get the data - either cached or from source:
-            // 4. Do the Transformations according to the Tr loaded in step 1
-            // 5. Decompose the query string in req.query into SORT_OBJECT, FIELDS_STRING, FILTER_OBJECT, 
-            //    AGGREGATION_OBJECT
-            // 6. If (SORT_OBJECT) then results = results.sort()
-            // 7. If (FIELDS_STRING) then results = results[fields]
-            // 8. If (FILTER_OBJECT) then results = results.filter()
-            // 9. If (AGGREGATION_OBJECT) then results = results.clever-thing
-            // 10. Add metadata, hopefully obtained directly from the source DB, or from the DS (if pre-stored), 
-            //     with prudent defaults where unknown.
-            // 11. Return results according to the CanvasHttpResponse interface
-            // 12. If any error, return err according to the CanvasHttpResponse interface
-    
-            // Get the DB-related vars into easier names
-            const username = datasource.username;
-            const password = datasource.password;
-            const databaseName = datasource.databaseName;
-            const port = datasource.port;
-            const serverType = datasource.serverType;
-            const serverName = datasource.serverName;
-            const dataTableName = datasource.dataTableName;
-            const dataSQLStatement = datasource.dataSQLStatement;
-            const cacheResultsOnServer = datasource.cacheResultsOnServer;
-            const serverExpiryDateTime = datasource.serverExpiryDateTime
-            const dataFields = datasource.dataFields;
-            const dataFieldTypes = datasource.dataFieldTypes;
-            const dataFieldLengths = datasource.dataFieldLengths;
-                        //                     // 5. Decompose the query string in req.query into SORT_OBJECT, FIELDS_STRING, FILTER_OBJECT, 
-                //                     //    AGGREGATION_OBJECT
-                //                     let sortObject = req.query.sortObject;
-                //                     let fieldsObject = req.query.fields;
-    
-                //                     if (fieldsObject != null) {
-                //                         fieldsObject = JSON.parse(JSON.stringify(fieldsObject));
-                //                     };
-                //                     let filterObject = req.query.filterObject;
-                //                     const aggregationObject = req.query.aggregationObject;
-    
-                debugDev('Properties read from DS id:', datasourceArray[0].id, username, password, databaseName, port, serverType, serverName, dataTableName, dataSQLStatement, cacheResultsOnServer)
-                   
-            // Create databaseObject
-            // Sample: databaseObject = { host: '127.0.0.1', user: 'janniei', password: 'janniei', database: 'mysql'}
-            let databaseObject = 
-                { 
-                    host: serverName, 
-                    user: username, 
-                    password: password, 
-                    database: databaseName,
-                    port: port
-            };
-    // Get data useing data layer
-    // Example: datalayer.select(databaseObject, dataTableName, null, dataSQLStatement, "janniei", )
-    select(databaseObject, dataTableName, fields, dataSQLStatement, sqlParameters)
-        .then(returnedData => {
 
-            //  Now, results = [data]
-            results = JSON.parse(JSON.stringify(returnedData));
+    return new Promise((resolve, reject) => {
 
-            // Store the data in Canvas ClientData
-            // Get the model
-            const clientSchema = '../models/clientData.model';
-            const clientModel = require(clientSchema);
-            debugData('Using Schema clientData');
+        // 1. Set vars & Extract the vars from the Input Params
+        const username = datasource.username;
+        const password = datasource.password;
+        const databaseName = datasource.databaseName;
+        const port = datasource.port;
+        const serverType = datasource.serverType;
+        const serverName = datasource.serverName;
+        const dataTableName = datasource.dataTableName;
+        const dataSQLStatement = datasource.dataSQLStatement;
+        const cacheResultsOnServer = datasource.cacheResultsOnServer;
+        const serverExpiryDateTime = datasource.serverExpiryDateTime
+        const dataFields = datasource.dataFields;
+        const dataFieldTypes = datasource.dataFieldTypes;
+        const dataFieldLengths = datasource.dataFieldLengths;
 
-            // Data to upsert
-            const dataToSave = {
-                id: datasourceID,
-                data: results
-            };
+        // Create databaseObject - passing one Object makes it easier to add new properties
+        // Sample: databaseObject = { host: '127.0.0.1', user: 'janniei', password: 'janniei', database: 'mysql'}
+        let databaseObject =
+            {
+                host: serverName,
+                user: username,
+                password: password,
+                database: databaseName,
+                port: port
+        };
 
-            // Insert the data into Canvas Server cache (in Mongo)
-            clientModel.updateMany(
-                { id: datasourceID },
-                dataToSave, 
-                { upsert: true }, (err, updateStats) => {
+        // Query properties: these are used by the Widget to reduce the data block returned
+        let sortObject = queryObject.sortObject;
+        let fieldsObject = queryObject.fields;
 
-                    if(err){
+        if (fieldsObject != null) {
+            fieldsObject = JSON.parse(JSON.stringify(fieldsObject));
+        };
+        let filterObject = queryObject.filterObject;
+        const aggregationObject = queryObject.aggregationObject;
 
-                        // Return an error
-                        return {
-                            "statusCode": "error",
-                            "message" : "Error caching data from MySQL on Server",
-                            "data": null,
-                            "error":err.message
-                        };                                    
+        // Set results = [] (data block to return to Workstation)
+        results = [];
+
+        debugDev('Properties read from DS id:', datasource.id, username, password, databaseName, port, serverType, serverName, dataTableName, dataSQLStatement, cacheResultsOnServer)
+
+        // 2. Connect to the MySQL DB
+        results = [];
+        select(databaseObject, dataTableName, fields, dataSQLStatement, sqlParameters)
+            .then(returnedData => {
+
+                //  Now, results = [data], with Count
+                results = JSON.parse(JSON.stringify(returnedData));
+                let nrRecordsReturned = 0;
+                if (results != null) {
+                    nrRecordsReturned = results.length;
+                };
+
+                // TODO - later
+                // 3. Do the Transformations according to the Tr loaded in step 1
+
+                // 4. Store the data in Canvas ClientData
+                // If cacheResultsOnServer = True, then Insert the data into Canvas Server cache (in Mongo)
+                // NB: this is NOT done Async, so will work in background
+                if (cacheResultsOnServer) {
+
+                    // Data to upsert
+                    const dataToSave = {
+                        id: datasourceID,
+                        data: results
                     };
 
-                    // TODO - still to be done
-                    // 4. Do the Transformations according to the Tr loaded in step 1
+                    // Get the model
+                    const clientSchema = '../models/clientData.model';
+                    const clientModel = require(clientSchema);
+                    debugData('Using Schema clientData');
 
-                    // 5. Decompose the query string in req.query into SORT_OBJECT, FIELDS_STRING, FILTER_OBJECT, 
-                    //    AGGREGATION_OBJECT
-                    let sortObject = req.query.sortObject;
-                    let fieldsObject = req.query.fields;
+                    // Store in Canvas DB
+                    clientModel.updateMany(
+                        { id: datasourceID },
+                        dataToSave,
+                        { upsert: true }, (err, updateStats) => {
 
-                    if (fieldsObject != null) {
-                        fieldsObject = JSON.parse(JSON.stringify(fieldsObject));
-                    };
-                    let filterObject = req.query.filterObject;
-                    const aggregationObject = req.query.aggregationObject;
+                            if(err){
 
-                    // TODO - if no optional parameters, dont query Mongo - just use results we have
-
-                    // Optional steps:
-                    //   6. Sort on SORT_OBJECT
-                    //   7. Extract only the requested FIELDS_STRING
-                    //   8. Filter on FILTER_OBJECT
-                    //   9. Aggregate according to AGGREGATION_OBJECT
-
-                    var query = clientModel.findOne({ id: datasourceID });
-
-                    // TODO: get FILTER and SORT working via Mongo 
-                    // if (filterObject != null) {
-                    //     query.findOne( { "data.User": {"eq":"root"} } );
-                    // };
-
-                    if (fieldsObject != null) {
-                        query.select( fieldsObject );
-                    };
-
-                    // TODO - get Mongo sort going
-                    // if (sortObject != null) {
-                    //     query.sort(sortObject);
-                    // };
-                    
-                    query.exec( (err, finalResults) => {
-
-                        // Set the results, nrRecords while catering for an empty set
-                        results = [];
-                        let nrRecordsReturned = 0;
-                        if (finalResults != null) {
-                            results = finalResults.data;
-                            if (results != null) {
-                                nrRecordsReturned = results.length;
-                            };
-                        };
-
-                        // Filter Array
-                        // TODO - do this via Mongo
-                        if (filterObject != null  &&  results != null) {
-                            filterObject = JSON.parse(filterObject)
-                            Object.keys(filterObject).forEach( key => {
-                                // Get the key-value pair
-                                let value = filterObject[key];
-
-                                results = results.filter(r => {
-                                    return r[key] == value;                                            
-                                })
-                            });
-                        };
-
-                        // Sort ASC on given field, -field means DESC
-                        // TODO 
-                        //  - ideally do this via Mongo
-                        //  - else, return sortOrder = 1 depending on - in field, see TypeScript
-                        if (sortObject != null  &&  results != null) {
-
-                            // DESC, and take off -
-                            if (sortObject[0] === "-") {
-                                sortOrder = 1;
-                                sortObject = sortObject.substr(1);
-                                results.sort( (a,b) => {
-                                    if (a[sortObject] > b[sortObject]) {
-                                        return -1;
-                                    };
-                                    if (a[sortObject] < b[sortObject]) {
-                                        return 1;
-                                    };
-                                    return 0;
-                                });
-                            } else {
-                                results.sort( (a,b) => {
-                                    if (a[sortObject] > b[sortObject]) {
-                                        return 1;
-                                    };
-                                    if (a[sortObject] < b[sortObject]) {
-                                        return -1;
-                                    };
-                                    return 0;
-                                });
-                            };
-                        };
-
-                        // 10. Add metadata, hopefully obtained directly from the source DB, or from the DS (if pre-stored), 
-                        //     with prudent defaults where unknown.
-
-                        if (dataFields != null) {
-                            if (dataFieldTypes == null) {
-                                dataFieldTypes = [];
-                            };
-                            if (dataFieldLengths == null) {
-                                dataFieldLengths = [];
-                            };
-                            
-                            var fields = [];
-
-                            // Loop on metatdata
-                            for (var i = 0; i < dataFields.length; i++) {
-                                const fieldName = dataFields[i];
-
-                                let fieldType = '';
-                                if (i < dataFieldTypes.length) {
-                                    fieldType = dataFieldTypes[i];
+                                // Return an error
+                                return {
+                                    "statusCode": "error",
+                                    "message" : "Error caching data from MySQL on Server",
+                                    "data": null,
+                                    "error":err.message
                                 };
-
-                                let fieldLength = '';
-                                if (i < dataFieldLengths.length) {
-                                    fieldLength = dataFieldLengths[i];
-                                };
-
-                                fields.push(
-                                    {
-                                        "fieldName": fieldName,
-                                        "fieldType": fieldType,
-                                        "length": fieldLength,
-                                        "average": null,
-                                        "max": null,
-                                        "median": null,
-                                        "min": null,
-                                        "sum": null
-                                    }
-                                );
                             };
-                        };
+                        }
+                    );
+                };
 
-                        // 11. Return results with metadata according to the CanvasHttpResponse interface
-                        return {
-                            "statusCode": "success",
-                            "message" : "Retrieved data for id:" + id,
-                            "data": results,
-                            "metaData": {
-                                "table": {
-                                    "tableName": "", //oneDoc.mongooseCollection.collectionName,
-                                    "nrRecordsReturned": nrRecordsReturned
-                                },
-                                "fields": fields
-                            },
-                            "error": null
-                        };
+                // 5. If (SORT_OBJECT) then results = results.sort()
+                // Sort ASC on given field, -field means DESC
+                // TODO
+                //  - else, return sortOrder = 1 depending on - in field, see TypeScript
+                if (sortObject != null  &&  results != null) {
+
+                    // DESC, and take off -
+                    if (sortObject[0] === "-") {
+                        sortOrder = 1;
+                        sortObject = sortObject.substr(1);
+                        results.sort( (a,b) => {
+                            if (a[sortObject] > b[sortObject]) {
+                                return -1;
+                            };
+                            if (a[sortObject] < b[sortObject]) {
+                                return 1;
+                            };
+                            return 0;
+                        });
+                    } else {
+                        results.sort( (a,b) => {
+                            if (a[sortObject] > b[sortObject]) {
+                                return 1;
+                            };
+                            if (a[sortObject] < b[sortObject]) {
+                                return -1;
+                            };
+                            return 0;
+                        });
+                    };
+                };
+
+                // 6. If (FIELDS_STRING) then results = results[fields]
+                if (fieldsObject != null) {
+                    Object.keys(filterObject).forEach( key => {
+                        // Get the key-value pair
+                        let value = filterObject[key];
                     });
-            });
+                };
+
+                // 7. If (FILTER_OBJECT) then results = results.filter()
+                if (filterObject != null  &&  results != null) {
+                    filterObject = JSON.parse(filterObject)
+                    Object.keys(filterObject).forEach( key => {
+                        // Get the key-value pair
+                        let value = filterObject[key];
+
+                        results = results.filter(r => {
+                            return r[key] == value;
+                        })
+                    });
+                };
+
+                // 8. If (AGGREGATION_OBJECT) then results = results.clever-thing
+
+                // 9. Add metadata, hopefully obtained directly from the source DB, or from the DS (if pre-stored),
+                //     with prudent defaults where unknown.
+
+                if (dataFields != null) {
+                    if (dataFieldTypes == null) {
+                        dataFieldTypes = [];
+                    };
+                    if (dataFieldLengths == null) {
+                        dataFieldLengths = [];
+                    };
+
+                    var fields = [];
+
+                    // Loop on metatdata
+                    for (var i = 0; i < dataFields.length; i++) {
+                        const fieldName = dataFields[i];
+
+                        let fieldType = '';
+                        if (i < dataFieldTypes.length) {
+                            fieldType = dataFieldTypes[i];
+                        };
+
+                        let fieldLength = '';
+                        if (i < dataFieldLengths.length) {
+                            fieldLength = dataFieldLengths[i];
+                        };
+
+                        fields.push(
+                            {
+                                "fieldName": fieldName,
+                                "fieldType": fieldType,
+                                "length": fieldLength,
+                                "average": null,
+                                "max": null,
+                                "median": null,
+                                "min": null,
+                                "sum": null
+                            }
+                        );
+                    };
+                };
+
+                // 10. Return results with metadata according to the CanvasHttpResponse interface
+                return {
+                    "statusCode": "success",
+                    "message" : "Retrieved data for id:" + id,
+                    "data": results,
+                    "metaData": {
+                        "table": {
+                            "tableName": "", //oneDoc.mongooseCollection.collectionName,
+                            "nrRecordsReturned": nrRecordsReturned
+                        },
+                        "fields": fields
+                    },
+                    "error": null
+                };
         })
-        // 12. If any error, return err according to the CanvasHttpResponse interface
+        // If any error, return err according to the CanvasHttpResponse interface
         .catch(err =>{
             console.error('Err after datalayer.select called from clientData.router', err);
             return {
@@ -378,5 +334,7 @@ exports.getData = function(databaseObject, table, fields, queryString, sqlParame
                 "error": err
             };
         });
+
+    });
 
 }
