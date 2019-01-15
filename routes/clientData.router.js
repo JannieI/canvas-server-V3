@@ -149,7 +149,10 @@ router.get('/', (req, res, next) => {
                     for (var i = 0; i < fieldsArray.length; i++) {
                         fieldsArray[i] = fieldsArray[i].trim();
                     };
-                    console.log('results', results)
+                    
+                    // TODO - must be a better way in TS, or Mongo
+                    // Loop on keys in Object = row 1, delete field from each element in array if not
+                    // in fieldsArray
                     Object.keys(results[0]).forEach(key => {
                         console.log('key', key, fieldsArray.indexOf(key))
                         if (parseInt(fieldsArray.indexOf(key)) < 0) {
@@ -236,7 +239,7 @@ router.get('/', (req, res, next) => {
                             "tableName": "", //oneDoc.mongooseCollection.collectionName,  TODO
                             "nrRecordsReturned": nrRecordsReturned
                         },
-                        "fields": []
+                        "fields": fields
                     },
                     "error": null
                 });
