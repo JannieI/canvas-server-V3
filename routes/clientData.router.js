@@ -188,7 +188,9 @@ router.get('/', (req, res, next) => {
             };
             
             if (serverType == 'MySQL') {
-                
+                datalayer.getFromSource(databaseObject, dataTableName, null, dataSQLStatement, "janniei", )
+                    .then(resResultsObject => res.json(resResultsObject) )
+                    .catch(resErrorObject  => res.json(resErrorObject) );
             };
             if (serverType == 'MySQL') {
                 // Inputs: DATABASE_OBJECT, TABLE, FIELDS, QUERY_STRING, SQL_PARAMETERS
