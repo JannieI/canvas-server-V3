@@ -206,7 +206,7 @@ router.get('/', (req, res, next) => {
                     .catch(resErrorObject  => res.json(resErrorObject) );
             };
 
-            // TODO - remove OLD way once above working ...
+            // TODO - remove OLD way once above working ...\
             if (serverType == 'MySQL') {
                 // Inputs: DATABASE_OBJECT, TABLE, FIELDS, QUERY_STRING, SQL_PARAMETERS
                 

@@ -112,22 +112,9 @@ exports.select = function(databaseObject, table, fields, queryString, sqlParamet
 }
 
 exports.getData = function(databaseObject, table, fields, queryString, sqlParameters) {
-    // Get (Selects) the data; either from cache or from Source
-
+    // Gets (Selects) the data; either from cache or from Source
     // Inputs: DATABASE_OBJECT, TABLE, FIELDS, QUERY_STRING, SQL_PARAMETERS
     
-    // Create databaseObject
-    // Sample: databaseObject = { host: '127.0.0.1', user: 'janniei', password: 'janniei', database: 'mysql'}
-    let databaseObject = 
-        { 
-            host: serverName, 
-            user: username, 
-            password: password, 
-            database: databaseName,
-            port: port
-    };
-    debugDev('About to call mysql.datalayer.select with', databaseObject)
-
     // Get data useing data layer
     // Example: datalayer.select(databaseObject, dataTableName, null, dataSQLStatement, "janniei", )
     select(databaseObject, dataTableName, fields, dataSQLStatement, sqlParameters)
