@@ -6,6 +6,7 @@ const router = express.Router();
 const debugData = require('debug')('app:data');
 const debugDev = require('debug')('app:dev');
 const datalayer = require('../databaseConnectors/mysql.datalayer');
+const isDateInFuture = require('../utils/isDateInFuture');
 
 // Runs for ALL requests
 router.use('/', (req, res, next) => {
@@ -78,18 +79,7 @@ router.get('/', (req, res, next) => {
         }
 
     //  3. Get the data from the correct location: Canvas Cache, or Source (one of many types)
-        let isFresh = false;
-
-        // It is Fresh if not expired as yet
-        let dn = new Date();
-        let tn = dn.getTime()
-        let dl = new Date(serverExpiryDateTime);
-        let tl = dl.getTime();
-        if (tl >= tn) {
-            isFresh = true;
-        } else {
-            isFresh = false;
-        };
+        let isFresh = isDateInFuture(serverExpiryDateTime);
 
         // If cached and isFresh, result = cache
         if (cacheResultsOnServer  &&  isFresh) {
@@ -125,14 +115,13 @@ router.get('/', (req, res, next) => {
                 });
             });
         } else {
- 
-            // Get the DB-related vars
-            const datasource = datasourceArray[0];
-
-            debugDev(' <- Getting data from Source')
             // Else, get from Source using the correct data-layer-function depending on the DB type (ie MySQL or Mongo).
+ 
+            // Get the DS var
+            const datasource = datasourceArray[0];
+            debugDev(' <- Getting data from Source')
 
-            // TODO - this must be done with separate routines per serverType
+            // Get the data from Source, depending on the serverType
             if (serverType == 'PostgresSQL') {
                 // Do thing here
             };
