@@ -133,6 +133,7 @@ router.get('/', (req, res, next) => {
 
         // If cached and isFresh, result = cache
         if (cacheResultsOnServer  &&  isFresh) {
+            debugDev(' <- Getting data from Server Disc')
 
             // Get the model
             const clientSchema = '../models/clientData.model';
@@ -165,6 +166,7 @@ router.get('/', (req, res, next) => {
             });
         } else {
 
+            debugDev(' <- Getting data from Source')
             // Else, get from Source using the correct data-layer-function depending on the DB type (ie MySQL or Mongo).
 
             // TODO - this must be done with separate routines per serverType
@@ -198,7 +200,7 @@ router.get('/', (req, res, next) => {
                         database: databaseName,
                         port: port
                 };
-                debugDev('Prior to calling .select, databaseObject =',databaseObject)
+                debugDev('About to call mysql.datalayer.select with',databaseObject)
                 // TODO - do we use the serverName (in Workstation)    OR    host !??
                 // TODO - what about parameters?  Must we cater for it !??
 
