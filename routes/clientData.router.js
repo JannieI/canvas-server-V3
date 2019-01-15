@@ -142,20 +142,25 @@ router.get('/', (req, res, next) => {
 
                 // TODO
                 // 6. If (FIELDS_STRING) then results = results[fields]
-                if (fieldsObject != null) {
+                if (fieldsObject != null  && results != null) {
 
                     // Create Array of Fields, un-trimmed
                     const fieldsArray = fieldsObject.split(",");
                     for (var i = 0; i < fieldsArray.length; i++) {
-                        const field = fieldsArray[i].trim();
+                        fieldsArray[i] = fieldsArray[i].trim();
                     };
-                    Object.keys(results).forEach( key => {
+                    console.log('results', results)
+                    Object.keys(results[0]).forEach(key => {
                         console.log('key', key, fieldsArray.indexOf(key))
                         if (parseInt(fieldsArray.indexOf(key)) < 0) {
-                            delete results[key];
+                            for (var i = 0; i < results.length; i++) {
+                                delete results[i][key];
+                            };
+                            
                             console.log('Del field', key)
                         };
-                    }
+                    });
+                    console.log('results 2', results)
                 };
 
                 // 7. If (FILTER_OBJECT) then results = results.filter()
