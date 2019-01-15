@@ -42,19 +42,19 @@ router.get('/', (req, res, next) => {
 
     // In short: the structure of this route is as follows:
     //  1. Get the datasourceID from req.query
-    //  2. Get the DS (Datasource) record for the given datasourceID in req.query.  
+    //  2. Get the DS (Datasource) record for the given datasourceID in req.query.
     //  3. Get the data from the correct location: Canvas Cache, or Source (one of many types)
 
 
     // 1. Get the datasourceID from req.query
     const id = req.query.id;
     const datasourceID = req.query.datasourceID;
-    
-    // 2. Get the DS (Datasource) record for the given datasourceID in req.query.  
+
+    // 2. Get the DS (Datasource) record for the given datasourceID in req.query.
     const datasourceSchema = '../models/datasources.model';
     const datasourceModel = require(datasourceSchema);
     const datasourceIDQuery = { id: datasourceID };
-   
+
     datasourceModel.find( datasourceIDQuery, (err, datasourceArray) => {
         if (err) {
             console.error('Error:', err)
@@ -70,19 +70,19 @@ router.get('/', (req, res, next) => {
             console.error('Error:', err)
             res.json({
                 "statusCode": "error",
-                "message" : "Expected EXACTLY one Datasource in Mongo DB, not " 
+                "message" : "Expected EXACTLY one Datasource in Mongo DB, not "
                     + datasourceArray.length + ' for the datasourceID provided:' + datasourceID,
                 "data": null,
                 "error": err
             });
             return;
         }
- 
+
         // Set the DS var
         const datasource = datasourceArray[0];
 
     //  3. Get the data from the correct location: Canvas Cache, or Source (one of many types)
-        let isFresh = !isDateInFuture(datasource.serverExpiryDateTime);
+        let isFresh = isDateInFuture(datasource.serverExpiryDateTime);
 
         // If cached and isFresh, result = cache
         if (datasource.cacheResultsOnServer  &&  isFresh) {
@@ -141,6 +141,7 @@ router.get('/', (req, res, next) => {
                     };
                 };
 
+                // TODO
                 // 6. If (FIELDS_STRING) then results = results[fields]
                 if (fieldsObject != null) {
                     Object.keys(filterObject).forEach( key => {
@@ -149,7 +150,6 @@ router.get('/', (req, res, next) => {
                     });
                 };
 
-                // TODO
                 // 7. If (FILTER_OBJECT) then results = results.filter()
                 if (filterObject != null  &&  results != null) {
                     filterObject = JSON.parse(filterObject)
@@ -159,7 +159,7 @@ router.get('/', (req, res, next) => {
 
                         results = results.filter(r => {
                             return r[key] == value;
-                        })
+                        });
                     });
                 };
 
@@ -168,28 +168,28 @@ router.get('/', (req, res, next) => {
 
                 // 9. Add metadata, hopefully obtained directly from the source DB, or from the DS (if pre-stored),
                 //     with prudent defaults where unknown.
-                if (dataFields != null) {
-                    if (dataFieldTypes == null) {
-                        dataFieldTypes = [];
+                if (datasource.dataFields != null) {
+                    if (datasource.dataFieldTypes == null) {
+                        datasource.dataFieldTypes = [];
                     };
-                    if (dataFieldLengths == null) {
-                        dataFieldLengths = [];
+                    if (datasource.dataFieldLengths == null) {
+                        datasource.dataFieldLengths = [];
                     };
 
                     var fields = [];
 
                     // Loop on metatdata
-                    for (var i = 0; i < dataFields.length; i++) {
-                        const fieldName = dataFields[i];
+                    for (var i = 0; i < datasource.dataFields.length; i++) {
+                        const fieldName = datasource.dataFields[i];
 
                         let fieldType = '';
-                        if (i < dataFieldTypes.length) {
-                            fieldType = dataFieldTypes[i];
+                        if (i < datasource.dataFieldTypes.length) {
+                            fieldType = datasource.dataFieldTypes[i];
                         };
 
                         let fieldLength = '';
-                        if (i < dataFieldLengths.length) {
-                            fieldLength = dataFieldLengths[i];
+                        if (i < datasource.dataFieldLengths.length) {
+                            fieldLength = datasource.dataFieldLengths[i];
                         };
 
                         fields.push(
@@ -207,24 +207,21 @@ router.get('/', (req, res, next) => {
                     };
                 };
 
-
-
-
-                // Calc how many records are returned
+                // 10. Calc how many records are returned
                 let nrRecordsReturned = 0;
                 results = docs[0].data;
                 if (results != null) {
                     nrRecordsReturned = results.length;
                 };
-                
-                // Return the data with metadata
+
+                // 11. Return the data with metadata
                 return res.json({
                     "statusCode": "success",
                     "message" : "Retrieved data for id:" + id,
                     "data": results,
                     "metaData": {
                         "table": {
-                            "tableName": "", //oneDoc.mongooseCollection.collectionName,
+                            "tableName": "", //oneDoc.mongooseCollection.collectionName,  TODO
                             "nrRecordsReturned": nrRecordsReturned
                         },
                         "fields": []
@@ -252,7 +249,7 @@ router.get('/', (req, res, next) => {
             if (datasource.serverType == 'Mongo') {
                 // Do thing here
             };
-            
+
             // Get the Source Data via the Canvas Data Layer
             if (datasource.serverType == 'MySQL') {
                 datalayer.getData(datasource, req.query)
@@ -263,14 +260,14 @@ router.get('/', (req, res, next) => {
             // TODO - remove OLD way once above working ...\
             // if (datasource.serverType == 'MySQL') {
             //     // Inputs: DATABASE_OBJECT, TABLE, FIELDS, QUERY_STRING, SQL_PARAMETERS
-                
+
             //     // Create databaseObject
             //     // Sample: databaseObject = { host: '127.0.0.1', user: 'janniei', password: 'janniei', database: 'mysql'}
-            //     let databaseObject = 
-            //         { 
-            //             host: serverName, 
-            //             user: username, 
-            //             password: password, 
+            //     let databaseObject =
+            //         {
+            //             host: serverName,
+            //             user: username,
+            //             password: password,
             //             database: databaseName,
             //             port: port
             //     };
@@ -299,7 +296,7 @@ router.get('/', (req, res, next) => {
             //             // Insert the data into Canvas Server cache (in Mongo)
             //             clientModel.updateMany(
             //                 { id: datasourceID },
-            //                 dataToSave, 
+            //                 dataToSave,
             //                 { upsert: true }, (err, updateStats) => {
 
             //                     if(err){
@@ -310,13 +307,13 @@ router.get('/', (req, res, next) => {
             //                             "message" : "Error caching data from MySQL on Server",
             //                             "data": null,
             //                             "error":err.message
-            //                         });                                    
+            //                         });
             //                     };
 
             //                     // TODO - still to be done
             //                     // 4. Do the Transformations according to the Tr loaded in step 1
 
-            //                     // 5. Decompose the query string in req.query into SORT_OBJECT, FIELDS_STRING, FILTER_OBJECT, 
+            //                     // 5. Decompose the query string in req.query into SORT_OBJECT, FIELDS_STRING, FILTER_OBJECT,
             //                     //    AGGREGATION_OBJECT
             //                     let sortObject = req.query.sortObject;
             //                     let fieldsObject = req.query.fields;
@@ -337,7 +334,7 @@ router.get('/', (req, res, next) => {
 
             //                     var query = clientModel.findOne({ id: datasourceID });
 
-            //                     // TODO: get FILTER and SORT working via Mongo 
+            //                     // TODO: get FILTER and SORT working via Mongo
             //                     // if (filterObject != null) {
             //                     //     query.findOne( { "data.User": {"eq":"root"} } );
             //                     // };
@@ -350,9 +347,9 @@ router.get('/', (req, res, next) => {
             //                     // if (sortObject != null) {
             //                     //     query.sort(sortObject);
             //                     // };
-                                
+
             //                     query.exec( (err, finalResults) => {
-    
+
             //                         // Set the results, nrRecords while catering for an empty set
             //                         results = [];
             //                         let nrRecordsReturned = 0;
@@ -372,13 +369,13 @@ router.get('/', (req, res, next) => {
             //                                 let value = filterObject[key];
 
             //                                 results = results.filter(r => {
-            //                                     return r[key] == value;                                            
+            //                                     return r[key] == value;
             //                                 })
             //                             });
             //                         };
 
             //                         // Sort ASC on given field, -field means DESC
-            //                         // TODO 
+            //                         // TODO
             //                         //  - ideally do this via Mongo
             //                         //  - else, return sortOrder = 1 depending on - in field, see TypeScript
             //                         if (sortObject != null  &&  results != null) {
@@ -409,7 +406,7 @@ router.get('/', (req, res, next) => {
             //                             };
             //                         };
 
-            //                         // 10. Add metadata, hopefully obtained directly from the source DB, or from the DS (if pre-stored), 
+            //                         // 10. Add metadata, hopefully obtained directly from the source DB, or from the DS (if pre-stored),
             //                         //     with prudent defaults where unknown.
 
             //                         if (dataFields != null) {
@@ -419,7 +416,7 @@ router.get('/', (req, res, next) => {
             //                             if (dataFieldLengths == null) {
             //                                 dataFieldLengths = [];
             //                             };
-                                        
+
             //                             var fields = [];
 
             //                             // Loop on metatdata
@@ -483,7 +480,7 @@ router.get('/', (req, res, next) => {
     });
 
 
-    // KEEP !!!  
+    // KEEP !!!
     // This is the code to get /data?id=x from the Mongo data  ~  Disc Caching.
     // It works !!!
     //
