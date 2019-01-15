@@ -5,6 +5,7 @@ const express = require('express');
 const router = express.Router();
 const debugData = require('debug')('app:data');
 const debugDev = require('debug')('app:dev');
+const datalayer = require('../databaseConnectors/mysql.datalayer');
 
 // Runs for ALL requests
 router.use('/', (req, res, next) => {
@@ -185,9 +186,11 @@ router.get('/', (req, res, next) => {
             if (serverType == 'Mongo') {
                 // Do thing here
             };
-                
+            
             if (serverType == 'MySQL') {
-                const datalayer = require('../databaseConnectors/mysql.datalayer');
+                
+            };
+            if (serverType == 'MySQL') {
                 // Inputs: DATABASE_OBJECT, TABLE, FIELDS, QUERY_STRING, SQL_PARAMETERS
                 
                 // Create databaseObject
@@ -201,8 +204,6 @@ router.get('/', (req, res, next) => {
                         port: port
                 };
                 debugDev('About to call mysql.datalayer.select with',databaseObject)
-                // TODO - do we use the serverName (in Workstation)    OR    host !??
-                // TODO - what about parameters?  Must we cater for it !??
 
                 // Get data useing data layer
                 // Example: datalayer.select(databaseObject, dataTableName, null, dataSQLStatement, "janniei", )
@@ -224,7 +225,6 @@ router.get('/', (req, res, next) => {
                             data: results
                         };
 
-                        // TODO - Can be streamed directly from MySQL into Mongo ... ??
                         // Insert the data into Canvas Server cache (in Mongo)
                         clientModel.updateMany(
                             { id: datasourceID },
@@ -400,6 +400,12 @@ router.get('/', (req, res, next) => {
                     // 12. If any error, return err according to the CanvasHttpResponse interface
                     .catch(err =>{
                         console.error('Err after datalayer.select called from clientData.router', err);
+                        return res.json({
+                            "statusCode": "error",
+                            "message" : "Error: Err after datalayer.select called from clientData.router for id:", id,
+                            "data": null,
+                            "error": err
+                        });
                     });
             };
         };
