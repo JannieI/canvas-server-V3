@@ -148,7 +148,7 @@ GET {{host}}/clientData/
 ?id=82
 &datasourceID=82
 &sortObject=-User
-&fields="' data.User data.Delete_priv '"
+&fields=User, Select_priv
 &filterObject={"User":"root"}
 &aggregationObject=aggregationObject
 ###

@@ -96,8 +96,7 @@ router.get('/', (req, res, next) => {
             // Find the data (using the standard query JSON object)
             clientModel.find( { id } , (err, docs) => {
 
-
-
+                let results = docs[0].data;
 
                 // 4. Extract Query properties: these are used by the Widget to reduce the data block returned
                 let sortObject = req.query.sortObject;
@@ -144,10 +143,19 @@ router.get('/', (req, res, next) => {
                 // TODO
                 // 6. If (FIELDS_STRING) then results = results[fields]
                 if (fieldsObject != null) {
-                    Object.keys(filterObject).forEach( key => {
-                        // Get the key-value pair
-                        let value = filterObject[key];
-                    });
+
+                    // Create Array of Fields, un-trimmed
+                    const fieldsArray = fieldsObject.split(",");
+                    for (var i = 0; i < fieldsArray.length; i++) {
+                        const field = fieldsArray[i].trim();
+                    };
+                    Object.keys(results).forEach( key => {
+                        console.log('key', key, fieldsArray.indexOf(key))
+                        if (parseInt(fieldsArray.indexOf(key)) < 0) {
+                            delete results[key];
+                            console.log('Del field', key)
+                        };
+                    }
                 };
 
                 // 7. If (FILTER_OBJECT) then results = results.filter()
@@ -209,7 +217,6 @@ router.get('/', (req, res, next) => {
 
                 // 10. Calc how many records are returned
                 let nrRecordsReturned = 0;
-                results = docs[0].data;
                 if (results != null) {
                     nrRecordsReturned = results.length;
                 };
