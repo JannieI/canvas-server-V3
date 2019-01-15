@@ -82,7 +82,7 @@ router.get('/', (req, res, next) => {
         const datasource = datasourceArray[0];
 
     //  3. Get the data from the correct location: Canvas Cache, or Source (one of many types)
-        let isFresh = isDateInFuture(datasource.serverExpiryDateTime);
+        let isFresh = !isDateInFuture(datasource.serverExpiryDateTime);
 
         // If cached and isFresh, result = cache
         if (datasource.cacheResultsOnServer  &&  isFresh) {
@@ -96,17 +96,132 @@ router.get('/', (req, res, next) => {
             // Find the data (using the standard query JSON object)
             clientModel.find( { id } , (err, docs) => {
 
+
+
+
+                // 4. Extract Query properties: these are used by the Widget to reduce the data block returned
+                let sortObject = req.query.sortObject;
+                let fieldsObject = req.query.fields;
+
+                if (fieldsObject != null) {
+                    fieldsObject = JSON.parse(JSON.stringify(fieldsObject));
+                };
+                let filterObject = req.query.filterObject;
+                const aggregationObject = req.query.aggregationObject;
+
+                // 5. If (SORT_OBJECT) then results = results.sort()
+                // Sort ASC on given field, -field means DESC
+                // TODO
+                //  - else, return sortOrder = 1 depending on - in field, see TypeScript
+                if (sortObject != null  &&  results != null) {
+
+                    // DESC, and take off -
+                    if (sortObject[0] === "-") {
+                        sortOrder = 1;
+                        sortObject = sortObject.substr(1);
+                        results.sort( (a,b) => {
+                            if (a[sortObject] > b[sortObject]) {
+                                return -1;
+                            };
+                            if (a[sortObject] < b[sortObject]) {
+                                return 1;
+                            };
+                            return 0;
+                        });
+                    } else {
+                        results.sort( (a,b) => {
+                            if (a[sortObject] > b[sortObject]) {
+                                return 1;
+                            };
+                            if (a[sortObject] < b[sortObject]) {
+                                return -1;
+                            };
+                            return 0;
+                        });
+                    };
+                };
+
+                // 6. If (FIELDS_STRING) then results = results[fields]
+                if (fieldsObject != null) {
+                    Object.keys(filterObject).forEach( key => {
+                        // Get the key-value pair
+                        let value = filterObject[key];
+                    });
+                };
+
+                // TODO
+                // 7. If (FILTER_OBJECT) then results = results.filter()
+                if (filterObject != null  &&  results != null) {
+                    filterObject = JSON.parse(filterObject)
+                    Object.keys(filterObject).forEach( key => {
+                        // Get the key-value pair
+                        let value = filterObject[key];
+
+                        results = results.filter(r => {
+                            return r[key] == value;
+                        })
+                    });
+                };
+
+                // TODO
+                // 8. If (AGGREGATION_OBJECT) then results = results.clever-thing
+
+                // 9. Add metadata, hopefully obtained directly from the source DB, or from the DS (if pre-stored),
+                //     with prudent defaults where unknown.
+                if (dataFields != null) {
+                    if (dataFieldTypes == null) {
+                        dataFieldTypes = [];
+                    };
+                    if (dataFieldLengths == null) {
+                        dataFieldLengths = [];
+                    };
+
+                    var fields = [];
+
+                    // Loop on metatdata
+                    for (var i = 0; i < dataFields.length; i++) {
+                        const fieldName = dataFields[i];
+
+                        let fieldType = '';
+                        if (i < dataFieldTypes.length) {
+                            fieldType = dataFieldTypes[i];
+                        };
+
+                        let fieldLength = '';
+                        if (i < dataFieldLengths.length) {
+                            fieldLength = dataFieldLengths[i];
+                        };
+
+                        fields.push(
+                            {
+                                "fieldName": fieldName,
+                                "fieldType": fieldType,
+                                "length": fieldLength,
+                                "average": null,
+                                "max": null,
+                                "median": null,
+                                "min": null,
+                                "sum": null
+                            }
+                        );
+                    };
+                };
+
+
+
+
                 // Calc how many records are returned
                 let nrRecordsReturned = 0;
-                if (docs != null) {
-                    nrRecordsReturned = docs.length;
+                results = docs[0].data;
+                if (results != null) {
+                    nrRecordsReturned = results.length;
                 };
                 
                 // Return the data with metadata
                 return res.json({
                     "statusCode": "success",
                     "message" : "Retrieved data for id:" + id,
-                    "data": docs[0].data,
+                    "data": results,
                     "metaData": {
                         "table": {
                             "tableName": "", //oneDoc.mongooseCollection.collectionName,
@@ -122,31 +237,31 @@ router.get('/', (req, res, next) => {
             debugDev(' <- Getting data from Source')
 
             // Get the data from Source, depending on the serverType
-            if (serverType == 'PostgresSQL') {
+            if (datasource.serverType == 'PostgresSQL') {
                 // Do thing here
             };
-                if (serverType == 'Microsoft SQL') {
+                if (datasource.serverType == 'Microsoft SQL') {
                 // Do thing here
             };
-            if (serverType == 'SQLite') {
+            if (datasource.serverType == 'SQLite') {
                 // Do thing here
             };
-            if (serverType == 'Oracle') {
+            if (datasource.serverType == 'Oracle') {
                 // Do thing here
             };
-            if (serverType == 'Mongo') {
+            if (datasource.serverType == 'Mongo') {
                 // Do thing here
             };
             
             // Get the Source Data via the Canvas Data Layer
-            if (serverType == 'MySQL') {
+            if (datasource.serverType == 'MySQL') {
                 datalayer.getData(datasource, req.query)
                     .then(resResultsObject => res.json(resResultsObject) )
                     .catch(resErrorObject  => res.json(resErrorObject) );
             };
 
             // TODO - remove OLD way once above working ...\
-            // if (serverType == 'MySQL') {
+            // if (datasource.serverType == 'MySQL') {
             //     // Inputs: DATABASE_OBJECT, TABLE, FIELDS, QUERY_STRING, SQL_PARAMETERS
                 
             //     // Create databaseObject
