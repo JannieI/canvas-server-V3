@@ -79,7 +79,7 @@ router.get('/', (req, res, next) => {
         }
 
     //  3. Get the data from the correct location: Canvas Cache, or Source (one of many types)
-        let isFresh = isDateInFuture(serverExpiryDateTime);
+        let isFresh = isDateInFuture(datasourceArray[0].serverExpiryDateTime);
 
         // If cached and isFresh, result = cache
         if (cacheResultsOnServer  &&  isFresh) {
@@ -138,9 +138,8 @@ router.get('/', (req, res, next) => {
                 // Do thing here
             };
             
+            // Get the Source Data via the Canvas Data Layer
             if (serverType == 'MySQL') {
-
-                // Inputs: DATABASE_OBJECT, TABLE, FIELDS, QUERY_STRING, SQL_PARAMETERS
                 datalayer.getData(datasource, req.query)
                     .then(resResultsObject => res.json(resResultsObject) )
                     .catch(resErrorObject  => res.json(resErrorObject) );

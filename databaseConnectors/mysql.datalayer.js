@@ -176,7 +176,7 @@ exports.getData = function(datasource, queryObject) {
                 // TODO - later
                 // 3. Do the Transformations according to the Tr loaded in step 1
 
-                // 4. Store the data in Canvas ClientData
+                // 4. Store the data in Canvas ClientData if cachable
                 // If cacheResultsOnServer = True, then Insert the data into Canvas Server cache (in Mongo)
                 // NB: this is NOT done Async, so will work in background
                 if (cacheResultsOnServer) {
@@ -252,6 +252,7 @@ exports.getData = function(datasource, queryObject) {
                     });
                 };
 
+                // TODO
                 // 7. If (FILTER_OBJECT) then results = results.filter()
                 if (filterObject != null  &&  results != null) {
                     filterObject = JSON.parse(filterObject)
@@ -265,11 +266,11 @@ exports.getData = function(datasource, queryObject) {
                     });
                 };
 
+                // TODO
                 // 8. If (AGGREGATION_OBJECT) then results = results.clever-thing
 
                 // 9. Add metadata, hopefully obtained directly from the source DB, or from the DS (if pre-stored),
                 //     with prudent defaults where unknown.
-
                 if (dataFields != null) {
                     if (dataFieldTypes == null) {
                         dataFieldTypes = [];
@@ -324,6 +325,7 @@ exports.getData = function(datasource, queryObject) {
                     "error": null
                 };
         })
+        
         // If any error, return err according to the CanvasHttpResponse interface
         .catch(err =>{
             console.error('Err after datalayer.select called from clientData.router', err);
