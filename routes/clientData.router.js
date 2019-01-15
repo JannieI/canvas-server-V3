@@ -188,10 +188,25 @@ router.get('/', (req, res, next) => {
             };
             
             if (serverType == 'MySQL') {
-                datalayer.getFromSource(databaseObject, dataTableName, null, dataSQLStatement, "janniei", )
+               
+                // Create databaseObject
+                // Sample: databaseObject = { host: '127.0.0.1', user: 'janniei', password: 'janniei', database: 'mysql'}
+                let databaseObject = 
+                    { 
+                        host: serverName, 
+                        user: username, 
+                        password: password, 
+                        database: databaseName,
+                        port: port
+                };
+
+                // Inputs: DATABASE_OBJECT, TABLE, FIELDS, QUERY_STRING, SQL_PARAMETERS
+                datalayer.getData(databaseObject, dataTableName, null, dataSQLStatement, "janniei", )
                     .then(resResultsObject => res.json(resResultsObject) )
                     .catch(resErrorObject  => res.json(resErrorObject) );
             };
+
+            // TODO - remove OLD way once above working ...
             if (serverType == 'MySQL') {
                 // Inputs: DATABASE_OBJECT, TABLE, FIELDS, QUERY_STRING, SQL_PARAMETERS
                 
@@ -205,7 +220,7 @@ router.get('/', (req, res, next) => {
                         database: databaseName,
                         port: port
                 };
-                debugDev('About to call mysql.datalayer.select with',databaseObject)
+                debugDev('About to call mysql.datalayer.select with', databaseObject)
 
                 // Get data useing data layer
                 // Example: datalayer.select(databaseObject, dataTableName, null, dataSQLStatement, "janniei", )
