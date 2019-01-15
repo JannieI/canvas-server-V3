@@ -39,22 +39,38 @@ router.use('/', (req, res, next) => {
 // GET route
 router.get('/', (req, res, next) => {
 
-    // In short: the structure of this route is as follows:
-    //  1. Get the datasourceID from req.query
-    //  2. Get the DS (Datasource) record for the given datasourceID in req.query.  
-    //  3. Get the data from the correct location: Canvas Cache, or Source (one of many types)
+    // The structure of this route is as follows:
+    // 1. Preparation: 
+    //    1.1 Get the datasourceID from req.query
+    //    1.2 Get the DS (Datasource) record for the given datasourceID in req.query.  
+    //    1.3 Get auxilliary information, like Tr (Transformations), 
+    //        dSet (datasets).
+    // 2. Set results = [] (data block to return to Workstation)
+    // 3. Get the data - either cached or from source:
+    // 4. Do the Transformations according to the Tr loaded in step 1
+    // 5. Decompose the query string in req.query into SORT_OBJECT, FIELDS_STRING, FILTER_OBJECT, 
+    //    AGGREGATION_OBJECT
+    // 6. If (SORT_OBJECT) then results = results.sort()
+    // 7. If (FIELDS_STRING) then results = results[fields]
+    // 8. If (FILTER_OBJECT) then results = results.filter()
+    // 9. If (AGGREGATION_OBJECT) then results = results.clever-thing
+    // 10. Add metadata, hopefully obtained directly from the source DB, or from the DS (if pre-stored), 
+    //     with prudent defaults where unknown.
+    // 11. Return results according to the CanvasHttpResponse interface
+    // 12. If any error, return err according to the CanvasHttpResponse interface
 
-
-    // 1. Get the datasourceID from req.query
+    // 1. Preparation: 
+    //    1.1 Get the datasourceID from req.query
+    const reqQuery = req.query;
     const id = req.query.id;
     const datasourceID = req.query.datasourceID;
     
-    // 2. Get the DS (Datasource) record for the given datasourceID in req.query.  
+    //    1.2 Get the DS (Datasource) record for the given datasourceID in req.query.  
     const datasourceSchema = '../models/datasources.model';
     const datasourceModel = require(datasourceSchema);
-    const datasourceIDQuery = { id: datasourceID };
-   
-    datasourceModel.find( datasourceIDQuery, (err, datasourceArray) => {
+    const mongoQuery = { id: datasourceID };
+    
+    datasourceModel.find( mongoQuery, (err, datasourceArray) => {
         if (err) {
             console.error('Error:', err)
             res.json({
@@ -76,8 +92,33 @@ router.get('/', (req, res, next) => {
             });
             return;
         }
+ 
+        // Get the DB-related vars
+        const username = datasourceArray[0].username;
+        const password = datasourceArray[0].password;
+        const databaseName = datasourceArray[0].databaseName;
+        const port = datasourceArray[0].port;
+        const serverType = datasourceArray[0].serverType;
+        const serverName = datasourceArray[0].serverName;
+        const dataTableName = datasourceArray[0].dataTableName;
+        const dataSQLStatement = datasourceArray[0].dataSQLStatement;
+        const cacheResultsOnServer = datasourceArray[0].cacheResultsOnServer;
+        const serverExpiryDateTime = datasourceArray[0].serverExpiryDateTime
+        const dataFields = datasourceArray[0].dataFields;
+        const dataFieldTypes = datasourceArray[0].dataFieldTypes;
+        const dataFieldLengths = datasourceArray[0].dataFieldLengths;
+        debugDev('Properties read from DS id:', datasourceArray[0].id, username, password, databaseName, port, serverType, serverName, dataTableName, dataSQLStatement, cacheResultsOnServer)
+        
+        
+        //    1.3 Get auxilliary information, like Tr (Transformations), 
+        //        dSet (datasets).
+        // TODO later ...
 
-    //  3. Get the data from the correct location: Canvas Cache, or Source (one of many types)
+        
+        // 2. Set results = [] (data block to return to Workstation)
+        let results = [];
+
+        // 3. Get the data - either cached or from source:
         let isFresh = false;
 
         // It is Fresh if not expired as yet
@@ -125,9 +166,6 @@ router.get('/', (req, res, next) => {
                 });
             });
         } else {
- 
-            // Get the DB-related vars
-            const datasource = datasourceArray[0];
 
             debugDev(' <- Getting data from Source')
             // Else, get from Source using the correct data-layer-function depending on the DB type (ie MySQL or Mongo).
@@ -150,9 +188,20 @@ router.get('/', (req, res, next) => {
             };
             
             if (serverType == 'MySQL') {
+               
+                // Create databaseObject
+                // Sample: databaseObject = { host: '127.0.0.1', user: 'janniei', password: 'janniei', database: 'mysql'}
+                let databaseObject = 
+                    { 
+                        host: serverName, 
+                        user: username, 
+                        password: password, 
+                        database: databaseName,
+                        port: port
+                };
 
                 // Inputs: DATABASE_OBJECT, TABLE, FIELDS, QUERY_STRING, SQL_PARAMETERS
-                datalayer.getData(datasource, req.query)
+                datalayer.getData(databaseObject, dataTableName, null, dataSQLStatement, "janniei", )
                     .then(resResultsObject => res.json(resResultsObject) )
                     .catch(resErrorObject  => res.json(resErrorObject) );
             };

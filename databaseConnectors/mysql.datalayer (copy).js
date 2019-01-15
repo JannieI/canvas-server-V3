@@ -35,11 +35,37 @@ const mysql = require('mysql');
 const config = require('config');               // Configuration
 
 // exports.select = function(host, user, password, database, options, sql, sqlParams) {
-exports.select = function(databaseObject, table, fields, queryString, sqlParameters) {
+exports.select = function(datasource) {
     // Selects the records from the MySQL database according to the given parameters.
     // Inputs: DATABASE_OBJECT, TABLE, FIELDS, QUERY_STRING, SQL_PARAMETERS
 
     return new Promise((resolve, reject) => {
+
+        // Get the DB-related vars into easier names
+        const username = datasource.username;
+        const password = datasource.password;
+        const databaseName = datasource.databaseName;
+        const port = datasource.port;
+        const serverType = datasource.serverType;
+        const serverName = datasource.serverName;
+        const dataTableName = datasource.dataTableName;
+        const dataSQLStatement = datasource.dataSQLStatement;
+        const cacheResultsOnServer = datasource.cacheResultsOnServer;
+        const serverExpiryDateTime = datasource.serverExpiryDateTime
+        const dataFields = datasource.dataFields;
+        const dataFieldTypes = datasource.dataFieldTypes;
+        const dataFieldLengths = datasource.dataFieldLengths;
+               
+        // Create databaseObject
+        // Sample: databaseObject = { host: '127.0.0.1', user: 'janniei', password: 'janniei', database: 'mysql'}
+        let databaseObject = 
+            { 
+                host: serverName, 
+                user: username, 
+                password: password, 
+                database: databaseName,
+                port: port
+        };
 
         // Load defaults, set in startup.sh (via custom-environment-variables.js)
         let host = config.get('mysqlLocal.startup.host');
@@ -114,68 +140,7 @@ exports.select = function(databaseObject, table, fields, queryString, sqlParamet
 exports.getData = function(databaseObject, table, fields, queryString, sqlParameters) {
     // Gets (Selects) the data; either from cache or from Source
     // Inputs: DATABASE_OBJECT, TABLE, FIELDS, QUERY_STRING, SQL_PARAMETERS
-    datasource) {
-        // Selects the records from the MySQL database according to the given parameters.
-        // Inputs: DATABASE_OBJECT, TABLE, FIELDS, QUERY_STRING, SQL_PARAMETERS
     
-        return new Promise((resolve, reject) => {
-            
-        //  3. Get auxilliary information, like Tr (Transformations), dSet (datasets).
-            
-            //    1.3 Get auxilliary information, like Tr (Transformations), 
-            //        dSet (datasets).
-            // TODO later ...
-            // 2. Set results = [] (data block to return to Workstation)
-            // 3. Get the data - either cached or from source:
-            // 4. Do the Transformations according to the Tr loaded in step 1
-            // 5. Decompose the query string in req.query into SORT_OBJECT, FIELDS_STRING, FILTER_OBJECT, 
-            //    AGGREGATION_OBJECT
-            // 6. If (SORT_OBJECT) then results = results.sort()
-            // 7. If (FIELDS_STRING) then results = results[fields]
-            // 8. If (FILTER_OBJECT) then results = results.filter()
-            // 9. If (AGGREGATION_OBJECT) then results = results.clever-thing
-            // 10. Add metadata, hopefully obtained directly from the source DB, or from the DS (if pre-stored), 
-            //     with prudent defaults where unknown.
-            // 11. Return results according to the CanvasHttpResponse interface
-            // 12. If any error, return err according to the CanvasHttpResponse interface
-    
-            // Get the DB-related vars into easier names
-            const username = datasource.username;
-            const password = datasource.password;
-            const databaseName = datasource.databaseName;
-            const port = datasource.port;
-            const serverType = datasource.serverType;
-            const serverName = datasource.serverName;
-            const dataTableName = datasource.dataTableName;
-            const dataSQLStatement = datasource.dataSQLStatement;
-            const cacheResultsOnServer = datasource.cacheResultsOnServer;
-            const serverExpiryDateTime = datasource.serverExpiryDateTime
-            const dataFields = datasource.dataFields;
-            const dataFieldTypes = datasource.dataFieldTypes;
-            const dataFieldLengths = datasource.dataFieldLengths;
-                        //                     // 5. Decompose the query string in req.query into SORT_OBJECT, FIELDS_STRING, FILTER_OBJECT, 
-                //                     //    AGGREGATION_OBJECT
-                //                     let sortObject = req.query.sortObject;
-                //                     let fieldsObject = req.query.fields;
-    
-                //                     if (fieldsObject != null) {
-                //                         fieldsObject = JSON.parse(JSON.stringify(fieldsObject));
-                //                     };
-                //                     let filterObject = req.query.filterObject;
-                //                     const aggregationObject = req.query.aggregationObject;
-    
-                debugDev('Properties read from DS id:', datasourceArray[0].id, username, password, databaseName, port, serverType, serverName, dataTableName, dataSQLStatement, cacheResultsOnServer)
-                   
-            // Create databaseObject
-            // Sample: databaseObject = { host: '127.0.0.1', user: 'janniei', password: 'janniei', database: 'mysql'}
-            let databaseObject = 
-                { 
-                    host: serverName, 
-                    user: username, 
-                    password: password, 
-                    database: databaseName,
-                    port: port
-            };
     // Get data useing data layer
     // Example: datalayer.select(databaseObject, dataTableName, null, dataSQLStatement, "janniei", )
     select(databaseObject, dataTableName, fields, dataSQLStatement, sqlParameters)
