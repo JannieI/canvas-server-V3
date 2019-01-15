@@ -81,8 +81,8 @@ router.get('/', (req, res, next) => {
         // Set the DS var
         const datasource = datasourceArray[0];
 
-    //  3. Get the data from the correct location: Canvas Cache, or Source (one of many types)
-        let isFresh = isDateInFuture(datasource.serverExpiryDateTime);
+        //  3. Get the data from the correct location: Canvas Cache, or Source (one of many types)
+        let isFresh = !isDateInFuture(datasource.serverExpiryDateTime);
 
         // If cached and isFresh, result = cache
         if (datasource.cacheResultsOnServer  &&  isFresh) {
