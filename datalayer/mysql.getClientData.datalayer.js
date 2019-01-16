@@ -87,7 +87,7 @@ exports.getClientData = function(datasource, queryObject) {
 
         // 2. Connect to the MySQL DB and return the data
         results = [];
-        connectAndQuery(databaseObject, dataTableName, fields, dataSQLStatement, sqlParameters)
+        connectAndQuery(databaseObject, dataTableName, fieldsObject, dataSQLStatement, sqlParameters)
             .then(returnedData => {
 
                 //  Now, results = [data], with Count
