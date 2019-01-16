@@ -33,6 +33,7 @@
 
 const mysql = require('mysql');
 const config = require('config');               // Configuration
+const debugDev = require('debug')('app:dev');
 
 // exports.select = function(host, user, password, database, options, sql, sqlParams) {
 exports.select = function(databaseObject, table, fields, queryString, sqlParameters) {
