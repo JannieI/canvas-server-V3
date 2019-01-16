@@ -84,7 +84,7 @@ router.get('/', (req, res, next) => {
         const datasource = datasourceArray[0];
 
         //  3. Get the data from the correct location: Canvas Cache, or Source (one of many types)
-        let isFresh = isDateInFuture(datasource.serverExpiryDateTime);
+        let isFresh = !isDateInFuture(datasource.serverExpiryDateTime);
 
         // If cached and isFresh, result = cache
         if (datasource.cacheResultsOnServer  &&  isFresh) {
@@ -191,7 +191,7 @@ console.log('results', results, afterSort)
             if (datasource.serverType == 'PostgresSQL') {
                 // Do thing here
             };
-                if (datasource.serverType == 'Microsoft SQL') {
+            if (datasource.serverType == 'Microsoft SQL') {
                 // Do thing here
             };
             if (datasource.serverType == 'SQLite') {
@@ -207,8 +207,14 @@ console.log('results', results, afterSort)
             // Get the Source Data via the Canvas Data Layer
             if (datasource.serverType == 'MySQL') {
                 datalayer.getData(datasource, req.query)
-                    .then(resResultsObject => res.json(resResultsObject) )
-                    .catch(resErrorObject  => res.json(resErrorObject) );
+                    .then(resResultsObject => {
+                        console.log('resResultsObject', resResultsObject)
+                        return res.json(resResultsObject)
+                     } )
+                    .catch(resErrorObject  => {
+                        console.log('resErrorObject', resErrorObject)
+                        return res.json(resErrorObject) 
+                    });
             };
 
         };
