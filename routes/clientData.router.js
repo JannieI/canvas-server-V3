@@ -7,7 +7,8 @@ const debugData = require('debug')('app:data');
 const debugDev = require('debug')('app:dev');
 const datalayer = require('../databaseConnectors/mysql.datalayer');
 const isDateInFuture = require('../utils/dateFunctions');
-const sortFilterFieldsAggregate = require('../utils/extractWidgetData');
+const sortFilterFieldsAggregate = require('../utils/dataRelated.sortFilterFieldsAggregate');
+const metaDataFromDatasource = require('../utils/dataRelated.metaDataFromDatasource');
 
 // Runs for ALL requests
 router.use('/', (req, res, next) => {
@@ -115,46 +116,51 @@ router.get('/', (req, res, next) => {
                 // Update results with this information
                 results = afterSort.results;
 
-                // 9. Add metadata, hopefully obtained directly from the source DB, or from the DS (if pre-stored),
-                //    with prudent defaults where unknown.
-                if (datasource.dataFields != null) {
-                    if (datasource.dataFieldTypes == null) {
-                        datasource.dataFieldTypes = [];
-                    };
-                    if (datasource.dataFieldLengths == null) {
-                        datasource.dataFieldLengths = [];
-                    };
+                var fields = [];
 
-                    var fields = [];
+                fields = metaDataFromDatasource(datasource);
 
-                    // Loop on metatdata
-                    for (var i = 0; i < datasource.dataFields.length; i++) {
-                        const fieldName = datasource.dataFields[i];
 
-                        let fieldType = '';
-                        if (i < datasource.dataFieldTypes.length) {
-                            fieldType = datasource.dataFieldTypes[i];
-                        };
+                // // 9. Add metadata, hopefully obtained directly from the source DB, or from the DS (if pre-stored),
+                // //    with prudent defaults where unknown.
+                // if (datasource.dataFields != null) {
+                //     if (datasource.dataFieldTypes == null) {
+                //         datasource.dataFieldTypes = [];
+                //     };
+                //     if (datasource.dataFieldLengths == null) {
+                //         datasource.dataFieldLengths = [];
+                //     };
 
-                        let fieldLength = '';
-                        if (i < datasource.dataFieldLengths.length) {
-                            fieldLength = datasource.dataFieldLengths[i];
-                        };
+                //     var fields = [];
 
-                        fields.push(
-                            {
-                                "fieldName": fieldName,
-                                "fieldType": fieldType,
-                                "length": fieldLength,
-                                "average": null,
-                                "max": null,
-                                "median": null,
-                                "min": null,
-                                "sum": null
-                            }
-                        );
-                    };
-                };
+                //     // Loop on metatdata
+                //     for (var i = 0; i < datasource.dataFields.length; i++) {
+                //         const fieldName = datasource.dataFields[i];
+
+                //         let fieldType = '';
+                //         if (i < datasource.dataFieldTypes.length) {
+                //             fieldType = datasource.dataFieldTypes[i];
+                //         };
+
+                //         let fieldLength = '';
+                //         if (i < datasource.dataFieldLengths.length) {
+                //             fieldLength = datasource.dataFieldLengths[i];
+                //         };
+
+                //         fields.push(
+                //             {
+                //                 "fieldName": fieldName,
+                //                 "fieldType": fieldType,
+                //                 "length": fieldLength,
+                //                 "average": null,
+                //                 "max": null,
+                //                 "median": null,
+                //                 "min": null,
+                //                 "sum": null
+                //             }
+                //         );
+                //     };
+                // };
 
                 // 10. Calc how many records are returned
                 let nrRecordsReturned = 0;
