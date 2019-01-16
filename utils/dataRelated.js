@@ -111,6 +111,9 @@ module.exports = function metaDataFromDatasource(datasource) {
     let fields = [];
     
     // Cater for the other Arrays being out of sync
+    if (datasource.dataFields == null) {
+        datasource.dataFields = [];
+    };
     if (datasource.dataFieldTypes == null) {
         datasource.dataFieldTypes = [];
     };
