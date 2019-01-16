@@ -5,7 +5,7 @@ const express = require('express');
 const router = express.Router();
 const debugData = require('debug')('app:data');
 const debugDev = require('debug')('app:dev');
-const datalayer = require('../databaseConnectors/mysql.datalayer');
+const datalayer = require('../datalayer/mysql.getClientData.datalayer');
 const isDateInFuture = require('../utils/dateFunctions');
 const metaDataFromDatasource = require('../utils/metaDataFromDatasource.util');
 const sortFilterFieldsAggregate = require('../utils/sortFilterFieldsAggregate.util');
@@ -206,7 +206,7 @@ console.log('results', results, afterSort)
 
             // Get the Source Data via the Canvas Data Layer
             if (datasource.serverType == 'MySQL') {
-                datalayer.getData(datasource, req.query)
+                datalayer.getClientData(datasource, req.query)
                     .then(resResultsObject => {
                         console.log('resResultsObject', resResultsObject)
                         return res.json(resResultsObject)

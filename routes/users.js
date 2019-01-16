@@ -42,7 +42,7 @@ router.param(('collection'), (reg, res, next) => {
 
 
 // Postgress
-const dbPgWeather = require('../databaseConnectors/dbPgWeather');
+const dbPgWeather = require('../datalayer/dbPgWeather');
 
 router.get('/pg',(req, res)=>{
     const query = 'SELECT * FROM city_weathers WHERE id > $1'

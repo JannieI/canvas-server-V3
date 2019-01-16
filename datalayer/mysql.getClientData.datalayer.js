@@ -33,9 +33,9 @@
 const mysql = require('mysql');
 const config = require('config');               // Configuration
 const debugDev = require('debug')('app:dev');
-const connectAndQuery = require('./mysql.datalayer');
+const connectAndQuery = require('./mysql.getClientData.datalayer');
 
-exports.getData = function(datasource, queryObject) {
+exports.getClientData = function(datasource, queryObject) {
     // Gets (Selects) the data; either from cache or from Source
     // Inputs: DATASOURCE (for which to get the data), QUERYOBJECT provided by HTTP GET request
 
