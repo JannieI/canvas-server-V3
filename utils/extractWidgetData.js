@@ -1,4 +1,4 @@
-// This
+// This module contains functions used for data manipulation
 
 module.exports = function sortFilterFieldsAggregate(results, queryObject) {
     // This routines receives an Array and the res.query object, and then extracts the data for the
@@ -105,31 +105,40 @@ module.exports = function sortFilterFieldsAggregate(results, queryObject) {
     
 }
 
+module.exports = function metaDataFromDatasource(datasource) {
+    // This routine creates metaData from a given Datasource
 
-                    // Loop on metatdata
-                    for (var i = 0; i < datasource.dataFields.length; i++) {
-                        const fieldName = datasource.dataFields[i];
+    let fields = [];
 
-                        let fieldType = '';
-                        if (i < datasource.dataFieldTypes.length) {
-                            fieldType = datasource.dataFieldTypes[i];
-                        };
+    // Loop on metatdata
+    for (var i = 0; i < datasource.dataFields.length; i++) {
+        const fieldName = datasource.dataFields[i];
 
-                        let fieldLength = '';
-                        if (i < datasource.dataFieldLengths.length) {
-                            fieldLength = datasource.dataFieldLengths[i];
-                        };
+        let fieldType = '';
+        if (i < datasource.dataFieldTypes.length) {
+            fieldType = datasource.dataFieldTypes[i];
+        };
 
-                        fields.push(
-                            {
-                                "fieldName": fieldName,
-                                "fieldType": fieldType,
-                                "length": fieldLength,
-                                "average": null,
-                                "max": null,
-                                "median": null,
-                                "min": null,
-                                "sum": null
-                            }
-                        );
-                    };
+        let fieldLength = '';
+        if (i < datasource.dataFieldLengths.length) {
+            fieldLength = datasource.dataFieldLengths[i];
+        };
+
+        fields.push(
+            {
+                "fieldName": fieldName,
+                "fieldType": fieldType,
+                "length": fieldLength,
+                "average": null,
+                "max": null,
+                "median": null,
+                "min": null,
+                "sum": null
+            }
+        );
+    };
+
+    // Return
+    return fields;
+
+}

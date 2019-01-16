@@ -1,6 +1,8 @@
-// This routines determines if a given DateTime value is in the future
-// Returns True if it is the case.
+// This module contains functions used for manipulating dates
+
 module.exports = function isDateInFuture(dateTime) {
+    // This routines determines if a given DateTime value is in the future
+    // Returns True if it is the case.
 
     let dn = new Date();
     let tn = dn.getTime()
