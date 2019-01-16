@@ -201,12 +201,12 @@ exports.getData = function(datasource, queryObject) {
                             if(err){
 
                                 // Return an error
-                                return {
+                                reject({
                                     "statusCode": "error",
                                     "message" : "Error caching data from MySQL on Server",
                                     "data": null,
-                                    "error":err.message
-                                };
+                                    "error":err
+                                });
                             };
                         }
                     );
@@ -311,7 +311,7 @@ exports.getData = function(datasource, queryObject) {
                 };
 
                 // 10. Return results with metadata according to the CanvasHttpResponse interface
-                return {
+                resolve({
                     "statusCode": "success",
                     "message" : "Retrieved data for id:" + id,
                     "data": results,
@@ -323,18 +323,18 @@ exports.getData = function(datasource, queryObject) {
                         "fields": fields
                     },
                     "error": null
-                };
+                });
         })
 
         // If any error, return err according to the CanvasHttpResponse interface
         .catch(err =>{
             console.error('Err after datalayer.select called from clientData.router', err);
-            return {
+            reject({
                 "statusCode": "error",
                 "message" : "Error: Err after datalayer.select called from clientData.router for id:", id,
                 "data": null,
                 "error": err
-            };
+            });
         });
 
     });

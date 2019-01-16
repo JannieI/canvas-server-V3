@@ -7,8 +7,8 @@ const debugData = require('debug')('app:data');
 const debugDev = require('debug')('app:dev');
 const datalayer = require('../databaseConnectors/mysql.datalayer');
 const isDateInFuture = require('../utils/dateFunctions');
-const sortFilterFieldsAggregate = require('../utils/dataRelated');
-const metaDataFromDatasource = require('../utils/dataRelated');
+const metaDataFromDatasource = require('../utils/metaDataFromDatasource.util');
+const sortFilterFieldsAggregate = require('../utils/sortFilterFieldsAggregate.util');
 
 // Runs for ALL requests
 router.use('/', (req, res, next) => {
@@ -101,7 +101,8 @@ router.get('/', (req, res, next) => {
                 let results = docs[0].data;
 
                 // Extract the Widget specific data (sort, filter, fields, aggregate)
-                let afterSort = sortFilterFieldsAggregate(results, req.query);
+                let afterSort;
+                afterSort =  sortFilterFieldsAggregate(results, req.query);
 
                 // Return if an Error
                 if (afterSort.error) {
@@ -114,8 +115,8 @@ router.get('/', (req, res, next) => {
                 };
 
                 // Update results with this information
-                // results = afterSort.results;
-
+                results = afterSort.results;
+console.log('results', results, afterSort)
                 var fields = [];
 
                 fields = metaDataFromDatasource(datasource);
