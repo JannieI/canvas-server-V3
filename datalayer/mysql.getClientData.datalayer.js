@@ -80,6 +80,9 @@ exports.getClientData = function(datasource, queryObject) {
         let filterObject = queryObject.filterObject;
         const aggregationObject = queryObject.aggregationObject;
 
+        // TODO - figure out to store and how to use Parameters
+        let sqlParameters = '';
+
         // Set results = [] (data block to return to Workstation)
         results = [];
 
@@ -203,7 +206,7 @@ exports.getClientData = function(datasource, queryObject) {
                         dataFieldLengths = [];
                     };
 
-                    var fields = [];
+                    let fields = [];
 
                     // Loop on metatdata
                     for (var i = 0; i < dataFields.length; i++) {
