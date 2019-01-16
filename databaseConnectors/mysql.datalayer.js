@@ -161,7 +161,7 @@ exports.getData = function(datasource, queryObject) {
 
         debugDev('Properties read from DS id:', datasource.id, username, password, databaseName, port, serverType, serverName, dataTableName, dataSQLStatement, cacheResultsOnServer)
 
-        // 2. Connect to the MySQL DB
+        // 2. Connect to the MySQL DB and return the data
         results = [];
         select(databaseObject, dataTableName, fields, dataSQLStatement, sqlParameters)
             .then(returnedData => {
@@ -325,7 +325,7 @@ exports.getData = function(datasource, queryObject) {
                     "error": null
                 };
         })
-        
+
         // If any error, return err according to the CanvasHttpResponse interface
         .catch(err =>{
             console.error('Err after datalayer.select called from clientData.router', err);

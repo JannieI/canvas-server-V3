@@ -6,7 +6,7 @@ const router = express.Router();
 const debugData = require('debug')('app:data');
 const debugDev = require('debug')('app:dev');
 const datalayer = require('../databaseConnectors/mysql.datalayer');
-const isDateInFuture = require('../utils/isDateInFuture');
+const isDateInFuture = require('../utils/dateFunctions');
 
 // Runs for ALL requests
 router.use('/', (req, res, next) => {
