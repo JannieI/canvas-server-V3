@@ -7,6 +7,7 @@ const debugData = require('debug')('app:data');
 const debugDev = require('debug')('app:dev');
 const datalayer = require('../databaseConnectors/mysql.datalayer');
 const isDateInFuture = require('../utils/dateFunctions');
+const sortFilterFieldsAggregate = require('../utils/extractWidgetData');
 
 // Runs for ALL requests
 router.use('/', (req, res, next) => {
@@ -82,7 +83,7 @@ router.get('/', (req, res, next) => {
         const datasource = datasourceArray[0];
 
         //  3. Get the data from the correct location: Canvas Cache, or Source (one of many types)
-        let isFresh = !isDateInFuture(datasource.serverExpiryDateTime);
+        let isFresh = isDateInFuture(datasource.serverExpiryDateTime);
 
         // If cached and isFresh, result = cache
         if (datasource.cacheResultsOnServer  &&  isFresh) {
@@ -98,92 +99,24 @@ router.get('/', (req, res, next) => {
 
                 let results = docs[0].data;
 
-                // 4. Extract Query properties: these are used by the Widget to reduce the data block returned
-                let sortObject = req.query.sortObject;
-                let fieldsObject = req.query.fields;
+                // Extract the Widget specific data (sort, filter, fields, aggregate)
+                let afterSort = sortFilterFieldsAggregate(results, req.query);
 
-                if (fieldsObject != null) {
-                    fieldsObject = JSON.parse(JSON.stringify(fieldsObject));
-                };
-                let filterObject = req.query.filterObject;
-                const aggregationObject = req.query.aggregationObject;
-
-                // 5. If (SORT_OBJECT) then results = results.sort()
-                // Sort ASC on given field, -field means DESC
-                // TODO
-                //  - else, return sortOrder = 1 depending on - in field, see TypeScript
-                if (sortObject != null  &&  results != null) {
-
-                    // DESC, and take off -
-                    if (sortObject[0] === "-") {
-                        sortOrder = 1;
-                        sortObject = sortObject.substr(1);
-                        results.sort( (a,b) => {
-                            if (a[sortObject] > b[sortObject]) {
-                                return -1;
-                            };
-                            if (a[sortObject] < b[sortObject]) {
-                                return 1;
-                            };
-                            return 0;
-                        });
-                    } else {
-                        results.sort( (a,b) => {
-                            if (a[sortObject] > b[sortObject]) {
-                                return 1;
-                            };
-                            if (a[sortObject] < b[sortObject]) {
-                                return -1;
-                            };
-                            return 0;
-                        });
-                    };
-                };
-
-                // TODO
-                // 6. If (FIELDS_STRING) then results = results[fields]
-                if (fieldsObject != null  && results != null) {
-
-                    // Create Array of Fields, un-trimmed
-                    const fieldsArray = fieldsObject.split(",");
-                    for (var i = 0; i < fieldsArray.length; i++) {
-                        fieldsArray[i] = fieldsArray[i].trim();
-                    };
-                    
-                    // TODO - must be a better way in TS, or Mongo
-                    // Loop on keys in Object = row 1, delete field from each element in array if not
-                    // in fieldsArray
-                    Object.keys(results[0]).forEach(key => {
-                        console.log('key', key, fieldsArray.indexOf(key))
-                        if (parseInt(fieldsArray.indexOf(key)) < 0) {
-                            for (var i = 0; i < results.length; i++) {
-                                delete results[i][key];
-                            };
-                            
-                            console.log('Del field', key)
-                        };
-                    });
-                    console.log('results 2', results)
-                };
-
-                // 7. If (FILTER_OBJECT) then results = results.filter()
-                if (filterObject != null  &&  results != null) {
-                    filterObject = JSON.parse(filterObject)
-                    Object.keys(filterObject).forEach( key => {
-                        // Get the key-value pair
-                        let value = filterObject[key];
-
-                        results = results.filter(r => {
-                            return r[key] == value;
-                        });
+                // Return if an Error
+                if (afterSort.error) {
+                    return res.status(400).json({
+                        "statusCode": "error",
+                        "message" : "Error in the sortFilterFieldsAggregate routine",
+                        "data": null,
+                        "error": error
                     });
                 };
 
-                // TODO
-                // 8. If (AGGREGATION_OBJECT) then results = results.clever-thing
+                // Update results with this information
+                results = afterSort.results;
 
                 // 9. Add metadata, hopefully obtained directly from the source DB, or from the DS (if pre-stored),
-                //     with prudent defaults where unknown.
+                //    with prudent defaults where unknown.
                 if (datasource.dataFields != null) {
                     if (datasource.dataFieldTypes == null) {
                         datasource.dataFieldTypes = [];
@@ -272,225 +205,6 @@ router.get('/', (req, res, next) => {
                     .catch(resErrorObject  => res.json(resErrorObject) );
             };
 
-            // TODO - remove OLD way once above working ...\
-            // if (datasource.serverType == 'MySQL') {
-            //     // Inputs: DATABASE_OBJECT, TABLE, FIELDS, QUERY_STRING, SQL_PARAMETERS
-
-            //     // Create databaseObject
-            //     // Sample: databaseObject = { host: '127.0.0.1', user: 'janniei', password: 'janniei', database: 'mysql'}
-            //     let databaseObject =
-            //         {
-            //             host: serverName,
-            //             user: username,
-            //             password: password,
-            //             database: databaseName,
-            //             port: port
-            //     };
-            //     debugDev('About to call mysql.datalayer.select with', databaseObject)
-
-            //     // Get data useing data layer
-            //     // Example: datalayer.select(databaseObject, dataTableName, null, dataSQLStatement, "janniei", )
-            //     datalayer.select(databaseObject, dataTableName, null, dataSQLStatement, "janniei", )
-            //         .then(returnedData => {
-
-            //             //  Now, results = [data]
-            //             results = JSON.parse(JSON.stringify(returnedData));
-
-            //             // Store the data in Canvas ClientData
-            //             // Get the model
-            //             const clientSchema = '../models/clientData.model';
-            //             const clientModel = require(clientSchema);
-            //             debugData('Using Schema clientData');
-
-            //             // Data to upsert
-            //             const dataToSave = {
-            //                 id: datasourceID,
-            //                 data: results
-            //             };
-
-            //             // Insert the data into Canvas Server cache (in Mongo)
-            //             clientModel.updateMany(
-            //                 { id: datasourceID },
-            //                 dataToSave,
-            //                 { upsert: true }, (err, updateStats) => {
-
-            //                     if(err){
-
-            //                         // Return an error
-            //                         return res.json({
-            //                             "statusCode": "error",
-            //                             "message" : "Error caching data from MySQL on Server",
-            //                             "data": null,
-            //                             "error":err.message
-            //                         });
-            //                     };
-
-            //                     // TODO - still to be done
-            //                     // 4. Do the Transformations according to the Tr loaded in step 1
-
-            //                     // 5. Decompose the query string in req.query into SORT_OBJECT, FIELDS_STRING, FILTER_OBJECT,
-            //                     //    AGGREGATION_OBJECT
-            //                     let sortObject = req.query.sortObject;
-            //                     let fieldsObject = req.query.fields;
-
-            //                     if (fieldsObject != null) {
-            //                         fieldsObject = JSON.parse(JSON.stringify(fieldsObject));
-            //                     };
-            //                     let filterObject = req.query.filterObject;
-            //                     const aggregationObject = req.query.aggregationObject;
-
-            //                     // TODO - if no optional parameters, dont query Mongo - just use results we have
-
-            //                     // Optional steps:
-            //                     //   6. Sort on SORT_OBJECT
-            //                     //   7. Extract only the requested FIELDS_STRING
-            //                     //   8. Filter on FILTER_OBJECT
-            //                     //   9. Aggregate according to AGGREGATION_OBJECT
-
-            //                     var query = clientModel.findOne({ id: datasourceID });
-
-            //                     // TODO: get FILTER and SORT working via Mongo
-            //                     // if (filterObject != null) {
-            //                     //     query.findOne( { "data.User": {"eq":"root"} } );
-            //                     // };
-
-            //                     if (fieldsObject != null) {
-            //                         query.select( fieldsObject );
-            //                     };
-
-            //                     // TODO - get Mongo sort going
-            //                     // if (sortObject != null) {
-            //                     //     query.sort(sortObject);
-            //                     // };
-
-            //                     query.exec( (err, finalResults) => {
-
-            //                         // Set the results, nrRecords while catering for an empty set
-            //                         results = [];
-            //                         let nrRecordsReturned = 0;
-            //                         if (finalResults != null) {
-            //                             results = finalResults.data;
-            //                             if (results != null) {
-            //                                 nrRecordsReturned = results.length;
-            //                             };
-            //                         };
-
-            //                         // Filter Array
-            //                         // TODO - do this via Mongo
-            //                         if (filterObject != null  &&  results != null) {
-            //                             filterObject = JSON.parse(filterObject)
-            //                             Object.keys(filterObject).forEach( key => {
-            //                                 // Get the key-value pair
-            //                                 let value = filterObject[key];
-
-            //                                 results = results.filter(r => {
-            //                                     return r[key] == value;
-            //                                 })
-            //                             });
-            //                         };
-
-            //                         // Sort ASC on given field, -field means DESC
-            //                         // TODO
-            //                         //  - ideally do this via Mongo
-            //                         //  - else, return sortOrder = 1 depending on - in field, see TypeScript
-            //                         if (sortObject != null  &&  results != null) {
-
-            //                             // DESC, and take off -
-            //                             if (sortObject[0] === "-") {
-            //                                 sortOrder = 1;
-            //                                 sortObject = sortObject.substr(1);
-            //                                 results.sort( (a,b) => {
-            //                                     if (a[sortObject] > b[sortObject]) {
-            //                                         return -1;
-            //                                     };
-            //                                     if (a[sortObject] < b[sortObject]) {
-            //                                         return 1;
-            //                                     };
-            //                                     return 0;
-            //                                 });
-            //                             } else {
-            //                                 results.sort( (a,b) => {
-            //                                     if (a[sortObject] > b[sortObject]) {
-            //                                         return 1;
-            //                                     };
-            //                                     if (a[sortObject] < b[sortObject]) {
-            //                                         return -1;
-            //                                     };
-            //                                     return 0;
-            //                                 });
-            //                             };
-            //                         };
-
-            //                         // 10. Add metadata, hopefully obtained directly from the source DB, or from the DS (if pre-stored),
-            //                         //     with prudent defaults where unknown.
-
-            //                         if (dataFields != null) {
-            //                             if (dataFieldTypes == null) {
-            //                                 dataFieldTypes = [];
-            //                             };
-            //                             if (dataFieldLengths == null) {
-            //                                 dataFieldLengths = [];
-            //                             };
-
-            //                             var fields = [];
-
-            //                             // Loop on metatdata
-            //                             for (var i = 0; i < dataFields.length; i++) {
-            //                                 const fieldName = dataFields[i];
-
-            //                                 let fieldType = '';
-            //                                 if (i < dataFieldTypes.length) {
-            //                                     fieldType = dataFieldTypes[i];
-            //                                 };
-
-            //                                 let fieldLength = '';
-            //                                 if (i < dataFieldLengths.length) {
-            //                                     fieldLength = dataFieldLengths[i];
-            //                                 };
-
-            //                                 fields.push(
-            //                                     {
-            //                                         "fieldName": fieldName,
-            //                                         "fieldType": fieldType,
-            //                                         "length": fieldLength,
-            //                                         "average": null,
-            //                                         "max": null,
-            //                                         "median": null,
-            //                                         "min": null,
-            //                                         "sum": null
-            //                                     }
-            //                                 );
-            //                             };
-            //                         };
-
-            //                         // 11. Return results with metadata according to the CanvasHttpResponse interface
-            //                         return res.json({
-            //                             "statusCode": "success",
-            //                             "message" : "Retrieved data for id:" + id,
-            //                             "data": results,
-            //                             "metaData": {
-            //                                 "table": {
-            //                                     "tableName": "", //oneDoc.mongooseCollection.collectionName,
-            //                                     "nrRecordsReturned": nrRecordsReturned
-            //                                 },
-            //                                 "fields": fields
-            //                             },
-            //                             "error": null
-            //                         });
-            //                     });
-            //             });
-            //         })
-            //         // 12. If any error, return err according to the CanvasHttpResponse interface
-            //         .catch(err =>{
-            //             console.error('Err after datalayer.select called from clientData.router', err);
-            //             return res.json({
-            //                 "statusCode": "error",
-            //                 "message" : "Error: Err after datalayer.select called from clientData.router for id:", id,
-            //                 "data": null,
-            //                 "error": err
-            //             });
-            //         });
-            // };
         };
     });
 
