@@ -166,14 +166,19 @@ router.get('/', (req, res, next) => {
             };
 
             // Get the Source Data via the Canvas Data Layer
+            // Note on error-bubbling:
+            // clientDataRoutine (this routine): res.json(error-object)
+            //   --calls-->  mysql.getData.datalayer: returns error-object
+            //         --calls-->  sortFilterFieldts: returns error-object
+            mysql.getData 
             if (datasource.serverType == 'MySQL') {
                 getClientData(datasource, req.query)
-                    .then(resResultsObject => {
-                        console.log('Returned from MySQL', resResultsObject.metaData.table.nrRecordsReturned)
-                        return res.json(resResultsObject)
+                    .then(resultsObject => {
+                        console.log('Returned from MySQL', resultsObject.metaData.table.nrRecordsReturned)
+                        return res.json(resultsObject)
                      } )
-                    .catch(resErrorObject  => {
-                        return res.json(resErrorObject) 
+                    .catch(errorObject  => {
+                        return res.json(errorObject) 
                     });
             };
 
@@ -182,186 +187,188 @@ router.get('/', (req, res, next) => {
 
 })
 
-// POST route
-router.post('/', (req, res, next) => {
+// DELETE once for sure
+// These are not needed as we dont change clientData
+// // POST route
+// router.post('/', (req, res, next) => {
 
-    // Extract: body, route (params without :)
-    const body = req.body;
-    const query = req.query;
-    const id = req.query.id;
-    debugDev('clientDataRouter: POST for id:', id, 'body:', body)
+//     // Extract: body, route (params without :)
+//     const body = req.body;
+//     const query = req.query;
+//     const id = req.query.id;
+//     debugDev('clientDataRouter: POST for id:', id, 'body:', body)
 
-    // Try, in case model file does not exist
-    try {
-        // Get the model
-        const clientSchema = '../models/clientData.model';
-        const clientModel = require(clientSchema);
-        debugData('Using Schema clientData');
+//     // Try, in case model file does not exist
+//     try {
+//         // Get the model
+//         const clientSchema = '../models/clientData.model';
+//         const clientModel = require(clientSchema);
+//         debugData('Using Schema clientData');
 
-        // Create object and save to DB
-        let canvasAdd = new clientModel(body);
-        canvasAdd.save()
-            .then(doc => {
-                debugData('saved', doc)
-                return res.json({
-                    "statusCode": "success",
-                    "message" : "Added record for resource: " + resource,
-                    "data": doc,
-                    "error": null
-                });
-            })
-            .catch(err => {
-                console.error(err)
-                return res.json({
-                    "statusCode": "error",
-                    "message" : "Error: Could not add record for id:", id,
-                    "data": null,
-                    "error":
-                        {
-                            "errorObject": err
-                        }
-                });
-        });
-    }
-    catch (error) {
-        return res.status(400).json({
-            "statusCode": "error",
-            "message" : "No model file for id:", id,
-            "data": null,
-            "error": error
-        });
-    };
+//         // Create object and save to DB
+//         let canvasAdd = new clientModel(body);
+//         canvasAdd.save()
+//             .then(doc => {
+//                 debugData('saved', doc)
+//                 return res.json({
+//                     "statusCode": "success",
+//                     "message" : "Added record for resource: " + resource,
+//                     "data": doc,
+//                     "error": null
+//                 });
+//             })
+//             .catch(err => {
+//                 console.error(err)
+//                 return res.json({
+//                     "statusCode": "error",
+//                     "message" : "Error: Could not add record for id:", id,
+//                     "data": null,
+//                     "error":
+//                         {
+//                             "errorObject": err
+//                         }
+//                 });
+//         });
+//     }
+//     catch (error) {
+//         return res.status(400).json({
+//             "statusCode": "error",
+//             "message" : "No model file for id:", id,
+//             "data": null,
+//             "error": error
+//         });
+//     };
 
-});
+// });
 
-// DELETE route
-router.delete('/', (req, res, next) => {
+// // DELETE route
+// router.delete('/', (req, res, next) => {
 
-    // Extract: body, route (params without :)
-    const query = req.query;
-    const id = req.query.id;
+//     // Extract: body, route (params without :)
+//     const query = req.query;
+//     const id = req.query.id;
 
-    debugDev('clientDataRouter: DELETE for id:', id, 'body:', body, 'query:', query)
+//     debugDev('clientDataRouter: DELETE for id:', id, 'body:', body, 'query:', query)
 
-    if (id == null) {
-        return res.json({
-            "statusCode": "failed",
-            "message" : "Error: no id provided:" + id,
-            "data": null,
-            "error": null
-        });
-    };
+//     if (id == null) {
+//         return res.json({
+//             "statusCode": "failed",
+//             "message" : "Error: no id provided:" + id,
+//             "data": null,
+//             "error": null
+//         });
+//     };
 
-    // Try, in case model file does not exist
-    try {
-        // Get the model
-        const clientSchema = '../models/clientData.model';
-        const clientModel = require(clientSchema);
-        debugData('Using Schema clientData');
+//     // Try, in case model file does not exist
+//     try {
+//         // Get the model
+//         const clientSchema = '../models/clientData.model';
+//         const clientModel = require(clientSchema);
+//         debugData('Using Schema clientData');
 
-        // Find and Delete from DB
-        clientModel.findOneAndRemove({id: id})
-            .then(doc => {
-                debugData('deleted', doc)
+//         // Find and Delete from DB
+//         clientModel.findOneAndRemove({id: id})
+//             .then(doc => {
+//                 debugData('deleted', doc)
 
-                if (doc == null) {
-                    return res.json({
-                        "statusCode": "error",
-                        "message" : "Deletion of data failed: could not find id = " + id,
-                        "data": doc,
-                        "error": null
-                    });
-                } else {
-                    return res.json({
-                        "statusCode": "success",
-                        "message" : "Deleted record for id:" + id,
-                        "data": doc,
-                        "error": null
-                    });
-                };
-            })
-            .catch(err => {
-                console.error(err)
-                return res.json({
-                    "statusCode": "error",
-                    "message" : "Error: Could not delete record for id:" + id ,
-                    "data": null,
-                    "error":
-                        {
-                            "errorObject": err
-                        }
-                });
-        });
-    }
-    catch (error) {
-        return res.status(400).json({
-            "statusCode": "error",
-            "message" : "No model file for id:", id,
-            "data": null,
-            "error": error
-        });
-    };
+//                 if (doc == null) {
+//                     return res.json({
+//                         "statusCode": "error",
+//                         "message" : "Deletion of data failed: could not find id = " + id,
+//                         "data": doc,
+//                         "error": null
+//                     });
+//                 } else {
+//                     return res.json({
+//                         "statusCode": "success",
+//                         "message" : "Deleted record for id:" + id,
+//                         "data": doc,
+//                         "error": null
+//                     });
+//                 };
+//             })
+//             .catch(err => {
+//                 console.error(err)
+//                 return res.json({
+//                     "statusCode": "error",
+//                     "message" : "Error: Could not delete record for id:" + id ,
+//                     "data": null,
+//                     "error":
+//                         {
+//                             "errorObject": err
+//                         }
+//                 });
+//         });
+//     }
+//     catch (error) {
+//         return res.status(400).json({
+//             "statusCode": "error",
+//             "message" : "No model file for id:", id,
+//             "data": null,
+//             "error": error
+//         });
+//     };
 
-});
+// });
 
-// PUT route
-router.put('/', (req, res, next) => {
+// // PUT route
+// router.put('/', (req, res, next) => {
 
-    // Extract: body, route (params without :)
-    const resource = req.params.resource.substring(1);
-    const body = req.body;
-    const query = req.query;
-    const id = req.query.id;
+//     // Extract: body, route (params without :)
+//     const resource = req.params.resource.substring(1);
+//     const body = req.body;
+//     const query = req.query;
+//     const id = req.query.id;
 
-    debugDev('clientDataRouter: PUT for id:', id, 'body:', body, 'query:', query)
+//     debugDev('clientDataRouter: PUT for id:', id, 'body:', body, 'query:', query)
 
-    // Try, in case model file does not exist
-    try {
-        // Get the model
-        const clientSchema = '../models/clientData.model';
-        const clientModel = require(clientSchema);
-        debugData('Using Schema clientData');
+//     // Try, in case model file does not exist
+//     try {
+//         // Get the model
+//         const clientSchema = '../models/clientData.model';
+//         const clientModel = require(clientSchema);
+//         debugData('Using Schema clientData');
 
-        // Find and Update DB
-        clientModel.findOneAndUpdate(
-            {id: id},
-            body,
-            {
-              new: true,                       // return updated doc
-              runValidators: true              // validate before update
-            })
-            .then(doc => {
-                debugData('updated', doc)
-                return res.json({
-                    "statusCode": "success",
-                    "message" : "Updated record for id:", id,
-                    "data": doc,
-                    "error": null
-                });
-            })
-            .catch(err => {
-                console.error(err)
-                return res.json({
-                    "statusCode": "error",
-                    "message" : "Error: Could not update record for id:", id,
-                    "data": null,
-                    "error":
-                        {
-                            "errorObject": err
-                        }
-                });
-        });
-    }
-    catch (error) {
-        return res.status(400).json({
-            "statusCode": "error",
-            "message" : "No model file for id:", id,
-            "data": null,
-            "error": error
-        });
-    };
+//         // Find and Update DB
+//         clientModel.findOneAndUpdate(
+//             {id: id},
+//             body,
+//             {
+//               new: true,                       // return updated doc
+//               runValidators: true              // validate before update
+//             })
+//             .then(doc => {
+//                 debugData('updated', doc)
+//                 return res.json({
+//                     "statusCode": "success",
+//                     "message" : "Updated record for id:", id,
+//                     "data": doc,
+//                     "error": null
+//                 });
+//             })
+//             .catch(err => {
+//                 console.error(err)
+//                 return res.json({
+//                     "statusCode": "error",
+//                     "message" : "Error: Could not update record for id:", id,
+//                     "data": null,
+//                     "error":
+//                         {
+//                             "errorObject": err
+//                         }
+//                 });
+//         });
+//     }
+//     catch (error) {
+//         return res.status(400).json({
+//             "statusCode": "error",
+//             "message" : "No model file for id:", id,
+//             "data": null,
+//             "error": error
+//         });
+//     };
 
-});
+// });
 
 // Export
 module.exports = router;

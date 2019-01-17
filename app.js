@@ -174,7 +174,7 @@ app.use(express.static(path.join(__dirname, '/public/dist/')));
 app.use('/auth/local/profile', passport.authenticate('jwt', { session : false }), authLocalRouter );
 app.use('/auth/local', authLocalRouter);
 // Show Canvas Workstation page
-app.get('/canvas', (req, res, next) => {
+app.use('/canvas', (req, res, next) => {
     // res.sendFile(path.join(__dirname, '/public/dist/', 'index.html'))
 });
 app.use('/users', usersRouter);
@@ -182,7 +182,7 @@ app.use('/auth/github/', authGitHubRouter);
 app.use('/auth/google/', authGoogleRouter);
 // ALL Canvas data-related API calls
 app.use('/canvasdata', canvasDataRouter);
-app.use('/clientdata', clientDataRouter);
+app.get('/clientdata', clientDataRouter);
 app.use('/', indexRouter);
 
 
