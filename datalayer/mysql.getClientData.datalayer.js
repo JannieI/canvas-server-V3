@@ -127,9 +127,6 @@ module.exports = function getClientData(datasource, queryObject) {
                         const clientModel = require(clientSchema);
                         debugData('Using Schema clientData');
 
-                        // Calculate serverExpiryDateTime for this Datasource
-                        const serverExpiryDateTime = calculateCacheExpiryDate(datasource);
-
                         // Find and Update DB
                         clientModel.findOneAndUpdate(
                             { id: datasourceID },
@@ -139,6 +136,17 @@ module.exports = function getClientData(datasource, queryObject) {
                             runValidators: true              // validate before update
                             })
                             .then(doc => {
+                                
+                                // Calculate serverExpiryDateTime for this Datasource
+                                const serverExpiryDateTime = calculateCacheExpiryDate(datasource);
+                                console.log ('xx srv-Exp', serverExpiryDateTime);
+                                
+                                // Deep copy
+                                let datasourceDeepCopy = JSON.parse(JSON.stringify(datasource));
+                                datasourceDeepCopy.serverExpiryDateTime = serverExpiryDateTime;
+
+                                console.log('xx check old copy', datasource.serverExpiryDateTime, datasourceDeepCopy.serverExpiryDateTime)
+                                
                                 debugData('ClientData in cached refreshed for id: ' + datasourceID);
                             })
                             .catch(err => {
