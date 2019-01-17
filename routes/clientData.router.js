@@ -170,7 +170,7 @@ router.get('/', (req, res, next) => {
             // clientDataRoutine (this routine): res.json(error-object)
             //   --calls-->  mysql.getData.datalayer: returns error-object
             //         --calls-->  sortFilterFieldts: returns error-object
-            mysql.getData 
+             
             if (datasource.serverType == 'MySQL') {
                 getClientData(datasource, req.query)
                     .then(resultsObject => {
