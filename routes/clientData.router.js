@@ -13,12 +13,6 @@ const sortFilterFieldsAggregate = require('../utils/sortFilterFieldsAggregate.ut
 // GET route
 router.get('/', (req, res, next) => {
 
-    // In short: the structure of this route is as follows:
-    //  1. Get the datasourceID from req.query
-    //  2. Get the DS (Datasource) record for the given datasourceID in req.query.
-    //  3. Get the data from the correct location: Canvas Cache, or Source (one of many types)
-
-
     // 1. Get the datasourceID from req.query
     const id = req.query.id;
     const datasourceID = req.query.datasourceID;
@@ -43,6 +37,7 @@ router.get('/', (req, res, next) => {
             "error": "datasourceID parameter must be a number.  Provided:", datasourceID
         });
     };
+
 
     // 2. Get the DS (Datasource) record for the given datasourceID in req.query.
     const datasourceSchema = '../models/datasources.model';
@@ -75,7 +70,13 @@ router.get('/', (req, res, next) => {
         // Set the DS var
         const datasource = datasourceArray[0];
 
-        //  3. Get the data from the correct location: Canvas Cache, or Source (one of many types)
+
+        //  3. Get the data from the correct location: Canvas Cache, or Source (one of many 
+        //     types) from the Canvas DB
+
+        // Each record in cache is time-stamped with serverExpiryDateTime at the time it is saved.
+        // When reading a record: if serverExpiryDateTime is in the future, the data in the cache
+        // is still fresh.
         let isFresh = isDateInFuture(datasource.serverExpiryDateTime);
 
         // If cached and isFresh, result = cache
@@ -87,10 +88,12 @@ router.get('/', (req, res, next) => {
             const clientModel = require(clientSchema);
             debugData('Using Schema clientData');
 
-            // Find the data (using the standard query JSON object)
+            // Find the data
             clientModel.find( { id: datasourceID } , (err, docs) => {
 
                 // results = Array, catering for no data returned
+                // Note that the clientData cache had this structure {id, data}.  The data object
+                // contains all the records.
                 let results = [];
                 if (docs != null  &&  docs.length != 0) {
                     results = docs[0].data;
@@ -114,8 +117,8 @@ router.get('/', (req, res, next) => {
                 };
 
                 // Collect MetaData
-                var fields = [];
-                fields = metaDataFromDatasource(datasource, req.query);
+                var metaDataFields = [];
+                metaDataFields = metaDataFromDatasource(datasource, req.query);
 
                 // Calc how many records are returned
                 let nrRecordsReturned = 0;
@@ -123,7 +126,7 @@ router.get('/', (req, res, next) => {
                     nrRecordsReturned = results.length;
                 };
 
-                // 11. Return the data with metadata
+                // Return the data with metadata
                 return res.json({
                     "statusCode": "success",
                     "message" : "Retrieved data for id:" + id,
@@ -133,7 +136,7 @@ router.get('/', (req, res, next) => {
                             "tableName": "", //oneDoc.mongooseCollection.collectionName,  TODO
                             "nrRecordsReturned": nrRecordsReturned
                         },
-                        "fields": fields
+                        "fields": metaDataFields
                     },
                     "error": null
                 });
