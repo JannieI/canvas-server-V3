@@ -88,8 +88,9 @@ router.get('/', (req, res, next) => {
             debugData('Using Schema clientData');
 
             // Find the data (using the standard query JSON object)
-            clientModel.find( { datasourceID } , (err, docs) => {
- console.log('xx dosc', docs)
+            clientModel.find( { id: datasourceID } , (err, docs) => {
+
+                // results = Array, catering for no data returned
                 let results = [];
                 if (docs != null  &&  docs.length != 0) {
                     results = docs[0].data;
