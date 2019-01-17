@@ -136,47 +136,54 @@ module.exports = function getClientData(datasource, queryObject) {
                             runValidators: true              // validate before update
                             })
                             .then(doc => {
-                                
-                                // Calculate serverExpiryDateTime for this Datasource
-                                const serverExpiryDateTime = calculateCacheExpiryDate(datasource);
-                                console.log ('xx srv-Exp', serverExpiryDateTime);
-                                
-                                // Deep copy
-                                let datasourceDeepCopy = JSON.parse(JSON.stringify(datasource));
-                                datasourceDeepCopy.serverExpiryDateTime = serverExpiryDateTime;
 
-                                // Re-save the datasource with the new serverExpiryDateTime
+                                // Only refresh if unRefreshable = false (else may only be done once)
+                                if (doc == null
+                                    ||
+                                    datasource.unRefreshable == false
+                                    ) {
 
-                                // Get the model
-                                const clientSchema = '../models/datasources.model';
-                                const clientModel = require(clientSchema);
-                                debugData('Using Schema datasource');
+                                    // Calculate serverExpiryDateTime for this Datasource
+                                    const serverExpiryDateTime = calculateCacheExpiryDate(datasource);
+                                    console.log ('xx srv-Exp', serverExpiryDateTime);
 
-                                // Find and Update DB
-                                clientModel.findOneAndUpdate(
-                                    { id: datasourceID },
-                                    datasourceDeepCopy,
-                                    {
-                                    new: true,                       // return updated doc
-                                    runValidators: true              // validate before update
-                                    })
-                                    .then(doc => {
-                                        
-                                    // console.log('xx check old copy', datasource.serverExpiryDateTime, datasourceDeepCopy.serverExpiryDateTime)
-                                
-                                        debugData('ClientData in cached refreshed for id: ' + datasourceID);
-                                    }
-                                );
+                                    // Deep copy
+                                    let datasourceDeepCopy = JSON.parse(JSON.stringify(datasource));
+                                    datasourceDeepCopy.serverExpiryDateTime = serverExpiryDateTime;
+
+                                    // Re-save the datasource with the new serverExpiryDateTime
+
+                                    // Get the model
+                                    const clientSchema = '../models/datasources.model';
+                                    const clientModel = require(clientSchema);
+                                    debugData('Using Schema datasource');
+
+                                    // Find and Update DB
+                                    clientModel.findOneAndUpdate(
+                                        { id: datasourceID },
+                                        datasourceDeepCopy,
+                                        {
+                                        new: true,                       // return updated doc
+                                        runValidators: true              // validate before update
+                                        })
+                                        .then(doc => {
+
+                                        // console.log('xx check old copy', datasource.serverExpiryDateTime, datasourceDeepCopy.serverExpiryDateTime)
+
+                                            debugData('ClientData in cached refreshed for id: ' + datasourceID);
+                                        });
+                                    };
                             })
                             .catch(err => {
-                                    debugData('Error caching data from MySQL on Server', err)
-                                    reject({
-                                        "statusCode": "error",
-                                        "message" : "Error caching data from MySQL on Server",
-                                        "data": null,
-                                        "error":err
-                                    });
-                        });
+                                debugData('Error caching data from MySQL on Server', err)
+                                reject({
+                                    "statusCode": "error",
+                                    "message" : "Error caching data from MySQL on Server",
+                                    "data": null,
+                                    "error":err
+                                });
+                            });
+
                     };
 
                     // Extract the Widget specific data (sort, filter, fields, aggregate)
@@ -192,7 +199,7 @@ module.exports = function getClientData(datasource, queryObject) {
                         //     "data": null,
                         //     "error": error
                         // });
-                        reject( createErrorObject("error", 
+                        reject( createErrorObject("error",
                             "Error in the sortFilterFieldsAggregate routine", afterSort.error));
                     };
 
