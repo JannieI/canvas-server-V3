@@ -1,4 +1,4 @@
-// This routine takes input, and creates an error object.
+// This routine takes input, and creates an error object in CanvasHttpResponse format.
 
 module.exports = function createErrorObject(inputStatusCode, inputErrorMessage, inputErrorObject) {
 
