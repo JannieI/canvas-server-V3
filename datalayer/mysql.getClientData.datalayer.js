@@ -34,7 +34,6 @@ const mysql = require('mysql');
 const config = require('config');               // Configuration
 const debugDev = require('debug')('app:dev');
 const debugData = require('debug')('app:data');
-const connectAndQuery = require('./mysql.connectAndQuery.datalayer');
 const metaDataFromDatasource = require('../utils/metaDataFromDatasource.util');
 const sortFilterFieldsAggregate = require('../utils/sortFilterFieldsAggregate.util');
 
