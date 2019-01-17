@@ -182,7 +182,7 @@ app.use('/auth/github/', authGitHubRouter);
 app.use('/auth/google/', authGoogleRouter);
 // ALL Canvas data-related API calls
 app.use('/canvasdata', canvasDataRouter);
-app.get('/clientdata', clientDataRouter);
+app.use('/clientdata', clientDataRouter);
 app.use('/', indexRouter);
 
 
