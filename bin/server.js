@@ -208,7 +208,7 @@ function onError(error) {
 function onListening() {
  
     // Read the caching table, and store into global variable
-    const dataCachingTable = require('../utils/dataCachingTableMemory');
+    const dataCachingTable = require('../utils/dataCachingTableMemory.util');
     const dataCachingTableSchema = '../models/dataCachingTable.model';
     const dataCachingTableModel = require(dataCachingTableSchema);
 
