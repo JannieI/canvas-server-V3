@@ -92,17 +92,70 @@ module.exports = function getClientData(datasource, queryObject) {
         // 2. Connect to the MySQL DB and return the data
         results = [];
 
+        // Load defaults, set in startup.sh (via custom-environment-variables.js)
+        let defaultHost = config.get('mysqlLocal.startup.host');
+        let defaultUser = config.get('mysqlLocal.startup.user');
+        let defaultPassword = config.get('mysqlLocal.startup.password');
+        let defaultDatabase = config.get('mysqlLocal.startup.database');
+        let defaultPort = config.get('mysqlLocal.startup.port');
 
+        if (defaultHost != null  &&  defaultHost != '') {
+            host = defaultHost;
+        };
+        if (defaultUser != null  &&  defaultUser != '') {
+            user = defaultUser;
+        };
+        if (defaultPassword != null  &&  defaultPassword != '') {
+            password = defaultPassword;
+        };
+        if (defaultDatabase != null  &&  defaultDatabase != '') {
+            database = defaultDatabase;
+        };
+        if (defaultPort != null  &&  defaultPort != '') {
+            port = defaultPort;
+        };
 
-        let a = new Date()
-        let ietsie = isDateInFuture(isDateInFuture)
-        console.log('ietsie', ietsie)
+        // TODO - how to treat special DB options
 
+        // Create pool Object
+        const pool = mysql.createPool({
+            connectionLimit  : 10,
+            host             : host,
+            user             : user,
+            password         : password,
+            database         : database,
+            port             : port,
+            connectionLimit  : 10,
+            supportBigNumbers: true
+        });
 
+        // Connect to DB
+        pool.getConnection((err, connection) => {
+            console.log('  mySQL.datalayer getConnection Start')
+            if (err) {
+                console.log('  mySQL.datalayer Error in getConnection', err)
+                reject({
+                    "statusCode": "error",
+                    "message" : "Error in getConnection getting data from MySQL",
+                    "data": null,
+                    "error":err
+                });
+            };
+            console.log('  mySQL.datalayer After getConnection ')
 
-
-        connectAndQuery(databaseObject, dataTableName, fieldsObject, dataSQLStatement, sqlParameters)
-            .then(returnedData => {
+            // Make the query
+            connection.query(queryString, [sqlParameters], (err, results) => {
+                console.log('  mySQL.datalayer After query')
+                if (err) {
+                    console.log('  mySQL.datalayer Error in query', err)
+                    console.log('  mySQL.datalayer Error in getConnection', err)
+                    reject({
+                        "statusCode": "error",
+                        "message" : "Error in .query getting data from MySQL",
+                        "data": null,
+                        "error":err
+                    });
+                };
 
                 //  Now, results = [data], with Count
                 results = JSON.parse(JSON.stringify(returnedData));
@@ -112,9 +165,9 @@ module.exports = function getClientData(datasource, queryObject) {
                 };
 
                 // TODO - later
-                // 3. Do the Transformations according to the Tr loaded in step 1
+                // Do the Transformations according to the Tr loaded in step 1
 
-                // 4. Store the data in Canvas ClientData if cachable
+                // Store the data in Canvas ClientData if cachable
                 // If cacheResultsOnServer = True, then Insert the data into Canvas Server cache (in Mongo)
                 // NB: this is NOT done Async, so will work in background
                 if (cacheResultsOnServer) {
@@ -150,13 +203,13 @@ module.exports = function getClientData(datasource, queryObject) {
                     );
                 };
 
-                // 5. Extract the Widget specific data (sort, filter, fields, aggregate)
+                // Extract the Widget specific data (sort, filter, fields, aggregate)
                 let afterSort;
                 afterSort =  sortFilterFieldsAggregate(results, req.query);
 
                 // Return if an Error
                 if (afterSort.error) {
-                    return res.status(400).json({
+                    reject({
                         "statusCode": "error",
                         "message" : "Error in the sortFilterFieldsAggregate routine",
                         "data": null,
@@ -164,14 +217,14 @@ module.exports = function getClientData(datasource, queryObject) {
                     });
                 };
 
-                // 6. Update results with this information
+                // Update results with this information
                 results = afterSort.results;
 
-                // 7. Collect MetaData
+                // Collect MetaData
                 var fields = [];
                 fields = metaDataFromDatasource(datasource);
 
-                // 8. Return results with metadata according to the CanvasHttpResponse interface
+                // Return results with metadata according to the CanvasHttpResponse interface
                 resolve({
                     "statusCode": "success",
                     "message" : "Retrieved data for id:" + id,
@@ -185,18 +238,8 @@ module.exports = function getClientData(datasource, queryObject) {
                     },
                     "error": null
                 });
-            })
-            .catch(err =>{
-                // If any error, return err according to the CanvasHttpResponse interface
-                console.error('Err after datalayer.select called from clientData.router', err);
-                reject({
-                    "statusCode": "error",
-                    "message" : "Error: Err after datalayer.select called from clientData.router for id:", id,
-                    "data": null,
-                    "error": err
-                });
             });
-
+        });
     });
 
 }
