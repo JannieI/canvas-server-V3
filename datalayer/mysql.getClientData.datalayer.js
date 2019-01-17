@@ -55,42 +55,11 @@ module.exports = function getClientData(datasource, queryObject) {
         const dataTableName = datasource.dataTableName;
         const dataSQLStatement = datasource.dataSQLStatement;
         const cacheResultsOnServer = datasource.cacheResultsOnServer;
-        const serverExpiryDateTime = datasource.serverExpiryDateTime
-        const dataFields = datasource.dataFields;
-        const dataFieldTypes = datasource.dataFieldTypes;
-        const dataFieldLengths = datasource.dataFieldLengths;
-
-        // Create databaseObject - passing one Object makes it easier to add new properties
-        // Sample: databaseObject = { host: '127.0.0.1', user: 'janniei', password: 'janniei', database: 'mysql'}
-        let databaseObject =
-            {
-                host: serverName,
-                user: username,
-                password: password,
-                database: databaseName,
-                port: port
-        };
-
-        // Query properties: these are used by the Widget to reduce the data block returned
-        let sortObject = queryObject.sortObject;
-        let fieldsObject = queryObject.fields;
-
-        if (fieldsObject != null) {
-            fieldsObject = JSON.parse(JSON.stringify(fieldsObject));
-        };
-        let filterObject = queryObject.filterObject;
-        const aggregationObject = queryObject.aggregationObject;
-
-        // TODO - figure out to store and how to use Parameters
-        let sqlParameters = '';
 
         // Set results = [] (data block to return to Workstation)
         results = [];
 
         debugDev('Properties read from DS id:', datasource.id, username, password, databaseName, port, serverType, serverName, dataTableName, dataSQLStatement, cacheResultsOnServer)
-
-        // 2. Connect to the MySQL DB and return the data
-        results = [];
 
         // Load defaults, set in startup.sh (via custom-environment-variables.js)
         let defaultHost = config.get('mysqlLocal.startup.host');
@@ -129,7 +98,8 @@ module.exports = function getClientData(datasource, queryObject) {
             supportBigNumbers: true
         });
 
-        // Connect to DB
+        // Connect to DB and get the Data
+        results = [];
         pool.getConnection((err, connection) => {
             console.log('  mySQL.datalayer getConnection Start')
             if (err) {
