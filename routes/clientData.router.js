@@ -15,7 +15,7 @@ router.use('/', (req, res, next) => {
 
     // Validate id of clientData provided
     const id = req.query.id;
-    debugData('query is ', id);
+    debugDev('query is ', id);
 
 	if (id == null) {
         return res.status(400).json({
@@ -84,11 +84,11 @@ router.get('/', (req, res, next) => {
         const datasource = datasourceArray[0];
 
         //  3. Get the data from the correct location: Canvas Cache, or Source (one of many types)
-        let isFresh = !isDateInFuture(datasource.serverExpiryDateTime);
+        let isFresh = isDateInFuture(datasource.serverExpiryDateTime);
 
         // If cached and isFresh, result = cache
         if (datasource.cacheResultsOnServer  &&  isFresh) {
-            debugDev(' <- Getting data from Server Cache on Disc')
+            debugData(' <- Getting data from Server Cache on Disc')
 
             // Get the model
             const clientSchema = '../models/clientData.model';
@@ -119,7 +119,7 @@ router.get('/', (req, res, next) => {
 
                 // Collect MetaData
                 var fields = [];
-                fields = metaDataFromDatasource(datasource);
+                fields = metaDataFromDatasource(datasource, req.query);
 
                 // Calc how many records are returned
                 let nrRecordsReturned = 0;
@@ -144,7 +144,7 @@ router.get('/', (req, res, next) => {
             });
         } else {
             // Else, get from Source using the correct data-layer-function depending on the DB type (ie MySQL or Mongo).
-            debugDev(' <- Getting data from Source')
+            debugData(' <- Getting data from Source')
 
             // Get the data from Source, depending on the serverType
             if (datasource.serverType == 'Microsoft SSAS') {
@@ -181,7 +181,6 @@ router.get('/', (req, res, next) => {
         };
     });
 
-
 })
 
 // POST route
@@ -191,8 +190,7 @@ router.post('/', (req, res, next) => {
     const body = req.body;
     const query = req.query;
     const id = req.query.id;
-    debugData('clientDataRouter: POST for id:', id, 'body:', body)
-    debugData('');
+    debugDev('clientDataRouter: POST for id:', id, 'body:', body)
 
     // Try, in case model file does not exist
     try {
@@ -244,8 +242,7 @@ router.delete('/', (req, res, next) => {
     const query = req.query;
     const id = req.query.id;
 
-    debugData('clientDataRouter: DELETE for id:', id, 'body:', body, 'query:', query)
-    debugData('');
+    debugDev('clientDataRouter: DELETE for id:', id, 'body:', body, 'query:', query)
 
     if (id == null) {
         return res.json({
@@ -317,8 +314,7 @@ router.put('/', (req, res, next) => {
     const query = req.query;
     const id = req.query.id;
 
-    debugData('clientDataRouter: PUT for id:', id, 'body:', body, 'query:', query)
-    debugData('');
+    debugDev('clientDataRouter: PUT for id:', id, 'body:', body, 'query:', query)
 
     // Try, in case model file does not exist
     try {

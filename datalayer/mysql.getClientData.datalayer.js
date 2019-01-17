@@ -40,7 +40,6 @@ const sortFilterFieldsAggregate = require('../utils/sortFilterFieldsAggregate.ut
 module.exports = function getClientData(datasource, queryObject) {
     // Selects the records from the MySQL database according to the given parameters.
     // Inputs: DATABASE_OBJECT, TABLE, FIELDS, QUERY_STRING, SQL_PARAMETERS
-
     return new Promise((resolve, reject) => {
 
         // Set vars & Extract the vars from the Input Params
@@ -189,7 +188,7 @@ module.exports = function getClientData(datasource, queryObject) {
 
                 // Collect MetaData
                 var fields = [];
-                fields = metaDataFromDatasource(datasource);
+                fields = metaDataFromDatasource(datasource, queryObject);
 
                 // Return results with metadata according to the CanvasHttpResponse interface
                 resolve({

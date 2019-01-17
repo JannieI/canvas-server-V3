@@ -8,7 +8,6 @@ module.exports = function sortFilterFieldsAggregate(results, queryObject) {
         // 1. Extract Query properties: these are used by the Widget to reduce the data block returned
         let sortObject = queryObject.sortObject;
         let fieldsObject = queryObject.fields;
-
         if (fieldsObject != null) {
             fieldsObject = JSON.parse(JSON.stringify(fieldsObject));
         };
