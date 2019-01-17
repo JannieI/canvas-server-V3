@@ -220,6 +220,10 @@ module.exports = function getClientData(datasource, queryObject) {
                     // Collect MetaData
                     var fields = [];
                     fields = metaDataFromDatasource(datasource, queryObject);
+                    let tableName = datasource.dataTableName;
+                    if (datasource.dataSQLStatement) {
+                        tableName = 'SQL Statement';
+                    };
 
                     // Return results with metadata according to the CanvasHttpResponse interface
                     resolve({
@@ -228,7 +232,7 @@ module.exports = function getClientData(datasource, queryObject) {
                         "data": results,
                         "metaData": {
                             "table": {
-                                "tableName": "", //oneDoc.mongooseCollection.collectionName,
+                                "tableName": tableName,
                                 "nrRecordsReturned": nrRecordsReturned
                             },
                             "fields": fields
