@@ -7,9 +7,6 @@ module.exports = function sortFilterFieldsAggregate(inputResults, queryObject) {
         let results = inputResults;
         let sortObject = queryObject.sortObject;
         let fieldsObject = queryObject.fields;
-        if (fieldsObject != null) {
-            fieldsObject = JSON.parse(JSON.stringify(fieldsObject));
-        };
         let filterObject = queryObject.filterObject;
         const aggregationObject = queryObject.aggregationObject;
 
