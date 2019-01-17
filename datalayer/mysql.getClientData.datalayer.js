@@ -132,8 +132,9 @@ module.exports = function getClientData(datasource, queryObject) {
                             { id: datasourceID },
                             dataToSave,
                             {
-                            new: true,                       // return updated doc
-                            runValidators: true              // validate before update
+                                upsert:true,                    // Create if it doesnot exist
+                                new: true,                      // return updated doc
+                                runValidators: true             // validate before update
                             })
                             .then(doc => {
 
