@@ -33,9 +33,10 @@
 const mysql = require('mysql');
 const config = require('config');               // Configuration
 const debugDev = require('debug')('app:dev');
-const connectAndQuery = require('./mysql.getClientData.datalayer');
+const connectAndQuery = require('./mysql.connectAndQuery.datalayer');
+const isDateInFuture = require('../utils/dateFunctions');
 
-exports.getClientData = function(datasource, queryObject) {
+module.exports = function getClientData(datasource, queryObject) {
     // Gets (Selects) the data; either from cache or from Source
     // Inputs: DATASOURCE (for which to get the data), QUERYOBJECT provided by HTTP GET request
 
@@ -90,6 +91,16 @@ exports.getClientData = function(datasource, queryObject) {
 
         // 2. Connect to the MySQL DB and return the data
         results = [];
+
+
+        
+        let a = new Date()
+        let ietsie = isDateInFuture(isDateInFuture)
+        console.log('ietsie', ietsie)
+
+
+
+
         connectAndQuery(databaseObject, dataTableName, fieldsObject, dataSQLStatement, sqlParameters)
             .then(returnedData => {
 
@@ -251,18 +262,17 @@ exports.getClientData = function(datasource, queryObject) {
                     },
                     "error": null
                 });
-        })
-
-        // If any error, return err according to the CanvasHttpResponse interface
-        .catch(err =>{
-            console.error('Err after datalayer.select called from clientData.router', err);
-            reject({
-                "statusCode": "error",
-                "message" : "Error: Err after datalayer.select called from clientData.router for id:", id,
-                "data": null,
-                "error": err
+            })
+            .catch(err =>{
+                // If any error, return err according to the CanvasHttpResponse interface
+                console.error('Err after datalayer.select called from clientData.router', err);
+                reject({
+                    "statusCode": "error",
+                    "message" : "Error: Err after datalayer.select called from clientData.router for id:", id,
+                    "data": null,
+                    "error": err
+                });
             });
-        });
 
     });
 

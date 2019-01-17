@@ -31,7 +31,6 @@
 
 const mysql = require('mysql');
 const config = require('config');               // Configuration
-const debugDev = require('debug')('app:dev');
 
 module.exports = function connectAndQuery(databaseObject, table, fields, queryString, sqlParameters) {
     // Selects the records from the MySQL database according to the given parameters.

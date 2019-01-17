@@ -5,7 +5,7 @@ const express = require('express');
 const router = express.Router();
 const debugData = require('debug')('app:data');
 const debugDev = require('debug')('app:dev');
-const datalayer = require('../datalayer/mysql.getClientData.datalayer');
+const getClientData = require('../datalayer/mysql.getClientData.datalayer');
 const isDateInFuture = require('../utils/dateFunctions');
 const metaDataFromDatasource = require('../utils/metaDataFromDatasource.util');
 const sortFilterFieldsAggregate = require('../utils/sortFilterFieldsAggregate.util');
@@ -116,51 +116,9 @@ router.get('/', (req, res, next) => {
 
                 // Update results with this information
                 results = afterSort.results;
-console.log('results', results, afterSort)
+
                 var fields = [];
-
                 fields = metaDataFromDatasource(datasource);
-
-                // // 9. Add metadata, hopefully obtained directly from the source DB, or from the DS (if pre-stored),
-                // //    with prudent defaults where unknown.
-                // if (datasource.dataFields != null) {
-                //     if (datasource.dataFieldTypes == null) {
-                //         datasource.dataFieldTypes = [];
-                //     };
-                //     if (datasource.dataFieldLengths == null) {
-                //         datasource.dataFieldLengths = [];
-                //     };
-
-                //     var fields = [];
-
-                //     // Loop on metatdata
-                //     for (var i = 0; i < datasource.dataFields.length; i++) {
-                //         const fieldName = datasource.dataFields[i];
-
-                //         let fieldType = '';
-                //         if (i < datasource.dataFieldTypes.length) {
-                //             fieldType = datasource.dataFieldTypes[i];
-                //         };
-
-                //         let fieldLength = '';
-                //         if (i < datasource.dataFieldLengths.length) {
-                //             fieldLength = datasource.dataFieldLengths[i];
-                //         };
-
-                //         fields.push(
-                //             {
-                //                 "fieldName": fieldName,
-                //                 "fieldType": fieldType,
-                //                 "length": fieldLength,
-                //                 "average": null,
-                //                 "max": null,
-                //                 "median": null,
-                //                 "min": null,
-                //                 "sum": null
-                //             }
-                //         );
-                //     };
-                // };
 
                 // 10. Calc how many records are returned
                 let nrRecordsReturned = 0;
@@ -188,6 +146,9 @@ console.log('results', results, afterSort)
             debugDev(' <- Getting data from Source')
 
             // Get the data from Source, depending on the serverType
+            if (datasource.serverType == 'Microsoft SSAS') {
+                // Do thing here
+            };
             if (datasource.serverType == 'PostgresSQL') {
                 // Do thing here
             };
@@ -206,7 +167,7 @@ console.log('results', results, afterSort)
 
             // Get the Source Data via the Canvas Data Layer
             if (datasource.serverType == 'MySQL') {
-                datalayer.getClientData(datasource, req.query)
+                getClientData(datasource, req.query)
                     .then(resResultsObject => {
                         console.log('resResultsObject', resResultsObject)
                         return res.json(resResultsObject)

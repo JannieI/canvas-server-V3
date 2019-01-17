@@ -5,7 +5,7 @@ const express = require('express');
 const router = express.Router();
 const debugData = require('debug')('app:data');
 const debugDev = require('debug')('app:dev');
-const datalayer = require('../datalayer/mysql.getClientData.datalayer');
+const mysqlGetClientData = require('../datalayer/mysql.getClientData.datalayer');
 
 // Runs for ALL requests
 router.use('/', (req, res, next) => {
@@ -131,7 +131,7 @@ router.get('/', (req, res, next) => {
         } else {
             isFresh = false;
         };
-
+console.log('isFresh', isFresh) 
         // If cached and isFresh, result = cache
         if (cacheResultsOnServer  &&  isFresh) {
             debugDev(' <- Getting data from Server Cache on Disc')
@@ -200,8 +200,9 @@ router.get('/', (req, res, next) => {
                         port: port
                 };
 
+                // tODO - sort parameters ...
                 // Inputs: DATABASE_OBJECT, TABLE, FIELDS, QUERY_STRING, SQL_PARAMETERS
-                datalayer.getClientData(databaseObject, dataTableName, null, dataSQLStatement, "janniei", )
+                mysqlGetClientData(databaseObject, dataTableName, null, dataSQLStatement, "janniei", )
                     .then(resResultsObject => res.json(resResultsObject) )
                     .catch(resErrorObject  => res.json(resErrorObject) );
             };
