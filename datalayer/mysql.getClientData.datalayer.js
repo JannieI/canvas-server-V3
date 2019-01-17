@@ -145,9 +145,28 @@ module.exports = function getClientData(datasource, queryObject) {
                                 let datasourceDeepCopy = JSON.parse(JSON.stringify(datasource));
                                 datasourceDeepCopy.serverExpiryDateTime = serverExpiryDateTime;
 
-                                console.log('xx check old copy', datasource.serverExpiryDateTime, datasourceDeepCopy.serverExpiryDateTime)
+                                // Re-save the datasource with the new serverExpiryDateTime
+
+                                // Get the model
+                                const clientSchema = '../models/datasources.model';
+                                const clientModel = require(clientSchema);
+                                debugData('Using Schema datasource');
+
+                                // Find and Update DB
+                                clientModel.findOneAndUpdate(
+                                    { id: datasourceID },
+                                    datasourceDeepCopy,
+                                    {
+                                    new: true,                       // return updated doc
+                                    runValidators: true              // validate before update
+                                    })
+                                    .then(doc => {
+                                        
+                                    // console.log('xx check old copy', datasource.serverExpiryDateTime, datasourceDeepCopy.serverExpiryDateTime)
                                 
-                                debugData('ClientData in cached refreshed for id: ' + datasourceID);
+                                        debugData('ClientData in cached refreshed for id: ' + datasourceID);
+                                    }
+                                );
                             })
                             .catch(err => {
                                     debugData('Error caching data from MySQL on Server', err)
