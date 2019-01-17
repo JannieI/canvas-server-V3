@@ -37,15 +37,12 @@ const connectAndQuery = require('./mysql.connectAndQuery.datalayer');
 const isDateInFuture = require('../utils/dateFunctions');
 
 module.exports = function getClientData(datasource, queryObject) {
-    // Gets (Selects) the data; either from cache or from Source
-    // Inputs: DATASOURCE (for which to get the data), QUERYOBJECT provided by HTTP GET request
-
     // Selects the records from the MySQL database according to the given parameters.
     // Inputs: DATABASE_OBJECT, TABLE, FIELDS, QUERY_STRING, SQL_PARAMETERS
 
     return new Promise((resolve, reject) => {
 
-        // 1. Set vars & Extract the vars from the Input Params
+        // Set vars & Extract the vars from the Input Params
         const username = datasource.username;
         const password = datasource.password;
         const databaseName = datasource.databaseName;
@@ -55,10 +52,6 @@ module.exports = function getClientData(datasource, queryObject) {
         const dataTableName = datasource.dataTableName;
         const dataSQLStatement = datasource.dataSQLStatement;
         const cacheResultsOnServer = datasource.cacheResultsOnServer;
-
-        // Set results = [] (data block to return to Workstation)
-        results = [];
-
         debugDev('Properties read from DS id:', datasource.id, username, password, databaseName, port, serverType, serverName, dataTableName, dataSQLStatement, cacheResultsOnServer)
 
         // Load defaults, set in startup.sh (via custom-environment-variables.js)
@@ -99,7 +92,7 @@ module.exports = function getClientData(datasource, queryObject) {
         });
 
         // Connect to DB and get the Data
-        results = [];
+        let results = [];
         pool.getConnection((err, connection) => {
             console.log('  mySQL.datalayer getConnection Start')
             if (err) {
@@ -115,7 +108,7 @@ module.exports = function getClientData(datasource, queryObject) {
 
             // Make the query
             connection.query(queryString, [sqlParameters], (err, results) => {
-                console.log('  mySQL.datalayer After query')
+                console.log('  mySQL.datalayer After .query')
                 if (err) {
                     console.log('  mySQL.datalayer Error in query', err)
                     console.log('  mySQL.datalayer Error in getConnection', err)
@@ -127,6 +120,8 @@ module.exports = function getClientData(datasource, queryObject) {
                     });
                 };
 
+                console.log('  mySQL.datalayer query is good')
+
                 //  Now, results = [data], with Count
                 results = JSON.parse(JSON.stringify(returnedData));
                 let nrRecordsReturned = 0;
@@ -134,12 +129,9 @@ module.exports = function getClientData(datasource, queryObject) {
                     nrRecordsReturned = results.length;
                 };
 
-                // TODO - later
-                // Do the Transformations according to the Tr loaded in step 1
-
                 // Store the data in Canvas ClientData if cachable
                 // If cacheResultsOnServer = True, then Insert the data into Canvas Server cache (in Mongo)
-                // NB: this is NOT done Async, so will work in background
+                // NB: this is done Async but we dont wait for result, so will work in background
                 if (cacheResultsOnServer) {
 
                     // Data to upsert
