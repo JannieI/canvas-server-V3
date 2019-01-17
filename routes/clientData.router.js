@@ -10,35 +10,6 @@ const isDateInFuture = require('../utils/dateFunctions');
 const metaDataFromDatasource = require('../utils/metaDataFromDatasource.util');
 const sortFilterFieldsAggregate = require('../utils/sortFilterFieldsAggregate.util');
 
-// Runs for ALL requests
-router.use('/', (req, res, next) => {
-
-    // Validate id of clientData provided
-    const id = req.query.id;
-    debugDev('query is ', id);
-
-	if (id == null) {
-        return res.status(400).json({
-            "statusCode": "error",
-            "message" : "No id provided in query string",
-            "data": null,
-            "error": "No id provided in query string"
-        });
-    };
-
-	if (isNaN(id)) {
-        return res.status(400).json({
-            "statusCode": "error",
-            "message" : "id parameter must be a number",
-            "data": null,
-            "error": "id parameter must be a number"
-        });
-    };
-
-    // Continue
-    next();
-})
-
 // GET route
 router.get('/', (req, res, next) => {
 
@@ -51,6 +22,28 @@ router.get('/', (req, res, next) => {
     // 1. Get the datasourceID from req.query
     const id = req.query.id;
     const datasourceID = req.query.datasourceID;
+
+    // Validate id of clientData provided
+    const id = req.query.id;
+    debugDev('Start clientData.router for datasourceID =', datasourceIDd);
+
+	if (datasourceID == null) {
+        return res.status(400).json({
+            "statusCode": "error",
+            "message" : "No datasourceID provided in query string",
+            "data": null,
+            "error": "No datasourceID provided in query string"
+        });
+    };
+
+	if (isNaN(datasourceID)) {
+        return res.status(400).json({
+            "statusCode": "error",
+            "message" : "datasourceID parameter must be a number.  Provided:" + datasourceID,
+            "data": null,
+            "error": "datasourceID parameter must be a number.  Provided:" + datasourceID
+        });
+    };
 
     // 2. Get the DS (Datasource) record for the given datasourceID in req.query.
     const datasourceSchema = '../models/datasources.model';
