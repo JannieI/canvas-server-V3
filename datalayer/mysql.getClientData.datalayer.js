@@ -33,8 +33,10 @@
 const mysql = require('mysql');
 const config = require('config');               // Configuration
 const debugDev = require('debug')('app:dev');
+const debugData = require('debug')('app:data');
 const connectAndQuery = require('./mysql.connectAndQuery.datalayer');
-const isDateInFuture = require('../utils/dateFunctions');
+const metaDataFromDatasource = require('../utils/metaDataFromDatasource.util');
+const sortFilterFieldsAggregate = require('../utils/sortFilterFieldsAggregate.util');
 
 module.exports = function getClientData(datasource, queryObject) {
     // Selects the records from the MySQL database according to the given parameters.
@@ -43,23 +45,27 @@ module.exports = function getClientData(datasource, queryObject) {
     return new Promise((resolve, reject) => {
 
         // Set vars & Extract the vars from the Input Params
-        const username = datasource.username;
-        const password = datasource.password;
-        const databaseName = datasource.databaseName;
-        const port = datasource.port;
-        const serverType = datasource.serverType;
-        const serverName = datasource.serverName;
-        const dataTableName = datasource.dataTableName;
-        const dataSQLStatement = datasource.dataSQLStatement;
-        const cacheResultsOnServer = datasource.cacheResultsOnServer;
+        let datasourceID = datasource.datasourceID;
+        let username = datasource.username;
+        let password = datasource.password;
+        let databaseName = datasource.databaseName;
+        let port = datasource.port;
+        let serverType = datasource.serverType;
+        let serverName = datasource.serverName;
+        let dataTableName = datasource.dataTableName;
+        let dataSQLStatement = datasource.dataSQLStatement;
+        let cacheResultsOnServer = datasource.cacheResultsOnServer;
+
+        // TODO - figure out how to treat SQL Parameters, ie @LogicalBusinessDay
+        let sqlParameters = '';
         debugDev('Properties read from DS id:', datasource.id, username, password, databaseName, port, serverType, serverName, dataTableName, dataSQLStatement, cacheResultsOnServer)
 
         // Load defaults, set in startup.sh (via custom-environment-variables.js)
-        let defaultHost = config.get('mysqlLocal.startup.host');
-        let defaultUser = config.get('mysqlLocal.startup.user');
-        let defaultPassword = config.get('mysqlLocal.startup.password');
-        let defaultDatabase = config.get('mysqlLocal.startup.database');
-        let defaultPort = config.get('mysqlLocal.startup.port');
+        const defaultHost = config.get('mysqlLocal.startup.host');
+        const defaultUser = config.get('mysqlLocal.startup.user');
+        const defaultPassword = config.get('mysqlLocal.startup.password');
+        const defaultDatabase = config.get('mysqlLocal.startup.database');
+        const defaultPort = config.get('mysqlLocal.startup.port');
 
         if (defaultHost != null  &&  defaultHost != '') {
             host = defaultHost;
@@ -107,7 +113,7 @@ module.exports = function getClientData(datasource, queryObject) {
             console.log('  mySQL.datalayer After getConnection ')
 
             // Make the query
-            connection.query(queryString, [sqlParameters], (err, results) => {
+            connection.query(dataSQLStatement, [sqlParameters], (err, returnedData) => {
                 console.log('  mySQL.datalayer After .query')
                 if (err) {
                     console.log('  mySQL.datalayer Error in query', err)
@@ -167,7 +173,7 @@ module.exports = function getClientData(datasource, queryObject) {
 
                 // Extract the Widget specific data (sort, filter, fields, aggregate)
                 let afterSort;
-                afterSort =  sortFilterFieldsAggregate(results, req.query);
+                afterSort =  sortFilterFieldsAggregate(results, queryObject);
 
                 // Return if an Error
                 if (afterSort.error) {
@@ -189,7 +195,7 @@ module.exports = function getClientData(datasource, queryObject) {
                 // Return results with metadata according to the CanvasHttpResponse interface
                 resolve({
                     "statusCode": "success",
-                    "message" : "Retrieved data for id:" + id,
+                    "message" : "Retrieved data for id:" + datasourceID,
                     "data": results,
                     "metaData": {
                         "table": {
