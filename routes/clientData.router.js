@@ -24,8 +24,7 @@ router.get('/', (req, res, next) => {
     const datasourceID = req.query.datasourceID;
 
     // Validate id of clientData provided
-    const id = req.query.id;
-    debugDev('Start clientData.router for datasourceID =', datasourceIDd);
+    debugDev('Start clientData.router forquery is ', id);
 
 	if (datasourceID == null) {
         return res.status(400).json({
@@ -39,9 +38,9 @@ router.get('/', (req, res, next) => {
 	if (isNaN(datasourceID)) {
         return res.status(400).json({
             "statusCode": "error",
-            "message" : "datasourceID parameter must be a number.  Provided:" + datasourceID,
+            "message" : "datasourceID parameter must be a number.  Provided:", datasourceID,
             "data": null,
-            "error": "datasourceID parameter must be a number.  Provided:" + datasourceID
+            "error": "datasourceID parameter must be a number.  Provided:", datasourceID
         });
     };
 
@@ -89,26 +88,29 @@ router.get('/', (req, res, next) => {
             debugData('Using Schema clientData');
 
             // Find the data (using the standard query JSON object)
-            clientModel.find( { id } , (err, docs) => {
+            clientModel.find( { datasourceID } , (err, docs) => {
+ console.log('xx dosc', docs)
+                let results = [];
+                if (docs != null  &&  docs.length != 0) {
+                    results = docs[0].data;
 
-                let results = docs[0].data;
+                    // Extract the Widget specific data (sort, filter, fields, aggregate)
+                    let afterSort;
+                    afterSort =  sortFilterFieldsAggregate(results, req.query);
 
-                // Extract the Widget specific data (sort, filter, fields, aggregate)
-                let afterSort;
-                afterSort =  sortFilterFieldsAggregate(results, req.query);
+                    // Return if an Error
+                    if (afterSort.error) {
+                        return res.status(400).json({
+                            "statusCode": "error",
+                            "message" : "Error in the sortFilterFieldsAggregate routine",
+                            "data": null,
+                            "error": error
+                        });
+                    };
 
-                // Return if an Error
-                if (afterSort.error) {
-                    return res.status(400).json({
-                        "statusCode": "error",
-                        "message" : "Error in the sortFilterFieldsAggregate routine",
-                        "data": null,
-                        "error": error
-                    });
+                    // Update results with this information
+                    results = afterSort.results;
                 };
-
-                // Update results with this information
-                results = afterSort.results;
 
                 // Collect MetaData
                 var fields = [];
