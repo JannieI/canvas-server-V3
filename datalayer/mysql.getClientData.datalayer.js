@@ -8,6 +8,7 @@ const debugData = require('debug')('app:data');
 const metaDataFromDatasource = require('../utils/metaDataFromDatasource.util');
 const sortFilterFieldsAggregate = require('../utils/sortFilterFieldsAggregate.util');
 const createErrorObject = require('../utils/createErrorObject.util');
+const calculateCacheExpiryDate = require('../utils/calculateCacheExpiryDate');
 
 module.exports = function getClientData(datasource, queryObject) {
     // Selects the records from the MySQL database according to the given parameters.
@@ -126,6 +127,9 @@ module.exports = function getClientData(datasource, queryObject) {
                         const clientModel = require(clientSchema);
                         debugData('Using Schema clientData');
 
+                        // Calculate serverExpiryDateTime for this Datasource
+                        const serverExpiryDateTime = calculateCacheExpiryDate(datasource);
+
                         // Find and Update DB
                         clientModel.findOneAndUpdate(
                             { id: datasourceID },
@@ -148,10 +152,6 @@ module.exports = function getClientData(datasource, queryObject) {
                         });
                     };
 
-
-
-
-                    
                     // Extract the Widget specific data (sort, filter, fields, aggregate)
                     let afterSort;
                     afterSort =  sortFilterFieldsAggregate(results, queryObject);
