@@ -14,6 +14,7 @@ module.exports = function getClientData(datasource, queryObject) {
     return new Promise((resolve, reject) => {
         try {
             // Set & extract the vars from the Input Params
+            // TODO - consider this as a require('') as it will be re-used
             let datasourceID = datasource.datasourceID;
             let username = datasource.username;
             let password = datasource.password;
@@ -110,6 +111,7 @@ module.exports = function getClientData(datasource, queryObject) {
                     // Store the data in Canvas ClientData if cachable
                     // If cacheResultsOnServer = True, then Insert the data into Canvas Server cache (in Mongo)
                     // NB: this is done Async but we dont wait for result, so will work in background
+                    // TODO - consider this as a require('') later as it will be re-used
                     if (cacheResultsOnServer) {
 
                         // Data to upsert
