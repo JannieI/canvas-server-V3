@@ -99,9 +99,9 @@ module.exports = function getClientData(datasource, queryObject) {
         // Connect to DB and get the Data
         let results = [];
         pool.getConnection((err, connection) => {
-            console.log('  mySQL.datalayer getConnection Start')
+
             if (err) {
-                console.log('  mySQL.datalayer Error in getConnection', err)
+                debugData('  mySQL.datalayer Error in getConnection', err)
                 reject({
                     "statusCode": "error",
                     "message" : "Error in getConnection getting data from MySQL",
@@ -109,14 +109,11 @@ module.exports = function getClientData(datasource, queryObject) {
                     "error":err
                 });
             };
-            console.log('  mySQL.datalayer After getConnection ')
 
             // Make the query
             connection.query(dataSQLStatement, [sqlParameters], (err, returnedData) => {
-                console.log('  mySQL.datalayer After .query')
                 if (err) {
-                    console.log('  mySQL.datalayer Error in query', err)
-                    console.log('  mySQL.datalayer Error in getConnection', err)
+                    debugData('  mySQL.datalayer Error in getConnection', err)
                     reject({
                         "statusCode": "error",
                         "message" : "Error in .query getting data from MySQL",
@@ -125,14 +122,8 @@ module.exports = function getClientData(datasource, queryObject) {
                     });
                 };
 
-                console.log('  mySQL.datalayer query is good')
-
-                //  Now, results = [data], with Count
+                //  Now, results = [data]
                 results = JSON.parse(JSON.stringify(returnedData));
-                let nrRecordsReturned = 0;
-                if (results != null) {
-                    nrRecordsReturned = results.length;
-                };
 
                 // Store the data in Canvas ClientData if cachable
                 // If cacheResultsOnServer = True, then Insert the data into Canvas Server cache (in Mongo)
@@ -159,6 +150,7 @@ module.exports = function getClientData(datasource, queryObject) {
                             if(err){
 
                                 // Return an error
+                                debugData('Error caching data from MySQL on Server', err)
                                 reject({
                                     "statusCode": "error",
                                     "message" : "Error caching data from MySQL on Server",
@@ -176,6 +168,7 @@ module.exports = function getClientData(datasource, queryObject) {
 
                 // Return if an Error
                 if (afterSort.error) {
+                    debugData('Error in the sortFilterFieldsAggregate routine', err)
                     reject({
                         "statusCode": "error",
                         "message" : "Error in the sortFilterFieldsAggregate routine",
@@ -186,6 +179,13 @@ module.exports = function getClientData(datasource, queryObject) {
 
                 // Update results with this information
                 results = afterSort.results;
+
+                //  Count
+                results = JSON.parse(JSON.stringify(returnedData));
+                let nrRecordsReturned = 0;
+                if (results != null) {
+                    nrRecordsReturned = results.length;
+                };
 
                 // Collect MetaData
                 var fields = [];
