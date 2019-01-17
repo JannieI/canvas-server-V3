@@ -126,28 +126,7 @@ module.exports = function getClientData(datasource, queryObject) {
                         const clientModel = require(clientSchema);
                         debugData('Using Schema clientData');
 
-                    //     // Store in Canvas DB
-                    //     clientModel.updateMany(
-                    //         { id: datasourceID },
-                    //         dataToSave,
-                    //         { upsert: true }, (err, updateStats) => {
-
-                    //             if(err){
-
-                    //                 // Return an error
-                    //                 debugData('Error caching data from MySQL on Server', err)
-                    //                 reject({
-                    //                     "statusCode": "error",
-                    //                     "message" : "Error caching data from MySQL on Server",
-                    //                     "data": null,
-                    //                     "error":err
-                    //                 });
-                    //             };
-                    //         }
-                    //     );
-                    // };
-
-                    // Find and Update DB
+                        // Find and Update DB
                         clientModel.findOneAndUpdate(
                             { id: datasourceID },
                             dataToSave,
