@@ -8,7 +8,7 @@ const debugData = require('debug')('app:data');
 const metaDataFromDatasource = require('../utils/metaDataFromDatasource.util');
 const sortFilterFieldsAggregate = require('../utils/sortFilterFieldsAggregate.util');
 const createErrorObject = require('../utils/createErrorObject.util');
-const calculateCacheExpiryDate = require('../utils/calculateCacheExpiryDate');
+const calculateCacheExpiryDate = require('../utils/calculateCacheExpiryDate.util');
 
 module.exports = function getClientData(datasource, queryObject) {
     // Selects the records from the MySQL database according to the given parameters.

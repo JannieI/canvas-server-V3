@@ -20,7 +20,7 @@ const debugDev = require('debug')('app:dev');
 
 
 // Caching Variables
-const dataCachingTableVariable = require('../utils/dataCachingTableMemory');  // Var loaded at startup
+const dataCachingTableVariable = require('../utils/dataCachingTableMemory.util');  // Var loaded at startup
 var dataCachingTableArray = null;   // Local copy of dataCachingTable - STRUCTURE
 var serverCacheableMemory;          // True if the current resource is cached - CURRENT VAR
 var serverVariableName;             // Name in serverMemoryCache to store data for the current resource: cahced here - CURRENT VAR
