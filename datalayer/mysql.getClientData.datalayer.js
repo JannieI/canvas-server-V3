@@ -9,6 +9,7 @@ const metaDataFromDatasource = require('../utils/metaDataFromDatasource.util');
 const sortFilterFieldsAggregate = require('../utils/sortFilterFieldsAggregate.util');
 const createErrorObject = require('../utils/createErrorObject.util');
 const calculateCacheExpiryDate = require('../utils/calculateCacheExpiryDate.util');
+const createReturnObject = require('../utils/createReturnObject.util');
 
 module.exports = function getClientData(datasource, queryObject) {
     // Selects the records from the MySQL database according to the given parameters.
@@ -226,19 +227,28 @@ module.exports = function getClientData(datasource, queryObject) {
                     };
 
                     // Return results with metadata according to the CanvasHttpResponse interface
-                    resolve({
-                        "statusCode": "success",
-                        "message" : "Retrieved data for id: " + datasourceID,
-                        "data": results,
-                        "metaData": {
-                            "table": {
-                                "tableName": tableName,
-                                "nrRecordsReturned": nrRecordsReturned
-                            },
-                            "fields": fields
-                        },
-                        "error": null
-                    });
+                    // resolve({
+                    //     "statusCode": "success",
+                    //     "message" : "Retrieved data for id: " + datasourceID,
+                    //     "data": results,
+                    //     "metaData": {
+                    //         "table": {
+                    //             "tableName": tableName,
+                    //             "nrRecordsReturned": nrRecordsReturned
+                    //         },
+                    //         "fields": fields
+                    //     },
+                    //     "error": null
+                    // });
+                    resolve(createReturnObject(
+                        "success", 
+                        "Retrieved data for id: " + datasourceID,
+                        results,
+                        tableName,
+                        nrRecordsReturned,
+                        fields
+                    ));
+           
                 });
             });
         }

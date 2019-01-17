@@ -25,12 +25,10 @@ module.exports = function createReturnObject(
     if (inputTableName != null) {
         tableName = inputTableName;
     };
-     
     let nrRecordsReturned = {};
     if (inputNrRecordsReturned != null) {
         nrRecordsReturned = inputNrRecordsReturned;
     };
-    fields 
     let metadataFields = {};
     if (inputMetadataFields != null) {
         metadataFields = inputMetadataFields;
