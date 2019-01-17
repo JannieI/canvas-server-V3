@@ -13,7 +13,7 @@ module.exports = function getClientData(datasource, queryObject) {
     // Inputs: DATASOURCE, REQ.QUERY OBJECT
     return new Promise((resolve, reject) => {
         try {
-            // Set vars & Extract the vars from the Input Params
+            // Set & extract the vars from the Input Params
             let datasourceID = datasource.datasourceID;
             let username = datasource.username;
             let password = datasource.password;
@@ -72,6 +72,18 @@ module.exports = function getClientData(datasource, queryObject) {
 
                 if (err) {
                     debugData('Error in mysql.getClientData.datalayer.getConnection', err)
+
+                    // MySQL Error Codes
+                    if (err.code === 'PROTOCOL_CONNECTION_LOST') {
+                        console.error('Database connection was closed.')
+                    }
+                    if (err.code === 'ER_CON_COUNT_ERROR') {
+                        console.error('Database has too many connections.')
+                    }
+                    if (err.code === 'ECONNREFUSED') {
+                        console.error('Database connection was refused.')
+                    }
+
                     reject({
                         "statusCode": "error",
                         "message" : "Error in mysql.getClientData.datalayer.getConnection getting data from MySQL",
