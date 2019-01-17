@@ -165,7 +165,12 @@ module.exports = function getClientData(datasource, queryObject) {
                     };
 
                     // Update results with this information
-                    results = afterSort.results;
+                    console.log('xx afterSort.results', afterSort.results)
+                    if (afterSort.results == null) {
+                        results = [];
+                    } else {
+                        results = afterSort.results;
+                    };
 
                     //  Count
                     let nrRecordsReturned = 0;

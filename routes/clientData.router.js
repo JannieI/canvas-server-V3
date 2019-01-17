@@ -55,17 +55,29 @@ router.get('/', (req, res, next) => {
             });
             return;
         };
-        if (datasourceArray.length != 1) {
-            console.error('Error:', err)
-            res.json({
+        if (datasourceArray.length > 1) {
+            debugData("Error: Duplicate Datasource in Mongo DB for the datasourceID provided: "
+                + datasourceID)
+            return res.json({
                 "statusCode": "error",
-                "message" : "Expected EXACTLY one Datasource in Mongo DB, not "
-                    + datasourceArray.length + ' for the datasourceID provided:' + datasourceID,
+                "message" : "Duplicate Datasource in Mongo DB for the datasourceID provided:"
+                     + datasourceID,
                 "data": null,
-                "error": err
+                "error": 
+                    { 
+                        message: "Duplicate Datasource in Mongo DB for the datasourceID provided: " + datasourceID
+                    }
             });
-            return;
-        }
+        };
+        if (datasourceArray.length == 0) {
+            debugData('Error:', "No Datasource exists for the datasourceID provided:" + datasourceID)
+            return res.json({
+                "statusCode": "success",
+                "message" : "No Datasource exists for the datasourceID provided:" + datasourceID,
+                "data": [],
+                "error": null
+            });
+        };
 
         // Set the DS var
         const datasource = datasourceArray[0];
