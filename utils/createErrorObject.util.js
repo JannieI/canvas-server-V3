@@ -8,8 +8,8 @@ module.exports = function createErrorObject(inputStatusCode, inputErrorMessage, 
         statusCode = inputStatusCode;
     };
     let errorMessage = 'An Error occured';
-    if (inputmessage != null) {
-        message = inputmessage;
+    if (inputErrorMessage != null) {
+        errorMessage = inputErrorMessage;
     };
     let errorObject = {};
     if (inputErrorObject != null) {

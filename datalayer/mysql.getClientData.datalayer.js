@@ -7,6 +7,7 @@ const debugDev = require('debug')('app:dev');
 const debugData = require('debug')('app:data');
 const metaDataFromDatasource = require('../utils/metaDataFromDatasource.util');
 const sortFilterFieldsAggregate = require('../utils/sortFilterFieldsAggregate.util');
+const createErrorObject = require('../utils/createErrorObject.util');
 
 module.exports = function getClientData(datasource, queryObject) {
     // Selects the records from the MySQL database according to the given parameters.
@@ -152,13 +153,15 @@ module.exports = function getClientData(datasource, queryObject) {
 
                     // Return if an Error
                     if (afterSort.error) {
-                        debugData('Error in the sortFilterFieldsAggregate routine', err)
-                        reject({
-                            "statusCode": "error",
-                            "message" : "Error in the sortFilterFieldsAggregate routine",
-                            "data": null,
-                            "error": error
-                        });
+                        debugData('Error in the sortFilterFieldsAggregate routine', afterSort.error)
+                        // reject({
+                        //     "statusCode": "error",
+                        //     "message" : "Error in the sortFilterFieldsAggregate routine",
+                        //     "data": null,
+                        //     "error": error
+                        // });
+                        reject( createErrorObject("error", 
+                            "Error in the sortFilterFieldsAggregate routine", afterSort.error));
                     };
 
                     // Update results with this information
