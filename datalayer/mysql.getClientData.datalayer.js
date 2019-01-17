@@ -221,7 +221,7 @@ module.exports = function getClientData(datasource, queryObject) {
                     var fields = [];
                     fields = metaDataFromDatasource(datasource, queryObject);
                     let tableName = datasource.dataTableName;
-                    if (datasource.dataSQLStatement) {
+                    if (datasource.dataSQLStatement != "") {
                         tableName = 'SQL Statement';
                     };
 

@@ -130,6 +130,10 @@ router.get('/', (req, res, next) => {
                 // Collect MetaData
                 var metaDataFields = [];
                 metaDataFields = metaDataFromDatasource(datasource, req.query);
+                let tableName = datasource.dataTableName;
+                if (datasource.dataSQLStatement != "") {
+                    tableName = 'SQL Statement';
+                };
 
                 // Calc how many records are returned
                 let nrRecordsReturned = 0;
@@ -144,7 +148,7 @@ router.get('/', (req, res, next) => {
                     "data": results,
                     "metaData": {
                         "table": {
-                            "tableName": "", //oneDoc.mongooseCollection.collectionName,  TODO
+                            "tableName": tableName,
                             "nrRecordsReturned": nrRecordsReturned
                         },
                         "fields": metaDataFields
