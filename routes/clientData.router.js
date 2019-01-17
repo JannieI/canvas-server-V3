@@ -117,10 +117,11 @@ router.get('/', (req, res, next) => {
                 // Update results with this information
                 results = afterSort.results;
 
+                // Collect MetaData
                 var fields = [];
                 fields = metaDataFromDatasource(datasource);
 
-                // 10. Calc how many records are returned
+                // Calc how many records are returned
                 let nrRecordsReturned = 0;
                 if (results != null) {
                     nrRecordsReturned = results.length;

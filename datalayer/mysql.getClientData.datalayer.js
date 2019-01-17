@@ -93,7 +93,7 @@ module.exports = function getClientData(datasource, queryObject) {
         results = [];
 
 
-        
+
         let a = new Date()
         let ietsie = isDateInFuture(isDateInFuture)
         console.log('ietsie', ietsie)
@@ -150,105 +150,28 @@ module.exports = function getClientData(datasource, queryObject) {
                     );
                 };
 
-                // 5. If (SORT_OBJECT) then results = results.sort()
-                // Sort ASC on given field, -field means DESC
-                // TODO
-                //  - else, return sortOrder = 1 depending on - in field, see TypeScript
-                if (sortObject != null  &&  results != null) {
+                // 5. Extract the Widget specific data (sort, filter, fields, aggregate)
+                let afterSort;
+                afterSort =  sortFilterFieldsAggregate(results, req.query);
 
-                    // DESC, and take off -
-                    if (sortObject[0] === "-") {
-                        sortOrder = 1;
-                        sortObject = sortObject.substr(1);
-                        results.sort( (a,b) => {
-                            if (a[sortObject] > b[sortObject]) {
-                                return -1;
-                            };
-                            if (a[sortObject] < b[sortObject]) {
-                                return 1;
-                            };
-                            return 0;
-                        });
-                    } else {
-                        results.sort( (a,b) => {
-                            if (a[sortObject] > b[sortObject]) {
-                                return 1;
-                            };
-                            if (a[sortObject] < b[sortObject]) {
-                                return -1;
-                            };
-                            return 0;
-                        });
-                    };
-                };
-
-                // 6. If (FIELDS_STRING) then results = results[fields]
-                if (fieldsObject != null) {
-                    Object.keys(filterObject).forEach( key => {
-                        // Get the key-value pair
-                        let value = filterObject[key];
+                // Return if an Error
+                if (afterSort.error) {
+                    return res.status(400).json({
+                        "statusCode": "error",
+                        "message" : "Error in the sortFilterFieldsAggregate routine",
+                        "data": null,
+                        "error": error
                     });
                 };
 
-                // TODO
-                // 7. If (FILTER_OBJECT) then results = results.filter()
-                if (filterObject != null  &&  results != null) {
-                    filterObject = JSON.parse(filterObject)
-                    Object.keys(filterObject).forEach( key => {
-                        // Get the key-value pair
-                        let value = filterObject[key];
+                // 6. Update results with this information
+                results = afterSort.results;
 
-                        results = results.filter(r => {
-                            return r[key] == value;
-                        })
-                    });
-                };
+                // 7. Collect MetaData
+                var fields = [];
+                fields = metaDataFromDatasource(datasource);
 
-                // TODO
-                // 8. If (AGGREGATION_OBJECT) then results = results.clever-thing
-
-                // 9. Add metadata, hopefully obtained directly from the source DB, or from the DS (if pre-stored),
-                //     with prudent defaults where unknown.
-                if (dataFields != null) {
-                    if (dataFieldTypes == null) {
-                        dataFieldTypes = [];
-                    };
-                    if (dataFieldLengths == null) {
-                        dataFieldLengths = [];
-                    };
-
-                    let fields = [];
-
-                    // Loop on metatdata
-                    for (var i = 0; i < dataFields.length; i++) {
-                        const fieldName = dataFields[i];
-
-                        let fieldType = '';
-                        if (i < dataFieldTypes.length) {
-                            fieldType = dataFieldTypes[i];
-                        };
-
-                        let fieldLength = '';
-                        if (i < dataFieldLengths.length) {
-                            fieldLength = dataFieldLengths[i];
-                        };
-
-                        fields.push(
-                            {
-                                "fieldName": fieldName,
-                                "fieldType": fieldType,
-                                "length": fieldLength,
-                                "average": null,
-                                "max": null,
-                                "median": null,
-                                "min": null,
-                                "sum": null
-                            }
-                        );
-                    };
-                };
-
-                // 10. Return results with metadata according to the CanvasHttpResponse interface
+                // 8. Return results with metadata according to the CanvasHttpResponse interface
                 resolve({
                     "statusCode": "success",
                     "message" : "Retrieved data for id:" + id,
