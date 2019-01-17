@@ -6,10 +6,12 @@ module.exports = function metaDataFromDatasource(datasource, queryObject) {
     let metaData = [];
     let fieldsObject = queryObject.fields;
     let fieldsArray = [];
+
+    // Create Array of Fields, un-trimmed
     if (fieldsObject != null) {
         fieldsObject = JSON.parse(JSON.stringify(fieldsObject));
 
-        // Create Array of Fields, un-trimmed
+        // Un-trim
         fieldsArray = fieldsObject.split(",");
         for (var i = 0; i < fieldsArray.length; i++) {
             fieldsArray[i] = fieldsArray[i].trim();
@@ -31,7 +33,7 @@ module.exports = function metaDataFromDatasource(datasource, queryObject) {
     // Loop on metatdata
     for (var i = 0; i < datasource.dataFields.length; i++) {
         const fieldName = datasource.dataFields[i];
-console.log('xx ', fieldsArray, fieldsArray.length == 0, fieldsArray.indexOf(fieldName) )
+
         if (fieldsArray.length == 0  
             ||
             (fieldsArray.indexOf(fieldName) >= 0)

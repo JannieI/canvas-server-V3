@@ -180,7 +180,6 @@ module.exports = function getClientData(datasource, queryObject) {
                 results = afterSort.results;
 
                 //  Count
-                results = JSON.parse(JSON.stringify(returnedData));
                 let nrRecordsReturned = 0;
                 if (results != null) {
                     nrRecordsReturned = results.length;

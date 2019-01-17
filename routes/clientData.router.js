@@ -170,7 +170,7 @@ router.get('/', (req, res, next) => {
             if (datasource.serverType == 'MySQL') {
                 getClientData(datasource, req.query)
                     .then(resResultsObject => {
-                        console.log('Returned from MySQL', resResultsObject.length)
+                        console.log('Returned from MySQL', resResultsObject.metaData.table.nrRecordsReturned)
                         return res.json(resResultsObject)
                      } )
                     .catch(resErrorObject  => {

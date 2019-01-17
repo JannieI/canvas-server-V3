@@ -1,4 +1,4 @@
-module.exports = function sortFilterFieldsAggregate(results, queryObject) {
+module.exports = function sortFilterFieldsAggregate(inputResults, queryObject) {
     // This routines receives an Array and the res.query object, and then extracts the data for the
     // specific Widget (without changing the Datasource).  It does sorting, filtering, field selection
     // and aggregations
@@ -6,6 +6,7 @@ module.exports = function sortFilterFieldsAggregate(results, queryObject) {
 
     try {
         // 1. Extract Query properties: these are used by the Widget to reduce the data block returned
+        let results = inputResults;
         let sortObject = queryObject.sortObject;
         let fieldsObject = queryObject.fields;
         if (fieldsObject != null) {
