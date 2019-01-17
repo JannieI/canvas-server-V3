@@ -60,16 +60,13 @@ module.exports = function sortFilterFieldsAggregate(results, queryObject) {
             // Loop on keys in Object = row 1, delete field from each element in array if not
             // in fieldsArray
             Object.keys(results[0]).forEach(key => {
-                console.log('key', key, fieldsArray.indexOf(key))
+
                 if (parseInt(fieldsArray.indexOf(key)) < 0) {
                     for (var i = 0; i < results.length; i++) {
                         delete results[i][key];
                     };
-                    
-                    console.log('Del field', key)
                 };
             });
-            console.log('results 2', results)
         };
 
         // 4. If (FILTER_OBJECT) then results = results.filter()

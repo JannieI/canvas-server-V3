@@ -44,5 +44,43 @@ module.exports = function metaDataFromDatasource(datasource) {
 
     // Return
     return fields;
-
 }
+
+
+
+    // KEEP !!!
+    // This is the code to get /data?id=x from the Mongo data  ~  Disc Caching.
+    // It works !!!
+    //
+    // Try, in case model file does not exist
+    // try {
+    //     // Get the model
+    //     const clientSchema = '../model.model/clientData.model';
+    //     const clientModel = require(clientSchema);
+    //     debugData('Using Schema clientData');
+
+    //     // Find the data (using the standard query JSON object)
+    //     clientModel.find( reqQuery, (err, docs) => {
+
+    //         // Extract metodata from the Schema, using one document
+    //         // const oneDoc = clientModel.findOne();
+
+    //         // Empty Array of fields
+    //         var fields = [];
+
+    //         // Loop on metatdata
+    //         // for (var key in oneDoc.schema.obj) {
+    //         //     var value = oneDoc.schema.obj[key];
+
+    //         //     fields.push(
+    //         //         {
+    //         //             "fieldName": key,
+    //         //             "fieldType": value.name,
+    //         //             "average": null,
+    //         //             "max": null,
+    //         //             "median": null,
+    //         //             "min": null,
+    //         //             "sum": null
+    //         //         }
+    //         //     );
+    //         // };

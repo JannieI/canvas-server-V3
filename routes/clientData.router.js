@@ -170,11 +170,10 @@ router.get('/', (req, res, next) => {
             if (datasource.serverType == 'MySQL') {
                 getClientData(datasource, req.query)
                     .then(resResultsObject => {
-                        console.log('resResultsObject', resResultsObject)
+                        console.log('Returned from MySQL', resResultsObject.length)
                         return res.json(resResultsObject)
                      } )
                     .catch(resErrorObject  => {
-                        console.log('resErrorObject', resErrorObject)
                         return res.json(resErrorObject) 
                     });
             };
@@ -182,69 +181,6 @@ router.get('/', (req, res, next) => {
         };
     });
 
-
-    // KEEP !!!
-    // This is the code to get /data?id=x from the Mongo data  ~  Disc Caching.
-    // It works !!!
-    //
-    // Try, in case model file does not exist
-    // try {
-    //     // Get the model
-    //     const clientSchema = '../model.model/clientData.model';
-    //     const clientModel = require(clientSchema);
-    //     debugData('Using Schema clientData');
-
-    //     // Find the data (using the standard query JSON object)
-    //     clientModel.find( reqQuery, (err, docs) => {
-
-    //         // Extract metodata from the Schema, using one document
-    //         // const oneDoc = clientModel.findOne();
-
-    //         // Empty Array of fields
-    //         var fields = [];
-
-    //         // Loop on metatdata
-    //         // for (var key in oneDoc.schema.obj) {
-    //         //     var value = oneDoc.schema.obj[key];
-
-    //         //     fields.push(
-    //         //         {
-    //         //             "fieldName": key,
-    //         //             "fieldType": value.name,
-    //         //             "average": null,
-    //         //             "max": null,
-    //         //             "median": null,
-    //         //             "min": null,
-    //         //             "sum": null
-    //         //         }
-    //         //     );
-    //         // };
-
-    //         // console.log('xx COUNT', fields, oneDoc.mongooseCollection.collectionName, docs.length)
-    //         // Return the data with metadata
-    //         return res.json({
-    //             "statusCode": "success",
-    //             "message" : "Retrieved data for id:" + id,
-    //             "data": docs[0].data,
-    //             "metaData": {
-    //                 "table": {
-    //                     "tableName": "", //oneDoc.mongooseCollection.collectionName,
-    //                     "nrRecordsReturned":docs.length
-    //                 },
-    //                 "fields": fields
-    //             },
-    //             "error": null
-    //         });
-    //     });
-    // }
-    // catch (error) {
-    //     return res.status(400).json({
-    //         "statusCode": "error",
-    //         "message" : "Model clientData does not exist, or contains errors",
-    //         "data": null,
-    //         "error": error
-    //     });
-    // };
 
 })
 
