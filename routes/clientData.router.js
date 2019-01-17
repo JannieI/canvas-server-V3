@@ -63,8 +63,8 @@ router.get('/', (req, res, next) => {
                 "message" : "Duplicate Datasource in Mongo DB for the datasourceID provided:"
                      + datasourceID,
                 "data": null,
-                "error": 
-                    { 
+                "error":
+                    {
                         message: "Duplicate Datasource in Mongo DB for the datasourceID provided: " + datasourceID
                     }
             });
@@ -83,7 +83,7 @@ router.get('/', (req, res, next) => {
         const datasource = datasourceArray[0];
 
 
-        //  3. Get the data from the correct location: Canvas Cache, or Source (one of many 
+        //  3. Get the data from the correct location: Canvas Cache, or Source (one of many
         //     types) from the Canvas DB
 
         // Each record in cache is time-stamped with serverExpiryDateTime at the time it is saved.
@@ -141,7 +141,7 @@ router.get('/', (req, res, next) => {
                 // Return the data with metadata
                 return res.json({
                     "statusCode": "success",
-                    "message" : "Retrieved data for id:" + id,
+                    "message" : "Retrieved data for id:" + datasourceID,
                     "data": results,
                     "metaData": {
                         "table": {
@@ -182,15 +182,16 @@ router.get('/', (req, res, next) => {
             // clientDataRoutine (this routine): res.json(error-object)
             //   --calls-->  mysql.getData.datalayer: returns error-object
             //         --calls-->  sortFilterFieldts: returns error-object
-             
+
             if (datasource.serverType == 'MySQL') {
                 getClientData(datasource, req.query)
                     .then(resultsObject => {
-                        console.log('Returned from MySQL', resultsObject.metaData.table.nrRecordsReturned)
-                        return res.json(resultsObject)
+                        debugData('Records returned from MySQL: ', resultsObject.metaData.table.nrRecordsReturned);
+                        return res.json(resultsObject);
                      } )
                     .catch(errorObject  => {
-                        return res.json(errorObject) 
+                        debugDev("Error in clientData.router");
+                        return res.json(errorObject);
                     });
             };
 

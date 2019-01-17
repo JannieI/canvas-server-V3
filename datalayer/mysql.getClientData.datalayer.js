@@ -126,15 +126,38 @@ module.exports = function getClientData(datasource, queryObject) {
                         const clientModel = require(clientSchema);
                         debugData('Using Schema clientData');
 
-                        // Store in Canvas DB
-                        clientModel.updateMany(
+                    //     // Store in Canvas DB
+                    //     clientModel.updateMany(
+                    //         { id: datasourceID },
+                    //         dataToSave,
+                    //         { upsert: true }, (err, updateStats) => {
+
+                    //             if(err){
+
+                    //                 // Return an error
+                    //                 debugData('Error caching data from MySQL on Server', err)
+                    //                 reject({
+                    //                     "statusCode": "error",
+                    //                     "message" : "Error caching data from MySQL on Server",
+                    //                     "data": null,
+                    //                     "error":err
+                    //                 });
+                    //             };
+                    //         }
+                    //     );
+                    // };
+
+                        // Find and Update DB
+                        clientModel.findOneAndUpdate(
                             { id: datasourceID },
                             dataToSave,
-                            { upsert: true }, (err, updateStats) => {
-
-                                if(err){
-
-                                    // Return an error
+                            {
+                            new: true,                       // return updated doc
+                            runValidators: true              // validate before update
+                            })
+                            .then(doc => {
+                            })
+                            .catch(err => {
                                     debugData('Error caching data from MySQL on Server', err)
                                     reject({
                                         "statusCode": "error",
@@ -142,11 +165,13 @@ module.exports = function getClientData(datasource, queryObject) {
                                         "data": null,
                                         "error":err
                                     });
-                                };
-                            }
-                        );
+                        });
                     };
 
+
+
+
+                    
                     // Extract the Widget specific data (sort, filter, fields, aggregate)
                     let afterSort;
                     afterSort =  sortFilterFieldsAggregate(results, queryObject);
@@ -165,7 +190,6 @@ module.exports = function getClientData(datasource, queryObject) {
                     };
 
                     // Update results with this information
-                    console.log('xx afterSort.results', afterSort.results)
                     if (afterSort.results == null) {
                         results = [];
                     } else {
@@ -185,7 +209,7 @@ module.exports = function getClientData(datasource, queryObject) {
                     // Return results with metadata according to the CanvasHttpResponse interface
                     resolve({
                         "statusCode": "success",
-                        "message" : "Retrieved data for id:" + datasourceID,
+                        "message" : "Retrieved data for id :" + datasourceID,
                         "data": results,
                         "metaData": {
                             "table": {

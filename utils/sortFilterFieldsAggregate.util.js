@@ -1,8 +1,6 @@
 module.exports = function sortFilterFieldsAggregate(inputResults, queryObject) {
-    // This routines receives an Array and the res.query object, and then extracts the data for the
-    // specific Widget (without changing the Datasource).  It does sorting, filtering, field selection
-    // and aggregations
-    // Returns final results
+    // This routines receives an Array and the res.query object, and then returns the data after
+    // manipulations, like sorting, filtering, field selection and aggregations.
 
     try {
         // 1. Extract Query properties: these are used by the Widget to reduce the data block returned
@@ -17,8 +15,7 @@ module.exports = function sortFilterFieldsAggregate(inputResults, queryObject) {
 
         // 2. If (SORT_OBJECT) then results = results.sort()
         // Sort ASC on given field, -field means DESC
-        // TODO
-        //  - else, return sortOrder = 1 depending on - in field, see TypeScript
+        // TODO - return sortOrder = 1 depending on - in field, see TypeScript
         if (sortObject != null  &&  results != null) {
 
             // DESC, and take off -

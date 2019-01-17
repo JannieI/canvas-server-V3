@@ -3,7 +3,7 @@ module.exports = function metaDataFromDatasource(datasource, queryObject) {
     // If queryObject contains .fields, only return the MetaData for those fields
 
     // Preparation
-    let metaData = [];
+    let metaDataFields = [];
     let fieldsObject = queryObject.fields;
     let fieldsArray = [];
 
@@ -30,7 +30,7 @@ module.exports = function metaDataFromDatasource(datasource, queryObject) {
         datasource.dataFieldLengths = [];
     };
 
-    // Loop on metatdata
+    // Loop on metaData
     for (var i = 0; i < datasource.dataFields.length; i++) {
         const fieldName = datasource.dataFields[i];
 
@@ -49,7 +49,7 @@ module.exports = function metaDataFromDatasource(datasource, queryObject) {
                 fieldLength = datasource.dataFieldLengths[i];
             };
 
-            metaData.push(
+            metaDataFields.push(
                 {
                     "fieldName": fieldName,
                     "fieldType": fieldType,
@@ -65,7 +65,7 @@ module.exports = function metaDataFromDatasource(datasource, queryObject) {
     };
 
     // Return
-    return metaData;
+    return metaDataFields;
 }
 
 
