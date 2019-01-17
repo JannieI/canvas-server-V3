@@ -16,7 +16,7 @@ module.exports = function getClientData(datasource, queryObject) {
         try {
             // Set & extract the vars from the Input Params
             // TODO - consider this as a require('') as it will be re-used
-            let datasourceID = datasource.datasourceID;
+            let datasourceID = queryObject.datasourceID;
             let username = datasource.username;
             let password = datasource.password;
             let databaseName = datasource.databaseName;
@@ -147,7 +147,7 @@ module.exports = function getClientData(datasource, queryObject) {
                     //     );
                     // };
 
-                        // Find and Update DB
+                    // Find and Update DB
                         clientModel.findOneAndUpdate(
                             { id: datasourceID },
                             dataToSave,
@@ -156,6 +156,7 @@ module.exports = function getClientData(datasource, queryObject) {
                             runValidators: true              // validate before update
                             })
                             .then(doc => {
+                                debugData('ClientData in cached refreshed for id: ' + datasourceID);
                             })
                             .catch(err => {
                                     debugData('Error caching data from MySQL on Server', err)
@@ -209,7 +210,7 @@ module.exports = function getClientData(datasource, queryObject) {
                     // Return results with metadata according to the CanvasHttpResponse interface
                     resolve({
                         "statusCode": "success",
-                        "message" : "Retrieved data for id :" + datasourceID,
+                        "message" : "Retrieved data for id: " + datasourceID,
                         "data": results,
                         "metaData": {
                             "table": {

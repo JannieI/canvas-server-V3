@@ -14,11 +14,10 @@ const sortFilterFieldsAggregate = require('../utils/sortFilterFieldsAggregate.ut
 router.get('/', (req, res, next) => {
 
     // 1. Get the datasourceID from req.query
-    const id = req.query.id;
     const datasourceID = req.query.datasourceID;
 
     // Validate id of clientData provided
-    debugDev('Start clientData.router forquery is ', id);
+    debugDev('Start clientData.router for datasourceID:', datasourceID);
 
 	if (datasourceID == null) {
         return res.status(400).json({
@@ -141,7 +140,7 @@ router.get('/', (req, res, next) => {
                 // Return the data with metadata
                 return res.json({
                     "statusCode": "success",
-                    "message" : "Retrieved data for id:" + datasourceID,
+                    "message" : "Retrieved data for id: " + datasourceID,
                     "data": results,
                     "metaData": {
                         "table": {
