@@ -5,12 +5,36 @@ const express = require('express');
 const router = express.Router();
 const debugData = require('debug')('app:data');
 const debugDev = require('debug')('app:dev');
-const getClientData = require('../datalayer/mysql.getClientData.datalayer');
-const isDateInFuture = require('../utils/dateFunctions.util');
-const metaDataFromDatasource = require('../utils/metaDataFromDatasource.util');
-const sortFilterFieldsAggregate = require('../utils/sortFilterFieldsAggregate.util');
+const listTables = require('../datalayer/mysql.listTables.datalayer');
 
-// GET route
+// GET route to listTables in a database
+router.get('/listTables', (req, res, next) => {
+
+    // Extra and validate variables
+    let serverType = req.query.serverType;
+    if (serverType == null  || serverType == '') {
+        // error
+    };
+
+    // Validate id of clientData provided
+    debugDev('Start clientData.router for listTables:');
+
+    if (serverType == 'MySQL') {
+        listTables(req.query)
+            .then(resultsObject => {
+                debugData('Returned list of Tables from MySQL');
+                return res.json(resultsObject);
+             } )
+            .catch(errorObject  => {
+                debugDev("Error in clientData.router");
+                return res.json(errorObject);
+            });
+    };
+})
+
+
+
+// GET route for all data
 router.get('/', (req, res, next) => {
 
     // 1. Get the datasourceID from req.query
