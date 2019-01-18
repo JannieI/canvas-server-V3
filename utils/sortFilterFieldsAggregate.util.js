@@ -78,6 +78,9 @@ module.exports = function sortFilterFieldsAggregate(inputResults, queryObject) {
 
         // TODO
         // 5. If (AGGREGATION_OBJECT) then results = results.clever-thing
+        if (aggregationObject != null) {
+
+        };
         
         // 6. Return
         return {
