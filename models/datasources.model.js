@@ -45,7 +45,6 @@ const DatasourceSchema = new Schema({
     serverExpiryDateTime: Date,             // When cache expires on server
     unRefreshable: Boolean,                 // Can create once, but cannot Refresh after that
     cacheResultsLocal: Boolean,             // True if Local results must be cached
-    nrCacheCopies: Number,                  // Nr Cache copies kept, 0 means none
 
     // Optional Max Oldness allowed - must be fresher than given
     oldnessMaxPeriodInterval: String,       // Ie. second, minute, hour, day, month, year
