@@ -2,32 +2,27 @@
 // Returns a list of tables for a given Database
 
 const mysql = require('mysql');
-const config = require('config');               // Configuration
 const debugDev = require('debug')('app:dev');
 const debugData = require('debug')('app:data');
-const metaDataFromDatasource = require('../utils/metaDataFromDatasource.util');
-const sortFilterFieldsAggregate = require('../utils/sortFilterFieldsAggregate.util');
 const createErrorObject = require('../utils/createErrorObject.util');
-const calculateCacheExpiryDate = require('../utils/calculateCacheExpiryDate.util');
 const createReturnObject = require('../utils/createReturnObject.util');
 
-module.exports = function listTables(datasource, queryObject) {
-    // Selects the records from the MySQL database according to the given parameters.
-    // Inputs: DATASOURCE, REQ.QUERY OBJECT
+module.exports = function listTables(queryObject) {
+    // Selects a list of tables for a given Server, Database in a MySQL database
+    // Inputs: REQ.QUERY OBJECT
     return new Promise((resolve, reject) => {
         try {
             // Set & extract the vars from the Input Params
-            // TODO - consider this as a require('') as it will be re-used
-            let serverName = datasource.serverName;
-            let databaseName = datasource.databaseName;
-            let port = datasource.port;
-            let username = datasource.username;
-            let password = datasource.password;
+            let serverName = queryObject.serverName;
+            let databaseName = queryObject.databaseName;
+            let port = queryObject.port;
+            let username = queryObject.username;
+            let password = queryObject.password;
             let dataSQLStatement = "SHOW TABLES";
 
             // TODO - figure out how to treat SQL Parameters, ie @LogicalBusinessDay
             let sqlParameters = '';
-            debugDev('Properties received:', serverName, databaseName, port, username, password, )
+            debugDev('Properties received:', serverName, databaseName, port, username, password);
 
             // Create pool Object
             const pool = mysql.createPool({
@@ -46,7 +41,7 @@ module.exports = function listTables(datasource, queryObject) {
             pool.getConnection((err, connection) => {
 
                 if (err) {
-                    debugData('Error in mysql.getClientData.datalayer.getConnection', err)
+                    debugData('Error in mysql.listTables.datalayer.getConnection', err)
 
                     // MySQL Error Codes
                     if (err.code === 'PROTOCOL_CONNECTION_LOST') {
@@ -61,7 +56,7 @@ module.exports = function listTables(datasource, queryObject) {
 
                     reject({
                         "statusCode": "error",
-                        "message" : "Error in mysql.getClientData.datalayer.getConnection getting data from MySQL",
+                        "message" : "Error in mysql.listTables.datalayer.getConnection getting data from MySQL",
                         "data": null,
                         "error":err
                     });
@@ -91,7 +86,7 @@ module.exports = function listTables(datasource, queryObject) {
                     // Return results with metadata according to the CanvasHttpResponse interface
                     resolve(createReturnObject(
                         "success",
-                        "Retrieved data for id: " + datasourceID,
+                        "Retrieved tables for database : " + databaseName + ' on ' + serverName,
                         results,
                         tableName,
                         nrRecordsReturned,
