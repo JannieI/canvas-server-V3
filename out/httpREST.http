@@ -153,5 +153,14 @@ GET {{host}}/clientData/
 ###
 GET {{host}}/canvasdata/datasources?id=82
 ###
+GET {{host}}/clientData/listTables
+?serverType=MySQL
+&serverName=localhost
+&databaseName=mysql
+&port=3306
+&username=janniei
+&password=janniei
+
+###
 GET {{host}}/canvasdata/**************
 ###

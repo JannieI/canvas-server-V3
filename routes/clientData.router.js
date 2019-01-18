@@ -5,6 +5,10 @@ const express = require('express');
 const router = express.Router();
 const debugData = require('debug')('app:data');
 const debugDev = require('debug')('app:dev');
+const getClientData = require('../datalayer/mysql.getClientData.datalayer');
+const isDateInFuture = require('../utils/dateFunctions.util');
+const metaDataFromDatasource = require('../utils/metaDataFromDatasource.util');
+const sortFilterFieldsAggregate = require('../utils/sortFilterFieldsAggregate.util');
 const listTables = require('../datalayer/mysql.listTables.datalayer');
 
 // GET route to listTables in a database

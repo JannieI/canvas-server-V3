@@ -11,7 +11,7 @@ module.exports = function listTables(queryObject) {
     // Selects a list of tables for a given Server, Database in a MySQL database
     // Inputs: REQ.QUERY OBJECT
     return new Promise((resolve, reject) => {
-        try {
+        // try {
             // Set & extract the vars from the Input Params
             let serverName = queryObject.serverName;
             let databaseName = queryObject.databaseName;
@@ -28,9 +28,9 @@ module.exports = function listTables(queryObject) {
             const pool = mysql.createPool({
                 connectionLimit  : 10,
                 host             : serverName,
-                user             : user,
+                user             : username,
                 password         : password,
-                database         : database,
+                database         : databaseName,
                 port             : port,
                 connectionLimit  : 10,
                 supportBigNumbers: true
@@ -88,22 +88,22 @@ module.exports = function listTables(queryObject) {
                         "success",
                         "Retrieved tables for database : " + databaseName + ' on ' + serverName,
                         results,
-                        tableName,
+                        null,
                         nrRecordsReturned,
-                        fields
+                        null
                     ));
 
                 });
             });
-        }
-        catch (error) {
-            reject({
-                "statusCode": "error",
-                "message" : "Error in TRY block in mysql.listTables.datalayer getting info from MySQL",
-                "data": null,
-                "error":error
-            });
-        };
+    //     }
+    //     catch (error) {
+    //         reject({
+    //             "statusCode": "error",
+    //             "message" : "Error in TRY block in mysql.listTables.datalayer getting info from MySQL",
+    //             "data": null,
+    //             "error":error
+    //         });
+    //     };
     });
 
 }
