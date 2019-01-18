@@ -166,7 +166,6 @@ const DatasourceSchema = new Schema({
     datasourceFilterForThisDashboard: Boolean,  // @ RunTime, changes: true if THIS D has filters on THIS DS
 
     // What: MetaData (describes the What)
-    dataFieldIDs: [ { type: Number } ],     // IDs of fields in DB table
     dataFields: [ { type: String } ],       // FieldNames, in order to display
     dataFieldTypes: [ { type: String } ],   // Field Types, same order as dataFields
     dataFieldLengths: [ { type: Number } ], // Max field lengths, same order as dataFields

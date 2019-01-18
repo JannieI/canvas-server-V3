@@ -1,5 +1,5 @@
 // Connector for MySQL database
-// This handles all DB related actions, include connecting
+// Returns a list of fields for a given Table
 
 const mysql = require('mysql');
 const config = require('config');               // Configuration
@@ -11,7 +11,7 @@ const createErrorObject = require('../utils/createErrorObject.util');
 const calculateCacheExpiryDate = require('../utils/calculateCacheExpiryDate.util');
 const createReturnObject = require('../utils/createReturnObject.util');
 
-module.exports = function getClientData(datasource, queryObject) {
+module.exports = function listFields(datasource, queryObject) {
     // Selects the records from the MySQL database according to the given parameters.
     // Inputs: DATASOURCE, REQ.QUERY OBJECT
     return new Promise((resolve, reject) => {
@@ -99,7 +99,7 @@ module.exports = function getClientData(datasource, queryObject) {
                 // Make the query
                 connection.query(dataSQLStatement, [sqlParameters], (err, returnedData) => {
                     if (err) {
-                        debugData('  mySQL.datalayer Error in .query', err)
+                        debugData('  mySQL.datalayer Error in getConnection', err)
                         reject({
                             "statusCode": "error",
                             "message" : "Error in .query getting data from MySQL",
@@ -255,7 +255,7 @@ module.exports = function getClientData(datasource, queryObject) {
         catch (error) {
             reject({
                 "statusCode": "error",
-                "message" : "Error in TRY block in mysql.getClientData.datalayer getting data from MySQL",
+                "message" : "Error in TRY block in mysql.getClientData.datalayer.getConnection getting data from MySQL",
                 "data": null,
                 "error":error
             });
