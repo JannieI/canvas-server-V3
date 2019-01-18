@@ -182,8 +182,6 @@ const DatasourceSchema = new Schema({
     nrRecordsReturned: Number,              // Nr of records returned by Canvas Server
     sourceLocation: String,                 // Source, CanvasCacheDisc, CanvasCacheMemory
 
-
-
 });
 
 // This pre-hook is called before the information is saved into the database
