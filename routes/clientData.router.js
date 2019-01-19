@@ -9,6 +9,7 @@ const getClientData = require('../datalayer/mysql.getClientData.datalayer');
 const isDateInFuture = require('../utils/dateFunctions.util');
 const metaDataFromDatasource = require('../utils/metaDataFromDatasource.util');
 const sortFilterFieldsAggregate = require('../utils/sortFilterFieldsAggregate.util');
+const listDatabases = require('../datalayer/mysql.listDatabases.datalayer');
 const listTables = require('../datalayer/mysql.listTables.datalayer');
 const createErrorObject = require('../utils/createErrorObject.util');
 const createReturnObject = require('../utils/createReturnObject.util');
@@ -26,7 +27,7 @@ router.get('/listDatabases', (req, res, next) => {
     debugDev('Start clientData.router for listDatabases');
 
     if (serverType == 'MySQL') {
-        listTables(req.query)
+        listDatabases(req.query)
             .then(resultsObject => {
                 debugData('Returned list of Databases from MySQL');
                 return res.json(resultsObject);
