@@ -83,6 +83,9 @@ module.exports = function listTables(queryObject) {
                         nrRecordsReturned = results.length;
                     };
 
+                    // Turn into single array (just table names)
+                    results = results.map( x => x['Tables_in_mysql']);
+
                     // Return results with metadata according to the CanvasHttpResponse interface
                     resolve(createReturnObject(
                         "success",
