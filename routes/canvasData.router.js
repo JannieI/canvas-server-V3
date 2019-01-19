@@ -217,19 +217,18 @@ router.get('/:resource', (req, res, next) => {
 
                     // TODO - decide whether to fill the fields in the metaData
                     const fields = [];
-                    return res.json({
-                        "statusCode": "success",
-                        "message" : "Retrieved data for resource: " + resource,
-                        "data": serverMemoryCache.get(serverVariableName),
-                        "metaData": {
-                            "table": {
-                                "tableName": serverVariableName, //oneDoc.mongooseCollection.collectionName,
-                                "nrRecordsReturned":serverMemoryCache.get(serverVariableName).length
-                            },
-                            "fields": fields
-                        },
-                        "error": null
-                    });
+                    return res.json(
+                        createReturnObject(
+                            "success",
+                            "Retrieved data for resource: " + resource,
+                            serverMemoryCache.get(serverVariableName),
+                            "",
+                            "",
+                            serverVariableName,
+                            serverMemoryCache.get(serverVariableName).length,
+                            fields
+                        )
+                    );
                 };
             };
         };
@@ -316,19 +315,18 @@ router.get('/:resource', (req, res, next) => {
 
             // console.log('xx COUNT', fields, oneDoc.mongooseCollection.collectionName, docs.length)
             // Return the data with metadata
-            return res.json({
-                "statusCode": "success",
-                "message" : "Retrieved data for resource: " + resource,
-                "data": docs,
-                "metaData": {
-                    "table": {
-                        "tableName": "", //oneDoc.mongooseCollection.collectionName,
-                        "nrRecordsReturned":docs.length
-                    },
-                    "fields": fields
-                },
-                "error": null
-            });
+            return res.json(
+                createReturnObject(
+                    "success",
+                    "Retrieved data for resource: " + resource,
+                    docs,
+                    "",
+                    "",
+                    "", // TODO - add oneDoc.mongooseCollection.collectionName?
+                    docs.length,
+                    fields
+                )
+            );
         });
     }
     catch (error) {
