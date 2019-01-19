@@ -83,12 +83,17 @@ router.post('/signup', (req, res, next) => {
 
                     //Success
                     debugDev('    Success for ', user);
-                    return res.json({
-                        "statusCode": "success",
-                        "message" : "Signup successful !",
-                        "data": user,
-                        "error": null
-                    });
+                    return res.json(
+                        createReturnObject(
+                            "success",
+                            "Signup successful",
+                            user,
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""
+                        ));
                 })
                 .catch(err => {
                     // Save Failed
@@ -159,13 +164,19 @@ router.post('/login', (req, res, next) => {
 
                     // Send back info, which includes the token.  Client side we have a standard message
                     // layout, where the token is optional.
-                    return res.json({
-                        "statusCode": "success",
-                        "message" : "User Logged into Server",
-                        "data": null,
-                        "error": null,
-                        "token": token 
-                    });
+                    return res.json(
+                        createReturnObject(
+                            "success",
+                            "User Logged into Server",
+                            null,
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            token
+                        )
+                    );
                 });
             }
         catch (error) {
@@ -179,11 +190,19 @@ router.post('/login', (req, res, next) => {
 router.get('/profile', (req, res, next) => {
     //We'll just send back the user details and the token
 
-    res.json({
-      message : 'You made it to the secure route',
-      user : req.user,
-      token : req.query.secret_token
-    })
+    res.json(
+        createReturnObject(
+            "success",
+            "You made it to the secure route",
+            req.user,
+            "",
+            "",
+            "",
+            "",
+            "",
+            req.query.secret_token
+        )
+    );
 });
 
 // Export
