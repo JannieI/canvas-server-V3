@@ -4,6 +4,8 @@ module.exports = function createReturnObject(
     inputStatusCode, 
     inputReturnMessage, 
     inputDataObject,
+    inputServerName,
+    inputServerType,
     inputTableName,
     inputNrRecordsReturned,
     inputMetadataFields) {
@@ -20,6 +22,14 @@ module.exports = function createReturnObject(
     let dataObject = {};
     if (inputDataObject != null) {
         dataObject = inputDataObject;
+    };
+    let serverName = '';
+    if (inputServerName != null) {
+        serverName = inputServerName;
+    };
+    let serverType = '';
+    if (inputServerType != null) {
+        serverType = inputServerType;
     };
     let tableName = {};
     if (inputTableName != null) {
@@ -40,10 +50,16 @@ module.exports = function createReturnObject(
         "message" : returnMessage,
         "data": dataObject,
         "metaData": {
-            "table": {
-                "tableName": tableName,
-                "nrRecordsReturned": nrRecordsReturned
-            },
+            "server": 
+                {
+                    "serverName": serverName,
+                    "serverType": serverType
+                },
+            "table": 
+                {
+                    "tableName": tableName,
+                    "nrRecordsReturned": nrRecordsReturned
+                },
             "fields": metadataFields
         },
         "error": null
