@@ -97,12 +97,18 @@ router.get('/', (req, res, next) => {
         };
         if (datasourceArray.length == 0) {
             debugData('Error:', "No Datasource exists for the datasourceID provided:" + datasourceID)
-            return res.json({
-                "statusCode": "success",
-                "message" : "No Datasource exists for the datasourceID provided:" + datasourceID,
-                "data": [],
-                "error": null
-            });
+            return res.json(
+                createReturnObject(
+                    "success",
+                    "No Datasource exists for the datasourceID provided:" + datasourceID,
+                    [],
+                    "",
+                    "",
+                    "",
+                    "",
+                    ""
+                )
+            );
         };
 
         // Set the DS var
@@ -169,19 +175,18 @@ router.get('/', (req, res, next) => {
                 };
 
                 // Return the data with metadata
-                return res.json({
-                    "statusCode": "success",
-                    "message" : "Retrieved data for id: " + datasourceID,
-                    "data": results,
-                    "metaData": {
-                        "table": {
-                            "tableName": tableName,
-                            "nrRecordsReturned": nrRecordsReturned
-                        },
-                        "fields": metaDataFields
-                    },
-                    "error": null
-                });
+                return res.json(
+                    createReturnObject(
+                        "success",
+                        "Retrieved data for id: " + datasourceID,
+                        results,
+                        "",
+                        "",
+                        tableName,
+                        nrRecordsReturned,
+                        metaDataFields
+                    )
+                );
             });
         } else {
             // Else, get from Source using the correct data-layer-function depending on the DB type (ie MySQL or Mongo).

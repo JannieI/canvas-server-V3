@@ -368,12 +368,18 @@ router.post('/:resource', (req, res, next) => {
         canvasAdd.save()
             .then(doc => {
                 debugDev('New record added in canvasRouter', doc)
-                return res.json({
-                    "statusCode": "success",
-                    "message" : "Added record for resource: " + resource,
-                    "data": doc,
-                    "error": null
-                });
+                return res.json(
+                    createReturnObject(
+                        "success",
+                        "Added record for resource: " + resource,
+                        doc,
+                        "",
+                        "",
+                        "",
+                        "",
+                        ""
+                    )
+                );
             })
             .catch(err => {
                 console.error(err)
@@ -445,12 +451,18 @@ router.delete('/:resource', (req, res, next) => {
                         )
                     );
                 } else {
-                    return res.json({
-                        "statusCode": "success",
-                        "message" : "Deleted record for resource: " + resource + ', id: ', id,
-                        "data": doc,
-                        "error": null
-                    });
+                    return res.json(
+                        createReturnObject(
+                            "success",
+                            "Deleted record for resource: " + resource + ', id: ', id,
+                            doc,
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""
+                        )
+                    );
                 };
             })
             .catch(err => {
@@ -490,12 +502,13 @@ router.put('/:resource', (req, res, next) => {
 
     const id = req.query.id;
     if (id == null) {
-        return res.json({
-            "statusCode": "failed",
-            "message" : "Error: no ID provided for resource: " + resource + 'id: ', id,
-            "data": null,
-            "error": null
-        });
+        return res.json(
+            createErrorObject(
+                "error",
+                "Error: no ID provided for resource: " + resource + 'id: ', id,
+                null
+            )
+        );
     };
 
     // debugDev('Router: PUT for resource:', resource, 'query:', query, 'body:', body);
@@ -517,12 +530,18 @@ router.put('/:resource', (req, res, next) => {
             })
             .then(doc => {
                 debugDev('updated', doc)
-                return res.json({
-                    "statusCode": "success",
-                    "message" : "Updated record for resource: " + resource + 'id: ', id,
-                    "data": doc,
-                    "error": null
-                });
+                return res.json(
+                    createReturnObject(
+                        "success",
+                        "Updated record for resource: " + resource + 'id: ', id,
+                        doc,
+                        "",
+                        "",
+                        "",
+                        "",
+                        ""
+                    )
+                );
             })
             .catch(err => {
                 console.error(err)
