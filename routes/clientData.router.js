@@ -74,27 +74,25 @@ router.get('/', (req, res, next) => {
     datasourceModel.find( datasourceIDQuery, (err, datasourceArray) => {
         if (err) {
             console.error('Error:', err)
-            res.json({
-                "statusCode": "error",
-                "message" : "Error finding Datasource in Mongo DB",
-                "data": null,
-                "error": err
-            });
+            res.json(
+                createErrorObject(
+                    "error",
+                    "Error finding Datasource in Mongo DB",
+                    err
+                )
+            );
             return;
         };
         if (datasourceArray.length > 1) {
             debugData("Error: Duplicate Datasource in Mongo DB for the datasourceID provided: "
                 + datasourceID)
-            return res.json({
-                "statusCode": "error",
-                "message" : "Duplicate Datasource in Mongo DB for the datasourceID provided:"
-                     + datasourceID,
-                "data": null,
-                "error":
-                    {
-                        message: "Duplicate Datasource in Mongo DB for the datasourceID provided: " + datasourceID
-                    }
-            });
+            return res.json(
+                createErrorObject(
+                    "error",
+                    "Duplicate Datasource in Mongo DB for the datasourceID provided:" + datasourceID,
+                    null
+                )
+            );
         };
         if (datasourceArray.length == 0) {
             debugData('Error:', "No Datasource exists for the datasourceID provided:" + datasourceID)
