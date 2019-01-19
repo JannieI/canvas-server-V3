@@ -225,6 +225,7 @@ router.get('/:resource', (req, res, next) => {
                             serverMemoryCache.get(serverVariableName),
                             "",
                             "",
+                            "",
                             serverVariableName,
                             serverMemoryCache.get(serverVariableName).length,
                             fields
@@ -323,6 +324,7 @@ router.get('/:resource', (req, res, next) => {
                     docs,
                     "",
                     "",
+                    "",
                     "", // TODO - add oneDoc.mongooseCollection.collectionName?
                     docs.length,
                     fields
@@ -372,6 +374,8 @@ router.post('/:resource', (req, res, next) => {
                         "success",
                         "Added record for resource: " + resource,
                         doc,
+                        "",
+                        "",
                         "",
                         "",
                         "",
@@ -459,6 +463,8 @@ router.delete('/:resource', (req, res, next) => {
                             "",
                             "",
                             "",
+                            "",
+                            "",
                             ""
                         )
                     );
@@ -534,6 +540,8 @@ router.put('/:resource', (req, res, next) => {
                         "success",
                         "Updated record for resource: " + resource + 'id: ', id,
                         doc,
+                        "",
+                        "",
                         "",
                         "",
                         "",
