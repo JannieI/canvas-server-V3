@@ -93,6 +93,8 @@ router.post('/signup', (req, res, next) => {
                             "",
                             "",
                             "",
+                            "",
+                            "",
                             ""
                         ));
                 })
@@ -175,6 +177,7 @@ router.post('/login', (req, res, next) => {
                             "",
                             "",
                             "",
+                            "",
                             token
                         )
                     );
@@ -196,6 +199,7 @@ router.get('/profile', (req, res, next) => {
             "success",
             "You made it to the secure route",
             req.user,
+            "",
             "",
             "",
             "",
