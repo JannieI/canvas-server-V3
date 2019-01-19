@@ -168,7 +168,7 @@ router.post('/login', (req, res, next) => {
                         createReturnObject(
                             "success",
                             "User Logged into Server",
-                            null,
+                            [],
                             "",
                             "",
                             "",
