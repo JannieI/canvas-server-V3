@@ -10,6 +10,7 @@ const jwt = require('jsonwebtoken');
 const debugDev = require('debug')('app:dev');
 
 const UserModel = require('../models/canvasUsers.model');
+const createErrorObject = require('../utils/createErrorObject.util');
 
 // Verify User as valid (exists in Canvas DB)
 router.post('/verify', (req, res, next) => {

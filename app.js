@@ -19,6 +19,7 @@ const compression = require('compression');
 
 // const mongoose = require('mongoose');
 const mongoDatabase = require('./datalayer/mongoLocalDatabase');
+const createErrorObject = require('../utils/createErrorObject.util');
 // create a write stream (in append mode)
 var accessLogStream = fs.createWriteStream(path.join(__dirname, 'out/access.log'), { flags: 'a' })
 
