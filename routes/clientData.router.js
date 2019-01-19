@@ -11,6 +11,7 @@ const metaDataFromDatasource = require('../utils/metaDataFromDatasource.util');
 const sortFilterFieldsAggregate = require('../utils/sortFilterFieldsAggregate.util');
 const listDatabases = require('../datalayer/mysql.listDatabases.datalayer');
 const listTables = require('../datalayer/mysql.listTables.datalayer');
+const listFields = require('../datalayer/mysql.listFields.datalayer');
 const createErrorObject = require('../utils/createErrorObject.util');
 const createReturnObject = require('../utils/createReturnObject.util');
 
@@ -64,7 +65,30 @@ router.get('/listTables', (req, res, next) => {
     };
 })
 
+// GET route to list ALL Tables in a database
+router.get('/listFields', (req, res, next) => {
 
+    // Extra and validate variables
+    let serverType = req.query.serverType;
+    if (serverType == null  || serverType == '') {
+        // error
+    };
+
+    // Get the list
+    debugDev('Start clientData.router for listFields');
+
+    if (serverType == 'MySQL') {
+        listFields(req.query)
+            .then(resultsObject => {
+                debugData('Returned list of Fields for a Table from MySQL');
+                return res.json(resultsObject);
+             } )
+            .catch(errorObject  => {
+                debugDev("Error in clientData.router.listFields");
+                return res.json(errorObject);
+            });
+    };
+})
 
 // GET route for all data
 router.get('/', (req, res, next) => {
