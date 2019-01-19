@@ -190,30 +190,26 @@ app.use('/', indexRouter);
 if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
         res.status(err.status || 500);
-        res.json({
-            "statusCode": "error",
-            "message" : "Error: " + err.status,
-            "data": null,
-            "error": 
-                {
-                    "errorObject": err
-                }
-        });
+        res.json(
+            createErrorObject(
+                "error",
+                "Error: " + err.status,
+                err
+            )
+        );
     });
 };
   
 // Production error handler: no stacktraces leaked to user
 app.use(function(err, req, res, next) {
     res.status(err.status || 500);
-    res.json({
-        "statusCode": "error",
-        "message" : "Error: " + err.status,
-        "data": null,
-        "error": 
-            {
-                "errorObject": err
-            }
-    });
+    res.json(
+        createErrorObject(
+            "error",
+            "Error: " + err.status,
+            err
+        )
+    );
 });
 
 // Export for bin/www
