@@ -60,12 +60,13 @@ authGitHubRouter.get('/loginSuccess', (req, res, next) => {
 });
 
 authGitHubRouter.get('/loginFailed', (req, res, next) => {
-    res.json({
-        "statusCode": "failed",
-        "message" : "Login failed",
-        "data": null,
-        "error": null
-    });
+    res.json(
+        createErrorObject(
+            "failed",
+            "Login failed",
+            null
+        )
+    );
 });
 
 // authGitHub/logout
