@@ -19,18 +19,19 @@ module.exports = function getClientData(datasource, queryObject) {
             // Set & extract the vars from the Input Params
             // TODO - consider this as a require('') as it will be re-used
             let datasourceID = queryObject.datasourceID;
-            let username = datasource.username;
+            let user = datasource.username;
             let password = datasource.password;
-            let databaseName = datasource.databaseName;
+            let database = datasource.databaseName;
             let port = datasource.port;
-            let serverName = datasource.serverName;
+            let host = datasource.serverName;
+            let serverType = datasource.serverType;
             let dataTableName = datasource.dataTableName;
             let dataSQLStatement = datasource.dataSQLStatement;
             let cacheResultsOnServer = datasource.cacheResultsOnServer;
 
             // TODO - figure out how to treat SQL Parameters, ie @LogicalBusinessDay
             let sqlParameters = '';
-            debugDev('Properties read from DS id:', datasource.id, username, password, databaseName, port, serverName, dataTableName, dataSQLStatement, cacheResultsOnServer)
+            debugDev('Properties read from DS id:', datasource.id, user, password, database, port, host, dataTableName, dataSQLStatement, cacheResultsOnServer)
 
             // Load defaults, set in startup.sh (via custom-environment-variables.js)
             const defaultHost = config.get('mysqlLocal.startup.host');
@@ -39,19 +40,22 @@ module.exports = function getClientData(datasource, queryObject) {
             const defaultDatabase = config.get('mysqlLocal.startup.database');
             const defaultPort = config.get('mysqlLocal.startup.port');
 
-            if (defaultHost != null  &&  defaultHost != '') {
+            if (host != null  &&  defaultHost != null  &&  defaultHost != '') {
                 host = defaultHost;
             };
-            if (defaultUser != null  &&  defaultUser != '') {
+            if (user == null  &&  defaultUser != null  &&  defaultUser != '') {
                 user = defaultUser;
             };
-            if (defaultPassword != null  &&  defaultPassword != '') {
+            if ((password == null  ||  password == "")  
+                &&  defaultPassword != null  
+                &&  defaultPassword != ''
+                ) {
                 password = defaultPassword;
             };
-            if (defaultDatabase != null  &&  defaultDatabase != '') {
+            if (database == null  &&  defaultDatabase != null  &&  defaultDatabase != '') {
                 database = defaultDatabase;
             };
-            if (defaultPort != null  &&  defaultPort != '') {
+            if (port == null  &&  defaultPort != null  &&  defaultPort != '') {
                 port = defaultPort;
             };
 
@@ -243,8 +247,8 @@ module.exports = function getClientData(datasource, queryObject) {
                         "success",
                         "Retrieved data for id: " + datasourceID,
                         results,
-                        null,
-                        null,
+                        host,
+                        serverType,
                         tableName,
                         nrRecordsReturned,
                         fields
