@@ -11,7 +11,8 @@ module.exports = function listTables(queryObject) {
     // Selects a list of tables for a given Server, Database in a MySQL database
     // Inputs: REQ.QUERY OBJECT
     return new Promise((resolve, reject) => {
-        // try {
+        
+        try {
             // Set & extract the vars from the Input Params
             let serverName = queryObject.serverName;
             let databaseName = queryObject.databaseName;
@@ -54,24 +55,25 @@ module.exports = function listTables(queryObject) {
                         console.error('Database connection was refused.')
                     }
 
-                    reject({
-                        "statusCode": "error",
-                        "message" : "Error in mysql.listTables.datalayer.getConnection getting data from MySQL",
-                        "data": null,
-                        "error":err
-                    });
+                    reject(
+                        createErrorObject(
+                            "error",
+                            "Error in mysql.listTables.datalayer.getConnection getting data from MySQL",
+                            err
+                        )
+                    );
                 };
 
                 // Make the query
                 connection.query(dataSQLStatement, [sqlParameters], (err, returnedData) => {
                     if (err) {
                         debugData('  mySQL.datalayer Error in getConnection', err)
-                        reject({
-                            "statusCode": "error",
-                            "message" : "Error in .query getting data from MySQL",
-                            "data": null,
-                            "error":err
-                        });
+                        reject(createErrorObject(
+                                "error",
+                                "Error in .query getting data from MySQL",
+                                err
+                            )
+                        );
                     };
 
                     //  Now, results = [data]
@@ -100,15 +102,15 @@ module.exports = function listTables(queryObject) {
 
                 });
             });
-    //     }
-    //     catch (error) {
-    //         reject({
-    //             "statusCode": "error",
-    //             "message" : "Error in TRY block in mysql.listTables.datalayer getting info from MySQL",
-    //             "data": null,
-    //             "error":error
-    //         });
-    //     };
+        }
+        catch (error) {
+            reject({
+                "statusCode": "error",
+                "message" : "Error in TRY block in mysql.listTables.datalayer getting info from MySQL",
+                "data": null,
+                "error":error
+            });
+        };
     });
 
 }

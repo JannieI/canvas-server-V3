@@ -1,6 +1,10 @@
 // This routine takes input, and creates an error object in CanvasHttpResponse format.
 
-module.exports = function createErrorObject(inputStatusCode, inputErrorMessage, inputErrorObject) {
+module.exports = function createErrorObject(
+    inputStatusCode, 
+    inputErrorMessage, 
+    inputErrorObject
+    ) {
 
     // Define vars
     let statusCode = 'error';
