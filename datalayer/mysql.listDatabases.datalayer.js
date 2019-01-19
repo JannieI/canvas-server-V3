@@ -1,5 +1,5 @@
 // Connector for MySQL database
-// Returns a list of tables for a given Database
+// Returns a list of Databases for a given Server
 
 const mysql = require('mysql');
 const debugDev = require('debug')('app:dev');

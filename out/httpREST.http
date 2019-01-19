@@ -171,5 +171,15 @@ GET {{host}}/clientData/listTables
 &password=janniei
 
 ###
+GET {{host}}/clientData/listFields
+?serverType=MySQL
+&serverName=localhost
+&databaseName=mysql
+&port=3306
+&tableName=test
+&username=janniei
+&password=janniei
+
+###
 GET {{host}}/canvasdata/**************
 ###
