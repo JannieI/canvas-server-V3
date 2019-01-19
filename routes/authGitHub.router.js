@@ -62,6 +62,7 @@ authGitHubRouter.get('/loginSuccess', (req, res, next) => {
             "",
             "",
             "",
+            "",
             ""
         )
     );
@@ -87,6 +88,7 @@ authGitHubRouter.get('/logout', (req, res, next) => {
                 "success",
                 "Logged out",
                 [],
+                "",
                 "",
                 "",
                 "",
