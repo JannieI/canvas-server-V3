@@ -66,12 +66,13 @@ authGoogleRouter.get('/loginSuccess', (req, res, next) => {
 });
 
 authGoogleRouter.get('/loginFailed', (req, res, next) => {
-    res.json({
-        "statusCode": "failed",
-        "message" : "Login failed",
-        "data": null,
-        "error": null
-    });
+    res.json(
+        createErrorObject(
+            "failed",
+            "Login failed",
+            null
+        )
+    );
 });
 
 // authGoogle/logout
