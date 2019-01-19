@@ -98,6 +98,7 @@ module.exports = function listFields(queryObject) {
                         results,
                         serverName,
                         "MySQL",
+                        databaseName,
                         tableName,
                         nrRecordsReturned,
                         null
