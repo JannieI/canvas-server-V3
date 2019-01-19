@@ -13,7 +13,32 @@ const listTables = require('../datalayer/mysql.listTables.datalayer');
 const createErrorObject = require('../utils/createErrorObject.util');
 const createReturnObject = require('../utils/createReturnObject.util');
 
-// GET route to listTables in a database
+// GET route to list ALL Databases in a Database Server
+router.get('/listDatabases', (req, res, next) => {
+
+    // Extra and validate variables
+    let serverType = req.query.serverType;
+    if (serverType == null  || serverType == '') {
+        // error
+    };
+
+    // Get the list
+    debugDev('Start clientData.router for listDatabases');
+
+    if (serverType == 'MySQL') {
+        listTables(req.query)
+            .then(resultsObject => {
+                debugData('Returned list of Databases from MySQL');
+                return res.json(resultsObject);
+             } )
+            .catch(errorObject  => {
+                debugDev("Error in clientData.router.listDatabases");
+                return res.json(errorObject);
+            });
+    };
+})
+
+// GET route to list ALL Tables in a database
 router.get('/listTables', (req, res, next) => {
 
     // Extra and validate variables
@@ -22,8 +47,8 @@ router.get('/listTables', (req, res, next) => {
         // error
     };
 
-    // Validate id of clientData provided
-    debugDev('Start clientData.router for listTables:');
+    // Get the list
+    debugDev('Start clientData.router for listTables');
 
     if (serverType == 'MySQL') {
         listTables(req.query)
@@ -32,7 +57,7 @@ router.get('/listTables', (req, res, next) => {
                 return res.json(resultsObject);
              } )
             .catch(errorObject  => {
-                debugDev("Error in clientData.router");
+                debugDev("Error in clientData.router.listTables");
                 return res.json(errorObject);
             });
     };
@@ -50,21 +75,23 @@ router.get('/', (req, res, next) => {
     debugDev('Start clientData.router for datasourceID:', datasourceID);
 
 	if (datasourceID == null) {
-        return res.status(400).json({
-            "statusCode": "error",
-            "message" : "No datasourceID provided in query string",
-            "data": null,
-            "error": "No datasourceID provided in query string"
-        });
+        return res.status(400).json(
+            createErrorObject(
+                "error",
+                "No datasourceID provided in query string",
+                null
+            )
+        );
     };
 
 	if (isNaN(datasourceID)) {
-        return res.status(400).json({
-            "statusCode": "error",
-            "message" : "datasourceID parameter must be a number.  Provided:", datasourceID,
-            "data": null,
-            "error": "datasourceID parameter must be a number.  Provided:", datasourceID
-        });
+        return res.status(400).json(
+            createErrorObject(
+                "error",
+                "datasourceID parameter must be a number.  Provided:", datasourceID,
+                null
+            )
+        );
     };
 
 
@@ -149,12 +176,13 @@ router.get('/', (req, res, next) => {
 
                     // Return if an Error
                     if (afterSort.error) {
-                        return res.status(400).json({
-                            "statusCode": "error",
-                            "message" : "Error in the sortFilterFieldsAggregate routine",
-                            "data": null,
-                            "error": error
-                        });
+                        return res.status(400).json(
+                            createErrorObject(
+                                "error",
+                                "Error in the sortFilterFieldsAggregate routine",
+                                error
+                            )
+                        );
                     };
 
                     // Update results with this information
