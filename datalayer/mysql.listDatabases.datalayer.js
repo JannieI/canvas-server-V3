@@ -244,6 +244,8 @@ module.exports = function listDatabases(datasource, queryObject) {
                         "success",
                         "Retrieved data for id: " + datasourceID,
                         results,
+                        null,
+                        null,
                         tableName,
                         nrRecordsReturned,
                         fields
