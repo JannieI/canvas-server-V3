@@ -95,6 +95,7 @@ module.exports = function listDatabases(queryObject) {
                         results,
                         serverName,
                         "MySQL",
+                        "",
                         null,
                         nrRecordsReturned,
                         null
