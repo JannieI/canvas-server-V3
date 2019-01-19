@@ -376,15 +376,13 @@ router.post('/:resource', (req, res, next) => {
             })
             .catch(err => {
                 console.error(err)
-                return res.json({
-                    "statusCode": "error",
-                    "message" : "Error: Could not add record for resource: " + resource,
-                    "data": null,
-                    "error":
-                        {
-                            "errorObject": err
-                        }
-                });
+                return res.json(
+                    createErrorObject(
+                        "error",
+                        "Error: Could not add record for resource: " + resource,
+                        err
+                    )
+                );
         });
     }
     catch (error) {
@@ -414,12 +412,13 @@ router.delete('/:resource', (req, res, next) => {
     debugDev('const ',req.query, id);
 
     if (id == null) {
-        return res.json({
-            "statusCode": "failed",
-            "message" : "Error: no ID provided for resource: " + resource + 'id: ', id,
-            "data": null,
-            "error": null
-        });
+        return res.json(
+            createErrorObject(
+                "failed",
+                "Error: no ID provided for resource: " + resource + 'id: ', id,
+                null
+            )
+        );
     };
 
     // debugDev('Router: DELETE for resource:', resource, 'query:', query);
@@ -437,12 +436,13 @@ router.delete('/:resource', (req, res, next) => {
                 debugDev('deleted', doc)
 
                 if (doc == null) {
-                    return res.json({
-                        "statusCode": "error",
-                        "message" : "Deletion of " + resource + " failed: could not find id = " + id,
-                        "data": doc,
-                        "error": null
-                    });
+                    return res.json(
+                        createErrorObject(
+                            "error",
+                            "Deletion of " + resource + " failed: could not find id = " + id,
+                            null
+                        )
+                    );
                 } else {
                     return res.json({
                         "statusCode": "success",
@@ -454,16 +454,14 @@ router.delete('/:resource', (req, res, next) => {
             })
             .catch(err => {
                 console.error(err)
-                return res.json({
-                    "statusCode": "error",
-                    "message" : "Error: Could not delete record for resource: " + resource + ', id: ', id,
-                    "data": null,
-                    "error":
-                        {
-                            "errorObject": err
-                        }
-                });
-        });
+                return res.json(
+                    createErrorObject(
+                        "error",
+                        "Error: Could not delete record for resource: " + resource + ', id: ', id,
+                        err
+                    )
+                );
+            });
     }
     catch (error) {
         return res.status(400).json({
@@ -527,16 +525,14 @@ router.put('/:resource', (req, res, next) => {
             })
             .catch(err => {
                 console.error(err)
-                return res.json({
-                    "statusCode": "error",
-                    "message" : "Error: Could not update record for resource: " + resource + 'id: ', id,
-                    "data": null,
-                    "error":
-                        {
-                            "errorObject": err
-                        }
-                });
-        });
+                return res.json(
+                    createErrorObject(
+                        "error",
+                        "Error: Could not update record for resource: " + resource + 'id: ', id,
+                        err
+                    )
+                );
+            });
     }
     catch (error) {
         return res.status(400).json({
