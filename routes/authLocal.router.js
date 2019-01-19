@@ -21,15 +21,13 @@ router.post('/verify', (req, res, next) => {
         // Mongo Error
         if (err) {
             debugDev('    Error DB in Find ', err, 'body', req.body);
-            return res.json({
-                "statusCode": "error",
-                "message" : "Error in DB Find: " + err.message,
-                "data": null,
-                "error": 
-                    {
-                        "errorObject": err
-                    }
-            });
+            return res.json(
+                createErrorObject(
+                    "error",
+                    "Error in DB Find: " + err.message,
+                    err
+                )
+            );
         };
 
         // Create a new user record since it does not exist
@@ -56,15 +54,13 @@ router.post('/signup', (req, res, next) => {
         // Mongo Error
         if (err) {
             debugDev('    Error in Find ', err);
-            return res.json({
-                "statusCode": "error",
-                "message" : "Error in DB Find: " + err.message,
-                "data": null,
-                "error": 
-                    {
-                        "errorObject": err
-                    }
-                });
+            return res.json(
+                createErrorObject(
+                    "error",
+                    "Error in DB Find: " + err.message,
+                    err
+                )
+            );
         };
 
         // Create a new user record since it does not exist
@@ -96,26 +92,25 @@ router.post('/signup', (req, res, next) => {
                 .catch(err => {
                     // Save Failed
                     debugDev('    Save user failed: ', err);
-                    return res.json({
-                        "statusCode": "failed",
-                        "message" : "Registration failed, cannot save user !",
-                        "data": null,
-                        "error": 
-                            {
-                                "errorObject": err
-                            }
-                    });
+                    return res.json(
+                        createErrorObject(
+                            "failed",
+                            "Registration failed, cannot save user !",
+                            err
+                        )
+                    );
                 });
         } else {
             
             // User already exists
             debugDev('    User Already exists ', user);
-            return res.json({
-                "statusCode": "failed",
-                "message" : "User already exists for this Company",
-                "data": user,
-                "error": null
-            });
+            return res.json(
+                createErrorObject(
+                    "failed",
+                    "User already exists for this Company",
+                    null
+                )
+            );
         };
     });
 
@@ -135,15 +130,13 @@ router.post('/login', (req, res, next) => {
                     debugDev('authLocalRouter Error after passport.authenticate')
 
                     // return next(error);
-                    return res.json({
-                        "statusCode": "failed",
-                        "message" : "Login failed",
-                        "data": null,
-                        "error": 
-                            {
-                                "errorObject": err
-                            }
-                    });
+                    return res.json(
+                        createErrorObject(
+                            "failed",
+                            "Login failed",
+                            err
+                        )
+                    );
                 };
                 req.login(user, { session : false }, async (error) => {
                     if( error ) return next(error)
