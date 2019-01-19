@@ -8,7 +8,8 @@ module.exports = function createReturnObject(
     inputServerType,
     inputTableName,
     inputNrRecordsReturned,
-    inputMetadataFields) {
+    inputMetadataFields,
+    inputToken) {
 
     // Define vars
     let statusCode = 'success';
@@ -43,6 +44,11 @@ module.exports = function createReturnObject(
     if (inputMetadataFields != null) {
         metadataFields = inputMetadataFields;
     };
+    let token = "";
+    if (inputToken != null) {
+        token = inputToken;
+    };
+    
 
     // Return an object in CanvasHttpResponse format
     return {
@@ -62,7 +68,8 @@ module.exports = function createReturnObject(
                 },
             "fields": metadataFields
         },
-        "error": null
+        "error": null,
+        "token": token
     };
 
 }
