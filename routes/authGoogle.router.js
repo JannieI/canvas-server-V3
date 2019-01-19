@@ -68,6 +68,7 @@ authGoogleRouter.get('/loginSuccess', (req, res, next) => {
             "",
             "",
             "",
+            "",
             ""
         )
     );
@@ -93,6 +94,7 @@ authGoogleRouter.get('/logout', (req, res, next) => {
                 "success",
                 "Logged out",
                 [],
+                "",
                 "",
                 "",
                 "",
