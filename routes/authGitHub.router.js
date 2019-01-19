@@ -22,7 +22,7 @@ authGitHubRouter.use(session({
     saveUninitialized: true,
 }))
 
-// Passport related 
+// Passport related
 authGitHubRouter.use(passport.initialize());
 authGitHubRouter.use(passport.session());
 passport.use(new GitHubStrategy(passportConfig,
@@ -52,12 +52,18 @@ authGitHubRouter.get('/callback', passport.authenticate('github',{
 }));
 
 authGitHubRouter.get('/loginSuccess', (req, res, next) => {
-    res.json({
-        "statusCode": "success",
-        "message" : "Login worked",
-        "data": null,
-        "error": null
-    });
+    res.json(
+        createReturnObject(
+            "success",
+            "Login worked",
+            null,
+            "",
+            "",
+            "",
+            "",
+            ""
+        )
+    );
 });
 
 authGitHubRouter.get('/loginFailed', (req, res, next) => {
@@ -75,12 +81,18 @@ authGitHubRouter.get('/logout', (req, res, next) => {
     req.logout();
     req.session.destroy( () => {
         res.clearCookie('connect.sid');
-        res.json({
-            "statusCode": "success",
-            "message" : "Logged out",
-            "data": null,
-            "error": null
-        });
+        res.json(
+            createReturnObject(
+                "success",
+                "Logged out",
+                null,
+                "",
+                "",
+                "",
+                "",
+                ""
+            )
+        );
     });
 });
 
