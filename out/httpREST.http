@@ -174,7 +174,7 @@ GET {{host}}/clientData/listTables
 GET {{host}}/clientData/listFields
 ?serverType=MySQL
 &serverName=localhost
-&databaseName=mysql
+&databaseName=Canvas
 &port=3306
 &tableName=test
 &username=janniei

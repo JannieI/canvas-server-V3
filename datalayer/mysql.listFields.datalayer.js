@@ -16,14 +16,17 @@ module.exports = function listFields(queryObject) {
             // Set & extract the vars from the Input Params
             let serverName = queryObject.serverName;
             let databaseName = queryObject.databaseName;
+            let tableName = queryObject.tableName;
             let port = queryObject.port;
             let username = queryObject.username;
             let password = queryObject.password;
-            let dataSQLStatement = "SHOW TABLES";
+            let dataSQLStatement = "DESCRIBE " + tableName + ";";
 
+        
             // TODO - figure out how to treat SQL Parameters, ie @LogicalBusinessDay
             let sqlParameters = '';
-            debugDev('Properties received:', serverName, databaseName, port, username, password);
+            debugDev('Properties received:', serverName, databaseName, tableName, 
+                port, username, password, dataSQLStatement);
 
             // Create pool Object
             const pool = mysql.createPool({
@@ -95,7 +98,7 @@ module.exports = function listFields(queryObject) {
                         results,
                         serverName,
                         "MySQL",
-                        null,
+                        tableName,
                         nrRecordsReturned,
                         null
                     ));
