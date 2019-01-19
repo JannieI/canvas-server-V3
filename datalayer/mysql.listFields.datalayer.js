@@ -227,19 +227,6 @@ module.exports = function listFields(datasource, queryObject) {
                     };
 
                     // Return results with metadata according to the CanvasHttpResponse interface
-                    // resolve({
-                    //     "statusCode": "success",
-                    //     "message" : "Retrieved data for id: " + datasourceID,
-                    //     "data": results,
-                    //     "metaData": {
-                    //         "table": {
-                    //             "tableName": tableName,
-                    //             "nrRecordsReturned": nrRecordsReturned
-                    //         },
-                    //         "fields": fields
-                    //     },
-                    //     "error": null
-                    // });
                     resolve(createReturnObject(
                         "success",
                         "Retrieved data for id: " + datasourceID,
