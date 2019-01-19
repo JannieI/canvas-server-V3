@@ -159,6 +159,7 @@ router.get('/', (req, res, next) => {
                     "",
                     "",
                     "",
+                    "",
                     ""
                 )
             );
@@ -234,6 +235,7 @@ router.get('/', (req, res, next) => {
                         "success",
                         "Retrieved data for id: " + datasourceID,
                         results,
+                        "",
                         "",
                         "",
                         tableName,

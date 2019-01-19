@@ -9,6 +9,7 @@ var GoogleStrategy = require('passport-google-oauth20').Strategy;
 const passportConfig = require('../config/configPassportGoogle');
 
 const createErrorObject = require('../utils/createErrorObject.util');
+const createReturnObject = require('../utils/createReturnObject.util');
 
 // Functions ---------------------------------------------------------------------
 

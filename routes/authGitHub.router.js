@@ -9,6 +9,7 @@ var GitHubStrategy = require('passport-github').Strategy;
 const passportConfig = require('../config/configPassportGitHub');
 
 const createErrorObject = require('../utils/createErrorObject.util');
+const createReturnObject = require('../utils/createReturnObject.util');
 
 // Functions ---------------------------------------------------------------------
 

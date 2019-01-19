@@ -11,6 +11,7 @@ const debugDev = require('debug')('app:dev');
 
 const UserModel = require('../models/canvasUsers.model');
 const createErrorObject = require('../utils/createErrorObject.util');
+const createReturnObject = require('../utils/createReturnObject.util');
 
 // Verify User as valid (exists in Canvas DB)
 router.post('/verify', (req, res, next) => {
