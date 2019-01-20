@@ -1,5 +1,6 @@
-// This is a testing module:  All the Mongo functions uses MongoClient should rather be handled by 
-// Mongoose in canvasDataRouter 
+// Note to Ivan:
+//    This is a testing module:  All the Mongo functions uses MongoClient
+//    The email worked at the time of testing - KEEP for later notes ...
 
 // Imports -----------------------------------------------------------------
 var express = require('express');
