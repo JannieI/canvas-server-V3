@@ -173,8 +173,8 @@ GET {{host}}/clientData/listTables
 ###
 http://localhost:8000/clientData/listTables
 ?serverType=MySQL
-&serverName=Canvas
-&databaseName=test
+&serverName=localhost
+&databaseName=Canvas
 &port=3306
 &username=janniei
 &password=janniei
