@@ -171,6 +171,14 @@ GET {{host}}/clientData/listTables
 &password=janniei
 
 ###
+http://localhost:8000/clientData/listTables
+?serverType=MySQL
+&serverName=Canvas
+&databaseName=test
+&port=3306
+&username=janniei
+&password=janniei
+###
 GET {{host}}/clientData/listFields
 ?serverType=MySQL
 &serverName=localhost

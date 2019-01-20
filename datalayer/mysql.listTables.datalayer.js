@@ -55,7 +55,7 @@ module.exports = function listTables(queryObject) {
                         console.error('Database connection was refused.')
                     }
 
-                    reject(
+                    return reject(
                         createErrorObject(
                             "error",
                             "Error in mysql.listTables.datalayer.getConnection getting data from MySQL",
