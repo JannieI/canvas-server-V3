@@ -28,7 +28,7 @@ const passport = require('passport');
 // const passportConfig = require('./configPassport');
 
 // Require Routers ---------------------------------------------------------------
-const indexRouter = require('./routes/index');
+// const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const authGitHubRouter = require('./routes/authGitHub.router');
 const authGoogleRouter = require('./routes/authGoogle.router');
@@ -184,7 +184,7 @@ app.use('/auth/google/', authGoogleRouter);
 // ALL Canvas data-related API calls
 app.use('/canvasdata', canvasDataRouter);
 app.use('/clientdata', clientDataRouter);
-app.use('/', indexRouter);
+// app.use('/', indexRouter);
 
 
 // Dev error handler
