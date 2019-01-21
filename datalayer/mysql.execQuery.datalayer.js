@@ -1,4 +1,4 @@
-// Connector for MySQL database, and returns a list of Fields for a given Tables
+// Connector for MySQL database, and executes given SQL Statement
 
 const mysql = require('mysql');
 const debugDev = require('debug')('app:dev');
@@ -6,7 +6,7 @@ const debugData = require('debug')('app:data');
 const createErrorObject = require('../utils/createErrorObject.util');
 const createReturnObject = require('../utils/createReturnObject.util');
 
-module.exports = function listFields(queryObject) {
+module.exports = function execQuery(queryObject) {
     // Runs given sqlStatement and returns data
     // Inputs: REQ.QUERY OBJECT
     return new Promise((resolve, reject) => {
@@ -42,7 +42,7 @@ module.exports = function listFields(queryObject) {
             pool.getConnection((err, connection) => {
 
                 if (err) {
-                    debugData('Error in mysql.listFields.datalayer.getConnection', err)
+                    debugData('Error in mysql.execQuery.datalayer.getConnection', err)
 
                     // MySQL Error Codes
                     if (err.code === 'PROTOCOL_CONNECTION_LOST') {
@@ -58,7 +58,7 @@ module.exports = function listFields(queryObject) {
                     reject(
                         createErrorObject(
                             "error",
-                            "Error in mysql.listFields.datalayer.getConnection getting data from MySQL",
+                            "Error in mysql.execQuery.datalayer.getConnection getting data from MySQL",
                             err
                         )
                     );
@@ -85,8 +85,6 @@ module.exports = function listFields(queryObject) {
                         nrRecordsReturned = results.length;
                     };
 
-                    // TODO - create a standard field structure - for all DB types
-                    
                     // Return results with metadata according to the CanvasHttpResponse interface
                     resolve(createReturnObject(
                         "success",
@@ -106,7 +104,7 @@ module.exports = function listFields(queryObject) {
         catch (error) {
             reject({
                 "statusCode": "error",
-                "message" : "Error in TRY block in mysql.listFields.datalayer getting info from MySQL",
+                "message" : "Error in TRY block in mysql.execQuery.datalayer getting info from MySQL",
                 "data": null,
                 "error":error
             });

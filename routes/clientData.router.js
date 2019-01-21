@@ -90,6 +90,31 @@ router.get('/listFields', (req, res, next) => {
     };
 })
 
+// GET route to execute a SQL Statement in a database
+router.get('/execQuery', (req, res, next) => {
+
+    // Extra and validate variables
+    let serverType = req.query.serverType;
+    if (serverType == null  || serverType == '') {
+        // error
+    };
+
+    // Get the list
+    debugDev('Start clientData.router for execQuery');
+
+    if (serverType == 'MySQL') {
+        execQuery(req.query)
+            .then(resultsObject => {
+                debugData('Returned results of SQL Statement from MySQL');
+                return res.json(resultsObject);
+             } )
+            .catch(errorObject  => {
+                debugDev("Error in clientData.router.execQuery");
+                return res.json(errorObject);
+            });
+    };
+})
+
 // GET route for all data
 router.get('/', (req, res, next) => {
 
