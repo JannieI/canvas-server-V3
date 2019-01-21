@@ -55,7 +55,7 @@ module.exports = function listFields(queryObject) {
                         console.error('Database connection was refused.')
                     }
 
-                    reject(
+                    return reject(
                         createErrorObject(
                             "error",
                             "Error in mysql.listFields.datalayer.getConnection getting data from MySQL",
@@ -68,7 +68,7 @@ module.exports = function listFields(queryObject) {
                 connection.query(dataSQLStatement, [sqlParameters], (err, returnedData) => {
                     if (err) {
                         debugData('  mySQL.datalayer Error in getConnection', err)
-                        reject(createErrorObject(
+                        return reject(createErrorObject(
                                 "error",
                                 "Error in .query getting data from MySQL",
                                 err
@@ -88,7 +88,7 @@ module.exports = function listFields(queryObject) {
                     // TODO - create a standard field structure - for all DB types
 
                     // Return results with metadata according to the CanvasHttpResponse interface
-                    resolve(createReturnObject(
+                    return resolve(createReturnObject(
                         "success",
                         "Retrieved Fields for Table for database : " + databaseName + ' on ' + serverName,
                         results,
@@ -104,7 +104,7 @@ module.exports = function listFields(queryObject) {
             });
         }
         catch (error) {
-            reject({
+            return reject({
                 "statusCode": "error",
                 "message" : "Error in TRY block in mysql.listFields.datalayer getting info from MySQL",
                 "data": null,
