@@ -53,7 +53,7 @@ module.exports = function listDatabases(queryObject) {
                         console.error('Database connection was refused.')
                     }
 
-                    reject(
+                    return reject(
                         createErrorObject(
                             "error",
                             "Error in mysql.listDatabases.datalayer.getConnection getting data from MySQL",
@@ -66,7 +66,7 @@ module.exports = function listDatabases(queryObject) {
                 connection.query(dataSQLStatement, [sqlParameters], (err, returnedData) => {
                     if (err) {
                         debugData('  mySQL.datalayer Error in getConnection', err)
-                        reject(createErrorObject(
+                        return reject(createErrorObject(
                                 "error",
                                 "Error in .query getting data from MySQL",
                                 err
@@ -87,7 +87,7 @@ module.exports = function listDatabases(queryObject) {
                     results = results.map( x => x['Database']);
 
                     // Return results with metadata according to the CanvasHttpResponse interface
-                    resolve(createReturnObject(
+                    return resolve(createReturnObject(
                         "success",
                         "Retrieved Databases for Server : " + serverName,
                         results,
@@ -103,7 +103,7 @@ module.exports = function listDatabases(queryObject) {
             });
         }
         catch (error) {
-            reject({
+            return reject({
                 "statusCode": "error",
                 "message" : "Error in TRY block in mysql.listDatabases.datalayer getting info from MySQL",
                 "data": null,
