@@ -5,10 +5,10 @@ const mysql = require('mysql');
 const config = require('config');               // Configuration
 const debugDev = require('debug')('app:dev');
 const debugData = require('debug')('app:data');
+const calculateCacheExpiryDate = require('../utils/calculateCacheExpiryDate.util');
 const metaDataFromDatasource = require('../utils/metaDataFromDatasource.util');
 const sortFilterFieldsAggregate = require('../utils/sortFilterFieldsAggregate.util');
 const createErrorObject = require('../utils/createErrorObject.util');
-const calculateCacheExpiryDate = require('../utils/calculateCacheExpiryDate.util');
 const createReturnObject = require('../utils/createReturnObject.util');
 
 module.exports = function getClientData(datasource, queryObject) {
@@ -63,7 +63,6 @@ module.exports = function getClientData(datasource, queryObject) {
 
             // Create pool Object
             const pool = mysql.createPool({
-                connectionLimit  : 10,
                 host             : host,
                 user             : user,
                 password         : password,

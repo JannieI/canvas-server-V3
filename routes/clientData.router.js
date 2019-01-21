@@ -12,6 +12,8 @@ const sortFilterFieldsAggregate = require('../utils/sortFilterFieldsAggregate.ut
 const listDatabases = require('../datalayer/mysql.listDatabases.datalayer');
 const listTables = require('../datalayer/mysql.listTables.datalayer');
 const listFields = require('../datalayer/mysql.listFields.datalayer');
+const execQuery = require('../datalayer/mysql.execQuery.datalayer');
+
 const createErrorObject = require('../utils/createErrorObject.util');
 const createReturnObject = require('../utils/createReturnObject.util');
 
@@ -109,7 +111,7 @@ router.get('/execQuery', (req, res, next) => {
                 return res.json(resultsObject);
              } )
             .catch(errorObject  => {
-                debugDev("Error in clientData.router.execQuery");
+                debugDev("Error in clientData.router.execQuery", errorObject);
                 return res.json(errorObject);
             });
     };

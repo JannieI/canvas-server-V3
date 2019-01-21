@@ -182,8 +182,8 @@ http://localhost:8000/clientData/listTables
 http://localhost:8000/clientData/execQuery
 ?serverType=MySQL
 &serverName=localhost
-&databaseName=Canvas
-&sqlStatement="SELECT * FROM mysql.User"
+&databaseName=mysql
+&sqlStatement="SELECT * FROM user"
 &port=3306
 &username=janniei
 &password=janniei

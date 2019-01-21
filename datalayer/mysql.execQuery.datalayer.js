@@ -10,8 +10,8 @@ module.exports = function execQuery(queryObject) {
     // Runs given sqlStatement and returns data
     // Inputs: REQ.QUERY OBJECT
     return new Promise((resolve, reject) => {
-        
-        try {
+
+        // try {
             // Set & extract the vars from the Input Params
             let serverName = queryObject.serverName;
             let databaseName = queryObject.databaseName;
@@ -22,8 +22,8 @@ module.exports = function execQuery(queryObject) {
 
             // TODO - figure out how to treat SQL Parameters, ie @LogicalBusinessDay
             let sqlParameters = '';
-            debugDev('Properties received:', serverName, databaseName, tableName, 
-                port, username, password, dataSQLStatement);
+            debugDev('Properties received:', serverName, databaseName, sqlStatement,
+                port, username, password);
 
             // Create pool Object
             const pool = mysql.createPool({
@@ -63,14 +63,14 @@ module.exports = function execQuery(queryObject) {
                         )
                     );
                 };
-
+console.log('hier', sqlStatement)
                 // Make the query
                 connection.query(sqlStatement, [sqlParameters], (err, returnedData) => {
                     if (err) {
                         debugData('  mySQL.datalayer Error in getConnection', err)
                         reject(createErrorObject(
                                 "error",
-                                "Error in .query getting data from MySQL",
+                                "Error in .query getting data from MySQL" + err.sqlMessage,
                                 err
                             )
                         );
@@ -100,15 +100,15 @@ module.exports = function execQuery(queryObject) {
 
                 });
             });
-        }
-        catch (error) {
-            reject({
-                "statusCode": "error",
-                "message" : "Error in TRY block in mysql.execQuery.datalayer getting info from MySQL",
-                "data": null,
-                "error":error
-            });
-        };
+        // }
+        // catch (error) {
+        //     reject({
+        //         "statusCode": "error",
+        //         "message" : "Error in TRY block in mysql.execQuery.datalayer getting info from MySQL",
+        //         "data": null,
+        //         "error":error
+        //     });
+        // };
     });
 
 }
