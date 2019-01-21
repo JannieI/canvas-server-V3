@@ -66,7 +66,7 @@ module.exports = function listTables(queryObject) {
                 connection.query(dataSQLStatement, [sqlParameters], (err, returnedData) => {
                     if (err) {
                         debugData('  mySQL.datalayer Error in getConnection', err)
-                        reject(createErrorObject(
+                        return reject(createErrorObject(
                                 "error",
                                 "Error in .query getting data from MySQL",
                                 err
@@ -88,7 +88,7 @@ module.exports = function listTables(queryObject) {
                     results = results.map( x => x[Object.keys(x)] );
 
                     // Return results with metadata according to the CanvasHttpResponse interface
-                    resolve(createReturnObject(
+                    return resolve(createReturnObject(
                         "success",
                         "Retrieved tables for database : " + databaseName + ' on ' + serverName,
                         results,
@@ -104,7 +104,7 @@ module.exports = function listTables(queryObject) {
             });
         }
         catch (error) {
-            reject({
+            return reject({
                 "statusCode": "error",
                 "message" : "Error in TRY block in mysql.listTables.datalayer getting info from MySQL",
                 "data": null,
