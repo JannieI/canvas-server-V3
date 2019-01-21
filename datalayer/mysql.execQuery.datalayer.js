@@ -77,6 +77,7 @@ module.exports = function execQuery(queryObject) {
                     };
 
                     //  Now, results = [data]
+                    debugData('  mySQL.datalayer got data');
                     results = JSON.parse(JSON.stringify(returnedData));
 
                     //  Count
