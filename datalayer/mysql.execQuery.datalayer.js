@@ -10,7 +10,7 @@ module.exports = function execQuery(queryObject) {
     // Runs given sqlStatement and returns data
     // Inputs: REQ.QUERY OBJECT
     return new Promise((resolve, reject) => {
-
+ 
         // try {
             // Set & extract the vars from the Input Params
             let serverName = queryObject.serverName;
@@ -64,8 +64,8 @@ module.exports = function execQuery(queryObject) {
                     );
                 };
 console.log('hier', sqlStatement)
-                // Make the query
-                connection.query(sqlStatement, [sqlParameters], (err, returnedData) => {
+                // Make the query 
+                connection.query(sqlStatement, [], (err, returnedData) => {
                     if (err) {
                         debugData('  mySQL.datalayer Error in getConnection', err)
                         reject(createErrorObject(

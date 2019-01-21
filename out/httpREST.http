@@ -183,7 +183,7 @@ http://localhost:8000/clientData/execQuery
 ?serverType=MySQL
 &serverName=localhost
 &databaseName=mysql
-&sqlStatement="SELECT * FROM user"
+&sqlStatement=SELECT * FROM mysql.user
 &port=3306
 &username=janniei
 &password=janniei
