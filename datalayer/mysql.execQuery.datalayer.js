@@ -11,7 +11,7 @@ module.exports = function execQuery(queryObject) {
     // Inputs: REQ.QUERY OBJECT
     return new Promise((resolve, reject) => {
  
-        // try {
+        try {
             // Set & extract the vars from the Input Params
             let serverName = queryObject.serverName;
             let databaseName = queryObject.databaseName;
@@ -63,7 +63,7 @@ module.exports = function execQuery(queryObject) {
                         )
                     );
                 };
-console.log('hier', sqlStatement)
+
                 // Make the query 
                 connection.query(sqlStatement, [], (err, returnedData) => {
                     if (err) {
@@ -100,15 +100,15 @@ console.log('hier', sqlStatement)
 
                 });
             });
-        // }
-        // catch (error) {
-        //     reject({
-        //         "statusCode": "error",
-        //         "message" : "Error in TRY block in mysql.execQuery.datalayer getting info from MySQL",
-        //         "data": null,
-        //         "error":error
-        //     });
-        // };
+        }
+        catch (error) {
+            reject({
+                "statusCode": "error",
+                "message" : "Error in TRY block in mysql.execQuery.datalayer getting info from MySQL",
+                "data": null,
+                "error":error
+            });
+        };
     });
 
 }
