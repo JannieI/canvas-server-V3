@@ -7,7 +7,7 @@ const createErrorObject = require('../utils/createErrorObject.util');
 const createReturnObject = require('../utils/createReturnObject.util');
 
 module.exports = function listFields(queryObject) {
-    // Selects a list of Fields for a given Tables
+    // Runs given sqlStatement and returns data
     // Inputs: REQ.QUERY OBJECT
     return new Promise((resolve, reject) => {
         
@@ -15,11 +15,10 @@ module.exports = function listFields(queryObject) {
             // Set & extract the vars from the Input Params
             let serverName = queryObject.serverName;
             let databaseName = queryObject.databaseName;
-            let tableName = queryObject.tableName;
+            let sqlStatement = queryObject.sqlStatement;
             let port = queryObject.port;
             let username = queryObject.username;
             let password = queryObject.password;
-            let sqlStatement = queryObject.sqlStatement;
 
             // TODO - figure out how to treat SQL Parameters, ie @LogicalBusinessDay
             let sqlParameters = '';
@@ -66,7 +65,7 @@ module.exports = function listFields(queryObject) {
                 };
 
                 // Make the query
-                connection.query(dataSQLStatement, [sqlParameters], (err, returnedData) => {
+                connection.query(sqlStatement, [sqlParameters], (err, returnedData) => {
                     if (err) {
                         debugData('  mySQL.datalayer Error in getConnection', err)
                         reject(createErrorObject(
@@ -91,12 +90,12 @@ module.exports = function listFields(queryObject) {
                     // Return results with metadata according to the CanvasHttpResponse interface
                     resolve(createReturnObject(
                         "success",
-                        "Retrieved Fields for Table for database : " + databaseName + ' on ' + serverName,
+                        "Ran query ' + sqlStatement + ' for database : " + databaseName + ' on ' + serverName,
                         results,
                         serverName,
                         "MySQL",
                         databaseName,
-                        tableName,
+                        sqlStatement,
                         nrRecordsReturned,
                         null
                     ));
