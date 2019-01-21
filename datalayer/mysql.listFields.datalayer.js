@@ -1,5 +1,4 @@
-// Connector for MySQL database
-// Returns a list of Fields for a given Tables
+// Connector for MySQL database, and returns a list of Fields for a given Tables
 
 const mysql = require('mysql');
 const debugDev = require('debug')('app:dev');
@@ -22,8 +21,6 @@ module.exports = function listFields(queryObject) {
             let password = queryObject.password;
             let dataSQLStatement = "DESCRIBE " + tableName + ";";
 
-        
-            // TODO - figure out how to treat SQL Parameters, ie @LogicalBusinessDay
             let sqlParameters = '';
             debugDev('Properties received:', serverName, databaseName, tableName, 
                 port, username, password, dataSQLStatement);
@@ -88,8 +85,7 @@ module.exports = function listFields(queryObject) {
                         nrRecordsReturned = results.length;
                     };
 
-                    // Turn into single array (just table names)
-                    // results = results.map( x => x['Tables_in_mysql']);
+                    // TODO - create a standard field structure - for all DB types
 
                     // Return results with metadata according to the CanvasHttpResponse interface
                     resolve(createReturnObject(

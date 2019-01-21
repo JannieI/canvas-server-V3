@@ -1,5 +1,4 @@
-// Connector for MySQL database
-// Returns a list of Databases for a given Server
+// Connector for MySQL database, and returns a list of Databases for a given Server
 
 const mysql = require('mysql');
 const debugDev = require('debug')('app:dev');
@@ -21,7 +20,6 @@ module.exports = function listDatabases(queryObject) {
             let password = queryObject.password;
             let dataSQLStatement = "SHOW DATABASES";
 
-            // TODO - figure out how to treat SQL Parameters, ie @LogicalBusinessDay
             let sqlParameters = '';
             debugDev('Properties received:', serverName, databaseName, port, username, password);
 

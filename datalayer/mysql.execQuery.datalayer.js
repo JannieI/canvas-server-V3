@@ -1,4 +1,4 @@
-// Connector for MySQL database, and returns a list of tables for a given Database
+// Connector for MySQL database, and returns a list of Fields for a given Tables
 
 const mysql = require('mysql');
 const debugDev = require('debug')('app:dev');
@@ -6,8 +6,8 @@ const debugData = require('debug')('app:data');
 const createErrorObject = require('../utils/createErrorObject.util');
 const createReturnObject = require('../utils/createReturnObject.util');
 
-module.exports = function listTables(queryObject) {
-    // Selects a list of tables for a given Server, Database in a MySQL database
+module.exports = function listFields(queryObject) {
+    // Selects a list of Fields for a given Tables
     // Inputs: REQ.QUERY OBJECT
     return new Promise((resolve, reject) => {
         
@@ -15,13 +15,16 @@ module.exports = function listTables(queryObject) {
             // Set & extract the vars from the Input Params
             let serverName = queryObject.serverName;
             let databaseName = queryObject.databaseName;
+            let tableName = queryObject.tableName;
             let port = queryObject.port;
             let username = queryObject.username;
             let password = queryObject.password;
-            let dataSQLStatement = "SHOW TABLES";
+            let sqlStatement = queryObject.sqlStatement;
 
+            // TODO - figure out how to treat SQL Parameters, ie @LogicalBusinessDay
             let sqlParameters = '';
-            debugDev('Properties received:', serverName, databaseName, port, username, password);
+            debugDev('Properties received:', serverName, databaseName, tableName, 
+                port, username, password, dataSQLStatement);
 
             // Create pool Object
             const pool = mysql.createPool({
@@ -40,7 +43,7 @@ module.exports = function listTables(queryObject) {
             pool.getConnection((err, connection) => {
 
                 if (err) {
-                    debugData('Error in mysql.listTables.datalayer.getConnection', err)
+                    debugData('Error in mysql.listFields.datalayer.getConnection', err)
 
                     // MySQL Error Codes
                     if (err.code === 'PROTOCOL_CONNECTION_LOST') {
@@ -53,10 +56,10 @@ module.exports = function listTables(queryObject) {
                         console.error('Database connection was refused.')
                     }
 
-                    return reject(
+                    reject(
                         createErrorObject(
                             "error",
-                            "Error in mysql.listTables.datalayer.getConnection getting data from MySQL",
+                            "Error in mysql.listFields.datalayer.getConnection getting data from MySQL",
                             err
                         )
                     );
@@ -83,19 +86,17 @@ module.exports = function listTables(queryObject) {
                         nrRecordsReturned = results.length;
                     };
 
-                    // Turn into single array (just table names).  
-                    // Note, the keys are different for each DB as it contains the DBname
-                    results = results.map( x => x[Object.keys(x)] );
-
+                    // TODO - create a standard field structure - for all DB types
+                    
                     // Return results with metadata according to the CanvasHttpResponse interface
                     resolve(createReturnObject(
                         "success",
-                        "Retrieved tables for database : " + databaseName + ' on ' + serverName,
+                        "Retrieved Fields for Table for database : " + databaseName + ' on ' + serverName,
                         results,
                         serverName,
                         "MySQL",
                         databaseName,
-                        null,
+                        tableName,
                         nrRecordsReturned,
                         null
                     ));
@@ -106,7 +107,7 @@ module.exports = function listTables(queryObject) {
         catch (error) {
             reject({
                 "statusCode": "error",
-                "message" : "Error in TRY block in mysql.listTables.datalayer getting info from MySQL",
+                "message" : "Error in TRY block in mysql.listFields.datalayer getting info from MySQL",
                 "data": null,
                 "error":error
             });
