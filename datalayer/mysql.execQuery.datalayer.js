@@ -55,10 +55,10 @@ module.exports = function execQuery(queryObject) {
                         console.error('Database connection was refused.')
                     }
 
-                    reject(
+                    return reject(
                         createErrorObject(
                             "error",
-                            "Error in mysql.execQuery.datalayer.getConnection getting data from MySQL",
+                            "Error in mysql.execQuery.datalayer.getConnection getting data from MySQL " + err.sqlMessage,
                             err
                         )
                     );
@@ -68,7 +68,7 @@ module.exports = function execQuery(queryObject) {
                 connection.query(sqlStatement, [], (err, returnedData) => {
                     if (err) {
                         debugData('  mySQL.datalayer Error in getConnection', err)
-                        reject(createErrorObject(
+                        return reject(createErrorObject(
                                 "error",
                                 "Error in .query getting data from MySQL" + err.sqlMessage,
                                 err
@@ -86,7 +86,7 @@ module.exports = function execQuery(queryObject) {
                     };
 
                     // Return results with metadata according to the CanvasHttpResponse interface
-                    resolve(createReturnObject(
+                    return resolve(createReturnObject(
                         "success",
                         "Ran query ' + sqlStatement + ' for database : " + databaseName + ' on ' + serverName,
                         results,
@@ -102,7 +102,7 @@ module.exports = function execQuery(queryObject) {
             });
         }
         catch (error) {
-            reject({
+            return reject({
                 "statusCode": "error",
                 "message" : "Error in TRY block in mysql.execQuery.datalayer getting info from MySQL",
                 "data": null,

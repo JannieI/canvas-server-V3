@@ -20,7 +20,7 @@ module.exports = function listFields(queryObject) {
             let username = queryObject.username;
             let password = queryObject.password;
             let dataSQLStatement = "DESCRIBE " + tableName + ";";
-
+  
             let sqlParameters = '';
             debugDev('Properties received:', serverName, databaseName, tableName, 
                 port, username, password, dataSQLStatement);
