@@ -295,6 +295,66 @@ router.get('/execQuery', (req, res, next) => {
                 return res.json(errorObject);
             });
     };
+    if (serverType == 'Microsoft SSAS') {
+        debugData('Microsoft SSAS connector not Activated');
+        return res.json(
+            createErrorObject(
+                "error",
+                "Microsoft SSAS connector not Activated",
+                null
+            )
+        );
+    };
+    if (serverType == 'PostgresSQL') {
+        debugData('Error PostgresSQL connector not Activated');
+        return res.json(
+            createErrorObject(
+                "error",
+                "PostgresSQL connector not Activated",
+                null
+            )
+        );
+    };
+    if (serverType == 'Microsoft SQL') {
+        debugData('Error Microsoft SQL connector not Activated');
+        return res.json(
+            createErrorObject(
+                "error",
+                "Microsoft SQL connector not Activated",
+                null
+            )
+        );
+    };
+    if (serverType == 'SQLite') {
+        debugData('Error SQLite connector not Activated')
+        return res.json(
+            createErrorObject(
+                "error",
+                "SQLite connector not Activated",
+                null
+            )
+        );
+    };
+    if (serverType == 'Oracle') {
+        debugData('Error Oracle connector not Activated')
+        return res.json(
+            createErrorObject(
+                "error",
+                "Oracle connector not Activated",
+                null
+            )
+        );
+    };
+    if (serverType == 'Mongo') {
+        debugData('Mongo connector not Activated')
+        return res.json(
+            createErrorObject(
+                "error",
+                "Mongo connector not Activated",
+                null
+            )
+        );
+    };
 })
 
 // GET route for all data
