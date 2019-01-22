@@ -52,7 +52,7 @@ router.get('/listTables', (req, res, next) => {
     };
 
     // Get the list
-    debugDev('Start clientData.router for listTables');
+    debugDev('Start clientData.router for listTables for ' + serverType);
 
     if (serverType == 'MySQL') {
         listTables(req.query)
@@ -64,6 +64,17 @@ router.get('/listTables', (req, res, next) => {
                 debugDev("Error in clientData.router.listTables");
                 return res.json(errorObject);
             });
+    };
+    if (serverType == 'PostgresSQL') {
+        debugData('Error PostgresSQL connector not Activated');
+        res.json(
+            createErrorObject(
+                "error",
+                "Error PostgresSQL connector not Activated",
+                null
+            )
+        );
+        return;
     };
 })
 
@@ -278,71 +289,64 @@ router.get('/', (req, res, next) => {
 
             // Get the data from Source, depending on the serverType
             if (datasource.serverType == 'Microsoft SSAS') {
-                debugData('Error:', err)
-                res.json(
+                debugData('Microsoft SSAS connector not Activated');
+                return res.json(
                     createErrorObject(
                         "error",
-                        "Error Microsoft SSAS connector not Activated",
-                        err
+                        "Microsoft SSAS connector not Activated",
+                        null
                     )
                 );
-                return;
-                   
             };
             if (datasource.serverType == 'PostgresSQL') {
-                debugData('Error:', err)
-                res.json(
+                debugData('Error PostgresSQL connector not Activated');
+                return res.json(
                     createErrorObject(
                         "error",
-                        "Error PostgresSQ connector not Activated",
-                        err
+                        "PostgresSQL connector not Activated",
+                        null
                     )
                 );
-                return;
             };
             if (datasource.serverType == 'Microsoft SQL') {
-                debugData('Error:', err)
-                res.json(
+                debugData('Error Microsoft SQL connector not Activated');
+                return res.json(
                     createErrorObject(
                         "error",
-                        "Error Microsoft SQL connector not Activated",
-                        err
+                        "Microsoft SQL connector not Activated",
+                        null
                     )
                 );
-                return;
             };
             if (datasource.serverType == 'SQLite') {
-                debugData('Error:', err)
-                res.json(
+                debugData('Error SQLite connector not Activated')
+                return res.json(
                     createErrorObject(
                         "error",
-                        "Error SQLite connector not Activated",
-                        err
+                        "SQLite connector not Activated",
+                        null
                     )
                 );
-                return;
             };
             if (datasource.serverType == 'Oracle') {
-                debugData('Error:', err)
-                res.json(
+                debugData('Error Oracle connector not Activated')
+                return res.json(
                     createErrorObject(
                         "error",
-                        "Error Oracle connector not Activated",
-                        err
+                        "Oracle connector not Activated",
+                        null
                     )
                 );
-                return;
             };
             if (datasource.serverType == 'Mongo') {
-                debugData('Error:', err)
-                res.json(
+                debugData('Mongo connector not Activated')
+                return res.json(
                     createErrorObject(
                         "error",
-                        "Error Mongo connector not Activated",
-                        err
+                        "Mongo connector not Activated",
+                        null
                     )
                 );
-                return;
             };
 
             // Get the Source Data via the Canvas Data Layer
