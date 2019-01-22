@@ -294,7 +294,7 @@ router.get('/', (req, res, next) => {
                 res.json(
                     createErrorObject(
                         "error",
-                        "Error Microsoft SSAS connector not Activated",
+                        "Error PostgresSQ connector not Activated",
                         err
                     )
                 );
@@ -305,7 +305,7 @@ router.get('/', (req, res, next) => {
                 res.json(
                     createErrorObject(
                         "error",
-                        "Error Microsoft SSAS connector not Activated",
+                        "Error Microsoft SQL connector not Activated",
                         err
                     )
                 );
@@ -316,7 +316,7 @@ router.get('/', (req, res, next) => {
                 res.json(
                     createErrorObject(
                         "error",
-                        "Error Microsoft SSAS connector not Activated",
+                        "Error SQLite connector not Activated",
                         err
                     )
                 );
@@ -327,7 +327,7 @@ router.get('/', (req, res, next) => {
                 res.json(
                     createErrorObject(
                         "error",
-                        "Error Microsoft SSAS connector not Activated",
+                        "Error Oracle connector not Activated",
                         err
                     )
                 );
@@ -338,7 +338,7 @@ router.get('/', (req, res, next) => {
                 res.json(
                     createErrorObject(
                         "error",
-                        "Error Microsoft SSAS connector not Activated",
+                        "Error Mongo connector not Activated",
                         err
                     )
                 );
@@ -379,8 +379,6 @@ router.get('/', (req, res, next) => {
 
 })
 
-// DELETE once for sure
-// These are not needed as we dont change clientData
 // // POST route
 // router.post('/', (req, res, next) => {
 

@@ -150,8 +150,10 @@ GET {{host}}/clientData/
 &fields=User, Select_priv
 &filterObject={"User":"root"}
 &aggregationObject=aggregationObject
+
 ###
 GET {{host}}/canvasdata/datasources?id=82
+
 ###
 GET {{host}}/clientData/listDatabases
 ?serverType=MySQL
@@ -171,15 +173,16 @@ GET {{host}}/clientData/listTables
 &password=janniei
 
 ###
-http://localhost:8000/clientData/listTables
+GET {{host}}/clientData/listTables
 ?serverType=MySQL
 &serverName=localhost
 &databaseName=Canvas
 &port=3306
 &username=janniei
 &password=janniei
+
 ###
-http://localhost:8000/clientData/execQuery
+GET {{host}}/clientData/execQuery
 ?serverType=MySQL
 &serverName=localhost
 &databaseName=mysql
@@ -199,5 +202,21 @@ GET {{host}}/clientData/listFields
 &password=janniei
 
 ###
+POST {{host}}/clientData
+
+
+
+
+
+
+###
 GET {{host}}/canvasdata/**************
+###
+http://localhost:8000/clientData/execQuery
+?serverType=MySQL
+&serverName=localhost&databaseName=mysql
+&sqlStatement=SELECT%20*%20FROM%20mysql.user
+&port=3306
+&username=janniei
+&password=janniei
 ###
