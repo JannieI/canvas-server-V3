@@ -154,7 +154,7 @@ router.get('/', (req, res, next) => {
 
     datasourceModel.find( datasourceIDQuery, (err, datasourceArray) => {
         if (err) {
-            console.error('Error:', err)
+            debugData('Error:', err)
             res.json(
                 createErrorObject(
                     "error",
@@ -176,6 +176,7 @@ router.get('/', (req, res, next) => {
             );
         };
         if (datasourceArray.length == 0) {
+            // TODO - is this an error or a success !?
             debugData('Error:', "No Datasource exists for the datasourceID provided:" + datasourceID)
             return res.json(
                 createReturnObject(
@@ -277,22 +278,71 @@ router.get('/', (req, res, next) => {
 
             // Get the data from Source, depending on the serverType
             if (datasource.serverType == 'Microsoft SSAS') {
-                // Do thing here
+                debugData('Error:', err)
+                res.json(
+                    createErrorObject(
+                        "error",
+                        "Error Microsoft SSAS connector not Activated",
+                        err
+                    )
+                );
+                return;
+                   
             };
             if (datasource.serverType == 'PostgresSQL') {
-                // Do thing here
+                debugData('Error:', err)
+                res.json(
+                    createErrorObject(
+                        "error",
+                        "Error Microsoft SSAS connector not Activated",
+                        err
+                    )
+                );
+                return;
             };
             if (datasource.serverType == 'Microsoft SQL') {
-                // Do thing here
+                debugData('Error:', err)
+                res.json(
+                    createErrorObject(
+                        "error",
+                        "Error Microsoft SSAS connector not Activated",
+                        err
+                    )
+                );
+                return;
             };
             if (datasource.serverType == 'SQLite') {
-                // Do thing here
+                debugData('Error:', err)
+                res.json(
+                    createErrorObject(
+                        "error",
+                        "Error Microsoft SSAS connector not Activated",
+                        err
+                    )
+                );
+                return;
             };
             if (datasource.serverType == 'Oracle') {
-                // Do thing here
+                debugData('Error:', err)
+                res.json(
+                    createErrorObject(
+                        "error",
+                        "Error Microsoft SSAS connector not Activated",
+                        err
+                    )
+                );
+                return;
             };
             if (datasource.serverType == 'Mongo') {
-                // Do thing here
+                debugData('Error:', err)
+                res.json(
+                    createErrorObject(
+                        "error",
+                        "Error Microsoft SSAS connector not Activated",
+                        err
+                    )
+                );
+                return;
             };
 
             // Get the Source Data via the Canvas Data Layer
@@ -312,6 +362,17 @@ router.get('/', (req, res, next) => {
                         return res.json(errorObject);
                     });
             };
+
+            // Invalid Connector
+            debugData('Error:', err)
+            res.json(
+                createErrorObject(
+                    "error",
+                    "Error: invalid connector: " + datasource.serverType,
+                    err
+                )
+            );
+            return;
 
         };
     });
@@ -349,7 +410,7 @@ router.get('/', (req, res, next) => {
 //                 });
 //             })
 //             .catch(err => {
-//                 console.error(err)
+//                 debugData(err)
 //                 return res.json({
 //                     "statusCode": "error",
 //                     "message" : "Error: Could not add record for id:", id,
@@ -419,7 +480,7 @@ router.get('/', (req, res, next) => {
 //                 };
 //             })
 //             .catch(err => {
-//                 console.error(err)
+//                 debugData(err)
 //                 return res.json({
 //                     "statusCode": "error",
 //                     "message" : "Error: Could not delete record for id:" + id ,
@@ -478,7 +539,7 @@ router.get('/', (req, res, next) => {
 //                 });
 //             })
 //             .catch(err => {
-//                 console.error(err)
+//                 debugData(err)
 //                 return res.json({
 //                     "statusCode": "error",
 //                     "message" : "Error: Could not update record for id:", id,
