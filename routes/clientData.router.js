@@ -65,16 +65,66 @@ router.get('/listTables', (req, res, next) => {
                 return res.json(errorObject);
             });
     };
-    if (serverType == 'PostgresSQL') {
-        debugData('Error PostgresSQL connector not Activated');
-        res.json(
+    // Get the data from Source, depending on the serverType
+    if (serverType == 'Microsoft SSAS') {
+        debugData('Microsoft SSAS connector not Activated');
+        return res.json(
             createErrorObject(
                 "error",
-                "Error PostgresSQL connector not Activated",
+                "Microsoft SSAS connector not Activated",
                 null
             )
         );
-        return;
+    };
+    if (serverType == 'PostgresSQL') {
+        debugData('Error PostgresSQL connector not Activated');
+        return res.json(
+            createErrorObject(
+                "error",
+                "PostgresSQL connector not Activated",
+                null
+            )
+        );
+    };
+    if (serverType == 'Microsoft SQL') {
+        debugData('Error Microsoft SQL connector not Activated');
+        return res.json(
+            createErrorObject(
+                "error",
+                "Microsoft SQL connector not Activated",
+                null
+            )
+        );
+    };
+    if (serverType == 'SQLite') {
+        debugData('Error SQLite connector not Activated')
+        return res.json(
+            createErrorObject(
+                "error",
+                "SQLite connector not Activated",
+                null
+            )
+        );
+    };
+    if (serverType == 'Oracle') {
+        debugData('Error Oracle connector not Activated')
+        return res.json(
+            createErrorObject(
+                "error",
+                "Oracle connector not Activated",
+                null
+            )
+        );
+    };
+    if (serverType == 'Mongo') {
+        debugData('Mongo connector not Activated')
+        return res.json(
+            createErrorObject(
+                "error",
+                "Mongo connector not Activated",
+                null
+            )
+        );
     };
 })
 
@@ -366,17 +416,6 @@ router.get('/', (req, res, next) => {
                         return res.json(errorObject);
                     });
             };
-
-            // Invalid Connector
-            debugData('Error:', err)
-            res.json(
-                createErrorObject(
-                    "error",
-                    "Error: invalid connector: " + datasource.serverType,
-                    err
-                )
-            );
-            return;
 
         };
     });
