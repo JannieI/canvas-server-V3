@@ -223,13 +223,15 @@ router.get('/:resource', (req, res, next) => {
                             "success",
                             "Retrieved data for resource: " + resource,
                             serverMemoryCache.get(serverVariableName),
-                            "",
-                            "",
-                            "",
+                            null,
+                            null,
+                            null,
+                            null,
                             serverVariableName,
                             serverMemoryCache.get(serverVariableName).length,
-                            fields
-                        )
+                            fields,
+                            null
+                            )
                     );
                 };
             };
@@ -322,13 +324,15 @@ router.get('/:resource', (req, res, next) => {
                     "success",
                     "Retrieved data for resource: " + resource,
                     docs,
-                    "",
-                    "",
-                    "",
-                    "", // TODO - add oneDoc.mongooseCollection.collectionName?
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
                     docs.length,
-                    fields
-                )
+                    fields,
+                    null
+                    )
             );
         });
     }
@@ -374,13 +378,14 @@ router.post('/:resource', (req, res, next) => {
                         "success",
                         "Added record for resource: " + resource,
                         doc,
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        ""
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
                     )
                 );
             })
@@ -459,14 +464,15 @@ router.delete('/:resource', (req, res, next) => {
                             "success",
                             "Deleted record for resource: " + resource + ', id: ', id,
                             doc,
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            ""
-                        )
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            )
                     );
                 };
             })
@@ -540,13 +546,14 @@ router.put('/:resource', (req, res, next) => {
                         "success",
                         "Updated record for resource: " + resource + 'id: ', id,
                         doc,
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        ""
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
                     )
                 );
             })
