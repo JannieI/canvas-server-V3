@@ -423,13 +423,15 @@ router.get('/', (req, res, next) => {
                     "success",
                     "No Datasource exists for the datasourceID provided:" + datasourceID,
                     [],
-                    "",
-                    "",
-                    "",
-                    "",
-                    "",
-                    ""
-                )
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null
+                    )
             );
         };
 
@@ -503,12 +505,14 @@ router.get('/', (req, res, next) => {
                         "success",
                         "Retrieved data for id: " + datasourceID,
                         results,
-                        "",
-                        "",
-                        "",
+                        null,
+                        null,
+                        null,
+                        null,
                         tableName,
                         nrRecordsReturned,
-                        metaDataFields
+                        metaDataFields,
+                        null
                     )
                 );
             });
