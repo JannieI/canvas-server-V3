@@ -103,6 +103,8 @@ Each HTTP-method returns a JSON object according to the following model specifie
 
 The statusCode is an internal status code, and does not refer to the HTTP status (ie 200, 404).  The idea is that a request can be valid in terms of HTTP (thus a 200), but something is not acceptable to Canvas Server.  In thus case, it will send back a 'failed' statusCode.  Not sure if we really need this.
 
+Errors must contain a full Error Object, with a message property.  This property will be used by Workstation to display a user-friendly text message.
+
 
 The data property in the above object depends on the method:
 - GET: array of JSON objects returned from Mongo
