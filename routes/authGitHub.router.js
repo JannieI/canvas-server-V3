@@ -58,12 +58,14 @@ authGitHubRouter.get('/loginSuccess', (req, res, next) => {
             "success",
             "Login worked",
             [],
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
         )
     );
 });
@@ -88,12 +90,14 @@ authGitHubRouter.get('/logout', (req, res, next) => {
                 "success",
                 "Logged out",
                 [],
-                "",
-                "",
-                "",
-                "",
-                "",
-                ""
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
             )
         );
     });
