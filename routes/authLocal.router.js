@@ -89,14 +89,15 @@ router.post('/signup', (req, res, next) => {
                             "success",
                             "Signup successful",
                             user,
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            ""
-                        ));
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null
+                            ));
                 })
                 .catch(err => {
                     // Save Failed
@@ -172,12 +173,13 @@ router.post('/login', (req, res, next) => {
                             "success",
                             "User Logged into Server",
                             [],
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
                             token
                         )
                     );
@@ -199,12 +201,13 @@ router.get('/profile', (req, res, next) => {
             "success",
             "You made it to the secure route",
             req.user,
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
             req.query.secret_token
         )
     );
