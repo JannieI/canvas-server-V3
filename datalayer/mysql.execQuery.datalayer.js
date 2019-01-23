@@ -95,8 +95,9 @@ module.exports = function execQuery(queryObject) {
                         "MySQL",
                         databaseName,
                         sqlStatement,
+                        null,
                         nrRecordsReturned,
-                        null
+                        null,null
                     ));
 
                 });
