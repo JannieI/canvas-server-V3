@@ -6,6 +6,7 @@ module.exports = function createReturnObject(
     inputServerName,
     inputServerType,
     inputDatabaseName,
+    inputSQLStatement,
     inputTableName,
     inputNrRecordsReturned,
     inputMetadataFields,
@@ -36,6 +37,10 @@ module.exports = function createReturnObject(
     if (inputDatabaseName != null) {
         databaseName = inputDatabaseName;
     };
+    let sqlStatement = '';
+    if (inputSQLStatement != null) {
+        sqlStatement = inputSQLStatement;
+    };
     let tableName = {};
     if (inputTableName != null) {
         tableName = inputTableName;
@@ -65,11 +70,11 @@ module.exports = function createReturnObject(
                     "serverName": serverName,
                     "serverType": serverType
                 },
-                
             "database": 
                 {
                     "databaseName": databaseName
                 },
+            "sqlStatement": sqlStatement,
             "table": 
                 {
                     "tableName": tableName,
