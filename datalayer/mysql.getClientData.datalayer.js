@@ -236,6 +236,7 @@ module.exports = function getClientData(datasource, queryObject) {
                         host,
                         serverType,
                         dataTableName,
+                        null,
                         tableName,
                         nrRecordsReturned,
                         fields
