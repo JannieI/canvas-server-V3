@@ -8,18 +8,6 @@ const debugDev = require('debug')('app:dev');
 const createErrorObject = require('../utils/createErrorObject.util');
 const createReturnObject = require('../utils/createReturnObject.util');
 
-// Note: for now, cache has NO DATA on startup, and is only filled the first time data is read from
-//       the DB.  Subsequently, the data is provided from cache until it is not fresh any longer (past
-//       the expiry data), at which point it is read from the DB again.
-//       When the data is updated (PUT or POST), the cache is updated in sync
-//       TODO - consider if we should not read the whole cache from DB after an update?
-
-
-// NB to Ivan
-// BIG TODO note - I havent changed the cache with updates - it is messy in JS and we will rewrite
-//                 in any case in TS, probably improving it as well.
-//
-
 
 // Caching Variables
 const dataCachingTableVariable = require('../utils/dataCachingTableMemory.util');  // Var loaded at startup
@@ -119,54 +107,54 @@ function initialLoadOfCachingTable () {
 }
 
 // Runs for ALL requests
-router.use('/:resource', (req, res, next) => {
+// router.use('/', (req, res, next) => {
 
-    // Validate Params
-    if (!req.params) {
-        return res.status(400).json({
-            "statusCode": "error",
-            "message" : "Error: Resource not provided",
-            "data": null,
-            "error": "Error: Resource not provided"
-        });
-        return;
-    };
+//     // Validate Params
+//     if (!req.params) {
+//         return res.status(400).json({
+//             "statusCode": "error",
+//             "message" : "Error: Resource not provided",
+//             "data": null,
+//             "error": "Error: Resource not provided"
+//         });
+//         return;
+//     };
 
-    // Validate resource (route)
-    let resource;
-    if (req.params.resource.substr(0, 1) === ':') {
-        resource = req.params.resource.substr(1);
-    } else {
-        resource = req.params.resource;
-    };
+//     // Validate resource (route)
+//     let resource;
+//     if (req.params.resource.substr(0, 1) === ':') {
+//         resource = req.params.resource.substr(1);
+//     } else {
+//         resource = req.params.resource;
+//     };
 
-    const error = validateRoute(resource);
+//     const error = validateRoute(resource);
 
-    if (error) {
-        return res.status(400).json({
-            "statusCode": "error",
-            "message" : error,
-            "data": null,
-            "error": error
-        });
+//     if (error) {
+//         return res.status(400).json({
+//             "statusCode": "error",
+//             "message" : error,
+//             "data": null,
+//             "error": error
+//         });
 
-        return;
-    };
+//         return;
+//     };
 
-    // Continue
-    next();
-})
+//     // Continue
+//     next();
+// })
 
 // GET route
-router.get('/:resource', (req, res, next) => {
+router.get('/', (req, res, next) => {
 
     // Extract: query, route (params without the :) and validate
     let resource;
-    if (req.params.resource.substr(0, 1) === ':') {
-        resource = req.params.resource.substr(1);
-    } else {
-        resource = req.params.resource;
-    };
+    // if (req.params.resource.substr(0, 1) === ':') {
+    //     resource = req.params.resource.substr(1);
+    // } else {
+    //     resource = req.params.resource;
+    // };
     const query = req.query;
 
     debugDev('## --------------------------');
@@ -241,7 +229,7 @@ router.get('/:resource', (req, res, next) => {
     // Try, in case model file does not exist
     try {
         // Get the model dynamically (take note of file spelling = resource)
-        const canvasSchema = '../models/' + resource + '.model';
+        const canvasSchema = '../models/dashboards.model';
         debugDev('Using Model ', canvasSchema, serverCacheableMemory?  'with caching'  :  'WITHOUT cache')
         const canvasModel = require(canvasSchema);
 
