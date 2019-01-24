@@ -14,27 +14,11 @@ const datasourceSchema = '../models/datasources.model';
 // GET route
 router.get('/', (req, res, next) => {
 
-    const dashboardQuery = { id: req.query.id };
-    const dashboardTabQuery = { dashboardID: req.query.id }
-    const widgetQuery = { dashboardID: req.query.id }
-    const datasourceQuery = { dashboardID: req.query.id }
-    const datasourceIDexclude = req.query.datasourceIDexclude;
-
-    // Get Array of Datasource IDs to exclude.  This is an optional parameter from Workstation
-    // and used in case it already has some Datasources (ie from a previous Tab)
-    let datasourceIDexcludeArray = [];
-    if (datasourceIDexclude != null) {
-        datasourceIDexcludeArray = datasourceIDexclude.split(",");
-        for (var i = 0; i < datasourceIDexcludeArray.length; i++) {
-            datasourceIDexcludeArray[i] = +datasourceIDexcludeArray[i];
-        };
-    };
-
     debugDev('## --------------------------');
-    debugDev('## GET Starting with CurrentDashboard with query:', dashboardQuery, widgetQuery);
+    debugDev('## GET Starting with CurrentDashboard with query:', req.query);
     
     // Try, in case model file does not exist
-    try {
+    // try {
         // Get the model dynamically (take note of file spelling = resource)
         const dashboardModel = require(dashboardSchema);
         const dashboardTabModel = require(dashboardTabSchema);
@@ -42,6 +26,7 @@ router.get('/', (req, res, next) => {
         const datasourceModel = require(datasourceSchema);
         
         // Find Dashboard
+        const dashboardQuery = { id: req.query.id };
         dashboardModel.find( dashboardQuery, (err, dashboards) => {
 
             if (err) {
@@ -53,7 +38,8 @@ router.get('/', (req, res, next) => {
             };
                 
             // Find Dashboard Tabs
-            dashboardTabModel.find( widgetQuery, (err, dashboardTabs) => {
+            const dashboardTabQuery = { dashboardID: req.query.id }
+            dashboardTabModel.find( dashboardTabQuery, (err, dashboardTabs) => {
 
                 if (err) {
                     return res.json(createErrorObject(
@@ -64,6 +50,7 @@ router.get('/', (req, res, next) => {
                 };
         
                 // Find Widgets
+                const widgetQuery = { dashboardID: req.query.id }
                 widgetModel.find( dashboardTabQuery, (err, widgets) => {
 
                     if (err) {
@@ -76,6 +63,8 @@ router.get('/', (req, res, next) => {
                     if (widgets == null) { 
                         widgets = [];
                     };
+
+                    // Load an Array of Datasource IDs in use by the Widgets on this Tab
                     let datasourceIDincludeArray = [];
                     for (var i = 0; i < widgets.length; i++) {
 
@@ -84,7 +73,26 @@ router.get('/', (req, res, next) => {
                             datasourceIDincludeArray.push(widgets[i].datasourceID)
                         };
                     };
-    console.log('xx', datasourceIDincludeArray, datasourceIDexcludeArray)
+
+                    const datasourceIDexclude = req.query.datasourceIDexclude;
+
+                    // Get Array of Datasource IDs to exclude.  This is an optional parameter from Workstation
+                    // and used in case it already has some Datasources (ie from a previous Tab)
+                    let datasourceIDexcludeArray = [];
+                    if (datasourceIDexclude != null) {
+                        datasourceIDexcludeArray = datasourceIDexclude.split(",");
+                        for (var i = 0; i < datasourceIDexcludeArray.length; i++) {
+                            datasourceIDexcludeArray[i] = +datasourceIDexcludeArray[i];
+                        };
+                    };
+
+                    let datasourceQuery = { 
+                        dashboardID: req.query.id,
+                        id: { "$in": datasourceIDincludeArray }
+                    }
+                
+                    // Exclude requested Datasources
+    console.log('xx', datasourceIDincludeArray, datasourceIDexcludeArray, datasourceQuery)
                 
                     // PersonModel.find({ favouriteFoods: { "$in" : ["sushi"]} }, ...);
                             // Return the data with metadata
@@ -110,16 +118,16 @@ router.get('/', (req, res, next) => {
                 });
             });
         });
-    }
-    catch (error) {
-        debugDev('Error in canvasCurrentDashboard.router', error.message)
-        return res.status(400).json({
-            "statusCode": "error",
-            "message" : "Error retrieving Current Dashboard ID: " + req.query.id,
-            "data": null,
-            "error": error
-        });
-    };
+    // }
+    // catch (error) {
+    //     debugDev('Error in canvasCurrentDashboard.router', error.message)
+    //     return res.status(400).json({
+    //         "statusCode": "error",
+    //         "message" : "Error retrieving Current Dashboard ID: " + req.query.id,
+    //         "data": null,
+    //         "error": error
+    //     });
+    // };
 
 })
 
