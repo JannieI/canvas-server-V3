@@ -75,7 +75,6 @@ module.exports = function listFields(queryObject) {
                             )
                         );
                     };
-
                     //  Now, results = [data]
                     results = JSON.parse(JSON.stringify(returnedData));
 
