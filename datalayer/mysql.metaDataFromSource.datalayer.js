@@ -34,7 +34,6 @@ module.exports = function metaDataFromSource(dataRow) {
             }
         );
     });
-    console.log('xx metaDataFields', metaDataFields)
 
     // Return
     return metaDataFields;

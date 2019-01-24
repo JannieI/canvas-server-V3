@@ -105,7 +105,7 @@ module.exports = function execQuery(queryObject) {
                         sqlStatement,
                         null,
                         nrRecordsReturned,
-                        null,
+                        metaDataFields,
                         null
                     ));
 
