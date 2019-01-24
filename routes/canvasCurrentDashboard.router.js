@@ -70,7 +70,9 @@ router.get('/', (req, res, next) => {
 
                         // Exclude Shapes that does not use Datasources
                         if (widgets[i].datasourceID != null) {
-                            datasourceIDincludeArray.push(widgets[i].datasourceID)
+                            if (datasourceIDincludeArray.indexOf(widgets[i].datasourceID) < 0) {
+                                datasourceIDincludeArray.push(widgets[i].datasourceID)
+                            };
                         };
                     };
 
