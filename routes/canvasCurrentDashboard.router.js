@@ -42,16 +42,26 @@ router.get('/', (req, res, next) => {
             };
                 
             // Find Dashboard Tabs
-            dashboardTabModel.find( dashboardTabQuery, (err, dashboardTabs) => {
+            dashboardTabModel.find( widgetQuery, (err, dashboardTabs) => {
 
                 if (err) {
                     return res.json(createErrorObject(
                         "error",
-                        "Error retrieving Dashboard Tabs for ID: " + req.query.id,
+                        "Error retrieving Widgets for ID: " + req.query.id,
                         err
                     ));
                 };
+        
+                // Find Widgets
+                widgetModel.find( dashboardTabQuery, (err, widgets) => {
 
+                    if (err) {
+                        return res.json(createErrorObject(
+                            "error",
+                            "Error retrieving Dashboard Tabs for ID: " + req.query.id,
+                            err
+                        ));
+                    };
                 
                             // Return the data with metadata
                             return res.json(
@@ -60,7 +70,8 @@ router.get('/', (req, res, next) => {
                                     "Retrieved data for Current Dashboard ID: " + req.query.id,
                                     { 
                                         dashboards: dashboards,
-                                        dashboardTabs: dashboardTabs
+                                        dashboardTabs: dashboardTabs,
+                                        widgets: widgets.length
                                     },
                                     null,
                                     null,
@@ -72,6 +83,7 @@ router.get('/', (req, res, next) => {
                                     null
                                     )
                             );
+                });
             });
         });
     }
