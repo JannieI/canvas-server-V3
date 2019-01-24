@@ -1,4 +1,4 @@
-module.exports = function metaDataFromDatasource(dataRow) {
+module.exports = function metaDataFromSource(dataRow) {
     // This routine creates metaData from a MySQL Source.  Note, MySQL give metadata with
     // DESCRIBE TABLE, but in this case we only have a SQL Statement.  So, we are deducing
     // the structure from the data.

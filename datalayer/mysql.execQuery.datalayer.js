@@ -5,6 +5,7 @@ const debugDev = require('debug')('app:dev');
 const debugData = require('debug')('app:data');
 const createErrorObject = require('../utils/createErrorObject.util');
 const createReturnObject = require('../utils/createReturnObject.util');
+const  metaDataFromSource = require('mysql.metaDataFromSource.datalayer');
 
 module.exports = function execQuery(queryObject) {
     // Runs given sqlStatement and returns data
@@ -79,11 +80,18 @@ module.exports = function execQuery(queryObject) {
                     //  Now, results = [data]
                     debugData('  mySQL.datalayer got data');
                     results = JSON.parse(JSON.stringify(returnedData));
+                    if (results == null) {
+                        results = [];
+                    };
 
                     //  Count
                     let nrRecordsReturned = 0;
-                    if (results != null) {
-                        nrRecordsReturned = results.length;
+                    nrRecordsReturned = results.length;
+
+                    // Get metaData
+                    let metaDataFields = [];
+                    if (results.length > 1) {
+                        metaDataFields = metaDataFromSource(results[0]);
                     };
 
                     // Return results with metadata according to the CanvasHttpResponse interface
