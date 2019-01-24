@@ -220,3 +220,17 @@ http://localhost:8000/clientData/execQuery
 &username=janniei
 &password=janniei
 ###
+
+// Testing datasources 
+xxx POST {{host}}/canvasdata/datasources
+content-type: application/json
+
+{
+    "dashboardID" : "68",
+    "widgetID" : null,
+    "name" : "Testing Trigger Via REST b",
+    "creator" : "JannieI",
+    "createdOn" : null
+}
+
+###

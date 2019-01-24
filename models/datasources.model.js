@@ -4,7 +4,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const counterModel = require('./counters.model')
-const datasourcesModel = require('./datasources.model')
+const datasourceHistoryModel = require('./datasourceHistory.model')
 
 // Sub-Schema
 const DatasourceFilter = new Schema({
@@ -39,7 +39,6 @@ const MetaDataField = new Schema({
     min: String,                            // Optional stats: Minimum value in Field
     sum: String,                            // Optional stats: Sum of all values (ie SQL SUM() )
 })
-
 
 const DatasourceTransformation = new Schema({
     id: Number,                             // Unique ID
@@ -204,27 +203,39 @@ DatasourceSchema.pre('save', function(next) {
     );
 });
 
-
 DatasourceSchema.pre('save', function(next) {
     var doc = this;
 
-    // Find in the counters collection, increment and update
-    let datasourceHistory = new datasourcesModel({
+    let datasourceHistory = new datasourceHistoryModel({
         createdBy: doc.createdBy,
         createdOn: doc.createdOn,
         datasource: doc
     });
-    
-    var book1 = new Book({ name: 'Introduction to Mongoose', price: 10, quantity: 25 });
- 
-    // save model to database
-    datasourceHistory.save(function(error, counter)   {
+
+    // Store history copy to database
+    datasourceHistory.save(function(error, result)   {
         if(error) {
             return next(error);
         };
 
         next();
     });
+
+    // Find in the counters collection, increment and update
+    datasourceHistoryModel.findOneAndUpdate( {name: "Testing Trigger Via REST b"},
+        function(error, counter)   {
+            if(error) {
+                console.log('ERRORRRRRR')
+                return next(error);
+            };
+
+            console.log('DONNNNNNNNE')
+            next();
+        }
+    );
+
+    
+
 });
 
 // Create Model: modelName, schema, collection
