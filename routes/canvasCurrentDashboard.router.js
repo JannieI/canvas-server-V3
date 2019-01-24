@@ -76,10 +76,9 @@ router.get('/', (req, res, next) => {
                         };
                     };
 
-                    const datasourceIDexclude = req.query.datasourceIDexclude;
-
                     // Get Array of Datasource IDs to exclude.  This is an optional parameter from Workstation
                     // and used in case it already has some Datasources (ie from a previous Tab)
+                    const datasourceIDexclude = req.query.datasourceIDexclude;
                     let datasourceIDexcludeArray = [];
                     if (datasourceIDexclude != null) {
                         datasourceIDexcludeArray = datasourceIDexclude.split(",");
@@ -88,12 +87,20 @@ router.get('/', (req, res, next) => {
                         };
                     };
 
+                    // Exclude requested Datasource IDs
+                    if (datasourceIDexcludeArray.length >0) {
+                        for (var i = datasourceIDincludeArray.length - 1; i >= 0; i++){
+                        if (datasourceIDexcludeArray.indexOf(datasourceIDincludeArray) >= 0) {
+                            datasourceIDincludeArray = datasourceIDincludeArray.split(i, 1);
+                        };
+                    };
+                    
+                    // Create query object to filter on
                     let datasourceQuery = { 
                         dashboardID: req.query.id,
                         id: { "$in": datasourceIDincludeArray }
                     }
                 
-                    // Exclude requested Datasources
     console.log('xx', datasourceIDincludeArray, datasourceIDexcludeArray, datasourceQuery)
                 
                     // PersonModel.find({ favouriteFoods: { "$in" : ["sushi"]} }, ...);
