@@ -7,25 +7,29 @@ const debugDev = require('debug')('app:dev');
 const createErrorObject = require('../utils/createErrorObject.util');
 const createReturnObject = require('../utils/createReturnObject.util');
 const dashboardSchema = '../models/dashboards.model';
+const dashboardTabSchema = '../models/dashboardTabs.model';
 const widgetSchema = '../models/widgets.model';
+const datasourceSchema = '../models/datasources.model';
 
 
 // GET route
 router.get('/', (req, res, next) => {
 
-    const query = { id: req.query.id };
-
+    const dashboardQuery = { id: req.query.id };
+    const widgetQuery = { dashboardID: req.query.id }
     debugDev('## --------------------------');
-    debugDev('## GET Starting with CurrentDashboard with query:', query);
-
+    debugDev('## GET Starting with CurrentDashboard with query:', dashboardQuery, widgetQuery);
+    
     // Try, in case model file does not exist
     try {
         // Get the model dynamically (take note of file spelling = resource)
         const dashboardModel = require(dashboardSchema);
+        const dashboardTabModel = require(dashboardTabSchema);
         const widgetModel = require(widgetSchema);
-
+        const datasourceModel = require(datasourceSchema);
+        
         // Find the data (using the standard query JSON object)
-        dashboardModel.find( query, (err, dashboards) => {
+        dashboardModel.find( dashboardQuery, (err, dashboards) => {
 
             if (err) {
                 return res.json(createErrorObject(
