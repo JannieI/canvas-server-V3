@@ -4,6 +4,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const counterModel = require('./counters.model')
+const datasourcesModel = require('./datasources.model')
 
 // Sub-Schema
 const DatasourceFilter = new Schema({
@@ -201,6 +202,29 @@ DatasourceSchema.pre('save', function(next) {
             next();
         }
     );
+});
+
+
+DatasourceSchema.pre('save', function(next) {
+    var doc = this;
+
+    // Find in the counters collection, increment and update
+    let datasourceHistory = new datasourcesModel({
+        createdBy: doc.createdBy,
+        createdOn: doc.createdOn,
+        datasource: doc
+    });
+    
+    var book1 = new Book({ name: 'Introduction to Mongoose', price: 10, quantity: 25 });
+ 
+    // save model to database
+    datasourceHistory.save(function(error, counter)   {
+        if(error) {
+            return next(error);
+        };
+
+        next();
+    });
 });
 
 // Create Model: modelName, schema, collection
