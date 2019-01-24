@@ -76,7 +76,15 @@ router.get('/', (req, res, next) => {
                     if (widgets == null) { 
                         widgets = [];
                     };
-    console.log('xx', datasourceIDexclude, datasourceIDexcludeArray)
+                    let datasourceIDincludeArray = [];
+                    for (var i = 0; i < widgets.length; i++) {
+
+                        // Exclude Shapes that does not use Datasources
+                        if (widgets[i].datasourceID != null) {
+                            datasourceIDincludeArray.push(widgets[i].datasourceID)
+                        };
+                    };
+    console.log('xx', datasourceIDincludeArray, datasourceIDexcludeArray)
                 
                     // PersonModel.find({ favouriteFoods: { "$in" : ["sushi"]} }, ...);
                             // Return the data with metadata
