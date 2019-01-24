@@ -18,6 +18,17 @@ router.get('/', (req, res, next) => {
     const dashboardTabQuery = { dashboardID: req.query.id }
     const widgetQuery = { dashboardID: req.query.id }
     const datasourceQuery = { dashboardID: req.query.id }
+    const datasourceIDexclude = req.query.datasourceIDexclude;
+
+    // Get Array of Datasource IDs to exclude.  This is an optional parameter from Workstation
+    // and used in case it already has some Datasources (ie from a previous Tab)
+    let datasourceIDexcludeArray = [];
+    if (datasourceIDexclude != null) {
+        datasourceIDexcludeArray = datasourceIDexclude.split(",");
+        for (var i = 0; i < datasourceIDexcludeArray.length; i++) {
+            datasourceIDexcludeArray[i] = +datasourceIDexcludeArray[i];
+        };
+    };
 
     debugDev('## --------------------------');
     debugDev('## GET Starting with CurrentDashboard with query:', dashboardQuery, widgetQuery);
@@ -62,7 +73,12 @@ router.get('/', (req, res, next) => {
                             err
                         ));
                     };
+                    if (widgets == null) { 
+                        widgets = [];
+                    };
+    console.log('xx', datasourceIDexclude, datasourceIDexcludeArray)
                 
+                    // PersonModel.find({ favouriteFoods: { "$in" : ["sushi"]} }, ...);
                             // Return the data with metadata
                             return res.json(
                                 createReturnObject(

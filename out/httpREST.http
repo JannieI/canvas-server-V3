@@ -224,5 +224,6 @@ http://localhost:8000/clientData/execQuery
 // Testing canvasCurrentDashboard 
 GET {{host}}/canvasCurrentDashboard
 ?id=68
+&datasourceIDexclude=1,2
 
 ###
