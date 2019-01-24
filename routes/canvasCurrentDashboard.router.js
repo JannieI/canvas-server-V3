@@ -75,6 +75,7 @@ router.get('/', (req, res, next) => {
                             };
                         };
                     };
+                    console.log('xx datasourceIDincludeArray', datasourceIDincludeArray)
 
                     // Get Array of Datasource IDs to exclude.  This is an optional parameter from Workstation
                     // and used in case it already has some Datasources (ie from a previous Tab)
@@ -88,42 +89,52 @@ router.get('/', (req, res, next) => {
                     };
 
                     // Exclude requested Datasource IDs
-                    if (datasourceIDexcludeArray.length >0) {
-                        for (var i = datasourceIDincludeArray.length - 1; i >= 0; i++){
-                        if (datasourceIDexcludeArray.indexOf(datasourceIDincludeArray) >= 0) {
-                            datasourceIDincludeArray = datasourceIDincludeArray.split(i, 1);
-                        };
+                    if (datasourceIDexcludeArray.length > 0) {
+                        datasourceIDincludeArray = datasourceIDincludeArray
+                            .filter(x => datasourceIDexcludeArray.indexOf(x) < 0);
                     };
-                    
+
                     // Create query object to filter on
                     let datasourceQuery = { 
-                        dashboardID: req.query.id,
                         id: { "$in": datasourceIDincludeArray }
                     }
-                
-    console.log('xx', datasourceIDincludeArray, datasourceIDexcludeArray, datasourceQuery)
-                
-                    // PersonModel.find({ favouriteFoods: { "$in" : ["sushi"]} }, ...);
-                            // Return the data with metadata
-                            return res.json(
-                                createReturnObject(
-                                    "success",
-                                    "Retrieved data for Current Dashboard ID: " + req.query.id,
-                                    { 
-                                        dashboards: dashboards,
-                                        dashboardTabs: dashboardTabs,
-                                        widgets: widgets.length
-                                    },
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    dashboards.length,
-                                    null,
-                                    null
-                                    )
-                            );
+                    console.log('xx datasourceQuery', datasourceQuery)
+                 
+                    datasourceModel.find( datasourceQuery, (err, datasources) => {
+
+                        if (err) {
+                            return res.json(createErrorObject(
+                                "error",
+                                "Error retrieving Datasource for ID: " + req.query.id,
+                                err
+                            ));
+                        };
+                        if (datasources == null) { 
+                            datasources = [];
+                        };
+
+                    // Return the data with metadata
+                        return res.json(
+                            createReturnObject(
+                                "success",
+                                "Retrieved data for Current Dashboard ID: " + req.query.id,
+                                { 
+                                    dashboards: dashboards,
+                                    dashboardTabs: dashboardTabs,
+                                    widgets: widgets,
+                                    datasources: datasources
+                                },
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                dashboards.length,
+                                null,
+                                null
+                                )
+                        );
+                    });
                 });
             });
         });
