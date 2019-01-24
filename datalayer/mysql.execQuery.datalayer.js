@@ -5,7 +5,7 @@ const debugDev = require('debug')('app:dev');
 const debugData = require('debug')('app:data');
 const createErrorObject = require('../utils/createErrorObject.util');
 const createReturnObject = require('../utils/createReturnObject.util');
-const  metaDataFromSource = require('mysql.metaDataFromSource.datalayer');
+const metaDataFromSource = require('./mysql.metaDataFromSource.datalayer');
 
 module.exports = function execQuery(queryObject) {
     // Runs given sqlStatement and returns data
@@ -105,7 +105,8 @@ module.exports = function execQuery(queryObject) {
                         sqlStatement,
                         null,
                         nrRecordsReturned,
-                        null,null
+                        null,
+                        null
                     ));
 
                 });

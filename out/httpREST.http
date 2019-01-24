@@ -186,7 +186,7 @@ GET {{host}}/clientData/execQuery
 ?serverType=MySQL
 &serverName=localhost
 &databaseName=mysql
-&sqlStatement=SELECT * FROM mysql.user
+&sqlStatement=SELECT User FROM mysql.user
 &port=3306
 &username=janniei
 &password=janniei

@@ -7,23 +7,14 @@ module.exports = function metaDataFromSource(dataRow) {
     // Preparation
     let metaDataFields = [];
 
-    // Create Array of Fields, un-trimmed
-    if (fieldsObject != null) {
-        fieldsObject = JSON.parse(JSON.stringify(fieldsObject));
+    // Loop on the data row
+    Object.keys(dataRow).forEach( key => {
+        // Get the key-value pair
+        let value = dataRow[key];
 
-        // Un-trim
-        fieldsArray = fieldsObject.split(",");
-        for (var i = 0; i < fieldsArray.length; i++) {
-            fieldsArray[i] = fieldsArray[i].trim();
-        };
+        const fieldName = key;
 
-    };
-
-    // Loop on given data row
-    for (var i = 0; i < dataRow.length; i++) {
-        const fieldName = dataRow[i];
-
-        let fieldType = typeof dataRow[i];
+        let fieldType = typeof key;
         fieldType = fieldType.toLowerCase();
 
         let fieldLength = 25;
@@ -42,7 +33,7 @@ module.exports = function metaDataFromSource(dataRow) {
                 "sum": null
             }
         );
-    };
+    });
     console.log('xx metaDataFields', metaDataFields)
 
     // Return
