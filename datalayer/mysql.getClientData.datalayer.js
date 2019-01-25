@@ -60,12 +60,12 @@ module.exports = function getClientData(datasource, queryObject) {
             };
 
             // TODO - how to treat special DB options
-
+            
             // Create pool Object
             const pool = mysql.createPool({
                 host             : host,
                 user             : user,
-                password         : password,
+                password         : 'password',
                 database         : database,
                 port             : port,
                 connectionLimit  : 10,

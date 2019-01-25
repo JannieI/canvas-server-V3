@@ -80,6 +80,8 @@ npm i config
 # debug
 npm i debug
 
+# Tedious
+npm install tedious
 
 
 
