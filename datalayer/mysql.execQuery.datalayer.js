@@ -7,7 +7,7 @@ const createErrorObject = require('../utils/createErrorObject.util');
 const createReturnObject = require('../utils/createReturnObject.util');
 const metaDataFromSource = require('./mysql.metaDataFromSource.datalayer');
 
-module.exports = function execQuery(queryObject) {
+module.exports = function execQueryMySQL(queryObject) {
     // Runs given sqlStatement and returns data
     // Inputs: REQ.QUERY OBJECT
     return new Promise((resolve, reject) => {
@@ -43,7 +43,7 @@ module.exports = function execQuery(queryObject) {
             pool.getConnection((err, connection) => {
 
                 if (err) {
-                    debugData('Error in mysql.execQuery.datalayer.getConnection', err)
+                    debugData('Error in mysql.execQueryMySQL.datalayer.getConnection', err)
 
                     // MySQL Error Codes
                     if (err.code === 'PROTOCOL_CONNECTION_LOST') {
@@ -59,7 +59,7 @@ module.exports = function execQuery(queryObject) {
                     return reject(
                         createErrorObject(
                             "error",
-                            "Error in mysql.execQuery.datalayer.getConnection getting data from MySQL " + err.sqlMessage,
+                            "Error in mysql.execQueryMySQL.datalayer.getConnection getting data from MySQL " + err.sqlMessage,
                             err
                         )
                     );
@@ -115,7 +115,7 @@ module.exports = function execQuery(queryObject) {
         catch (error) {
             return reject({
                 "statusCode": "error",
-                "message" : "Error in TRY block in mysql.execQuery.datalayer getting info from MySQL",
+                "message" : "Error in TRY block in mysql.execQueryMySQL.datalayer getting info from MySQL",
                 "data": null,
                 "error":error
             });
