@@ -1,6 +1,7 @@
 // Connector for Microsoft SQL database, and executes given SQL Statement
 
-const mysql = require('mysql');
+const Connection = require('tedious').Connection; 
+const Request = require('tedious').Request; 
 const debugDev = require('debug')('app:dev');
 const debugData = require('debug')('app:data');
 const createErrorObject = require('../utils/createErrorObject.util');
@@ -26,73 +27,40 @@ module.exports = function execQuery(queryObject) {
             debugDev('Properties received:', serverName, databaseName, sqlStatement,
                 port, username, password);
 
-            // Create pool Object
-            const pool = mysql.createPool({
-                connectionLimit  : 10,
-                host             : serverName,
-                user             : username,
-                password         : password,
-                database         : databaseName,
-                port             : port,
-                connectionLimit  : 10,
-                supportBigNumbers: true
-            });
+            // Create Connection Object
+            var config = { 
+                userName: "{your database user name}", 
+                password: "{your database password}", 
+                server: "{you database server address}", 
+                options: { 
+                    database: "{you database name}", 
+                    encrypt: true, 
+                } 
+            };
+            var connection = new Tedious.Connection(config);
 
             // Connect to DB and get the Data
             let results = [];
-            pool.getConnection((err, connection) => {
-
-                if (err) {
-                    debugData('Error in mysql.execQuery.datalayer.getConnection', err)
-
-                    // MySQL Error Codes
-                    if (err.code === 'PROTOCOL_CONNECTION_LOST') {
-                        console.error('Database connection was closed.')
-                    }
-                    if (err.code === 'ER_CON_COUNT_ERROR') {
-                        console.error('Database has too many connections.')
-                    }
-                    if (err.code === 'ECONNREFUSED') {
-                        console.error('Database connection was refused.')
-                    }
-
-                    return reject(
-                        createErrorObject(
-                            "error",
-                            "Error in mysql.execQuery.datalayer.getConnection getting data from MySQL " + err.sqlMessage,
-                            err
-                        )
-                    );
-                };
-
-                // Make the query 
-                connection.query(sqlStatement, [], (err, returnedData) => {
-                    if (err) {
-                        debugData('  mySQL.datalayer Error in getConnection', err)
-                        return reject(createErrorObject(
-                                "error",
-                                "Error in .query getting data from MySQL" + err.sqlMessage,
-                                err
-                            )
-                        );
-                    };
-
+            // pool.getConnection((err, connection) => {
+            connection.on("connect",function(err){ 
+                var result = []; 
+            
+                var request = new Request("select * form student",function(err,count,rows){ 
+                    console.log(result); 
+                }); 
+                request.on("row", function (columns) { 
+                    var item = {}; 
+                    columns.forEach(function (column) { 
+                        item[column.metadata.colName] = column.value; 
+                    }); 
+                    result.push(item); 
                     //  Now, results = [data]
-                    debugData('  mySQL.datalayer got data');
+                    debugData('  microsoftSQL.datalayer got data');
                     results = JSON.parse(JSON.stringify(returnedData));
                     if (results == null) {
                         results = [];
                     };
 
-                    //  Count
-                    let nrRecordsReturned = 0;
-                    nrRecordsReturned = results.length;
-
-                    // Get metaData
-                    let metaDataFields = [];
-                    if (results.length > 1) {
-                        metaDataFields = metaDataFromSource(results[0]);
-                    };
 
                     // Return results with metadata according to the CanvasHttpResponse interface
                     return resolve(createReturnObject(
@@ -100,22 +68,23 @@ module.exports = function execQuery(queryObject) {
                         "Ran query ' + sqlStatement + ' for database : " + databaseName + ' on ' + serverName,
                         results,
                         serverName,
-                        "MySQL",
+                        "MSSQL",
                         databaseName,
                         sqlStatement,
                         null,
-                        nrRecordsReturned,
-                        metaDataFields,
+                        0,
+                        'metaDataFields',
                         null
                     ));
 
-                });
-            });
+
+                }); 
+            })
         }
         catch (error) {
             return reject({
                 "statusCode": "error",
-                "message" : "Error in TRY block in mysql.execQuery.datalayer getting info from MySQL",
+                "message" : "Error in TRY block in microsoftSQL.execQuery.datalayer getting info from MS-SQL",
                 "data": null,
                 "error":error
             });
