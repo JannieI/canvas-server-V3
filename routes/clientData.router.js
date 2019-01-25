@@ -12,7 +12,8 @@ const sortFilterFieldsAggregate = require('../utils/sortFilterFieldsAggregate.ut
 const listDatabases = require('../datalayer/mysql.listDatabases.datalayer');
 const listTables = require('../datalayer/mysql.listTables.datalayer');
 const listFields = require('../datalayer/mysql.listFields.datalayer');
-const execQuery = require('../datalayer/mysql.execQuery.datalayer');
+const execQueryMySQL = require('../datalayer/mysql.execQuery.datalayer');
+const execQueryMicrosoftSQL = require('../datalayer/microsoftSQL.execQuery.datalayer');
 
 const createErrorObject = require('../utils/createErrorObject.util');
 const createReturnObject = require('../utils/createReturnObject.util');
@@ -285,9 +286,21 @@ router.get('/execQuery', (req, res, next) => {
     debugDev('Start clientData.router for execQuery');
 
     if (serverType == 'MySQL') {
-        execQuery(req.query)
+        execQueryMySQL(req.query)
             .then(resultsObject => {
                 debugData('Returned results of SQL Statement from MySQL');
+                return res.json(resultsObject);
+             } )
+            .catch(errorObject  => {
+                debugDev("Error in clientData.router.execQuery", errorObject);
+                return res.json(errorObject);
+            });
+    };
+    if (serverType == 'Microsoft SQL') {
+        debugData('Error Microsoft SQL connector not Activated');
+        execQueryMySQL(req.query)
+            .then(resultsObject => {
+                debugData('Returned results of SQL Statement from Microsoft SQL');
                 return res.json(resultsObject);
              } )
             .catch(errorObject  => {
@@ -311,16 +324,6 @@ router.get('/execQuery', (req, res, next) => {
             createErrorObject(
                 "error",
                 "PostgresSQL connector not Activated",
-                null
-            )
-        );
-    };
-    if (serverType == 'Microsoft SQL') {
-        debugData('Error Microsoft SQL connector not Activated');
-        return res.json(
-            createErrorObject(
-                "error",
-                "Microsoft SQL connector not Activated",
                 null
             )
         );

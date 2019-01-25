@@ -8,7 +8,7 @@ const createErrorObject = require('../utils/createErrorObject.util');
 const createReturnObject = require('../utils/createReturnObject.util');
 const metaDataFromSource = require('./mysql.metaDataFromSource.datalayer');
 
-module.exports = function execQuery(queryObject) {
+module.exports = function execQueryMicrosoftSQL(queryObject) {
     // Runs given sqlStatement and returns data
     // Inputs: REQ.QUERY OBJECT
     return new Promise((resolve, reject) => {
