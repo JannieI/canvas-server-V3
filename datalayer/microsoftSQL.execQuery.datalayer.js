@@ -95,8 +95,7 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
                     console.log(err);
                 } else {
                     console.log('rows', rows)
-                    insertIntoMongoDb()
-                    // return resolve("All good for " + rowCount);
+                    processResult();
                 }
             });
             request.on('row', function(columns) {
@@ -115,7 +114,7 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
             // return resolve({done: "done SQL for " + rows.count})
         }
 
-        function insertIntoMongoDb(){
+        function processResult(){
             console.log('inserting data into MongDB');
             // return resolve({done: "'done' done SQL for " + rows.length})
                     // Return results with metadata according to the CanvasHttpResponse interface
