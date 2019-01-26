@@ -83,6 +83,8 @@ npm i debug
 # Tedious
 npm install tedious
 
+# mssql
+npm install mssql
 
 
 <!-- -------------MONGO INFO START ------------------------ -->

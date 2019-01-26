@@ -235,10 +235,10 @@ http://localhost:8000/canvasCurrentDashboard
 ###
 // GRiP DB
 http://localhost:8000/clientData/execQuery
-?serverType=MySQL
+?serverType=MicrosoftSQL
 &serverName=localhost
 &databaseName=VCIB_DemoDat
-&sqlStatement=SELECT TOP 10 * FROM VCIB_RaisedPremiums
+&sqlStatement=SELECT 42
 &port=1433
 &username=sa
 &password=Qwerty,123

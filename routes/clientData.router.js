@@ -296,11 +296,11 @@ router.get('/execQuery', (req, res, next) => {
                 return res.json(errorObject);
             });
     };
-    if (serverType == 'Microsoft SQL') {
-        debugData('Error Microsoft SQL connector not Activated');
-        execQueryMySQL(req.query)
+    if (serverType == 'MicrosoftSQL') {
+        debugData('Start Microsoft SQL connector');
+        execQueryMicrosoftSQL(req.query)
             .then(resultsObject => {
-                debugData('Returned results of SQL Statement from Microsoft SQL');
+                debugData('Returned results of SQL Statement from Microsoft SQL');  
                 return res.json(resultsObject);
              } )
             .catch(errorObject  => {
