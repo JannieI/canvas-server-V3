@@ -15,12 +15,36 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
     // Inputs: REQ.QUERY OBJECT
     return new Promise((resolve, reject) => {
         debugData('Start execQueryMicrosoftSQL');
-        var config = {
-            userName: 'sa',
-            password: 'Qwerty,123',
-            server: 'localhost'
-        };
-        var Connection = require('tedious').Connection;
+        // var config = {
+        //     userName: 'sa',
+        //     password: 'Qwerty,123',
+        //     server: 'localhost'
+        // };
+            // Set & extract the vars from the Input Params
+            let serverName = queryObject.serverName;
+            let databaseName = queryObject.databaseName;
+            let sqlStatement = queryObject.sqlStatement;
+            let port = queryObject.port;
+            let username = queryObject.username;
+            let password = queryObject.password;
+
+            // TODO - figure out how to treat SQL Parameters, ie @LogicalBusinessDay
+            let sqlParameters = '';
+            debugDev('Properties received:', serverName, databaseName, sqlStatement,
+                port, username, password);
+
+            var config = {
+                server: serverName,
+                authentication: {
+                    type: "default",
+                    options: {
+                        userName: username,
+                        password: password,
+                    }
+                }
+            };
+
+var Connection = require('tedious').Connection;
         var rows = [];
 
         var connection = new Connection(config);
@@ -32,16 +56,35 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
                     console.log('ERRRROR')
                     return reject({
                         "statusCode": "error",
-                        "message" : "Error in TRY block in microsoftSQL.execQuery.datalayer getting info from MS-SQL",
+                        "message" : "Error in connection.on in microsoftSQL.execQuery.datalayer getting info from MS-SQL",
                         "data": null,
-                        "error":error
+                        "error":err
                     });
                 };
     
 
             }
             // getSqlData();
-            return resolve('done')
+            // return resolve('done')
+            console.log('Getting data from SQL');
+            request = new Request("SELECT 42 ",
+                function(err, rowCount) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log('rowCount', rowCount);;
+                }
+            });
+            request.on('row', function(columns) {
+                var row = {};
+                columns.forEach(function(column) {
+                    row[column.metadata.colName] = column.value;
+                });
+                rows.push(row);
+            });
+            connection.execSql(request);
+            return resolve({done: "done SQL"})
+        
             }
         );
         var Request = require('tedious').Request;
@@ -67,7 +110,7 @@ function getSqlData() {
         rows.push(row);
     });
     connection.execSql(request);
-    return resolve({done: "done"})
+    return resolve({done: "done SQL"})
 }
 
 
