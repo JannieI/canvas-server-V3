@@ -8,8 +8,6 @@ const createErrorObject = require('../utils/createErrorObject.util');
 const createReturnObject = require('../utils/createReturnObject.util');
 const metaDataFromSource = require('./mysql.metaDataFromSource.datalayer');
 
-
-
 module.exports = function execQueryMicrosoftSQL(queryObject) {
     // Runs given sqlStatement and returns data
     // Inputs: REQ.QUERY OBJECT
@@ -44,7 +42,7 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
                 }
             };
 
-var Connection = require('tedious').Connection;
+        // var Connection = require('tedious').Connection;
         var rows = [];
 
         var connection = new Connection(config);
@@ -67,23 +65,32 @@ var Connection = require('tedious').Connection;
             // getSqlData();
             // return resolve('done')
             console.log('Getting data from SQL');
-            request = new Request("SELECT 42 ",
-                function(err, rowCount) {
+            request = new Request("SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE='BASE TABLE'",
+                function(err, rowCount, rows) {
                 if (err) {
                     console.log(err);
                 } else {
-                    console.log('rowCount', rowCount);;
+                    console.log('rowCount', rowCount, rows);
+                    return resolve({done: "done SQL for " + rows.length})
                 }
             });
+
             request.on('row', function(columns) {
                 var row = {};
+                console.log('columns')
                 columns.forEach(function(column) {
                     row[column.metadata.colName] = column.value;
                 });
                 rows.push(row);
+                console.log('rows', rows.length)
             });
+
+            request.on('done', function(rowCount, more) {
+                    console.log(rowCount + ' rows returned');
+                    return resolve("All good for " + rowCount)
+                });
             connection.execSql(request);
-            return resolve({done: "done SQL"})
+            // return resolve({done: "done SQL for " + rows.length})
         
             }
         );
