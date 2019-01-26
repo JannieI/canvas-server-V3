@@ -233,11 +233,11 @@ http://localhost:8000/canvasCurrentDashboard
 &dashboardTabID=175
 &datasourceIDexclude=1,2
 ###
-// GRiP DB
+// GRiP DB: VCIB_DemoData
 http://localhost:8000/clientData/execQuery
 ?serverType=MicrosoftSQL
 &serverName=localhost
-&databaseName=VCIB_DemoDat
+&databaseName=VCIB_DemoData
 &sqlStatement=SELECT 42
 &port=1433
 &username=sa

@@ -31,6 +31,11 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
 
         var config = {
             server: serverName,
+            options: {
+                database: databaseName,
+                encrypt: false,
+                dateFormat: "ymd"
+            },
             authentication: {
                 type: "default",
                 options: {
@@ -60,37 +65,24 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
             rows = [];
             getSqlData();
             
-            // return resolve('done')
-            // console.log('Getting data from SQL');
-            // request = new Request("SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE='BASE TABLE'",
-            //     function(err, rowCount, rows) {
-            //     if (err) {
-            //         console.log(err);
-            //     } else {
-            //         console.log('rowCount', rowCount, rows);
-            //         return resolve({done: "done SQL for " + rows.length})
-            //     }
-            // });
+        });
 
-            // request.on('row', function(columns) {
-            //     var row = {};
-            //     console.log('columns')
-            //     columns.forEach(function(column) {
-            //         row[column.metadata.colName] = column.value;
-            //     });
-            //     rows.push(row);
-            //     console.log('rows', rows.length)
-            // });
+        connection.on('end', function(err) {
+            console.log('END -----------------------------')
+        })
 
-            // request.on('done', function(rowCount, more) {
-            //         console.log(rowCount + ' rows returned');
-            //         return resolve("All good for " + rowCount)
-            //     });
-            // connection.execSql(request);
-            // // return resolve({done: "done SQL for " + rows.length})
-        
-            }
-        );
+        connection.on('error', function(err) {
+            console.log('ERROR -----------------------------')
+        })
+
+        connection.on('debug', function(text) {
+            console.log('DEBUG -----------------------------', text)
+        })
+
+        connection.on('infoMessage', function(info) {
+            console.log('INFO -----------------------------', info)
+        })
+
         var Request = require('tedious').Request;
 
         function getSqlData() {
