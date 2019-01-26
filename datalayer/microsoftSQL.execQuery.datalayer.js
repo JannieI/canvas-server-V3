@@ -8,7 +8,9 @@ const createErrorObject = require('../utils/createErrorObject.util');
 const createReturnObject = require('../utils/createReturnObject.util');
 const metaDataFromSource = require('./mysql.metaDataFromSource.datalayer');
 
-var rows = [];
+// TODO - sort metaDataFromSource for MICROSOFT ...
+
+var results = [];
 
 module.exports = function execQueryMicrosoftSQL(queryObject) {
     // Runs given sqlStatement and returns data
@@ -29,6 +31,7 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
         debugDev('Properties received:', serverName, databaseName, sqlStatement,
             port, username, password);
 
+        // Create connection string information.  Note: Azure needs encrypt: true
         var config = {
             server: serverName,
             options: {
@@ -45,42 +48,42 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
             }
         };
 
+        // Create a connection the the DB using the config
         const connection = new Connection(config);
-
         connection.on('connect', function(err) {
-            //Add error handling here   
-            if (err) {
-                if (err) {
-                    console.log('Error in connection.on', err)
-                    return reject({
-                        "statusCode": "error",
-                        "message" : "Error in connection.on in microsoftSQL.execQuery.datalayer getting info from MS-SQL",
-                        "data": null,
-                        "error":err
-                    });
-                };
-    
 
-            }
-            rows = [];
+            if (err) {
+                console.log('Error in connection.on', err)
+                return reject({
+                    "statusCode": "error",
+                    "message" : "Error in connection.on in microsoftSQL.execQuery.datalayer getting info from MS-SQL",
+                    "data": null,
+                    "error":err
+                });
+            };
+    
+            // Reset the data, and execute the SQL
+            results = [];
             getSqlData();
             
         });
 
-        connection.on('end', function(err) {
-            console.log('END -----------------------------')
+        // Connection Events
+        // TODO - in time, we may not need all of these
+        connection.on('end', function() {
+            debugDev('END -----------------------------')
         })
 
         connection.on('error', function(err) {
-            console.log('ERROR -----------------------------')
+            debugDev('ERROR -----------------------------')
         })
 
         connection.on('debug', function(text) {
-            console.log('DEBUG -----------------------------', text)
+            debugDev('DEBUG -----------------------------', text)
         })
 
         connection.on('infoMessage', function(info) {
-            console.log('INFO -----------------------------', info)
+            debugDev('INFO -----------------------------', info)
         })
 
         var Request = require('tedious').Request;
@@ -92,29 +95,32 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
             request = new Request(sqlStatement,
                 function(err, rowCount, rows) {
                 if (err) {
-                    debugData('  mySQL.datalayer Error in getConnection', err)
+                    debugData('  microsoftSQL.datalayer Error in getSqlData', err)
                     return reject(createErrorObject(
-                            "error",
-                            "Error in .query getting data from MySQL" + err.sqlMessage,
-                            err
-                        )
-                    );
-            } else {
-                    console.log('rows', rows.length)
+                        "error",
+                        "Error in getSqlData getting data from MicrosoftSQL" + err.sqlMessage,
+                        err
+                    ));
+                } else {
+                    // TODO - not sure why we need a function call here, but rows are empty here
                     processResult();
-                }
+                };
             });
+
+            // Proces results for each Row
             request.on('row', function(columns) {
                 var row = {};
                 columns.forEach(function(column) {
                     row[column.metadata.colName] = column.value;
                 });
-                rows.push(row);
+                results.push(row);
             });
-                request.on('done', function(rowCount, more) {
-                    console.log(rowCount + ' rows returned');
 
-                });
+            request.on('done', function(rowCount, more) {
+                debugDev('DONE -----------------------------', rowCount)
+            });
+    
+            // Execute SQL
             connection.execSql(request);
         }
 
@@ -125,13 +131,13 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
             return resolve(createReturnObject(
                 "success",
                 "Ran query ' + sqlStatement + ' for database : " + databaseName + ' on ' + serverName,
-                rows,
+                results,
                 serverName,
                 "MicrosoftSQL",
                 databaseName,
                 sqlStatement,
                 null,
-                rows.length,
+                results.length,
                 '',  //metaDataFields,
                 null
             ));                
