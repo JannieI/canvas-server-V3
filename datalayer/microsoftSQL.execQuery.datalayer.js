@@ -8,50 +8,45 @@ const createErrorObject = require('../utils/createErrorObject.util');
 const createReturnObject = require('../utils/createReturnObject.util');
 const metaDataFromSource = require('./mysql.metaDataFromSource.datalayer');
 
+var rows = [];
+
 module.exports = function execQueryMicrosoftSQL(queryObject) {
     // Runs given sqlStatement and returns data
     // Inputs: REQ.QUERY OBJECT
     return new Promise((resolve, reject) => {
+
         debugData('Start execQueryMicrosoftSQL');
-        // var config = {
-        //     userName: 'sa',
-        //     password: 'Qwerty,123',
-        //     server: 'localhost'
-        // };
-            // Set & extract the vars from the Input Params
-            let serverName = queryObject.serverName;
-            let databaseName = queryObject.databaseName;
-            let sqlStatement = queryObject.sqlStatement;
-            let port = queryObject.port;
-            let username = queryObject.username;
-            let password = queryObject.password;
+        // Set & extract the vars from the Input Params
+        let serverName = queryObject.serverName;
+        let databaseName = queryObject.databaseName;
+        let sqlStatement = queryObject.sqlStatement;
+        let port = queryObject.port;
+        let username = queryObject.username;
+        let password = queryObject.password;
 
-            // TODO - figure out how to treat SQL Parameters, ie @LogicalBusinessDay
-            let sqlParameters = '';
-            debugDev('Properties received:', serverName, databaseName, sqlStatement,
-                port, username, password);
+        // TODO - figure out how to treat SQL Parameters, ie @LogicalBusinessDay
+        let sqlParameters = '';
+        debugDev('Properties received:', serverName, databaseName, sqlStatement,
+            port, username, password);
 
-            var config = {
-                server: serverName,
-                authentication: {
-                    type: "default",
-                    options: {
-                        userName: username,
-                        password: password,
-                    }
+        var config = {
+            server: serverName,
+            authentication: {
+                type: "default",
+                options: {
+                    userName: username,
+                    password: password,
                 }
-            };
+            }
+        };
 
-        // var Connection = require('tedious').Connection;
-        var rows = [];
+        const connection = new Connection(config);
 
-        var connection = new Connection(config);
         connection.on('connect', function(err) {
             //Add error handling here   
             if (err) {
-                console.log('ERRRROR')
                 if (err) {
-                    console.log('ERRRROR')
+                    console.log('Error in connection.on', err)
                     return reject({
                         "statusCode": "error",
                         "message" : "Error in connection.on in microsoftSQL.execQuery.datalayer getting info from MS-SQL",
@@ -62,63 +57,94 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
     
 
             }
-            // getSqlData();
+            rows = [];
+            getSqlData();
+            
             // return resolve('done')
-            console.log('Getting data from SQL');
-            request = new Request("SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE='BASE TABLE'",
-                function(err, rowCount, rows) {
-                if (err) {
-                    console.log(err);
-                } else {
-                    console.log('rowCount', rowCount, rows);
-                    return resolve({done: "done SQL for " + rows.length})
-                }
-            });
+            // console.log('Getting data from SQL');
+            // request = new Request("SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE='BASE TABLE'",
+            //     function(err, rowCount, rows) {
+            //     if (err) {
+            //         console.log(err);
+            //     } else {
+            //         console.log('rowCount', rowCount, rows);
+            //         return resolve({done: "done SQL for " + rows.length})
+            //     }
+            // });
 
-            request.on('row', function(columns) {
-                var row = {};
-                console.log('columns')
-                columns.forEach(function(column) {
-                    row[column.metadata.colName] = column.value;
-                });
-                rows.push(row);
-                console.log('rows', rows.length)
-            });
+            // request.on('row', function(columns) {
+            //     var row = {};
+            //     console.log('columns')
+            //     columns.forEach(function(column) {
+            //         row[column.metadata.colName] = column.value;
+            //     });
+            //     rows.push(row);
+            //     console.log('rows', rows.length)
+            // });
 
-            request.on('done', function(rowCount, more) {
-                    console.log(rowCount + ' rows returned');
-                    return resolve("All good for " + rowCount)
-                });
-            connection.execSql(request);
-            // return resolve({done: "done SQL for " + rows.length})
+            // request.on('done', function(rowCount, more) {
+            //         console.log(rowCount + ' rows returned');
+            //         return resolve("All good for " + rowCount)
+            //     });
+            // connection.execSql(request);
+            // // return resolve({done: "done SQL for " + rows.length})
         
             }
         );
         var Request = require('tedious').Request;
 
+        function getSqlData() {
+            console.log('Getting data from SQL');
+            request = new Request("SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE='BASE TABLE';",
+                function(err, rowCount, rows) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log('rows', rows)
+                    insertIntoMongoDb()
+                    // return resolve("All good for " + rowCount);
+                }
+            });
+            request.on('row', function(columns) {
+                var row = {};
+                columns.forEach(function(column) {
+                    row[column.metadata.colName] = column.value;
+                });
+                rows.push(row);
+            });
+                request.on('done', function(rowCount, more) {
+                    console.log(rowCount + ' rows returned');
+                    // return resolve({done: "'done' done SQL for " + rows.length})
+
+                });
+            connection.execSql(request);
+            // return resolve({done: "done SQL for " + rows.count})
+        }
+
+        function insertIntoMongoDb(){
+            console.log('inserting data into MongDB');
+            // return resolve({done: "'done' done SQL for " + rows.length})
+                    // Return results with metadata according to the CanvasHttpResponse interface
+                    return resolve(createReturnObject(
+                        "success",
+                        "Ran query ' + sqlStatement + ' for database : " + databaseName + ' on ' + serverName,
+                        rows,
+                        '',  //serverName,
+                        "MicrosoftSQL",
+                        '',  //databaseName,
+                        '',  //sqlStatement,
+                        null,
+                        '',  //nrRecordsReturned,
+                        '',  //metaDataFields,
+                        null
+                    ));                
+
+        }
+
     })
 }
 
-function getSqlData() {
-    console.log('Getting data from SQL');
-    request = new Request("SELECT 42 ",
-        function(err, rowCount) {
-        if (err) {
-            console.log(err);
-        } else {
-            insertIntoMongoDb();
-        }
-    });
-    request.on('row', function(columns) {
-        var row = {};
-        columns.forEach(function(column) {
-            row[column.metadata.colName] = column.value;
-        });
-        rows.push(row);
-    });
-    connection.execSql(request);
-    return resolve({done: "done SQL"})
-}
+
 
 
 
