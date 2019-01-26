@@ -92,8 +92,14 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
             request = new Request(sqlStatement,
                 function(err, rowCount, rows) {
                 if (err) {
-                    console.log(err);
-                } else {
+                    debugData('  mySQL.datalayer Error in getConnection', err)
+                    return reject(createErrorObject(
+                            "error",
+                            "Error in .query getting data from MySQL" + err.sqlMessage,
+                            err
+                        )
+                    );
+            } else {
                     console.log('rows', rows.length)
                     processResult();
                 }
