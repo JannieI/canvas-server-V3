@@ -53,7 +53,7 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
         connection.on('connect', function(err) {
 
             if (err) {
-                console.log('Error in connection.on', err)
+                debugDev('Error in connection.on', err)
                 return reject({
                     "statusCode": "error",
                     "message" : "Error in connection.on in microsoftSQL.execQuery.datalayer getting info from MS-SQL",
@@ -89,7 +89,7 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
         var Request = require('tedious').Request;
 
         function getSqlData() {
-            console.log('Getting data from SQL');
+            debugDev('Getting data from SQL');
             
             // request = new Request("SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE='BASE TABLE';",
             request = new Request(sqlStatement,
@@ -125,7 +125,7 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
         }
 
         function processResult(){
-            console.log('Start processResult');
+            debugDev('Start processResult');
 
             // Return results with metadata according to the CanvasHttpResponse interface
             return resolve(createReturnObject(
