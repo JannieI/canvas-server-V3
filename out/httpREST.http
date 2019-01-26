@@ -238,7 +238,7 @@ http://localhost:8000/clientData/execQuery
 ?serverType=MicrosoftSQL
 &serverName=localhost
 &databaseName=VCIB_DemoData
-&sqlStatement=SELECT 42
+&sqlStatement=SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE='BASE TABLE'
 &port=1433
 &username=sa
 &password=Qwerty,123

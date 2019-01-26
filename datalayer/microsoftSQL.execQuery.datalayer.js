@@ -87,7 +87,9 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
 
         function getSqlData() {
             console.log('Getting data from SQL');
-            request = new Request("SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE='BASE TABLE';",
+            
+            // request = new Request("SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE='BASE TABLE';",
+            request = new Request(sqlStatement,
                 function(err, rowCount, rows) {
                 if (err) {
                     console.log(err);
