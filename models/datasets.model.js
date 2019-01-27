@@ -54,7 +54,9 @@ DatasetSchema.pre('save', function(next) {
                 next();
             }
         );
-    };
+    } else {
+        next();
+    }
 });
 
 // Create Model: modelName, schema, collection

@@ -32,7 +32,7 @@ ClientDataSchema.pre('save', function(next) {
         );
     } else {
         next();
-    }
+    };
 });
 
 // Create Model: modelName, schema, collection
