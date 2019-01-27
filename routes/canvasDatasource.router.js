@@ -19,14 +19,14 @@ router.get('/', (req, res, next) => {
     
     // Try, in case model file does not exist
     try {
-        // Get the model dynamically (take note of file spelling = resource)
+        // Get the model dynamically
         const datasourceModel = require(datasourceSchema);
         const datasetModel = require(datasetSchema);
         const clientDataModel = require(clientDataSchema);
         
         const datasourceID = req.query.id;
 
-        // Find Dashboard
+        // Find Datasource
         const datasourceQuery = { id: datasourceID };
 
         datasourceModel.find( datasourceQuery, (err, datasources) => {
@@ -102,6 +102,82 @@ router.get('/', (req, res, next) => {
             "error": error
         });
     };
+
+})
+
+
+// POST route
+router.post('/', (req, res, next) => {
+
+    debugDev('## --------------------------');
+    debugDev('## POST Starting with CurrentDashboard with query:', req.query);
+    
+    // Try, in case model file does not exist
+    // try {
+        // Get the model dynamically 
+        const datasourceModel = require(datasourceSchema);
+        const datasetModel = require(datasetSchema);
+        const clientDataModel = require(clientDataSchema);
+
+        const datasourceBody = req.body.datasource;
+        const datasetBody = req.body.dataset;
+        const clientDataBody = req.body.clientData;
+        
+        const datasourceID = req.query.id;
+
+        // Add Datasource
+        const datasourceQuery = { id: datasourceID };
+
+
+        // Create object and save to DB
+        let datasourceAdd = new canvasModel(datasourceBody);
+        datasourceAdd.save()
+            .then(datasourceAdded => {
+                debugDev('New record added in canvasDatasourceRouter', datasourceAdded)
+                return res.json(
+                    createReturnObject(
+                        "success",
+                        "Added record for datasource, ID: " + datasourceAdded.id,
+                        { 
+                                datasource: datasourceAdded,
+                                datasets: [],
+                                clientData: []
+                        },
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                    )
+                );
+            })
+            .catch(err => {
+                console.error(err)
+                return res.json(
+                    createErrorObject(
+                        "error",
+                        "Error: Could not add record for resource: " + resource,
+                        err
+                    )
+                );
+            });
+
+
+
+    
+    // }
+    // catch (error) {
+    //     debugDev('Error in canvasCurrentDashboard.router', error.message)
+    //     return res.status(400).json({
+    //         "statusCode": "error",
+    //         "message" : "Error retrieving Current Dashboard ID: " + req.query.id,
+    //         "data": null,
+    //         "error": error
+    //     });
+    // };
 
 })
 
