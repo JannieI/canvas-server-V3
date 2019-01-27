@@ -38,20 +38,23 @@ const DatasetSchema = new Schema({
 DatasetSchema.pre('save', function(next) {
     var doc = this;
 
-    // Find in the counters collection, increment and update
-    counterModel.findOneAndUpdate(
-        {_id: 'datasets.id'},
-        {$inc: { seq: 1} },
-        { upsert: true, new: true },
-        function(error, counter)   {
-            if(error) {
-                return next(error);
-            };
+    if (doc.id == null) {
 
-            doc.id = counter.seq;
-            next();
-        }
-    );
+        // Find in the counters collection, increment and update
+        counterModel.findOneAndUpdate(
+            {_id: 'datasets.id'},
+            {$inc: { seq: 1} },
+            { upsert: true, new: true },
+            function(error, counter)   {
+                if(error) {
+                    return next(error);
+                };
+
+                doc.id = counter.seq;
+                next();
+            }
+        );
+    };
 });
 
 // Create Model: modelName, schema, collection
