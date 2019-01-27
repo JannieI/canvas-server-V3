@@ -119,9 +119,10 @@ router.post('/', (req, res, next) => {
         const datasetModel = require(datasetSchema);
         const clientDataModel = require(clientDataSchema);
 
-        const datasourceInput = req.body.datasource;
-        const datasetInput = req.body.dataset;
-        const clientDataInput = req.body.clientData;
+        const bodyInput = JSON.parse(JSON.stringify(req.body))
+        const datasourceInput = bodyInput.datasourceInput;
+        const datasetInput = bodyInput.datasetInput;
+        const clientDataInput = bodyInput.clientDataInput;
         console.log('input', datasourceInput, datasetInput, clientDataInput)
 
         // Validation
@@ -155,7 +156,7 @@ router.post('/', (req, res, next) => {
                 )
             );
         };
-
+        console.log('wtf')
         // Add Datasource
         // Create object and save to DB
         let datasourceAdd = new canvasModel(datasourceInput);

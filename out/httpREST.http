@@ -255,7 +255,15 @@ POST {{host}}/canvasDatasource
 content-type: application/json 
 
 {
-    "name": "test" 
+    "datasourceInput": {
+        "name": "test" 
+    },
+    "datasetInput": {
+        "fileName": "test"
+    },
+    "clientDataInput": {
+        "data": "123"
+    }
  } 
 
 
