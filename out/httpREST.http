@@ -256,12 +256,15 @@ content-type: application/json
 
 {
     "datasourceInput": {
+        "id": null,
         "name": "test" 
     },
     "datasetInput": {
+        "id": null,
         "fileName": "test"
     },
     "clientDataInput": {
+        "id": null,
         "data": "123"
     }
  } 
