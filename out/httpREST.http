@@ -251,7 +251,6 @@ GET {{host}}/canvasDatasource
 
 // All data for one Datasource
 POST {{host}}/canvasDatasource
-?id=4
 content-type: application/json 
 
 {
