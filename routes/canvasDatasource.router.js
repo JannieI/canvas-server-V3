@@ -156,35 +156,65 @@ router.post('/', (req, res, next) => {
                 )
             );
         };
-        console.log('wtf')
-        // Add Datasource
+        console.log('wtf 0')
         // Create object and save to DB
-        let datasourceAdd = new canvasModel(datasourceInput);
+
+        // Add Datasource
+        let datasourceAdd = new datasourceModel(datasourceInput);
         datasourceAdd.save()
             .then(datasourceAdded => {
-                debugDev('New record added in canvasDatasourceRouter', datasourceAdded)
-                return res.json(
-                    createReturnObject(
-                        "success",
-                        "Added ALL records for datasource, ID: " + datasourceAdded.id,
-                        {
-                                datasource: datasourceAdded,
-                                datasets: [],
-                                clientData: []
-                        },
-                        null,
-                        null,
-                        null,
-                        null,
-                        null,
-                        null,
-                        null,
-                        null,
-                    )
-                );
+                console.log('wtf 1')
+                debugDev('New Datasource added in canvasDatasourceRouter', datasourceAdded);
+
+                // Add Dataset
+                let datasetAdd = new datasetModel(datasetInput);
+                datasetAdd.save()
+                    .then(datasetAdded => {
+                        console.log('wtf 1')
+                        debugDev('New Dataset added in canvasDatasourceRouter', datasetAdded);
+
+
+
+
+                                return res.json(
+                                    createReturnObject(
+                                        "success",
+                                        "Added ALL records for datasource, ID: " + datasourceAdded.id,
+                                        {
+                                                datasource: datasourceAdded,
+                                                datasets: datasetAdded,
+                                                clientData: []
+                                        },
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                        null,
+                                    )
+                                );
+
+                    })
+                    .catch(err => {
+                        console.log('wtf 2')
+                        debugDev('Error Adding new Datasource', err)
+                        return res.json(
+                            createErrorObject(
+                                "error",
+                                "Error: Could not add record for datasource: " + datasourceInput.id,
+                                err
+                            )
+                        );
+                    });
+                
+
+
             })
             .catch(err => {
-                debugDev.error('Error Adding new Datasource', err)
+                console.log('wtf 2')
+                debugDev('Error Adding new Datasource', err)
                 return res.json(
                     createErrorObject(
                         "error",
