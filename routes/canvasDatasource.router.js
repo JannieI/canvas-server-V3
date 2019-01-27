@@ -174,10 +174,9 @@ router.post('/', (req, res, next) => {
                         console.log('wtf 1')
                         debugDev('New Dataset record added in canvasDatasourceRouter', datasetAdded);
 
-
                         // Add ClientData
                         clientDataInput.id = datasourceAdded.id;
-                        let datasetAdd = new datasetModel(datasetInput);
+                        let datasetAdd = new clientDataModel(clientDataInput);
                         datasetAdd.save()
                             .then(clientDataAdded => {
                                 console.log('wtf 1')
