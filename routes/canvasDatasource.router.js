@@ -10,7 +10,6 @@ const createReturnObject = require('../utils/createReturnObject.util');
 const datasourceSchema = '../models/datasources.model';
 const datasetSchema = '../models/datasets.model';
 const clientDataSchema = '../models/clientData.model';
-const datasourceSchema = '../models/datasources.model';
 
 // GET route
 router.get('/', (req, res, next) => {

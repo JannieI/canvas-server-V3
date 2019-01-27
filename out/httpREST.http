@@ -228,7 +228,7 @@ GET {{host}}/canvasCurrentDashboard
 &datasourceIDexclude=1,2
 
 ###
-http://localhost:8000/canvasCurrentDashboard
+GET {{host}}/canvasCurrentDashboard
 ?id=68
 &dashboardTabID=175
 &datasourceIDexclude=1,2
@@ -242,4 +242,10 @@ http://localhost:8000/clientData/execQuery
 &port=1433
 &username=sa
 &password=Qwerty,123
+###
+
+// All data for one Datasource
+GET {{host}}/canvasDatasource
+?id=4
+
 ###
