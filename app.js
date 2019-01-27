@@ -35,6 +35,7 @@ const authGoogleRouter = require('./routes/authGoogle.router');
 const authLocalRouter = require('./routes/authLocal.router');
 const canvasDataRouter = require('./routes/canvasData.router');
 const canvasCurrentDashboard = require('./routes/canvasCurrentDashboard.router');
+const canvasDatasource = require('./routes/canvasDatasource.router');
 const clientDataRouter = require('./routes/clientData.router');
 require('./auth/auth');
 
@@ -183,6 +184,7 @@ app.use('/auth/github/', authGitHubRouter);
 app.use('/auth/google/', authGoogleRouter);
 // ALL Canvas data-related API calls
 app.use('/canvasCurrentDashboard', canvasCurrentDashboard);
+app.use('/canvasDatasource', canvasDatasource);
 app.use('/canvasdata', canvasDataRouter);
 app.use('/clientdata', clientDataRouter);
 // app.use('/', indexRouter);
