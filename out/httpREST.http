@@ -257,8 +257,6 @@ content-type: application/json
 {
     "name": "test" 
  } 
-datasourceInput
-datasetInput
-clientDataInput
+
 
 ###

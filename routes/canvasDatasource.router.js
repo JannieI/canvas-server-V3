@@ -125,8 +125,8 @@ router.post('/', (req, res, next) => {
         console.log('input', datasourceInput, datasetInput, clientDataInput)
 
         // Validation
-        if (datasourceInput == null) {
-            debugDev.error('Error: input datasourceInput variable is empty');
+        if (datasourceInput == null  ||  datasourceInput == undefined) {
+            debugDev('Error: input datasourceInput variable is empty');
             return res.json(
                 createErrorObject(
                     "error",
@@ -136,7 +136,7 @@ router.post('/', (req, res, next) => {
             );
         };
         if (datasetInput == null) {
-            debugDev.error('Error: input datasetInput variable is empty')
+            debugDev('Error: input datasetInput variable is empty')
             return res.json(
                 createErrorObject(
                     "error",
@@ -146,7 +146,7 @@ router.post('/', (req, res, next) => {
             );
         };
         if (clientDataInput == null) {
-            debugDev.error('Error: input clientDataInput variable is empty')
+            debugDev('Error: input clientDataInput variable is empty')
             return res.json(
                 createErrorObject(
                     "error",
