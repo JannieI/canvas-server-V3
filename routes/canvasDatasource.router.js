@@ -126,12 +126,32 @@ router.post('/', (req, res, next) => {
 
         // Validation
         if (datasourceInput == null) {
-            debugDev.error('Error Adding new Datasource', err)
+            debugDev.error('Error: input datasourceInput variable is empty');
             return res.json(
                 createErrorObject(
                     "error",
-                    "Error: Could not add record for datasource: " + datasourceInput.id,
-                    err
+                    "Error: input datasourceInput variable is empty",
+                    null
+                )
+            );
+        };
+        if (datasetInput == null) {
+            debugDev.error('Error: input datasetInput variable is empty')
+            return res.json(
+                createErrorObject(
+                    "error",
+                    "Error: input datasetInput variable is empty",
+                    null
+                )
+            );
+        };
+        if (clientDataInput == null) {
+            debugDev.error('Error: input clientDataInput variable is empty')
+            return res.json(
+                createErrorObject(
+                    "error",
+                    "Error: input clientDataInput variable is empty",
+                    null
                 )
             );
         };
