@@ -164,7 +164,7 @@ router.post('/', (req, res, next) => {
         datasourceAdd.save()
             .then(datasourceAdded => {
                 console.log('wtf 1')
-                debugDev('New Datasource added in canvasDatasourceRouter', datasourceAdded);
+                debugDev('New Datasource record added in canvasDatasourceRouter', datasourceAdded);
 
                 // Add Dataset
                 datasetInput.datasourceID = datasourceAdded.id;
@@ -172,11 +172,18 @@ router.post('/', (req, res, next) => {
                 datasetAdd.save()
                     .then(datasetAdded => {
                         console.log('wtf 1')
-                        debugDev('New Dataset added in canvasDatasourceRouter', datasetAdded);
+                        debugDev('New Dataset record added in canvasDatasourceRouter', datasetAdded);
 
 
+                        // Add ClientData
+                        clientDataInput.id = datasourceAdded.id;
+                        let datasetAdd = new datasetModel(datasetInput);
+                        datasetAdd.save()
+                            .then(clientDataAdded => {
+                                console.log('wtf 1')
+                                debugDev('New ClientDataset record added in canvasDatasourceRouter', datasetAdded);
 
-
+                                // Return
                                 return res.json(
                                     createReturnObject(
                                         "success",
@@ -184,7 +191,7 @@ router.post('/', (req, res, next) => {
                                         {
                                                 datasource: datasourceAdded,
                                                 datasets: datasetAdded,
-                                                clientData: []
+                                                clientData: clientDataAdded
                                         },
                                         null,
                                         null,
@@ -196,6 +203,20 @@ router.post('/', (req, res, next) => {
                                         null,
                                     )
                                 );
+
+                            })
+                            .catch(err => {
+                                console.log('wtf 44')
+                                debugDev('Error Adding new ClientData', err)
+                                return res.json(
+                                    createErrorObject(
+                                        "error",
+                                        "Error: Could not add record for datasource: " + datasourceInput.id,
+                                        err
+                                    )
+                                );
+                            });
+
 
                     })
                     .catch(err => {
