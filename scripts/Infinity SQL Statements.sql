@@ -1,5 +1,7 @@
---USE [VCIB_DemoDat]; SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE='BASE TABLE';
+--USE [VCIB_DemoData]; SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE='BASE TABLE';
 ------------------------ Overall -------------------------------------
+USE VCIB_DemoData
+
 SELECT
   'VCIB_RaisedPremiums'
 , COUNT( * )
@@ -40,7 +42,7 @@ FROM VCIB_Claims
 WITH GroupByMonth AS
 (
     SELECT
-      CAST( DATEPART( year,EffectiveDate ) AS varchar( 4 ) ) + '-' + FORMAT( DATEPART( month,EffectiveDate ),'00' ) AS YearMonth
+      CAST( DATEPART( year,EffectiveDate ) AS VARCHAR( 4 ) ) + '-' + FORMAT( DATEPART( month,EffectiveDate ),'00' ) AS YearMonth
     , 1 AS Number
     FROM VCIB_RaisedPremiums
 )
@@ -244,7 +246,7 @@ GROUP BY Suburb
 ORDER BY SUM( TotalClaim ) DESC WITH GroupByMonth AS
 (
     SELECT
-      CAST( DATEPART( year,DateofLoss ) AS varchar( 4 ) ) + '-' + FORMAT( DATEPART( month,DateofLoss ),'00' ) AS YearMonth
+      CAST( DATEPART( year,DateofLoss ) AS VARCHAR( 4 ) ) + '-' + FORMAT( DATEPART( month,DateofLoss ),'00' ) AS YearMonth
     , 1 AS Number
     FROM VCIB_Claims
 ) SELECT YearMonth AS DateofLoss , COUNT(*) AS Nr FROM GroupByMonth

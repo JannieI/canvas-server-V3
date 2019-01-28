@@ -244,9 +244,20 @@ http://localhost:8000/clientData/execQuery
 &password=Qwerty,123
 ###
 
+http://localhost:8000/clientData/execQuery
+?serverType=MicrosoftSQL
+&serverName=localhost
+&databaseName=VCIB_DemoData
+&sqlStatement=SELECT TOP 10   ISNULL(TransactionType, '') +   ' '  ,  ( COUNT( * ) ) Nr  FROM VCIB_RaisedPremiums GROUP BY TransactionType 
+&port=1433
+&username=sa
+&password=Qwerty,123
+
+###
+
 // All data for one Datasource
 GET {{host}}/canvasDatasource
-?id=4
+?id=107
 ###
 
 // All data for one Datasource
