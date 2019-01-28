@@ -41,12 +41,12 @@ router.get('/listDatabases', (req, res, next) => {
                 return res.json(errorObject);
             });
     };
-    if (serverType == 'Microsoft SSAS') {
+    if (serverType == 'MicrosoftSSAS') {
         debugData('Microsoft SSAS connector not Activated');
         return res.json(
             createErrorObject(
                 "error",
-                "Microsoft SSAS connector not Activated",
+                "MicrosoftSSAS connector not Activated",
                 null
             )
         );
@@ -61,7 +61,7 @@ router.get('/listDatabases', (req, res, next) => {
             )
         );
     };
-    if (serverType == 'Microsoft SQL') {
+    if (serverType == 'MicrosoftSQL') {
         debugData('Error Microsoft SQL connector not Activated');
         return res.json(
             createErrorObject(
@@ -126,7 +126,7 @@ router.get('/listTables', (req, res, next) => {
                 return res.json(errorObject);
             });
     };
-    if (serverType == 'Microsoft SSAS') {
+    if (serverType == 'MicrosoftSSAS') {
         debugData('Microsoft SSAS connector not Activated');
         return res.json(
             createErrorObject(
@@ -146,7 +146,7 @@ router.get('/listTables', (req, res, next) => {
             )
         );
     };
-    if (serverType == 'Microsoft SQL') {
+    if (serverType == 'MicrosoftSQL') {
         debugData('Error Microsoft SQL connector not Activated');
         return res.json(
             createErrorObject(
@@ -211,7 +211,7 @@ router.get('/listFields', (req, res, next) => {
                 return res.json(errorObject);
             });
     };
-    if (serverType == 'Microsoft SSAS') {
+    if (serverType == 'MicrosoftSSAS') {
         debugData('Microsoft SSAS connector not Activated');
         return res.json(
             createErrorObject(
@@ -231,7 +231,7 @@ router.get('/listFields', (req, res, next) => {
             )
         );
     };
-    if (serverType == 'Microsoft SQL') {
+    if (serverType == 'MicrosoftSQL') {
         debugData('Error Microsoft SQL connector not Activated');
         return res.json(
             createErrorObject(
@@ -308,7 +308,7 @@ router.get('/execQuery', (req, res, next) => {
                 return res.json(errorObject);
             });
     };
-    if (serverType == 'Microsoft SSAS') {
+    if (serverType == 'MicrosoftSSAS') {
         debugData('Microsoft SSAS connector not Activated');
         return res.json(
             createErrorObject(
@@ -524,7 +524,7 @@ router.get('/', (req, res, next) => {
             debugData(' <- Getting data from Source')
 
             // Get the data from Source, depending on the serverType
-            if (datasource.serverType == 'Microsoft SSAS') {
+            if (datasource.serverType == 'MicrosoftSSAS') {
                 debugData('Microsoft SSAS connector not Activated');
                 return res.json(
                     createErrorObject(
@@ -544,7 +544,7 @@ router.get('/', (req, res, next) => {
                     )
                 );
             };
-            if (datasource.serverType == 'Microsoft SQL') {
+            if (datasource.serverType == 'MicrosoftSQL') {
                 debugData('Error Microsoft SQL connector not Activated');
                 return res.json(
                     createErrorObject(
