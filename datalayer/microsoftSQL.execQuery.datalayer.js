@@ -25,21 +25,21 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
         let port = queryObject.port;
         let username = queryObject.username;
         let password = queryObject.password;
-        let id = queryObject.datasourceID;      // Note, if no id given, not cached to Server
+        let datasourceID = queryObject.datasourceID;      // Note, if no id given, not cached to Server
         let idMongo = null;
 
         // Add empty record
-        if (id != null) {
+        if (datasourceID != null) {
             // Get the model
             const clientDataSchema = '../models/clientData.model';
             const clientDataModel = require(clientDataSchema);
 
             // Find and Update DB
             clientDataModel.findOneAndUpdate(
-                {id: id},
+                { id: datasourceID },
                 {
-                    id: id,
-                    data: results
+                    id: datasourceID,
+                    data: []
                 },
                 {upsert:true}).then(doc => {
                     idMongo = doc._id;
@@ -100,11 +100,11 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
         })
 
         connection.on('debug', function(text) {
-            debugDev('DEBUG -----------------------------', text)
+            // debugDev('DEBUG -----------------------------', text)
         })
 
         connection.on('infoMessage', function(info) {
-            debugDev('INFO -----------------------------', info)
+            // debugDev('INFO -----------------------------', info)
         })
 
         var Request = require('tedious').Request;
@@ -144,15 +144,21 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
                 if (idMongo != null) {
 
                     // Get the model
-                    // const clientDataSchema = '../models/clientData.model';
-                    // const clientDataModel = require(clientDataSchema);
+                    const clientDataSchema = '../models/clientData.model';
+                    const clientDataModel = require(clientDataSchema);
 
                     // Find and Update DB
                     clientDataModel.update(
                         { _id: idMongo },
                         { $push: { data: results } },
-                        done
-                    );
+                        function (error, success) {
+                              if (error) {
+                                  console.log(error);
+                              } else {
+                                  console.log(success);
+                              }
+                        }
+                    );;
                 };
             });
 

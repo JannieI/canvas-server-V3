@@ -242,8 +242,10 @@ http://localhost:8000/clientData/execQuery
 &port=1433
 &username=sa
 &password=Qwerty,123
+&datasourceID=999
 ###
 
+TEST
 http://localhost:8000/clientData/execQuery
 ?serverType=MicrosoftSQL
 &serverName=localhost
