@@ -27,6 +27,10 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
         let password = queryObject.password;
         let datasourceID = queryObject.datasourceID;      // Note, if no id given, not cached to Server
         let idMongo = null;
+        let nrRowsToReturn = queryObject.nrRowsToReturn;
+        if (nrRowsToReturn == null) {
+            nrRowsToReturn = 0;         // Return all the rows
+        };
 
         // Add empty record
         if (datasourceID != null) {
@@ -100,11 +104,11 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
         })
 
         connection.on('debug', function(text) {
-            // debugDev('DEBUG -----------------------------', text)
+            debugDev('DEBUG -----------------------------', text)
         })
 
         connection.on('infoMessage', function(info) {
-            // debugDev('INFO -----------------------------', info)
+            debugDev('INFO -----------------------------', info)
         })
 
         var Request = require('tedious').Request;
@@ -135,10 +139,14 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
                 columns.forEach(function(column) {
                     row[column.metadata.colName] = column.value;
                 });
-                results.push(row);
-                if (results.length % 3 == 0) {
-                    console.log('xx % 3')
+                if (nrRowsToReturn == 0  ||  results.length < nrRowsToReturn) {
+                    results.push(row);
                 };
+
+                // TODO - later pack in batches to speed up
+                // if (results.length % 3 == 0) {
+                //     console.log('xx % 3')
+                // };
 
                 // Cached to DB if so requested
                 if (idMongo != null  &&  results.length > 0) {

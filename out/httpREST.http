@@ -253,7 +253,7 @@ http://localhost:8000/clientData/execQuery
 &port=1433
 &username=sa
 &password=Qwerty,123
-&datasourceID=107
+&nrRowsToReturn=1
 
 ###
 
