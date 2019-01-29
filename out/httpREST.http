@@ -244,16 +244,16 @@ http://localhost:8000/clientData/execQuery
 &password=Qwerty,123
 &datasourceID=999
 ###
-
-TEST
+// TEST
 http://localhost:8000/clientData/execQuery
 ?serverType=MicrosoftSQL
 &serverName=localhost
 &databaseName=VCIB_DemoData
-&sqlStatement=SELECT TOP 10   ISNULL(TransactionType, '') +   ' '  ,  ( COUNT( * ) ) Nr  FROM VCIB_RaisedPremiums GROUP BY TransactionType 
+&sqlStatement=SELECT TOP 11 CAST( DATEPART( year,EffectiveDate ) AS VARCHAR( 4 ) ) As Year, DATEPART( month,EffectiveDate ) Month, 1 AS Number FROM VCIB_RaisedPremiums
 &port=1433
 &username=sa
 &password=Qwerty,123
+&datasourceID=107
 
 ###
 

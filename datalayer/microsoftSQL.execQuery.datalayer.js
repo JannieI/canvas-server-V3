@@ -141,7 +141,7 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
                 };
 
                 // Cached to DB if so requested
-                if (idMongo != null) {
+                if (idMongo != null  &&  results.length > 0) {
 
                     // Get the model
                     const clientDataSchema = '../models/clientData.model';
@@ -150,7 +150,7 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
                     // Find and Update DB
                     clientDataModel.update(
                         { _id: idMongo },
-                        { $push: { data: results } },
+                        { $push: { data: results[results.length - 1] } },
                         function (error, success) {
                               if (error) {
                                   console.log(error);
