@@ -16,7 +16,7 @@ var buffer = [];        // Temp buffer to accumulate, then write to DB
 module.exports = function execQueryMicrosoftSQL(queryObject) {
     // Runs given sqlStatement and returns data
     // Inputs: REQ.QUERY OBJECT
-    console.log('xx queryObject', queryObject)
+
     return new Promise((resolve, reject) => {
 
         debugData('Start execQueryMicrosoftSQL');
@@ -112,11 +112,11 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
         })
 
         connection.on('debug', function(text) {
-            debugDev('DEBUG -----------------------------', text)
+            // debugDev('DEBUG -----------------------------', text)
         })
 
         connection.on('infoMessage', function(info) {
-            debugDev('INFO -----------------------------', info)
+            // debugDev('INFO -----------------------------', info)
         })
 
         var Request = require('tedious').Request;
@@ -143,7 +143,6 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
             // Proces results for each Row
             request.on('row', function(columns) {
                 var row = {};
-                console.log('xx got row ')
                 columns.forEach(function(column) {
                     row[column.metadata.colName] = column.value;
                 });
@@ -154,13 +153,14 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
                 // Accummulate
                 buffer.push(row);
                 let recordsToInsert = [];
-                let insertSize = 6000;
+                let insertSize = 6;
+                console.log('xx ', insertSize, buffer.length, recordsToInsert.length)
 
                 // TODO - later pack in batches to speed up
                 if (buffer.length % insertSize == 0) {
-                    recordsToInsert = buffer.splice(0, buff.length);
+                    recordsToInsert = buffer.splice(0, buffer.length);
                     buffer = [];
-                    console.log('xx % ', insertSize, buffer.length, insertSize.length)
+                    console.log('xx % ', insertSize, buffer.length, recordsToInsert.length)
                 };
 
                 // Cached to DB if so requested
@@ -173,7 +173,7 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
                     // Find and Update DB
                     clientDataModel.update(
                         { _id: idMongo },
-                        { $push: { data: recordsToInsert[recordsToInsert.length - 1] } },
+                        { $push: { data: recordsToInsert } },
                         function (error, success) {
                               if (error) {
                                   console.log(error);
