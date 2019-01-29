@@ -16,6 +16,7 @@ const config = require('config');               // Configuration
 const debugDev = require('debug')('app:dev');
 const debugDB = require('debug')('app:db');
 const compression = require('compression');
+var bodyParser = require('body-parser');
 
 // const mongoose = require('mongoose');
 const mongoDatabase = require('./datalayer/mongoLocalDatabase');
@@ -102,6 +103,13 @@ app.use( (req, res, next) => {
     console.log('  Path:', req.path)
     next();
 });
+
+// Seems to need this, else get 'payload too large' with even small amounts of data
+app.use(bodyParser.json({
+    parameterLimit: 100000,
+    limit: '50mb',
+    extended: true
+}));
 
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
