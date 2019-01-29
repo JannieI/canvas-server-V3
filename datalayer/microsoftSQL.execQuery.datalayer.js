@@ -25,6 +25,8 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
         let port = queryObject.port;
         let username = queryObject.username;
         let password = queryObject.password;
+        let cachedToServer = queryObject.cachedToServer;
+        let id = queryObject.datasourceID;
 
         // TODO - figure out how to treat SQL Parameters, ie @LogicalBusinessDay
         let sqlParameters = '';
@@ -110,10 +112,33 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
             // Proces results for each Row
             request.on('row', function(columns) {
                 var row = {};
+                console.log('xx got row ')
                 columns.forEach(function(column) {
                     row[column.metadata.colName] = column.value;
                 });
                 results.push(row);
+                if (results.length % 3 == 0) {
+                    console.log('xx % 3')
+                };
+
+                // Cached to DB if so requested
+                if (cachedToServer) {
+
+                    // Get the model dynamically (take note of file spelling = resource)
+                    const clientDataSchema = '../models/clientData.model';
+                    const clientDataModel = require(clientDataSchema);
+
+                    // Find and Update DB
+                    clientDataModel.findOneAndUpdate(
+                        {id: id},
+                        {
+                            id: id,
+                            data: results
+                        },
+                        {upsert:true}).then(doc => {
+                            debugDev('upserted', doc)
+                        });
+                };
             });
 
             request.on('done', function(rowCount, more) {
