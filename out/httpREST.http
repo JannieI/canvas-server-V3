@@ -254,6 +254,7 @@ http://localhost:8000/clientData/execQuery
 &username=sa
 &password=Qwerty,123
 &nrRowsToReturn=1
+&datasourceID=216
 
 ###
 

@@ -182,7 +182,7 @@ router.post('/', (req, res, next) => {
                             serverType: datasourceInput.serverType,
                             serverName: datasourceInput.serverName,
                             databaseName: datasourceInput.databaseName,
-                            sqlStatement: datasourceInput.sqlStatement,
+                            sqlStatement: datasourceInput.dataSQLStatement,
                             port: datasourceInput.port,
                             username: datasourceInput.username,
                             password: datasourceInput.password,

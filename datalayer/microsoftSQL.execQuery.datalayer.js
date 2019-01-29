@@ -46,12 +46,15 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
                     id: datasourceID,
                     data: []
                 },
-                {upsert:true}).then(doc => {
+                {
+                    upsert:true,
+                    new: true
+                }).then(doc => {
                     if (doc != null) {
                         idMongo = doc._id;
                     };
 
-                    debugDev('upserted', idMongo, doc)
+                    debugDev('upserted', datasourceID, idMongo, doc)
                 });
         };
 
