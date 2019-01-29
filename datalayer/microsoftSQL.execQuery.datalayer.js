@@ -10,15 +10,15 @@ const metaDataFromSource = require('./mysql.metaDataFromSource.datalayer');
 
 // TODO - sort metaDataFromSource for MICROSOFT ...
 
-var results = [];       // To be returned to Workstation.  Remember, could be reduced by nrRowsToReturn
-var buffer = [];        // Temp buffer to accumulate, then write to DB
-
 module.exports = function execQueryMicrosoftSQL(queryObject) {
     // Runs given sqlStatement and returns data
     // Inputs: REQ.QUERY OBJECT
 
     return new Promise((resolve, reject) => {
 
+        var results = [];       // To be returned to Workstation.  Remember, could be reduced by nrRowsToReturn
+        var buffer = [];        // Temp buffer to accumulate, then write to DB
+        
         debugData('Start execQueryMicrosoftSQL');
         // Set & extract the vars from the Input Params
         let serverName = queryObject.serverName;
@@ -153,7 +153,7 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
                 // Accummulate
                 buffer.push(row);
                 let recordsToInsert = [];
-                let insertSize = 6;
+                let insertSize = 6000;
                 console.log('xx ', insertSize, buffer.length, recordsToInsert.length)
 
                 // TODO - later pack in batches to speed up
@@ -196,6 +196,27 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
         function processResult(){
             debugDev('Start processResult');
 
+            // Cached to DB if so requested
+            if (idMongo != null  &&  buffer.length > 0) {
+
+                // Get the model
+                const clientDataSchema = '../models/clientData.model';
+                const clientDataModel = require(clientDataSchema);
+
+                // Find and Update DB
+                clientDataModel.update(
+                    { _id: idMongo },
+                    { $push: { data: buffer } },
+                    function (error, success) {
+                            if (error) {
+                                console.log(error);
+                            } else {
+                                console.log('xx last 5', success);
+                            }
+                    }
+                );;
+            };
+            
             // Return results with metadata according to the CanvasHttpResponse interface
             return resolve(createReturnObject(
                 "success",
