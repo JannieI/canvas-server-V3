@@ -26,7 +26,7 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
         let username = queryObject.username;
         let password = queryObject.password;
         let id = queryObject.datasourceID;      // Note, if no id given, not cached to Server
-        let idMongo = -1;
+        let idMongo = null;
 
         // Add empty record
         if (id != null) {
@@ -46,7 +46,7 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
                     debugDev('upserted', idMongo, doc)
                 });
         };
-        
+
         // TODO - figure out how to treat SQL Parameters, ie @LogicalBusinessDay
         let sqlParameters = '';
         debugDev('Properties received:', serverName, databaseName, sqlStatement,
@@ -141,26 +141,18 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
                 };
 
                 // Cached to DB if so requested
-                if (id == null) {
+                if (idMongo != null) {
 
                     // Get the model
-                    const clientDataSchema = '../models/clientData.model';
-                    const clientDataModel = require(clientDataSchema);
-                    ersonModel.update(
-                        { _id: person._id }, 
-                        { $push: { friends: friend } },
+                    // const clientDataSchema = '../models/clientData.model';
+                    // const clientDataModel = require(clientDataSchema);
+
+                    // Find and Update DB
+                    clientDataModel.update(
+                        { _id: idMongo },
+                        { $push: { data: results } },
                         done
                     );
-                    // Find and Update DB
-                    clientDataModel.findOneAndUpdate(
-                        {id: id},
-                        {
-                            id: id,
-                            data: results
-                        },
-                        {upsert:true}).then(doc => {
-                            debugDev('upserted', doc)
-                        });
                 };
             });
 
