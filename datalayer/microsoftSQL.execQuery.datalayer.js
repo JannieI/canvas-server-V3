@@ -112,11 +112,11 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
         })
 
         connection.on('debug', function(text) {
-            // debugDev('DEBUG -----------------------------', text)
+            debugDev('DEBUG -----------------------------', text)
         })
 
         connection.on('infoMessage', function(info) {
-            // debugDev('INFO -----------------------------', info)
+            debugDev('INFO -----------------------------', info)
         })
 
         var Request = require('tedious').Request;

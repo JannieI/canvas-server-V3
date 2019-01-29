@@ -157,14 +157,14 @@ router.post('/', (req, res, next) => {
                 )
             );
         };
-        console.log('wtf 0')
+
         // Create object and save to DB
 
         // Add Datasource
         let datasourceAdd = new datasourceModel(datasourceInput);
         datasourceAdd.save()
             .then(datasourceAdded => {
-                console.log('wtf 1')
+
                 debugDev('New Datasource record added in canvasDatasourceRouter', datasourceAdded);
  
                 // Add Dataset - for now we use the same id: DS - dSet - Data
@@ -173,7 +173,7 @@ router.post('/', (req, res, next) => {
                 let datasetAdd = new datasetModel(datasetInput);
                 datasetAdd.save()
                     .then(datasetAdded => {
-                        console.log('wtf 1')
+
                         debugDev('New Dataset record added in canvasDatasourceRouter', datasetAdded);
 
                         // Add ClientData
@@ -211,7 +211,7 @@ router.post('/', (req, res, next) => {
                         // let datasetAdd = new clientDataModel(clientDataInput);
                         // datasetAdd.save()
                             .then(clientDataAdded => {
-                                console.log('wtf 1')
+
                                 debugDev('New ClientDataset record added in canvasDatasourceRouter', datasetAdded);
 
                                 // Return
@@ -237,7 +237,7 @@ router.post('/', (req, res, next) => {
 
                             })
                             .catch(err => {
-                                console.log('wtf 44')
+
                                 debugDev('Error Adding new ClientData', err)
                                 return res.json(
                                     createErrorObject(
@@ -250,7 +250,6 @@ router.post('/', (req, res, next) => {
 
                     })
                     .catch(err => {
-                        console.log('wtf 2')
                         debugDev('Error Adding new Datasource', err)
                         return res.json(
                             createErrorObject(
@@ -265,7 +264,6 @@ router.post('/', (req, res, next) => {
 
             })
             .catch(err => {
-                console.log('wtf 2')
                 debugDev('Error Adding new Datasource', err)
                 return res.json(
                     createErrorObject(
