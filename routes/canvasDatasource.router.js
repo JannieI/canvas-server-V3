@@ -10,6 +10,7 @@ const createReturnObject = require('../utils/createReturnObject.util');
 const datasourceSchema = '../models/datasources.model';
 const datasetSchema = '../models/datasets.model';
 const clientDataSchema = '../models/clientData.model';
+const execQueryMicrosoftSQL = require('../datalayer/microsoftSQL.execQuery.datalayer');
 
 // GET route
 router.get('/', (req, res, next) => {
@@ -176,9 +177,39 @@ router.post('/', (req, res, next) => {
                         debugDev('New Dataset record added in canvasDatasourceRouter', datasetAdded);
 
                         // Add ClientData
-                        clientDataInput.id = datasourceAdded.id;
-                        let datasetAdd = new clientDataModel(clientDataInput);
-                        datasetAdd.save()
+                        debugDev('Start Microsoft SQL connector');
+                        execQueryMicrosoftSQL({
+                            serverType: datasourceInput.serverType,
+                            serverName: datasourceInput.serverName,
+                            databaseName: datasourceInput.databaseName,
+                            sqlStatement: datasourceInput.sqlStatement,
+                            port: datasourceInput.port,
+                            username: datasourceInput.username,
+                            password: datasourceInput.password,
+                            nrRowsToReturn: 1,
+                            datasourceID: datasourceAdded.id
+                        }                        )
+                        // { serverType: 'MicrosoftSQL',
+                        // serverName: 'localhost',
+                        // databaseName: 'VCIB_DemoData',
+                        // sqlStatement: 'SELECT TOP 11 CAST( DATEPART( year,EffectiveDate ) AS VARCHAR( 4 ) ) As Year, DATEPART( month,EffectiveDate ) Month, 1 AS Number FROM VCIB_RaisedPremiums',
+                        // port: '1433',
+                        // username: 'sa',
+                        // password: 'Qwerty,123',
+                        // nrRowsToReturn: '1' })
+
+                        //     .then(resultsObject => {
+                        //         debugData('Returned results of SQL Statement from Microsoft SQL');  
+                        //         return res.json(resultsObject);
+                        //      } )
+                        //     .catch(errorObject  => {
+                        //         debugDev("Error in clientData.router.execQuery", errorObject);
+                        //         return res.json(errorObject);
+                        //     });
+
+                        // clientDataInput.id = datasourceAdded.id;
+                        // let datasetAdd = new clientDataModel(clientDataInput);
+                        // datasetAdd.save()
                             .then(clientDataAdded => {
                                 console.log('wtf 1')
                                 debugDev('New ClientDataset record added in canvasDatasourceRouter', datasetAdded);

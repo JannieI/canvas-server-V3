@@ -15,6 +15,7 @@ var results = [];
 module.exports = function execQueryMicrosoftSQL(queryObject) {
     // Runs given sqlStatement and returns data
     // Inputs: REQ.QUERY OBJECT
+    console.log('xx queryObject', queryObject)
     return new Promise((resolve, reject) => {
 
         debugData('Start execQueryMicrosoftSQL');
@@ -46,7 +47,10 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
                     data: []
                 },
                 {upsert:true}).then(doc => {
-                    idMongo = doc._id;
+                    if (doc != null) {
+                        idMongo = doc._id;
+                    };
+
                     debugDev('upserted', idMongo, doc)
                 });
         };
@@ -54,7 +58,7 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
         // TODO - figure out how to treat SQL Parameters, ie @LogicalBusinessDay
         let sqlParameters = '';
         debugDev('Properties received:', serverName, databaseName, sqlStatement,
-            port, username, password);
+            port, username, password, nrRowsToReturn, datasourceID);
 
         // Create connection string information.  Note: Azure needs encrypt: true
         var config = {
