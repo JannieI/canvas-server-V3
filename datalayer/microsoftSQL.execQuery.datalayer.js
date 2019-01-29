@@ -153,14 +153,12 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
                 // Accummulate
                 buffer.push(row);
                 let recordsToInsert = [];
-                let insertSize = 6000;
-                console.log('xx ', insertSize, buffer.length, recordsToInsert.length)
+                let insertSize = 8000;
 
                 // TODO - later pack in batches to speed up
                 if (buffer.length % insertSize == 0) {
                     recordsToInsert = buffer.splice(0, buffer.length);
                     buffer = [];
-                    console.log('xx % ', insertSize, buffer.length, recordsToInsert.length)
                 };
 
                 // Cached to DB if so requested
@@ -210,11 +208,9 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
                     function (error, success) {
                             if (error) {
                                 console.log(error);
-                            } else {
-                                console.log('xx last 5', success);
-                            }
+                            };
                     }
-                );;
+                );
             };
             
             // Return results with metadata according to the CanvasHttpResponse interface

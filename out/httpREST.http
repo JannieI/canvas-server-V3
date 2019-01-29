@@ -145,10 +145,10 @@ content-type: application/json
 ###
 // NOTE spaces in fields !!!
 GET {{host}}/clientData/
-?datasourceID=82
-&sortObject=-User
-&fields=User, Select_priv
-&filterObject={"User":"root"}
+?datasourceID=137
+&sortObject=-Month
+&fields=Year, Month
+&filterObject={"Year":2019}
 &aggregationObject=aggregationObject
 
 ###
