@@ -25,9 +25,28 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
         let port = queryObject.port;
         let username = queryObject.username;
         let password = queryObject.password;
-        let cachedToServer = queryObject.cachedToServer;
-        let id = queryObject.datasourceID;
+        let id = queryObject.datasourceID;      // Note, if no id given, not cached to Server
+        let idMongo = -1;
 
+        // Add empty record
+        if (id != null) {
+            // Get the model
+            const clientDataSchema = '../models/clientData.model';
+            const clientDataModel = require(clientDataSchema);
+
+            // Find and Update DB
+            clientDataModel.findOneAndUpdate(
+                {id: id},
+                {
+                    id: id,
+                    data: results
+                },
+                {upsert:true}).then(doc => {
+                    idMongo = doc._id;
+                    debugDev('upserted', idMongo, doc)
+                });
+        };
+        
         // TODO - figure out how to treat SQL Parameters, ie @LogicalBusinessDay
         let sqlParameters = '';
         debugDev('Properties received:', serverName, databaseName, sqlStatement,
@@ -122,12 +141,16 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
                 };
 
                 // Cached to DB if so requested
-                if (cachedToServer) {
+                if (id == null) {
 
-                    // Get the model dynamically (take note of file spelling = resource)
+                    // Get the model
                     const clientDataSchema = '../models/clientData.model';
                     const clientDataModel = require(clientDataSchema);
-
+                    ersonModel.update(
+                        { _id: person._id }, 
+                        { $push: { friends: friend } },
+                        done
+                    );
                     // Find and Update DB
                     clientDataModel.findOneAndUpdate(
                         {id: id},
