@@ -10,7 +10,8 @@ const metaDataFromSource = require('./mysql.metaDataFromSource.datalayer');
 
 // TODO - sort metaDataFromSource for MICROSOFT ...
 
-var results = [];
+var results = [];       // To be returned to Workstation.  Remember, could be reduced by nrRowsToReturn
+var buffer = [];        // Temp buffer to accumulate, then write to DB
 
 module.exports = function execQueryMicrosoftSQL(queryObject) {
     // Runs given sqlStatement and returns data
@@ -150,13 +151,20 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
                     results.push(row);
                 };
 
+                // Accummulate
+                buffer.push(row);
+                let recordsToInsert = [];
+                let insertSize = 6000;
+
                 // TODO - later pack in batches to speed up
-                // if (results.length % 3 == 0) {
-                //     console.log('xx % 3')
-                // };
+                if (buffer.length % insertSize == 0) {
+                    recordsToInsert = buffer.splice(0, buff.length);
+                    buffer = [];
+                    console.log('xx % ', insertSize, buffer.length, insertSize.length)
+                };
 
                 // Cached to DB if so requested
-                if (idMongo != null  &&  results.length > 0) {
+                if (idMongo != null  &&  recordsToInsert.length > 0) {
 
                     // Get the model
                     const clientDataSchema = '../models/clientData.model';
@@ -165,7 +173,7 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
                     // Find and Update DB
                     clientDataModel.update(
                         { _id: idMongo },
-                        { $push: { data: results[results.length - 1] } },
+                        { $push: { data: recordsToInsert[recordsToInsert.length - 1] } },
                         function (error, success) {
                               if (error) {
                                   console.log(error);
