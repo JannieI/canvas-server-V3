@@ -7,7 +7,7 @@ const pool = new PoolClass({
     port: 5432,
     password: ''
 });
-
+ 
 module.exports = {
     query: (queryText,params,callback)=>{
         return pool.query(queryText,params,callback)

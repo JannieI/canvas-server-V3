@@ -7,6 +7,7 @@ const config = require('config');
 const debugDev = require('debug')('app:dev');
 const createErrorObject = require('../utils/createErrorObject.util');
 const createReturnObject = require('../utils/createReturnObject.util');
+const sortFilterFieldsAggregate = require('../utils/sortFilterFieldsAggregate.util');
 
 // Note: for now, cache has NO DATA on startup, and is only filled the first time data is read from
 //       the DB.  Subsequently, the data is provided from cache until it is not fresh any longer (past
@@ -31,7 +32,7 @@ var isFresh;                        // True if the cache for the current resourc
 // Variable to store the cached DATA.  Startup values are null.
 // TODO - expand to ALL resources, or do differently ...
 var serverMemoryCache = {
-    dashboards: null,       // Corresponds to serverVariableName in dataCachingTable, holds DATA
+    dashboards: null,               // Corresponds to serverVariableName in dataCachingTable, holds DATA
     datasources: null,
 
     get: function(varName) {
@@ -218,11 +219,29 @@ router.get('/:resource', (req, res, next) => {
 
                     // TODO - decide whether to fill the fields in the metaData
                     const fields = [];
+
+                    // Extract the Widget specific data (sort, filter, fields, aggregate)
+                    let data =  serverMemoryCache.get(serverVariableName);
+                    if (req.query != null) {
+                        data =  sortFilterFieldsAggregate(data, req.query);
+                    };
+
+                    // Return if an Error
+                    if (afterSort.error) {
+                        return res.status(400).json(
+                            createErrorObject(
+                                "error",
+                                "Error in the sortFilterFieldsAggregate routine",
+                                error
+                            )
+                        );
+                    };
+
                     return res.json(
                         createReturnObject(
                             "success",
                             "Retrieved data for resource: " + resource,
-                            serverMemoryCache.get(serverVariableName),
+                            data,
                             null,
                             null,
                             null,

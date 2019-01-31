@@ -286,3 +286,4 @@ content-type: application/json
 ###
 
 
+GET {{host}}/canvasData/dashboards
