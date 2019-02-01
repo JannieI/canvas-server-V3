@@ -120,7 +120,7 @@ router.put('/', (req, res, next) => {
     debugDev('## PUT Starting with canvasDatasources with query:', req.query);
 
     // Try, in case model file does not exist
-    // try {
+    try {
         // Get the model dynamically
         const datasourceModel = require(datasourceSchema);
         const datasetModel = require(datasetSchema);
@@ -405,7 +405,17 @@ router.put('/', (req, res, next) => {
                     )
                 );
             });
-
+    } catch (error) {
+        debugDev('canvasDatasource.POST Error: ', error)
+        return res.json(
+            createErrorObject(
+                "error",
+                "Error: Could not add record for datasource: " + datasourceInput.id,
+                error
+            )
+        );
+    };
+    
 })
 
 
