@@ -180,65 +180,129 @@ router.post('/', (req, res, next) => {
                         // Add Data - for now we use the same id: DS - dSet - Data
                         clientDataInput.id = datasourceAdded.id;
 
-
-
-                        // createMethod: 'directSQLEditor'
-                        // serverType: 'MySQL'
-                        // createMethod: 'directFileCSV'
-                        // if (serverType == SERVER_MICROSOFT_SQL) {
+                        if (datasourceAdded.createMethod == 'directFileCSV'){
+                            debugDev('Start createMethod directFileCSV');
+                        };
 
 
 
-                        // Add ClientData
-                        debugDev('Start Microsoft SQL connector');
-                        execQueryMicrosoftSQL({
-                            serverType: datasourceInput.serverType,
-                            serverName: datasourceInput.serverName,
-                            databaseName: datasourceInput.databaseName,
-                            sqlStatement: datasourceInput.dataSQLStatement,
-                            port: datasourceInput.port,
-                            username: datasourceInput.username,
-                            password: datasourceInput.password,
-                            nrRowsToReturn: 1,
-                            datasourceID: datasourceAdded.id
-                        }).then(clientDataAdded => {
+                        if (datasourceAdded.createMethod == 'directSQLEditor') {
+                            debugDev('Start createMethod directSQLEditor');
 
-                            debugDev('New ClientDataset record added in canvasDatasourceRouter');
+                            if (serverType == constants.SERVER_MYSQL) {
+                                debugData('MysQL connector not Activated');
+                                return res.json(
+                                    createErrorObject(
+                                        "error",
+                                        "MysQL connector not Activated",
+                                        null
+                                    )
+                                );
+                            };
+                            if (serverType == constants.SERVER_MICROSOFT_SASS) {
+                                debugData('Microsoft SSAS connector not Activated');
+                                return res.json(
+                                    createErrorObject(
+                                        "error",
+                                        "MicrosoftSSAS connector not Activated",
+                                        null
+                                    )
+                                );
+                            };
+                            if (serverType == constants.SERVER_POSTGRESS) {
+                                debugData('Error PostgresSQL connector not Activated');
+                                return res.json(
+                                    createErrorObject(
+                                        "error",
+                                        "PostgresSQL connector not Activated",
+                                        null
+                                    )
+                                );
+                            };
+                            if (serverType == constants.SERVER_SQLITE) {
+                                debugData('Error SQLite connector not Activated')
+                                return res.json(
+                                    createErrorObject(
+                                        "error",
+                                        "SQLite connector not Activated",
+                                        null
+                                    )
+                                );
+                            };
+                            if (serverType == constants.SERVER_ORACLE) {
+                                debugData('Error Oracle connector not Activated')
+                                return res.json(
+                                    createErrorObject(
+                                        "error",
+                                        "Oracle connector not Activated",
+                                        null
+                                    )
+                                );
+                            };
+                            if (serverType == constants.SERVER_MONGO) {
+                                debugData('Mongo connector not Activated')
+                                return res.json(
+                                    createErrorObject(
+                                        "error",
+                                        "Mongo connector not Activated",
+                                        null
+                                    )
+                                );
+                            };
+                            if (serverType == constants.SERVER_MICROSOFT_SQL) {
+                                debugData('Error Microsoft SQL connector not Activated');
 
-                            // Return
-                            return res.json(
-                                createReturnObject(
-                                    "success",
-                                    "Added ALL records for datasource, ID: " + datasourceAdded.id,
-                                    {
-                                            datasource: datasourceAdded,
-                                            datasets: datasetAdded,
-                                            clientData: clientDataAdded
-                                    },
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                    null,
-                                )
-                            );
+                                // Add ClientData
+                                debugDev('Start Microsoft SQL connector');
+                                execQueryMicrosoftSQL({
+                                    serverType: datasourceInput.serverType,
+                                    serverName: datasourceInput.serverName,
+                                    databaseName: datasourceInput.databaseName,
+                                    sqlStatement: datasourceInput.dataSQLStatement,
+                                    port: datasourceInput.port,
+                                    username: datasourceInput.username,
+                                    password: datasourceInput.password,
+                                    nrRowsToReturn: 1,
+                                    datasourceID: datasourceAdded.id
+                                }).then(clientDataAdded => {
 
-                        })
-                        .catch(err => {
+                                    debugDev('New ClientDataset record added in canvasDatasourceRouter');
 
-                            debugDev('Error Adding new ClientData', err)
-                            return res.json(
-                                createErrorObject(
-                                    "error",
-                                    "Error: Could not add record for datasource: " + datasourceInput.id,
-                                    err
-                                )
-                            );
-                        });
+                                    // Return
+                                    return res.json(
+                                        createReturnObject(
+                                            "success",
+                                            "Added ALL records for datasource, ID: " + datasourceAdded.id,
+                                            {
+                                                    datasource: datasourceAdded,
+                                                    datasets: datasetAdded,
+                                                    clientData: clientDataAdded
+                                            },
+                                            null,
+                                            null,
+                                            null,
+                                            null,
+                                            null,
+                                            null,
+                                            null,
+                                            null,
+                                        )
+                                    );
 
+                                })
+                                .catch(err => {
+
+                                    debugDev('Error Adding new ClientData', err)
+                                    return res.json(
+                                        createErrorObject(
+                                            "error",
+                                            "Error: Could not add record for datasource: " + datasourceInput.id,
+                                            err
+                                        )
+                                    );
+                                });
+                            };
+                        };
                     })
                     .catch(err => {
                         debugDev('Error Adding new Datasource', err)

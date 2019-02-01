@@ -18,14 +18,6 @@ const createErrorObject = require('../utils/createErrorObject.util');
 const createReturnObject = require('../utils/createReturnObject.util');
 var constants = require('../utils/constants');
 
-// const constants.SERVER_MYSQL = 'MySQL';
-// const constants.SERVER_MICROSOFT_SQL = 'MicrosoftSQL';
-// const constants.SERVER_POSTGRESS = 'PostgresSQL';
-// const constants.SERVER_SQLITE = 'SQLite';
-// const constants.SERVER_MICROSOFT_SASS = 'MicrosoftSSAS';
-// const constants.SERVER_ORACLE = 'Oracle';
-// const constants.SERVER_MONGO = 'Mongo';
-
 // GET route to list ALL Databases in a Database Server
 router.get('/listDatabases', (req, res, next) => {
 
