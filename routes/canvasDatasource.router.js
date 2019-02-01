@@ -165,7 +165,7 @@ router.post('/', (req, res, next) => {
         datasourceAdd.save()
             .then(datasourceAdded => {
 
-                debugDev('New Datasource record added in canvasDatasourceRouter', datasourceAdded);
+                debugDev('New Datasource record added in canvasDatasourceRouter for ID: ' + datasourceAdded.id);
  
                 // Add Dataset - for now we use the same id: DS - dSet - Data
                 datasetInput.id = datasourceAdded.id;
@@ -174,7 +174,7 @@ router.post('/', (req, res, next) => {
                 datasetAdd.save()
                     .then(datasetAdded => {
 
-                        debugDev('New Dataset record added in canvasDatasourceRouter', datasetAdded);
+                        debugDev('New Dataset record added in canvasDatasourceRouter');
 
                         // Add ClientData
                         debugDev('Start Microsoft SQL connector');
@@ -188,65 +188,43 @@ router.post('/', (req, res, next) => {
                             password: datasourceInput.password,
                             nrRowsToReturn: 1,
                             datasourceID: datasourceAdded.id
-                        }                        )
-                        // { serverType: 'MicrosoftSQL',
-                        // serverName: 'localhost',
-                        // databaseName: 'VCIB_DemoData',
-                        // sqlStatement: 'SELECT TOP 11 CAST( DATEPART( year,EffectiveDate ) AS VARCHAR( 4 ) ) As Year, DATEPART( month,EffectiveDate ) Month, 1 AS Number FROM VCIB_RaisedPremiums',
-                        // port: '1433',
-                        // username: 'sa',
-                        // password: 'Qwerty,123',
-                        // nrRowsToReturn: '1' })
+                        }).then(clientDataAdded => {
 
-                        //     .then(resultsObject => {
-                        //         debugData('Returned results of SQL Statement from Microsoft SQL');  
-                        //         return res.json(resultsObject);
-                        //      } )
-                        //     .catch(errorObject  => {
-                        //         debugDev("Error in clientData.router.execQuery", errorObject);
-                        //         return res.json(errorObject);
-                        //     });
+                            debugDev('New ClientDataset record added in canvasDatasourceRouter');
 
-                        // clientDataInput.id = datasourceAdded.id;
-                        // let datasetAdd = new clientDataModel(clientDataInput);
-                        // datasetAdd.save()
-                            .then(clientDataAdded => {
+                            // Return
+                            return res.json(
+                                createReturnObject(
+                                    "success",
+                                    "Added ALL records for datasource, ID: " + datasourceAdded.id,
+                                    {
+                                            datasource: datasourceAdded,
+                                            datasets: datasetAdded,
+                                            clientData: clientDataAdded
+                                    },
+                                    null,
+                                    null,
+                                    null,
+                                    null,
+                                    null,
+                                    null,
+                                    null,
+                                    null,
+                                )
+                            );
 
-                                debugDev('New ClientDataset record added in canvasDatasourceRouter', datasetAdded);
+                        })
+                        .catch(err => {
 
-                                // Return
-                                return res.json(
-                                    createReturnObject(
-                                        "success",
-                                        "Added ALL records for datasource, ID: " + datasourceAdded.id,
-                                        {
-                                                datasource: datasourceAdded,
-                                                datasets: datasetAdded,
-                                                clientData: clientDataAdded
-                                        },
-                                        null,
-                                        null,
-                                        null,
-                                        null,
-                                        null,
-                                        null,
-                                        null,
-                                        null,
-                                    )
-                                );
-
-                            })
-                            .catch(err => {
-
-                                debugDev('Error Adding new ClientData', err)
-                                return res.json(
-                                    createErrorObject(
-                                        "error",
-                                        "Error: Could not add record for datasource: " + datasourceInput.id,
-                                        err
-                                    )
-                                );
-                            });
+                            debugDev('Error Adding new ClientData', err)
+                            return res.json(
+                                createErrorObject(
+                                    "error",
+                                    "Error: Could not add record for datasource: " + datasourceInput.id,
+                                    err
+                                )
+                            );
+                        });
 
                     })
                     .catch(err => {
@@ -273,20 +251,6 @@ router.post('/', (req, res, next) => {
                     )
                 );
             });
-
-
-
-
-    // }
-    // catch (error) {
-    //     debugDev('Error in canvasCurrentDashboard.router', error.message)
-    //     return res.status(400).json({
-    //         "statusCode": "error",
-    //         "message" : "Error retrieving Current Dashboard ID: " + req.query.id,
-    //         "data": null,
-    //         "error": error
-    //     });
-    // };
 
 })
 

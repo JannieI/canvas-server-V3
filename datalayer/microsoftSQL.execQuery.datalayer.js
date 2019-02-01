@@ -55,7 +55,7 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
                         idMongo = doc._id;
                     };
 
-                    debugDev('upserted', datasourceID, idMongo, doc)
+                    debugDev('execQueryMicrosoftSQL upserted ID: ', datasourceID, idMongo)
                 });
         };
 

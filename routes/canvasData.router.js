@@ -223,7 +223,6 @@ router.get('/:resource', (req, res, next) => {
                     // Extract the Widget specific data (sort, filter, fields, aggregate)
                     let data = serverMemoryCache.get(serverVariableName);
                     data =  sortFilterFieldsAggregate(data, req.query).results;
-                    console.log('xx --- ', data.length)
  
                     // Return if an Error
                     if (data.error) {
@@ -302,7 +301,6 @@ router.get('/:resource', (req, res, next) => {
             };
 
             let returnSet = sortFilterFieldsAggregate(docs, req.query);
-            console.log('xx --- ', returnSet.results.length)
 
             // Return if an Error
             if (returnSet.error) {
@@ -337,7 +335,6 @@ router.get('/:resource', (req, res, next) => {
             //     );
             // };
 
-            // console.log('xx COUNT', fields, oneDoc.mongooseCollection.collectionName, docs.length)
             // Return the data with metadata
             return res.json(
                 createReturnObject(
@@ -357,7 +354,7 @@ router.get('/:resource', (req, res, next) => {
         });
     }
     catch (error) {
-        console.log('WHY ?', error.message)
+        debugDev('Error: ', error)
         return res.status(400).json({
             "statusCode": "error",
             "message" : "No model file for resource: " + resource,
@@ -392,7 +389,7 @@ router.post('/:resource', (req, res, next) => {
         let canvasAdd = new canvasModel(body);
         canvasAdd.save()
             .then(doc => {
-                debugDev('New record added in canvasRouter', doc)
+                debugDev('New record added in canvasRouter')
                 return res.json(
                     createReturnObject(
                         "success",
@@ -456,9 +453,6 @@ router.delete('/:resource', (req, res, next) => {
         );
     };
 
-    // debugDev('Router: DELETE for resource:', resource, 'query:', query);
-    // debugDev('');
-
     // Try, in case model file does not exist
     try {
         // Get the model dynamically (take note of file spelling = resource)
@@ -468,7 +462,7 @@ router.delete('/:resource', (req, res, next) => {
         // Find and Delete from DB
         canvasModel.findOneAndRemove({id: id})
             .then(doc => {
-                debugDev('deleted', doc)
+                debugDev(resource + ' deleted ID: ' + id)
 
                 if (doc == null) {
                     return res.json(
@@ -542,9 +536,6 @@ router.put('/:resource', (req, res, next) => {
         );
     };
 
-    // debugDev('Router: PUT for resource:', resource, 'query:', query, 'body:', body);
-    // debugDev('');
-
     // Try, in case model file does not exist
     try {
         // Get the model dynamically (take note of file spelling = resource)
@@ -560,7 +551,7 @@ router.put('/:resource', (req, res, next) => {
               runValidators: true              // validate before update
             })
             .then(doc => {
-                debugDev('updated', doc)
+                debugDev(resource + ' updated ID: ' + id)
                 return res.json(
                     createReturnObject(
                         "success",
