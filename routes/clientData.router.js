@@ -293,7 +293,7 @@ router.get('/execQuery', (req, res, next) => {
     // Get the list
     debugDev('Start clientData.router for execQuery');
 
-    if (serverType == SERVER_MYSQL) {
+    if (serverType == constants.SERVER_MYSQL) {
         execQueryMySQL(req.query)
             .then(resultsObject => {
                 debugData('Returned results of SQL Statement from MySQL');
