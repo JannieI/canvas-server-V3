@@ -182,6 +182,46 @@ router.post('/', (req, res, next) => {
 
                         if (datasourceAdded.createMethod == 'directFileCSV'){
                             debugDev('Start createMethod directFileCSV');
+                            
+                            let dataAdd = new clientDataModel(clientDataInput);
+                            dataAdd.save()
+                                .then(clientDataAdded => {
+
+                                    debugDev('New ClientDataset record added in canvasDatasourceRouter');
+
+                                    // Return
+                                    return res.json(
+                                        createReturnObject(
+                                            "success",
+                                            "Added ALL records for datasource, ID: " + datasourceAdded.id,
+                                            {
+                                                    datasource: datasourceAdded,
+                                                    datasets: datasetAdded,
+                                                    clientData: clientDataAdded
+                                            },
+                                            null,
+                                            null,
+                                            null,
+                                            null,
+                                            null,
+                                            null,
+                                            null,
+                                            null,
+                                        )
+                                    );
+                                })
+                                .catch(err => {
+
+                                    debugDev('Error Adding new ClientData', err)
+                                    return res.json(
+                                        createErrorObject(
+                                            "error",
+                                            "Error: Could not add record for datasource: " + datasourceInput.id,
+                                            err
+                                        )
+                                    );
+                                });
+            
                         };
 
 
@@ -265,7 +305,7 @@ router.post('/', (req, res, next) => {
                                     datasourceID: datasourceAdded.id
                                 }).then(clientDataAdded => {
 
-                                    debugDev('New ClientDataset record added in canvasDatasourceRouter');
+                                    debugDev('New ClientDataset record added via Microsoft SQL in canvasDatasourceRouter');
 
                                     // Return
                                     return res.json(
