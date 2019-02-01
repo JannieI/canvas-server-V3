@@ -195,7 +195,7 @@ router.put('/', (req, res, next) => {
                     dataCachingTableArray[dataCachingTableIndex].serverExpiryDateTime = new Date();
                 };
 
-                debugDev('New Datasource record added in canvasDatasourceRouter for ID: ' + datasourceAdded.id);
+                debugDev('New Datasource record updated in canvasDatasourceRouter for ID: ' + datasourceAdded.id);
  
                 // Add Dataset - for now we use the same id: DS - dSet - Data
                 datasetInput.id = datasourceAdded.id;
@@ -209,7 +209,7 @@ router.put('/', (req, res, next) => {
                     datasetInput).then(datasetAdded => {
                 
 
-                        debugDev('New Dataset record added in canvasDatasourceRouter');
+                        debugDev('New Dataset record updated in canvasDatasourceRouter');
 
                         // Add Data - for now we use the same id: DS - dSet - Data
                         clientDataInput.id = datasourceAdded.id;
@@ -227,13 +227,13 @@ router.put('/', (req, res, next) => {
                     
 
 
-                                    debugDev('New ClientDataset record added in canvasDatasourceRouter');
+                                    debugDev('New ClientDataset record updated in canvasDatasourceRouter');
 
                                     // Return
                                     return res.json(
                                         createReturnObject(
                                             "success",
-                                            "Added ALL records for datasource, ID: " + datasourceAdded.id,
+                                            "Updated ALL records for datasource, ID: " + datasourceAdded.id,
                                             {
                                                     datasource: datasourceAdded,
                                                     datasets: datasetAdded,
@@ -252,7 +252,7 @@ router.put('/', (req, res, next) => {
                                 })
                                 .catch(err => {
 
-                                    debugDev('Error Adding new ClientData', err)
+                                    debugDev('Error updating record for datasource: ' + datasourceInput.id, err)
                                     return res.json(
                                         createErrorObject(
                                             "error",
