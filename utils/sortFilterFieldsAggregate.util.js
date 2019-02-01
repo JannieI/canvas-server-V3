@@ -64,6 +64,7 @@ module.exports = function sortFilterFieldsAggregate(inputResults, queryObject) {
         };
 
         // 4. If (FILTER_OBJECT) then results = results.filter()
+        console.log('filterObject', filterObject)
         if (filterObject != null  &&  results != null) {
             filterObject = JSON.parse(filterObject)
             Object.keys(filterObject).forEach( key => {

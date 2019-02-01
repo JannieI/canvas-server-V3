@@ -221,11 +221,10 @@ router.get('/:resource', (req, res, next) => {
                     const fields = [];
 
                     // Extract the Widget specific data (sort, filter, fields, aggregate)
-                    let data =  serverMemoryCache.get(serverVariableName);
-                    if (req.query != null) {
-                        data =  sortFilterFieldsAggregate(data, req.query);
-                    };
-
+                    let data = serverMemoryCache.get(serverVariableName);
+                    data =  sortFilterFieldsAggregate(data, req.query).results;
+                    console.log('xx --- ', data.length)
+ 
                     // Return if an Error
                     if (data.error) {
                         return res.status(400).json(
@@ -247,7 +246,7 @@ router.get('/:resource', (req, res, next) => {
                             null,
                             null,
                             serverVariableName,
-                            serverMemoryCache.get(serverVariableName).length,
+                            data.length,
                             fields,
                             null
                             )
@@ -264,8 +263,9 @@ router.get('/:resource', (req, res, next) => {
         debugDev('Using Model ', canvasSchema, serverCacheableMemory?  'with caching'  :  'WITHOUT cache')
         const canvasModel = require(canvasSchema);
 
-        // Find the data (using the standard query JSON object)
-        canvasModel.find( query, (err, docs) => {
+        // Find ALL the data (using the standard query JSON object)
+        // We want to cache all, and return filtered if query was supplied
+        canvasModel.find( {}, (err, docs) => {
 
             // KEEP for later !
             // Extract metodata from the Schema, using one document
@@ -301,18 +301,19 @@ router.get('/:resource', (req, res, next) => {
                 };
             };
 
+            let returnSet = sortFilterFieldsAggregate(docs, req.query);
+            console.log('xx --- ', returnSet.results.length)
 
-            // for (var i = 0; i < dataCachingTableArray.length; i++) {
-            // if (dataCachingTableArray[i].key == resource) {
-
-            //     // Extract info into local variables
-            //     serverDataCachingTable = dataCachingTableArray[i];
-            //     serverCacheableMemory = serverDataCachingTable.serverCacheableMemory;
-            //     serverVariableName = serverDataCachingTable.serverVariableName;
-
-            //     // The resource is cached on the server: it has a valid server variable, and is marked True
-            //     if (serverCacheableMemory  &&  serverVariableName != null) {
-
+            // Return if an Error
+            if (returnSet.error) {
+                return res.status(400).json(
+                    createErrorObject(
+                        "error",
+                        "Error in the sortFilterFieldsAggregate routine",
+                        error
+                    )
+                );
+            };
 
             // Empty Array of fields
             var fields = [];
@@ -342,13 +343,13 @@ router.get('/:resource', (req, res, next) => {
                 createReturnObject(
                     "success",
                     "Retrieved data for resource: " + resource,
-                    docs,
+                    returnSet.results,
                     null,
                     null,
                     null,
                     null,
                     null,
-                    docs.length,
+                    returnSet.results.length,
                     fields,
                     null
                     )
