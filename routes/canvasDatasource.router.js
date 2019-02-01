@@ -441,7 +441,6 @@ router.post('/', (req, res, next) => {
         const datasourceInput = bodyInput.datasourceInput;
         const datasetInput = bodyInput.datasetInput;
         const clientDataInput = bodyInput.clientDataInput;
-        console.log('input', datasourceInput, datasetInput, clientDataInput)
 
         // Validation
         if (datasourceInput == null  ||  datasourceInput == undefined) {
@@ -476,6 +475,9 @@ router.post('/', (req, res, next) => {
         };
 
         // Create object and save to DB
+        debugDev('Input length for datasourceInput: ', datasourceInput.length);
+        debugDev('Input length for datasetInput: ', datasetInput.length);
+        debugDev('Input length for clientDataInput: ',clientDataInput.length);
 
         // Add Datasource
         let datasourceAdd = new datasourceModel(datasourceInput);
