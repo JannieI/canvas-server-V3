@@ -11,11 +11,12 @@ const datasourceSchema = '../models/datasources.model';
 const datasetSchema = '../models/datasets.model';
 const clientDataSchema = '../models/clientData.model';
 const execQueryMicrosoftSQL = require('../datalayer/microsoftSQL.execQuery.datalayer');
+var constants = require('../utils/constants');
 
 // GET route
 router.get('/', (req, res, next) => {
 
-    debugDev('## --------------------------');
+    debugDev('## --------------------------', constants.SERVER_MICROSOFT_SQL);
     debugDev('## GET Starting with CurrentDashboard with query:', req.query);
 
     // Try, in case model file does not exist
@@ -181,10 +182,10 @@ router.post('/', (req, res, next) => {
 
 
 
-                        createMethod: 'directSQLEditor'
-                        serverType: 'MySQL'
-                        createMethod: 'directFileCSV'
-                        if (serverType == SERVER_MICROSOFT_SQL) {
+                        // createMethod: 'directSQLEditor'
+                        // serverType: 'MySQL'
+                        // createMethod: 'directFileCSV'
+                        // if (serverType == SERVER_MICROSOFT_SQL) {
 
 
 

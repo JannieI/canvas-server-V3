@@ -16,14 +16,15 @@ const execQueryMySQL = require('../datalayer/mysql.execQuery.datalayer');
 const execQueryMicrosoftSQL = require('../datalayer/microsoftSQL.execQuery.datalayer');
 const createErrorObject = require('../utils/createErrorObject.util');
 const createReturnObject = require('../utils/createReturnObject.util');
+var constants = require('../utils/constants');
 
-const SERVER_MYSQL = 'MySQL';
-const SERVER_MICROSOFT_SQL = 'MicrosoftSQL';
-const SERVER_POSTGRESS = 'PostgresSQL';
-const SERVER_SQLITE = 'SQLite';
-const SERVER_MICROSOFT_SASS = 'MicrosoftSSAS';
-const SERVER_ORACLE = 'Oracle';
-const SERVER_MONGO = 'Mongo';
+// const constants.SERVER_MYSQL = 'MySQL';
+// const constants.SERVER_MICROSOFT_SQL = 'MicrosoftSQL';
+// const constants.SERVER_POSTGRESS = 'PostgresSQL';
+// const constants.SERVER_SQLITE = 'SQLite';
+// const constants.SERVER_MICROSOFT_SASS = 'MicrosoftSSAS';
+// const constants.SERVER_ORACLE = 'Oracle';
+// const constants.SERVER_MONGO = 'Mongo';
 
 // GET route to list ALL Databases in a Database Server
 router.get('/listDatabases', (req, res, next) => {
@@ -37,7 +38,7 @@ router.get('/listDatabases', (req, res, next) => {
     // Get the list
     debugDev('Start clientData.router for listDatabases');
 
-    if (serverType == SERVER_MYSQL) {
+    if (serverType == constants.SERVER_MYSQL) {
         listDatabases(req.query)
             .then(resultsObject => {
                 debugData('Returned list of Databases from MySQL');
@@ -48,7 +49,7 @@ router.get('/listDatabases', (req, res, next) => {
                 return res.json(errorObject);
             });
     };
-    if (serverType == SERVER_MICROSOFT_SASS) {
+    if (serverType == constants.SERVER_MICROSOFT_SASS) {
         debugData('Microsoft SSAS connector not Activated');
         return res.json(
             createErrorObject(
@@ -58,7 +59,7 @@ router.get('/listDatabases', (req, res, next) => {
             )
         );
     };
-    if (serverType == SERVER_POSTGRESS) {
+    if (serverType == constants.SERVER_POSTGRESS) {
         debugData('Error PostgresSQL connector not Activated');
         return res.json(
             createErrorObject(
@@ -68,7 +69,7 @@ router.get('/listDatabases', (req, res, next) => {
             )
         );
     };
-    if (serverType == SERVER_MICROSOFT_SQL) {
+    if (serverType == constants.SERVER_MICROSOFT_SQL) {
         debugData('Error Microsoft SQL connector not Activated');
         return res.json(
             createErrorObject(
@@ -78,7 +79,7 @@ router.get('/listDatabases', (req, res, next) => {
             )
         );
     };
-    if (serverType == SERVER_SQLITE) {
+    if (serverType == constants.SERVER_SQLITE) {
         debugData('Error SQLite connector not Activated')
         return res.json(
             createErrorObject(
@@ -88,7 +89,7 @@ router.get('/listDatabases', (req, res, next) => {
             )
         );
     };
-    if (serverType == SERVER_ORACLE) {
+    if (serverType == constants.SERVER_ORACLE) {
         debugData('Error Oracle connector not Activated')
         return res.json(
             createErrorObject(
@@ -98,7 +99,7 @@ router.get('/listDatabases', (req, res, next) => {
             )
         );
     };
-    if (serverType == SERVER_MONGO) {
+    if (serverType == constants.SERVER_MONGO) {
         debugData('Mongo connector not Activated')
         return res.json(
             createErrorObject(
@@ -122,7 +123,7 @@ router.get('/listTables', (req, res, next) => {
     // Get the list
     debugDev('Start clientData.router for listTables for ' + serverType);
 
-    if (serverType == SERVER_MYSQL) {
+    if (serverType == constants.SERVER_MYSQL) {
         listTables(req.query)
             .then(resultsObject => {
                 debugData('Returned list of Tables from MySQL');
@@ -133,7 +134,7 @@ router.get('/listTables', (req, res, next) => {
                 return res.json(errorObject);
             });
     };
-    if (serverType == SERVER_MICROSOFT_SASS) {
+    if (serverType == constants.SERVER_MICROSOFT_SASS) {
         debugData('Microsoft SSAS connector not Activated');
         return res.json(
             createErrorObject(
@@ -143,7 +144,7 @@ router.get('/listTables', (req, res, next) => {
             )
         );
     };
-    if (serverType == SERVER_POSTGRESS) {
+    if (serverType == constants.SERVER_POSTGRESS) {
         debugData('Error PostgresSQL connector not Activated');
         return res.json(
             createErrorObject(
@@ -153,7 +154,7 @@ router.get('/listTables', (req, res, next) => {
             )
         );
     };
-    if (serverType == SERVER_MICROSOFT_SQL) {
+    if (serverType == constants.SERVER_MICROSOFT_SQL) {
         debugData('Error Microsoft SQL connector not Activated');
         return res.json(
             createErrorObject(
@@ -163,7 +164,7 @@ router.get('/listTables', (req, res, next) => {
             )
         );
     };
-    if (serverType == SERVER_SQLITE) {
+    if (serverType == constants.SERVER_SQLITE) {
         debugData('Error SQLite connector not Activated')
         return res.json(
             createErrorObject(
@@ -173,7 +174,7 @@ router.get('/listTables', (req, res, next) => {
             )
         );
     };
-    if (serverType == SERVER_ORACLE) {
+    if (serverType == constants.SERVER_ORACLE) {
         debugData('Error Oracle connector not Activated')
         return res.json(
             createErrorObject(
@@ -183,7 +184,7 @@ router.get('/listTables', (req, res, next) => {
             )
         );
     };
-    if (serverType == SERVER_MONGO) {
+    if (serverType == constants.SERVER_MONGO) {
         debugData('Mongo connector not Activated')
         return res.json(
             createErrorObject(
@@ -207,7 +208,7 @@ router.get('/listFields', (req, res, next) => {
     // Get the list
     debugDev('Start clientData.router for listFields');
 
-    if (serverType == SERVER_MYSQL) {
+    if (serverType == constants.SERVER_MYSQL) {
         listFields(req.query)
             .then(resultsObject => {
                 debugData('Returned list of Fields for a Table from MySQL');
@@ -218,7 +219,7 @@ router.get('/listFields', (req, res, next) => {
                 return res.json(errorObject);
             });
     };
-    if (serverType == SERVER_MICROSOFT_SASS) {
+    if (serverType == constants.SERVER_MICROSOFT_SASS) {
         debugData('Microsoft SSAS connector not Activated');
         return res.json(
             createErrorObject(
@@ -228,7 +229,7 @@ router.get('/listFields', (req, res, next) => {
             )
         );
     };
-    if (serverType == SERVER_POSTGRESS) {
+    if (serverType == constants.SERVER_POSTGRESS) {
         debugData('Error PostgresSQL connector not Activated');
         return res.json(
             createErrorObject(
@@ -238,7 +239,7 @@ router.get('/listFields', (req, res, next) => {
             )
         );
     };
-    if (serverType == SERVER_MICROSOFT_SQL) {
+    if (serverType == constants.SERVER_MICROSOFT_SQL) {
         debugData('Error Microsoft SQL connector not Activated');
         return res.json(
             createErrorObject(
@@ -248,7 +249,7 @@ router.get('/listFields', (req, res, next) => {
             )
         );
     };
-    if (serverType == SERVER_SQLITE) {
+    if (serverType == constants.SERVER_SQLITE) {
         debugData('Error SQLite connector not Activated')
         return res.json(
             createErrorObject(
@@ -258,7 +259,7 @@ router.get('/listFields', (req, res, next) => {
             )
         );
     };
-    if (serverType == SERVER_ORACLE) {
+    if (serverType == constants.SERVER_ORACLE) {
         debugData('Error Oracle connector not Activated')
         return res.json(
             createErrorObject(
@@ -268,7 +269,7 @@ router.get('/listFields', (req, res, next) => {
             )
         );
     };
-    if (serverType == SERVER_MONGO) {
+    if (serverType == constants.SERVER_MONGO) {
         debugData('Mongo connector not Activated')
         return res.json(
             createErrorObject(
@@ -303,7 +304,7 @@ router.get('/execQuery', (req, res, next) => {
                 return res.json(errorObject);
             });
     };
-    if (serverType == SERVER_MICROSOFT_SQL) {
+    if (serverType == constants.SERVER_MICROSOFT_SQL) {
         debugData('Start Microsoft SQL connector');
         execQueryMicrosoftSQL(req.query)
             .then(resultsObject => {
@@ -315,7 +316,7 @@ router.get('/execQuery', (req, res, next) => {
                 return res.json(errorObject);
             });
     };
-    if (serverType == SERVER_MICROSOFT_SASS) {
+    if (serverType == constants.SERVER_MICROSOFT_SASS) {
         debugData('Microsoft SSAS connector not Activated');
         return res.json(
             createErrorObject(
@@ -325,7 +326,7 @@ router.get('/execQuery', (req, res, next) => {
             )
         );
     };
-    if (serverType == SERVER_POSTGRESS) {
+    if (serverType == constants.SERVER_POSTGRESS) {
         debugData('Error PostgresSQL connector not Activated');
         return res.json(
             createErrorObject(
@@ -335,7 +336,7 @@ router.get('/execQuery', (req, res, next) => {
             )
         );
     };
-    if (serverType == SERVER_SQLITE) {
+    if (serverType == constants.SERVER_SQLITE) {
         debugData('Error SQLite connector not Activated')
         return res.json(
             createErrorObject(
@@ -345,7 +346,7 @@ router.get('/execQuery', (req, res, next) => {
             )
         );
     };
-    if (serverType == SERVER_ORACLE) {
+    if (serverType == constants.SERVER_ORACLE) {
         debugData('Error Oracle connector not Activated')
         return res.json(
             createErrorObject(
@@ -355,7 +356,7 @@ router.get('/execQuery', (req, res, next) => {
             )
         );
     };
-    if (serverType == SERVER_MONGO) {
+    if (serverType == constants.SERVER_MONGO) {
         debugData('Mongo connector not Activated')
         return res.json(
             createErrorObject(
@@ -531,7 +532,7 @@ router.get('/', (req, res, next) => {
             debugData(' <- Getting data from Source')
 
             // Get the data from Source, depending on the serverType
-            if (datasource.serverType == SERVER_MICROSOFT_SASS) {
+            if (datasource.serverType == constants.SERVER_MICROSOFT_SASS) {
                 debugData('Microsoft SSAS connector not Activated');
                 return res.json(
                     createErrorObject(
@@ -541,7 +542,7 @@ router.get('/', (req, res, next) => {
                     )
                 );
             };
-            if (datasource.serverType == SERVER_POSTGRESS) {
+            if (datasource.serverType == constants.SERVER_POSTGRESS) {
                 debugData('Error PostgresSQL connector not Activated');
                 return res.json(
                     createErrorObject(
@@ -551,7 +552,7 @@ router.get('/', (req, res, next) => {
                     )
                 );
             };
-            if (datasource.serverType == SERVER_MICROSOFT_SQL) {
+            if (datasource.serverType == constants.SERVER_MICROSOFT_SQL) {
                 debugData('Error Microsoft SQL connector not Activated');
                 return res.json(
                     createErrorObject(
@@ -561,7 +562,7 @@ router.get('/', (req, res, next) => {
                     )
                 );
             };
-            if (datasource.serverType == SERVER_SQLITE) {
+            if (datasource.serverType == constants.SERVER_SQLITE) {
                 debugData('Error SQLite connector not Activated')
                 return res.json(
                     createErrorObject(
@@ -571,7 +572,7 @@ router.get('/', (req, res, next) => {
                     )
                 );
             };
-            if (datasource.serverType == SERVER_ORACLE) {
+            if (datasource.serverType == constants.SERVER_ORACLE) {
                 debugData('Error Oracle connector not Activated')
                 return res.json(
                     createErrorObject(
@@ -581,7 +582,7 @@ router.get('/', (req, res, next) => {
                     )
                 );
             };
-            if (datasource.serverType == SERVER_MONGO) {
+            if (datasource.serverType == constants.SERVER_MONGO) {
                 debugData('Mongo connector not Activated')
                 return res.json(
                     createErrorObject(
@@ -598,7 +599,7 @@ router.get('/', (req, res, next) => {
             //   --calls-->  mysql.getData.datalayer: returns error-object
             //         --calls-->  sortFilterFieldts: returns error-object
 
-            if (datasource.serverType == SERVER_MYSQL) {
+            if (datasource.serverType == constants.SERVER_MYSQL) {
                 getClientData(datasource, req.query)
                     .then(resultsObject => {
                         debugData('Records returned from MySQL: ', resultsObject.metaData.table.nrRecordsReturned);
