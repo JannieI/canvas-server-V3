@@ -176,6 +176,18 @@ router.post('/', (req, res, next) => {
 
                         debugDev('New Dataset record added in canvasDatasourceRouter');
 
+                        // Add Data - for now we use the same id: DS - dSet - Data
+                        clientDataInput.id = datasourceAdded.id;
+
+
+
+                        createMethod: 'directSQLEditor'
+                        serverType: 'MySQL'
+                        createMethod: 'directFileCSV'
+                        if (serverType == SERVER_MICROSOFT_SQL) {
+
+
+
                         // Add ClientData
                         debugDev('Start Microsoft SQL connector');
                         execQueryMicrosoftSQL({
