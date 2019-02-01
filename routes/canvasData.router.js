@@ -227,7 +227,7 @@ router.get('/:resource', (req, res, next) => {
                     };
 
                     // Return if an Error
-                    if (afterSort.error) {
+                    if (data.error) {
                         return res.status(400).json(
                             createErrorObject(
                                 "error",
