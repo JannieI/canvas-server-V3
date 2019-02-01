@@ -195,7 +195,7 @@ router.put('/', (req, res, next) => {
                     dataCachingTableArray[dataCachingTableIndex].serverExpiryDateTime = new Date();
                 };
 
-                debugDev('New Datasource record updated in canvasDatasourceRouter for ID: ' + datasourceAdded.id);
+                debugDev('Datasource record updated in canvasDatasourceRouter for ID: ' + datasourceAdded.id);
  
                 // Add Dataset - for now we use the same id: DS - dSet - Data
                 datasetInput.id = datasourceAdded.id;
@@ -209,7 +209,7 @@ router.put('/', (req, res, next) => {
                     datasetInput).then(datasetAdded => {
                 
 
-                        debugDev('New Dataset record updated in canvasDatasourceRouter');
+                        debugDev('Dataset record updated in canvasDatasourceRouter');
 
                         // Add Data - for now we use the same id: DS - dSet - Data
                         clientDataInput.id = datasourceAdded.id;
@@ -227,7 +227,7 @@ router.put('/', (req, res, next) => {
                     
 
 
-                                    debugDev('New ClientDataset record updated in canvasDatasourceRouter');
+                                    debugDev('ClientDataset record updated in canvasDatasourceRouter');
 
                                     // Return
                                     return res.json(
@@ -256,15 +256,13 @@ router.put('/', (req, res, next) => {
                                     return res.json(
                                         createErrorObject(
                                             "error",
-                                            "Error: Could not add record for datasource: " + datasourceInput.id,
+                                            "Error: Could not update record for datasource: " + datasourceInput.id,
                                             err
                                         )
                                     );
                                 });
             
                         };
-
-
 
                         if (datasourceAdded.createMethod == 'directSQLEditor') {
                             debugDev('Start createMethod directSQLEditor');
@@ -475,9 +473,6 @@ router.post('/', (req, res, next) => {
         };
 
         // Create object and save to DB
-        debugDev('Input length for datasourceInput: ', datasourceInput.length);
-        debugDev('Input length for datasetInput: ', datasetInput.length);
-        debugDev('Input length for clientDataInput: ',clientDataInput.length);
 
         // Add Datasource
         let datasourceAdd = new datasourceModel(datasourceInput);
