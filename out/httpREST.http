@@ -152,7 +152,7 @@ GET {{host}}/clientData/
 &aggregationObject=aggregationObject
 
 ###
-GET {{host}}/canvasdata/datasources?id=82
+GET {{host}}/canvasdata/datasources
 
 ###
 GET {{host}}/clientData/listDatabases

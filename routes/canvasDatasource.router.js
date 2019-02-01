@@ -12,6 +12,8 @@ const datasetSchema = '../models/datasets.model';
 const clientDataSchema = '../models/clientData.model';
 const execQueryMicrosoftSQL = require('../datalayer/microsoftSQL.execQuery.datalayer');
 var constants = require('../utils/constants');
+var dataCachingTableArray = null;   // Local copy of dataCachingTable - STRUCTURE
+const dataCachingTableVariable = require('../utils/dataCachingTableMemory.util');  // Var loaded at startup
 
 // GET route
 router.get('/', (req, res, next) => {
@@ -165,6 +167,28 @@ router.post('/', (req, res, next) => {
         let datasourceAdd = new datasourceModel(datasourceInput);
         datasourceAdd.save()
             .then(datasourceAdded => {
+
+
+
+            debugDev('Initialise dataCachingTableArray ...')
+            dataCachingTableArray = dataCachingTableVariable.get();
+
+            // Safeguard
+            if (dataCachingTableArray == null) {
+                dataCachingTableArray = [];
+            };
+
+            // Load DATA into Cache if this resource is cached and not fresh.  Then set the expiryDateTime
+            let dataCachingTableIndex = dataCachingTableArray.findIndex(dc => dc.key == 'datasources')
+            if (dataCachingTableIndex >= 0) {
+                dataCachingTableArray[dataCachingTableIndex].serverExpiryDateTime = new Date();
+            };
+
+            console.log('xx dataCachingTableArray', dataCachingTableArray)
+
+
+
+
 
                 debugDev('New Datasource record added in canvasDatasourceRouter for ID: ' + datasourceAdded.id);
  
