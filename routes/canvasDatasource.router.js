@@ -250,7 +250,6 @@ router.post('/', (req, res, next) => {
                                 );
                             };
                             if (serverType == constants.SERVER_MICROSOFT_SQL) {
-                                debugData('Error Microsoft SQL connector not Activated');
 
                                 // Add ClientData
                                 debugDev('Start Microsoft SQL connector');
