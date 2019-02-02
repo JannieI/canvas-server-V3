@@ -232,6 +232,17 @@ router.put('/', (req, res, next) => {
                                 { id: clientDataInput.id },
                                 clientDataInput).then(clientDataAdded => {
                     
+                                    // Error if not found
+                                    if (clientDataAdded == null) {
+                                        debugDev('Error updating record for datasource: ' + datasourceInput.id)
+                                        return res.json(
+                                            createErrorObject(
+                                                "error",
+                                                "Error: Could not find record for clientData: " + datasourceInput.id,
+                                                null
+                                            )
+                                        );
+                                    };
 
 
                                     debugDev('ClientDataset record updated in canvasDatasourceRouter', clientDataInput.id , clientDataAdded.data[0]);
