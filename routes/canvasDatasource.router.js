@@ -110,9 +110,6 @@ router.get('/', (req, res, next) => {
 })
 
 
-
-
-
 // PUT route
 router.put('/', (req, res, next) => {
 
@@ -219,7 +216,7 @@ router.put('/', (req, res, next) => {
                         debugDev('Dataset record updated in canvasDatasourceRouter');
 
                         // Add Data - for now we use the same id: DS - dSet - Data
-                        clientDataInput.id = 222 // datasourceAdded.id;
+                        clientDataInput.id = datasourceAdded.id;
 
                         if (datasourceAdded.createMethod == 'directFileCSV'){
                             debugDev('Start createMethod directFileCSV');
@@ -244,7 +241,6 @@ router.put('/', (req, res, next) => {
                                         );
                                     };
 
-
                                     debugDev('ClientDataset record updated in canvasDatasourceRouter', clientDataInput.id , clientDataAdded.data[0]);
 
                                     // Return
@@ -252,11 +248,7 @@ router.put('/', (req, res, next) => {
                                         createReturnObject(
                                             "success",
                                             "Updated ALL records for datasource, ID: " + datasourceAdded.id,
-                                            {
-                                                    datasource: datasourceAdded,
-                                                    datasets: datasetAdded,
-                                                    clientData: clientDataAdded
-                                            },
+                                            [],
                                             null,
                                             null,
                                             null,

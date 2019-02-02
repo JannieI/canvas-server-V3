@@ -8,6 +8,7 @@ module.exports = function sortFilterFieldsAggregate(inputResults, queryObject) {
         let sortObject = queryObject.sortObject;
         let fieldsObject = queryObject.fields;
         let filterObject = queryObject.filterObject;
+        let nrRowsToReturn = queryObject.nrRowsToReturn;
         const aggregationObject = queryObject.aggregationObject;
 
         // 2. If (SORT_OBJECT) then results = results.sort()
@@ -64,7 +65,6 @@ module.exports = function sortFilterFieldsAggregate(inputResults, queryObject) {
         };
 
         // 4. If (FILTER_OBJECT) then results = results.filter()
-        console.log('filterObject', filterObject)
         if (filterObject != null  &&  results != null) {
             filterObject = JSON.parse(filterObject)
             Object.keys(filterObject).forEach( key => {
@@ -83,7 +83,12 @@ module.exports = function sortFilterFieldsAggregate(inputResults, queryObject) {
 
         };
         
-        // 6. Return
+        // 6. Reduce nr of rows to return: 0 or null means all rows
+        if (nrRowsToReturn != 0  &&  nrRowsToReturn != null  &&  results != null) {
+            results = results.slice(0, nrRowsToReturn)
+        };
+        
+        // 7. Return
         return {
             error: null, 
             results: results

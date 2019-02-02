@@ -145,7 +145,7 @@ content-type: application/json
 ###
 // NOTE spaces in fields !!!
 GET {{host}}/clientData/
-?datasourceID=137
+?datasourceID=68
 &sortObject=-Month
 &fields=Year, Month
 &filterObject={"Year":2019}
@@ -284,6 +284,7 @@ content-type: application/json
 
 
 ###
-
-
-GET {{host}}/canvasData/dashboards
+GET {{host}}/clientData/
+?datasourceID=68
+&fields=fare, age
+&nrRowsToReturn=2
