@@ -130,7 +130,6 @@ router.put('/', (req, res, next) => {
         const datasourceInput = bodyInput.datasourceInput;
         const datasetInput = bodyInput.datasetInput;
         const clientDataInput = bodyInput.clientDataInput;
-        console.log('input', datasourceInput, datasetInput, clientDataInput)
 
         // Validation
         if (datasourceInput == null  ||  datasourceInput == undefined) {
@@ -164,22 +163,22 @@ router.put('/', (req, res, next) => {
             );
         };
 
-        // Create object and save to DB
-
-        // Add Datasource
-        // let datasourceAdd = new datasourceModel(datasourceInput);
-        // datasourceAdd.save()
-        //     .then(datasourceAdded => {
-
-            // ,
-            // {
-            //     upsert:true,
-            //     new: true
-            // }
-
+        // Update DB
         datasourceModel.findOneAndUpdate(
             { id: datasourceInput.id },
             datasourceInput).then(datasourceAdded => {
+
+                // Error if not found
+                if (datasourceAdded == null) {
+                    debugDev('Error updating record for datasource: ' + datasourceInput.id)
+                    return res.json(
+                        createErrorObject(
+                            "error",
+                            "Error: Could not find record for datasource: " + datasourceInput.id,
+                            null
+                        )
+                    );
+                };
 
                 debugDev('Initialise dataCachingTableArray ...')
                 dataCachingTableArray = dataCachingTableVariable.get();
@@ -212,7 +211,7 @@ router.put('/', (req, res, next) => {
                         debugDev('Dataset record updated in canvasDatasourceRouter');
 
                         // Add Data - for now we use the same id: DS - dSet - Data
-                        clientDataInput.id = datasourceAdded.id;
+                        clientDataInput.id = 222 // datasourceAdded.id;
 
                         if (datasourceAdded.createMethod == 'directFileCSV'){
                             debugDev('Start createMethod directFileCSV');
@@ -227,7 +226,7 @@ router.put('/', (req, res, next) => {
                     
 
 
-                                    debugDev('ClientDataset record updated in canvasDatasourceRouter');
+                                    debugDev('ClientDataset record updated in canvasDatasourceRouter', clientDataInput.id , clientDataAdded.data[0]);
 
                                     // Return
                                     return res.json(
