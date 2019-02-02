@@ -194,19 +194,27 @@ router.put('/', (req, res, next) => {
                     dataCachingTableArray[dataCachingTableIndex].serverExpiryDateTime = new Date();
                 };
 
-                debugDev('Datasource record updated in canvasDatasourceRouter for ID: ' + datasourceAdded.id);
+                debugDev('Datasource record updated in canvasDatasourceRouter for ID: ' + datasourceInput.id);
  
                 // Add Dataset - for now we use the same id: DS - dSet - Data
-                datasetInput.id = datasourceAdded.id;
-                datasetInput.datasourceID = datasourceAdded.id;
-                // let datasetAdd = new datasetModel(datasetInput);
-                // datasetAdd.save()
-                //     .then(datasetAdded => {
+                datasetInput.id = datasourceInput.id;
+                datasetInput.datasourceID = datasourceInput.id;
 
                 datasetModel.findOneAndUpdate(
                     { id: datasetInput.id },
                     datasetInput).then(datasetAdded => {
-                
+
+                        // Error if not found
+                        if (datasetAdded == null) {
+                            debugDev('Error updating record for datasource: ' + datasourceInput.id)
+                            return res.json(
+                                createErrorObject(
+                                    "error",
+                                    "Error: Could not find record for dataset: " + datasourceInput.id,
+                                    null
+                                )
+                            );
+                        };
 
                         debugDev('Dataset record updated in canvasDatasourceRouter');
 
