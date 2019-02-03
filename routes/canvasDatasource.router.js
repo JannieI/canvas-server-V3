@@ -286,7 +286,7 @@ router.put('/', (req, res, next) => {
                             debugDev(moduleName + ": " + 'Start createMethod directSQLEditor');
 
                             if (serverType == constants.SERVER_MYSQL) {
-                                debugData('MysQL connector not Activated');
+                                debugData(moduleName + ": " + 'MysQL connector not Activated');
                                 return res.json(
                                     createErrorObject(
                                         "error",
@@ -296,7 +296,7 @@ router.put('/', (req, res, next) => {
                                 );
                             };
                             if (serverType == constants.SERVER_MICROSOFT_SASS) {
-                                debugData('Microsoft SSAS connector not Activated');
+                                debugData(moduleName + ": " + 'Microsoft SSAS connector not Activated');
                                 return res.json(
                                     createErrorObject(
                                         "error",
@@ -306,7 +306,7 @@ router.put('/', (req, res, next) => {
                                 );
                             };
                             if (serverType == constants.SERVER_POSTGRESS) {
-                                debugData('Error PostgresSQL connector not Activated');
+                                debugData(moduleName + ": " + 'Error PostgresSQL connector not Activated');
                                 return res.json(
                                     createErrorObject(
                                         "error",
@@ -316,7 +316,7 @@ router.put('/', (req, res, next) => {
                                 );
                             };
                             if (serverType == constants.SERVER_SQLITE) {
-                                debugData('Error SQLite connector not Activated')
+                                debugData(moduleName + ": " + 'Error SQLite connector not Activated')
                                 return res.json(
                                     createErrorObject(
                                         "error",
@@ -326,7 +326,7 @@ router.put('/', (req, res, next) => {
                                 );
                             };
                             if (serverType == constants.SERVER_ORACLE) {
-                                debugData('Error Oracle connector not Activated')
+                                debugData(moduleName + ": " + 'Error Oracle connector not Activated')
                                 return res.json(
                                     createErrorObject(
                                         "error",
@@ -336,7 +336,7 @@ router.put('/', (req, res, next) => {
                                 );
                             };
                             if (serverType == constants.SERVER_MONGO) {
-                                debugData('Mongo connector not Activated')
+                                debugData(moduleName + ": " + 'Mongo connector not Activated')
                                 return res.json(
                                     createErrorObject(
                                         "error",
@@ -574,7 +574,7 @@ router.post('/', (req, res, next) => {
                             debugDev(moduleName + ": " + 'Start createMethod directSQLEditor');
 
                             if (serverType == constants.SERVER_MYSQL) {
-                                debugData('MysQL connector not Activated');
+                                debugData(moduleName + ": " + 'MysQL connector not Activated');
                                 return res.json(
                                     createErrorObject(
                                         "error",
@@ -584,7 +584,7 @@ router.post('/', (req, res, next) => {
                                 );
                             };
                             if (serverType == constants.SERVER_MICROSOFT_SASS) {
-                                debugData('Microsoft SSAS connector not Activated');
+                                debugData(moduleName + ": " + 'Microsoft SSAS connector not Activated');
                                 return res.json(
                                     createErrorObject(
                                         "error",
@@ -594,7 +594,7 @@ router.post('/', (req, res, next) => {
                                 );
                             };
                             if (serverType == constants.SERVER_POSTGRESS) {
-                                debugData('Error PostgresSQL connector not Activated');
+                                debugData(moduleName + ": " + 'Error PostgresSQL connector not Activated');
                                 return res.json(
                                     createErrorObject(
                                         "error",
@@ -604,7 +604,7 @@ router.post('/', (req, res, next) => {
                                 );
                             };
                             if (serverType == constants.SERVER_SQLITE) {
-                                debugData('Error SQLite connector not Activated')
+                                debugData(moduleName + ": " + 'Error SQLite connector not Activated')
                                 return res.json(
                                     createErrorObject(
                                         "error",
@@ -614,7 +614,7 @@ router.post('/', (req, res, next) => {
                                 );
                             };
                             if (serverType == constants.SERVER_ORACLE) {
-                                debugData('Error Oracle connector not Activated')
+                                debugData(moduleName + ": " + 'Error Oracle connector not Activated')
                                 return res.json(
                                     createErrorObject(
                                         "error",
@@ -624,7 +624,7 @@ router.post('/', (req, res, next) => {
                                 );
                             };
                             if (serverType == constants.SERVER_MONGO) {
-                                debugData('Mongo connector not Activated')
+                                debugData(moduleName + ": " + 'Mongo connector not Activated')
                                 return res.json(
                                     createErrorObject(
                                         "error",
