@@ -472,11 +472,19 @@ router.delete('/:resource', (req, res, next) => {
 
                 if (doc == null) {
                     return res.json(
-                        createErrorObject(
-                            "error",
-                            "Deletion of " + resource + " failed: could not find id = " + id,
-                            null
-                        )
+                        createReturnObject(
+                            "success",
+                            "Record not found for resource: " + resource + ', id: ', id,
+                            doc,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            )
                     );
                 } else {
                     return res.json(
