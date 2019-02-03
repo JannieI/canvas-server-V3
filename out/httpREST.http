@@ -288,3 +288,70 @@ GET {{host}}/clientData/
 ?datasourceID=68
 &fields=fare, age
 &nrRowsToReturn=2
+
+
+###
+
+# BING !
+POST https://dev.virtualearth.net/REST/v1/Routes/DistanceMatrixAsync?key=An32WT6o1FBmePyg2qOelW0-eby7-hW9H1YmxfAw9yVrEvPloQ9Wte1l0n3h1DED
+Content-Type: application/json
+
+{
+    "origins": [
+    {
+        "latitude": 37.779160067439079,
+        "longitude": -122.42004945874214
+    }
+    ],
+    "destinations": [
+    {
+        "latitude": 32.715685218572617,
+        "longitude": -117.16172486543655
+    }
+    ],
+    "travelMode": "driving",
+    "startTime": "2019-01-09T22:00:00.000Z"
+}
+###
+# BING 2
+https://dev.virtualearth.net/REST/v1/Routes/DistanceMatrix?key=An32WT6o1FBmePyg2qOelW0-eby7-hW9H1YmxfAw9yVrEvPloQ9Wte1l0n3h1DED
+Content-Length: 450
+Content-Type: application/json
+
+{
+    "origins": [{
+        "latitude": 47.6044,
+        "longitude": -122.3345
+    },
+    {
+        "latitude": 47.6731,
+        "longitude": -122.1185
+    },
+    {
+        "latitude": 47.6149,
+        "longitude": -122.1936
+    }],
+    "destinations": [{
+        "latitude": 45.5347,
+        "longitude": -122.6231
+    }, 
+    {
+        "latitude": 47.4747,
+        "longitude": -122.2057
+    }],
+    "travelMode": "driving"
+}
+###
+# BING 3 GET Distance Matrix Works
+https://dev.virtualearth.net/REST/v1/Routes/DistanceMatrix
+?origins=47.6044,-122.3345;47.6731,-122.1185;47.6149,-122.1936
+&destinations=45.5347,-122.6231;47.4747,-122.2057
+&travelMode=driving
+&key=An32WT6o1FBmePyg2qOelW0-eby7-hW9H1YmxfAw9yVrEvPloQ9Wte1l0n3h1DED
+
+###
+
+# BING 4 Map with Center Point Works - also in Browser
+https://dev.virtualearth.net/REST/V1/Imagery/Map/Road/Bellevue%20Washington?mapLayer=TrafficFlow&key=An32WT6o1FBmePyg2qOelW0-eby7-hW9H1YmxfAw9yVrEvPloQ9Wte1l0n3h1DED
+
+###

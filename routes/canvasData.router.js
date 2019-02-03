@@ -376,7 +376,7 @@ router.post('/:resource', (req, res, next) => {
         resource = req.params.resource;
     };
     const body = req.body;
-    debugDev('Router: POST for resource:', resource, 'body:', body)
+    debugDev('Router: POST for resource:', resource)
     debugDev('');
 
     // Try, in case model file does not exist
