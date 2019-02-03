@@ -12,6 +12,11 @@ module.exports = function listTables(queryObject) {
     return new Promise((resolve, reject) => {
         
         try {
+
+            const startPos = module.id.lastIndexOf("/");
+            if (startPos > 0  &&  startPos < module.id.length) {
+                moduleName = module.id.substring(startPos + 1);
+            };
             // Set & extract the vars from the Input Params
             let serverName = queryObject.serverName;
             let databaseName = queryObject.databaseName;
@@ -21,7 +26,7 @@ module.exports = function listTables(queryObject) {
             let dataSQLStatement = "SHOW TABLES";
 
             let sqlParameters = '';
-            debugDev('Properties received:', serverName, databaseName, port, username, password);
+            debugDev(moduleName + ": " + 'Properties received:', serverName, databaseName, port, username, password);
 
             // Create pool Object
             const pool = mysql.createPool({
