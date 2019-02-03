@@ -103,7 +103,7 @@ function dateAdd(date, interval, units) {
 // TODO - this whole thing is much easier in TS methinks
 // Initial load of dataCaching table STRUCTURE from global variable
 function initialLoadOfCachingTable () {
-    debugDev('Initialise dataCachingTableArray ...')
+    debugDev(moduleName + ": " + 'Initialise dataCachingTableArray ...')
     dataCachingTableArray = dataCachingTableVariable.get();
 
     // Reset the serverExpiryDateTime to now.  This is used to determine if the DATA is fresh,
@@ -176,8 +176,8 @@ router.get('/:resource', (req, res, next) => {
     };
     const query = req.query;
 
-    debugDev('## --------------------------');
-    debugDev('## GET Starting with resource:', resource, ', query:', query);
+    debugDev(moduleName + ": " + '## --------------------------');
+    debugDev(moduleName + ": " + '## GET Starting with resource:', resource, ', query:', query);
 
     // Load global variable for cachingTable STRUCTURE into an Array ONCE
     if (dataCachingTableArray == null) {
@@ -217,7 +217,7 @@ router.get('/:resource', (req, res, next) => {
 
                 // If cache is fresh, and DATA already loaded in cache
                 if (isFresh  &&  serverMemoryCache.get(serverVariableName) != null) {
-                    debugDev(
+                    debugDev(moduleName + ": " + 
                         '  Returned',
                         serverMemoryCache.get(serverVariableName).length,
                         'records from cache!'
@@ -265,7 +265,7 @@ router.get('/:resource', (req, res, next) => {
     try {
         // Get the model dynamically (take note of file spelling = resource)
         const canvasSchema = '../models/' + resource + '.model';
-        debugDev('Using Model ', canvasSchema, serverCacheableMemory?  'with caching'  :  'WITHOUT cache')
+        debugDev(moduleName + ": " + 'Using Model ', canvasSchema, serverCacheableMemory?  'with caching'  :  'WITHOUT cache')
         const canvasModel = require(canvasSchema);
 
         // Find ALL the data (using the standard query JSON object)
@@ -288,7 +288,7 @@ router.get('/:resource', (req, res, next) => {
                     if (serverCacheableMemory  &&  !isFresh  &&  serverVariableName != null) {
                         serverMemoryCache.set(serverVariableName, docs);
 
-                        debugDev(
+                        debugDev(moduleName + ": " + 
                             'Loaded',
                             serverMemoryCache.get(serverVariableName).length,
                             'records into cache for',
@@ -360,7 +360,7 @@ router.get('/:resource', (req, res, next) => {
         });
     }
     catch (error) {
-        debugDev('Error: ', error)
+        debugDev(moduleName + ": " + 'Error: ', error)
         return res.status(400).json({
             "statusCode": "error",
             "message" : "No model file for resource: " + resource,
@@ -382,8 +382,8 @@ router.post('/:resource', (req, res, next) => {
         resource = req.params.resource;
     };
     const body = req.body;
-    debugDev('Router: POST for resource:', resource)
-    debugDev('');
+    debugDev(moduleName + ": " + 'Router: POST for resource:', resource)
+    debugDev(moduleName + ": " + '');
 
     // Try, in case model file does not exist
     try {
@@ -395,7 +395,7 @@ router.post('/:resource', (req, res, next) => {
         let canvasAdd = new canvasModel(body);
         canvasAdd.save()
             .then(doc => {
-                debugDev('New record added in canvasRouter')
+                debugDev(moduleName + ": " + 'New record added in canvasRouter')
                 return res.json(
                     createReturnObject(
                         "success",
@@ -447,7 +447,7 @@ router.delete('/:resource', (req, res, next) => {
 
     const query = req.query;
     const id = req.query.id;
-    debugDev('const ',req.query, id);
+    debugDev(moduleName + ": " + 'const ',req.query, id);
 
     if (id == null) {
         return res.json(
@@ -565,7 +565,7 @@ router.put('/:resource', (req, res, next) => {
               runValidators: true              // validate before update
             })
             .then(doc => {
-                debugDev(resource + ' updated ID: ' + id)
+                debugDev(moduleName + ": " + resource + ' updated ID: ' + id)
                 return res.json(
                     createReturnObject(
                         "success",
