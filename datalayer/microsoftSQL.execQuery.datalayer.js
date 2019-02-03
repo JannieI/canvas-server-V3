@@ -19,6 +19,11 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
         var results = [];       // To be returned to Workstation.  Remember, could be reduced by nrRowsToReturn
         var buffer = [];        // Temp buffer to accumulate, then write to DB
         
+        const startPos = module.id.lastIndexOf("/");
+        if (startPos > 0  &&  startPos < module.id.length) {
+            moduleName = module.id.substring(startPos + 1);
+        };
+
         debugData('Start execQueryMicrosoftSQL');
         // Set & extract the vars from the Input Params
         let serverName = queryObject.serverName;
@@ -55,13 +60,13 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
                         idMongo = doc._id;
                     };
 
-                    debugDev('execQueryMicrosoftSQL upserted ID: ', datasourceID, idMongo)
+                    debugDev(moduleName + ": " + 'execQueryMicrosoftSQL upserted ID: ', datasourceID, idMongo)
                 });
         };
 
         // TODO - figure out how to treat SQL Parameters, ie @LogicalBusinessDay
         let sqlParameters = '';
-        debugDev('Properties received:', serverName, databaseName, sqlStatement,
+        debugDev(moduleName + ": " + 'Properties received:', serverName, databaseName, sqlStatement,
             port, username, password, nrRowsToReturn, datasourceID);
 
         // Create connection string information.  Note: Azure needs encrypt: true
@@ -86,7 +91,7 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
         connection.on('connect', function(err) {
 
             if (err) {
-                debugDev('Error in connection.on', err)
+                debugDev(moduleName + ": " + 'Error in connection.on', err)
                 return reject({
                     "statusCode": "error",
                     "message" : "Error in connection.on in microsoftSQL.execQuery.datalayer getting info from MS-SQL",
@@ -104,25 +109,25 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
         // Connection Events
         // TODO - in time, we may not need all of these
         connection.on('end', function() {
-            debugDev('END -----------------------------')
+            debugDev(moduleName + ": " + 'END -----------------------------')
         })
 
         connection.on('error', function(err) {
-            debugDev('ERROR -----------------------------')
+            debugDev(moduleName + ": " + 'ERROR -----------------------------')
         })
 
         connection.on('debug', function(text) {
-            debugDev('DEBUG -----------------------------', text)
+            debugDev(moduleName + ": " + 'DEBUG -----------------------------', text)
         })
 
         connection.on('infoMessage', function(info) {
-            debugDev('INFO -----------------------------', info)
+            debugDev(moduleName + ": " + 'INFO -----------------------------', info)
         })
 
         var Request = require('tedious').Request;
 
         function getSqlData() {
-            debugDev('Getting data from SQL');
+            debugDev(moduleName + ": " + 'Getting data from SQL');
             
             // request = new Request("SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE='BASE TABLE';",
             request = new Request(sqlStatement,
@@ -184,7 +189,7 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
             });
 
             request.on('done', function(rowCount, more) {
-                debugDev('DONE -----------------------------', rowCount)
+                debugDev(moduleName + ": " + 'DONE -----------------------------', rowCount)
             });
     
             // Execute SQL
@@ -192,7 +197,7 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
         }
 
         function processResult(){
-            debugDev('Start processResult');
+            debugDev(moduleName + ": " + 'Start processResult');
 
             // Cached to DB if so requested
             if (idMongo != null  &&  buffer.length > 0) {
