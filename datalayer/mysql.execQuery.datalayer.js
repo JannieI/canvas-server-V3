@@ -49,7 +49,7 @@ module.exports = function execQueryMySQL(queryObject) {
             pool.getConnection((err, connection) => {
 
                 if (err) {
-                    debugData('Error in mysql.execQueryMySQL.datalayer.getConnection', err)
+                    debugData(moduleName + ": " + 'Error in mysql.execQueryMySQL.datalayer.getConnection', err)
 
                     // MySQL Error Codes
                     if (err.code === 'PROTOCOL_CONNECTION_LOST') {
@@ -74,7 +74,7 @@ module.exports = function execQueryMySQL(queryObject) {
                 // Make the query 
                 connection.query(sqlStatement, [], (err, returnedData) => {
                     if (err) {
-                        debugData('  mySQL.datalayer Error in getConnection', err)
+                        debugData(moduleName + ": " + '  mySQL.datalayer Error in getConnection', err)
                         return reject(createErrorObject(
                                 "error",
                                 "Error in .query getting data from MySQL" + err.sqlMessage,
@@ -84,7 +84,7 @@ module.exports = function execQueryMySQL(queryObject) {
                     };
 
                     //  Now, results = [data]
-                    debugData('  mySQL.datalayer got data');
+                    debugData(moduleName + ": " + '  mySQL.datalayer got data');
                     results = JSON.parse(JSON.stringify(returnedData));
                     if (results == null) {
                         results = [];
