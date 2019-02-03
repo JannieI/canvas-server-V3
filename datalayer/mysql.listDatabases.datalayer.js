@@ -46,7 +46,7 @@ module.exports = function listDatabases(queryObject) {
             pool.getConnection((err, connection) => {
 
                 if (err) {
-                    debugData('Error in mysql.listDatabases.datalayer.getConnection', err)
+                    debugData(moduleName + ": " + 'Error in mysql.listDatabases.datalayer.getConnection', err)
 
                     // MySQL Error Codes
                     if (err.code === 'PROTOCOL_CONNECTION_LOST') {
@@ -71,7 +71,7 @@ module.exports = function listDatabases(queryObject) {
                 // Make the query
                 connection.query(dataSQLStatement, [sqlParameters], (err, returnedData) => {
                     if (err) {
-                        debugData('  mySQL.datalayer Error in getConnection', err)
+                        debugData(moduleName + ": " + '  mySQL.datalayer Error in getConnection', err)
                         return reject(createErrorObject(
                                 "error",
                                 "Error in .query getting data from MySQL",
