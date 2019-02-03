@@ -14,8 +14,13 @@ const datasourceSchema = '../models/datasources.model';
 // GET route
 router.get('/', (req, res, next) => {
 
-    debugDev('## --------------------------');
-    debugDev('## GET Starting with CurrentDashboard with query:', req.query);
+    const startPos = module.id.lastIndexOf("/");
+    if (startPos > 0  &&  startPos < module.id.length) {
+        moduleName = module.id.substring(startPos + 1);
+    };
+
+    debugDev(moduleName + ": " + '## --------------------------');
+    debugDev(moduleName + ": " + '## GET Starting with CurrentDashboard with query:', req.query);
     
     // Try, in case model file does not exist
     // try {
@@ -140,7 +145,7 @@ router.get('/', (req, res, next) => {
         });
     // }
     // catch (error) {
-    //     debugDev('Error in canvasCurrentDashboard.router', error.message)
+    //     debugDev(moduleName + ": " + 'Error in canvasCurrentDashboard.router', error.message)
     //     return res.status(400).json({
     //         "statusCode": "error",
     //         "message" : "Error retrieving Current Dashboard ID: " + req.query.id,
