@@ -21,6 +21,7 @@ const sortFilterFieldsAggregate = require('../utils/sortFilterFieldsAggregate.ut
 //                 in any case in TS, probably improving it as well.
 //
 
+var moduleName = '';
 
 // Caching Variables
 const dataCachingTableVariable = require('../utils/dataCachingTableMemory.util');  // Var loaded at startup
@@ -121,6 +122,11 @@ function initialLoadOfCachingTable () {
 
 // Runs for ALL requests
 router.use('/:resource', (req, res, next) => {
+
+    const startPos = module.id.lastIndexOf("/");
+    if (startPos > 0  &&  startPos < module.id.length) {
+        moduleName = module.id.substring(startPos + 1);
+    };
 
     // Validate Params
     if (!req.params) {
@@ -462,7 +468,7 @@ router.delete('/:resource', (req, res, next) => {
         // Find and Delete from DB
         canvasModel.findOneAndRemove({id: id})
             .then(doc => {
-                debugDev(resource + ' deleted ID: ' + id)
+                debugDev(moduleName + ": " + resource + ' deleted ID: ' + id)
 
                 if (doc == null) {
                     return res.json(
