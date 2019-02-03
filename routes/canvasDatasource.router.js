@@ -17,9 +17,13 @@ const dataCachingTableVariable = require('../utils/dataCachingTableMemory.util')
 
 // GET route
 router.get('/', (req, res, next) => {
+    const startPos = module.id.lastIndexOf("/");
+    if (startPos > 0  &&  startPos < module.id.length) {
+        moduleName = module.id.substring(startPos + 1);
+    };
 
-    debugDev('## --------------------------', constants.SERVER_MICROSOFT_SQL);
-    debugDev('## GET Starting with CurrentDashboard with query:', req.query);
+    debugDev(moduleName + ": " + '## --------------------------', constants.SERVER_MICROSOFT_SQL);
+    debugDev(moduleName + ": " + '## GET Starting with CurrentDashboard with query:', req.query);
 
     // Try, in case model file does not exist
     try {
@@ -98,7 +102,7 @@ router.get('/', (req, res, next) => {
         });
     }
     catch (error) {
-        debugDev('Error in canvasCurrentDashboard.router', error.message)
+        debugDev(moduleName + ": " + 'Error in canvasCurrentDashboard.router', error.message)
         return res.status(400).json({
             "statusCode": "error",
             "message" : "Error retrieving Current Dashboard ID: " + req.query.id,
@@ -112,9 +116,13 @@ router.get('/', (req, res, next) => {
 
 // PUT route
 router.put('/', (req, res, next) => {
+    const startPos = module.id.lastIndexOf("/");
+    if (startPos > 0  &&  startPos < module.id.length) {
+        moduleName = module.id.substring(startPos + 1);
+    };
 
-    debugDev('## --------------------------');
-    debugDev('## PUT Starting with canvasDatasources with query:', req.query);
+    debugDev(moduleName + ": " + '## --------------------------');
+    debugDev(moduleName + ": " + '## PUT Starting with canvasDatasources with query:', req.query);
 
     // Try, in case model file does not exist
     try {
@@ -130,7 +138,7 @@ router.put('/', (req, res, next) => {
 
         // Validation
         if (datasourceInput == null  ||  datasourceInput == undefined) {
-            debugDev('Error: input datasourceInput variable is empty');
+            debugDev(moduleName + ": " + 'Error: input datasourceInput variable is empty');
             return res.json(
                 createErrorObject(
                     "error",
@@ -140,7 +148,7 @@ router.put('/', (req, res, next) => {
             );
         };
         if (datasetInput == null) {
-            debugDev('Error: input datasetInput variable is empty')
+            debugDev(moduleName + ": " + 'Error: input datasetInput variable is empty')
             return res.json(
                 createErrorObject(
                     "error",
@@ -150,7 +158,7 @@ router.put('/', (req, res, next) => {
             );
         };
         if (clientDataInput == null) {
-            debugDev('Error: input clientDataInput variable is empty')
+            debugDev(moduleName + ": " + 'Error: input clientDataInput variable is empty')
             return res.json(
                 createErrorObject(
                     "error",
@@ -167,7 +175,7 @@ router.put('/', (req, res, next) => {
 
                 // Error if not found
                 if (datasourceAdded == null) {
-                    debugDev('Error updating record for datasource: ' + datasourceInput.id)
+                    debugDev(moduleName + ": " + 'Error updating record for datasource: ' + datasourceInput.id)
                     return res.json(
                         createErrorObject(
                             "error",
@@ -177,7 +185,7 @@ router.put('/', (req, res, next) => {
                     );
                 };
 
-                debugDev('Initialise dataCachingTableArray ...')
+                debugDev(moduleName + ": " + 'Initialise dataCachingTableArray ...')
                 dataCachingTableArray = dataCachingTableVariable.get();
 
                 // Safeguard
@@ -191,7 +199,7 @@ router.put('/', (req, res, next) => {
                     dataCachingTableArray[dataCachingTableIndex].serverExpiryDateTime = new Date();
                 };
 
-                debugDev('Datasource record updated in canvasDatasourceRouter for ID: ' + datasourceInput.id);
+                debugDev(moduleName + ": " + 'Datasource record updated in canvasDatasourceRouter for ID: ' + datasourceInput.id);
  
                 // Add Dataset - for now we use the same id: DS - dSet - Data
                 datasetInput.id = datasourceInput.id;
@@ -203,7 +211,7 @@ router.put('/', (req, res, next) => {
 
                         // Error if not found
                         if (datasetAdded == null) {
-                            debugDev('Error updating record for datasource: ' + datasourceInput.id)
+                            debugDev(moduleName + ": " + 'Error updating record for datasource: ' + datasourceInput.id)
                             return res.json(
                                 createErrorObject(
                                     "error",
@@ -213,13 +221,13 @@ router.put('/', (req, res, next) => {
                             );
                         };
 
-                        debugDev('Dataset record updated in canvasDatasourceRouter');
+                        debugDev(moduleName + ": " + 'Dataset record updated in canvasDatasourceRouter');
 
                         // Add Data - for now we use the same id: DS - dSet - Data
                         clientDataInput.id = datasourceAdded.id;
 
                         if (datasourceAdded.createMethod == 'directFileCSV'){
-                            debugDev('Start createMethod directFileCSV');
+                            debugDev(moduleName + ": " + 'Start createMethod directFileCSV');
                             
                             // let dataAdd = new clientDataModel(clientDataInput);
                             // dataAdd.save()
@@ -231,7 +239,7 @@ router.put('/', (req, res, next) => {
                     
                                     // Error if not found
                                     if (clientDataAdded == null) {
-                                        debugDev('Error updating record for datasource: ' + datasourceInput.id)
+                                        debugDev(moduleName + ": " + 'Error updating record for datasource: ' + datasourceInput.id)
                                         return res.json(
                                             createErrorObject(
                                                 "error",
@@ -241,7 +249,7 @@ router.put('/', (req, res, next) => {
                                         );
                                     };
 
-                                    debugDev('ClientDataset record updated in canvasDatasourceRouter', clientDataInput.id , clientDataAdded.data[0]);
+                                    debugDev(moduleName + ": " + 'ClientDataset record updated in canvasDatasourceRouter', clientDataInput.id , clientDataAdded.data[0]);
 
                                     // Return
                                     return res.json(
@@ -262,7 +270,7 @@ router.put('/', (req, res, next) => {
                                 })
                                 .catch(err => {
 
-                                    debugDev('Error updating record for datasource: ' + datasourceInput.id, err)
+                                    debugDev(moduleName + ": " + 'Error updating record for datasource: ' + datasourceInput.id, err)
                                     return res.json(
                                         createErrorObject(
                                             "error",
@@ -275,7 +283,7 @@ router.put('/', (req, res, next) => {
                         };
 
                         if (datasourceAdded.createMethod == 'directSQLEditor') {
-                            debugDev('Start createMethod directSQLEditor');
+                            debugDev(moduleName + ": " + 'Start createMethod directSQLEditor');
 
                             if (serverType == constants.SERVER_MYSQL) {
                                 debugData('MysQL connector not Activated');
@@ -340,7 +348,7 @@ router.put('/', (req, res, next) => {
                             if (serverType == constants.SERVER_MICROSOFT_SQL) {
 
                                 // Add ClientData
-                                debugDev('Start Microsoft SQL connector');
+                                debugDev(moduleName + ": " + 'Start Microsoft SQL connector');
                                 execQueryMicrosoftSQL({
                                     serverType: datasourceInput.serverType,
                                     serverName: datasourceInput.serverName,
@@ -353,7 +361,7 @@ router.put('/', (req, res, next) => {
                                     datasourceID: datasourceAdded.id
                                 }).then(clientDataAdded => {
 
-                                    debugDev('New ClientDataset record added via Microsoft SQL in canvasDatasourceRouter');
+                                    debugDev(moduleName + ": " + 'New ClientDataset record added via Microsoft SQL in canvasDatasourceRouter');
 
                                     // Return
                                     return res.json(
@@ -379,7 +387,7 @@ router.put('/', (req, res, next) => {
                                 })
                                 .catch(err => {
 
-                                    debugDev('Error Adding new ClientData', err)
+                                    debugDev(moduleName + ": " + 'Error Adding new ClientData', err)
                                     return res.json(
                                         createErrorObject(
                                             "error",
@@ -392,7 +400,7 @@ router.put('/', (req, res, next) => {
                         };
                     })
                     .catch(err => {
-                        debugDev('Error Adding new Datasource', err)
+                        debugDev(moduleName + ": " + 'Error Adding new Datasource', err)
                         return res.json(
                             createErrorObject(
                                 "error",
@@ -404,7 +412,7 @@ router.put('/', (req, res, next) => {
                 
             })
             .catch(err => {
-                debugDev('Error Adding new Datasource', err)
+                debugDev(moduleName + ": " + 'Error Adding new Datasource', err)
                 return res.json(
                     createErrorObject(
                         "error",
@@ -414,7 +422,7 @@ router.put('/', (req, res, next) => {
                 );
             });
     } catch (error) {
-        debugDev('canvasDatasource.POST Error: ', error)
+        debugDev(moduleName + ": " + 'canvasDatasource.POST Error: ', error)
         return res.json(
             createErrorObject(
                 "error",
@@ -427,16 +435,15 @@ router.put('/', (req, res, next) => {
 })
 
 
-
-
-
-
-
 // POST route
 router.post('/', (req, res, next) => {
+    const startPos = module.id.lastIndexOf("/");
+    if (startPos > 0  &&  startPos < module.id.length) {
+        moduleName = module.id.substring(startPos + 1);
+    };
 
-    debugDev('## --------------------------');
-    debugDev('## POST Starting with canvasDatasources with query:', req.query);
+    debugDev(moduleName + ": " + '## --------------------------');
+    debugDev(moduleName + ": " + '## POST Starting with canvasDatasources with query:', req.query);
 
     // Try, in case model file does not exist
     try {
@@ -452,7 +459,7 @@ router.post('/', (req, res, next) => {
 
         // Validation
         if (datasourceInput == null  ||  datasourceInput == undefined) {
-            debugDev('Error: input datasourceInput variable is empty');
+            debugDev(moduleName + ": " + 'Error: input datasourceInput variable is empty');
             return res.json(
                 createErrorObject(
                     "error",
@@ -462,7 +469,7 @@ router.post('/', (req, res, next) => {
             );
         };
         if (datasetInput == null) {
-            debugDev('Error: input datasetInput variable is empty')
+            debugDev(moduleName + ": " + 'Error: input datasetInput variable is empty')
             return res.json(
                 createErrorObject(
                     "error",
@@ -472,7 +479,7 @@ router.post('/', (req, res, next) => {
             );
         };
         if (clientDataInput == null) {
-            debugDev('Error: input clientDataInput variable is empty')
+            debugDev(moduleName + ": " + 'Error: input clientDataInput variable is empty')
             return res.json(
                 createErrorObject(
                     "error",
@@ -489,7 +496,7 @@ router.post('/', (req, res, next) => {
         datasourceAdd.save()
             .then(datasourceAdded => {
 
-                debugDev('Initialise dataCachingTableArray ...')
+                debugDev(moduleName + ": " + 'Initialise dataCachingTableArray ...')
                 dataCachingTableArray = dataCachingTableVariable.get();
 
                 // Safeguard
@@ -503,7 +510,7 @@ router.post('/', (req, res, next) => {
                     dataCachingTableArray[dataCachingTableIndex].serverExpiryDateTime = new Date();
                 };
 
-                debugDev('New Datasource record added in canvasDatasourceRouter for ID: ' + datasourceAdded.id);
+                debugDev(moduleName + ": " + 'New Datasource record added in canvasDatasourceRouter for ID: ' + datasourceAdded.id);
  
                 // Add Dataset - for now we use the same id: DS - dSet - Data
                 datasetInput.id = datasourceAdded.id;
@@ -512,19 +519,19 @@ router.post('/', (req, res, next) => {
                 datasetAdd.save()
                     .then(datasetAdded => {
 
-                        debugDev('New Dataset record added in canvasDatasourceRouter');
+                        debugDev(moduleName + ": " + 'New Dataset record added in canvasDatasourceRouter');
 
                         // Add Data - for now we use the same id: DS - dSet - Data
                         clientDataInput.id = datasourceAdded.id;
 
                         if (datasourceAdded.createMethod == 'directFileCSV'){
-                            debugDev('Start createMethod directFileCSV');
+                            debugDev(moduleName + ": " + 'Start createMethod directFileCSV');
                             
                             let dataAdd = new clientDataModel(clientDataInput);
                             dataAdd.save()
                                 .then(clientDataAdded => {
 
-                                    debugDev('New ClientDataset record added in canvasDatasourceRouter');
+                                    debugDev(moduleName + ": " + 'New ClientDataset record added in canvasDatasourceRouter');
 
                                     // Return
                                     return res.json(
@@ -549,7 +556,7 @@ router.post('/', (req, res, next) => {
                                 })
                                 .catch(err => {
 
-                                    debugDev('Error Adding new ClientData', err)
+                                    debugDev(moduleName + ": " + 'Error Adding new ClientData', err)
                                     return res.json(
                                         createErrorObject(
                                             "error",
@@ -564,7 +571,7 @@ router.post('/', (req, res, next) => {
 
 
                         if (datasourceAdded.createMethod == 'directSQLEditor') {
-                            debugDev('Start createMethod directSQLEditor');
+                            debugDev(moduleName + ": " + 'Start createMethod directSQLEditor');
 
                             if (serverType == constants.SERVER_MYSQL) {
                                 debugData('MysQL connector not Activated');
@@ -629,7 +636,7 @@ router.post('/', (req, res, next) => {
                             if (serverType == constants.SERVER_MICROSOFT_SQL) {
 
                                 // Add ClientData
-                                debugDev('Start Microsoft SQL connector');
+                                debugDev(moduleName + ": " + 'Start Microsoft SQL connector');
                                 execQueryMicrosoftSQL({
                                     serverType: datasourceInput.serverType,
                                     serverName: datasourceInput.serverName,
@@ -642,7 +649,7 @@ router.post('/', (req, res, next) => {
                                     datasourceID: datasourceAdded.id
                                 }).then(clientDataAdded => {
 
-                                    debugDev('New ClientDataset record added via Microsoft SQL in canvasDatasourceRouter');
+                                    debugDev(moduleName + ": " + 'New ClientDataset record added via Microsoft SQL in canvasDatasourceRouter');
 
                                     // Return
                                     return res.json(
@@ -668,7 +675,7 @@ router.post('/', (req, res, next) => {
                                 })
                                 .catch(err => {
 
-                                    debugDev('Error Adding new ClientData', err)
+                                    debugDev(moduleName + ": " + 'Error Adding new ClientData', err)
                                     return res.json(
                                         createErrorObject(
                                             "error",
@@ -681,7 +688,7 @@ router.post('/', (req, res, next) => {
                         };
                     })
                     .catch(err => {
-                        debugDev('Error Adding new Datasource', err)
+                        debugDev(moduleName + ": " + 'Error Adding new Datasource', err)
                         return res.json(
                             createErrorObject(
                                 "error",
@@ -693,7 +700,7 @@ router.post('/', (req, res, next) => {
                 
             })
             .catch(err => {
-                debugDev('Error Adding new Datasource', err)
+                debugDev(moduleName + ": " + 'Error Adding new Datasource', err)
                 return res.json(
                     createErrorObject(
                         "error",
@@ -703,7 +710,7 @@ router.post('/', (req, res, next) => {
                 );
             });
     } catch (error) {
-        debugDev('canvasDatasource.POST Error: ', error)
+        debugDev(moduleName + ": " + 'canvasDatasource.POST Error: ', error)
         return res.json(
             createErrorObject(
                 "error",
