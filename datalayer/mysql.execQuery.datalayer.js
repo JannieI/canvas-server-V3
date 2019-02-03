@@ -13,6 +13,12 @@ module.exports = function execQueryMySQL(queryObject) {
     return new Promise((resolve, reject) => {
  
         try {
+
+            const startPos = module.id.lastIndexOf("/");
+            if (startPos > 0  &&  startPos < module.id.length) {
+                moduleName = module.id.substring(startPos + 1);
+            };
+
             // Set & extract the vars from the Input Params
             let serverName = queryObject.serverName;
             let databaseName = queryObject.databaseName;
@@ -23,7 +29,7 @@ module.exports = function execQueryMySQL(queryObject) {
 
             // TODO - figure out how to treat SQL Parameters, ie @LogicalBusinessDay
             let sqlParameters = '';
-            debugDev('Properties received:', serverName, databaseName, sqlStatement,
+            debugDev(moduleName + ": " + 'Properties received:', serverName, databaseName, sqlStatement,
                 port, username, password);
 
             // Create pool Object
