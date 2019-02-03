@@ -16,6 +16,12 @@ module.exports = function getClientData(datasource, queryObject) {
     // Inputs: DATASOURCE, REQ.QUERY OBJECT
     return new Promise((resolve, reject) => {
         try {
+
+            const startPos = module.id.lastIndexOf("/");
+            if (startPos > 0  &&  startPos < module.id.length) {
+                moduleName = module.id.substring(startPos + 1);
+            };
+
             // Set & extract the vars from the Input Params
             // TODO - consider this as a require('') as it will be re-used
             let datasourceID = queryObject.datasourceID;
@@ -31,7 +37,7 @@ module.exports = function getClientData(datasource, queryObject) {
 
             // TODO - figure out how to treat SQL Parameters, ie @LogicalBusinessDay
             let sqlParameters = '';
-            debugDev('Properties read from DS id:', datasource.id, user, password, database, port, host, dataTableName, dataSQLStatement, cacheResultsOnServer)
+            debugDev(moduleName + ": " + 'Properties read from DS id:', datasource.id, user, password, database, port, host, dataTableName, dataSQLStatement, cacheResultsOnServer)
 
             // Load defaults, set in startup.sh (via custom-environment-variables.js)
             const defaultHost = config.get('mysqlLocal.startup.host');
