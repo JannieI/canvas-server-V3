@@ -12,6 +12,12 @@ module.exports = function listFields(queryObject) {
     return new Promise((resolve, reject) => {
         
         try {
+
+            const startPos = module.id.lastIndexOf("/");
+            if (startPos > 0  &&  startPos < module.id.length) {
+                moduleName = module.id.substring(startPos + 1);
+            };
+
             // Set & extract the vars from the Input Params
             let serverName = queryObject.serverName;
             let databaseName = queryObject.databaseName;
@@ -22,7 +28,7 @@ module.exports = function listFields(queryObject) {
             let dataSQLStatement = "DESCRIBE " + tableName + ";";
   
             let sqlParameters = '';
-            debugDev('Properties received:', serverName, databaseName, tableName, 
+            debugDev(moduleName + ": " + 'Properties received:', serverName, databaseName, tableName, 
                 port, username, password, dataSQLStatement);
 
             // Create pool Object
