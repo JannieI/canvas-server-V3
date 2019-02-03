@@ -48,7 +48,7 @@ module.exports = function listFields(queryObject) {
             pool.getConnection((err, connection) => {
 
                 if (err) {
-                    debugData('Error in mysql.listFields.datalayer.getConnection', err)
+                    debugData(moduleName + ": " + 'Error in mysql.listFields.datalayer.getConnection', err)
 
                     // MySQL Error Codes
                     if (err.code === 'PROTOCOL_CONNECTION_LOST') {
@@ -73,7 +73,7 @@ module.exports = function listFields(queryObject) {
                 // Make the query
                 connection.query(dataSQLStatement, [sqlParameters], (err, returnedData) => {
                     if (err) {
-                        debugData('  mySQL.datalayer Error in getConnection', err)
+                        debugData(moduleName + ": " + '  mySQL.datalayer Error in getConnection', err)
                         return reject(createErrorObject(
                                 "error",
                                 "Error in .query getting data from MySQL",
