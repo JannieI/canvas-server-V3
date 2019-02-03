@@ -16,13 +16,18 @@ const createReturnObject = require('../utils/createReturnObject.util');
 // Verify User as valid (exists in Canvas DB)
 router.post('/verify', (req, res, next) => {
 
+    const startPos = module.id.lastIndexOf("/");
+    if (startPos > 0  &&  startPos < module.id.length) {
+        moduleName = module.id.substring(startPos + 1);
+    };
+
     // Find the user: add if not found, else raise message
     UserModel.find( { companyName: req.body.companyName, userID: req.body.userID },
         (err, user) => {
 
         // Mongo Error
         if (err) {
-            debugDev('    Error DB in Find ', err, 'body', req.body);
+            debugDev(moduleName + ": " + '    Error DB in Find ', err, 'body', req.body);
             return res.json(
                 createErrorObject(
                     "error",
@@ -46,6 +51,11 @@ router.post('/verify', (req, res, next) => {
 // curl -v -X POST http://localhost:8000/signup -H "application/json" -d 'password=jannie' -d 'email=jannie@gmail.com'
 router.post('/signup', (req, res, next) => {
 
+    const startPos = module.id.lastIndexOf("/");
+    if (startPos > 0  &&  startPos < module.id.length) {
+        moduleName = module.id.substring(startPos + 1);
+    };
+
     // Note: we are not using passport.authenticate('signup'... to validate and add the user 
     //       (see /login route)
 
@@ -55,7 +65,7 @@ router.post('/signup', (req, res, next) => {
 
         // Mongo Error
         if (err) {
-            debugDev('    Error in Find ', err);
+            debugDev(moduleName + ": " + '    Error in Find ', err);
             return res.json(
                 createErrorObject(
                     "error",
@@ -83,7 +93,7 @@ router.post('/signup', (req, res, next) => {
                 .then(user => {
 
                     //Success
-                    debugDev('    Success for ', user);
+                    debugDev(moduleName + ": " + '    Success for ', user);
                     return res.json(
                         createReturnObject(
                             "success",
@@ -101,7 +111,7 @@ router.post('/signup', (req, res, next) => {
                 })
                 .catch(err => {
                     // Save Failed
-                    debugDev('    Save user failed: ', err);
+                    debugDev(moduleName + ": " + '    Save user failed: ', err);
                     return res.json(
                         createErrorObject(
                             "failed",
@@ -113,7 +123,7 @@ router.post('/signup', (req, res, next) => {
         } else {
             
             // User already exists
-            debugDev('    User Already exists ', user);
+            debugDev(moduleName + ": " + '    User Already exists ', user);
             return res.json(
                 createErrorObject(
                     "failed",
@@ -130,6 +140,11 @@ router.post('/signup', (req, res, next) => {
 // curl -v -X POST http://localhost:8000/login -H "application/json" -d 'password=jannie' -d 'email=jannie@gmail.com'
 router.post('/login', (req, res, next) => {
 
+    const startPos = module.id.lastIndexOf("/");
+    if (startPos > 0  &&  startPos < module.id.length) {
+        moduleName = module.id.substring(startPos + 1);
+    };
+
     // Do the login via Passport
     passport.authenticate('login', (err, user, info) => {
     
@@ -137,7 +152,7 @@ router.post('/login', (req, res, next) => {
             {
 
                 if(err || !user){
-                    debugDev('authLocalRouter Error after passport.authenticate')
+                    debugDev(moduleName + ": " + 'authLocalRouter Error after passport.authenticate')
 
                     // return next(error);
                     return res.json(
@@ -195,6 +210,11 @@ router.post('/login', (req, res, next) => {
 
 router.get('/profile', (req, res, next) => {
     //We'll just send back the user details and the token
+
+    const startPos = module.id.lastIndexOf("/");
+    if (startPos > 0  &&  startPos < module.id.length) {
+        moduleName = module.id.substring(startPos + 1);
+    };
 
     res.json(
         createReturnObject(
