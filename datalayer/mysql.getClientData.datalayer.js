@@ -83,7 +83,7 @@ module.exports = function getClientData(datasource, queryObject) {
             pool.getConnection((err, connection) => {
 
                 if (err) {
-                    debugData('Error in mysql.getClientData.datalayer.getConnection', err)
+                    debugData(moduleName + ": " + 'Error in mysql.getClientData.datalayer.getConnection', err)
 
                     // MySQL Error Codes
                     if (err.code === 'PROTOCOL_CONNECTION_LOST') {
@@ -107,7 +107,7 @@ module.exports = function getClientData(datasource, queryObject) {
                 // Make the query
                 connection.query(dataSQLStatement, [sqlParameters], (err, returnedData) => {
                     if (err) {
-                        debugData('  mySQL.datalayer Error in .query', err)
+                        debugData(moduleName + ": " + '  mySQL.datalayer Error in .query', err)
                         reject({
                             "statusCode": "error",
                             "message" : "Error in .query getting data from MySQL",
@@ -134,7 +134,7 @@ module.exports = function getClientData(datasource, queryObject) {
                         // Get the model
                         const clientSchema = '../models/clientData.model';
                         const clientModel = require(clientSchema);
-                        debugData('Using Schema clientData');
+                        debugData(moduleName + ": " + 'Using Schema clientData');
 
                         // Find and Update DB
                         clientModel.findOneAndUpdate(
@@ -166,7 +166,7 @@ module.exports = function getClientData(datasource, queryObject) {
                                     // Get the model
                                     const clientSchema = '../models/datasources.model';
                                     const clientModel = require(clientSchema);
-                                    debugData('Using Schema datasource');
+                                    debugData(moduleName + ": " + 'Using Schema datasource');
 
                                     // Find and Update DB
                                     clientModel.findOneAndUpdate(
@@ -180,12 +180,12 @@ module.exports = function getClientData(datasource, queryObject) {
 
                                         // console.log('xx check old copy', datasource.serverExpiryDateTime, datasourceDeepCopy.serverExpiryDateTime)
 
-                                            debugData('ClientData in cached refreshed for id: ' + datasourceID);
+                                            debugData(moduleName + ": " + 'ClientData in cached refreshed for id: ' + datasourceID);
                                         });
                                     };
                             })
                             .catch(err => {
-                                debugData('Error caching data from MySQL on Server', err)
+                                debugData(moduleName + ": " + 'Error caching data from MySQL on Server', err)
                                 reject({
                                     "statusCode": "error",
                                     "message" : "Error caching data from MySQL on Server",
@@ -202,7 +202,7 @@ module.exports = function getClientData(datasource, queryObject) {
 
                     // Return if an Error
                     if (afterSort.error) {
-                        debugData('Error in the sortFilterFieldsAggregate routine', afterSort.error)
+                        debugData(moduleName + ": " + 'Error in the sortFilterFieldsAggregate routine', afterSort.error)
                         // reject({
                         //     "statusCode": "error",
                         //     "message" : "Error in the sortFilterFieldsAggregate routine",
