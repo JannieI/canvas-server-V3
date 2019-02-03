@@ -48,7 +48,7 @@ function validateUser(req, res, next) {
     // Store the answer in the res object
     res.locals.validatedUser = true;
     if (req.method == 'POST') {
-        debugDev('In validateUser ');
+        debugDev('App.js In validateUser ');
     };
     next();
 };

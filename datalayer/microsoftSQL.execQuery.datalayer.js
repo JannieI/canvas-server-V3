@@ -24,7 +24,7 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
             moduleName = module.id.substring(startPos + 1);
         };
 
-        debugData('Start execQueryMicrosoftSQL');
+        debugData(moduleName + ": " + 'Start execQueryMicrosoftSQL');
         // Set & extract the vars from the Input Params
         let serverName = queryObject.serverName;
         let databaseName = queryObject.databaseName;
@@ -133,7 +133,7 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
             request = new Request(sqlStatement,
                 function(err, rowCount, rows) {
                 if (err) {
-                    debugData('  microsoftSQL.datalayer Error in getSqlData', err)
+                    debugData(moduleName + ": " + '  microsoftSQL.datalayer Error in getSqlData', err)
                     return reject(createErrorObject(
                         "error",
                         "Error in getSqlData getting data from MicrosoftSQL" + err.sqlMessage,
