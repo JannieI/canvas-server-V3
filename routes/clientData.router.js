@@ -21,6 +21,11 @@ var constants = require('../utils/constants');
 // GET route to list ALL Databases in a Database Server
 router.get('/listDatabases', (req, res, next) => {
 
+    const startPos = module.id.lastIndexOf("/");
+    if (startPos > 0  &&  startPos < module.id.length) {
+        moduleName = module.id.substring(startPos + 1);
+    };
+
     // Extra and validate variables
     let serverType = req.query.serverType;
     if (serverType == null  || serverType == '') {
@@ -28,7 +33,7 @@ router.get('/listDatabases', (req, res, next) => {
     };
 
     // Get the list
-    debugDev('Start clientData.router for listDatabases');
+    debugDev(moduleName + ": " + 'Start clientData.router for listDatabases');
 
     if (serverType == constants.SERVER_MYSQL) {
         listDatabases(req.query)
@@ -37,7 +42,7 @@ router.get('/listDatabases', (req, res, next) => {
                 return res.json(resultsObject);
              } )
             .catch(errorObject  => {
-                debugDev("Error in clientData.router.listDatabases");
+                debugDev(moduleName + ": " + "Error in clientData.router.listDatabases");
                 return res.json(errorObject);
             });
     };
@@ -106,6 +111,11 @@ router.get('/listDatabases', (req, res, next) => {
 // GET route to list ALL Tables in a database
 router.get('/listTables', (req, res, next) => {
 
+    const startPos = module.id.lastIndexOf("/");
+    if (startPos > 0  &&  startPos < module.id.length) {
+        moduleName = module.id.substring(startPos + 1);
+    };
+
     // Extra and validate variables
     let serverType = req.query.serverType;
     if (serverType == null  || serverType == '') {
@@ -113,7 +123,7 @@ router.get('/listTables', (req, res, next) => {
     };
 
     // Get the list
-    debugDev('Start clientData.router for listTables for ' + serverType);
+    debugDev(moduleName + ": " + 'Start clientData.router for listTables for ' + serverType);
 
     if (serverType == constants.SERVER_MYSQL) {
         listTables(req.query)
@@ -122,7 +132,7 @@ router.get('/listTables', (req, res, next) => {
                 return res.json(resultsObject);
              } )
             .catch(errorObject  => {
-                debugDev("Error in clientData.router.listTables");
+                debugDev(moduleName + ": " + "Error in clientData.router.listTables");
                 return res.json(errorObject);
             });
     };
@@ -191,6 +201,11 @@ router.get('/listTables', (req, res, next) => {
 // GET route to list ALL Tables in a database
 router.get('/listFields', (req, res, next) => {
 
+    const startPos = module.id.lastIndexOf("/");
+    if (startPos > 0  &&  startPos < module.id.length) {
+        moduleName = module.id.substring(startPos + 1);
+    };
+
     // Extra and validate variables
     let serverType = req.query.serverType;
     if (serverType == null  || serverType == '') {
@@ -198,7 +213,7 @@ router.get('/listFields', (req, res, next) => {
     };
 
     // Get the list
-    debugDev('Start clientData.router for listFields');
+    debugDev(moduleName + ": " + 'Start clientData.router for listFields');
 
     if (serverType == constants.SERVER_MYSQL) {
         listFields(req.query)
@@ -207,7 +222,7 @@ router.get('/listFields', (req, res, next) => {
                 return res.json(resultsObject);
              } )
             .catch(errorObject  => {
-                debugDev("Error in clientData.router.listFields");
+                debugDev(moduleName + ": " + "Error in clientData.router.listFields");
                 return res.json(errorObject);
             });
     };
@@ -276,6 +291,11 @@ router.get('/listFields', (req, res, next) => {
 // GET route to execute a SQL Statement in a database
 router.get('/execQuery', (req, res, next) => {
 
+    const startPos = module.id.lastIndexOf("/");
+    if (startPos > 0  &&  startPos < module.id.length) {
+        moduleName = module.id.substring(startPos + 1);
+    };
+
     // Extra and validate variables
     let serverType = req.query.serverType;
     if (serverType == null  || serverType == '') {
@@ -283,7 +303,7 @@ router.get('/execQuery', (req, res, next) => {
     };
 
     // Get the list
-    debugDev('Start clientData.router for execQuery');
+    debugDev(moduleName + ": " + 'Start clientData.router for execQuery');
 
     if (serverType == constants.SERVER_MYSQL) {
         execQueryMySQL(req.query)
@@ -292,7 +312,7 @@ router.get('/execQuery', (req, res, next) => {
                 return res.json(resultsObject);
              } )
             .catch(errorObject  => {
-                debugDev("Error in clientData.router.execQuery", errorObject);
+                debugDev(moduleName + ": " + "Error in clientData.router.execQuery", errorObject);
                 return res.json(errorObject);
             });
     };
@@ -304,7 +324,7 @@ router.get('/execQuery', (req, res, next) => {
                 return res.json(resultsObject);
              } )
             .catch(errorObject  => {
-                debugDev("Error in clientData.router.execQuery", errorObject);
+                debugDev(moduleName + ": " + "Error in clientData.router.execQuery", errorObject);
                 return res.json(errorObject);
             });
     };
@@ -363,11 +383,16 @@ router.get('/execQuery', (req, res, next) => {
 // GET route for all data
 router.get('/', (req, res, next) => {
 
+    const startPos = module.id.lastIndexOf("/");
+    if (startPos > 0  &&  startPos < module.id.length) {
+        moduleName = module.id.substring(startPos + 1);
+    };
+
     // 1. Get the datasourceID from req.query
     const datasourceID = req.query.datasourceID;
 
     // Validate id of clientData provided
-    debugDev('Start clientData.router for datasourceID:', datasourceID);
+    debugDev(moduleName + ": " + 'Start clientData.router for datasourceID:', datasourceID);
 
 	if (datasourceID == null) {
         return res.status(400).json(
@@ -598,7 +623,7 @@ router.get('/', (req, res, next) => {
                         return res.json(resultsObject);
                      } )
                     .catch(errorObject  => {
-                        debugDev("Error in clientData.router");
+                        debugDev(moduleName + ": " + "Error in clientData.router");
                         return res.json(errorObject);
                     });
             };
@@ -615,7 +640,7 @@ router.get('/', (req, res, next) => {
 //     const body = req.body;
 //     const query = req.query;
 //     const id = req.query.id;
-//     debugDev('clientDataRouter: POST for id:', id, 'body:', body)
+//     debugDev(moduleName + ": " + 'clientDataRouter: POST for id:', id, 'body:', body)
 
 //     // Try, in case model file does not exist
 //     try {
@@ -667,7 +692,7 @@ router.get('/', (req, res, next) => {
 //     const query = req.query;
 //     const id = req.query.id;
 
-//     debugDev('clientDataRouter: DELETE for id:', id, 'body:', body, 'query:', query)
+//     debugDev(moduleName + ": " + 'clientDataRouter: DELETE for id:', id, 'body:', body, 'query:', query)
 
 //     if (id == null) {
 //         return res.json({
@@ -739,7 +764,7 @@ router.get('/', (req, res, next) => {
 //     const query = req.query;
 //     const id = req.query.id;
 
-//     debugDev('clientDataRouter: PUT for id:', id, 'body:', body, 'query:', query)
+//     debugDev(moduleName + ": " + 'clientDataRouter: PUT for id:', id, 'body:', body, 'query:', query)
 
 //     // Try, in case model file does not exist
 //     try {
