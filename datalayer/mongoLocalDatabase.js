@@ -46,11 +46,17 @@ class MongoDatabase {
         this._connect()
     }
 _connect() {
+
+    const startPos = module.id.lastIndexOf("/");
+    if (startPos > 0  &&  startPos < module.id.length) {
+        moduleName = module.id.substring(startPos + 1);
+    };
+
     mongoose.connect(`mongodb://${server}/${database}`, { useNewUrlParser: true, useCreateIndex: true })
         .then(() => {
             mongoose.set('useFindAndModify', false);
             mongoose.set('useCreateIndex', true);
-            debugDev('Database connection successful');
+            debugDev(moduleName + ": " + 'Database connection successful');
         })
         .catch(err => {
             console.error('Database connection error');
