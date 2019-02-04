@@ -486,6 +486,15 @@ router.delete('/:resource', (req, res, next) => {
         const canvasSchema = '../models/' + resource + '.model';
         const canvasModel = require(canvasSchema);
 
+        // Reset the expiryDateTime, so that the next read is from the DB (and not cache)
+        let dataCachingTableIndex = dataCachingTableArray.findIndex(dc => dc.key == resource)
+        if (dataCachingTableIndex >= 0) {
+            dataCachingTableArray[dataCachingTableIndex].serverExpiryDateTime = new Date();
+            debugDev(moduleName + ": " + 'Resource ' + resource + ' serverExpiryDateTime updated in Caching Table');
+        } else {
+            debugDev(moduleName + ": " + 'Resource ' + resource + ' record NOT IN CACHING TABLE');
+        };
+
         // Find and Delete from DB
         canvasModel.findOneAndRemove({id: id})
             .then(doc => {
