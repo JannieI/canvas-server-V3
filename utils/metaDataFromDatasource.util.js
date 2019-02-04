@@ -79,7 +79,7 @@ module.exports = function metaDataFromDatasource(datasource, queryObject) {
     //     // Get the model
     //     const clientSchema = '../model.model/clientData.model';
     //     const clientModel = require(clientSchema);
-    //     debugData('Using Schema clientData');
+    //     debugData(moduleName + ": " + 'Using Schema clientData');
 
     //     // Find the data (using the standard query JSON object)
     //     clientModel.find( reqQuery, (err, docs) => {
