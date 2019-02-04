@@ -448,7 +448,7 @@ router.delete('/:resource', (req, res, next) => {
 
     const query = req.query;
     const id = req.query.id;
-    debugDev(moduleName + ": " + 'const ', query, id);
+    debugDev(moduleName + ": " + '.delete for ID: ', id);
 
     if (id == null) {
         return res.json(
