@@ -217,18 +217,19 @@ router.get('/:resource', (req, res, next) => {
 
                 // If cache is fresh, and DATA already loaded in cache
                 if (isFresh  &&  serverMemoryCache.get(serverVariableName) != null) {
-                    debugDev(moduleName + ": " + 
-                        '  Returned',
-                        serverMemoryCache.get(serverVariableName).length,
-                        'records from cache!'
-                    );
 
                     // TODO - decide whether to fill the fields in the metaData
                     const fields = [];
 
-                    // Extract the Widget specific data (sort, filter, fields, aggregate)
                     let data = serverMemoryCache.get(serverVariableName);
-                    data =  sortFilterFieldsAggregate(data, req.query).results;
+                    debugDev(moduleName + ": " + 
+                        '  Returned',
+                        data.length,
+                        'records from cache!'
+                    );
+
+                    // Extract the Widget specific data (sort, filter, fields, aggregate)
+                    data =  sortFilterFieldsAggregate(data, req.query);
  
                     // Return if an Error
                     if (data.error) {
@@ -245,7 +246,7 @@ router.get('/:resource', (req, res, next) => {
                         createReturnObject(
                             "success",
                             "Retrieved data for resource: " + resource,
-                            data,
+                            data.results,
                             null,
                             null,
                             null,

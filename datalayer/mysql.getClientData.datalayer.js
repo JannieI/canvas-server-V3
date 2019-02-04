@@ -37,7 +37,17 @@ module.exports = function getClientData(datasource, queryObject) {
 
             // TODO - figure out how to treat SQL Parameters, ie @LogicalBusinessDay
             let sqlParameters = '';
-            debugDev(moduleName + ": " + 'Properties read from DS id:', datasource.id, user, password, database, port, host, dataTableName, dataSQLStatement, cacheResultsOnServer)
+            debugDev(moduleName + ": " + 'Properties read from DS id:', 
+                datasource.id, 
+                user, 
+                password, 
+                database, 
+                port, 
+                host, 
+                dataTableName, 
+                dataSQLStatement, 
+                cacheResultsOnServer
+            );
 
             // Load defaults, set in startup.sh (via custom-environment-variables.js)
             const defaultHost = config.get('mysqlLocal.startup.host');
@@ -71,7 +81,7 @@ module.exports = function getClientData(datasource, queryObject) {
             const pool = mysql.createPool({
                 host             : host,
                 user             : user,
-                password         : 'password',
+                password         : password,
                 database         : database,
                 port             : port,
                 connectionLimit  : 10,

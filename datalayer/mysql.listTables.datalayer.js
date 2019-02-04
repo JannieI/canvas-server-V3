@@ -26,7 +26,13 @@ module.exports = function listTables(queryObject) {
             let dataSQLStatement = "SHOW TABLES";
 
             let sqlParameters = '';
-            debugDev(moduleName + ": " + 'Properties received:', serverName, databaseName, port, username, password);
+            debugDev(moduleName + ": " + 'Properties received:', 
+                serverName, 
+                databaseName, 
+                port, 
+                username, 
+                password
+            );
 
             // Create pool Object
             const pool = mysql.createPool({

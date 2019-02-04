@@ -28,8 +28,15 @@ module.exports = function listFields(queryObject) {
             let dataSQLStatement = "DESCRIBE " + tableName + ";";
   
             let sqlParameters = '';
-            debugDev(moduleName + ": " + 'Properties received:', serverName, databaseName, tableName, 
-                port, username, password, dataSQLStatement);
+            debugDev(moduleName + ": " + 'Properties received:', 
+                serverName, 
+                databaseName, 
+                tableName, 
+                port, 
+                username, 
+                password, 
+                dataSQLStatement
+            );
 
             // Create pool Object
             const pool = mysql.createPool({

@@ -27,7 +27,13 @@ module.exports = function listDatabases(queryObject) {
             let dataSQLStatement = "SHOW DATABASES";
 
             let sqlParameters = '';
-            debugDev(moduleName + ": " + 'Properties received:', serverName, databaseName, port, username, password);
+            debugDev(moduleName + ": " + 'Properties received:', 
+                serverName, 
+                databaseName, 
+                port, 
+                username, 
+                password
+            );
 
             // Create pool Object
             const pool = mysql.createPool({

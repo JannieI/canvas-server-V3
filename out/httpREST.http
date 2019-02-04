@@ -395,3 +395,7 @@ https://dev.virtualearth.net/REST/v1/Routes/DistanceMatrixAsync
 &key=An32WT6o1FBmePyg2qOelW0-eby7-hW9H1YmxfAw9yVrEvPloQ9Wte1l0n3h1DED
 
 ###
+http://localhost:8000/clientData/?datasourceID=170
+###
+GET {{host}}/clientData/
+?datasourceID=68
