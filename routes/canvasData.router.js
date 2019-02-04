@@ -272,13 +272,7 @@ router.get('/:resource', (req, res, next) => {
 
         // Find ALL the data (using the standard query JSON object)
         // We want to cache all, and return filtered if query was supplied
-        let mongoQuery = {};
-        if (id != null) {
-            mongoQuery = {
-                id: id
-            };
-        };
-        canvasModel.find( mongoQuery, (err, docs) => {
+        canvasModel.find( {}, (err, docs) => {
 
             // KEEP for later !
             // Extract metodata from the Schema, using one document
