@@ -1,8 +1,6 @@
 // File Variables
 @host = http://localhost:8000
 ###
-
-
 // Signup
 POST {{host}}/auth/local/signup
 content-type: application/json 
@@ -38,35 +36,11 @@ content-type: application/json
 ###
 
 
-// Users - Works (just for testing)
-GET {{host}}/users/mongo:canvasGroups
 ###
-
-
-// ....
-POST {{host}}/
-
-###
-
-
 // Local Profile
 GET {{host}}/auth/local/profile?secret_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwiX2lkIjoiNWMxNWY4ODVmYmE4ZDQ3ZjY3YzI5NTEzIiwidXNlcklEIjoiSmFubmllSSIsImlhdCI6MTU0NTEyMDk2OSwiZXhwIjoxNTQ1MjA3MzY5fQ.1QRX0PNJjWT_QYd7IrEe7FbpbpYODUqD4-s7KnvR7Qc
 
 ###
-
-
-// GET Canvas Data (:canvasdata works)
-GET {{host}}/canvasdata/:widgets?id=3
-    
-
-###
-GET {{host}}/canvasdata/datasources
-?id=170
-    
-
-###
-
-
 // POST Canvas Data (:canvasdata works)
 POST {{host}}/canvasdata/:canvasUsers
 content-type: application/json
@@ -82,13 +56,13 @@ content-type: application/json
   "createdBy": "JannieI",
   "createdOn": "2019-01-06T19:05:41.363Z"
 }
-###
 
+
+###
 // DELETE Canvas Data (:canvasdata works)
 DELETE {{host}}/canvasdata/:canvasGroups?id=14
 
 ###
-
 // PUT Canvas Data ()
 PUT {{host}}/canvasdata/:canvasGroups?id=4
 content-type: application/json
@@ -97,53 +71,9 @@ content-type: application/json
     "name": "AnOther Engineering"
 }
 
-###
-
-
-// GET Canvas Data: TEST any ROUTE
-GET {{host}}/canvasdata/canvasComments
-                         
-    
-###
-
-
-// Testing canvasData 
-POST {{host}}/canvasdata/canvasComments
-content-type: application/json
-
-{
-    "id" : null,
-    "dashboardID" : "68",
-    "widgetID" : null,
-    "comment" : "Via REST b",
-    "creator" : "JannieI",
-    "createdOn" : null
-    }
 
 ###
-
-
-// GET Canvas Data: TEST any ROUTE
-DELETE {{host}}/canvasdata/canvasComments
-?id=15&dashboardID=68
-    
-###
-
-
-// Testing canvasData 
-PUT {{host}}/canvasdata/:canvasComments?id=21
-content-type: application/json
-
-{
-    "dashboardID": 68,
-    "widgetID": null,
-    "comment": "REST xxx",
-    "creator": "JannieI",
-    "createdOn": null,
-    "id": 21
-}
-
-###
+// Client Data Example
 // NOTE spaces in fields !!!
 GET {{host}}/clientData/
 ?datasourceID=68
@@ -152,10 +82,14 @@ GET {{host}}/clientData/
 &filterObject={"Year":2019}
 &aggregationObject=aggregationObject
 
-###
-GET {{host}}/canvasdata/datasources
 
 ###
+GET {{host}}/canvasdata/datasources
+?filterObject={"id": 170}
+
+
+###
+// Databases
 GET {{host}}/clientData/listDatabases
 ?serverType=MySQL
 &serverName=localhost
@@ -164,7 +98,9 @@ GET {{host}}/clientData/listDatabases
 &username=janniei
 &password=janniei
 
+
 ###
+// Tables
 GET {{host}}/clientData/listTables
 ?serverType=MySQL
 &serverName=localhost
@@ -173,26 +109,9 @@ GET {{host}}/clientData/listTables
 &username=janniei
 &password=janniei
 
-###
-GET {{host}}/clientData/listTables
-?serverType=MySQL
-&serverName=localhost
-&databaseName=Canvas
-&port=3306
-&username=janniei
-&password=janniei
 
 ###
-GET {{host}}/clientData/execQuery
-?serverType=MySQL
-&serverName=localhost
-&databaseName=mysql
-&sqlStatement=SELECT User FROM mysql.user
-&port=3306
-&username=janniei
-&password=janniei
-###
-
+// Fields
 GET {{host}}/clientData/listFields
 ?serverType=MySQL
 &serverName=localhost
@@ -202,37 +121,32 @@ GET {{host}}/clientData/listFields
 &username=janniei
 &password=janniei
 
-###
-POST {{host}}/clientData
-
-
-
-
-
 
 ###
-GET {{host}}/canvasdata/**************
-###
-http://localhost:8000/clientData/execQuery
+// ExecQuery
+GET {{host}}/clientData/execQuery
 ?serverType=MySQL
-&serverName=localhost&databaseName=mysql
-&sqlStatement=SELECT%20*%20FROM%20mysql.user
+&serverName=localhost
+&databaseName=mysql
+&sqlStatement=SELECT User FROM mysql.user
 &port=3306
 &username=janniei
 &password=janniei
-###
 
+
+###
+// Filler !
+GET {{host}}/canvasdata/**************
+
+
+###
 // Testing canvasCurrentDashboard 
-GET {{host}}/canvasCurrentDashboard
-?id=68
-&dashboardTabID=1
-&datasourceIDexclude=1,2
-
-###
 GET {{host}}/canvasCurrentDashboard
 ?id=68
 &dashboardTabID=175
 &datasourceIDexclude=1,2
+
+
 ###
 // GRiP DB: VCIB_DemoData
 http://localhost:8000/clientData/execQuery
@@ -244,55 +158,9 @@ http://localhost:8000/clientData/execQuery
 &username=sa
 &password=Qwerty,123
 &datasourceID=999
-###
-// TEST
-http://localhost:8000/clientData/execQuery
-?serverType=MicrosoftSQL
-&serverName=localhost
-&databaseName=VCIB_DemoData
-&sqlStatement=SELECT TOP 11 CAST( DATEPART( year,EffectiveDate ) AS VARCHAR( 4 ) ) As Year, DATEPART( month,EffectiveDate ) Month, 1 AS Number FROM VCIB_RaisedPremiums
-&port=1433
-&username=sa
-&password=Qwerty,123
-&nrRowsToReturn=1
-&datasourceID=216
-
-###
-
-// All data for one Datasource
-GET {{host}}/canvasDatasource
-?id=107
-###
-
-// All data for one Datasource
-POST {{host}}/canvasDatasource
-content-type: application/json 
-
-{
-    "datasourceInput": {
-        "id": null,
-        "name": "test" 
-    },
-    "datasetInput": {
-        "id": null,
-        "fileName": "test"
-    },
-    "clientDataInput": {
-        "id": null,
-        "data": "123"
-    }
- } 
 
 
 ###
-GET {{host}}/clientData/
-?datasourceID=68
-&fields=fare, age
-&nrRowsToReturn=2
-
-
-###
-
 # BING !
 POST https://dev.virtualearth.net/REST/v1/Routes/DistanceMatrixAsync?key=An32WT6o1FBmePyg2qOelW0-eby7-hW9H1YmxfAw9yVrEvPloQ9Wte1l0n3h1DED
 Content-Type: application/json
@@ -313,6 +181,8 @@ Content-Type: application/json
     "travelMode": "driving",
     "startTime": "2019-01-09T22:00:00.000Z"
 }
+
+
 ###
 # BING 2
 https://dev.virtualearth.net/REST/v1/Routes/DistanceMatrix?key=An32WT6o1FBmePyg2qOelW0-eby7-hW9H1YmxfAw9yVrEvPloQ9Wte1l0n3h1DED
@@ -350,10 +220,11 @@ https://dev.virtualearth.net/REST/v1/Routes/DistanceMatrix
 &travelMode=driving
 &key=An32WT6o1FBmePyg2qOelW0-eby7-hW9H1YmxfAw9yVrEvPloQ9Wte1l0n3h1DED
 
-###
 
-# BING 4 Map with Center Point Works - also in Browser
+###
+#  BING 4 Map with Center Point Works - also in Browser
 https://dev.virtualearth.net/REST/V1/Imagery/Map/Road/Bellevue%20Washington?mapLayer=TrafficFlow&key=An32WT6o1FBmePyg2qOelW0-eby7-hW9H1YmxfAw9yVrEvPloQ9Wte1l0n3h1DED
+
 
 ###
 # BING for JP SYNC works ... WIP
@@ -363,9 +234,10 @@ https://dev.virtualearth.net/REST/v1/Routes/DistanceMatrix
 &distanceUnit=km
 &travelMode=driving
 &key=An32WT6o1FBmePyg2qOelW0-eby7-hW9H1YmxfAw9yVrEvPloQ9Wte1l0n3h1DED
+
+
 ###
 # JP WIP PUT
-
 https://dev.virtualearth.net/REST/v1/Routes/DistanceMatrixAsync?key=An32WT6o1FBmePyg2qOelW0-eby7-hW9H1YmxfAw9yVrEvPloQ9Wte1l0n3h1DED
 Content-Length: 500
 Content-Type: application/json
@@ -386,7 +258,8 @@ Content-Type: application/json
 }    
 
 
-### BING for JP ... ASYNC works WIP
+### 
+# BING for JP ... ASYNC works WIP
 https://dev.virtualearth.net/REST/v1/Routes/DistanceMatrixAsync
 ?origins=-33.8689103,18.5167131
 &destinations=-34.0165939,22.8028049;-34.19553,22.091511;-34.0386276,22.2109966;-33.590777,22.200313;-33.573833,22.437935;-34.014232,22.452362;-34.0386162,23.0488625;-33.9676361,22.4382248;-34.04956,23.354508;-33.980665,25.571136;-34.17686,22.100389;-33.95696,22.4624252;-34.180534,22.1436;-33.9676361,22.4382248;-33.92873,25.482503;-34.045921,23.323514;-34.1754951,22.1035347;-34.0043068,22.4864826;-34.0256271,22.8132019;-34.0450058,23.3695278;-32.349277,22.582667;-34.014437,22.452317;-34.0043068,22.4864826;-34.05893,23.37694;-34.0403137,23.0469074;-33.9560623,22.6195;-33.59527,22.23417;-34.1844063,22.1460972;-33.58964,22.205465;-34.03452,23.04515;-34.0347939,23.0454731;-34.056427,23.3725662;-33.9701538,22.4885139;-34.1270183,22.1173702999999;-34.147772,22.103731;-33.95044,22.432437;-33.997984,22.615692;-33.94693,22.410223;-33.945488,22.4643173;-34.1833534,22.1141949;-33.96437,22.4831429;-33.9524231,22.4433327;-34.1825371,22.14276;-34.07952,22.150616;-34.18756,22.1141472;-33.940074,25.597108;-33.999468,25.535987;-34.0564537,23.3729343;-34.0362434,23.0409622;-34.147772,22.10343
@@ -395,8 +268,5 @@ https://dev.virtualearth.net/REST/v1/Routes/DistanceMatrixAsync
 &startTime=2017-06-15T13:00:00-07:00
 &key=An32WT6o1FBmePyg2qOelW0-eby7-hW9H1YmxfAw9yVrEvPloQ9Wte1l0n3h1DED
 
-###
-http://localhost:8000/clientData/?datasourceID=170
-###
-GET {{host}}/clientData/
-?datasourceID=68
+
+##
