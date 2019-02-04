@@ -10,7 +10,7 @@ module.exports = function sortFilterFieldsAggregate(inputResults, queryObject) {
         let filterObject = queryObject.filterObject;
         let nrRowsToReturn = queryObject.nrRowsToReturn;
         const aggregationObject = queryObject.aggregationObject;
-        console.log('xx queryObject', queryObject)
+
         // 2. If (SORT_OBJECT) then results = results.sort()
         // Sort ASC on given field, -field means DESC
         // TODO - return sortOrder = 1 depending on - in field, see TypeScript
@@ -65,7 +65,6 @@ module.exports = function sortFilterFieldsAggregate(inputResults, queryObject) {
         };
 
         // 4. If (FILTER_OBJECT) then results = results.filter()
-        console.log('xx filterObject', filterObject)
         if (filterObject != null  &&  results != null) {
             filterObject = JSON.parse(filterObject)
             Object.keys(filterObject).forEach( key => {

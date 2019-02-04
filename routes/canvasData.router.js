@@ -175,6 +175,7 @@ router.get('/:resource', (req, res, next) => {
         resource = req.params.resource;
     };
     const query = req.query;
+    const id = query.id;
 
     debugDev(moduleName + ": " + '## --------------------------');
     debugDev(moduleName + ": " + '## GET Starting with resource:', resource, ', query:', query);
@@ -227,7 +228,7 @@ router.get('/:resource', (req, res, next) => {
                         data.length,
                         'records from cache!'
                     );
-    console.log('query', query)
+
                     // Extract the Widget specific data (sort, filter, fields, aggregate)
                     data =  sortFilterFieldsAggregate(data, query);
  
@@ -271,7 +272,13 @@ router.get('/:resource', (req, res, next) => {
 
         // Find ALL the data (using the standard query JSON object)
         // We want to cache all, and return filtered if query was supplied
-        canvasModel.find( {}, (err, docs) => {
+        let mongoQuery = {};
+        if (id != null) {
+            mongoQuery = {
+                id: id
+            };
+        };
+        canvasModel.find( mongoQuery, (err, docs) => {
 
             // KEEP for later !
             // Extract metodata from the Schema, using one document

@@ -150,12 +150,24 @@ server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
-
 // listen for TERM signal .e.g. kill 
 process.on ('SIGTERM', gracefulShutdown);
 
 // listen for INT signal e.g. Ctrl-C
 process.on ('SIGINT', gracefulShutdown); 
+
+// TODO - maybe use this later on to ensure child process killed, and port released
+//   // Handle normal exits
+//   .on('exit', (code) => {
+//     nodemon.emit('quit');
+//     process.exit(code);
+//   })
+
+//   // Handle CTRL+C
+//   .on('SIGINT', () => {
+//     nodemon.emit('quit');
+//     process.exit(0);
+//   });
 
 // Functions to follow:
 

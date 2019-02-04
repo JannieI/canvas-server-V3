@@ -86,7 +86,7 @@ GET {{host}}/clientData/
 ###
 GET {{host}}/canvasdata/datasources
 ?id=170
-&filterObject={"id": 170}
+
 
 
 ###
