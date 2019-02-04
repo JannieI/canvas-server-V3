@@ -568,6 +568,30 @@ router.put('/:resource', (req, res, next) => {
         const canvasSchema = '../models/' + resource + '.model';
         const canvasModel = require(canvasSchema);
 
+        // Get Caching Table
+        dataCachingTableArray = dataCachingTableVariable.get();
+
+        // Safeguard
+        if (dataCachingTableArray == null) {
+            dataCachingTableArray = [];
+        };
+
+        // Reset the expiryDateTime, so that the next read is from the DB (and not cache)
+        let dataCachingTableIndex = dataCachingTableArray.findIndex(dc => dc.key == resource)
+        if (dataCachingTableIndex >= 0) {
+            dataCachingTableArray[dataCachingTableIndex].serverExpiryDateTime = new Date();
+            debugDev(moduleName + ": " + 'Resource ' + resource + ' serverExpiryDateTime updated in Caching Table');
+        } else {
+            debugDev(moduleName + ": " + 'Resource ' + resource + ' record NOT IN CACHING TABLE');
+        };
+
+
+
+
+
+
+
+
         // Find and Update DB
         canvasModel.findOneAndUpdate(
             {id: id},

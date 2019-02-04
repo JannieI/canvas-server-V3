@@ -197,6 +197,7 @@ router.put('/', (req, res, next) => {
                 let dataCachingTableIndex = dataCachingTableArray.findIndex(dc => dc.key == 'datasources')
                 if (dataCachingTableIndex >= 0) {
                     dataCachingTableArray[dataCachingTableIndex].serverExpiryDateTime = new Date();
+                    debugDev(moduleName + ": " + 'Resource ' + resource + ' serverExpiryDateTime updated in Caching Table');
                 };
 
                 debugDev(moduleName + ": " + 'Datasource record updated in canvasDatasourceRouter for ID: ' + datasourceInput.id);
