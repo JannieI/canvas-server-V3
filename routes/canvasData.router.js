@@ -386,6 +386,16 @@ router.post('/:resource', (req, res, next) => {
     debugDev(moduleName + ": " + 'Router: POST for resource:', resource)
     debugDev(moduleName + ": " + '');
 
+    if (body == null) {
+        return res.json(
+            createErrorObject(
+                "failed",
+                "Error: no body provided for resource: " + resource,
+                null
+            )
+        );
+    };
+
     // Try, in case model file does not exist
     try {
         // Get the model dynamically (take note of file spelling = resource)
