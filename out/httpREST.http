@@ -60,7 +60,8 @@ GET {{host}}/canvasdata/:widgets?id=3
     
 
 ###
-GET {{host}}/canvasdata/:datasources
+GET {{host}}/canvasdata/datasources
+?id=170
     
 
 ###

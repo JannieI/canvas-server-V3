@@ -227,9 +227,9 @@ router.get('/:resource', (req, res, next) => {
                         data.length,
                         'records from cache!'
                     );
-
+console.log('query', query)
                     // Extract the Widget specific data (sort, filter, fields, aggregate)
-                    data =  sortFilterFieldsAggregate(data, req.query);
+                    data =  sortFilterFieldsAggregate(data, query);
  
                     // Return if an Error
                     if (data.error) {
@@ -307,7 +307,7 @@ router.get('/:resource', (req, res, next) => {
                 };
             };
 
-            let returnSet = sortFilterFieldsAggregate(docs, req.query);
+            let returnSet = sortFilterFieldsAggregate(docs, query);
 
             // Return if an Error
             if (returnSet.error) {
@@ -448,7 +448,7 @@ router.delete('/:resource', (req, res, next) => {
 
     const query = req.query;
     const id = req.query.id;
-    debugDev(moduleName + ": " + 'const ',req.query, id);
+    debugDev(moduleName + ": " + 'const ', query, id);
 
     if (id == null) {
         return res.json(
