@@ -71,7 +71,6 @@ module.exports = function sortFilterFieldsAggregate(inputResults, queryObject) {
             Object.keys(filterObject).forEach( key => {
                 // Get the key-value pair
                 let value = filterObject[key];
-                console.log('xx ', value, r[key], +r[key])
                 results = results.filter(r => {
                     return value == r[key];
                 });

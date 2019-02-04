@@ -252,7 +252,7 @@ router.get('/:resource', (req, res, next) => {
                             null,
                             null,
                             serverVariableName,
-                            data.length,
+                            data.results.length,
                             fields,
                             null
                             )
@@ -263,7 +263,7 @@ router.get('/:resource', (req, res, next) => {
     };
 
     // Try, in case model file does not exist
-    // try {
+    try {
         // Get the model dynamically (take note of file spelling = resource)
         const canvasSchema = '../models/' + resource + '.model';
         debugDev(moduleName + ": " + 'Using Model ', canvasSchema, serverCacheableMemory?  'with caching'  :  'WITHOUT cache')
@@ -359,16 +359,16 @@ router.get('/:resource', (req, res, next) => {
                     )
             );
         });
-    // }
-    // catch (error) {
-    //     debugDev(moduleName + ": " + 'Error: ', error)
-    //     return res.status(400).json({
-    //         "statusCode": "error",
-    //         "message" : "No model file for resource: " + resource,
-    //         "data": null,
-    //         "error": error
-    //     });
-    // };
+    }
+    catch (error) {
+        debugDev(moduleName + ": " + 'Error: ', error)
+        return res.status(400).json({
+            "statusCode": "error",
+            "message" : "No model file for resource: " + resource,
+            "data": null,
+            "error": error
+        });
+    };
 
 })
 
