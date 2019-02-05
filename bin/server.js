@@ -83,11 +83,11 @@ io.on('connect', (socket, req) => {
         {
             sender: 'sender',
             messageText: 'Dashboard has been amended',
-            content: { id: 101, name: "sent from Canvas Server 2" },
+            content: { id: 101101010101010101010101010101, name: "sent from Canvas Server 2" },
             messageType: 'canvasData',
-            action: 'Add',
+            action: 'Delete',
             objectName: 'dashboards',
-            objectID: 101,
+            objectID: 101101010101010101010101010101,
             severity: 'low',
             messageDateTime: new Date()
         }
