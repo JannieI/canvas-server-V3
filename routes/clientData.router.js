@@ -476,8 +476,8 @@ router.get('/', (req, res, next) => {
         let isFresh = isDateInFuture(datasource.serverExpiryDateTime);
 
         // If cached and isFresh, result = cache
-        if (datasource.cacheResultsOnServer  &&  isFresh) {
-            debugData(moduleName + ": " + ' <- Getting data from Server Cache on Disc')
+        if (!datasource.sourceIsAccessable  || (datasource.cacheResultsOnServer  &&  isFresh) ) {
+            debugData(moduleName + ": " + ' <- Getting data from Server Cache on Disc for ID: ' + datasourceID);
 
             // Get the model
             const clientSchema = '../models/clientData.model';
