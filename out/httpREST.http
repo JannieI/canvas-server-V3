@@ -141,6 +141,13 @@ GET {{host}}/canvasdata/**************
 
 
 ###
+// Testing canvasDatasource 
+GET {{host}}/canvasDatasource
+?id=4
+&datasourceID=4
+
+
+###
 // Testing canvasCurrentDashboard 
 GET {{host}}/canvasCurrentDashboard
 ?id=68
