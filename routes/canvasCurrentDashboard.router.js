@@ -58,10 +58,18 @@ router.get('/', (req, res, next) => {
         });
     };
     console.log('Before findOne')
-    dashboardModel.findOne({ id: 112 }, (err, doc) => {
-        // populate('numberWidgets');
-        console.log('OMW !', doc); 
-    })
+    // dashboardModel.findOne({ id: 112 }, (err, doc) => {
+    //     populate('numberWidgets');
+    //     console.log('OMW !', doc); 
+    // })
+
+    dashboardModel
+        .findOne({ id: 112 })
+        .populate('numberWidgets') 
+        .exec(function(err, doc) {
+            if (err) console.log('Error', err);
+            console.log('Done', doc.id, doc.numberWidgets.length, doc);
+    });
     console.log('After the affair');
     res.json("Okay")
 

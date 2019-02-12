@@ -4,6 +4,9 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const counterModel = require('./counters.model')
+const widgetSchema = './widgets.model';
+
+const widgets = require(widgetSchema);
 
 // Schema
 const DashboardSchema = new Schema(
@@ -53,28 +56,24 @@ const DashboardSchema = new Schema(
         nrTimesChanged: Number,                 // Nr of times this Dashboard has been edited
         tabs: [ { type: Number } ],             // Array of TabIDs in this Dashboard
         permissions: [ { type: String } ]      
-    }, 
-    {
-        toObject: {
-        virtuals: true
-        },
-        toJSON: {
-        virtuals: true 
-        }
     }
 );
 
-DashboardSchema.virtual('full')
-    .get(function () {
-        return this.code + this.name;
+// Example - Works
+// DashboardSchema.virtual('full')
+//     .get(function () {
+//         return this.code + this.name;
+// });
+
+// Works - brings back ALL Ws for now ...
+// Note: had to ref 'widgets' model, returned by require(...)
+DashboardSchema.virtual('numberWidgets', {
+    ref: 'widgets', // The model to use
+    localField: 'id', // Find people where `localField`
+    foreignField: 'dashboardID', // is equal to `foreignField`
+    count: true // And only get the number of docs
 });
 
-// dashboardSchema.virtual('numberWidgets', {
-//     ref: 'widgetModel', // The model to use
-//     localField: 'id', // Find people where `localField`
-//     foreignField: 'dashboardID', // is equal to `foreignField`
-//     count: true // And only get the number of docs
-// });
 
 // This pre-hook is called before the information is saved into the database
 DashboardSchema.pre('save', function(next) {
