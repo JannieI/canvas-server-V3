@@ -31,11 +31,9 @@ router.get('/', (req, res, next) => {
         const widgetModel = require(widgetSchema);
         const datasourceModel = require(datasourceSchema);
 
-        let numberWidgets = null;
-
         // Find Dashboard
         const dashboardQuery = { id: req.query.id };
-        dashboardModel.find(dashboardQuery).count( (err, x) => {
+        dashboardModel.find(dashboardQuery).count( (err, numberWidgets) => {
             if (err) {
                 return res.json(createErrorObject(
                     "error",
@@ -44,8 +42,6 @@ router.get('/', (req, res, next) => {
                 ));
             };
             
-            numberWidgets = x;
-
             // Find Dashboard Tabs
             // const dashboardTabQuery = { dashboardID: req.query.id }
             // dashboardTabModel.find( dashboardTabQuery, (err, dashboardTabs) => {
