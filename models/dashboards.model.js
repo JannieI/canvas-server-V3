@@ -6,53 +6,75 @@ const Schema = mongoose.Schema;
 const counterModel = require('./counters.model')
 
 // Schema
-const DashboardSchema = new Schema({
-    id: Number,                             // Unique ID
-    originalID: Number,                     // ID of the original (Completed state) for a draft
-    draftID: Number,                        // ID of the Draft version for a Complete
-    version: Number,                        // Version of the Dashboard
-    state: String,                          // State, ie Complete, Draft
-    code: String,                           // Short code for D
-    name: String,                           // Dashboard Name
-    description: String,                    // User description
+const DashboardSchema = new Schema(
+    {
+        id: Number,                             // Unique ID
+        originalID: Number,                     // ID of the original (Completed state) for a draft
+        draftID: Number,                        // ID of the Draft version for a Complete
+        version: Number,                        // Version of the Dashboard
+        state: String,                          // State, ie Complete, Draft
+        code: String,                           // Short code for D
+        name: String,                           // Dashboard Name
+        description: String,                    // User description
 
-    // Access Type
-    accessType: String,                     // How to access D: Private, Public, AccessList
+        // Access Type
+        accessType: String,                     // How to access D: Private, Public, AccessList
 
-    // Overall properties
-    password: String,                       // Optional password to lock Dashboard
-    refreshMode: String,                    // OnDemand, OnOpen, Repeatedly
-    refreshTimer: Number,                   // Nr seconds to repeat, if refreshMode = Repeatedly
-    defaultTabID: Number,       
-    defaultExportFileType: String,          // Default file type on export
-    url: String,            
-    qaRequired: Boolean,    
-    isSample: Boolean,                      // True if this is a sample
+        // Overall properties
+        password: String,                       // Optional password to lock Dashboard
+        refreshMode: String,                    // OnDemand, OnOpen, Repeatedly
+        refreshTimer: Number,                   // Nr seconds to repeat, if refreshMode = Repeatedly
+        defaultTabID: Number,       
+        defaultExportFileType: String,          // Default file type on export
+        url: String,            
+        qaRequired: Boolean,    
+        isSample: Boolean,                      // True if this is a sample
 
-    // Overlay looks
-    backgroundColor: String,    
-    backgroundImage: String,
-    templateDashboardID: Number,
+        // Overlay looks
+        backgroundColor: String,    
+        backgroundImage: String,
+        templateDashboardID: Number,
 
-    // Creation, update and refresh
-    creator: String,                        // Creator UserID
-    dateCreated: {                          // Date task was created
-        type: Date,
-    },
-    editor: String,                         // Last UserID who edited this Dashboard
-    dateEdited: Date,                       // Last Edit dt
-    refresher: String,                      // Last UserID who refreshed this Dashboard, and it data
-    dateRefreshed: Date,                    // Last refresh dt
+        // Creation, update and refresh
+        creator: String,                        // Creator UserID
+        dateCreated: {                          // Date task was created
+            type: Date,
+        },
+        editor: String,                         // Last UserID who edited this Dashboard
+        dateEdited: Date,                       // Last Edit dt
+        refresher: String,                      // Last UserID who refreshed this Dashboard, and it data
+        dateRefreshed: Date,                    // Last refresh dt
 
-    // 2nd normal form - calculated at DB level
-    nrWidgets: Number,                      // Nr of Widgets on Dashboard
-    nrShapes: Number,                       // Nr of Shapes on Dashboard
-    nrRecords: Number,          
-    nrTimesOpened: Number,                  // Nr of times this Dashboard has been opened
-    nrTimesChanged: Number,                 // Nr of times this Dashboard has been edited
-    tabs: [ { type: Number } ],             // Array of TabIDs in this Dashboard
-    permissions: [ { type: String } ]      
+        // 2nd normal form - calculated at DB level
+        nrWidgets: Number,                      // Nr of Widgets on Dashboard
+        nrShapes: Number,                       // Nr of Shapes on Dashboard
+        nrRecords: Number,          
+        nrTimesOpened: Number,                  // Nr of times this Dashboard has been opened
+        nrTimesChanged: Number,                 // Nr of times this Dashboard has been edited
+        tabs: [ { type: Number } ],             // Array of TabIDs in this Dashboard
+        permissions: [ { type: String } ]      
+    }, 
+    {
+        toObject: {
+        virtuals: true
+        },
+        toJSON: {
+        virtuals: true 
+        }
+    }
+);
+
+DashboardSchema.virtual('full')
+    .get(function () {
+        return this.code + this.name;
 });
+
+// dashboardSchema.virtual('numberWidgets', {
+//     ref: 'widgetModel', // The model to use
+//     localField: 'id', // Find people where `localField`
+//     foreignField: 'dashboardID', // is equal to `foreignField`
+//     count: true // And only get the number of docs
+// });
 
 // This pre-hook is called before the information is saved into the database
 DashboardSchema.pre('save', function(next) {

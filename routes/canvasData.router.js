@@ -223,11 +223,8 @@ router.get('/:resource', (req, res, next) => {
                     const fields = [];
 
                     let data = serverMemoryCache.get(serverVariableName);
-                    debugDev(moduleName + ": " + 
-                        '  Returned',
-                        data.length,
-                        'records from cache!'
-                    );
+                    debugDev(moduleName + ": " + '  Returned ' + data.length + 
+                        ' records from cache!');
 
                     // Extract the Widget specific data (sort, filter, fields, aggregate)
                     data =  sortFilterFieldsAggregate(data, query);
@@ -342,6 +339,9 @@ router.get('/:resource', (req, res, next) => {
             //         }
             //     );
             // };
+          
+            debugDev(moduleName + ": " + '  Returned ' + returnSet.results.length + 
+                ' records from DB');
 
             // Return the data with metadata
             return res.json(

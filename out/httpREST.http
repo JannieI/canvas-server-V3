@@ -88,7 +88,6 @@ GET {{host}}/canvasdata/datasources
 ?id=170
 &filterObject={"id": 170}
 
-
 ###
 // Databases
 GET {{host}}/clientData/listDatabases
@@ -141,18 +140,17 @@ GET {{host}}/canvasdata/**************
 
 
 ###
-// Testing canvasDatasource 
 GET {{host}}/canvasDatasource
-?id=4
-&datasourceID=4
+// Testing canvasDatasource 
+?id=1
+
 
 
 ###
 // Testing canvasCurrentDashboard 
 GET {{host}}/canvasCurrentDashboard
-?id=68
-&dashboardTabID=175
-&datasourceIDexclude=1,2
+?id=112
+&dashboardTabID=250
 
 
 ###
@@ -277,4 +275,5 @@ https://dev.virtualearth.net/REST/v1/Routes/DistanceMatrixAsync
 &key=An32WT6o1FBmePyg2qOelW0-eby7-hW9H1YmxfAw9yVrEvPloQ9Wte1l0n3h1DED
 
 
-##
+###
+
