@@ -102,7 +102,7 @@ router.get('/', (req, res, next) => {
         });
     }
     catch (error) {
-        debugDev(moduleName + ": " + 'Error in canvasCurrentDashboard.router', error.message)
+        debugDev(moduleName + ": " + 'Error in canvasDatasource.router', error.message)
         return res.status(400).json({
             "statusCode": "error",
             "message" : "Error retrieving Current Dashboard ID: " + req.query.id,

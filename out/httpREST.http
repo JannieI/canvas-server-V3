@@ -277,3 +277,6 @@ https://dev.virtualearth.net/REST/v1/Routes/DistanceMatrixAsync
 
 ###
 
+// canvasCurrentDashboard
+GET {{host}}/canvasDashboardSummary?id=112
+###
