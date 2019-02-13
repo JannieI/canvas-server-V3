@@ -44,7 +44,7 @@ router.get('/', (req, res, next) => {
             
             // Count Dashboard Tabs
             const dashboardTabQuery = { dashboardID: req.query.id }
-            dashboardTabModel.find( dashboardTabQuery).count( (err, numberDashboardTabs) => {
+            dashboardTabModel.find(dashboardTabQuery).count( (err, numberDashboardTabs) => {
 
                 if (err) {
                     return res.json(createErrorObject(
@@ -54,17 +54,17 @@ router.get('/', (req, res, next) => {
                     ));
                 };
         
-            //     // Find Widgets
-            //     const widgetQuery = { dashboardID: req.query.id }
-            //     widgetModel.find( dashboardTabQuery, (err, widgets) => {
+                // Count Widgets
+                const widgetQuery = { dashboardID: req.query.id }
+                widgetModel.find(dashboardTabQuery).count(  (err, numberWidgets) => {
 
-            //         if (err) {
-            //             return res.json(createErrorObject(
-            //                 "error",
-            //                 "Error retrieving Dashboard Tabs for ID: " + req.query.id,
-            //                 err
-            //             ));
-            //         };
+                    if (err) {
+                        return res.json(createErrorObject(
+                            "error",
+                            "Error retrieving Dashboard Tabs for ID: " + req.query.id,
+                            err
+                        ));
+                    };
             //         if (widgets == null) { 
             //             widgets = [];
             //         };
@@ -126,7 +126,8 @@ router.get('/', (req, res, next) => {
                                 { 
                                     dashboardID: id,
                                     numberWidgets: numberDashboards,
-                                    numberDashboardTabs: numberDashboardTabs
+                                    numberDashboardTabs: numberDashboardTabs,
+                                    numberWidgets: numberWidgets
                                 },
                                 null,
                                 null,
@@ -139,7 +140,7 @@ router.get('/', (req, res, next) => {
                                 )
                         );
                     });
-            //     });
+                });
             // });
         });
     // }
