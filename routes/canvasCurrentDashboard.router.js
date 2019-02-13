@@ -49,7 +49,7 @@ router.get('/', (req, res, next) => {
                 if (err) {
                     return res.json(createErrorObject(
                         "error",
-                        "Error retrieving Widgets for ID: " + req.query.id,
+                        "Error retrieving Dashboard Tabs for ID: " + req.query.id,
                         err
                     ));
                 };
@@ -61,7 +61,7 @@ router.get('/', (req, res, next) => {
                     if (err) {
                         return res.json(createErrorObject(
                             "error",
-                            "Error retrieving Dashboard Tabs for ID: " + req.query.id,
+                            "Error retrieving Widgets for ID: " + req.query.id,
                             err
                         ));
                     };

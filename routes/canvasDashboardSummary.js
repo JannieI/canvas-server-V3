@@ -31,9 +31,9 @@ router.get('/', (req, res, next) => {
         const widgetModel = require(widgetSchema);
         const datasourceModel = require(datasourceSchema);
 
-        // Find Dashboard
+        // Count Dashboards
         const dashboardQuery = { id: req.query.id };
-        dashboardModel.find(dashboardQuery).count( (err, numberWidgets) => {
+        dashboardModel.find(dashboardQuery).count( (err, numberDashboards) => {
             if (err) {
                 return res.json(createErrorObject(
                     "error",
@@ -42,17 +42,17 @@ router.get('/', (req, res, next) => {
                 ));
             };
             
-            // Find Dashboard Tabs
-            // const dashboardTabQuery = { dashboardID: req.query.id }
-            // dashboardTabModel.find( dashboardTabQuery, (err, dashboardTabs) => {
+            // Count Dashboard Tabs
+            const dashboardTabQuery = { dashboardID: req.query.id }
+            dashboardTabModel.find( dashboardTabQuery).count( (err, numberDashboardTabs) => {
 
-            //     if (err) {
-            //         return res.json(createErrorObject(
-            //             "error",
-            //             "Error retrieving Widgets for ID: " + req.query.id,
-            //             err
-            //         ));
-            //     };
+                if (err) {
+                    return res.json(createErrorObject(
+                        "error",
+                        "Error retrieving Dashboard Tabs for ID: " + req.query.id,
+                        err
+                    ));
+                };
         
             //     // Find Widgets
             //     const widgetQuery = { dashboardID: req.query.id }
@@ -125,7 +125,8 @@ router.get('/', (req, res, next) => {
                                 "Retrieved Summary for Dashboard ID: " + dashboardQuery,
                                 { 
                                     dashboardID: id,
-                                    numberWidgets: numberWidgets
+                                    numberWidgets: numberDashboards,
+                                    numberDashboardTabs: numberDashboardTabs
                                 },
                                 null,
                                 null,
@@ -137,7 +138,7 @@ router.get('/', (req, res, next) => {
                                 null
                                 )
                         );
-            //         });
+                    });
             //     });
             // });
         });
