@@ -70,7 +70,12 @@ router.get('/', (req, res, next) => {
                             err
                         ));
                     };
-                    console.log('xx widgets', widgets)
+
+                    let widgetUniqueList = widgets.map(x => x.datasourceID);
+                    widgetUniqueList = widgetUniqueList.filter(x => x != null);
+                    console.log('xx widgetUniqueList', widgetUniqueList)
+                    widgetUniqueList = [...new Set(widgetUniqueList)];
+                    console.log('xx widgetUniqueList', widgetUniqueList)
             //         if (widgets == null) { 
             //             widgets = [];
             //         };
