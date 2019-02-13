@@ -17,6 +17,7 @@ const dashboardSubscriptionSchema = '../models/dashboardSubscriptions.model';
 const DashboardTagSchema = '../models/dashboardTags.model';
 const dashboardPermissionSchema = '../models/dashboardPermissions.model';
 const widgetCheckpointSchema = '../models/widgetCheckpoints.model';
+const canvasUserSchema = '../models/canvasUsers.model';
 
 // GET route
 router.get('/', (req, res, next) => {
@@ -44,6 +45,7 @@ router.get('/', (req, res, next) => {
         const dashboardTagModel = require(DashboardTagSchema);
         const dashboardPermissionModel = require(dashboardPermissionSchema);
         const widgetCheckpointModel = require(widgetCheckpointSchema);
+        const canvasUserModel = require(canvasUserSchema);
 
         // Count Dashboards
         const dashboardQuery = { id: req.query.id };
@@ -177,56 +179,69 @@ router.get('/', (req, res, next) => {
                                                             ));
                                                         };
 
-                                                        // Count this Dashboardused as a Template
+                                                        // Count this Dashboard used as a Template
                                                         const templateQuery = { templateDashboardID: req.query.id };
                                                         dashboardModel.find(templateQuery).count( (err, numberUsedAsTemplate) => {
                                                             if (err) {
                                                                 return res.json(createErrorObject(
                                                                     "error",
-                                                                    "Error retrieving this Dashboardused as a Template for ID: " + templateQuery,
+                                                                    "Error retrieving this Dashboardused as a Template for ID: " + canvasUserQuery,
                                                                     err
                                                                 ));
                                                             };
 
-                                                            // dashboardTemplates dashboardTemplates
-                                                            // startupDashboards startupDashboards
-                                                            // favouriteDashboards favouriteDashboards
+                                                            // Count this Dashboard used as Startup
+                                                            const canvasUserQuery = { preferenceStartupDashboardID: req.query.id };
+                                                            canvasUserModel.find(canvasUserQuery).count( (err, numberUsedAsStartup) => {
+                                                                if (err) {
+                                                                    return res.json(createErrorObject(
+                                                                        "error",
+                                                                        "Error retrieving this Dashboardused as Startup for ID: " + canvasUserQuery,
+                                                                        err
+                                                                    ));
+                                                                };
+
+                                                                // 
+                                                                // startupDashboards startupDashboards
+                                                                // favouriteDashboards favouriteDashboards
 
 
 
 
-                                                            // Return the data with metadata
-                                                                return res.json(
-                                                                    createReturnObject(
-                                                                        "success",
-                                                                        "Retrieved Summary for Dashboard ID: " + hyperlinkedQuery,
-                                                                        { 
-                                                                            dashboardID: id,
-                                                                            numberDashboards: numberDashboards,
-                                                                            numberDashboardTabs: numberDashboardTabs,
-                                                                            numberWidgets: widgets.length,
-                                                                            numberDatasources: numberDatasources.length,
-                                                                            numberDashboardSnapshots: numberDashboardSnapshots,
-                                                                            numberCanvasMessages: numberCanvasMessages,
-                                                                            numberCanvasComments: numberCanvasComments,
-                                                                            numberdashboardSchedules: numberdashboardSchedules,
-                                                                            numberdashboardSubscriptions: numberdashboardSubscriptions,
-                                                                            numberdashboardTags: numberdashboardTags,
-                                                                            numberdashboardPermissions: numberdashboardPermissions,
-                                                                            numberWidgetCheckpoints: numberWidgetCheckpoints,
-                                                                            numberHyperlinkedWidgets: numberHyperlinkedWidgets,
-                                                                            numberUsedAsTemplate: numberUsedAsTemplate
-                                                                        },
-                                                                        null,
-                                                                        null,
-                                                                        null,
-                                                                        null,
-                                                                        null,
-                                                                        1,
-                                                                        null,
-                                                                        null
-                                                                        )
-                                                                );
+                                                                // Return the data with metadata
+                                                                    return res.json(
+                                                                        createReturnObject(
+                                                                            "success",
+                                                                            "Retrieved Summary for Dashboard ID: " + hyperlinkedQuery,
+                                                                            { 
+                                                                                dashboardID: id,
+                                                                                numberDashboards: numberDashboards,
+                                                                                numberDashboardTabs: numberDashboardTabs,
+                                                                                numberWidgets: widgets.length,
+                                                                                numberDatasources: numberDatasources.length,
+                                                                                numberDashboardSnapshots: numberDashboardSnapshots,
+                                                                                numberCanvasMessages: numberCanvasMessages,
+                                                                                numberCanvasComments: numberCanvasComments,
+                                                                                numberdashboardSchedules: numberdashboardSchedules,
+                                                                                numberdashboardSubscriptions: numberdashboardSubscriptions,
+                                                                                numberdashboardTags: numberdashboardTags,
+                                                                                numberdashboardPermissions: numberdashboardPermissions,
+                                                                                numberWidgetCheckpoints: numberWidgetCheckpoints,
+                                                                                numberHyperlinkedWidgets: numberHyperlinkedWidgets,
+                                                                                numberUsedAsTemplate: numberUsedAsTemplate,
+                                                                                numberUsedAsStartup: numberUsedAsStartup
+                                                                            },
+                                                                            null,
+                                                                            null,
+                                                                            null,
+                                                                            null,
+                                                                            null,
+                                                                            1,
+                                                                            null,
+                                                                            null
+                                                                            )
+                                                                    );
+                                                                });
                                                             });
                                                         });
                                                     });
