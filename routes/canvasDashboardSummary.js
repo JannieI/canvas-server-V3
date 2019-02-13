@@ -9,7 +9,7 @@ const createReturnObject = require('../utils/createReturnObject.util');
 const dashboardSchema = '../models/dashboards.model';
 const dashboardTabSchema = '../models/dashboardTabs.model';
 const widgetSchema = '../models/widgets.model';
-const datasourceSchema = '../models/datasources.model';
+const dashboardSnapshotSchema = '../models/dashboardSnapshots';
 
 // GET route
 router.get('/', (req, res, next) => {
@@ -29,7 +29,7 @@ router.get('/', (req, res, next) => {
         const dashboardModel = require(dashboardSchema);
         const dashboardTabModel = require(dashboardTabSchema);
         const widgetModel = require(widgetSchema);
-        const datasourceModel = require(datasourceSchema);
+        const dashboardSnapshots = require(dashboardSnapshotSchema);
 
         // Count Dashboards
         const dashboardQuery = { id: req.query.id };
@@ -43,8 +43,8 @@ router.get('/', (req, res, next) => {
             };
             
             // Count Dashboard Tabs
-            const dashboardTabQuery = { dashboardID: req.query.id }
-            dashboardTabModel.find(dashboardTabQuery).count( (err, numberDashboardTabs) => {
+            const dashboardIDQuery = { dashboardID: req.query.id }
+            dashboardTabModel.find(dashboardIDQuery).count( (err, numberDashboardTabs) => {
 
                 if (err) {
                     return res.json(createErrorObject(
@@ -55,13 +55,11 @@ router.get('/', (req, res, next) => {
                 };
         
                 // Get Widgets
-                const widgetQuery = { dashboardID: req.query.id }
                 var widgetModelQuery = widgetModel
-                    .find(dashboardTabQuery)
+                    .find(dashboardIDQuery)
                     .select( { _id: -1, datasourceID: 1});
 
                 widgetModelQuery.exec( (err, widgets) => {
-                // widgetModel.find(dashboardTabQuery).select('datasourceID', (err, widgets) => {
 
                     if (err) {
                         return res.json(createErrorObject(
@@ -75,29 +73,59 @@ router.get('/', (req, res, next) => {
                     numberDatasources = numberDatasources.filter(x => x != null);
                     numberDatasources = [...new Set(numberDatasources)];
                     console.log('xx widgetUniqueList', numberDatasources)
+                  
+                    // Count Dashboard Tabs
+                    const dashboardIDQuery = { dashboardID: req.query.id }
+                    dashboardSnapshots.find(dashboardIDQuery).count( (err, numberDashboardSnapshots) => {
 
-                    // Return the data with metadata
-                        return res.json(
-                            createReturnObject(
-                                "success",
-                                "Retrieved Summary for Dashboard ID: " + dashboardQuery,
-                                { 
-                                    dashboardID: id,
-                                    numberDashboards: numberDashboards,
-                                    numberDashboardTabs: numberDashboardTabs,
-                                    numberWidgets: widgets.length,
-                                    numberDatasources: numberDatasources.length
-                                },
-                                null,
-                                null,
-                                null,
-                                null,
-                                null,
-                                1,
-                                null,
-                                null
-                                )
-                        );
+                        if (err) {
+                            return res.json(createErrorObject(
+                                "error",
+                                "Error retrieving DashboardSnapshots for ID: " + req.query.id,
+                                err
+                            ));
+                        };
+
+
+                        
+                        // canvasMessages
+                        // canvasComments
+                        // dashboardSchedules
+                        // dashboardSubscriptions
+                        // DashboardTags
+                        // dashboardPermissions
+                        // dashboardCheckpoints
+                        // dashboardHyperLinks
+                        // dashboardTemplates
+                        // startupDashboards
+                        // favouriteDashboards
+
+
+
+
+                        // Return the data with metadata
+                            return res.json(
+                                createReturnObject(
+                                    "success",
+                                    "Retrieved Summary for Dashboard ID: " + dashboardQuery,
+                                    { 
+                                        dashboardID: id,
+                                        numberDashboards: numberDashboards,
+                                        numberDashboardTabs: numberDashboardTabs,
+                                        numberWidgets: widgets.length,
+                                        numberDatasources: numberDatasources.length
+                                    },
+                                    null,
+                                    null,
+                                    null,
+                                    null,
+                                    null,
+                                    1,
+                                    null,
+                                    null
+                                    )
+                            );
+                        });
                     });
                 });
             // });
