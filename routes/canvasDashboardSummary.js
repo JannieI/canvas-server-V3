@@ -156,45 +156,59 @@ router.get('/', (req, res, next) => {
                                                     ));
                                                 };
 
-                                                // 
-                                                // widgetCheckpoints widgetCheckpoints
-                                                // dashboardHyperLinks dashboardHyperLinks
-                                                // dashboardTemplates dashboardTemplates
-                                                // startupDashboards startupDashboards
-                                                // favouriteDashboards favouriteDashboards
+
+                                                // Count widgetCheckpoints
+                                                widgetCheckpointModel.find(dashboardIDQuery).count( (err, numberWidgetCheckpoints) => {
+                                                    if (err) {
+                                                        return res.json(createErrorObject(
+                                                            "error",
+                                                            "Error retrieving widgetCheckpoints for ID: " + req.query.id,
+                                                            err
+                                                        ));
+                                                    };
+
+
+                                                    // 
+                                                    // 
+                                                    // dashboardHyperLinks dashboardHyperLinks
+                                                    // dashboardTemplates dashboardTemplates
+                                                    // startupDashboards startupDashboards
+                                                    // favouriteDashboards favouriteDashboards
 
 
 
 
-                                                // Return the data with metadata
-                                                    return res.json(
-                                                        createReturnObject(
-                                                            "success",
-                                                            "Retrieved Summary for Dashboard ID: " + dashboardQuery,
-                                                            { 
-                                                                dashboardID: id,
-                                                                numberDashboards: numberDashboards,
-                                                                numberDashboardTabs: numberDashboardTabs,
-                                                                numberWidgets: widgets.length,
-                                                                numberDatasources: numberDatasources.length,
-                                                                numberDashboardSnapshots: numberDashboardSnapshots,
-                                                                numberCanvasMessages: numberCanvasMessages,
-                                                                numberCanvasComments: numberCanvasComments,
-                                                                numberdashboardSchedules: numberdashboardSchedules,
-                                                                numberdashboardSubscriptions: numberdashboardSubscriptions,
-                                                                numberdashboardTags: numberdashboardTags,
-                                                                numberdashboardPermissions: numberdashboardPermissions
-                                                            },
-                                                            null,
-                                                            null,
-                                                            null,
-                                                            null,
-                                                            null,
-                                                            1,
-                                                            null,
-                                                            null
-                                                            )
-                                                    );
+                                                    // Return the data with metadata
+                                                        return res.json(
+                                                            createReturnObject(
+                                                                "success",
+                                                                "Retrieved Summary for Dashboard ID: " + dashboardQuery,
+                                                                { 
+                                                                    dashboardID: id,
+                                                                    numberDashboards: numberDashboards,
+                                                                    numberDashboardTabs: numberDashboardTabs,
+                                                                    numberWidgets: widgets.length,
+                                                                    numberDatasources: numberDatasources.length,
+                                                                    numberDashboardSnapshots: numberDashboardSnapshots,
+                                                                    numberCanvasMessages: numberCanvasMessages,
+                                                                    numberCanvasComments: numberCanvasComments,
+                                                                    numberdashboardSchedules: numberdashboardSchedules,
+                                                                    numberdashboardSubscriptions: numberdashboardSubscriptions,
+                                                                    numberdashboardTags: numberdashboardTags,
+                                                                    numberdashboardPermissions: numberdashboardPermissions,
+                                                                    numberWidgetCheckpoints: numberWidgetCheckpoints
+                                                                },
+                                                                null,
+                                                                null,
+                                                                null,
+                                                                null,
+                                                                null,
+                                                                1,
+                                                                null,
+                                                                null
+                                                                )
+                                                        );
+                                                    });
                                                 });
                                             });
                                         });
