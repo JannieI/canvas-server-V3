@@ -115,46 +115,71 @@ router.get('/', (req, res, next) => {
                                         err
                                     ));
                                 };
-                                
-                                //  
-                                // canvasComments canvasComments
-                                // dashboardSchedules dashboardSchedules
-                                // dashboardSubscriptions dashboardSubscriptions
-                                // DashboardTags DashboardTags
-                                // dashboardPermissions dashboardPermissions
-                                // widgetCheckpoints widgetCheckpoints
-                                // dashboardHyperLinks dashboardHyperLinks
-                                // dashboardTemplates dashboardTemplates
-                                // startupDashboards startupDashboards
-                                // favouriteDashboards favouriteDashboards
+                        
+                                // Count DashboardSchedules
+                                dashboardScheduleModel.find(dashboardIDQuery).count( (err, numberdashboardSchedules) => {
+                                    if (err) {
+                                        return res.json(createErrorObject(
+                                            "error",
+                                            "Error retrieving dashboardSchedules for ID: " + req.query.id,
+                                            err
+                                        ));
+                                    };
+
+                                    // Count DashboardSubscriptions
+                                    dashboardSubscriptionModel.find(dashboardIDQuery).count( (err, numberdashboardSubscriptions) => {
+                                        if (err) {
+                                            return res.json(createErrorObject(
+                                                "error",
+                                                "Error retrieving dashboardSubscriptions for ID: " + req.query.id,
+                                                err
+                                            ));
+                                        };
+                                        
+                                        //  
+                                        // 
+                                        // 
+                                        // 
+                                        // DashboardTags DashboardTags
+                                        // dashboardPermissions dashboardPermissions
+                                        // widgetCheckpoints widgetCheckpoints
+                                        // dashboardHyperLinks dashboardHyperLinks
+                                        // dashboardTemplates dashboardTemplates
+                                        // startupDashboards startupDashboards
+                                        // favouriteDashboards favouriteDashboards
 
 
 
 
-                                // Return the data with metadata
-                                    return res.json(
-                                        createReturnObject(
-                                            "success",
-                                            "Retrieved Summary for Dashboard ID: " + dashboardQuery,
-                                            { 
-                                                dashboardID: id,
-                                                numberDashboards: numberDashboards,
-                                                numberDashboardTabs: numberDashboardTabs,
-                                                numberWidgets: widgets.length,
-                                                numberDatasources: numberDatasources.length,
-                                                numberDashboardSnapshots: numberDashboardSnapshots,
-                                                numberCanvasMessages: numberCanvasMessages
-                                            },
-                                            null,
-                                            null,
-                                            null,
-                                            null,
-                                            null,
-                                            1,
-                                            null,
-                                            null
-                                            )
-                                    );
+                                        // Return the data with metadata
+                                            return res.json(
+                                                createReturnObject(
+                                                    "success",
+                                                    "Retrieved Summary for Dashboard ID: " + dashboardQuery,
+                                                    { 
+                                                        dashboardID: id,
+                                                        numberDashboards: numberDashboards,
+                                                        numberDashboardTabs: numberDashboardTabs,
+                                                        numberWidgets: widgets.length,
+                                                        numberDatasources: numberDatasources.length,
+                                                        numberDashboardSnapshots: numberDashboardSnapshots,
+                                                        numberCanvasMessages: numberCanvasMessages,
+                                                        numberCanvasComments: numberCanvasComments,
+                                                        numberdashboardSchedules: numberdashboardSchedules,
+                                                        numberdashboardSubscriptions: numberdashboardSubscriptions
+                                                    },
+                                                    null,
+                                                    null,
+                                                    null,
+                                                    null,
+                                                    null,
+                                                    1,
+                                                    null,
+                                                    null
+                                                    )
+                                            );
+                                        });
+                                    });
                                 });
                             });
                         });
