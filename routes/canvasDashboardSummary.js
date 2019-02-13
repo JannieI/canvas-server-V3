@@ -71,63 +71,10 @@ router.get('/', (req, res, next) => {
                         ));
                     };
 
-                    let widgetUniqueList = widgets.map(x => x.datasourceID);
-                    widgetUniqueList = widgetUniqueList.filter(x => x != null);
-                    console.log('xx widgetUniqueList', widgetUniqueList)
-                    widgetUniqueList = [...new Set(widgetUniqueList)];
-                    console.log('xx widgetUniqueList', widgetUniqueList)
-            //         if (widgets == null) { 
-            //             widgets = [];
-            //         };
-
-            //         // Load an Array of Datasource IDs in use by the Widgets on this Tab
-            //         let datasourceIDincludeArray = [];
-            //         for (var i = 0; i < widgets.length; i++) {
-
-            //             // Exclude Shapes that does not use Datasources
-            //             if (widgets[i].datasourceID != null) {
-            //                 if (datasourceIDincludeArray.indexOf(widgets[i].datasourceID) < 0) {
-            //                     datasourceIDincludeArray.push(widgets[i].datasourceID)
-            //                 };
-            //             };
-            //         };
-            //         console.log('xx datasourceIDincludeArray', datasourceIDincludeArray)
-
-            //         // Get Array of Datasource IDs to exclude.  This is an optional parameter from Workstation
-            //         // and used in case it already has some Datasources (ie from a previous Tab)
-            //         const datasourceIDexclude = req.query.datasourceIDexclude;
-            //         let datasourceIDexcludeArray = [];
-            //         if (datasourceIDexclude != null) {
-            //             datasourceIDexcludeArray = datasourceIDexclude.split(",");
-            //             for (var i = 0; i < datasourceIDexcludeArray.length; i++) {
-            //                 datasourceIDexcludeArray[i] = +datasourceIDexcludeArray[i];
-            //             };
-            //         };
-
-            //         // Exclude requested Datasource IDs
-            //         if (datasourceIDexcludeArray.length > 0) {
-            //             datasourceIDincludeArray = datasourceIDincludeArray
-            //                 .filter(x => datasourceIDexcludeArray.indexOf(x) < 0);
-            //         };
-
-            //         // Create query object to filter on
-            //         let datasourceQuery = { 
-            //             id: { "$in": datasourceIDincludeArray }
-            //         }
-            //         console.log('xx datasourceQuery', datasourceQuery)
-                 
-            //         datasourceModel.find( datasourceQuery, (err, datasources) => {
-
-            //             if (err) {
-            //                 return res.json(createErrorObject(
-            //                     "error",
-            //                     "Error retrieving Datasource for ID: " + req.query.id,
-            //                     err
-            //                 ));
-            //             };
-            //             if (datasources == null) { 
-            //                 datasources = [];
-            //             };
+                    let numberDatasources = widgets.map(x => x.datasourceID);
+                    numberDatasources = numberDatasources.filter(x => x != null);
+                    numberDatasources = [...new Set(numberDatasources)];
+                    console.log('xx widgetUniqueList', numberDatasources)
 
                     // Return the data with metadata
                         return res.json(
@@ -138,7 +85,8 @@ router.get('/', (req, res, next) => {
                                     dashboardID: id,
                                     numberDashboards: numberDashboards,
                                     numberDashboardTabs: numberDashboardTabs,
-                                    numberWidgets: widgets.length
+                                    numberWidgets: widgets.length,
+                                    numberDatasources: numberDatasources.length
                                 },
                                 null,
                                 null,
