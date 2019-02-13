@@ -41,7 +41,7 @@ router.get('/', (req, res, next) => {
         const canvasCommentModel = require(canvasCommentSchema);
         const dashboardScheduleModel = require(dashboardScheduleSchema);
         const dashboardSubscriptionModel = require(dashboardSubscriptionSchema);
-        const DashboardTagModel = require(DashboardTagSchema);
+        const dashboardTagModel = require(DashboardTagSchema);
         const dashboardPermissionModel = require(dashboardPermissionSchema);
         const widgetCheckpointModel = require(widgetCheckpointSchema);
 
@@ -145,49 +145,57 @@ router.get('/', (req, res, next) => {
                                                     err
                                                 ));
                                             };
-                                            //  
-                                            // 
-                                            // 
-                                            // 
-                                            // 
-                                            // dashboardPermissions dashboardPermissions
-                                            // widgetCheckpoints widgetCheckpoints
-                                            // dashboardHyperLinks dashboardHyperLinks
-                                            // dashboardTemplates dashboardTemplates
-                                            // startupDashboards startupDashboards
-                                            // favouriteDashboards favouriteDashboards
+
+                                            // Count DashboardPermissions
+                                            dashboardPermissionModel.find(dashboardIDQuery).count( (err, numberdashboardPermissions) => {
+                                                if (err) {
+                                                    return res.json(createErrorObject(
+                                                        "error",
+                                                        "Error retrieving dashboardPermissions for ID: " + req.query.id,
+                                                        err
+                                                    ));
+                                                };
+
+                                                // 
+                                                // widgetCheckpoints widgetCheckpoints
+                                                // dashboardHyperLinks dashboardHyperLinks
+                                                // dashboardTemplates dashboardTemplates
+                                                // startupDashboards startupDashboards
+                                                // favouriteDashboards favouriteDashboards
 
 
 
 
-                                            // Return the data with metadata
-                                                return res.json(
-                                                    createReturnObject(
-                                                        "success",
-                                                        "Retrieved Summary for Dashboard ID: " + dashboardQuery,
-                                                        { 
-                                                            dashboardID: id,
-                                                            numberDashboards: numberDashboards,
-                                                            numberDashboardTabs: numberDashboardTabs,
-                                                            numberWidgets: widgets.length,
-                                                            numberDatasources: numberDatasources.length,
-                                                            numberDashboardSnapshots: numberDashboardSnapshots,
-                                                            numberCanvasMessages: numberCanvasMessages,
-                                                            numberCanvasComments: numberCanvasComments,
-                                                            numberdashboardSchedules: numberdashboardSchedules,
-                                                            numberdashboardSubscriptions: numberdashboardSubscriptions,
-                                                            numberdashboardTags: numberdashboardTags
-                                                        },
-                                                        null,
-                                                        null,
-                                                        null,
-                                                        null,
-                                                        null,
-                                                        1,
-                                                        null,
-                                                        null
-                                                        )
-                                                );
+                                                // Return the data with metadata
+                                                    return res.json(
+                                                        createReturnObject(
+                                                            "success",
+                                                            "Retrieved Summary for Dashboard ID: " + dashboardQuery,
+                                                            { 
+                                                                dashboardID: id,
+                                                                numberDashboards: numberDashboards,
+                                                                numberDashboardTabs: numberDashboardTabs,
+                                                                numberWidgets: widgets.length,
+                                                                numberDatasources: numberDatasources.length,
+                                                                numberDashboardSnapshots: numberDashboardSnapshots,
+                                                                numberCanvasMessages: numberCanvasMessages,
+                                                                numberCanvasComments: numberCanvasComments,
+                                                                numberdashboardSchedules: numberdashboardSchedules,
+                                                                numberdashboardSubscriptions: numberdashboardSubscriptions,
+                                                                numberdashboardTags: numberdashboardTags,
+                                                                numberdashboardPermissions: numberdashboardPermissions
+                                                            },
+                                                            null,
+                                                            null,
+                                                            null,
+                                                            null,
+                                                            null,
+                                                            1,
+                                                            null,
+                                                            null
+                                                            )
+                                                    );
+                                                });
                                             });
                                         });
                                     });
