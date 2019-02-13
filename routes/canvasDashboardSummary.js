@@ -54,9 +54,14 @@ router.get('/', (req, res, next) => {
                     ));
                 };
         
-                // Count Widgets
+                // Get Widgets
                 const widgetQuery = { dashboardID: req.query.id }
-                widgetModel.find(dashboardTabQuery).count(  (err, numberWidgets) => {
+                var widgetModelQuery = widgetModel
+                    .find(dashboardTabQuery)
+                    .select( { _id: -1, datasourceID: 1});
+
+                widgetModelQuery.exec( (err, widgets) => {
+                // widgetModel.find(dashboardTabQuery).select('datasourceID', (err, widgets) => {
 
                     if (err) {
                         return res.json(createErrorObject(
@@ -65,6 +70,7 @@ router.get('/', (req, res, next) => {
                             err
                         ));
                     };
+                    console.log('xx widgets', widgets)
             //         if (widgets == null) { 
             //             widgets = [];
             //         };
@@ -125,9 +131,9 @@ router.get('/', (req, res, next) => {
                                 "Retrieved Summary for Dashboard ID: " + dashboardQuery,
                                 { 
                                     dashboardID: id,
-                                    numberWidgets: numberDashboards,
+                                    numberDashboards: numberDashboards,
                                     numberDashboardTabs: numberDashboardTabs,
-                                    numberWidgets: numberWidgets
+                                    numberWidgets: widgets.length
                                 },
                                 null,
                                 null,
