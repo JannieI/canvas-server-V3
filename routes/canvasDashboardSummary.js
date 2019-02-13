@@ -36,14 +36,14 @@ router.get('/', (req, res, next) => {
         const dashboardModel = require(dashboardSchema);
         const dashboardTabModel = require(dashboardTabSchema);
         const widgetModel = require(widgetSchema);
-        const dashboardSnapshots = require(dashboardSnapshotSchema);
-        const canvasMessages = require(canvasMessageSchema);
-        const canvasComments = require(canvasCommentSchema);
-        const dashboardSchedules = require(dashboardScheduleSchema);
-        const dashboardSubscriptions = require(dashboardSubscriptionSchema);
-        const DashboardTags = require(DashboardTagSchema);
-        const dashboardPermissions = require(dashboardPermissionSchema);
-        const widgetCheckpoints = require(widgetCheckpointSchema);
+        const dashboardSnapshotModel = require(dashboardSnapshotSchema);
+        const canvasMessageModel = require(canvasMessageSchema);
+        const canvasCommentModel = require(canvasCommentSchema);
+        const dashboardScheduleModel = require(dashboardScheduleSchema);
+        const dashboardSubscriptionModel = require(dashboardSubscriptionSchema);
+        const DashboardTagModel = require(DashboardTagSchema);
+        const dashboardPermissionModel = require(dashboardPermissionSchema);
+        const widgetCheckpointModel = require(widgetCheckpointSchema);
 
         // Count Dashboards
         const dashboardQuery = { id: req.query.id };
@@ -87,7 +87,7 @@ router.get('/', (req, res, next) => {
                     console.log('xx widgetUniqueList', numberDatasources)
                   
                     // Count DashboardSnapshots
-                    dashboardSnapshots.find(dashboardIDQuery).count( (err, numberDashboardSnapshots) => {
+                    dashboardSnapshotModel.find(dashboardIDQuery).count( (err, numberDashboardSnapshots) => {
                         if (err) {
                             return res.json(createErrorObject(
                                 "error",
@@ -97,7 +97,7 @@ router.get('/', (req, res, next) => {
                         };
                   
                         // Count CanvasMessages
-                        dashboardSnapshots.find(dashboardIDQuery).count( (err, numberDashboardSnapshots) => {
+                        canvasCommentModel.find(dashboardIDQuery).count( (err, numberCanvasMessages) => {
                             if (err) {
                                 return res.json(createErrorObject(
                                     "error",
@@ -133,7 +133,8 @@ router.get('/', (req, res, next) => {
                                             numberDashboardTabs: numberDashboardTabs,
                                             numberWidgets: widgets.length,
                                             numberDatasources: numberDatasources.length,
-                                            numberDashboardSnapshots: numberDashboardSnapshots
+                                            numberDashboardSnapshots: numberDashboardSnapshots,
+                                            numberCanvasMessages: numberCanvasMessages
                                         },
                                         null,
                                         null,
