@@ -185,62 +185,76 @@ router.get('/', (req, res, next) => {
                                                             if (err) {
                                                                 return res.json(createErrorObject(
                                                                     "error",
-                                                                    "Error retrieving this Dashboardused as a Template for ID: " + canvasUserQuery,
+                                                                    "Error retrieving this Dashboardused as a Template for ID: " + canvasUserStrtQuery,
                                                                     err
                                                                 ));
                                                             };
 
                                                             // Count this Dashboard used as Startup
-                                                            const canvasUserQuery = { preferenceStartupDashboardID: req.query.id };
-                                                            canvasUserModel.find(canvasUserQuery).count( (err, numberUsedAsStartup) => {
+                                                            const canvasUserStrtQuery = { preferenceStartupDashboardID: req.query.id };
+                                                            canvasUserModel.find(canvasUserStrtQuery).count( (err, numberUsedAsStartup) => {
                                                                 if (err) {
                                                                     return res.json(createErrorObject(
                                                                         "error",
-                                                                        "Error retrieving this Dashboardused as Startup for ID: " + canvasUserQuery,
+                                                                        "Error retrieving this Dashboardused as Startup for ID: " + canvasUserStrtQuery,
                                                                         err
                                                                     ));
                                                                 };
 
-                                                                // 
-                                                                // startupDashboards startupDashboards
-                                                                // favouriteDashboards favouriteDashboards
+                                                                // this.favouriteDashboards = this.globalVariableService.canvasUsers.filter(
+                                                                //     u => u.favouriteDashboards.indexOf(dashboardID) >= 0
+                                                                // ).length;                                                                // favouriteDashboards favouriteDashboards
 
+                                                                // Count this Dashboard used as Startup
+                                                                const canvasUserFavQuery = { preferenceStartupDashboardID: req.query.id };
+                                                                canvasUserModel.find(canvasUserFavQuery, (err, canvasUsers) => {
+                                                                    if (err) {
+                                                                        return res.json(createErrorObject(
+                                                                            "error",
+                                                                            "Error retrieving this Dashboardused as Favourite for ID: " + canvasUserStrtQuery,
+                                                                            err
+                                                                        ));
+                                                                    };
 
+                                                                    let numberUsedAsFav = canvasUsers.filter(
+                                                                        u => u.favouriteDashboards.indexOf(+req.query.id) >= 0
+                                                                    ).length;
 
-
-                                                                // Return the data with metadata
-                                                                    return res.json(
-                                                                        createReturnObject(
-                                                                            "success",
-                                                                            "Retrieved Summary for Dashboard ID: " + hyperlinkedQuery,
-                                                                            { 
-                                                                                dashboardID: id,
-                                                                                numberDashboards: numberDashboards,
-                                                                                numberDashboardTabs: numberDashboardTabs,
-                                                                                numberWidgets: widgets.length,
-                                                                                numberDatasources: numberDatasources.length,
-                                                                                numberDashboardSnapshots: numberDashboardSnapshots,
-                                                                                numberCanvasMessages: numberCanvasMessages,
-                                                                                numberCanvasComments: numberCanvasComments,
-                                                                                numberdashboardSchedules: numberdashboardSchedules,
-                                                                                numberdashboardSubscriptions: numberdashboardSubscriptions,
-                                                                                numberdashboardTags: numberdashboardTags,
-                                                                                numberdashboardPermissions: numberdashboardPermissions,
-                                                                                numberWidgetCheckpoints: numberWidgetCheckpoints,
-                                                                                numberHyperlinkedWidgets: numberHyperlinkedWidgets,
-                                                                                numberUsedAsTemplate: numberUsedAsTemplate,
-                                                                                numberUsedAsStartup: numberUsedAsStartup
-                                                                            },
-                                                                            null,
-                                                                            null,
-                                                                            null,
-                                                                            null,
-                                                                            null,
-                                                                            1,
-                                                                            null,
-                                                                            null
-                                                                            )
-                                                                    );
+                                                                    // Return the data with metadata
+                                                                        return res.json(
+                                                                            createReturnObject(
+                                                                                "success",
+                                                                                "Retrieved Summary for Dashboard ID: " + hyperlinkedQuery,
+                                                                                { 
+                                                                                    dashboardID: id,
+                                                                                    numberDashboards: numberDashboards,
+                                                                                    numberDashboardTabs: numberDashboardTabs,
+                                                                                    numberWidgets: widgets.length,
+                                                                                    numberDatasources: numberDatasources.length,
+                                                                                    numberDashboardSnapshots: numberDashboardSnapshots,
+                                                                                    numberCanvasMessages: numberCanvasMessages,
+                                                                                    numberCanvasComments: numberCanvasComments,
+                                                                                    numberdashboardSchedules: numberdashboardSchedules,
+                                                                                    numberdashboardSubscriptions: numberdashboardSubscriptions,
+                                                                                    numberdashboardTags: numberdashboardTags,
+                                                                                    numberdashboardPermissions: numberdashboardPermissions,
+                                                                                    numberWidgetCheckpoints: numberWidgetCheckpoints,
+                                                                                    numberHyperlinkedWidgets: numberHyperlinkedWidgets,
+                                                                                    numberUsedAsTemplate: numberUsedAsTemplate,
+                                                                                    numberUsedAsStartup: numberUsedAsStartup,
+                                                                                    numberUsedAsFav: numberUsedAsFav
+                                                                                },
+                                                                                null,
+                                                                                null,
+                                                                                null,
+                                                                                null,
+                                                                                null,
+                                                                                1,
+                                                                                null,
+                                                                                null
+                                                                                )
+                                                                        );
+                                                                    });
                                                                 });
                                                             });
                                                         });
