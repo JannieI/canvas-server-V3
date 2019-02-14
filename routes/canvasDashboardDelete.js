@@ -18,9 +18,9 @@ const DashboardTagSchema = '../models/dashboardTags.model';
 const dashboardPermissionSchema = '../models/dashboardPermissions.model';
 const widgetCheckpointSchema = '../models/widgetCheckpoints.model';
 const canvasUserSchema = '../models/canvasUsers.model';
-    // DashboardLayout
-    // WidgetLayout
-    // DashboardRecent
+const dashboardLayoutSchema = '../models/dashboardLayout.model';
+const widgetLayoutSchema = '../models/widgetLayout.model';
+const dashboardRecentSchema = '../models/dashboardRecent.model';
 
 // DELETE route
 router.delete('/', (req, res, next) => {
@@ -52,7 +52,9 @@ router.delete('/', (req, res, next) => {
         const canvasUserModel = require(canvasUserSchema);
     // DashboardLayout
     // WidgetLayout
-    // DashboardRecent
+    const canvasUserModel = require(canvasUserSchema);
+    const canvasUserModel = require(canvasUserSchema);
+    const dashboardRecentModel = require(dashboardRecentSchema);
 
         // NOTE: the INDENTATIONS below are non-standard for readibility given the 
         //       large amount of .then() ...
@@ -106,25 +108,40 @@ router.delete('/', (req, res, next) => {
                 dashboardPermissionModel.deleteMany(dashboardIDQuery).exec();
             })
             .then(()=>{
-                // Remove hyperlinks to this Dashboard
+                // Remove hyperlinks to this Dashboard for Widgets
                 let hyperlinkedQuery = {"hyperlinkDashboardID": { $eq: req.query.id } };
                 widgetModel.updateMany(hyperlinkedQuery, { $set: { hyperlinkDashboardID: null } }).exec();
             })
             .then(()=>{
-                // Remove this Dashboard used as template
+                // Remove this Dashboard used as template in Dashboards
                 let templateQuery = {"templateDashboardID": { $eq: req.query.id } };
                 widgetModel.updateMany(templateQuery, { $set: { templateDashboardID: null } }).exec();
             })
-
-            // 
-                    // 
-                    // const templateQuery = { : req.query.id };
-                    // dashboardModel.find(templateQuery).count( (err, numberUsedAsTemplate) => {
-                    // const canvasUserStrtQuery = { preferenceStartupDashboardID: req.query.id };
-                    // canvasUserModel.find(canvasUserStrtQuery).count( (err, numberUsedAsStartup) => {
-                    // const canvasUserFavQuery = { preferenceStartupDashboardID: req.query.id };
-                    // canvasUserModel.find(canvasUserFavQuery, (err, canvasUsers) => {
-                    // // DashboardLayout       // // WidgetLayout      // // DashboardRecent
+            .then(()=>{
+                // Remove this Dashboard used as startup for User
+                let startupQuery = {"preferenceStartupDashboardID": { $eq: req.query.id } };
+                canvasUserModel.updateMany(startupQuery, { $set: { preferenceStartupDashboardID: null } }).exec();
+            })
+            .then(()=>{
+                // Remove this Dashboard used as Fav for User
+                let favouriteQuery = {"preferenceStartupDashboardID": { $eq: req.query.id } };
+                canvasUserModel.updateMany(favouriteQuery, { $set: { preferenceStartupDashboardID: null } }).exec();
+                favouriteDashboards
+            })
+            .then(()=>{
+                // Remove DashboardLayout
+                let startupQuery = {"preferenceStartupDashboardID": { $eq: req.query.id } };
+                canvasUserModel.updateMany(startupQuery, { $set: { preferenceStartupDashboardID: null } }).exec()
+                .then(()=>{
+                    // Remove WidgetLayout for this DashboardLayout
+                    canvasUserModel.updateMany(startupQuery, { $set: { preferenceStartupDashboardID: null } }).exec();
+                })
+    
+            })
+            .then(()=>{
+                // Remove this Dashboard from DashboardRecent
+                dashboardRecentModel.deleteMany(dashboardIDQuery).exec();
+            })
             .then(()=>{
                 
                 // Return the data with metadata
