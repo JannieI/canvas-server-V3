@@ -280,3 +280,6 @@ https://dev.virtualearth.net/REST/v1/Routes/DistanceMatrixAsync
 GET {{host}}/canvasDashboardSummary
 ?id=112
 ###
+DELETE {{host}}/canvasDashboardDelete
+?id=112
+###

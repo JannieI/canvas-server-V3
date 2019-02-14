@@ -201,10 +201,6 @@ router.get('/', (req, res, next) => {
                                                                     ));
                                                                 };
 
-                                                                // this.favouriteDashboards = this.globalVariableService.canvasUsers.filter(
-                                                                //     u => u.favouriteDashboards.indexOf(dashboardID) >= 0
-                                                                // ).length;                                                                // favouriteDashboards favouriteDashboards
-
                                                                 // Count this Dashboard used as Startup
                                                                 const canvasUserFavQuery = { preferenceStartupDashboardID: req.query.id };
                                                                 canvasUserModel.find(canvasUserFavQuery, (err, canvasUsers) => {
@@ -219,24 +215,6 @@ router.get('/', (req, res, next) => {
                                                                     let numberUsedAsFav = canvasUsers.filter(
                                                                         u => u.favouriteDashboards.indexOf(+req.query.id) >= 0
                                                                     ).length;
-
-                                                                    numberDashboards = 12;
-                                                                    numberDashboardTabs = 12;
-                                                                    numberWidgets = 12;
-                                                                    numberDatasources = 12;
-                                                                    numberDashboardSnapshots = 12;
-                                                                    numberCanvasMessages = 12;
-                                                                    numberCanvasComments = 12;
-                                                                    numberDashboardSchedules = 12;
-                                                                    numberDashboardSubscriptions = 12;
-                                                                    numberDashboardTags = 12;
-                                                                    numberDashboardPermissions = 12;
-                                                                    numberWidgetCheckpoints = 12;
-                                                                    numberHyperlinkedWidgets = 12;
-                                                                    numberUsedAsTemplate = 12;
-                                                                    numberUsedAsStartup = 12;
-                                                                    numberUsedAsFav = 12;
-
 
                                                                     // Return the data with metadata
                                                                         return res.json(
