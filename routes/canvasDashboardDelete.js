@@ -50,9 +50,9 @@ router.delete('/', (req, res, next) => {
         const dashboardPermissionModel = require(dashboardPermissionSchema);
         const widgetCheckpointModel = require(widgetCheckpointSchema);
         const canvasUserModel = require(canvasUserSchema);
-        // const dashboardLayout = require(dashboardLayoutSchema);
-        // const widgetLayoutModel = require(widgetLayoutSchema);
-        // const dashboardRecentModel = require(dashboardRecentSchema);
+        const dashboardLayoutModel = require(dashboardLayoutSchema);
+        const widgetLayoutModel = require(widgetLayoutSchema);
+        const dashboardRecentModel = require(dashboardRecentSchema);
 
         // NOTE: the INDENTATIONS below are non-standard for readibility given the 
         //       large amount of .then() ...
@@ -120,19 +120,20 @@ router.delete('/', (req, res, next) => {
                 let startupQuery = {"preferenceStartupDashboardID": { $eq: req.query.id } };
                 canvasUserModel.updateMany(startupQuery, { $set: { preferenceStartupDashboardID: null } }).exec();
             })
-            // .then(()=>{
-            //     // Remove this Dashboard used as Fav for User
-            //     let favouriteQuery = {"preferenceStartupDashboardID": { $eq: req.query.id } };
-            //     canvasUserModel.updateMany(favouriteQuery, { $set: { preferenceStartupDashboardID: null } }).exec();
+            .then(()=>{
+                // Remove this Dashboard used as Fav for User
+                let favouriteQuery = {"preferenceStartupDashboardID": { $eq: req.query.id } };
+                canvasUserModel.updateMany(favouriteQuery, { $set: { preferenceStartupDashboardID: null } }).exec();
             //     favouriteDashboards
-            // })
-            // .then(()=>{
-            //     // Remove DashboardLayout
-            //     dashboardLayout.deleteMany(dashboardIDQuery).exec()
-            //     .then(()=>{
-            //         // Remove WidgetLayout for this DashboardLayout
-            //         widgetLayoutModel.updateMany(startupQuery, { $set: { preferenceStartupDashboardID: null } }).exec();
-            //     })
+            })
+            .then(()=>{
+                // Remove DashboardLayout
+                dashboardLayoutModel.deleteMany(dashboardIDQuery).exec()
+                // .then(()=>{
+                //     // Remove WidgetLayout for this DashboardLayout
+                //     widgetLayoutModel.updateMany(startupQuery, { $set: { preferenceStartupDashboardID: null } }).exec();
+                // })
+            })
     
             // })
             // .then(()=>{
