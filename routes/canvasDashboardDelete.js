@@ -18,9 +18,9 @@ const DashboardTagSchema = '../models/dashboardTags.model';
 const dashboardPermissionSchema = '../models/dashboardPermissions.model';
 const widgetCheckpointSchema = '../models/widgetCheckpoints.model';
 const canvasUserSchema = '../models/canvasUsers.model';
-const dashboardLayoutSchema = '../models/dashboardLayout.model';
-const widgetLayoutSchema = '../models/widgetLayout.model';
-const dashboardRecentSchema = '../models/dashboardRecent.model';
+const dashboardLayoutSchema = '../models/dashboardLayouts.model';
+const widgetLayoutSchema = '../models/widgetLayouts.model';
+const dashboardRecentSchema = '../models/dashboardsRecent.model';
 
 // DELETE route
 router.delete('/', (req, res, next) => {
@@ -50,11 +50,9 @@ router.delete('/', (req, res, next) => {
         const dashboardPermissionModel = require(dashboardPermissionSchema);
         const widgetCheckpointModel = require(widgetCheckpointSchema);
         const canvasUserModel = require(canvasUserSchema);
-    // DashboardLayout
-    // WidgetLayout
-    const canvasUserModel = require(canvasUserSchema);
-    const canvasUserModel = require(canvasUserSchema);
-    const dashboardRecentModel = require(dashboardRecentSchema);
+        // const dashboardLayout = require(dashboardLayoutSchema);
+        // const widgetLayoutModel = require(widgetLayoutSchema);
+        // const dashboardRecentModel = require(dashboardRecentSchema);
 
         // NOTE: the INDENTATIONS below are non-standard for readibility given the 
         //       large amount of .then() ...
@@ -122,26 +120,25 @@ router.delete('/', (req, res, next) => {
                 let startupQuery = {"preferenceStartupDashboardID": { $eq: req.query.id } };
                 canvasUserModel.updateMany(startupQuery, { $set: { preferenceStartupDashboardID: null } }).exec();
             })
-            .then(()=>{
-                // Remove this Dashboard used as Fav for User
-                let favouriteQuery = {"preferenceStartupDashboardID": { $eq: req.query.id } };
-                canvasUserModel.updateMany(favouriteQuery, { $set: { preferenceStartupDashboardID: null } }).exec();
-                favouriteDashboards
-            })
-            .then(()=>{
-                // Remove DashboardLayout
-                let startupQuery = {"preferenceStartupDashboardID": { $eq: req.query.id } };
-                canvasUserModel.updateMany(startupQuery, { $set: { preferenceStartupDashboardID: null } }).exec()
-                .then(()=>{
-                    // Remove WidgetLayout for this DashboardLayout
-                    canvasUserModel.updateMany(startupQuery, { $set: { preferenceStartupDashboardID: null } }).exec();
-                })
+            // .then(()=>{
+            //     // Remove this Dashboard used as Fav for User
+            //     let favouriteQuery = {"preferenceStartupDashboardID": { $eq: req.query.id } };
+            //     canvasUserModel.updateMany(favouriteQuery, { $set: { preferenceStartupDashboardID: null } }).exec();
+            //     favouriteDashboards
+            // })
+            // .then(()=>{
+            //     // Remove DashboardLayout
+            //     dashboardLayout.deleteMany(dashboardIDQuery).exec()
+            //     .then(()=>{
+            //         // Remove WidgetLayout for this DashboardLayout
+            //         widgetLayoutModel.updateMany(startupQuery, { $set: { preferenceStartupDashboardID: null } }).exec();
+            //     })
     
-            })
-            .then(()=>{
-                // Remove this Dashboard from DashboardRecent
-                dashboardRecentModel.deleteMany(dashboardIDQuery).exec();
-            })
+            // })
+            // .then(()=>{
+            //     // Remove this Dashboard from DashboardRecent
+            //     dashboardRecentModel.deleteMany(dashboardIDQuery).exec();
+            // })
             .then(()=>{
                 
                 // Return the data with metadata
