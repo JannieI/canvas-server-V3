@@ -85,6 +85,11 @@ router.delete('/', (req, res, next) => {
                 // Delete DashboardSnapshotModel
                 dashboardSnapshotModel.deleteMany(dashboardIDQuery).exec();
             })
+            
+            .then(()=>{
+                // Remove this Dashboard used in Messages
+                canvasMessageModel.updateMany(dashboardIDQuery, { $set: { dashboardID: null } }).exec();
+            })
             .then(()=>{
                 // Delete CanvasCommentModel
                 canvasCommentModel.deleteMany(dashboardIDQuery).exec();
@@ -113,7 +118,7 @@ router.delete('/', (req, res, next) => {
             .then(()=>{
                 // Remove this Dashboard used as template in Dashboards
                 let templateQuery = {"templateDashboardID": { $eq: dashboardID } };
-                widgetModel.updateMany(templateQuery, { $set: { templateDashboardID: null } }).exec();
+                dashboardModel.updateMany(templateQuery, { $set: { templateDashboardID: null } }).exec();
             })
             .then(()=>{
                 // Remove this Dashboard used as Startup for Users
@@ -131,14 +136,13 @@ router.delete('/', (req, res, next) => {
             .then(()=>{
                 // Remove DashboardLayout
                 dashboardLayoutModel.findOne(dashboardIDQuery)
-                .then((doc)=>{
-                    // Remove WidgetLayout for this DashboardLayout
-                    if (doc != null) {
-                        console.log('xx doc', doc.id, dashboardIDQuery)
-                        widgetLayoutModel.deleteMany({ dashboardLayoutID: doc.id }).exec();
-                        dashboardLayoutModel.deleteMany(dashboardIDQuery).exec();
-                    };
-                });
+                    .then((doc)=>{
+                        // Remove WidgetLayout for this DashboardLayout
+                        if (doc != null) {
+                            widgetLayoutModel.deleteMany({ dashboardLayoutID: doc.id }).exec();
+                            dashboardLayoutModel.deleteMany(dashboardIDQuery).exec();
+                        };
+                    });
             })
     
             // })
