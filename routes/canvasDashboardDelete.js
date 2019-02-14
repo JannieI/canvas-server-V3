@@ -90,7 +90,8 @@ router.delete('/', (req, res, next) => {
                 canvasCommentModel.deleteMany(dashboardIDQuery).exec();
             })
             .then(()=>{
-                .deleteMany(dashboardIDQuery).exec();
+                // Delete DashboardScheduleModel
+                dashboardScheduleModel.deleteMany(dashboardIDQuery).exec();
             })
             .then(()=>{
             })
@@ -105,7 +106,7 @@ router.delete('/', (req, res, next) => {
             .then(()=>{
             })
             //      //        // 
-                    // canvasCommentModel   // dashboardScheduleModel       // dashboardSubscriptionModel
+                    //    //        // dashboardSubscriptionModel
                     // dashboardTagModel    // dashboardPermissionModel     
                     // hyperlinkedQuery = { hyperlinkDashboardID: req.query.id };
                     // widgetModel.find(hyperlinkedQuery).count( (err, numberHyperlinkedWidgets) => {
