@@ -106,19 +106,12 @@ router.delete('/', (req, res, next) => {
                 dashboardPermissionModel.deleteMany(dashboardIDQuery).exec();
             })
             .then(()=>{
-                // Delete 
-                .deleteMany(dashboardIDQuery).exec();
+                // Remove hyperlinks to this Dashboard
+                let hyperlinkedQuery = {"hyperlinkDashboardID": { $eq: req.query.id } };
+                widgetModel.updateMany(hyperlinkedQuery, { $set: { hyperlinkDashboardID: null } }).exec();
             })
-            .then(()=>{
-                // Delete 
-                .deleteMany(dashboardIDQuery).exec();
-            })
-            .then(()=>{
-            })
-            //      //        // 
-                    //    //        // 
-                    //     //      
-                    // hyperlinkedQuery = { hyperlinkDashboardID: req.query.id };
+
+            // 
                     // widgetModel.find(hyperlinkedQuery).count( (err, numberHyperlinkedWidgets) => {
                     // const templateQuery = { templateDashboardID: req.query.id };
                     // dashboardModel.find(templateQuery).count( (err, numberUsedAsTemplate) => {
