@@ -59,6 +59,8 @@ router.delete('/', (req, res, next) => {
 
         // Delete Dashboards
         const dashboardQuery = { id: req.query.id };
+        const dashboardIDQuery = {"dashboardID": { $eq: req.query.id } };
+
         // TODO - Remove later !
         if (+req.query.id <= 112) {
             return res.json(createErrorObject(
@@ -69,19 +71,17 @@ router.delete('/', (req, res, next) => {
         };        
 
         // Delete Dashboard
+        // TODO - is this chaining working correctly vs .then() inside .then() ... ?
         dashboardModel.findOneAndDelete(dashboardQuery)
-            .then((data)=>{
-                console.log('xx 1')
-            })
-            .then((data)=>{
-                console.log('xx 2')
-            
+            .then(()=>{
                 // Delete Dashboard Tabs
-            const dashboardIDQuery = { dashboardID: req.query.id };
-            dashboardTabModel.deleteMany({"dashboardID": { $eq: 113} } ).exec();
-            //     .then((data)=>{
-
-                    // widgetModelQuery     // dashboardSnapshotModel       // canvasCommentModel
+                dashboardTabModel.deleteMany(dashboardIDQuery).exec();
+            })
+            .then(()=>{
+                // Delete Widgets
+                widgetModel.deleteMany(dashboardIDQuery).exec();
+            })
+                    //      // dashboardSnapshotModel       // canvasCommentModel
                     // canvasCommentModel   // dashboardScheduleModel       // dashboardSubscriptionModel
                     // dashboardTagModel    // dashboardPermissionModel     
                     // hyperlinkedQuery = { hyperlinkDashboardID: req.query.id };
@@ -93,44 +93,34 @@ router.delete('/', (req, res, next) => {
                     // const canvasUserFavQuery = { preferenceStartupDashboardID: req.query.id };
                     // canvasUserModel.find(canvasUserFavQuery, (err, canvasUsers) => {
                     // // DashboardLayout       // // WidgetLayout      // // DashboardRecent
+            .then(()=>{
                 
-                    // Return the data with metadata
-                    if (+req.query.id) {return res.json(
-                    createReturnObject(
-                        "success",
-                        "Retrieved Summary for Dashboard ID: " ,
-                        "Okay",
-                        null,
-                        null,
-                        null,
-                        null,
-                        null,
-                        1,
-                        null,
-                        null
-                        )
+                // Return the data with metadata
+                return res.json(
+                createReturnObject(
+                    "success",
+                    "Retrieved Summary for Dashboard ID: " ,
+                    "Okay",
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    1,
+                    null,
+                    null
+                    )
                 );
-                    }
-
-                })
-                // .catch((err)=>{
-                //     console.log("Error deleting Dashboard Tabs for ID: " + dashboardQuery, err);
-                //     return res.json(createErrorObject(
-                //         "error",
-                //         "Error deleting Dashboard Tabs for ID: " + dashboardQuery,
-                //         err
-                //     ));
-                // });
-            
-        // })
-        // .catch((err)=>{
-        //     console.log("Error deleting Dashboard for ID: " + dashboardQuery, err);
-        //     return res.json(createErrorObject(
-        //         "error",
-        //         "Error deleting Dashboard for ID: " + dashboardQuery,
-        //         err
-        //     ));
-        // });
+            })
+                                
+            .catch((err)=>{
+                console.log("Error deleting Dashboard for ID: " + dashboardQuery, err);
+                return res.json(createErrorObject(
+                    "error",
+                    "Error deleting Dashboard for ID: " + dashboardQuery,
+                    err
+                ));
+            });
     // }
     // catch (error) {
     //     debugDev(moduleName + ": " + 'Error in canvasDashboardSummary.router', error.message)
