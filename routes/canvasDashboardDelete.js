@@ -116,29 +116,29 @@ router.delete('/', (req, res, next) => {
                 widgetModel.updateMany(templateQuery, { $set: { templateDashboardID: null } }).exec();
             })
             .then(()=>{
-                // Remove this Dashboard used as startup for User
+                // Remove this Dashboard used as Startup for Users
                 let startupQuery = {"preferenceStartupDashboardID": { $eq: dashboardID } };
                 canvasUserModel.updateMany(startupQuery, { $set: { preferenceStartupDashboardID: null } }).exec();
             })
             .then(()=>{
-                // Remove this Dashboard used as Fav for User
-                console.log('xx dashboardID', dashboardID)
+                // Remove this Dashboard used as Fav for Users
                 canvasUserModel.update(
                     {}, 
                     { $pull: { "favouriteDashboards": dashboardID } },
                     { "multi": true }
                 ).exec();
-                // db.survey.update( { _id: 1 }, { $pullAll: { scores: [ 0, 5 ] } } )
-// { $pull: { "configuration.links": { _id: req.params.linkId } } }, { safe: true, upsert: true },
-                
             })
             .then(()=>{
                 // Remove DashboardLayout
-                dashboardLayoutModel.deleteMany(dashboardIDQuery).exec()
-                // .then(()=>{
-                //     // Remove WidgetLayout for this DashboardLayout
-                //     widgetLayoutModel.updateMany(startupQuery, { $set: { preferenceStartupDashboardID: null } }).exec();
-                // })
+                dashboardLayoutModel.findOne(dashboardIDQuery)
+                .then((doc)=>{
+                    // Remove WidgetLayout for this DashboardLayout
+                    if (doc != null) {
+                        console.log('xx doc', doc.id, dashboardIDQuery)
+                        widgetLayoutModel.deleteMany({ dashboardLayoutID: doc.id }).exec();
+                        dashboardLayoutModel.deleteMany(dashboardIDQuery).exec();
+                    };
+                });
             })
     
             // })
