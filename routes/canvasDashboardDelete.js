@@ -94,19 +94,29 @@ router.delete('/', (req, res, next) => {
                 dashboardScheduleModel.deleteMany(dashboardIDQuery).exec();
             })
             .then(()=>{
+                // Delete DashboardSubscriptionModel
+                dashboardSubscriptionModel.deleteMany(dashboardIDQuery).exec();
             })
             .then(()=>{
+                // Delete 
+                .deleteMany(dashboardIDQuery).exec();
             })
             .then(()=>{
+                // Delete 
+                .deleteMany(dashboardIDQuery).exec();
             })
             .then(()=>{
+                // Delete 
+                .deleteMany(dashboardIDQuery).exec();
             })
             .then(()=>{
+                // Delete 
+                .deleteMany(dashboardIDQuery).exec();
             })
             .then(()=>{
             })
             //      //        // 
-                    //    //        // dashboardSubscriptionModel
+                    //    //        // 
                     // dashboardTagModel    // dashboardPermissionModel     
                     // hyperlinkedQuery = { hyperlinkDashboardID: req.query.id };
                     // widgetModel.find(hyperlinkedQuery).count( (err, numberHyperlinkedWidgets) => {
