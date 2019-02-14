@@ -54,9 +54,8 @@ router.delete('/', (req, res, next) => {
     // WidgetLayout
     // DashboardRecent
 
-        // NOTE: there are a large number of callbacks inside callbacks.
-        //       For readibility the subsequent ones are NOT INDENTED.
-        //       Its an experiment to see if it reads easier ...
+        // NOTE: the INDENTATIONS below are non-standard for readibility given the 
+        //       large amount of .then() ...
 
         // Delete Dashboards
         const dashboardQuery = { id: req.query.id };
@@ -72,64 +71,66 @@ router.delete('/', (req, res, next) => {
         // Delete Dashboard
         dashboardModel.findOneAndDelete(dashboardQuery)
             .then((data)=>{
-
-            // Delete Dashboard Tabs
-            const dashboardIDQuery = { dashboardID: req.query.id };
-            dashboardTabModel.findManyOneAndDelete(dashboardIDQuery)
-                .then((data)=>{
-                })
-                .catch((err)=>{
-                    console.log("Error deleting Dashboard Tabs for ID: " + dashboardQuery, err);
-                    return res.json(createErrorObject(
-                        "error",
-                        "Error deleting Dashboard Tabs for ID: " + dashboardQuery,
-                        err
-                    ));
-                })
+                console.log('xx 1')
+            })
+            .then((data)=>{
+                console.log('xx 2')
             
-                // widgetModelQuery
-                // dashboardSnapshotModel
-                // canvasCommentModel
-                // canvasCommentModel
-                // dashboardScheduleModel
-                // dashboardSubscriptionModel
-                // dashboardTagModel
-                // dashboardPermissionModel
+                // Delete Dashboard Tabs
+            const dashboardIDQuery = { dashboardID: req.query.id };
+            dashboardTabModel.deleteMany({"dashboardID": { $eq: 113} } ).exec();
+            //     .then((data)=>{
 
-                // hyperlinkedQuery = { hyperlinkDashboardID: req.query.id };
-                // widgetModel.find(hyperlinkedQuery).count( (err, numberHyperlinkedWidgets) => {
+                    // widgetModelQuery     // dashboardSnapshotModel       // canvasCommentModel
+                    // canvasCommentModel   // dashboardScheduleModel       // dashboardSubscriptionModel
+                    // dashboardTagModel    // dashboardPermissionModel     
+                    // hyperlinkedQuery = { hyperlinkDashboardID: req.query.id };
+                    // widgetModel.find(hyperlinkedQuery).count( (err, numberHyperlinkedWidgets) => {
+                    // const templateQuery = { templateDashboardID: req.query.id };
+                    // dashboardModel.find(templateQuery).count( (err, numberUsedAsTemplate) => {
+                    // const canvasUserStrtQuery = { preferenceStartupDashboardID: req.query.id };
+                    // canvasUserModel.find(canvasUserStrtQuery).count( (err, numberUsedAsStartup) => {
+                    // const canvasUserFavQuery = { preferenceStartupDashboardID: req.query.id };
+                    // canvasUserModel.find(canvasUserFavQuery, (err, canvasUsers) => {
+                    // // DashboardLayout       // // WidgetLayout      // // DashboardRecent
+                
+                    // Return the data with metadata
+                    if (+req.query.id) {return res.json(
+                    createReturnObject(
+                        "success",
+                        "Retrieved Summary for Dashboard ID: " ,
+                        "Okay",
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        1,
+                        null,
+                        null
+                        )
+                );
+                    }
 
-                // const templateQuery = { templateDashboardID: req.query.id };
-                // dashboardModel.find(templateQuery).count( (err, numberUsedAsTemplate) => {
-
-                // const canvasUserStrtQuery = { preferenceStartupDashboardID: req.query.id };
-                // canvasUserModel.find(canvasUserStrtQuery).count( (err, numberUsedAsStartup) => {
-
-                // const canvasUserFavQuery = { preferenceStartupDashboardID: req.query.id };
-                // canvasUserModel.find(canvasUserFavQuery, (err, canvasUsers) => {
-        
-                // // DashboardLayout
-                // // WidgetLayout
-                // // DashboardRecent
-
-            // Return the data with metadata
-            return res.json(
-                createReturnObject(
-                    "success",
-                    "Retrieved Summary for Dashboard ID: " ,
-                    "Okay",
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    1,
-                    null,
-                    null
-                    )
-            );
-        });
-
+                })
+                // .catch((err)=>{
+                //     console.log("Error deleting Dashboard Tabs for ID: " + dashboardQuery, err);
+                //     return res.json(createErrorObject(
+                //         "error",
+                //         "Error deleting Dashboard Tabs for ID: " + dashboardQuery,
+                //         err
+                //     ));
+                // });
+            
+        // })
+        // .catch((err)=>{
+        //     console.log("Error deleting Dashboard for ID: " + dashboardQuery, err);
+        //     return res.json(createErrorObject(
+        //         "error",
+        //         "Error deleting Dashboard for ID: " + dashboardQuery,
+        //         err
+        //     ));
+        // });
     // }
     // catch (error) {
     //     debugDev(moduleName + ": " + 'Error in canvasDashboardSummary.router', error.message)
