@@ -32,7 +32,7 @@ router.get('/', (req, res, next) => {
     debugDev(moduleName + ": " + '## GET Starting with Dashboard Summary with dashboard id:', id);
     
     // Try, in case model file does not exist
-    try {
+    // try {
         // Get the model dynamically (take note of file spelling = resource)
         const dashboardModel = require(dashboardSchema);
         const dashboardTabModel = require(dashboardTabSchema);
@@ -288,16 +288,16 @@ router.get('/', (req, res, next) => {
                 });
             // });
         });
-    }
-    catch (error) {
-        debugDev(moduleName + ": " + 'Error in canvasDashboardSummary.router', error.message)
-        return res.status(400).json({
-            "statusCode": "error",
-            "message" : "Error retrieving Current Dashboard ID: " + req.query.id,
-            "data": null,
-            "error": error
-        });
-    };
+    // }
+    // catch (error) {
+    //     debugDev(moduleName + ": " + 'Error in canvasDashboardSummary.router', error.message)
+    //     return res.status(400).json({
+    //         "statusCode": "error",
+    //         "message" : "Error retrieving Current Dashboard ID: " + req.query.id,
+    //         "data": null,
+    //         "error": error
+    //     });
+    // };
 
 })
 
