@@ -85,7 +85,6 @@ router.delete('/', (req, res, next) => {
                 // Delete DashboardSnapshotModel
                 dashboardSnapshotModel.deleteMany(dashboardIDQuery).exec();
             })
-            
             .then(()=>{
                 // Remove this Dashboard used in Messages
                 canvasMessageModel.updateMany(dashboardIDQuery, { $set: { dashboardID: null } }).exec();
@@ -109,6 +108,10 @@ router.delete('/', (req, res, next) => {
             .then(()=>{
                 // Delete DashboardPermissionModel
                 dashboardPermissionModel.deleteMany(dashboardIDQuery).exec();
+            })
+            .then(()=>{
+                // Delete WidgetCheckpointModel
+                widgetCheckpointModel.deleteMany(dashboardIDQuery).exec();
             })
             .then(()=>{
                 // Remove hyperlinks to this Dashboard for Widgets
@@ -144,12 +147,10 @@ router.delete('/', (req, res, next) => {
                         };
                     });
             })
-    
-            // })
-            // .then(()=>{
-            //     // Remove this Dashboard from DashboardRecent
-            //     dashboardRecentModel.deleteMany(dashboardIDQuery).exec();
-            // })
+            .then(()=>{
+                // Remove this Dashboard from DashboardRecent
+                dashboardRecentModel.deleteMany(dashboardIDQuery).exec();
+            })
             .then(()=>{
                 
                 // Return the data with metadata
