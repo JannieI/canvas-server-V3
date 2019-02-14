@@ -37,6 +37,7 @@ const authLocalRouter = require('./routes/authLocal.router');
 const canvasDataRouter = require('./routes/canvasData.router');
 const canvasCurrentDashboard = require('./routes/canvasCurrentDashboard.router');
 const canvasDashboardSummary = require('./routes/canvasDashboardSummary');
+const canvasDashboardDelete = require('./routes/canvasDashboardDelete');
 const canvasDatasource = require('./routes/canvasDatasource.router');
 const clientDataRouter = require('./routes/clientData.router');
 require('./auth/auth');
@@ -191,9 +192,11 @@ app.use('/canvas', (req, res, next) => {
 app.use('/users', usersRouter);
 app.use('/auth/github/', authGitHubRouter);
 app.use('/auth/google/', authGoogleRouter);
+
 // ALL Canvas data-related API calls
 app.use('/canvasCurrentDashboard', canvasCurrentDashboard);
 app.use('/canvasDashboardSummary', canvasDashboardSummary);
+app.use('/canvasDashboardDelete', canvasDashboardDelete);
 app.use('/canvasDatasource', canvasDatasource);
 app.use('/canvasdata', canvasDataRouter);
 app.use('/clientdata', clientDataRouter);

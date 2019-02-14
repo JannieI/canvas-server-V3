@@ -1,4 +1,4 @@
-// Router to return summary info on a Dashboard, ie number of Widgets, number of tags, etc
+// Router to delete a Dashboard and all related info, ie number of Widgets, number of tags, etc
 
 // Imports
 const express = require('express');
