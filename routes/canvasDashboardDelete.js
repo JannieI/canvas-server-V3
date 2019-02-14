@@ -29,10 +29,10 @@ router.delete('/', (req, res, next) => {
     if (startPos > 0  &&  startPos < module.id.length) {
         moduleName = module.id.substring(startPos + 1);
     };
-    const id = req.query.id;
+    const dashboardID = +req.query.id;
 
     debugDev(moduleName + ": " + '## --------------------------');
-    debugDev(moduleName + ": " + '## GET Starting with Dashboard Summary with dashboard id:', id);
+    debugDev(moduleName + ": " + '## GET Starting with Dashboard Summary with dashboard id:', dashboardID);
     
     
     // Try, in case model file does not exist
@@ -58,11 +58,11 @@ router.delete('/', (req, res, next) => {
         //       large amount of .then() ...
 
         // Delete Dashboards
-        const dashboardQuery = { id: req.query.id };
-        const dashboardIDQuery = {"dashboardID": { $eq: req.query.id } };
+        const dashboardQuery = { id: dashboardID };
+        const dashboardIDQuery = {"dashboardID": { $eq: dashboardID } };
 
         // TODO - Remove later !
-        if (+req.query.id <= 112) {
+        if (dashboardID <= 112) {
             return res.json(createErrorObject(
                 "error",
                 "Silly!!  Cannot delete ID <= 112 !",
@@ -107,24 +107,30 @@ router.delete('/', (req, res, next) => {
             })
             .then(()=>{
                 // Remove hyperlinks to this Dashboard for Widgets
-                let hyperlinkedQuery = {"hyperlinkDashboardID": { $eq: req.query.id } };
+                let hyperlinkedQuery = {"hyperlinkDashboardID": { $eq: dashboardID } };
                 widgetModel.updateMany(hyperlinkedQuery, { $set: { hyperlinkDashboardID: null } }).exec();
             })
             .then(()=>{
                 // Remove this Dashboard used as template in Dashboards
-                let templateQuery = {"templateDashboardID": { $eq: req.query.id } };
+                let templateQuery = {"templateDashboardID": { $eq: dashboardID } };
                 widgetModel.updateMany(templateQuery, { $set: { templateDashboardID: null } }).exec();
             })
             .then(()=>{
                 // Remove this Dashboard used as startup for User
-                let startupQuery = {"preferenceStartupDashboardID": { $eq: req.query.id } };
+                let startupQuery = {"preferenceStartupDashboardID": { $eq: dashboardID } };
                 canvasUserModel.updateMany(startupQuery, { $set: { preferenceStartupDashboardID: null } }).exec();
             })
             .then(()=>{
                 // Remove this Dashboard used as Fav for User
-                let favouriteQuery = {"preferenceStartupDashboardID": { $eq: req.query.id } };
-                canvasUserModel.updateMany(favouriteQuery, { $set: { preferenceStartupDashboardID: null } }).exec();
-            //     favouriteDashboards
+                console.log('xx dashboardID', dashboardID)
+                canvasUserModel.update(
+                    {}, 
+                    { $pull: { "favouriteDashboards": dashboardID } },
+                    { "multi": true }
+                ).exec();
+                // db.survey.update( { _id: 1 }, { $pullAll: { scores: [ 0, 5 ] } } )
+// { $pull: { "configuration.links": { _id: req.params.linkId } } }, { safe: true, upsert: true },
+                
             })
             .then(()=>{
                 // Remove DashboardLayout
@@ -173,7 +179,7 @@ router.delete('/', (req, res, next) => {
     //     debugDev(moduleName + ": " + 'Error in canvasDashboardSummary.router', error.message)
     //     return res.status(400).json({
     //         "statusCode": "error",
-    //         "message" : "Error retrieving Current Dashboard ID: " + req.query.id,
+    //         "message" : "Error retrieving Current Dashboard ID: " + dashboardID,
     //         "data": null,
     //         "error": error
     //     });
