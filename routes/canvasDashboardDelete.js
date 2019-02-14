@@ -102,8 +102,8 @@ router.delete('/', (req, res, next) => {
                 dashboardTagModel.deleteMany(dashboardIDQuery).exec();
             })
             .then(()=>{
-                // Delete 
-                .deleteMany(dashboardIDQuery).exec();
+                // Delete DashboardPermissionModel
+                dashboardPermissionModel.deleteMany(dashboardIDQuery).exec();
             })
             .then(()=>{
                 // Delete 
@@ -117,7 +117,7 @@ router.delete('/', (req, res, next) => {
             })
             //      //        // 
                     //    //        // 
-                    //     // dashboardPermissionModel     
+                    //     //      
                     // hyperlinkedQuery = { hyperlinkDashboardID: req.query.id };
                     // widgetModel.find(hyperlinkedQuery).count( (err, numberHyperlinkedWidgets) => {
                     // const templateQuery = { templateDashboardID: req.query.id };
