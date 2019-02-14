@@ -86,7 +86,8 @@ router.delete('/', (req, res, next) => {
                 dashboardSnapshotModel.deleteMany(dashboardIDQuery).exec();
             })
             .then(()=>{
-                .deleteMany(dashboardIDQuery).exec();
+                // Delete CanvasCommentModel
+                canvasCommentModel.deleteMany(dashboardIDQuery).exec();
             })
             .then(()=>{
                 .deleteMany(dashboardIDQuery).exec();
