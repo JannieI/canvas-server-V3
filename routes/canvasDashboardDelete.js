@@ -110,10 +110,15 @@ router.delete('/', (req, res, next) => {
                 let hyperlinkedQuery = {"hyperlinkDashboardID": { $eq: req.query.id } };
                 widgetModel.updateMany(hyperlinkedQuery, { $set: { hyperlinkDashboardID: null } }).exec();
             })
+            .then(()=>{
+                // Remove this Dashboard used as template
+                let templateQuery = {"templateDashboardID": { $eq: req.query.id } };
+                widgetModel.updateMany(templateQuery, { $set: { templateDashboardID: null } }).exec();
+            })
 
             // 
-                    // widgetModel.find(hyperlinkedQuery).count( (err, numberHyperlinkedWidgets) => {
-                    // const templateQuery = { templateDashboardID: req.query.id };
+                    // 
+                    // const templateQuery = { : req.query.id };
                     // dashboardModel.find(templateQuery).count( (err, numberUsedAsTemplate) => {
                     // const canvasUserStrtQuery = { preferenceStartupDashboardID: req.query.id };
                     // canvasUserModel.find(canvasUserStrtQuery).count( (err, numberUsedAsStartup) => {
