@@ -21,7 +21,7 @@ router.put('/', (req, res, next) => {
     const dashboardID = +req.query.id;
 
     debugDev(moduleName + ": " + '## --------------------------');
-    debugDev(moduleName + ": " + '## GET Starting with Dashboard Summary with dashboard id:', dashboardID);
+    debugDev(moduleName + ": " + '## GET Starting with Discarding Dashboard dashboard id:', dashboardID);
     
     
     // Try
@@ -42,9 +42,10 @@ router.put('/', (req, res, next) => {
             ).exec()
             .then(()=>{
                 // Remove this Dashboard used in CanvasTasks
+                const draftDashboardQuery = { "originalDashboardID": { $eq: draftDashboardID } };
                 canvasTasksModel.update(
                     draftDashboardQuery, 
-                    { $set: { dashboardID: originalDashboardID } }
+                    { $set: { linkedDashboardID: originalDashboardID } }
                 ).exec()
             })
             .then(()=>{
