@@ -166,6 +166,14 @@ router.delete('/', (req, res, next) => {
                 // Remove this Dashboard from DashboardScheduleLog
                 dashboardScheduleLogModel.deleteMany(dashboardIDQuery).exec();
             })
+            .then(()=>{
+                // Remove this Dashboard used in CanvasTasks
+                canvasTasksModel.update(
+                    {}, 
+                    { $pull: { "dashboardID": dashboardID } },
+                    { "multi": true }
+                ).exec();
+            })
 
 
             .then(()=>{
