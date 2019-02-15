@@ -158,6 +158,10 @@ router.delete('/', (req, res, next) => {
                 // Remove this Dashboard from DashboardRecent
                 dashboardRecentModel.deleteMany(dashboardIDQuery).exec();
             })
+            .then(()=>{
+                // Remove this Dashboard from StatusBarMessageLogModel
+                statusBarMessageLogModel.deleteMany(dashboardIDQuery).exec();
+            })
 
 
             .then(()=>{
