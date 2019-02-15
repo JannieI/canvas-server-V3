@@ -36,11 +36,11 @@ router.delete('/', (req, res, next) => {
     const dashboardID = +req.query.id;
 
     debugDev(moduleName + ": " + '## --------------------------');
-    debugDev(moduleName + ": " + '## GET Starting with Dashboard Summary with dashboard id:', dashboardID);
+    debugDev(moduleName + ": " + '## GET Starting with Deleting Dashboard and related info for dashboard id:', dashboardID);
     
     
     // Try, in case model file does not exist
-    // try {
+    try {
         // Get the model dynamically (take note of file spelling = resource)
         const dashboardModel = require(dashboardSchema);
         const dashboardTabModel = require(dashboardTabSchema);
@@ -204,16 +204,16 @@ router.delete('/', (req, res, next) => {
                     err
                 ));
             });
-    // }
-    // catch (error) {
-    //     debugDev(moduleName + ": " + 'Error in canvasDashboardSummary.router', error.message)
-    //     return res.status(400).json({
-    //         "statusCode": "error",
-    //         "message" : "Error retrieving Current Dashboard ID: " + dashboardID,
-    //         "data": null,
-    //         "error": error
-    //     });
-    // };
+    }
+    catch (error) {
+        debugDev(moduleName + ": " + 'Error in canvasDashboardSummary.router', error.message)
+        return res.status(400).json({
+            "statusCode": "error",
+            "message" : "Error retrieving Current Dashboard ID: " + dashboardID,
+            "data": null,
+            "error": error
+        });
+    };
 
 })
 
