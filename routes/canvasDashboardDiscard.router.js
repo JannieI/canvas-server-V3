@@ -24,7 +24,7 @@ router.put('/', (req, res, next) => {
     debugDev(moduleName + ": " + '## GET Starting with Dashboard Summary with dashboard id:', dashboardID);
     
     
-    // Try, in case model file does not exist
+    // Try
     // try {
         // Get the models
         const canvasMessageModel = require(canvasMessageSchema);

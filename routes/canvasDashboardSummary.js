@@ -31,7 +31,7 @@ router.get('/', (req, res, next) => {
     debugDev(moduleName + ": " + '## --------------------------');
     debugDev(moduleName + ": " + '## GET Starting with Dashboard Summary with dashboard id:', id);
     
-    // Try, in case model file does not exist
+    // Try
     try {
         // Get the model dynamically (take note of file spelling = resource)
         const dashboardModel = require(dashboardSchema);

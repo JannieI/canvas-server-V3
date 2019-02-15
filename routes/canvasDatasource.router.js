@@ -25,7 +25,7 @@ router.get('/', (req, res, next) => {
     debugDev(moduleName + ": " + '## --------------------------', constants.SERVER_MICROSOFT_SQL);
     debugDev(moduleName + ": " + '## GET Starting with CurrentDashboard with query:', req.query);
 
-    // Try, in case model file does not exist
+    // Try
     try {
         // Get the model dynamically
         const datasourceModel = require(datasourceSchema);
@@ -124,7 +124,7 @@ router.put('/', (req, res, next) => {
     debugDev(moduleName + ": " + '## --------------------------');
     debugDev(moduleName + ": " + '## PUT Starting with canvasDatasources with query:', req.query);
 
-    // Try, in case model file does not exist
+    // Try
     try {
         // Get the model dynamically
         const datasourceModel = require(datasourceSchema);
@@ -446,7 +446,7 @@ router.post('/', (req, res, next) => {
     debugDev(moduleName + ": " + '## --------------------------');
     debugDev(moduleName + ": " + '## POST Starting with canvasDatasources with query:', req.query);
 
-    // Try, in case model file does not exist
+    // Try
     try {
         // Get the model dynamically
         const datasourceModel = require(datasourceSchema);

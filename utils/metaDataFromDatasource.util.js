@@ -74,7 +74,7 @@ module.exports = function metaDataFromDatasource(datasource, queryObject) {
     // This is the code to get /data?id=x from the Mongo data  ~  Disc Caching.
     // It works !!!
     //
-    // Try, in case model file does not exist
+    // Try
     // try {
     //     // Get the model
     //     const clientSchema = '../model.model/clientData.model';
