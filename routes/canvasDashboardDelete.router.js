@@ -41,7 +41,7 @@ router.delete('/', (req, res, next) => {
     
     // Try, in case model file does not exist
     try {
-        // Get the model dynamically (take note of file spelling = resource)
+        // Get the models
         const dashboardModel = require(dashboardSchema);
         const dashboardTabModel = require(dashboardTabSchema);
         const widgetModel = require(widgetSchema);
