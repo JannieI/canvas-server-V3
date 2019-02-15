@@ -37,8 +37,8 @@ router.delete('/', (req, res, next) => {
 
     debugDev(moduleName + ": " + '## --------------------------');
     debugDev(moduleName + ": " + '## GET Starting with Deleting Dashboard and related info for dashboard id:', dashboardID);
-    
-    
+
+
     // Try, in case model file does not exist
     try {
         // Get the models
@@ -61,7 +61,7 @@ router.delete('/', (req, res, next) => {
         const dashboardScheduleLogModel = require(dashboardScheduleLogSchema);
         const canvasTasksModel = require(canvasTasksSchema);
 
-        // NOTE: the INDENTATIONS below are non-standard for readibility given the 
+        // NOTE: the INDENTATIONS below are non-standard for readibility given the
         //       large amount of .then() ...
 
         // Delete Dashboards
@@ -75,7 +75,7 @@ router.delete('/', (req, res, next) => {
                 "Silly!!  Cannot delete ID <= 112 !",
                 null
             ));
-        };        
+        };
 
         // Delete Dashboard
         // TODO - is this chaining working correctly vs .then() inside .then() ... ?
@@ -138,7 +138,7 @@ router.delete('/', (req, res, next) => {
             .then(()=>{
                 // Remove this Dashboard used as Fav for Users
                 canvasUserModel.update(
-                    {}, 
+                    {},
                     { $pull: { "favouriteDashboards": dashboardID } },
                     { "multi": true }
                 ).exec();
@@ -168,16 +168,16 @@ router.delete('/', (req, res, next) => {
             })
             .then(()=>{
                 // Remove this Dashboard used in CanvasTasks
+                let linkedDashboardQuery = {"linkedDashboardID": { $eq: dashboardID } };
                 canvasTasksModel.update(
-                    {}, 
-                    { $pull: { "dashboardID": dashboardID } },
-                    { "multi": true }
+                    linkedDashboardQuery,
+                    { $set: { dashboardID: null } }
                 ).exec();
             })
 
 
             .then(()=>{
-                
+
                 // Return the data with metadata
                 return res.json(
                 createReturnObject(
@@ -195,7 +195,7 @@ router.delete('/', (req, res, next) => {
                     )
                 );
             })
-                                
+
             .catch((err)=>{
                 console.log("Error deleting Dashboard for ID: " + dashboardQuery, err);
                 return res.json(createErrorObject(
