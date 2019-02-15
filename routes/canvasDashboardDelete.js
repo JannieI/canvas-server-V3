@@ -21,6 +21,10 @@ const canvasUserSchema = '../models/canvasUsers.model';
 const dashboardLayoutSchema = '../models/dashboardLayouts.model';
 const widgetLayoutSchema = '../models/widgetLayouts.model';
 const dashboardRecentSchema = '../models/dashboardsRecent.model';
+const statusBarMessageLogSchema = '../models/statusBarMessageLogs.model';
+const dashboardScheduleLogSchema = '../models/dashboardScheduleLog.model';
+const canvasTasksSchema = '../models/canvasTasks.model';
+// const datasourceFilterSchema = '../models/datasourceFilter.model';  - TODO fix once designed
 
 // DELETE route
 router.delete('/', (req, res, next) => {
@@ -53,6 +57,9 @@ router.delete('/', (req, res, next) => {
         const dashboardLayoutModel = require(dashboardLayoutSchema);
         const widgetLayoutModel = require(widgetLayoutSchema);
         const dashboardRecentModel = require(dashboardRecentSchema);
+        const statusBarMessageLogModel = require(statusBarMessageLogSchema);
+        const dashboardScheduleLogModel = require(dashboardScheduleLogSchema);
+        const canvasTasksModel = require(canvasTasksSchema);
 
         // NOTE: the INDENTATIONS below are non-standard for readibility given the 
         //       large amount of .then() ...
@@ -151,6 +158,8 @@ router.delete('/', (req, res, next) => {
                 // Remove this Dashboard from DashboardRecent
                 dashboardRecentModel.deleteMany(dashboardIDQuery).exec();
             })
+
+
             .then(()=>{
                 
                 // Return the data with metadata
