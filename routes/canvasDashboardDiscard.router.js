@@ -33,7 +33,7 @@ router.put('/', (req, res, next) => {
         // Delete Dashboards
         const draftDashboardID = req.query.draftDashboardID;
         const originalDashboardID = req.query.originalDashboard;
-        const draftDashboardQuery = { dashboardID: draftDashboardID };
+        const draftDashboardQuery = { "dashboardID": { $eq: draftDashboardID } };
 
         // Remove this Dashboard used in Messages
         canvasMessageModel.updateMany(
