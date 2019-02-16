@@ -53,7 +53,7 @@ router.get('/', (req, res, next) => {
             if (err) {
                 return res.json(createErrorObject(
                     "error",
-                    "Error retrieving Dashboard for ID: " + dashboardQuery,
+                    "Error retrieving Dashboard for ID: " + id,
                     err
                 ));
             };

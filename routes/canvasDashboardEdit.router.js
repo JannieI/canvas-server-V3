@@ -125,7 +125,7 @@ router.get('/', (req, res, next) => {
                 console.log("Error editing (create Draft) Dashboard for ID: " + dashboardID, err);
                 return res.json(createErrorObject(
                     "error",
-                    "Error editing Dashboard for ID: " + dashboardQuery,
+                    "Error editing Dashboard for ID: " + dashboardID,
                     err
                 ));
             });
