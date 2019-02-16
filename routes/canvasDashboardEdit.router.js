@@ -34,7 +34,7 @@ router.get('/', (req, res, next) => {
     if (startPos > 0  &&  startPos < module.id.length) {
         moduleName = module.id.substring(startPos + 1);
     };
-    const dashboardID = +req.query.id;
+    const dashboardID = +req.query.dashboardID;
 
     debugDev(moduleName + ": " + '## --------------------------');
     debugDev(moduleName + ": " + '## GET Starting with Deleting Dashboard and related info for dashboard id:', dashboardID);
@@ -73,117 +73,32 @@ router.get('/', (req, res, next) => {
             ));
         };
 
-        console.log('dashboardID', dashboardID)
         // Delete Dashboards
         const dashboardQuery = { id: dashboardID };
         const dashboardIDQuery = {"dashboardID": { $eq: dashboardID } };
 
-        // TODO - Remove later !
-        if (dashboardID <= 112) {
-            return res.json(createErrorObject(
-                "error",
-                "Silly!!  Cannot delete ID <= 112 !",
-                null
-            ));
-        };
-
-        // Delete Dashboard
+        // Get Dashboard
         // TODO - is this chaining working correctly vs .then() inside .then() ... ?
-        dashboardModel.findOneAndDelete(dashboardQuery)
-            .then(()=>{
-                // Delete Dashboard Tabs
-                dashboardTabModel.deleteMany(dashboardIDQuery).exec();
+        dashboardModel.findOne(dashboardQuery)
+            .then((dashboard)=>{
+                if (dashboard == null) {
+                    return res.json(createErrorObject(
+                        "error",
+                        "Dashboard does not exist for ID: " + dashboardID,
+                        null
+                    )); 
+                };
+        
+                // Loop on Dashboard Tabs
+                dashboardTabModel.find(dashboardIDQuery)
+                    .then( tabs => {
+                        tabs.forEach( tab => {
+                        console.log('tab', tab.id, tab.dashboardID, tab.name)
+                        })
+                    })
             })
-            .then(()=>{
-                // Delete Widgets
-                widgetModel.deleteMany(dashboardIDQuery).exec();
-            })
-            .then(()=>{
-                // Delete DashboardSnapshotModel
-                dashboardSnapshotModel.deleteMany(dashboardIDQuery).exec();
-            })
-            .then(()=>{
-                // Remove this Dashboard used in Messages
-                canvasMessageModel.updateMany(dashboardIDQuery, { $set: { dashboardID: null } }).exec();
-            })
-            .then(()=>{
-                // Delete CanvasCommentModel
-                canvasCommentModel.deleteMany(dashboardIDQuery).exec();
-            })
-            .then(()=>{
-                // Delete DashboardScheduleModel
-                dashboardScheduleModel.deleteMany(dashboardIDQuery).exec();
-            })
-            .then(()=>{
-                // Delete DashboardSubscriptionModel
-                dashboardSubscriptionModel.deleteMany(dashboardIDQuery).exec();
-            })
-            .then(()=>{
-                // Delete DashboardTagModel
-                dashboardTagModel.deleteMany(dashboardIDQuery).exec();
-            })
-            .then(()=>{
-                // Delete DashboardPermissionModel
-                dashboardPermissionModel.deleteMany(dashboardIDQuery).exec();
-            })
-            .then(()=>{
-                // Delete WidgetCheckpointModel
-                widgetCheckpointModel.deleteMany(dashboardIDQuery).exec();
-            })
-            .then(()=>{
-                // Remove hyperlinks to this Dashboard for Widgets
-                let hyperlinkedQuery = {"hyperlinkDashboardID": { $eq: dashboardID } };
-                widgetModel.updateMany(hyperlinkedQuery, { $set: { hyperlinkDashboardID: null } }).exec();
-            })
-            .then(()=>{
-                // Remove this Dashboard used as template in Dashboards
-                let templateQuery = {"templateDashboardID": { $eq: dashboardID } };
-                dashboardModel.updateMany(templateQuery, { $set: { templateDashboardID: null } }).exec();
-            })
-            .then(()=>{
-                // Remove this Dashboard used as Startup for Users
-                let startupQuery = {"preferenceStartupDashboardID": { $eq: dashboardID } };
-                canvasUserModel.updateMany(startupQuery, { $set: { preferenceStartupDashboardID: null } }).exec();
-            })
-            .then(()=>{
-                // Remove this Dashboard used as Fav for Users
-                canvasUserModel.update(
-                    {},
-                    { $pull: { "favouriteDashboards": dashboardID } },
-                    { "multi": true }
-                ).exec();
-            })
-            .then(()=>{
-                // Remove DashboardLayout
-                dashboardLayoutModel.findOne(dashboardIDQuery)
-                    .then((doc)=>{
-                        // Remove WidgetLayout for this DashboardLayout
-                        if (doc != null) {
-                            widgetLayoutModel.deleteMany({ dashboardLayoutID: doc.id }).exec();
-                            dashboardLayoutModel.deleteMany(dashboardIDQuery).exec();
-                        };
-                    });
-            })
-            .then(()=>{
-                // Remove this Dashboard from DashboardRecent
-                dashboardRecentModel.deleteMany(dashboardIDQuery).exec();
-            })
-            .then(()=>{
-                // Remove this Dashboard from StatusBarMessageLogModel
-                statusBarMessageLogModel.deleteMany(dashboardIDQuery).exec();
-            })
-            .then(()=>{
-                // Remove this Dashboard from DashboardScheduleLog
-                dashboardScheduleLogModel.deleteMany(dashboardIDQuery).exec();
-            })
-            .then(()=>{
-                // Remove this Dashboard used in CanvasTasks
-                let linkedDashboardQuery = {"linkedDashboardID": { $eq: dashboardID } };
-                canvasTasksModel.update(
-                    linkedDashboardQuery,
-                    { $set: { dashboardID: null } }
-                ).exec();
-            })
+                // widgetModel.deleteMany(dashboardIDQuery).exec();
+                // widgetCheckpointModel.deleteMany(dashboardIDQuery).exec();
 
 
             .then(()=>{
@@ -192,7 +107,7 @@ router.get('/', (req, res, next) => {
                 return res.json(
                 createReturnObject(
                     "success",
-                    "Retrieved Summary for Dashboard ID: " ,
+                    "Edit: Draft Dashboard created with ID: " + dashboard.id,
                     "Okay",
                     null,
                     null,
@@ -207,10 +122,10 @@ router.get('/', (req, res, next) => {
             })
 
             .catch((err)=>{
-                console.log("Error deleting Dashboard for ID: " + dashboardQuery, err);
+                console.log("Error editing (create Draft) Dashboard for ID: " + dashboardID, err);
                 return res.json(createErrorObject(
                     "error",
-                    "Error deleting Dashboard for ID: " + dashboardQuery,
+                    "Error editing Dashboard for ID: " + dashboardQuery,
                     err
                 ));
             });
