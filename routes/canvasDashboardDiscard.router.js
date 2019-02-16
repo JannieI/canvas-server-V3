@@ -68,10 +68,10 @@ router.put('/', (req, res, next) => {
                 );
             })
             .catch((err)=>{
-                console.log("Error deleting Dashboard for ID: " + dashboardQuery, err);
+                console.log("Error deleting Dashboard for ID: " + dashboardID, err);
                 return res.json(createErrorObject(
                     "error",
-                    "Error deleting Dashboard for ID: " + dashboardQuery,
+                    "Error deleting Dashboard for ID: " + dashboardID,
                     err
                 ));
             });
