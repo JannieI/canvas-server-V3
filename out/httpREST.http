@@ -280,7 +280,7 @@ https://dev.virtualearth.net/REST/v1/Routes/DistanceMatrixAsync
 GET {{host}}/canvasDashboardSummary
 ?id=112
 ###
-PUT {{host}}/canvasDashboardDiscard
+GET {{host}}/canvasDashboardEdit
 ?draftDashboardID=113
 &originalDashboard=114
 ###

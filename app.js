@@ -36,13 +36,15 @@ const authGoogleRouter = require('./routes/authGoogle.router');
 const authLocalRouter = require('./routes/authLocal.router');
 const canvasDataRouter = require('./routes/canvasData.router');
 const canvasCurrentDashboard = require('./routes/canvasCurrentDashboard.router');
-const canvasDashboardSummary = require('./routes/canvasDashboardSummary');
-const canvasDashboardDelete = require('./routes/canvasDashboardDelete.router');
-const canvasDashboardDiscard = require('./routes/canvasDashboardDiscard.router');
 const canvasDatasource = require('./routes/canvasDatasource.router');
 const clientDataRouter = require('./routes/clientData.router');
 require('./auth/auth');
-
+const canvasDashboardEdit = require('./routes/canvasDashboardEdit.router');
+const canvasDashboardDiscard = require('./routes/canvasDashboardDiscard.router');
+const canvasDashboardDelete = require('./routes/canvasDashboardDelete.router');
+// canvasDashboardSaveDraft
+// canvasDashboardSaveAs
+const canvasDashboardSummary = require('./routes/canvasDashboardSummary');
 
 // Functions ---------------------------------------------------------------------
 function validateUser(req, res, next) {
@@ -196,9 +198,12 @@ app.use('/auth/google/', authGoogleRouter);
 
 // ALL Canvas data-related API calls
 app.use('/canvasCurrentDashboard', canvasCurrentDashboard);
-app.use('/canvasDashboardSummary', canvasDashboardSummary);
-app.use('/canvasDashboardDelete', canvasDashboardDelete);
+app.use('/canvasDashboardEdit', canvasDashboardEdit);
 app.use('/canvasDashboardDiscard', canvasDashboardDiscard);
+app.use('/canvasDashboardDelete', canvasDashboardDelete);
+// canvasDashboardSaveDraft
+// canvasDashboardSaveAs
+app.use('/canvasDashboardSummary', canvasDashboardSummary);
 app.use('/canvasDatasource', canvasDatasource);
 app.use('/canvasdata', canvasDataRouter);
 app.use('/clientdata', clientDataRouter);
