@@ -42,9 +42,9 @@ router.put('/', (req, res, next) => {
             ).exec()
             .then(()=>{
                 // Remove this Dashboard used in CanvasTasks
-                const draftDashboardQuery = { "originalDashboardID": { $eq: draftDashboardID } };
+                const taskDashboardQuery = { "linkedDashboardID": { $eq: draftDashboardID } };
                 canvasTasksModel.update(
-                    draftDashboardQuery, 
+                    taskDashboardQuery, 
                     { $set: { linkedDashboardID: originalDashboardID } }
                 ).exec()
             })
