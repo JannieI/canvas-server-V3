@@ -41,7 +41,7 @@ router.get('/', (req, res, next) => {
 
 
     // Try, in case model file does not exist
-    try {
+    // try {
         // Get the models
         const dashboardModel = require(dashboardSchema);
         const dashboardTabModel = require(dashboardTabSchema);
@@ -65,6 +65,15 @@ router.get('/', (req, res, next) => {
         // NOTE: the INDENTATIONS below are non-standard for readibility given the
         //       large amount of .then() ...
 
+        if (isNaN(dashboardID)) {
+            return res.json(createErrorObject(
+                "error",
+                "Query Parameter dashboardID is not a number or not provided",
+                null
+            ));
+        };
+
+        console.log('dashboardID', dashboardID)
         // Delete Dashboards
         const dashboardQuery = { id: dashboardID };
         const dashboardIDQuery = {"dashboardID": { $eq: dashboardID } };
@@ -205,16 +214,16 @@ router.get('/', (req, res, next) => {
                     err
                 ));
             });
-    }
-    catch (error) {
-        debugDev(moduleName + ": " + 'Error in canvasDashboardSummary.router', error.message)
-        return res.status(400).json({
-            "statusCode": "error",
-            "message" : "Error retrieving Current Dashboard ID: " + dashboardID,
-            "data": null,
-            "error": error
-        });
-    };
+    // }
+    // catch (error) {
+    //     debugDev(moduleName + ": " + 'Error in canvasDashboardSummary.router', error.message)
+    //     return res.status(400).json({
+    //         "statusCode": "error",
+    //         "message" : "Error retrieving Current Dashboard ID: " + dashboardID,
+    //         "data": null,
+    //         "error": error
+    //     });
+    // };
 
 })
 
