@@ -37,7 +37,7 @@ router.get('/', (req, res, next) => {
     const dashboardID = +req.query.dashboardID;
 
     debugDev(moduleName + ": " + '## --------------------------');
-    debugDev(moduleName + ": " + '## GET Starting with Deleting Dashboard and related info for dashboard id:', dashboardID);
+    debugDev(moduleName + ": " + '## GET Starting with Editing Dashboard and related info for dashboard id:', dashboardID);
 
 
     // Try, in case model file does not exist
@@ -46,21 +46,8 @@ router.get('/', (req, res, next) => {
         const dashboardModel = require(dashboardSchema);
         const dashboardTabModel = require(dashboardTabSchema);
         const widgetModel = require(widgetSchema);
-        const dashboardSnapshotModel = require(dashboardSnapshotSchema);
-        const canvasMessageModel = require(canvasMessageSchema);
-        const canvasCommentModel = require(canvasCommentSchema);
-        const dashboardScheduleModel = require(dashboardScheduleSchema);
-        const dashboardSubscriptionModel = require(dashboardSubscriptionSchema);
-        const dashboardTagModel = require(DashboardTagSchema);
-        const dashboardPermissionModel = require(dashboardPermissionSchema);
         const widgetCheckpointModel = require(widgetCheckpointSchema);
-        const canvasUserModel = require(canvasUserSchema);
-        const dashboardLayoutModel = require(dashboardLayoutSchema);
         const widgetLayoutModel = require(widgetLayoutSchema);
-        const dashboardRecentModel = require(dashboardRecentSchema);
-        const statusBarMessageLogModel = require(statusBarMessageLogSchema);
-        const dashboardScheduleLogModel = require(dashboardScheduleLogSchema);
-        const canvasTasksModel = require(canvasTasksSchema);
 
         // NOTE: the INDENTATIONS below are non-standard for readibility given the
         //       large amount of .then() ...
