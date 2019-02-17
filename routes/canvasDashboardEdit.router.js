@@ -70,6 +70,11 @@ router.get('/', (req, res, next) => {
                 // Could be null if nothing was found
                 if (dashboard != null) {
                 
+                    // Arrays to be returned 
+                    let returnDraftDashboardTabs = [];
+                    let returnWidgets = [];
+                    let returnWidgetCheckpoints = [];
+
                     // Create a new Draft Dashboard, pointing to the original
                     let today = new Date();
                     let newDraftDashboard = JSON.parse(JSON.stringify(dashboard));
@@ -121,6 +126,7 @@ router.get('/', (req, res, next) => {
                                         newDraftDashboardTab.dateEdited = today;
 
                                         let dashboardTabAdd = new dashboardTabModel(newDraftDashboardTab);
+                                        returnDraftDashboardTabs = returnDraftDashboardTabs.push(newDraftDashboardTab);
                                         dashboardTabAdd.save()
                                             .then(addedDraftDashboardTab => {
                                                 debugDev(moduleName + ": " + 'New Tab added' + addedDraftDashboardTab.id, addedDraftDashboardTab.originalID)
@@ -143,6 +149,7 @@ router.get('/', (req, res, next) => {
                                                             newDraftWidget.dateEdited = today;
 
                                                             let dashboardWidgetAdd = new widgetModel(newDraftWidget);
+                                                            returnWidgets = returnWidgets.push(newDraftWidget);
                                                             dashboardWidgetAdd.save()
                                                                 .then(addedDraftWidget => {
                                                                     debugDev(moduleName + ": " + 'New Widget added' + addedDraftWidget.id, widget.id)
@@ -169,6 +176,7 @@ router.get('/', (req, res, next) => {
                                                                                 newDraftWidgetCheckpoint.widgetSpec.originalID = widgetCheckpoint.id;
 
                                                                                 let dashboardWidgetCheckpointAdd = new widgetCheckpointModel(newDraftWidgetCheckpoint);
+                                                                                returnWidgetCheckpoints = returnWidgetCheckpoints.push(newDraftWidgetCheckpoint;)
                                                                                 dashboardWidgetCheckpointAdd.save()
                                                                                     .then(addedDraftWidgetCheckpoint => {
                                                                                         debugDev(moduleName + ": " + 'New Widget Checkpoint added' + addedDraftWidgetCheckpoint.id, addedDraftDashboardTab.id)
@@ -188,7 +196,12 @@ router.get('/', (req, res, next) => {
                                         createReturnObject(
                                             "success",
                                             "Edit: Draft Dashboard created with ID: " + dashboardID,
-                                            addedDraftDashboard,
+                                            { 
+                                                dashboard: addedDraftDashboard,
+                                                dashboardTabs: returnDraftDashboardTabs,
+                                                widgets: returnWidgets,
+                                                widgetCheckpoints: returnWidgetCheckpoints
+                                            },
                                             null,
                                             null,
                                             null,
