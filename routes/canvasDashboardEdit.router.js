@@ -83,6 +83,7 @@ router.get('/', (req, res, next) => {
             .then((dashboard)=>{
                 if (dashboard != null) {
                     if (dashboard == null) {
+                        console.log("Dashboard does not exist for ID: " + dashboardID)
                         return res.json(createErrorObject(
                             "error",
                             "Dashboard does not exist for ID: " + dashboardID,
@@ -95,17 +96,19 @@ router.get('/', (req, res, next) => {
                         .then( tabs => {
                             tabs.forEach( tab => {
                                 console.log('tab', tab.id, tab.dashboardID, tab.name)
-
-                                widgetQuery = {dashboardID: dashboardID,                    // FK to DashboardID to which widget belongs
-                                    dashboardTabID: tab.id}
-                                widgetModel.find(widgetQuery)
-                                    .then( widgets => {
-                                        widgets.forEach( widget => {
-                                            console.log ('widget', widget.id, widget.dashboardTabID)
-                                        })
-            // widgetCheckpointModel.deleteMany(dashboardIDQuery).exec();
-
-                                        // Return the data with metadata
+ 
+                                // widgetQuery = {dashboardID: dashboardID,                    // FK to DashboardID to which widget belongs
+                                //     dashboardTabID: tab.id}
+                                // widgetModel.find(widgetQuery)
+                                //     .then( widgets => {
+                                //         widgets.forEach( widget => {
+                                //             console.log ('widget', widget.id, widget.dashboardTabID)
+                                //         })
+                                //     // widgetCheckpointModel
+                            })
+                        })
+                        .then( () => {
+                                //         // Return the data with metadata
                                         return res.json(
                                             createReturnObject(
                                                 "success",
@@ -121,16 +124,16 @@ router.get('/', (req, res, next) => {
                                                 null
                                                 )
                                             );
-                                        })
-                                    })
-                                    .catch( err => {
-                                        return res.json(createErrorObject(
-                                            "error",
-                                            "Error reading Widgets for ID: " + dashboardID,
-                                            err
-                                        )); 
+                                    //     })
+                                    // })
+                                //     .catch( err => {
+                                //         return res.json(createErrorObject(
+                                //             "error",
+                                //             "Error reading Widgets for ID: " + dashboardID,
+                                //             err
+                                //         )); 
                 
-                                    })
+                                    // })
                         })
                         .catch( err => {
                             return res.json(createErrorObject(
