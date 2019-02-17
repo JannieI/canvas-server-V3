@@ -188,7 +188,7 @@ router.get('/', (req, res, next) => {
                                         createReturnObject(
                                             "success",
                                             "Edit: Draft Dashboard created with ID: " + dashboardID,
-                                            "Okay",
+                                            addedDraftDashboard,
                                             null,
                                             null,
                                             null,
