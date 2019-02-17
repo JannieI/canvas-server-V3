@@ -69,14 +69,6 @@ router.get('/', (req, res, next) => {
         dashboardModel.findOne(dashboardQuery)
             .then((dashboard)=>{
                 if (dashboard != null) {
-                    if (dashboard == null) {
-                        console.log("Dashboard does not exist for ID: " + dashboardID)
-                        return res.json(createErrorObject(
-                            "error",
-                            "Dashboard does not exist for ID: " + dashboardID,
-                            null
-                        )); 
-                    };
                 
                     let newDashboard = JSON.parse(JSON.stringify(dashboard));
                     newDashboard._id = null;
@@ -87,7 +79,15 @@ router.get('/', (req, res, next) => {
                     dashboardAdd.save()
                         .then(addDashboard => {
                             debugDev(moduleName + ": " + 'New record added' + addDashboard.id)
-                                
+                               
+
+                            // let originalDashboard = JSON.parse(JSON.stringify(dashboard));
+                            // originalDashboard.draftID = addedDraftDashboard.id;
+                            // let dashboardOrignal = new dashboardModel(originalDashboard);
+                            // dashboardOrignal.save()
+                            //     .then( () => console.log('ADDED')
+                            //     )
+ 
                             // Loop on Dashboard Tabs
                             dashboardTabModel.find(dashboardIDQuery)
                                 .then( tabs => {
@@ -158,8 +158,15 @@ router.get('/', (req, res, next) => {
     
                         })
 
+                } else {
+                    console.log("Dashboard does not exist for ID: " + dashboardID)
+                    return res.json(createErrorObject(
+                        "error",
+                        "Dashboard does not exist for ID: " + dashboardID,
+                        null
+                    )); 
                 };
-            })
+        })
             .catch((err)=>{
                 console.log("Error editing (create Draft) Dashboard for ID: " + dashboardID, err);
                 return res.json(createErrorObject(
