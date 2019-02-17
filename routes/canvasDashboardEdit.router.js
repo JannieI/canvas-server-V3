@@ -78,9 +78,11 @@ router.get('/', (req, res, next) => {
                         )); 
                     };
                 
-                    let newDashboard = dashboard;
+                    let newDashboard = JSON.parse(JSON.stringify(dashboard));
                     newDashboard._id = null;
                     newDashboard.id = null;
+                    newDashboard.originalID = dashboard.id;
+                    newDashboard.draftID = null;
                     let dashboardAdd = new dashboardModel(newDashboard);
                     dashboardAdd.save()
                         .then(addDashboard => {
@@ -146,6 +148,14 @@ router.get('/', (req, res, next) => {
                                     )); 
             
                                 })
+                        })
+                        .catch( err => {
+                            return res.json(createErrorObject(
+                                "error",
+                                "Error Adding Dashboard for ID: " + dashboardID,
+                                err
+                            )); 
+    
                         })
 
                 };
