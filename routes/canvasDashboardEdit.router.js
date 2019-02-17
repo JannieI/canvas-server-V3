@@ -97,14 +97,15 @@ router.get('/', (req, res, next) => {
                             tabs.forEach( tab => {
                                 console.log('tab', tab.id, tab.dashboardID, tab.name)
  
-                                // widgetQuery = {dashboardID: dashboardID,                    // FK to DashboardID to which widget belongs
-                                //     dashboardTabID: tab.id}
-                                // widgetModel.find(widgetQuery)
-                                //     .then( widgets => {
-                                //         widgets.forEach( widget => {
-                                //             console.log ('widget', widget.id, widget.dashboardTabID)
-                                //         })
-                                //     // widgetCheckpointModel
+                                widgetQuery = {dashboardID: dashboardID,                    // FK to DashboardID to which widget belongs
+                                    dashboardTabID: tab.id}
+                                widgetModel.find(widgetQuery)
+                                    .then( widgets => {
+                                        widgets.forEach( widget => {
+                                            console.log ('widget', widget.id, widget.dashboardTabID)
+                                        })
+                                    // widgetCheckpointModel
+                                })
                             })
                         })
                         .then( () => {
