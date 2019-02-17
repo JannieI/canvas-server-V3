@@ -124,30 +124,54 @@ router.get('/', (req, res, next) => {
                                         dashboardTabAdd.save()
                                             .then(addedDraftDashboardTab => {
                                                 debugDev(moduleName + ": " + 'New Tab added' + addedDraftDashboardTab.id, addedDraftDashboardTab.originalID)
-                                            })
-                                        
+                                                widgetQuery = {dashboardID: dashboardID, dashboardTabID: tab.id}
+                                                widgetModel.find(widgetQuery)
+                                                    .then( widgets => {
+                                                        widgets.forEach( widget => {
+                                                            console.log ('widget', widget.id, widget.dashboardTabID)
+
+                                                            // Create a new Widget, pointing to the original
+                                                            let newDraftWidget = JSON.parse(JSON.stringify(widget));
+                                                            newDraftWidget._id = null;
+                                                            newDraftWidget.id = null;
+                                                            newDraftWidget.dashboardID = addedDraftDashboard.id;
+                                                            newDraftWidget.dashboardTabID = addedDraftDashboardTab.id;
+                                                            newDraftWidget.originalID = widget.id;
+
+                                                            // TODO - add current user !!
+                                                            newDraftWidget.editor = '';
+                                                            newDraftWidget.dateEdited = today;
+
+                                                            let dashboardWidgetAdd = new widgetModel(newDraftWidget);
+                                                            dashboardWidgetAdd.save()
+                                                                .then(addedDraftWidget => {
+                                                                    debugDev(moduleName + ": " + 'New Widget added' + addedDraftWidget.id, widget.id)
 
 
 
-
-
-                                        
-                                        widgetQuery = {dashboardID: dashboardID,                    // FK to DashboardID to which widget belongs
-                                            dashboardTabID: tab.id}
-                                        widgetModel.find(widgetQuery)
-                                            .then( widgets => {
-                                                widgets.forEach( widget => {
-                                                    console.log ('widget', widget.id, widget.dashboardTabID)
-                                                    widgetCheckpointQuery = {dashboardID: dashboardID,                    // FK to DashboardID to which widget belongs
-                                                        widgetID: widget.id}
-                                                        widgetCheckpointModel.find(widgetCheckpointQuery)
-                                                        .then( widgetCheckpoints => {
-                                                            widgetCheckpoints.forEach( widgetCheckpoint => {
-                                                                console.log ('widgetCheckpoint', widgetCheckpoint.id, widget.id, widget.dashboardTabID)
-                                                            })
+                                                                    widgetCheckpointQuery = {dashboardID: dashboardID,                    // FK to DashboardID to which widget belongs
+                                                                        widgetID: widget.id}
+                                                                        widgetCheckpointModel.find(widgetCheckpointQuery)
+                                                                        .then( widgetCheckpoints => {
+                                                                            widgetCheckpoints.forEach( widgetCheckpoint => {
+                                                                                console.log ('widgetCheckpoint', widgetCheckpoint.id, widget.id, widget.dashboardTabID)
+                                                                            })
+                                                                        })
                                                         })
-                                                })
+                                                    })
+
+
+
+
                                             })
+                                        
+
+
+
+
+
+                                        
+                                        
                                     })
                                 })
                                 .then( () => {
