@@ -157,6 +157,7 @@ router.get('/', (req, res, next) => {
                                                                                 console.log ('widgetCheckpoint', widgetCheckpoint.id, widget.id, widget.dashboardTabID)
                                                                             })
                                                                         })
+                                                                })
                                                         })
                                                     })
 
