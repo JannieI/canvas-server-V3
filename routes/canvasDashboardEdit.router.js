@@ -70,7 +70,7 @@ router.get('/', (req, res, next) => {
                 // Could be null if nothing was found
                 if (dashboard != null) {
                 
-                    // Create a new Draft Dashboard, poinint to the original
+                    // Create a new Draft Dashboard, pointing to the original
                     let today = new Date();
                     let newDraftDashboard = JSON.parse(JSON.stringify(dashboard));
                     newDraftDashboard._id = null;
@@ -82,11 +82,12 @@ router.get('/', (req, res, next) => {
                     newDraftDashboard.editor = '';
                     newDraftDashboard.dateEdited = today;
                     newDraftDashboard.accessType = 'Private';
+                    newDraftDashboard.state = 'Draft';
 
                     let dashboardAdd = new dashboardModel(newDraftDashboard);
                     dashboardAdd.save()
                         .then(addedDraftDashboard => {
-                            debugDev(moduleName + ": " + 'New record added' + addedDraftDashboard.id)
+                            debugDev(moduleName + ": " + 'New Dashboard added' + addedDraftDashboard.id)
                                
                             // Update the Original Dashboard to point to the Draft
                             // Note - can be done in background since we dont use it
@@ -99,15 +100,38 @@ router.get('/', (req, res, next) => {
                                   new: true,                       // return updated doc
                                   runValidators: true              // validate before update
                                 })
-                                .then( (doc) => console.log('SAVED', doc.id)
+                                .then( (doc) => console.log('Original Dashboard SAVED', doc.id)
                                 )
  
                             // Loop on Dashboard Tabs
                             dashboardTabModel.find(dashboardIDQuery)
                                 .then( tabs => {
                                     tabs.forEach( tab => {
-                                        console.log('tab', tab.id, tab.dashboardID, tab.name)
-        
+                                        console.log('Read tab', tab.id, tab.dashboardID, tab.name)
+                                    
+                                        // Create a new Tab, pointing to the original
+                                        let newDraftDashboardTab = JSON.parse(JSON.stringify(tab));
+                                        newDraftDashboardTab._id = null;
+                                        newDraftDashboardTab.id = null;
+                                        newDraftDashboardTab.dashboardID = addedDraftDashboard.id;
+                                        newDraftDashboardTab.originalID = tab.id;
+
+                                        // TODO - add current user !!
+                                        newDraftDashboardTab.editor = '';
+                                        newDraftDashboardTab.dateEdited = today;
+
+                                        let dashboardTabAdd = new dashboardModel(newDraftDashboardTab);
+                                        dashboardTabAdd.save()
+                                            .then(addedDraftDashboardTab => {
+                                                debugDev(moduleName + ": " + 'New Tab added' + addedDraftDashboardTab.id, addedDraftDashboardTab.originalID)
+
+                                        
+
+
+
+
+
+                                        
                                         widgetQuery = {dashboardID: dashboardID,                    // FK to DashboardID to which widget belongs
                                             dashboardTabID: tab.id}
                                         widgetModel.find(widgetQuery)
