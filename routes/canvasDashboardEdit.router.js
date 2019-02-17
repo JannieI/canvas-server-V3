@@ -120,11 +120,11 @@ router.get('/', (req, res, next) => {
                                         newDraftDashboardTab.editor = '';
                                         newDraftDashboardTab.dateEdited = today;
 
-                                        let dashboardTabAdd = new dashboardModel(newDraftDashboardTab);
+                                        let dashboardTabAdd = new dashboardTabModel(newDraftDashboardTab);
                                         dashboardTabAdd.save()
                                             .then(addedDraftDashboardTab => {
                                                 debugDev(moduleName + ": " + 'New Tab added' + addedDraftDashboardTab.id, addedDraftDashboardTab.originalID)
-
+                                            })
                                         
 
 
