@@ -80,13 +80,17 @@ router.get('/', (req, res, next) => {
                         .then(addedDraftDashboard => {
                             debugDev(moduleName + ": " + 'New record added' + addedDraftDashboard.id)
                                
-
-                            // let originalDashboard = JSON.parse(JSON.stringify(dashboard));
-                            // originalDashboard.draftID = addedDraftDashboard.id;
-                            // let dashboardOrignal = new dashboardModel(originalDashboard);
-                            // dashboardOrignal.save()
-                            //     .then( () => console.log('ADDED')
-                            //     )
+                            let originalDashboard = JSON.parse(JSON.stringify(dashboard));
+                            originalDashboard.draftID = addedDraftDashboard.id;
+                            dashboardModel.findOneAndUpdate(
+                                dashboardQuery,
+                                originalDashboard,
+                                {
+                                  new: true,                       // return updated doc
+                                  runValidators: true              // validate before update
+                                })
+                                .then( (doc) => console.log('SAVED', doc.id)
+                                )
  
                             // Loop on Dashboard Tabs
                             dashboardTabModel.find(dashboardIDQuery)
