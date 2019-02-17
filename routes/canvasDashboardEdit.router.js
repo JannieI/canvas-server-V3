@@ -81,46 +81,67 @@ router.get('/', (req, res, next) => {
         // TODO - is this chaining working correctly vs .then() inside .then() ... ?
         dashboardModel.findOne(dashboardQuery)
             .then((dashboard)=>{
-                if (dashboard == null) {
-                    return res.json(createErrorObject(
-                        "error",
-                        "Dashboard does not exist for ID: " + dashboardID,
-                        null
-                    )); 
-                };
-        
-                // Loop on Dashboard Tabs
-                dashboardTabModel.find(dashboardIDQuery)
-                    .then( tabs => {
-                        tabs.forEach( tab => {
-                        console.log('tab', tab.id, tab.dashboardID, tab.name)
+                if (dashboard != null) {
+                    if (dashboard == null) {
+                        return res.json(createErrorObject(
+                            "error",
+                            "Dashboard does not exist for ID: " + dashboardID,
+                            null
+                        )); 
+                    };
+                
+                    // Loop on Dashboard Tabs
+                    dashboardTabModel.find(dashboardIDQuery)
+                        .then( tabs => {
+                            tabs.forEach( tab => {
+                                console.log('tab', tab.id, tab.dashboardID, tab.name)
+
+                                widgetQuery = {dashboardID: dashboardID,                    // FK to DashboardID to which widget belongs
+                                    dashboardTabID: tab.id}
+                                widgetModel.find(widgetQuery)
+                                    .then( widgets => {
+                                        widgets.forEach( widget => {
+                                            console.log ('widget', widget.id, widget.dashboardTabID)
+                                        })
+            // widgetCheckpointModel.deleteMany(dashboardIDQuery).exec();
+
+                                        // Return the data with metadata
+                                        return res.json(
+                                            createReturnObject(
+                                                "success",
+                                                "Edit: Draft Dashboard created with ID: " + dashboardID,
+                                                "Okay",
+                                                null,
+                                                null,
+                                                null,
+                                                null,
+                                                null,
+                                                1,
+                                                null,
+                                                null
+                                                )
+                                            );
+                                        })
+                                    })
+                                    .catch( err => {
+                                        return res.json(createErrorObject(
+                                            "error",
+                                            "Error reading Widgets for ID: " + dashboardID,
+                                            err
+                                        )); 
+                
+                                    })
                         })
-                    })
+                        .catch( err => {
+                            return res.json(createErrorObject(
+                                "error",
+                                "Error reading Tabs for ID: " + dashboardID,
+                                err
+                            )); 
+    
+                        })
+                };
             })
-                // widgetModel.deleteMany(dashboardIDQuery).exec();
-                // widgetCheckpointModel.deleteMany(dashboardIDQuery).exec();
-
-
-            .then(()=>{
-
-                // Return the data with metadata
-                return res.json(
-                createReturnObject(
-                    "success",
-                    "Edit: Draft Dashboard created with ID: " + dashboard.id,
-                    "Okay",
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    1,
-                    null,
-                    null
-                    )
-                );
-            })
-
             .catch((err)=>{
                 console.log("Error editing (create Draft) Dashboard for ID: " + dashboardID, err);
                 return res.json(createErrorObject(
