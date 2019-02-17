@@ -64,22 +64,32 @@ router.get('/', (req, res, next) => {
         const dashboardQuery = { id: dashboardID };
         const dashboardIDQuery = {"dashboardID": { $eq: dashboardID } };
 
-        // Get Dashboard
-        // TODO - is this chaining working correctly vs .then() inside .then() ... ?
+        // Find Original Dashboard
         dashboardModel.findOne(dashboardQuery)
             .then((dashboard)=>{
+                // Could be null if nothing was found
                 if (dashboard != null) {
                 
+                    // Create a new Draft Dashboard, poinint to the original
+                    let today = new Date();
                     let newDraftDashboard = JSON.parse(JSON.stringify(dashboard));
                     newDraftDashboard._id = null;
                     newDraftDashboard.id = null;
                     newDraftDashboard.originalID = dashboard.id;
                     newDraftDashboard.draftID = null;
+
+                    // TODO - add current user !!
+                    newDraftDashboard.editor = '';
+                    newDraftDashboard.dateEdited = today;
+                    newDraftDashboard.accessType = 'Private';
+
                     let dashboardAdd = new dashboardModel(newDraftDashboard);
                     dashboardAdd.save()
                         .then(addedDraftDashboard => {
                             debugDev(moduleName + ": " + 'New record added' + addedDraftDashboard.id)
                                
+                            // Update the Original Dashboard to point to the Draft
+                            // Note - can be done in background since we dont use it
                             let originalDashboard = JSON.parse(JSON.stringify(dashboard));
                             originalDashboard.draftID = addedDraftDashboard.id;
                             dashboardModel.findOneAndUpdate(
