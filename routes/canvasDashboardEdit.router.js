@@ -70,15 +70,15 @@ router.get('/', (req, res, next) => {
             .then((dashboard)=>{
                 if (dashboard != null) {
                 
-                    let newDashboard = JSON.parse(JSON.stringify(dashboard));
-                    newDashboard._id = null;
-                    newDashboard.id = null;
-                    newDashboard.originalID = dashboard.id;
-                    newDashboard.draftID = null;
-                    let dashboardAdd = new dashboardModel(newDashboard);
+                    let newDraftDashboard = JSON.parse(JSON.stringify(dashboard));
+                    newDraftDashboard._id = null;
+                    newDraftDashboard.id = null;
+                    newDraftDashboard.originalID = dashboard.id;
+                    newDraftDashboard.draftID = null;
+                    let dashboardAdd = new dashboardModel(newDraftDashboard);
                     dashboardAdd.save()
-                        .then(addDashboard => {
-                            debugDev(moduleName + ": " + 'New record added' + addDashboard.id)
+                        .then(addedDraftDashboard => {
+                            debugDev(moduleName + ": " + 'New record added' + addedDraftDashboard.id)
                                
 
                             // let originalDashboard = JSON.parse(JSON.stringify(dashboard));
