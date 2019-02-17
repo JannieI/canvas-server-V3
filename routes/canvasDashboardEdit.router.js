@@ -69,8 +69,8 @@ router.get('/', (req, res, next) => {
             .then((dashboard)=>{
                 // Could be null if nothing was found
                 if (dashboard != null) {
-                
-                    // Arrays to be returned 
+
+                    // Arrays to be returned
                     let returnDraftDashboardTabs = [];
                     let returnWidgets = [];
                     let returnWidgetCheckpoints = [];
@@ -93,7 +93,7 @@ router.get('/', (req, res, next) => {
                     dashboardAdd.save()
                         .then(addedDraftDashboard => {
                             debugDev(moduleName + ": " + 'New Dashboard added' + addedDraftDashboard.id)
-                               
+
                             // Update the Original Dashboard to point to the Draft
                             // Note - can be done in background since we dont use it
                             let originalDashboard = JSON.parse(JSON.stringify(dashboard));
@@ -107,13 +107,13 @@ router.get('/', (req, res, next) => {
                                 })
                                 .then( (doc) => console.log('Original Dashboard SAVED', doc.id)
                                 )
- 
+
                             // Loop on Dashboard Tabs
                             dashboardTabModel.find(dashboardIDQuery)
                                 .then( tabs => {
                                     tabs.forEach( tab => {
                                         console.log('Read tab', tab.id, tab.dashboardID, tab.name)
-                                    
+
                                         // Create a new Tab, pointing to the original
                                         let newDraftDashboardTab = JSON.parse(JSON.stringify(tab));
                                         newDraftDashboardTab._id = null;
@@ -126,7 +126,8 @@ router.get('/', (req, res, next) => {
                                         newDraftDashboardTab.dateEdited = today;
 
                                         let dashboardTabAdd = new dashboardTabModel(newDraftDashboardTab);
-                                        returnDraftDashboardTabs = returnDraftDashboardTabs.push(newDraftDashboardTab);
+                                        returnDraftDashboardTabs.push(newDraftDashboardTab);
+                                        console.log('xx returnDraftDashboardTabs', returnDraftDashboardTabs)
                                         dashboardTabAdd.save()
                                             .then(addedDraftDashboardTab => {
                                                 debugDev(moduleName + ": " + 'New Tab added' + addedDraftDashboardTab.id, addedDraftDashboardTab.originalID)
@@ -149,7 +150,9 @@ router.get('/', (req, res, next) => {
                                                             newDraftWidget.dateEdited = today;
 
                                                             let dashboardWidgetAdd = new widgetModel(newDraftWidget);
-                                                            returnWidgets = returnWidgets.push(newDraftWidget);
+
+                                                            returnWidgets.push(newDraftWidget);
+                                                            console.log('xx returnW', returnWidgets)
                                                             dashboardWidgetAdd.save()
                                                                 .then(addedDraftWidget => {
                                                                     debugDev(moduleName + ": " + 'New Widget added' + addedDraftWidget.id, widget.id)
@@ -176,7 +179,7 @@ router.get('/', (req, res, next) => {
                                                                                 newDraftWidgetCheckpoint.widgetSpec.originalID = widgetCheckpoint.id;
 
                                                                                 let dashboardWidgetCheckpointAdd = new widgetCheckpointModel(newDraftWidgetCheckpoint);
-                                                                                returnWidgetCheckpoints = returnWidgetCheckpoints.push(newDraftWidgetCheckpoint;)
+                                                                                returnWidgetCheckpoints.push(newDraftWidgetCheckpoint);
                                                                                 dashboardWidgetCheckpointAdd.save()
                                                                                     .then(addedDraftWidgetCheckpoint => {
                                                                                         debugDev(moduleName + ": " + 'New Widget Checkpoint added' + addedDraftWidgetCheckpoint.id, addedDraftDashboardTab.id)
@@ -196,7 +199,7 @@ router.get('/', (req, res, next) => {
                                         createReturnObject(
                                             "success",
                                             "Edit: Draft Dashboard created with ID: " + dashboardID,
-                                            { 
+                                            {
                                                 dashboard: addedDraftDashboard,
                                                 dashboardTabs: returnDraftDashboardTabs,
                                                 widgets: returnWidgets,
@@ -219,8 +222,8 @@ router.get('/', (req, res, next) => {
                                         //             "error",
                                         //             "Error reading Widgets for ID: " + dashboardID,
                                         //             err
-                                        //         )); 
-                        
+                                        //         ));
+
                                             // })
                                 })
                                 .catch( err => {
@@ -228,8 +231,8 @@ router.get('/', (req, res, next) => {
                                         "error",
                                         "Error reading Tabs for ID: " + dashboardID,
                                         err
-                                    )); 
-            
+                                    ));
+
                                 })
                         })
                         .catch( err => {
@@ -237,8 +240,8 @@ router.get('/', (req, res, next) => {
                                 "error",
                                 "Error Adding Dashboard for ID: " + dashboardID,
                                 err
-                            )); 
-    
+                            ));
+
                         })
 
                 } else {
@@ -247,7 +250,7 @@ router.get('/', (req, res, next) => {
                         "error",
                         "Dashboard does not exist for ID: " + dashboardID,
                         null
-                    )); 
+                    ));
                 };
         })
         .catch((err)=>{
