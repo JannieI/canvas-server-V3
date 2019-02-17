@@ -91,59 +91,76 @@ router.get('/', (req, res, next) => {
                         )); 
                     };
                 
-                    // Loop on Dashboard Tabs
-                    dashboardTabModel.find(dashboardIDQuery)
-                        .then( tabs => {
-                            tabs.forEach( tab => {
-                                console.log('tab', tab.id, tab.dashboardID, tab.name)
- 
-                                widgetQuery = {dashboardID: dashboardID,                    // FK to DashboardID to which widget belongs
-                                    dashboardTabID: tab.id}
-                                widgetModel.find(widgetQuery)
-                                    .then( widgets => {
-                                        widgets.forEach( widget => {
-                                            console.log ('widget', widget.id, widget.dashboardTabID)
-                                        })
-                                    // widgetCheckpointModel
+                    let newDashboard = dashboard;
+                    newDashboard._id = null;
+                    newDashboard.id = null;
+                    let dashboardAdd = new dashboardModel(newDashboard);
+                    dashboardAdd.save()
+                        .then(addDashboard => {
+                            debugDev(moduleName + ": " + 'New record added' + addDashboard.id)
+                                
+                            // Loop on Dashboard Tabs
+                            dashboardTabModel.find(dashboardIDQuery)
+                                .then( tabs => {
+                                    tabs.forEach( tab => {
+                                        console.log('tab', tab.id, tab.dashboardID, tab.name)
+        
+                                        widgetQuery = {dashboardID: dashboardID,                    // FK to DashboardID to which widget belongs
+                                            dashboardTabID: tab.id}
+                                        widgetModel.find(widgetQuery)
+                                            .then( widgets => {
+                                                widgets.forEach( widget => {
+                                                    console.log ('widget', widget.id, widget.dashboardTabID)
+                                                    widgetCheckpointQuery = {dashboardID: dashboardID,                    // FK to DashboardID to which widget belongs
+                                                        widgetID: widget.id}
+                                                        widgetCheckpointModel.find(widgetCheckpointQuery)
+                                                        .then( widgetCheckpoints => {
+                                                            widgetCheckpoints.forEach( widgetCheckpoint => {
+                                                                console.log ('widgetCheckpoint', widgetCheckpoint.id, widget.id, widget.dashboardTabID)
+                                                            })
+                                                        })
+                                                })
+                                            })
+                                    })
                                 })
-                            })
+                                .then( () => {
+                                        //         // Return the data with metadata
+                                                return res.json(
+                                                    createReturnObject(
+                                                        "success",
+                                                        "Edit: Draft Dashboard created with ID: " + dashboardID,
+                                                        "Okay",
+                                                        null,
+                                                        null,
+                                                        null,
+                                                        null,
+                                                        null,
+                                                        1,
+                                                        null,
+                                                        null
+                                                        )
+                                                    );
+                                            //     })
+                                            // })
+                                        //     .catch( err => {
+                                        //         return res.json(createErrorObject(
+                                        //             "error",
+                                        //             "Error reading Widgets for ID: " + dashboardID,
+                                        //             err
+                                        //         )); 
+                        
+                                            // })
+                                })
+                                .catch( err => {
+                                    return res.json(createErrorObject(
+                                        "error",
+                                        "Error reading Tabs for ID: " + dashboardID,
+                                        err
+                                    )); 
+            
+                                })
                         })
-                        .then( () => {
-                                //         // Return the data with metadata
-                                        return res.json(
-                                            createReturnObject(
-                                                "success",
-                                                "Edit: Draft Dashboard created with ID: " + dashboardID,
-                                                "Okay",
-                                                null,
-                                                null,
-                                                null,
-                                                null,
-                                                null,
-                                                1,
-                                                null,
-                                                null
-                                                )
-                                            );
-                                    //     })
-                                    // })
-                                //     .catch( err => {
-                                //         return res.json(createErrorObject(
-                                //             "error",
-                                //             "Error reading Widgets for ID: " + dashboardID,
-                                //             err
-                                //         )); 
-                
-                                    // })
-                        })
-                        .catch( err => {
-                            return res.json(createErrorObject(
-                                "error",
-                                "Error reading Tabs for ID: " + dashboardID,
-                                err
-                            )); 
-    
-                        })
+
                 };
             })
             .catch((err)=>{
