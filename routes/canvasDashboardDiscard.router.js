@@ -145,8 +145,15 @@ router.put('/', (req, res, next) => {
                     draftDashboardQuery
                 ).exec()
             })
-            
-            
+
+            .then(()=>{
+                // Remove this Dashboard used as Fav for Users
+                canvasUserModel.update(
+                    {},
+                    { $pull: { "favouriteDashboards": dashboardID } },
+                    { "multi": true }
+                ).exec();
+            })
 
 
             .then(()=>{
