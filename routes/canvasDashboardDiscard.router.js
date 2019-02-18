@@ -146,16 +146,17 @@ router.put('/', (req, res, next) => {
                 ).exec()
             })
 
+            // Related Entities: Remove this Dashboard used as Fav for Users
             .then(()=>{
-                // Remove this Dashboard used as Fav for Users
                 canvasUserModel.update(
                     {},
                     { $pull: { "favouriteDashboards": dashboardID } },
                     { "multi": true }
                 ).exec();
             })
+
+            // Delete Related Entities: Dashboard- and WidgetLayout
             .then(()=>{
-                // Remove DashboardLayout
                 dashboardLayoutModel.findOne(dashboardIDQuery)
                     .then((doc)=>{
                         // Remove WidgetLayout for this DashboardLayout
