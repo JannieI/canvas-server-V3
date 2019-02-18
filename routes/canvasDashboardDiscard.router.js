@@ -70,20 +70,35 @@ router.put('/', (req, res, next) => {
         dashboardModel.findOneAndUpdate(
             { "id": originalDashboardID}, 
             { $set: { "originalID": null, "draftID": null } }
-        )
-            .exec()
+        ).exec()
 
-            // Delete Core Dashboard Entities: DashboardTab
+            // Delete Core Dashboard Entities for Draft: Dashboard
+            .then(()=>{
+                dashboardModel.deleteMany(
+                    draftDashboardQuery
+                ).exec()
+
+            // Delete Core Dashboard Entities for Draft: DashboardTab
             .then(()=>{
                 dashboardTabModel.deleteMany(
                     draftDashboardQuery
-                )
-                .exec()
+                ).exec()
 
-                // Delete Core Dashboard Entities: DashboardTab
-                .then(()=>{
+            // Delete Core Dashboard Entities for Draft: DashboardTab
+            .then(()=>{
+                widgetModel.deleteMany(
+                    draftDashboardQuery
+                ).exec()
 
-
+                widgetQuery = {dashboardID: dashboardID, dashboardTabID: tab.id}
+                widgetModel.find(widgetQuery).then( widgets => {
+                    widgets.forEach( widget => {
+                        .then(()=>{
+                            canvasMessageModel.updateMany(
+                                    draftDashboardQuery, 
+                                    { $set: { dashboardID: originalDashboardID } }
+                                ).exec()
+                
 
 
 
