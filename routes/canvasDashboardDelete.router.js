@@ -85,66 +85,46 @@ router.delete('/', (req, res, next) => {
             ));
         };
 
-        // Delete Dashboard
-        // TODO - is this chaining working correctly vs .then() inside .then() ... ?
+        // Delete Core Dashboard Entities: Dashboard
         dashboardModel.findOneAndDelete(dashboardQuery)
             .then(()=>{
-                // Delete Dashboard Tabs
+                // Delete Core Dashboard Entities: Dashboard Tabs
                 dashboardTabModel.deleteMany(dashboardIDQuery).exec();
             })
             .then(()=>{
-                // Delete Widgets
+                // Delete Core Dashboard Entities: Widgets
                 widgetModel.deleteMany(dashboardIDQuery).exec();
             })
             .then(()=>{
-                // Delete DashboardSnapshotModel
-                dashboardSnapshotModel.deleteMany(dashboardIDQuery).exec();
-            })
-            .then(()=>{
-                // Remove this Dashboard used in Messages
-                canvasMessageModel.updateMany(dashboardIDQuery, { $set: { dashboardID: null } }).exec();
-            })
-            .then(()=>{
-                // Delete CanvasCommentModel
-                canvasCommentModel.deleteMany(dashboardIDQuery).exec();
-            })
-            .then(()=>{
-                // Delete DashboardScheduleModel
-                dashboardScheduleModel.deleteMany(dashboardIDQuery).exec();
-            })
-            .then(()=>{
-                // Delete DashboardSubscriptionModel
-                dashboardSubscriptionModel.deleteMany(dashboardIDQuery).exec();
-            })
-            .then(()=>{
-                // Delete DashboardTagModel
-                dashboardTagModel.deleteMany(dashboardIDQuery).exec();
-            })
-            .then(()=>{
-                // Delete DashboardPermissionModel
-                dashboardPermissionModel.deleteMany(dashboardIDQuery).exec();
-            })
-            .then(()=>{
-                // Delete WidgetCheckpointModel
+                // Delete Core Dashboard Entities: WidgetCheckpointModel
                 widgetCheckpointModel.deleteMany(dashboardIDQuery).exec();
             })
             .then(()=>{
-                // Remove hyperlinks to this Dashboard for Widgets
-                let hyperlinkedQuery = {"hyperlinkDashboardID": { $eq: dashboardID } };
-                widgetModel.updateMany(hyperlinkedQuery, { $set: { hyperlinkDashboardID: null } }).exec();
+                // Delete Related Entities: DashboardSnapshotModel
+                dashboardSnapshotModel.deleteMany(dashboardIDQuery).exec();
             })
             .then(()=>{
-                // Remove this Dashboard used as template in Dashboards
-                let templateQuery = {"templateDashboardID": { $eq: dashboardID } };
-                dashboardModel.updateMany(templateQuery, { $set: { templateDashboardID: null } }).exec();
+                // Delete Related Entities: DashboardScheduleModel
+                dashboardScheduleModel.deleteMany(dashboardIDQuery).exec();
             })
             .then(()=>{
-                // Remove this Dashboard used as Startup for Users
-                let startupQuery = {"preferenceStartupDashboardID": { $eq: dashboardID } };
-                canvasUserModel.updateMany(startupQuery, { $set: { preferenceStartupDashboardID: null } }).exec();
+                // Delete Related Entities: DashboardScheduleLog
+                dashboardScheduleLogModel.deleteMany(dashboardIDQuery).exec();
             })
             .then(()=>{
-                // Remove this Dashboard used as Fav for Users
+                // Delete Related Entities: DashboardSubscriptionModel
+                dashboardSubscriptionModel.deleteMany(dashboardIDQuery).exec();
+            })
+            .then(()=>{
+                // Delete Related Entities: DashboardTagModel
+                dashboardTagModel.deleteMany(dashboardIDQuery).exec();
+            })
+            .then(()=>{
+                // Delete Related Entities: DashboardPermissionModel
+                dashboardPermissionModel.deleteMany(dashboardIDQuery).exec();
+            })
+            .then(()=>{
+                // Delete Related Entities: Remove this Dashboard used as Fav for Users
                 canvasUserModel.update(
                     {},
                     { $pull: { "favouriteDashboards": dashboardID } },
@@ -152,7 +132,7 @@ router.delete('/', (req, res, next) => {
                 ).exec();
             })
             .then(()=>{
-                // Remove DashboardLayout
+                // Delete Related Entities: DashboardLayout
                 dashboardLayoutModel.findOne(dashboardIDQuery)
                     .then((doc)=>{
                         // Remove WidgetLayout for this DashboardLayout
@@ -163,16 +143,15 @@ router.delete('/', (req, res, next) => {
                     });
             })
             .then(()=>{
-                // Remove this Dashboard from DashboardRecent
-                dashboardRecentModel.deleteMany(dashboardIDQuery).exec();
+                // Delete CanvasCommentModel
+                canvasCommentModel.deleteMany(dashboardIDQuery).exec();
             })
             .then(()=>{
-                // Remove this Dashboard from StatusBarMessageLogModel
-                statusBarMessageLogModel.deleteMany(dashboardIDQuery).exec();
-            })
-            .then(()=>{
-                // Remove this Dashboard from DashboardScheduleLog
-                dashboardScheduleLogModel.deleteMany(dashboardIDQuery).exec();
+                // Remove this Dashboard used in Messages
+                canvasMessageModel.updateMany(
+                    dashboardIDQuery, 
+                    { $set: { dashboardID: null } }
+                ).exec();
             })
             .then(()=>{
                 // Remove this Dashboard used in CanvasTasks
@@ -182,8 +161,38 @@ router.delete('/', (req, res, next) => {
                     { $set: { dashboardID: null } }
                 ).exec();
             })
-
-
+            .then(()=>{
+                // Remove hyperlinks to this Dashboard for Widgets
+                let hyperlinkedQuery = {"hyperlinkDashboardID": { $eq: dashboardID } };
+                widgetModel.updateMany(
+                    hyperlinkedQuery, 
+                    { $set: { hyperlinkDashboardID: null } }
+                ).exec();
+            })
+            .then(()=>{
+                // Remove this Dashboard used as Startup for Users
+                let startupQuery = {"preferenceStartupDashboardID": { $eq: dashboardID } };
+                canvasUserModel.updateMany(
+                    startupQuery, 
+                    { $set: { preferenceStartupDashboardID: null } }
+                ).exec();
+            })
+            .then(()=>{
+                // Remove this Dashboard used as template in Dashboards
+                let templateQuery = {"templateDashboardID": { $eq: dashboardID } };
+                dashboardModel.updateMany(
+                    templateQuery, 
+                    { $set: { templateDashboardID: null } }
+                ).exec();
+            })
+            .then(()=>{
+                // Remove this Dashboard from DashboardRecent
+                dashboardRecentModel.deleteMany(dashboardIDQuery).exec();
+            })
+            .then(()=>{
+                // Remove this Dashboard from StatusBarMessageLogModel
+                statusBarMessageLogModel.deleteMany(dashboardIDQuery).exec();
+            })
             .then(()=>{
 
                 // Return the data with metadata
