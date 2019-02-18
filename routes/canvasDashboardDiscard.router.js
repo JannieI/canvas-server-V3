@@ -166,21 +166,16 @@ router.put('/', (req, res, next) => {
                     });
             })
 
-
+            // Move Linked Entities to Original: Message
             .then(()=>{
-            canvasMessageModel.updateMany(
+                canvasMessageModel.updateMany(
                     draftDashboardQuery, 
                     { $set: { dashboardID: originalDashboardID } }
                 ).exec()
             })
-            .then(()=>{
-                    // Remove this Dashboard used in CanvasTasks
-                    const taskDashboardQuery = { "linkedDashboardID": { $eq: draftDashboardID } };
-                    canvasTasksModel.update(
-                        taskDashboardQuery, 
-                        { $set: { linkedDashboardID: originalDashboardID } }
-                    ).exec()
-            })
+
+
+
             .then(()=>{
                 
                 // Return the data with metadata
