@@ -8,7 +8,23 @@ const router = express.Router();
 const debugDev = require('debug')('app:dev');
 const createErrorObject = require('../utils/createErrorObject.util');
 const createReturnObject = require('../utils/createReturnObject.util');
+const dashboardSchema = '../models/dashboards.model';
+const dashboardTabSchema = '../models/dashboardTabs.model';
+const widgetSchema = '../models/widgets.model';
+const dashboardSnapshotSchema = '../models/dashboardSnapshots.model';
 const canvasMessageSchema = '../models/canvasMessages.model';
+const canvasCommentSchema = '../models/canvasComments.model';
+const dashboardScheduleSchema = '../models/dashboardSchedules.model';
+const dashboardSubscriptionSchema = '../models/dashboardSubscriptions.model';
+const DashboardTagSchema = '../models/dashboardTags.model';
+const dashboardPermissionSchema = '../models/dashboardPermissions.model';
+const widgetCheckpointSchema = '../models/widgetCheckpoints.model';
+const canvasUserSchema = '../models/canvasUsers.model';
+const dashboardLayoutSchema = '../models/dashboardLayouts.model';
+const widgetLayoutSchema = '../models/widgetLayouts.model';
+const dashboardRecentSchema = '../models/dashboardsRecent.model';
+const statusBarMessageLogSchema = '../models/statusBarMessageLogs.model';
+const dashboardScheduleLogSchema = '../models/dashboardScheduleLog.model';
 const canvasTasksSchema = '../models/canvasTasks.model';
 
 // PUT route
@@ -21,6 +37,7 @@ router.put('/', (req, res, next) => {
     const draftDashboardID = req.query.draftDashboardID;
     const originalDashboardID = req.query.originalDashboardID;
     const draftDashboardQuery = { "dashboardID": { $eq: draftDashboardID } };
+    const dashboardOriginalQuery = { "dashboardID": { $eq: originalDashboardID } };
 
     debugDev(moduleName + ": " + '## --------------------------');
     debugDev(moduleName + ": " + '## GET Starting with Discarding Draft Dashboard id:', 
@@ -30,21 +47,67 @@ router.put('/', (req, res, next) => {
     // Try
     // try {
         // Get the models
+        const dashboardModel = require(dashboardSchema);
+        const dashboardTabModel = require(dashboardTabSchema);
+        const widgetModel = require(widgetSchema);
+        const dashboardSnapshotModel = require(dashboardSnapshotSchema);
         const canvasMessageModel = require(canvasMessageSchema);
+        const canvasCommentModel = require(canvasCommentSchema);
+        const dashboardScheduleModel = require(dashboardScheduleSchema);
+        const dashboardSubscriptionModel = require(dashboardSubscriptionSchema);
+        const dashboardTagModel = require(DashboardTagSchema);
+        const dashboardPermissionModel = require(dashboardPermissionSchema);
+        const widgetCheckpointModel = require(widgetCheckpointSchema);
+        const canvasUserModel = require(canvasUserSchema);
+        const dashboardLayoutModel = require(dashboardLayoutSchema);
+        const widgetLayoutModel = require(widgetLayoutSchema);
+        const dashboardRecentModel = require(dashboardRecentSchema);
+        const statusBarMessageLogModel = require(statusBarMessageLogSchema);
+        const dashboardScheduleLogModel = require(dashboardScheduleLogSchema);
         const canvasTasksModel = require(canvasTasksSchema);
 
-        // Remove this Dashboard used in Messages
-        canvasMessageModel.updateMany(
-                draftDashboardQuery, 
-                { $set: { dashboardID: originalDashboardID } }
-            ).exec()
+
+
+
+
+
+
+
+
+
+        // Update IDs on the Original Dashboard
+        canvasMessageModel.findOneAndUpdate(
+            { "id": originalDashboardID}, 
+            { $set: { "originalID": null, "draftID": null } }
+        )
+            .exec()
+
+            // Delete Core Dashboard Entities: DashboardTab
             .then(()=>{
-                // Remove this Dashboard used in CanvasTasks
-                const taskDashboardQuery = { "linkedDashboardID": { $eq: draftDashboardID } };
-                canvasTasksModel.update(
-                    taskDashboardQuery, 
-                    { $set: { linkedDashboardID: originalDashboardID } }
+
+
+                dashboard
+
+                Site.deleteMany({ userUID: uid, id: { $in: [10, 2, 3, 5]}}, function(err) {})
+
+
+
+
+
+
+            .then(()=>{
+            canvasMessageModel.updateMany(
+                    draftDashboardQuery, 
+                    { $set: { dashboardID: originalDashboardID } }
                 ).exec()
+            })
+            .then(()=>{
+                    // Remove this Dashboard used in CanvasTasks
+                    const taskDashboardQuery = { "linkedDashboardID": { $eq: draftDashboardID } };
+                    canvasTasksModel.update(
+                        taskDashboardQuery, 
+                        { $set: { linkedDashboardID: originalDashboardID } }
+                    ).exec()
             })
             .then(()=>{
                 

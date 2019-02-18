@@ -72,8 +72,8 @@ router.get('/', (req, res, next) => {
         // Find Original Dashboard
         dashboardModel.findOne(dashboardQuery)
         .then((dashboard)=>{
-            // Could be null if nothing was found
 
+            // Could be null if nothing was found
             if (dashboard == null) {
                 console.log("Dashboard does not exist for ID: " + dashboardID)
                 return res.json(createErrorObject(
