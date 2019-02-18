@@ -142,6 +142,8 @@ router.get('/', (req, res, next) => {
                                                             newDraftWidget.dashboardID = addedDraftDashboard.id;
                                                             newDraftWidget.dashboardTabID = addedDraftDashboardTab.id;
                                                             newDraftWidget.originalID = widget.id;
+                                                            newDraftWidget.dashboardTabIDs = []; addedDraftDashboardTab.id;
+                                                            newDraftWidget.dashboardTabIDs.push(addedDraftDashboardTab.id);
 
                                                             // TODO - add current user !!
                                                             newDraftWidget.editor = '';
