@@ -88,7 +88,7 @@ router.put('/', (req, res, next) => {
 
             // Delete Core Dashboard Entities for Draft: Dashboard
             .then(()=>{
-                dashboardModel.deleteMany(
+                dashboardModel.deleteOne(
                     { "id": draftDashboardID }
                 ).exec()
             })
@@ -100,30 +100,16 @@ router.put('/', (req, res, next) => {
                 ).exec()
             })
 
-            // Delete Core Dashboard Entities for Draft: WidgetCheckpoints
-            .then(()=>{
-
-
-                // return res.json(createErrorObject(
-                //     "error",
-                //     "DONT",
-                //     null
-                // ));
-            
-
-
-                widgetModel.find(draftDashboardQuery).then( widgets => {
-                    widgets.forEach( widget => {
-                        widgetCheckpointModel.deleteMany(
-                            { widgetID: widget.id}
-                        ).exec()
-                    })
-                })
-            })
-
             // Delete Core Dashboard Entities for Draft: Widgets
             .then(()=>{
                 widgetModel.deleteMany(
+                    draftDashboardQuery
+                ).exec()
+            })
+
+            // Delete Core Dashboard Entities for Draft: WidgetCheckpoints
+            .then(()=>{
+                widgetCheckpointModel.deleteMany(
                     draftDashboardQuery
                 ).exec()
             })
