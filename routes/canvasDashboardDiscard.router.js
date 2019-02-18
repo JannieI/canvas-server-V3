@@ -95,6 +95,8 @@ router.put('/', (req, res, next) => {
                         widgetCheckpointModel.deleteMany(
                             { widgetID: widget.id}
                         ).exec()
+                    })
+                })
             })
         
             // Delete Core Dashboard Entities for Draft: Widgets
@@ -217,16 +219,9 @@ router.put('/', (req, res, next) => {
                     draftDashboardQuery
                 ).exec()
             })
-            
-            
 
-
-        })
-
-            
+            // Return with metaData
             .then(()=>{
-                
-                // Return the data with metadata
                 return res.json(
                 createReturnObject(
                     "success",
