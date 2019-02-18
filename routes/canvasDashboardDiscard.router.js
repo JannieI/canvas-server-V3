@@ -132,6 +132,14 @@ router.put('/', (req, res, next) => {
                 ).exec()
             })
 
+            // Delete Related Entities: Dashboard Tags
+            .then(()=>{
+                dashboardTagModel.deleteMany(
+                    draftDashboardQuery
+                ).exec()
+            })
+            
+            dashboardPermissionModel
 
 
             .then(()=>{
