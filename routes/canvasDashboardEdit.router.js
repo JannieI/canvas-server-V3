@@ -125,10 +125,10 @@ router.get('/', (req, res, next) => {
                                         newDraftDashboardTab.dateEdited = today;
 
                                         let dashboardTabAdd = new dashboardTabModel(newDraftDashboardTab);
-                                        returnDraftDashboardTabs.push(newDraftDashboardTab);
                                         console.log('xx returnDraftDashboardTabs loaded')
                                         dashboardTabAdd.save()
                                             .then(addedDraftDashboardTab => {
+                                                returnDraftDashboardTabs.push(addedDraftDashboardTab);
                                                 debugDev(moduleName + ": " + 'New Tab added' + addedDraftDashboardTab.id, addedDraftDashboardTab.originalID)
                                                 widgetQuery = {dashboardID: dashboardID, dashboardTabID: tab.id}
                                                 widgetModel.find(widgetQuery)
@@ -148,11 +148,11 @@ router.get('/', (req, res, next) => {
                                                             newDraftWidget.dateEdited = today;
 
                                                             let dashboardWidgetAdd = new widgetModel(newDraftWidget);
-
-                                                            returnWidgets.push(newDraftWidget);
-                                                            console.log('xx returnWidgets added')
                                                             dashboardWidgetAdd.save()
                                                                 .then(addedDraftWidget => {
+
+                                                                    returnWidgets.push(addedDraftWidget);
+                                                                    console.log('xx returnWidgets added')
                                                                     debugDev(moduleName + ": " + 'New Widget added' + addedDraftWidget.id, widget.id)
 
                                                                     widgetCheckpointQuery = {dashboardID: dashboardID,
@@ -176,12 +176,15 @@ router.get('/', (req, res, next) => {
                                                                                 newDraftWidgetCheckpoint.widgetSpec.originalID = widgetCheckpoint.id;
 
                                                                                 let dashboardWidgetCheckpointAdd = new widgetCheckpointModel(newDraftWidgetCheckpoint);
-                                                                                returnWidgetCheckpoints.push(newDraftWidgetCheckpoint);
                                                                                 dashboardWidgetCheckpointAdd.save()
                                                                                     .then(addedDraftWidgetCheckpoint => {
+                                                                                        returnWidgetCheckpoints.push(addedDraftWidgetCheckpoint);
                                                                                         debugDev(moduleName + ": " + 'New Widget Checkpoint added' + addedDraftWidgetCheckpoint.id, addedDraftDashboardTab.id)
-                                                                                                                            // Return the data with metadata
+                                                                                                                            
+                                                                                    })
+                                                                                    .then( () => {
                                                                                         console.log('xx At END return now')
+                                                                                        // Return the data with metadata
                                                                                         return res.json(
                                                                                             createReturnObject(
                                                                                                 "success",
