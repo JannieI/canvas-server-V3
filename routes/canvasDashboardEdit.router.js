@@ -98,149 +98,142 @@ router.get('/', (req, res, next) => {
             newDraftDashboard.state = 'Draft';
 
             let dashboardAdd = new dashboardModel(newDraftDashboard);
-            dashboardAdd.save()
-                .then(addedDraftDashboard => {
-                    debugDev(moduleName + ": " + 'New Dashboard added' + addedDraftDashboard.id)
+            dashboardAdd.save().then(addedDraftDashboard => {
+                debugDev(moduleName + ": " + 'New Dashboard added' + addedDraftDashboard.id)
 
-                    // Update the Original Dashboard to point to the Draft
-                    // Note - can be done in background since we dont use it
-                    let originalDashboard = JSON.parse(JSON.stringify(dashboard));
-                    originalDashboard.draftID = addedDraftDashboard.id;
-                    dashboardModel.findOneAndUpdate(
-                        dashboardQuery,
-                        originalDashboard,
-                        {
-                            new: true,                       // return updated doc
-                            runValidators: true              // validate before update
-                        })
-                        .then( (doc) => console.log('Original Dashboard SAVED', doc.id)
-                        )
+                // Update the Original Dashboard to point to the Draft
+                // Note - can be done in background since we dont use it
+                let originalDashboard = JSON.parse(JSON.stringify(dashboard));
+                originalDashboard.draftID = addedDraftDashboard.id;
+                dashboardModel.findOneAndUpdate(
+                    dashboardQuery,
+                    originalDashboard,
+                    {
+                        new: true,                       // return updated doc
+                        runValidators: true              // validate before update
+                    })
+                    .then( (doc) => console.log('Original Dashboard SAVED', doc.id)
+                    )
 
-                    // Loop on Dashboard Tabs
-                    dashboardTabModel.find(dashboardIDQuery)
-                        .then( tabs => {
-                            tabs.forEach( tab => {
+                // Loop on Dashboard Tabs
+                dashboardTabModel.find(dashboardIDQuery).then( tabs => {
+                    tabs.forEach( tab => {
 
-                                // Create a new Tab, pointing to the original
-                                let newDraftDashboardTab = JSON.parse(JSON.stringify(tab));
-                                newDraftDashboardTab._id = null;
-                                newDraftDashboardTab.id = null;
-                                newDraftDashboardTab.dashboardID = addedDraftDashboard.id;
-                                newDraftDashboardTab.originalID = tab.id;
+                        // Create a new Tab, pointing to the original
+                        let newDraftDashboardTab = JSON.parse(JSON.stringify(tab));
+                        newDraftDashboardTab._id = null;
+                        newDraftDashboardTab.id = null;
+                        newDraftDashboardTab.dashboardID = addedDraftDashboard.id;
+                        newDraftDashboardTab.originalID = tab.id;
 
-                                // TODO - add current user !!
-                                newDraftDashboardTab.editor = '';
-                                newDraftDashboardTab.dateEdited = today;
+                        // TODO - add current user !!
+                        newDraftDashboardTab.editor = '';
+                        newDraftDashboardTab.dateEdited = today;
 
-                                let dashboardTabAdd = new dashboardTabModel(newDraftDashboardTab);
+                        let dashboardTabAdd = new dashboardTabModel(newDraftDashboardTab);
 
-                                dashboardTabAdd.save()
-                                    .then(addedDraftDashboardTab => {
-                                        returnDraftDashboardTabs.push(addedDraftDashboardTab);
-                                        debugDev(moduleName + ": " + 'New Tab added' + addedDraftDashboardTab.id, addedDraftDashboardTab.originalID)
-                                        widgetQuery = {dashboardID: dashboardID, dashboardTabID: tab.id}
-                                        widgetModel.find(widgetQuery)
-                                            .then( widgets => {
-                                                widgets.forEach( widget => {
+                        dashboardTabAdd.save().then(addedDraftDashboardTab => {
+                            returnDraftDashboardTabs.push(addedDraftDashboardTab);
+                            debugDev(moduleName + ": " + 'New Tab added' + addedDraftDashboardTab.id, addedDraftDashboardTab.originalID)
+                            widgetQuery = {dashboardID: dashboardID, dashboardTabID: tab.id}
+                            widgetModel.find(widgetQuery).then( widgets => {
+                                widgets.forEach( widget => {
 
-                                                    // Create a new Widget, pointing to the original
-                                                    let newDraftWidget = JSON.parse(JSON.stringify(widget));
-                                                    newDraftWidget._id = null;
-                                                    newDraftWidget.id = null;
-                                                    newDraftWidget.dashboardID = addedDraftDashboard.id;
-                                                    newDraftWidget.dashboardTabID = addedDraftDashboardTab.id;
-                                                    newDraftWidget.originalID = widget.id;
-                                                    newDraftWidget.dashboardTabIDs = []; addedDraftDashboardTab.id;
-                                                    newDraftWidget.dashboardTabIDs.push(addedDraftDashboardTab.id);
+                                    // Create a new Widget, pointing to the original
+                                    let newDraftWidget = JSON.parse(JSON.stringify(widget));
+                                    newDraftWidget._id = null;
+                                    newDraftWidget.id = null;
+                                    newDraftWidget.dashboardID = addedDraftDashboard.id;
+                                    newDraftWidget.dashboardTabID = addedDraftDashboardTab.id;
+                                    newDraftWidget.originalID = widget.id;
+                                    newDraftWidget.dashboardTabIDs = []; addedDraftDashboardTab.id;
+                                    newDraftWidget.dashboardTabIDs.push(addedDraftDashboardTab.id);
 
-                                                    // TODO - add current user !!
-                                                    newDraftWidget.editor = '';
-                                                    newDraftWidget.dateEdited = today;
+                                    // TODO - add current user !!
+                                    newDraftWidget.editor = '';
+                                    newDraftWidget.dateEdited = today;
 
-                                                    let dashboardWidgetAdd = new widgetModel(newDraftWidget);
-                                                    dashboardWidgetAdd.save()
-                                                        .then(addedDraftWidget => {
+                                    let dashboardWidgetAdd = new widgetModel(newDraftWidget);
+                                    dashboardWidgetAdd.save().then(addedDraftWidget => {
 
-                                                            returnWidgets.push(addedDraftWidget);
-                                                            debugDev(moduleName + ": " + 'New Widget added' + addedDraftWidget.id, widget.id)
+                                        returnWidgets.push(addedDraftWidget);
+                                        debugDev(moduleName + ": " + 'New Widget added' + addedDraftWidget.id, widget.id)
 
-                                                            widgetCheckpointQuery = {dashboardID: dashboardID,
-                                                                widgetID: widget.id}
-                                                                widgetCheckpointModel.find(widgetCheckpointQuery)
-                                                                .then( widgetCheckpoints => {
-                                                                    widgetCheckpoints.forEach( widgetCheckpoint => {
+                                        widgetCheckpointQuery = {dashboardID: dashboardID,
+                                            widgetID: widget.id}
+                                        widgetCheckpointModel.find(widgetCheckpointQuery)
+                                        .then( widgetCheckpoints => {
+                                            widgetCheckpoints.forEach( widgetCheckpoint => {
 
-                                                                        // Create a new WidgetCheckpoint, pointing to the original
-                                                                        let newDraftWidgetCheckpoint = JSON.parse(JSON.stringify(widgetCheckpoint));
-                                                                        newDraftWidgetCheckpoint._id = null;
-                                                                        newDraftWidgetCheckpoint.id = null;
-                                                                        newDraftWidgetCheckpoint.dashboardID = addedDraftDashboard.id;
-                                                                        newDraftWidgetCheckpoint.widgetID = addedDraftWidget.id;
-                                                                        newDraftWidgetCheckpoint.originalID = widgetCheckpoint.id;
+                                                // Create a new WidgetCheckpoint, pointing to the original
+                                                let newDraftWidgetCheckpoint = JSON.parse(JSON.stringify(widgetCheckpoint));
+                                                newDraftWidgetCheckpoint._id = null;
+                                                newDraftWidgetCheckpoint.id = null;
+                                                newDraftWidgetCheckpoint.dashboardID = addedDraftDashboard.id;
+                                                newDraftWidgetCheckpoint.widgetID = addedDraftWidget.id;
+                                                newDraftWidgetCheckpoint.originalID = widgetCheckpoint.id;
 
-                                                                        newDraftWidgetCheckpoint.widgetSpec.dashboardID = addedDraftDashboard.id;
-                                                                        newDraftWidgetCheckpoint.widgetSpec.dashboardTabID  = addedDraftDashboardTab.id;
-                                                                        newDraftWidgetCheckpoint.widgetSpec.id = addedDraftWidget.id;
-                                                                        newDraftWidgetCheckpoint.widgetSpec.originalID = widgetCheckpoint.id;
+                                                newDraftWidgetCheckpoint.widgetSpec.dashboardID = addedDraftDashboard.id;
+                                                newDraftWidgetCheckpoint.widgetSpec.dashboardTabID  = addedDraftDashboardTab.id;
+                                                newDraftWidgetCheckpoint.widgetSpec.id = addedDraftWidget.id;
+                                                newDraftWidgetCheckpoint.widgetSpec.originalID = widgetCheckpoint.id;
 
-                                                                        let dashboardWidgetCheckpointAdd = new widgetCheckpointModel(newDraftWidgetCheckpoint);
-                                                                        dashboardWidgetCheckpointAdd.save()
-                                                                            .then(addedDraftWidgetCheckpoint => {
-                                                                                returnWidgetCheckpoints.push(addedDraftWidgetCheckpoint);
-                                                                                debugDev(moduleName + ": " + 'New Widget Checkpoint added' + addedDraftWidgetCheckpoint.id, addedDraftDashboardTab.id)
-                                                                                                                    
-                                                                            })
-
-                                                                    })
-                                                                })
-                                                        })
+                                                let dashboardWidgetCheckpointAdd = new widgetCheckpointModel(newDraftWidgetCheckpoint);
+                                                dashboardWidgetCheckpointAdd.save().then(addedDraftWidgetCheckpoint => {
+                                                    returnWidgetCheckpoints.push(addedDraftWidgetCheckpoint);
+                                                    debugDev(moduleName + ": " + 'New Widget Checkpoint added' + addedDraftWidgetCheckpoint.id, addedDraftDashboardTab.id)
+                                                                                            
                                                 })
-                                            })
-                                            .then( () => {
-                                                console.log('xx At END return now')
-                                                // Return the data with metadata
-                                                return res.json(
-                                                    createReturnObject(
-                                                        "success",
-                                                        "Edit: Draft Dashboard created with ID: " + dashboardID,
-                                                        {
-                                                            dashboard: addedDraftDashboard,
-                                                            dashboardTabs: returnDraftDashboardTabs,
-                                                            widgets: returnWidgets,
-                                                            widgetCheckpoints: returnWidgetCheckpoints
-                                                        },
-                                                        null,
-                                                        null,
-                                                        null,
-                                                        null,
-                                                        null,
-                                                        1,
-                                                        null,
-                                                        null
-                                                        )
-                                                );
 
                                             })
+                                        })
                                     })
+                                })
+                            })
+                            .then( () => {
+                                console.log('xx At END return now')
+                                // Return the data with metadata
+                                return res.json( createReturnObject(
+                                    "success",
+                                    "Edit: Draft Dashboard created with ID: " + dashboardID,
+                                    {
+                                        dashboard: addedDraftDashboard,
+                                        dashboardTabs: returnDraftDashboardTabs,
+                                        widgets: returnWidgets,
+                                        widgetCheckpoints: returnWidgetCheckpoints
+                                    },
+                                    null,
+                                    null,
+                                    null,
+                                    null,
+                                    null,
+                                    1,
+                                    null,
+                                    null
+                                    )
+                                );
+
                             })
                         })
-                        .catch( err => {
-                            return res.json(createErrorObject(
-                                "error",
-                                "Error reading Tabs for ID: " + dashboardID,
-                                err
-                            ));
-
-                        })
+                    })
                 })
                 .catch( err => {
                     return res.json(createErrorObject(
                         "error",
-                        "Error Adding Dashboard for ID: " + dashboardID,
+                        "Error reading Tabs for ID: " + dashboardID,
                         err
                     ));
 
                 })
+            })
+            .catch( err => {
+                return res.json(createErrorObject(
+                    "error",
+                    "Error Adding Dashboard for ID: " + dashboardID,
+                    err
+                ));
+
+            })
 
     })
     .catch((err)=>{
