@@ -167,6 +167,14 @@ router.put('/', (req, res, next) => {
                     });
             })
 
+            // Move Linked Entities to Original: Comments
+            .then(()=>{
+                canvasCommentModel.updateMany(
+                    draftDashboardQuery, 
+                    { $set: { dashboardID: originalDashboardID } }
+                ).exec()
+            })
+
             // Move Linked Entities to Original: Message
             .then(()=>{
                 canvasMessageModel.updateMany(
