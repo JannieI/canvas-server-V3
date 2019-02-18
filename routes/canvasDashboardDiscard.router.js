@@ -92,24 +92,18 @@ router.put('/', (req, res, next) => {
                 widgetQuery = {dashboardID: dashboardID}
                 widgetModel.find(widgetQuery).then( widgets => {
                     widgets.forEach( widget => {
-                        dashboardTabModel.deleteMany(
+                        widgetCheckpointModel.deleteMany(
                             { widgetID: widget.id}
                         ).exec()
             })
         
-
-                        .then(()=>{
-                            canvasMessageModel.updateMany(
-                                    draftDashboardQuery, 
-                                    { $set: { dashboardID: originalDashboardID } }
-                                ).exec()
-
-            // Delete Core Dashboard Entities for Draft: DashboardTab
+            // Delete Core Dashboard Entities for Draft: Widgets
             .then(()=>{
-                widgetModel.deleteMany(
-                    draftDashboardQuery
+                widgetModel.updateMany(
+                    draftDashboardQuery, 
+                    { $set: { dashboardID: originalDashboardID } }
                 ).exec()
-                
+            })
 
 
 
