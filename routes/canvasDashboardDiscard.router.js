@@ -118,6 +118,13 @@ router.put('/', (req, res, next) => {
                 ).exec()
             })
 
+            // Delete Related Entities: Dashboard ScheduleLog
+            .then(()=>{
+                dashboardScheduleLogModel.deleteMany(
+                    draftDashboardQuery
+                ).exec()
+            })
+
 
 
             .then(()=>{
