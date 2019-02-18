@@ -185,12 +185,20 @@ router.put('/', (req, res, next) => {
 
             // Move Linked Entities to Original: Tasks
             .then(()=>{
-                    const taskDashboardQuery = { "linkedDashboardID": { $eq: draftDashboardID } };
-                    canvasTasksModel.update(
-                        taskDashboardQuery, 
-                        { $set: { linkedDashboardID: originalDashboardID } }
-                    ).exec()
+                const taskDashboardQuery = { "linkedDashboardID": { $eq: draftDashboardID } };
+                canvasTasksModel.update(
+                    taskDashboardQuery, 
+                    { $set: { linkedDashboardID: originalDashboardID } }
+                ).exec()
             })
+
+            // Move Linked Entities to Original: Hyperlinked Widgets
+            .then(()=>{
+                // Remove hyperlinks to this Dashboard for Widgets
+                let hyperlinkedQuery = {"hyperlinkDashboardID": { $eq: dashboardID } };
+                widgetModel.updateMany(hyperlinkedQuery, { $set: { hyperlinkDashboardID: null } }).exec();
+            })
+        })
 
             
             .then(()=>{
