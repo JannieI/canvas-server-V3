@@ -281,6 +281,6 @@ GET {{host}}/canvasDashboardSummary
 ?id=112
 ###
 GET {{host}}/canvasDashboardEdit
-?dashboardID=106
+?dashboardID=1066
 
 ###
