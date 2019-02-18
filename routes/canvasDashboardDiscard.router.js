@@ -154,6 +154,17 @@ router.put('/', (req, res, next) => {
                     { "multi": true }
                 ).exec();
             })
+            .then(()=>{
+                // Remove DashboardLayout
+                dashboardLayoutModel.findOne(dashboardIDQuery)
+                    .then((doc)=>{
+                        // Remove WidgetLayout for this DashboardLayout
+                        if (doc != null) {
+                            widgetLayoutModel.deleteMany({ dashboardLayoutID: doc.id }).exec();
+                            dashboardLayoutModel.deleteMany(dashboardIDQuery).exec();
+                        };
+                    });
+            })
 
 
             .then(()=>{
