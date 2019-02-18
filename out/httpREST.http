@@ -281,6 +281,7 @@ GET {{host}}/canvasDashboardSummary
 ?id=112
 ###
 PUT {{host}}/canvasDashboardDiscard
-?dashboardID=176
+?draftDashboardID=111
+&originalDashboardID=110
 
 ###

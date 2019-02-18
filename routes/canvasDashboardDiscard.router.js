@@ -34,34 +34,31 @@ router.put('/', (req, res, next) => {
     if (startPos > 0  &&  startPos < module.id.length) {
         moduleName = module.id.substring(startPos + 1);
     };
+
+    // Get and validate parameters
     const draftDashboardID = req.query.draftDashboardID;
     const originalDashboardID = req.query.originalDashboardID;
-    const draftDashboardQuery = { "dashboardID": { $eq: draftDashboardID } };
+    const draftDashboardQuery = { "dashboardID": draftDashboardID };
+    if (draftDashboardID == null  || isNaN(draftDashboardID)) {
+        return res.json(createErrorObject(
+            "error",
+            "Query parameter draftDashboardID not provided: " + draftDashboardID,
+            null
+        ));
+    };
+    if (originalDashboardID == null  || isNaN(originalDashboardID)) {
+        return res.json(createErrorObject(
+            "error",
+            "Query parameter originalDashboardID not provided: " + originalDashboardID,
+            null
+        ));
+    };
 
     debugDev(moduleName + ": " + '## --------------------------');
     debugDev(moduleName + ": " + '## GET Starting with Discarding Draft Dashboard id:',
-        draftDashboardID + ', OriginalID: ', originalDashboardID);
+        draftDashboardID + ', OriginalID: ', originalDashboardID, draftDashboardQuery);
 
-        // Get and validate parameters
-        const draftDashboardID = req.query.draftDashboardID;
-        const originalDashboardID = req.query.originalDashboardID;
-        if (draftDashboardID == null  || isNaN(draftDashboardID)) {
-            return res.json(createErrorObject(
-                "error",
-                "Query parameter draftDashboardID not provided: " + draftDashboardID,
-                null
-            ));
-        };
-        if (originalDashboardID == null  || isNaN(originalDashboardID)) {
-            return res.json(createErrorObject(
-                "error",
-                "Query parameter originalDashboardID not provided: " + originalDashboardID,
-                null
-            ));
-        };
-
-
-    // Try
+        // Try
     // try {
         // Get the models
         const dashboardModel = require(dashboardSchema);
@@ -85,14 +82,14 @@ router.put('/', (req, res, next) => {
 
         // Update IDs on the Original Dashboard
         dashboardModel.findOneAndUpdate(
-            { "id": originalDashboardID},
+            { "id": originalDashboardID },
             { $set: { "originalID": null, "draftID": null } }
         ).exec()
 
             // Delete Core Dashboard Entities for Draft: Dashboard
             .then(()=>{
                 dashboardModel.deleteMany(
-                    draftDashboardQuery
+                    { "id": draftDashboardID }
                 ).exec()
             })
 
@@ -105,6 +102,15 @@ router.put('/', (req, res, next) => {
 
             // Delete Core Dashboard Entities for Draft: WidgetCheckpoints
             .then(()=>{
+
+
+                // return res.json(createErrorObject(
+                //     "error",
+                //     "DONT",
+                //     null
+                // ));
+            
+
 
                 widgetModel.find(draftDashboardQuery).then( widgets => {
                     widgets.forEach( widget => {
