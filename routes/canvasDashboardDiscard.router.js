@@ -125,6 +125,13 @@ router.put('/', (req, res, next) => {
                 ).exec()
             })
 
+            // Delete Related Entities: Dashboard SubscriptionModel
+            .then(()=>{
+                dashboardSubscriptionModel.deleteMany(
+                    draftDashboardQuery
+                ).exec()
+            })
+
 
 
             .then(()=>{
