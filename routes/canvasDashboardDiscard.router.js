@@ -210,8 +210,15 @@ router.put('/', (req, res, next) => {
                     draftDashboardQuery
                 ).exec()
             })
+       
+            // Delete General Entities: StatusBar
+            .then(()=>{
+                statusBarMessageLogModel.deleteMany(
+                    draftDashboardQuery
+                ).exec()
+            })
             
-            statusBarMessageLogModel
+            
 
 
         })
