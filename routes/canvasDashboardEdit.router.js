@@ -35,6 +35,17 @@ const canvasTasksSchema = '../models/canvasTasks.model';
 // GET route
 router.get('/', (req, res, next) => {
 
+
+    return res.json(createErrorObject(
+        "error",
+        "This route is under constuction - ASYNC does not work yet ...",
+        null
+    ));
+
+
+
+
+
     const startPos = module.id.lastIndexOf("/");
     if (startPos > 0  &&  startPos < module.id.length) {
         moduleName = module.id.substring(startPos + 1);

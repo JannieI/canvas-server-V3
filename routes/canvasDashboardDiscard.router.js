@@ -39,10 +39,28 @@ router.put('/', (req, res, next) => {
     const draftDashboardQuery = { "dashboardID": { $eq: draftDashboardID } };
 
     debugDev(moduleName + ": " + '## --------------------------');
-    debugDev(moduleName + ": " + '## GET Starting with Discarding Draft Dashboard id:', 
+    debugDev(moduleName + ": " + '## GET Starting with Discarding Draft Dashboard id:',
         draftDashboardID + ', OriginalID: ', originalDashboardID);
-    
-    
+
+        // Get and validate parameters
+        const draftDashboardID = req.query.draftDashboardID;
+        const originalDashboardID = req.query.originalDashboardID;
+        if (draftDashboardID == null  || isNaN(draftDashboardID)) {
+            return res.json(createErrorObject(
+                "error",
+                "Query parameter draftDashboardID not provided: " + draftDashboardID,
+                null
+            ));
+        };
+        if (originalDashboardID == null  || isNaN(originalDashboardID)) {
+            return res.json(createErrorObject(
+                "error",
+                "Query parameter originalDashboardID not provided: " + originalDashboardID,
+                null
+            ));
+        };
+
+
     // Try
     // try {
         // Get the models
@@ -67,7 +85,7 @@ router.put('/', (req, res, next) => {
 
         // Update IDs on the Original Dashboard
         dashboardModel.findOneAndUpdate(
-            { "id": originalDashboardID}, 
+            { "id": originalDashboardID},
             { $set: { "originalID": null, "draftID": null } }
         ).exec()
 
@@ -96,7 +114,7 @@ router.put('/', (req, res, next) => {
                     })
                 })
             })
-        
+
             // Delete Core Dashboard Entities for Draft: Widgets
             .then(()=>{
                 widgetModel.deleteMany(
@@ -138,7 +156,7 @@ router.put('/', (req, res, next) => {
                     draftDashboardQuery
                 ).exec()
             })
-       
+
             // Delete Related Entities: Dashboard Permissions
             .then(()=>{
                 dashboardPermissionModel.deleteMany(
@@ -170,7 +188,7 @@ router.put('/', (req, res, next) => {
             // Move Linked Entities to Original: Comments
             .then(()=>{
                 canvasCommentModel.updateMany(
-                    draftDashboardQuery, 
+                    draftDashboardQuery,
                     { $set: { dashboardID: originalDashboardID } }
                 ).exec()
             })
@@ -178,7 +196,7 @@ router.put('/', (req, res, next) => {
             // Move Linked Entities to Original: Message
             .then(()=>{
                 canvasMessageModel.updateMany(
-                    draftDashboardQuery, 
+                    draftDashboardQuery,
                     { $set: { dashboardID: originalDashboardID } }
                 ).exec()
             })
@@ -187,7 +205,7 @@ router.put('/', (req, res, next) => {
             .then(()=>{
                 const taskDashboardQuery = { "linkedDashboardID": { $eq: draftDashboardID } };
                 canvasTasksModel.update(
-                    taskDashboardQuery, 
+                    taskDashboardQuery,
                     { $set: { linkedDashboardID: originalDashboardID } }
                 ).exec()
             })
@@ -196,7 +214,7 @@ router.put('/', (req, res, next) => {
             .then(()=>{
                 let hyperlinkedQuery = {"hyperlinkDashboardID": { $eq: draftDashboardID } };
                 widgetModel.updateMany(
-                    hyperlinkedQuery, 
+                    hyperlinkedQuery,
                     { $set: { hyperlinkDashboardID: originalDashboardID } }
                 ).exec();
             })
@@ -205,7 +223,7 @@ router.put('/', (req, res, next) => {
             .then(()=>{
                 let startupQuery = {"preferenceStartupDashboardID": { $eq: draftDashboardID } };
                 canvasUserModel.updateMany(
-                    startupQuery, 
+                    startupQuery,
                     { $set: { preferenceStartupDashboardID: originalDashboardID } }
                 ).exec();
             })
@@ -214,18 +232,18 @@ router.put('/', (req, res, next) => {
             .then(()=>{
                 let templateQuery = {"templateDashboardID": { $eq: draftDashboardID } };
                 dashboardModel.updateMany(
-                    templateQuery, 
+                    templateQuery,
                     { $set: { templateDashboardID: originalDashboardID } }
                 ).exec();
             })
-       
+
             // Delete General Entities: Recent
             .then(()=>{
                 dashboardRecentModel.deleteMany(
                     draftDashboardQuery
                 ).exec()
             })
-       
+
             // Delete General Entities: StatusBar
             .then(()=>{
                 statusBarMessageLogModel.deleteMany(
@@ -238,7 +256,7 @@ router.put('/', (req, res, next) => {
                 return res.json(
                 createReturnObject(
                     "success",
-                    "Retrieved Summary for Dashboard ID: " ,
+                    "Discarded Draft Dashboard ID: " + draftDashboardID,
                     "Okay",
                     null,
                     null,
