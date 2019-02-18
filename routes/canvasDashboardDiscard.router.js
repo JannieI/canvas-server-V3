@@ -37,7 +37,6 @@ router.put('/', (req, res, next) => {
     const draftDashboardID = req.query.draftDashboardID;
     const originalDashboardID = req.query.originalDashboardID;
     const draftDashboardQuery = { "dashboardID": { $eq: draftDashboardID } };
-    const dashboardOriginalQuery = { "dashboardID": { $eq: originalDashboardID } };
 
     debugDev(moduleName + ": " + '## --------------------------');
     debugDev(moduleName + ": " + '## GET Starting with Discarding Draft Dashboard id:', 
@@ -89,8 +88,7 @@ router.put('/', (req, res, next) => {
             // Delete Core Dashboard Entities for Draft: WidgetCheckpoints
             .then(()=>{
 
-                widgetQuery = {dashboardID: dashboardID}
-                widgetModel.find(widgetQuery).then( widgets => {
+                widgetModel.find(draftDashboardQuery).then( widgets => {
                     widgets.forEach( widget => {
                         widgetCheckpointModel.deleteMany(
                             { widgetID: widget.id}
@@ -152,19 +150,19 @@ router.put('/', (req, res, next) => {
             .then(()=>{
                 canvasUserModel.update(
                     {},
-                    { $pull: { "favouriteDashboards": dashboardID } },
+                    { $pull: { "favouriteDashboards": draftDashboardID } },
                     { "multi": true }
                 ).exec();
             })
 
             // Delete Related Entities: Dashboard- and WidgetLayout
             .then(()=>{
-                dashboardLayoutModel.findOne(dashboardIDQuery)
+                dashboardLayoutModel.findOne(draftDashboardQuery)
                     .then((doc)=>{
                         // Remove WidgetLayout for this DashboardLayout
                         if (doc != null) {
                             widgetLayoutModel.deleteMany({ dashboardLayoutID: doc.id }).exec();
-                            dashboardLayoutModel.deleteMany(dashboardIDQuery).exec();
+                            dashboardLayoutModel.deleteMany(draftDashboardQuery).exec();
                         };
                     });
             })
@@ -196,14 +194,29 @@ router.put('/', (req, res, next) => {
 
             // Move Linked Entities to Original: Hyperlinked Widgets
             .then(()=>{
-                let hyperlinkedQuery = {"hyperlinkDashboardID": { $eq: dashboardID } };
-                widgetModel.updateMany(hyperlinkedQuery, { $set: { hyperlinkDashboardID: null } }).exec();
+                let hyperlinkedQuery = {"hyperlinkDashboardID": { $eq: draftDashboardID } };
+                widgetModel.updateMany(
+                    hyperlinkedQuery, 
+                    { $set: { hyperlinkDashboardID: originalDashboardID } }
+                ).exec();
             })
 
             // Move Linked Entities to Original: Startup for Users
             .then(()=>{
-                let startupQuery = {"preferenceStartupDashboardID": { $eq: dashboardID } };
-                canvasUserModel.updateMany(startupQuery, { $set: { preferenceStartupDashboardID: null } }).exec();
+                let startupQuery = {"preferenceStartupDashboardID": { $eq: draftDashboardID } };
+                canvasUserModel.updateMany(
+                    startupQuery, 
+                    { $set: { preferenceStartupDashboardID: originalDashboardID } }
+                ).exec();
+            })
+
+            // Move Linked Entities to Original: Template
+            .then(()=>{
+                let templateQuery = {"templateDashboardID": { $eq: draftDashboardID } };
+                dashboardModel.updateMany(
+                    templateQuery, 
+                    { $set: { templateDashboardID: originalDashboardID } }
+                ).exec();
             })
        
             // Delete General Entities: Recent
