@@ -174,8 +174,16 @@ router.put('/', (req, res, next) => {
                 ).exec()
             })
 
+            // Move Linked Entities to Original: Tasks
+            .then(()=>{
+                    const taskDashboardQuery = { "linkedDashboardID": { $eq: draftDashboardID } };
+                    canvasTasksModel.update(
+                        taskDashboardQuery, 
+                        { $set: { linkedDashboardID: originalDashboardID } }
+                    ).exec()
+            })
 
-
+            
             .then(()=>{
                 
                 // Return the data with metadata
