@@ -77,27 +77,38 @@ router.put('/', (req, res, next) => {
                 dashboardModel.deleteMany(
                     draftDashboardQuery
                 ).exec()
+            })
 
             // Delete Core Dashboard Entities for Draft: DashboardTab
             .then(()=>{
                 dashboardTabModel.deleteMany(
                     draftDashboardQuery
                 ).exec()
+            })
+
+            // Delete Core Dashboard Entities for Draft: WidgetCheckpoints
+            .then(()=>{
+
+                widgetQuery = {dashboardID: dashboardID}
+                widgetModel.find(widgetQuery).then( widgets => {
+                    widgets.forEach( widget => {
+                        dashboardTabModel.deleteMany(
+                            { widgetID: widget.id}
+                        ).exec()
+            })
+        
+
+                        .then(()=>{
+                            canvasMessageModel.updateMany(
+                                    draftDashboardQuery, 
+                                    { $set: { dashboardID: originalDashboardID } }
+                                ).exec()
 
             // Delete Core Dashboard Entities for Draft: DashboardTab
             .then(()=>{
                 widgetModel.deleteMany(
                     draftDashboardQuery
                 ).exec()
-
-                widgetQuery = {dashboardID: dashboardID, dashboardTabID: tab.id}
-                widgetModel.find(widgetQuery).then( widgets => {
-                    widgets.forEach( widget => {
-                        .then(()=>{
-                            canvasMessageModel.updateMany(
-                                    draftDashboardQuery, 
-                                    { $set: { dashboardID: originalDashboardID } }
-                                ).exec()
                 
 
 
