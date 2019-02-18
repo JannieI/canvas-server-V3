@@ -194,10 +194,16 @@ router.put('/', (req, res, next) => {
 
             // Move Linked Entities to Original: Hyperlinked Widgets
             .then(()=>{
-                // Remove hyperlinks to this Dashboard for Widgets
                 let hyperlinkedQuery = {"hyperlinkDashboardID": { $eq: dashboardID } };
                 widgetModel.updateMany(hyperlinkedQuery, { $set: { hyperlinkDashboardID: null } }).exec();
             })
+
+            // Move Linked Entities to Original: Startup for Users
+            .then(()=>{
+                let startupQuery = {"preferenceStartupDashboardID": { $eq: dashboardID } };
+                canvasUserModel.updateMany(startupQuery, { $set: { preferenceStartupDashboardID: null } }).exec();
+            })
+
         })
 
             
