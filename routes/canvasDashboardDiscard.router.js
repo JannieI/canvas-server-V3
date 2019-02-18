@@ -99,12 +99,24 @@ router.put('/', (req, res, next) => {
         
             // Delete Core Dashboard Entities for Draft: Widgets
             .then(()=>{
-                widgetModel.updateMany(
-                    draftDashboardQuery, 
-                    { $set: { dashboardID: originalDashboardID } }
+                widgetModel.deleteMany(
+                    draftDashboardQuery
                 ).exec()
             })
 
+            // Delete Related Entities: Dashboard Snapshots
+            .then(()=>{
+                dashboardSnapshotModel.deleteMany(
+                    draftDashboardQuery
+                ).exec()
+            })
+
+            // Delete Related Entities: Dashboard Schedules
+            .then(()=>{
+                dashboardScheduleModel.deleteMany(
+                    draftDashboardQuery
+                ).exec()
+            })
 
 
 
