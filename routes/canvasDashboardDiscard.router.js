@@ -18,10 +18,13 @@ router.put('/', (req, res, next) => {
     if (startPos > 0  &&  startPos < module.id.length) {
         moduleName = module.id.substring(startPos + 1);
     };
-    const dashboardID = +req.query.id;
+    const draftDashboardID = req.query.draftDashboardID;
+    const originalDashboardID = req.query.originalDashboardID;
+    const draftDashboardQuery = { "dashboardID": { $eq: draftDashboardID } };
 
     debugDev(moduleName + ": " + '## --------------------------');
-    debugDev(moduleName + ": " + '## GET Starting with Discarding Dashboard dashboard id:', dashboardID);
+    debugDev(moduleName + ": " + '## GET Starting with Discarding Draft Dashboard id:', 
+        draftDashboardID + ', OriginalID: ', originalDashboardID);
     
     
     // Try
@@ -29,11 +32,6 @@ router.put('/', (req, res, next) => {
         // Get the models
         const canvasMessageModel = require(canvasMessageSchema);
         const canvasTasksModel = require(canvasTasksSchema);
-
-        // Delete Dashboards
-        const draftDashboardID = req.query.draftDashboardID;
-        const originalDashboardID = req.query.originalDashboard;
-        const draftDashboardQuery = { "dashboardID": { $eq: draftDashboardID } };
 
         // Remove this Dashboard used in Messages
         canvasMessageModel.updateMany(
@@ -68,10 +66,10 @@ router.put('/', (req, res, next) => {
                 );
             })
             .catch((err)=>{
-                console.log("Error deleting Dashboard for ID: " + dashboardID, err);
+                console.log('Error discarding Draft Dashboard id:', draftDashboardID, err);
                 return res.json(createErrorObject(
                     "error",
-                    "Error deleting Dashboard for ID: " + dashboardID,
+                    "Error discarding Draft Dashboard id: " + draftDashboardID,
                     err
                 ));
             });
@@ -80,7 +78,7 @@ router.put('/', (req, res, next) => {
     //     debugDev(moduleName + ": " + 'Error in canvasDashboardSummary.router', error.message)
     //     return res.status(400).json({
     //         "statusCode": "error",
-    //         "message" : "Error retrieving Current Dashboard ID: " + dashboardID,
+    //         "message" : "Error retrieving Current Dashboard ID: " + draftDashboardID,
     //         "data": null,
     //         "error": error
     //     });
