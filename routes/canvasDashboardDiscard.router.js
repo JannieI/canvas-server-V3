@@ -66,17 +66,8 @@ router.put('/', (req, res, next) => {
         const dashboardScheduleLogModel = require(dashboardScheduleLogSchema);
         const canvasTasksModel = require(canvasTasksSchema);
 
-
-
-
-
-
-
-
-
-
         // Update IDs on the Original Dashboard
-        canvasMessageModel.findOneAndUpdate(
+        dashboardModel.findOneAndUpdate(
             { "id": originalDashboardID}, 
             { $set: { "originalID": null, "draftID": null } }
         )
@@ -84,11 +75,13 @@ router.put('/', (req, res, next) => {
 
             // Delete Core Dashboard Entities: DashboardTab
             .then(()=>{
+                dashboardTabModel.deleteMany(
+                    draftDashboardQuery
+                )
+                .exec()
 
-
-                dashboard
-
-                Site.deleteMany({ userUID: uid, id: { $in: [10, 2, 3, 5]}}, function(err) {})
+                // Delete Core Dashboard Entities: DashboardTab
+                .then(()=>{
 
 
 
