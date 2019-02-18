@@ -203,6 +203,16 @@ router.put('/', (req, res, next) => {
                 let startupQuery = {"preferenceStartupDashboardID": { $eq: dashboardID } };
                 canvasUserModel.updateMany(startupQuery, { $set: { preferenceStartupDashboardID: null } }).exec();
             })
+       
+            // Delete General Entities: Recent
+            .then(()=>{
+                dashboardRecentModel.deleteMany(
+                    draftDashboardQuery
+                ).exec()
+            })
+            
+            statusBarMessageLogModel
+
 
         })
 
