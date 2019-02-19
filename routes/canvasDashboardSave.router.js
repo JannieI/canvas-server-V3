@@ -79,10 +79,40 @@ router.put('/', (req, res, next) => {
         const canvasTasksModel = require(canvasTasksSchema);
 
         // Update IDs on the Original Dashboard
-        dashboardModel.findOneAndUpdate(
-            { "id": originalDashboardID },
-            { $set: { "originalID": null, "draftID": null } }
-        ).exec()
+        dashboardModel.findOne( { "id": draftDashboardQuery } )
+        .then((draftDashboard)=>{
+
+            dashboardModel.findOne( { "id": originalDashboardID } )
+            .then((originalDashboard)=>{
+                originalDashboard.originalID = null;
+                originalDashboard.draftID = null;
+                originalDashboard.state = "Complete";
+            
+                dashboardModel.findOneAndUpdate(
+                    { "id": originalDashboardID },
+                    originalDashboard
+                ).exec()
+            })
+
+            // Move Linked Entities to Original: Tabs
+            .then(()=>{
+                dashboardTabModel.updateMany(
+                    draftDashboardQuery,
+                    { $set: { dashboardID: originalDashboardID } }
+                ).exec()
+            })
+            .then(()=>{
+                widgetModel.updateMany(
+                    draftDashboardQuery,
+                    { $set: { dashboardID: originalDashboardID } }
+                ).exec()
+            })
+            .then(()=>{
+                widgetCheckpointModel.updateMany(
+                    draftDashboardQuery,
+                    { $set: { dashboardID: originalDashboardID } }
+                ).exec()
+            })
 
             // Delete Core Dashboard Entities for Draft: Dashboard
             .then(()=>{
@@ -267,7 +297,16 @@ router.put('/', (req, res, next) => {
                     err
                 ));
             });
-    // }
+        })
+        .catch((err)=>{
+            console.log('Error discarding Draft Dashboard id:', draftDashboardID, err);
+            return res.json(createErrorObject(
+                "error",
+                "Error discarding Draft Dashboard id: " + draftDashboardID,
+                err
+            ));
+        });
+// }
     // catch (error) {
     //     debugDev(moduleName + ": " + 'Error in canvasDashboardSummary.router', error.message)
     //     return res.status(400).json({
