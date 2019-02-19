@@ -278,4 +278,5 @@ https://dev.virtualearth.net/REST/v1/Routes/DistanceMatrixAsync
 PUT {{host}}/canvasDashboardSaveDraft
 ?draftDashboardID=123
 &originalDashboardID=116
+&deleteSnapshots=true
 ###

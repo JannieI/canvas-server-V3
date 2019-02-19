@@ -156,6 +156,7 @@ router.put('/', (req, res, next) => {
                     // Delete Related Entities: Dashboard Snapshots (optional)
                     .then(()=>{
                         if (deleteSnapshots) {
+                            console.log('xxxx deleteSnapshotsdeleteSnapshots deleteSnapshots')
                             dashboardSnapshotModel.deleteMany(
                                 draftDashboardQuery
                             ).exec()
