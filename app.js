@@ -42,7 +42,7 @@ require('./auth/auth');
 const canvasDashboardEdit = require('./routes/canvasDashboardEdit.router');
 const canvasDashboardDiscard = require('./routes/canvasDashboardDiscard.router');
 const canvasDashboardDelete = require('./routes/canvasDashboardDelete.router');
-// canvasDashboardSaveDraft
+const canvasDashboardSaveDraft = require('./routes/canvasDashboardSaveDraft.router');
 // canvasDashboardSaveAs
 const canvasDashboardSummary = require('./routes/canvasDashboardSummary');
 
@@ -201,7 +201,7 @@ app.use('/canvasCurrentDashboard', canvasCurrentDashboard);
 app.use('/canvasDashboardEdit', canvasDashboardEdit);
 app.use('/canvasDashboardDiscard', canvasDashboardDiscard);
 app.use('/canvasDashboardDelete', canvasDashboardDelete);
-// canvasDashboardSaveDraft
+app.use('/canvasDashboardSaveDraft', canvasDashboardSaveDraft);
 // canvasDashboardSaveAs
 app.use('/canvasDashboardSummary', canvasDashboardSummary);
 app.use('/canvasDatasource', canvasDatasource);
