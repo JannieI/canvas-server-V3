@@ -265,9 +265,16 @@ router.put('/', (req, res, next) => {
 
                     // Delete General Entities: Recent
                     .then(()=>{
+                        // Remove the Draft as it does not exist
                         dashboardRecentModel.deleteMany(
                             draftDashboardQuery
                         ).exec()
+                        // As the TabIDs have changes, set to the first one
+                        dashboardSubscriptionModel.updateMany(
+                            originalDashboardQuery,
+                            { $set: { dashboardTabID: -1 } }
+                        ).exec()
+
                     })
 
                     // Delete General Entities: StatusBar
