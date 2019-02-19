@@ -37,6 +37,8 @@ router.put('/', (req, res, next) => {
     const draftDashboardID = req.query.draftDashboardID;
     const originalDashboardID = req.query.originalDashboardID;
     const draftDashboardQuery = { "dashboardID": draftDashboardID };
+    const originalDashboardQuery = { "dashboardID": originalDashboardID };
+
     if (draftDashboardID == null  || isNaN(draftDashboardID)) {
         return res.json(createErrorObject(
             "error",
@@ -77,16 +79,14 @@ router.put('/', (req, res, next) => {
         const statusBarMessageLogModel = require(statusBarMessageLogSchema);
         const dashboardScheduleLogModel = require(dashboardScheduleLogSchema);
         const canvasTasksModel = require(canvasTasksSchema);
-        console.log('000')
 
         // Update IDs on the Original Dashboard
         dashboardModel.findOne( { "id": draftDashboardID } )
             .then((draftDashboard)=>{
 
-                console.log('111')
+                // Replace the content of the Original with that of the Draft
                 dashboardModel.findOne( { "id": originalDashboardID } )
                     .then((originalDashboard)=>{
-                        console.log('222')
                         originalDashboard.originalID = null;
                         originalDashboard.draftID = null;
                         originalDashboard.state = "Complete";
@@ -99,7 +99,6 @@ router.put('/', (req, res, next) => {
 
                     // Move Linked Entities to Original: Tabs
                     .then(()=>{
-                        console.log('333')
                         dashboardTabModel.updateMany(
                             draftDashboardQuery,
                             { $set: { dashboardID: originalDashboardID } }
@@ -107,7 +106,6 @@ router.put('/', (req, res, next) => {
                     })
                     // Move Linked Entities to Original: Widgets
                     .then(()=>{
-                        console.log('444')
                         widgetModel.updateMany(
                             draftDashboardQuery,
                             { $set: { dashboardID: originalDashboardID } }
@@ -121,6 +119,7 @@ router.put('/', (req, res, next) => {
                         ).exec()
                     })
 
+                    // NB: NOTE switch between draft... and original... here !!
                     // Delete Core Dashboard Entities for Draft: Dashboard
                     .then(()=>{
                         dashboardModel.deleteOne(
@@ -128,24 +127,24 @@ router.put('/', (req, res, next) => {
                         ).exec()
                     })
 
-                    // Delete Core Dashboard Entities for Draft: DashboardTab
+                    // Delete Core Dashboard Entities for Original: DashboardTab
                     .then(()=>{
                         dashboardTabModel.deleteMany(
-                            draftDashboardQuery
+                            originalDashboardQuery
                         ).exec()
                     })
 
-                    // Delete Core Dashboard Entities for Draft: Widgets
-                    // .then(()=>{
-                    //     widgetModel.deleteMany(
-                    //         draftDashboardQuery
-                    //     ).exec()
-                    // })
+                    // Delete Core Dashboard Entities for Original: Widgets
+                    .then(()=>{
+                        widgetModel.deleteMany(
+                            originalDashboardQuery
+                        ).exec()
+                    })
 
-                    // Delete Core Dashboard Entities for Draft: WidgetCheckpoints
+                    // Delete Core Dashboard Entities for Original: WidgetCheckpoints
                     .then(()=>{
                         widgetCheckpointModel.deleteMany(
-                            draftDashboardQuery
+                            originalDashboardQuery
                         ).exec()
                     })
 
