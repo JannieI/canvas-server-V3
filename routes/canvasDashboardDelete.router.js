@@ -77,10 +77,10 @@ router.delete('/', (req, res, next) => {
         const dashboardIDQuery = {"dashboardID": { $eq: dashboardID } };
 
         // TODO - Remove later !
-        if (dashboardID <= 112) {
+        if (dashboardID <= 106) {
             return res.json(createErrorObject(
                 "error",
-                "Silly!!  Cannot delete ID <= 112 while Testing!",
+                "Silly!!  Cannot delete ID <= 106 while Testing!",
                 null
             ));
         };
