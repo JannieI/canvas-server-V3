@@ -101,21 +101,21 @@ router.put('/', (req, res, next) => {
                     .then(()=>{
                         dashboardTabModel.updateMany(
                             draftDashboardQuery,
-                            { $set: { dashboardID: originalDashboardID } }
+                            { $set: { dashboardID: originalDashboardID, originalID : null } }
                         ).exec()
                     })
                     // Move Linked Entities to Original: Widgets
                     .then(()=>{
                         widgetModel.updateMany(
                             draftDashboardQuery,
-                            { $set: { dashboardID: originalDashboardID } }
+                            { $set: { dashboardID: originalDashboardID, originalID : null } }
                         ).exec()
                     })
                     // Move Linked Entities to Original: WidgetCheckpoints
                     .then(()=>{
                         widgetCheckpointModel.updateMany(
                             draftDashboardQuery,
-                            { $set: { dashboardID: originalDashboardID } }
+                            { $set: { dashboardID: originalDashboardID, originalID : null } }
                         ).exec()
                     })
 
