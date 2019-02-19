@@ -38,6 +38,7 @@ router.put('/', (req, res, next) => {
     const originalDashboardID = req.query.originalDashboardID;
     const draftDashboardQuery = { "dashboardID": draftDashboardID };
     const originalDashboardQuery = { "dashboardID": originalDashboardID };
+    const deleteSnapshots = req.query.deleteSnapshots;
 
     if (draftDashboardID == null  || isNaN(draftDashboardID)) {
         return res.json(createErrorObject(
@@ -53,10 +54,14 @@ router.put('/', (req, res, next) => {
             null
         ));
     };
+    if (deleteSnapshots == null  ||  deleteSnapshots != true) {
+        deleteSnapshots = false;
+    };
 
     debugDev(moduleName + ": " + '## --------------------------');
     debugDev(moduleName + ": " + '## GET Starting with Saving Draft Dashboard id:',
-        draftDashboardID + ', OriginalID: ', originalDashboardID, draftDashboardQuery);
+        draftDashboardID + ', OriginalID: ', originalDashboardID, draftDashboardQuery, 
+        'deleteSnapshots: ', deleteSnapshots);
 
         // Try
     // try {
@@ -148,11 +153,13 @@ router.put('/', (req, res, next) => {
                         ).exec()
                     })
 
-                    // Delete Related Entities: Dashboard Snapshots
+                    // Delete Related Entities: Dashboard Snapshots (optional)
                     .then(()=>{
-                        dashboardSnapshotModel.deleteMany(
-                            draftDashboardQuery
-                        ).exec()
+                        if (deleteSnapshots) {
+                            dashboardSnapshotModel.deleteMany(
+                                draftDashboardQuery
+                            ).exec()
+                        };
                     })
 
                     // Delete Related Entities: Dashboard Schedules
