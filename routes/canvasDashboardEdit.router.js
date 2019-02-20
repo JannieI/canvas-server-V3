@@ -186,17 +186,17 @@ router.post('/', (req, res, next) => {
     if (startPos > 0  &&  startPos < module.id.length) {
         moduleName = module.id.substring(startPos + 1);
     };
-    const dashboardID = +req.query.dashboardID;
+    const orignalDashboardID = +req.query.orignalDashboardID;
 
     debugDev(moduleName + ": " + '## --------------------------');
-    debugDev(moduleName + ": " + '## POST Starting with Editing Dashboard and related info for dashboard id:', dashboardID);
+    debugDev(moduleName + ": " + '## POST Starting with Editing Dashboard and related info for dashboard id:', orignalDashboardID);
 
 
     // Try, in case model file does not exist
     // try {
 
         // Validations
-        if (isNaN(dashboardID)) {
+        if (isNaN(orignalDashboardID)) {
             return res.json(createErrorObject(
                 "error",
                 "Query Parameter dashboardID is not a number or not provided",
@@ -210,10 +210,10 @@ router.post('/', (req, res, next) => {
 
                 // Could be null if nothing was found
                 if (dashboard == null) {
-                    console.log("Dashboard does not exist for ID: " + dashboardID)
+                    console.log("Dashboard does not exist for ID: " + orignalDashboardID)
                     return res.json(createErrorObject(
                         "error",
-                        "Dashboard does not exist for ID: " + dashboardID,
+                        "Dashboard does not exist for ID: " + orignalDashboardID,
                         null
                     ));
                 };
@@ -236,7 +236,7 @@ router.post('/', (req, res, next) => {
                             .then( (doc) => console.log('Original Dashboard SAVED', doc.id))
 
                         // Loop on Original Dashboard Tabs
-                        dashboardTabModel.find({"dashboardID": { $eq: dashboardID } })
+                        dashboardTabModel.find({"dashboardID": { $eq: orignalDashboardID } })
                             .then( originalDashboardTabs => {
                                 console.log('After find')
 
@@ -257,7 +257,7 @@ router.post('/', (req, res, next) => {
                                         // Return the data with metadata
                                         return res.json( createReturnObject(
                                             "success",
-                                            "Edit: Draft Dashboard created with ID: " + dashboardID,
+                                            "Edit: Draft Dashboard created with ID: " + orignalDashboardID,
                                             {
                                                 dashboard: addedDraftDashboard,
                                                 dashboardTabs: returnDraftDashboardTabs,
@@ -277,21 +277,21 @@ router.post('/', (req, res, next) => {
 
                                     })
                                     .catch( err => {
-                                        console.log("Error in Promise.all for ID: " + dashboardID, err)
+                                        console.log("Error in Promise.all for ID: " + orignalDashboardID, err)
 
                                         return res.json(createErrorObject(
                                             "error",
-                                            "Error in Promise.all for ID: " + dashboardID,
+                                            "Error in Promise.all for ID: " + orignalDashboardID,
                                             err
                                         ));
 
                                     })
                             })
                             .catch( err => {
-                                console.log("Error reading Tabs for ID: " + dashboardID, err)
+                                console.log("Error reading Tabs for ID: " + orignalDashboardID, err)
                                 return res.json(createErrorObject(
                                     "error",
-                                    "Error reading Tabs for ID: " + dashboardID,
+                                    "Error reading Tabs for ID: " + orignalDashboardID,
                                     err
                                 ));
 
@@ -299,20 +299,20 @@ router.post('/', (req, res, next) => {
 
                     })
                     .catch( err => {
-                        console.log("Error in addDraftDashboard.then for ID: " + dashboardID, err)
+                        console.log("Error in addDraftDashboard.then for ID: " + orignalDashboardID, err)
                         return res.json(createErrorObject(
                             "error",
-                            "Error in addDraftDashboard.then for ID: " + dashboardID,
+                            "Error in addDraftDashboard.then for ID: " + orignalDashboardID,
                             err
                         ));
 
                     })
             })
             .catch( err => {
-                console.log("Error in dashboardModel.findOne for ID: " + dashboardID, err)
+                console.log("Error in dashboardModel.findOne for ID: " + orignalDashboardID, err)
                 return res.json(createErrorObject(
                     "error",
-                    "Error in dashboardModel.findOne for ID: " + dashboardID,
+                    "Error in dashboardModel.findOne for ID: " + orignalDashboardID,
                     err
                 ));
 
