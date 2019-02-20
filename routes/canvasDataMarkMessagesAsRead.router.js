@@ -1,4 +1,4 @@
-// Router Discard of a Draft Dashboard
+// Router Mark CanvasMessages as 'read' for a given userID
 
 // Imports
 const express = require('express');
@@ -47,7 +47,7 @@ router.put('/', (req, res, next) => {
             return res.json(
             createReturnObject(
                 "success",
-                "Discarded Draft Dashboard ID: " + draftDashboardID,
+                "Marked Messages as read for : " + userID,
                 "Okay",
                 null,
                 null,
@@ -70,10 +70,10 @@ router.put('/', (req, res, next) => {
         });
     // }
     // catch (error) {
-    //     debugDev(moduleName + ": " + 'Error in canvasDashboardSummary.router', error.message)
+    //     debugDev(moduleName + ": " + 'Error in canvasDataMarkMessagesAsRead.router', error.message)
     //     return res.status(400).json({
     //         "statusCode": "error",
-    //         "message" : "Error retrieving Current Dashboard ID: " + draftDashboardID,
+    //         "message" : "Error marking Messages as read for :" + userID,
     //         "data": null,
     //         "error": error
     //     });

@@ -269,10 +269,10 @@ router.put('/', (req, res, next) => {
             });
     }
     catch (error) {
-        debugDev(moduleName + ": " + 'Error in canvasDashboardSummary.router', error.message)
+        debugDev(moduleName + ": " + 'Error in canvasDashboardDiscard.router', error.message)
         return res.status(400).json({
             "statusCode": "error",
-            "message" : "Error retrieving Current Dashboard ID: " + draftDashboardID,
+            "message" : "Error discarding Draft Dashboard id: " + draftDashboardID,
             "data": null,
             "error": error
         });
