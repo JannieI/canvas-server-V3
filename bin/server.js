@@ -249,6 +249,7 @@ function onListening() {
         console.log('       ' + cacheMessage);
         console.log('       morgan (HTTP method logging) is', config.get('morgan.logging'));
         console.log('       DEBUG var is',process.env.DEBUG);
+        console.log('       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc')
         console.log('----------------------------------------------------------------');
         console.log('');
 
