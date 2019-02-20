@@ -275,6 +275,11 @@ https://dev.virtualearth.net/REST/v1/Routes/DistanceMatrixAsync
 
 
 ###
-PUT {{host}}/canvasDataMarkMessagesAsRead
-?userID=JannieI
+PUT {{host}}/canvasDashboardDiscard
+?draftDashboardID=
+&originalDashboardID=
+###
+
+PUT {{host}}/canvasDashboardEdit
+?dashboardID=116
 ###
