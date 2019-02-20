@@ -26,7 +26,7 @@ let returnWidgets = [];
 let returnWidgetCheckpoints = [];
 let today = new Date();
 
-let orignalDashboardID;
+let originalDashboardID;
 let originalDashboardQuery;
 
 function addDraftDashboard(originalDashboard) {
@@ -77,6 +77,7 @@ function updateTabs(addedDashboardID, originalDashboardTab) {
 
         let dashboardTabAdd = new dashboardTabModel(newDraftDashboardTab);
 
+        // Add new Draft Dashboard Tab
         dashboardTabAdd.save()
             .then(addedDraftDashboardTab => {
                 console.log('updateTab After .save')
@@ -89,17 +90,17 @@ function updateTabs(addedDashboardID, originalDashboardTab) {
                     dashboardTabID: originalDashboardTab.id
                 };
                 widgetModel.find(widgetQuery)
-                    .then( widgets => {
-                        console.log('updateTab After .find', widgetQuery, widgets)
+                    .then( originalWidgets => {
+                        console.log('updateTab After .find', widgetQuery, originalWidgets)
 
-                        widgets.forEach( widget => {
+                        originalWidgets.forEach(originalWidget => {
                             promiseArray.push(updateWidget(
                                 addedDashboardID, 
                                 addedDraftDashboardTab.id, 
-                                widget
+                                originalWidget
                             ));
                             console.log('In updateTabs After push ', addedDashboardID, 
-                            addedDraftDashboardTab.id, widget.id)
+                            addedDraftDashboardTab.id, originalWidget.id)
                         });
                         resolve();
                     })
@@ -110,18 +111,18 @@ function updateTabs(addedDashboardID, originalDashboardTab) {
     })
 }
 
-function updateWidget(addedDashboardID, addedDashboardTabID, widget) {
+function updateWidget(addedDashboardID, addedDashboardTabID, originalWidget) {
     // Add the given Widget to the DB, and then loop all all its WidgetCheckpointss, adding 
     // their creation function to promiseArray
     return new Promise( (resolve, reject) => {
         console.log('updateWidget Start')
         // Create a new Widget, pointing to the original
-        let newDraftWidget = JSON.parse(JSON.stringify(widget));
+        let newDraftWidget = JSON.parse(JSON.stringify(originalWidget));
         newDraftWidget._id = null;
         newDraftWidget.id = null;
         newDraftWidget.dashboardID = addedDashboardID;
         newDraftWidget.dashboardTabID = addedDashboardTabID;
-        newDraftWidget.originalID = widget.id;
+        newDraftWidget.originalID = originalWidget.id;
         newDraftWidget.dashboardTabIDs = []; 
         newDraftWidget.dashboardTabIDs.push(addedDashboardTabID);
 
@@ -129,18 +130,27 @@ function updateWidget(addedDashboardID, addedDashboardTabID, widget) {
         newDraftWidget.editor = '';
         newDraftWidget.dateEdited = today;
 
+        // Add new Draft Widget
         let dashboardWidgetAdd = new widgetModel(newDraftWidget);
         dashboardWidgetAdd.save()
             .then(addedDraftWidget => {
                 returnWidgets.push(addedDraftWidget);
-                debugDev(moduleName + ": " + 'New Widget added' + addedDraftWidget.id, widget.id)
+                debugDev(moduleName + ": " + 'New Widget added' + addedDraftWidget.id, originalWidget.id)
                 console.log('updateWidget After .save')
-                let widgetCheckpointQuery = {dashboardID: dashboardID,
-                    widgetID: widget.id}
+
+                // Find Original WidgetCheckpoints for the Original Widget
+                let widgetCheckpointQuery = {
+                    dashboardID: originalDashboardID,
+                    widgetID: originalWidget.id
+                };
                 widgetCheckpointModel.find(widgetCheckpointQuery)
-                    .then( widgetCheckpoints => {
-                        widgetCheckpoints.forEach( widgetCheckpoint => {
-                            // promiseArray.push(updateWidgetCheckpoint(widgetCheckpoint));
+                    .then(originalWidgetCheckpoints => {
+                        originalWidgetCheckpoints.forEach( originalWidgetCheckpoint => {
+                            promiseArray.push(updateWidgetCheckpoint(
+                                addedDashboardID, 
+                                addedDashboardTabID, 
+                                addedDraftWidget.id, 
+                                originalWidgetCheckpoint));
                         });
                         resolve();
                     })
@@ -151,23 +161,28 @@ function updateWidget(addedDashboardID, addedDashboardTabID, widget) {
 
 }
 
-function updateWidgetCheckpoint(widgetCheckpoint) {
+function updateWidgetCheckpoint(
+    addedDashboardID, 
+    addedDashboardTabID, 
+    addedWidgetID,
+    originalWidgetCheckpoint) {
 
     return new Promise ( (resolve, reject) => {
 
         // Create a new WidgetCheckpoint, pointing to the original
-        let newDraftWidgetCheckpoint = JSON.parse(JSON.stringify(widgetCheckpoint));
+        let newDraftWidgetCheckpoint = JSON.parse(JSON.stringify(originalWidgetCheckpoint));
         newDraftWidgetCheckpoint._id = null;
         newDraftWidgetCheckpoint.id = null;
-        newDraftWidgetCheckpoint.dashboardID = addedDraftDashboard.id;
-        newDraftWidgetCheckpoint.widgetID = addedDraftWidget.id;
-        newDraftWidgetCheckpoint.originalID = widgetCheckpoint.id;
+        newDraftWidgetCheckpoint.dashboardID = addedDashboardID;
+        newDraftWidgetCheckpoint.widgetID = addedWidgetID;
+        newDraftWidgetCheckpoint.originalID = originalWidgetCheckpoint.id;
 
-        newDraftWidgetCheckpoint.widgetSpec.dashboardID = addedDraftDashboard.id;
-        newDraftWidgetCheckpoint.widgetSpec.dashboardTabID  = addedDraftDashboardTab.id;
-        newDraftWidgetCheckpoint.widgetSpec.id = addedDraftWidget.id;
-        newDraftWidgetCheckpoint.widgetSpec.originalID = widgetCheckpoint.id;
+        newDraftWidgetCheckpoint.widgetSpec.dashboardID = addedDashboardID;
+        newDraftWidgetCheckpoint.widgetSpec.dashboardTabID  = addedDashboardTabID;
+        newDraftWidgetCheckpoint.widgetSpec.id = addedWidgetID;
+        newDraftWidgetCheckpoint.widgetSpec.originalID = originalWidgetCheckpoint.id;
 
+        // Add new Draft WidgetCheckpoint
         let dashboardWidgetCheckpointAdd = new widgetCheckpointModel(newDraftWidgetCheckpoint);
         dashboardWidgetCheckpointAdd.save()
             .then(addedDraftWidgetCheckpoint => {
@@ -187,19 +202,19 @@ router.post('/', (req, res, next) => {
         moduleName = module.id.substring(startPos + 1);
     };
 
-    orignalDashboardID = req.query.orignalDashboardID;
-    orignalDashboardID = +orignalDashboardID;
-    originalDashboardQuery = { id: orignalDashboardID };
+    originalDashboardID = req.query.orignalDashboardID;
+    originalDashboardID = +originalDashboardID;
+    originalDashboardQuery = { id: originalDashboardID };
     
     debugDev(moduleName + ": " + '## --------------------------');
-    debugDev(moduleName + ": " + '## POST Starting with Editing Dashboard and related info for dashboard id:', orignalDashboardID);
+    debugDev(moduleName + ": " + '## POST Starting with Editing Dashboard and related info for dashboard id:', originalDashboardID);
 
 
     // Try, in case model file does not exist
     // try {
 
         // Validations
-        if (isNaN(orignalDashboardID)) {
+        if (isNaN(originalDashboardID)) {
             return res.json(createErrorObject(
                 "error",
                 "Query Parameter dashboardID is not a number or not provided",
@@ -213,10 +228,10 @@ router.post('/', (req, res, next) => {
 
                 // Could be null if nothing was found
                 if (originalDashboard == null) {
-                    console.log("Dashboard does not exist for ID: " + orignalDashboardID, originalDashboardQuery)
+                    console.log("Dashboard does not exist for ID: " + originalDashboardID, originalDashboardQuery)
                     return res.json(createErrorObject(
                         "error",
-                        "Dashboard does not exist for ID: " + orignalDashboardID,
+                        "Dashboard does not exist for ID: " + originalDashboardID,
                         null
                     ));
                 };
@@ -227,7 +242,7 @@ router.post('/', (req, res, next) => {
 
                         // Update the Original Dashboard to point to the Draft
                         // Note - can be done in background since we dont use it
-                        let originalDashboardNew = JSON.parse(JSON.stringify(originalDashboardNew));
+                        let originalDashboardNew = JSON.parse(JSON.stringify(originalDashboard));
                         originalDashboardNew.draftID = addedDraftDashboard.id;
                         dashboardModel.findOneAndUpdate(
                             originalDashboardQuery,
@@ -239,7 +254,7 @@ router.post('/', (req, res, next) => {
                             .then( (doc) => console.log('Original Dashboard SAVED', doc.id))
 
                         // Loop on Original Dashboard Tabs
-                        dashboardTabModel.find({"dashboardID": { $eq: orignalDashboardID } })
+                        dashboardTabModel.find({"dashboardID": { $eq: originalDashboardID } })
                             .then(originalDashboardTabs => {
                                 console.log('After find')
 
@@ -260,7 +275,7 @@ router.post('/', (req, res, next) => {
                                         // Return the data with metadata
                                         return res.json( createReturnObject(
                                             "success",
-                                            "Edit: Draft Dashboard created with ID: " + orignalDashboardID,
+                                            "Edit: Draft Dashboard created with ID: " + originalDashboardID,
                                             {
                                                 dashboard: addedDraftDashboard,
                                                 dashboardTabs: returnDraftDashboardTabs,
@@ -280,21 +295,21 @@ router.post('/', (req, res, next) => {
 
                                     })
                                     .catch( err => {
-                                        console.log("Error in Promise.all for ID: " + orignalDashboardID, err)
+                                        console.log("Error in Promise.all for ID: " + originalDashboardID, err)
 
                                         return res.json(createErrorObject(
                                             "error",
-                                            "Error in Promise.all for ID: " + orignalDashboardID,
+                                            "Error in Promise.all for ID: " + originalDashboardID,
                                             err
                                         ));
 
                                     })
                             })
                             .catch( err => {
-                                console.log("Error reading Tabs for ID: " + orignalDashboardID, err)
+                                console.log("Error reading Tabs for ID: " + originalDashboardID, err)
                                 return res.json(createErrorObject(
                                     "error",
-                                    "Error reading Tabs for ID: " + orignalDashboardID,
+                                    "Error reading Tabs for ID: " + originalDashboardID,
                                     err
                                 ));
 
@@ -302,20 +317,20 @@ router.post('/', (req, res, next) => {
 
                     })
                     .catch( err => {
-                        console.log("Error in addDraftDashboard.then for ID: " + orignalDashboardID, err)
+                        console.log("Error in addDraftDashboard.then for ID: " + originalDashboardID, err)
                         return res.json(createErrorObject(
                             "error",
-                            "Error in addDraftDashboard.then for ID: " + orignalDashboardID,
+                            "Error in addDraftDashboard.then for ID: " + originalDashboardID,
                             err
                         ));
 
                     })
             })
             .catch( err => {
-                console.log("Error in dashboardModel.findOne for ID: " + orignalDashboardID, err)
+                console.log("Error in dashboardModel.findOne for ID: " + originalDashboardID, err)
                 return res.json(createErrorObject(
                     "error",
-                    "Error in dashboardModel.findOne for ID: " + orignalDashboardID,
+                    "Error in dashboardModel.findOne for ID: " + originalDashboardID,
                     err
                 ));
 
