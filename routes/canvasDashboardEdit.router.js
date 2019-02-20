@@ -31,6 +31,8 @@ let returnWidgets = [];
 let returnWidgetCheckpoints = [];
 let today = new Date();
 
+const originalDashboardQuery = { id: dashboardID };
+
 function addDraftDashboard(dashboard) {
     return new Promise( (resolve, reject) => {
 
@@ -61,14 +63,16 @@ function addDraftDashboard(dashboard) {
     })
 }
 
-function updateTabs(dashboardID, tab) {
+function updateTabs(addedDashboardID, tab) {
+    // Add the given tab to the DB, and then loop all all its Widgets, adding 
+    // their creation function to promiseArray
 
     return new Promise( (resolve, reject) => {
         // Create a new Tab, pointing to the original
         let newDraftDashboardTab = JSON.parse(JSON.stringify(tab));
         newDraftDashboardTab._id = null;
         newDraftDashboardTab.id = null;
-        newDraftDashboardTab.dashboardID = dashboardID;
+        newDraftDashboardTab.dashboardID = addedDashboardID;
         newDraftDashboardTab.originalID = tab.id;
 
         // TODO - add current user !!
@@ -79,14 +83,23 @@ function updateTabs(dashboardID, tab) {
 
         dashboardTabAdd.save()
             .then(addedDraftDashboardTab => {
+                console.log('updateTab After .save')
                 returnDraftDashboardTabs.push(addedDraftDashboardTab);
                 debugDev(moduleName + ": " + 'New Tab added' + addedDraftDashboardTab.id, addedDraftDashboardTab.originalID)
 
-                widgetQuery = {dashboardID: dashboardID, dashboardTabID: tab.id}
+                let widgetQuery = {dashboardID: addedDashboardID, dashboardTabID: tab.id}
                 widgetModel.find(widgetQuery)
                     .then( widgets => {
+                        console.log('updateTab After .find', widgetQuery, widgets)
+
                         widgets.forEach( widget => {
-                            // promiseArray.push(updateWidget(widget));
+                            promiseArray.push(updateWidget(
+                                addedDashboardID, 
+                                addedDraftDashboardTab.id, 
+                                widget
+                            ));
+                            console.log('In updateTabs After push ', addedDashboardID, 
+                            addedDraftDashboardTab.id, widget.id)
                         });
                         resolve();
                     })
@@ -97,19 +110,20 @@ function updateTabs(dashboardID, tab) {
     })
 }
 
-function updateWidget(widget) {
-
+function updateWidget(addedDashboardID, addedDashboardTabID, widget) {
+    // Add the given Widget to the DB, and then loop all all its WidgetCheckpointss, adding 
+    // their creation function to promiseArray
     return new Promise( (resolve, reject) => {
-
+        console.log('updateWidget Start')
         // Create a new Widget, pointing to the original
         let newDraftWidget = JSON.parse(JSON.stringify(widget));
         newDraftWidget._id = null;
         newDraftWidget.id = null;
-        newDraftWidget.dashboardID = addedDraftDashboard.id;
-        newDraftWidget.dashboardTabID = addedDraftDashboardTab.id;
+        newDraftWidget.dashboardID = addedDashboardID;
+        newDraftWidget.dashboardTabID = addedDashboardTabID;
         newDraftWidget.originalID = widget.id;
-        newDraftWidget.dashboardTabIDs = []; addedDraftDashboardTab.id;
-        newDraftWidget.dashboardTabIDs.push(addedDraftDashboardTab.id);
+        newDraftWidget.dashboardTabIDs = []; 
+        newDraftWidget.dashboardTabIDs.push(addedDashboardTabID);
 
         // TODO - add current user !!
         newDraftWidget.editor = '';
@@ -120,13 +134,13 @@ function updateWidget(widget) {
             .then(addedDraftWidget => {
                 returnWidgets.push(addedDraftWidget);
                 debugDev(moduleName + ": " + 'New Widget added' + addedDraftWidget.id, widget.id)
-            
-                widgetCheckpointQuery = {dashboardID: dashboardID,
+                console.log('updateWidget After .save')
+                let widgetCheckpointQuery = {dashboardID: dashboardID,
                     widgetID: widget.id}
                 widgetCheckpointModel.find(widgetCheckpointQuery)
                     .then( widgetCheckpoints => {
                         widgetCheckpoints.forEach( widgetCheckpoint => {
-                            promiseArray.push(updateWidgetCheckpoint(widgetCheckpoint));
+                            // promiseArray.push(updateWidgetCheckpoint(widgetCheckpoint));
                         });
                         resolve();
                     })
@@ -190,12 +204,8 @@ router.post('/', (req, res, next) => {
             ));
         };
 
-        // Define queries
-        const dashboardQuery = { id: dashboardID };
-        const dashboardIDQuery = {"dashboardID": { $eq: dashboardID } };
-
         // Find Original Dashboard
-        dashboardModel.findOne(dashboardQuery)
+        dashboardModel.findOne(originalDashboardQuery)
             .then((dashboard)=>{
 
                 // Could be null if nothing was found
@@ -217,7 +227,7 @@ router.post('/', (req, res, next) => {
                         let originalDashboard = JSON.parse(JSON.stringify(dashboard));
                         originalDashboard.draftID = addedDraftDashboard.id;
                         dashboardModel.findOneAndUpdate(
-                            dashboardQuery,
+                            originalDashboardQuery,
                             originalDashboard,
                             {
                                 new: true,                       // return updated doc
@@ -226,19 +236,22 @@ router.post('/', (req, res, next) => {
                             .then( (doc) => console.log('Original Dashboard SAVED', doc.id))
 
                         // Loop on Original Dashboard Tabs
-                        dashboardTabModel.find(dashboardIDQuery)
-                            .then( tabs => {
-                                tabs.forEach( tab => {
-                                console.log('5')
-                                    
-                                    promiseArray.push(updateTabs(addedDraftDashboard.id, tab));
-                                    console.log('6')
+                        dashboardTabModel.find({"dashboardID": { $eq: dashboardID } })
+                            .then( originalDashboardTabs => {
+                                console.log('After find')
 
+                                originalDashboardTabs.forEach( originalDashboardTab => {
+                                    promiseArray.push(
+                                        updateTabs(
+                                            addedDraftDashboard.id, 
+                                            originalDashboardTab
+                                        )
+                                    );
+                                    console.log('After push for tab', originalDashboardTab.id)
                                 });
-                                console.log('7 promiseArray', promiseArray)
+                                console.log('Before promiseArray', promiseArray)
                                 Promise.all(promiseArray)
                                     .then( () => {
-                                        console.log('6')
 
                                         console.log('xx At END return now')
                                         // Return the data with metadata
