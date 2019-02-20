@@ -91,7 +91,7 @@ function updateTabs(addedDashboardID, originalDashboardTab) {
                 };
                 widgetModel.find(widgetQuery)
                     .then( originalWidgets => {
-                        console.log('updateTab After .find', widgetQuery, originalWidgets)
+                        console.log('updateTab After .find', widgetQuery, originalWidgets.length)
 
                         originalWidgets.forEach(originalWidget => {
                             promiseArray.push(updateWidget(
@@ -132,8 +132,10 @@ function updateWidget(addedDashboardID, addedDashboardTabID, originalWidget) {
 
         // Add new Draft Widget
         let dashboardWidgetAdd = new widgetModel(newDraftWidget);
+        console.log('updateWidget pre.Save')
         dashboardWidgetAdd.save()
             .then(addedDraftWidget => {
+                console.log('updateWidget post.Save')
                 returnWidgets.push(addedDraftWidget);
                 debugDev(moduleName + ": " + 'New Widget added' + addedDraftWidget.id, originalWidget.id)
                 console.log('updateWidget After .save')

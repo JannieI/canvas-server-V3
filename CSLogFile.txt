@@ -5391,3 +5391,1963 @@ Canvas Server started ...
        Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
 ----------------------------------------------------------------
 
+  Url: http://localhost:8000/canvasDashboardEdit%3ForignalDashboardID=116
+  Path: /canvasDashboardEdit
+Wed, 20 Feb 2019 18:43:46 GMT app:dev App.js In validateUser 
+Wed, 20 Feb 2019 18:43:46 GMT app:dev canvasDashboardEdit.router.js: ## --------------------------
+Wed, 20 Feb 2019 18:43:46 GMT app:dev canvasDashboardEdit.router.js: ## POST Starting with Editing Dashboard and related info for dashboard id: 116
+Wed, 20 Feb 2019 18:43:46 GMT app:dev canvasDashboardEdit.router.js: New Dashboard added145
+After find
+After push for tab 248
+Before promiseArray [ Promise { <pending> } ]
+Original Dashboard SAVED 116
+updateTab After .save
+Wed, 20 Feb 2019 18:43:46 GMT app:dev canvasDashboardEdit.router.js: New Tab added259 248
+updateTab After .find { dashboardID: 116, dashboardTabID: 248 } [ { dashboardTabIDs: [ 248 ],
+    checkpointIDs: [],
+    dataFields: null,
+    dataFieldTypes: null,
+    dataFieldLengths: null,
+    _id: 5c6c28e5beb90c633d9ca27a,
+    widgetType: 'Graph',
+    widgetSubType: '',
+    isLocked: false,
+    dashboardID: 116,
+    dashboardTabID: 248,
+    id: 1165,
+    originalID: null,
+    name: 'New Widget',
+    description: 'New Widget from Template',
+    annotation: '',
+    annotationLastUserID: '',
+    annotationLastUpdated: null,
+    visualGrammar: 'Vega-Lite',
+    visualGrammarType: 'standard',
+    version: 1,
+    isSelected: false,
+    isLiked: false,
+    nrDataQualityIssues: 0,
+    nrComments: 0,
+    showCheckpoints: false,
+    currentCheckpoint: 0,
+    lastCheckpoint: -1,
+    hyperlinkDashboardID: null,
+    hyperlinkDashboardTabID: null,
+    containerStyleID: null,
+    datasourceID: 1,
+    data: null,
+    dataschema: 
+     [ [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object] ],
+    datasetID: 1,
+    dataParameters: [],
+    reportID: null,
+    reportName: '',
+    rowLimit: null,
+    addRestRow: false,
+    size: '',
+    containerBackgroundcolor: 'transparent',
+    containerBackgroundcolorName: 'transparent',
+    containerBorder: '1px solid gray',
+    containerBorderColourName: '1px solid gray',
+    containerBorderRadius: '6px',
+    containerBoxshadow: 'none',
+    containerFontsize: 12,
+    containerHeight: 327,
+    containerLeft: 500,
+    containerHasContextMenus: false,
+    containerHasTitle: false,
+    containerTop: 80,
+    containerWidth: 301,
+    containerZindex: 50,
+    graphLayerFacet: 'Single',
+    graphLayers: [ [Object] ],
+    graphUrl: '',
+    graphData: 
+     [ [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       [Object],
+       ... 312 more items ],
+    graphTitleText: '',
+    graphTitleAnchor: 'Middle',
+    graphTitleAngle: 0,
+    graphBackgroundColorName: 'transparent',
+    graphBackgroundColor: 'transparent',
+    graphBorderColorName: 'lightgray',
+    graphBorderColor: 'lightgray',
+    graphTitleBaseline: 'Bottom',
+    graphTitleColorName: 'Gray',
+    graphTitleColor: 'Gray',
+    graphTitleFont: '',
+    graphTitleFontSize: 10,
+    graphTitleFontWeight: 400,
+    graphTitleLength: 0,
+    graphTitleOrientation: 'Top',
+    graphTransformations: [ [Object] ],
+    graphCalculations: [],
+    graphFilters: [],
+    sampleNumberRows: 0,
+    titleText: 'Title of new Widget',
+    titleBackgroundColor: 'lightgray',
+    titleBackgroundColorName: 'lightgray',
+    titleBorder: '',
+    titleBorderName: '',
+    titleColor: 'black',
+    titleColorName: 'black',
+    titleFontsize: 12,
+    titleFontWeight: '',
+    titleHeight: 24,
+    titleMargin: '0',
+    titlePadding: '0 0 0 5px',
+    titleTextAlign: 'center',
+    titleWidth: 100,
+    graphHeight: 240,
+    graphLeft: 1,
+    graphTop: 1,
+    graphWidth: 240,
+    graphDimensionRight: 0,
+    graphDimensionLeft: 80,
+    graphDimensionBottom: 70,
+    graphGraphPadding: 1,
+    graphHasSignals: false,
+    graphFillColor: '',
+    graphHoverColor: '',
+    graphPanAndZoom: false,
+    graphSpecification: '',
+    graphDescription: '',
+    tableBackgroundColor: '',
+    tableBackgroundColorName: '',
+    tableColor: '',
+    tableColorName: '',
+    tableCols: 1,
+    fontSize: 12,
+    tableHeight: 1,
+    tableHideHeader: false,
+    tableLeft: 1,
+    tableLineHeight: 12,
+    tableRows: 1,
+    tableTop: 1,
+    tableWidth: 1,
+    slicerAddRest: false,
+    slicerAddRestValue: false,
+    slicerBins: null,
+    slicerColor: 'gray',
+    slicerFieldName: '',
+    slicerNumberToShow: '',
+    slicerSelection: null,
+    slicerSortField: '',
+    slicerSortFieldOrder: '',
+    slicerType: '',
+    shapeBullet: [],
+    shapeBulletStyleType: '',
+    shapeBulletsOrdered: false,
+    shapeBulletMarginBottom: 3,
+    shapeCorner: 15,
+    shapeFill: '',
+    shapeFillName: '',
+    shapeFontSize: 24,
+    shapeLineHeight: 'normal',
+    shapeFontFamily: '',
+    shapeImageUrl: '',
+    shapeIsBold: true,
+    shapeIsItalic: false,
+    shapeOpacity: 1,
+    shapeRotation: 0,
+    shapeSize: 1,
+    shapeStroke: '',
+    shapeStrokeName: '',
+    shapeStrokeWidth: '',
+    shapeSvgHeight: 30,
+    shapeSvgWidth: 30,
+    shapeText: '',
+    shapeTextDisplay: '',
+    shapeTextAlign: 'Left',
+    shapeTextColour: '',
+    shapeTextColourName: '',
+    shapeValue: '',
+    refreshMode: '',
+    refreshFrequency: 1,
+    widgetRefreshedOn: '',
+    widgetRefreshedBy: '',
+    widgetCreatedOn: null,
+    widgetCreatedBy: '',
+    widgetUpdatedOn: null,
+    widgetUpdatedBy: '',
+    __v: 0 } ]
+updateWidget Start
+In updateTabs After push  145 259 1165
+xx At END return now
+## POST /canvasDashboardEdit?orignalDashboardID=116 200 - - 159.923 ms ON [2019-02-20T18:43:46.573Z] FROM ::ffff:127.0.0.1 - -
+##
+Wed, 20 Feb 2019 18:43:46 GMT app:dev canvasDashboardEdit.router.js: New Widget added1167 1165
+updateWidget After .save
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 18:45:25 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 18:45:25 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 18:45:25 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 18:46:49 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 18:46:49 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 18:46:49 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 18:46:52 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 18:46:52 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 18:46:52 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 18:46:55 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 18:46:55 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 18:46:55 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 18:46:58 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 18:46:58 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 18:46:58 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+  Url: http://localhost:8000/canvasDashboardEdit%3ForignalDashboardID=116
+  Path: /canvasDashboardEdit
+Wed, 20 Feb 2019 18:47:02 GMT app:dev App.js In validateUser 
+Wed, 20 Feb 2019 18:47:02 GMT app:dev canvasDashboardEdit.router.js: ## --------------------------
+Wed, 20 Feb 2019 18:47:02 GMT app:dev canvasDashboardEdit.router.js: ## POST Starting with Editing Dashboard and related info for dashboard id: 116
+Wed, 20 Feb 2019 18:47:02 GMT app:dev canvasDashboardEdit.router.js: New Dashboard added146
+After find
+After push for tab 248
+Before promiseArray [ Promise { <pending> } ]
+Original Dashboard SAVED 116
+updateTab After .save
+Wed, 20 Feb 2019 18:47:02 GMT app:dev canvasDashboardEdit.router.js: New Tab added260 248
+updateTab After .find { dashboardID: 116, dashboardTabID: 248 } 1
+updateWidget Start
+updateWidget pre.Save
+In updateTabs After push  146 260 1165
+xx At END return now
+## POST /canvasDashboardEdit?orignalDashboardID=116 200 - - 187.481 ms ON [2019-02-20T18:47:02.962Z] FROM ::ffff:127.0.0.1 - -
+##
+Wed, 20 Feb 2019 18:47:03 GMT app:dev canvasDashboardEdit.router.js: New Widget added1168 1165
+updateWidget After .save
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 18:47:29 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 18:47:29 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 18:47:29 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 18:47:33 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 18:47:33 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 18:47:33 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+  Url: http://localhost:8000/canvasDashboardEdit%3ForignalDashboardID=116
+  Path: /canvasDashboardEdit
+Wed, 20 Feb 2019 18:47:35 GMT app:dev App.js In validateUser 
+Wed, 20 Feb 2019 18:47:35 GMT app:dev canvasDashboardEdit.router.js: ## --------------------------
+Wed, 20 Feb 2019 18:47:35 GMT app:dev canvasDashboardEdit.router.js: ## POST Starting with Editing Dashboard and related info for dashboard id: 116
+Wed, 20 Feb 2019 18:47:35 GMT app:dev canvasDashboardEdit.router.js: New Dashboard added147
+After find
+After push for tab 248
+Before promiseArray [ Promise { <pending> } ]
+Original Dashboard SAVED 116
+updateTab After .save
+Wed, 20 Feb 2019 18:47:35 GMT app:dev canvasDashboardEdit.router.js: New Tab added261 248
+updateTab After .find { dashboardID: 116, dashboardTabID: 248 } 1
+updateWidget Start
+updateWidget pre.Save
+In updateTabs After push  147 261 1165
+xx At END return now
+## POST /canvasDashboardEdit?orignalDashboardID=116 200 - - 111.740 ms ON [2019-02-20T18:47:35.755Z] FROM ::ffff:127.0.0.1 - -
+##
+updateWidget post.Save
+Wed, 20 Feb 2019 18:47:35 GMT app:dev canvasDashboardEdit.router.js: New Widget added1169 1165
+updateWidget After .save
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 18:48:19 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 18:48:19 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 18:48:19 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 18:48:21 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 18:48:21 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 18:48:21 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+  Url: http://localhost:8000/canvasDashboardEdit%3ForignalDashboardID=116
+  Path: /canvasDashboardEdit
+Wed, 20 Feb 2019 18:48:23 GMT app:dev App.js In validateUser 
+Wed, 20 Feb 2019 18:48:23 GMT app:dev canvasDashboardEdit.router.js: ## --------------------------
+Wed, 20 Feb 2019 18:48:23 GMT app:dev canvasDashboardEdit.router.js: ## POST Starting with Editing Dashboard and related info for dashboard id: 116
+Wed, 20 Feb 2019 18:48:23 GMT app:dev canvasDashboardEdit.router.js: New Dashboard added148
+After find
+After push for tab 248
+Before promiseArray [ Promise { <pending> } ]
+Original Dashboard SAVED 116
+updateTab After .save
+Wed, 20 Feb 2019 18:48:23 GMT app:dev canvasDashboardEdit.router.js: New Tab added262 248
+updateTab After .find { dashboardID: 116, dashboardTabID: 248 } 1
+updateWidget Start
+updateWidget pre.Save
+In updateTabs After push  148 262 1165
+xx At END return now
+## POST /canvasDashboardEdit?orignalDashboardID=116 200 - - 113.706 ms ON [2019-02-20T18:48:23.558Z] FROM ::ffff:127.0.0.1 - -
+##
+updateWidget post.Save
+Wed, 20 Feb 2019 18:48:23 GMT app:dev canvasDashboardEdit.router.js: New Widget added1170 1165
+updateWidget After .save
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 18:48:37 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 18:48:37 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 18:48:37 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 18:48:42 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 18:48:42 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 18:48:42 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+  Url: http://localhost:8000/canvasDashboardEdit%3ForignalDashboardID=116
+  Path: /canvasDashboardEdit
+Wed, 20 Feb 2019 18:48:43 GMT app:dev App.js In validateUser 
+Wed, 20 Feb 2019 18:48:43 GMT app:dev canvasDashboardEdit.router.js: ## --------------------------
+Wed, 20 Feb 2019 18:48:43 GMT app:dev canvasDashboardEdit.router.js: ## POST Starting with Editing Dashboard and related info for dashboard id: 116
+Wed, 20 Feb 2019 18:48:43 GMT app:dev canvasDashboardEdit.router.js: New Dashboard added149
+After find
+After push for tab 248
+Before promiseArray [ Promise { <pending> } ]
+Original Dashboard SAVED 116
+updateTab After .save
+Wed, 20 Feb 2019 18:48:43 GMT app:dev canvasDashboardEdit.router.js: New Tab added263 248
+updateTab After .find { dashboardID: 116, dashboardTabID: 248 } 1
+updateWidget Start
+updateWidget pre.Save { dashboardTabIDs: [ 263 ],
+  checkpointIDs: [],
+  dataFields: null,
+  dataFieldTypes: null,
+  dataFieldLengths: null,
+  _id: null,
+  widgetType: 'Graph',
+  widgetSubType: '',
+  isLocked: false,
+  dashboardID: 149,
+  dashboardTabID: 263,
+  id: null,
+  originalID: 1165,
+  name: 'New Widget',
+  description: 'New Widget from Template',
+  annotation: '',
+  annotationLastUserID: '',
+  annotationLastUpdated: null,
+  visualGrammar: 'Vega-Lite',
+  visualGrammarType: 'standard',
+  version: 1,
+  isSelected: false,
+  isLiked: false,
+  nrDataQualityIssues: 0,
+  nrComments: 0,
+  showCheckpoints: false,
+  currentCheckpoint: 0,
+  lastCheckpoint: -1,
+  hyperlinkDashboardID: null,
+  hyperlinkDashboardTabID: null,
+  containerStyleID: null,
+  datasourceID: 1,
+  data: null,
+  dataschema: 
+   [ { _id: '5c6c007f345ac2170072e630',
+       name: 'InvoiceId',
+       type: 'number',
+       typeName: 'number',
+       length: 5,
+       isCalculated: false,
+       calculatedExpression: '' },
+     { _id: '5c6c007f345ac2170072e62f',
+       name: 'CustomerId',
+       type: 'number',
+       typeName: 'number',
+       length: 10,
+       isCalculated: false,
+       calculatedExpression: '' },
+     { _id: '5c6c007f345ac2170072e62e',
+       name: 'InvoiceDate',
+       type: 'date',
+       typeName: 'date',
+       length: 12,
+       isCalculated: false,
+       calculatedExpression: '' },
+     { _id: '5c6c007f345ac2170072e62d',
+       name: 'BillingAddress',
+       type: 'string',
+       typeName: 'string',
+       length: 12,
+       isCalculated: false,
+       calculatedExpression: '' },
+     { _id: '5c6c007f345ac2170072e62c',
+       name: 'BillingCity',
+       type: 'string',
+       typeName: 'string',
+       length: 12,
+       isCalculated: false,
+       calculatedExpression: '' },
+     { _id: '5c6c007f345ac2170072e62b',
+       name: 'BillingState',
+       type: 'string',
+       typeName: 'string',
+       length: 12,
+       isCalculated: false,
+       calculatedExpression: '' },
+     { _id: '5c6c007f345ac2170072e62a',
+       name: 'BillingCountry',
+       type: 'string',
+       typeName: 'string',
+       length: 12,
+       isCalculated: false,
+       calculatedExpression: '' },
+     { _id: '5c6c007f345ac2170072e629',
+       name: 'BillingPostalCode',
+       type: 'number',
+       typeName: 'number',
+       length: 12,
+       isCalculated: false,
+       calculatedExpression: '' },
+     { _id: '5c6c007f345ac2170072e628',
+       name: 'Total',
+       type: 'number',
+       typeName: 'number',
+       length: 12,
+       isCalculated: false,
+       calculatedExpression: '' } ],
+  datasetID: 1,
+  dataParameters: [],
+  reportID: null,
+  reportName: '',
+  rowLimit: null,
+  addRestRow: false,
+  size: '',
+  containerBackgroundcolor: 'transparent',
+  containerBackgroundcolorName: 'transparent',
+  containerBorder: '1px solid gray',
+  containerBorderColourName: '1px solid gray',
+  containerBorderRadius: '6px',
+  containerBoxshadow: 'none',
+  containerFontsize: 12,
+  containerHeight: 327,
+  containerLeft: 500,
+  containerHasContextMenus: false,
+  containerHasTitle: false,
+  containerTop: 80,
+  containerWidth: 301,
+  containerZindex: 50,
+  graphLayerFacet: 'Single',
+  graphLayers: 
+   [ { _id: '5c6c007f345ac2170072e631',
+       graphMark: 'bar',
+       graphMarkOrient: 'Horizontal',
+       graphMarkLine: false,
+       graphMarkPoint: false,
+       graphMarkPointColorName: '',
+       graphMarkPointColor: '',
+       graphMarkColourName: '',
+       graphMarkColour: '',
+       graphMarkCornerRadius: 0,
+       graphMarkExtent: '',
+       graphMarkOpacity: 1,
+       graphMarkBinSpacing: 0,
+       graphMarkSize: null,
+       graphMarkInterpolate: '',
+       graphXfield: 'BillingState',
+       graphXaggregateName: '',
+       graphXaggregate: '',
+       graphXtimeUnit: '',
+       graphXbin: false,
+       graphXMaxBins: 0,
+       graphXformat: '',
+       graphXimpute: '',
+       graphXimputeValue: 0,
+       graphXstack: '',
+       graphXsort: '',
+       graphXtype: 'ordinal',
+       graphXtypeName: 'Ordinal',
+       graphYfield: 'Total',
+       graphYaggregateName: '',
+       graphYaggregate: '',
+       graphYbin: false,
+       graphYMaxBins: 0,
+       graphYformat: '',
+       graphYimpute: '',
+       graphYimputeValue: 0,
+       graphYstack: '',
+       graphYsort: '',
+       graphYtimeUnit: '',
+       graphYtype: 'quantitative',
+       graphYtypeName: 'Quantitative',
+       graphColorField: '',
+       graphColorAggregateName: '',
+       graphColorAggregate: '',
+       graphColorBin: false,
+       graphColorMaxBins: 0,
+       graphColorFormat: '',
+       graphColorImpute: '',
+       graphColorImputeValue: 0,
+       graphColorScheme: 'blues',
+       graphColorSort: '',
+       graphColorStack: '',
+       graphColorType: 'ordinal',
+       graphColorTypeName: '',
+       graphColorTimeUnit: '',
+       graphXaxisFormat: '',
+       graphXaxisGrid: false,
+       graphXaxisGridColorName: '',
+       graphXaxisGridColor: '',
+       graphXaxisLabels: true,
+       graphXaxisLabelAngle: 0,
+       graphXaxisLabelColorName: '',
+       graphXaxisLabelsLength: 0,
+       graphXaxisLabelColor: '',
+       graphXaxisTitle: '',
+       graphXaxisTitleCheckbox: false,
+       graphXaxisScaleType: '',
+       graphYaxisFormat: '',
+       graphYaxisGrid: false,
+       graphYaxisGridColorName: '',
+       graphYaxisGridColor: '',
+       graphYaxisLabels: true,
+       graphYaxisLabelAngle: 0,
+       graphYaxisLabelColorName: '',
+       graphYaxisLabelColor: '',
+       graphYaxisScaleType: '',
+       graphYaxisTitle: '',
+       graphYaxisTitleCheckbox: false,
+       graphLegendAxisScaleType: '',
+       graphLegendHide: false,
+       graphLegendTitleCheckbox: false,
+       graphLegendTitle: '',
+       graphLegendFormat: '',
+       graphLegendLabels: true,
+       graphLegendLabelColorName: '',
+       graphLegendLabelColor: '',
+       graphSizeField: '',
+       graphSizeType: '',
+       graphSizeTypeName: '',
+       graphSizeAggregateName: '',
+       graphSizeAggregate: '',
+       graphSizeBin: false,
+       graphSizeMaxBins: 0,
+       graphRowField: '',
+       graphRowType: '',
+       graphRowTypeName: '',
+       graphColumnField: '',
+       graphColumnType: '',
+       graphColumnTypeName: '',
+       graphDetailField: '',
+       graphDetailType: '',
+       graphDetailTypeName: '',
+       graphX2Field: '',
+       graphX2Type: '',
+       graphX2TypeName: '',
+       graphX2AggregateName: '',
+       graphY2Field: '',
+       graphY2Type: '',
+       graphY2TypeName: '',
+       graphY2AggregateName: '',
+       graphProjectionType: '',
+       graphProjectionFieldLatitude: '',
+       graphProjectionFieldLongitude: '',
+       graphXaxisScaleDomainStart: '',
+       graphXaxisScaleDomainEnd: '',
+       graphYaxisScaleDomainStart: '',
+       graphYaxisScaleDomainEnd: '',
+       graphYaxisLabelsLength: 0 } ],
+  graphUrl: '',
+  graphData: 
+   [ { InvoiceId: 1,
+       CustomerId: 2,
+       InvoiceDate: '2009-01-01 00:00:00',
+       BillingAddress: 'Theodor-Heuss-Straße 34',
+       BillingCity: 'Stuttgart',
+       BillingState: null,
+       BillingCountry: 'Germany',
+       BillingPostalCode: '70174',
+       Total: 1.98 },
+     { InvoiceId: 2,
+       CustomerId: 4,
+       InvoiceDate: '2009-01-02 00:00:00',
+       BillingAddress: 'Ullevålsveien 14',
+       BillingCity: 'Oslo',
+       BillingState: null,
+       BillingCountry: 'Norway',
+       BillingPostalCode: '0171',
+       Total: 3.96 },
+     { InvoiceId: 3,
+       CustomerId: 8,
+       InvoiceDate: '2009-01-03 00:00:00',
+       BillingAddress: 'Grétrystraat 63',
+       BillingCity: 'Brussels',
+       BillingState: null,
+       BillingCountry: 'Belgium',
+       BillingPostalCode: '1000',
+       Total: 5.94 },
+     { InvoiceId: 4,
+       CustomerId: 14,
+       InvoiceDate: '2009-01-06 00:00:00',
+       BillingAddress: '8210 111 ST NW',
+       BillingCity: 'Edmonton',
+       BillingState: 'AB',
+       BillingCountry: 'Canada',
+       BillingPostalCode: 'T6G 2C7',
+       Total: null },
+     { InvoiceId: 5,
+       CustomerId: 23,
+       InvoiceDate: '2009-01-11 00:00:00',
+       BillingAddress: '69 Salem Street',
+       BillingCity: 'Boston',
+       BillingState: 'MA',
+       BillingCountry: 'USA',
+       BillingPostalCode: '2113',
+       Total: 13.86 },
+     { InvoiceId: 6,
+       CustomerId: 37,
+       InvoiceDate: '2009-01-19 00:00:00',
+       BillingAddress: 'Berger Straße 10',
+       BillingCity: 'Frankfurt',
+       BillingState: null,
+       BillingCountry: 'Germany',
+       BillingPostalCode: '60316',
+       Total: 0.99 },
+     { InvoiceId: 7,
+       CustomerId: 38,
+       InvoiceDate: '2009-02-01 00:00:00',
+       BillingAddress: 'Barbarossastraße 19',
+       BillingCity: 'Berlin',
+       BillingState: null,
+       BillingCountry: 'Germany',
+       BillingPostalCode: '10779',
+       Total: 1.98 },
+     { InvoiceId: 8,
+       CustomerId: 40,
+       InvoiceDate: '2009-02-01 00:00:00',
+       BillingAddress: '8, Rue Hanovre',
+       BillingCity: 'Paris',
+       BillingState: null,
+       BillingCountry: 'France',
+       BillingPostalCode: '75002',
+       Total: 1.98 },
+     { InvoiceId: 9,
+       CustomerId: 42,
+       InvoiceDate: '2009-02-02 00:00:00',
+       BillingAddress: '9, Place Louis Barthou',
+       BillingCity: 'Bordeaux',
+       BillingState: null,
+       BillingCountry: 'France',
+       BillingPostalCode: '33000',
+       Total: 3.96 },
+     { InvoiceId: 10,
+       CustomerId: 46,
+       InvoiceDate: '2009-02-03 00:00:00',
+       BillingAddress: '3 Chatham Street',
+       BillingCity: 'Dublin',
+       BillingState: 'Dublin',
+       BillingCountry: 'Ireland',
+       BillingPostalCode: null,
+       Total: 5.94 },
+     { InvoiceId: 11,
+       CustomerId: 52,
+       InvoiceDate: '2009-02-06 00:00:00',
+       BillingAddress: '202 Hoxton Street',
+       BillingCity: 'London',
+       BillingState: null,
+       BillingCountry: 'United Kingdom',
+       BillingPostalCode: 'N1 5LH',
+       Total: 8.91 },
+     { InvoiceId: 12,
+       CustomerId: 2,
+       InvoiceDate: '2009-02-11 00:00:00',
+       BillingAddress: 'Theodor-Heuss-Straße 34',
+       BillingCity: 'Stuttgart',
+       BillingState: null,
+       BillingCountry: 'Germany',
+       BillingPostalCode: '70174',
+       Total: 13.86 },
+     { InvoiceId: 13,
+       CustomerId: 16,
+       InvoiceDate: '2009-02-19 00:00:00',
+       BillingAddress: '1600 Amphitheatre Parkway',
+       BillingCity: 'Mountain View',
+       BillingState: 'CA',
+       BillingCountry: 'USA',
+       BillingPostalCode: '94043-1351',
+       Total: 0.99 },
+     { InvoiceId: 14,
+       CustomerId: 17,
+       InvoiceDate: '2009-03-04 00:00:00',
+       BillingAddress: '1 Microsoft Way',
+       BillingCity: 'Redmond',
+       BillingState: 'WA',
+       BillingCountry: 'USA',
+       BillingPostalCode: '98052-8300',
+       Total: 1.98 },
+     { InvoiceId: 15,
+       CustomerId: 19,
+       InvoiceDate: '2009-03-04 00:00:00',
+       BillingAddress: '1 Infinite Loop',
+       BillingCity: 'Cupertino',
+       BillingState: 'CA',
+       BillingCountry: 'USA',
+       BillingPostalCode: '95014',
+       Total: 1.98 },
+     { InvoiceId: 16,
+       CustomerId: 21,
+       InvoiceDate: '2009-03-05 00:00:00',
+       BillingAddress: '801 W 4th Street',
+       BillingCity: 'Reno',
+       BillingState: 'NV',
+       BillingCountry: 'USA',
+       BillingPostalCode: '89503',
+       Total: 3.96 },
+     { InvoiceId: 17,
+       CustomerId: 25,
+       InvoiceDate: '2009-03-06 00:00:00',
+       BillingAddress: '319 N. Frances Street',
+       BillingCity: 'Madison',
+       BillingState: 'WI',
+       BillingCountry: 'USA',
+       BillingPostalCode: '53703',
+       Total: 5.94 },
+     { InvoiceId: 18,
+       CustomerId: 31,
+       InvoiceDate: '2009-03-09 00:00:00',
+       BillingAddress: '194A Chain Lake Drive',
+       BillingCity: 'Halifax',
+       BillingState: 'NS',
+       BillingCountry: 'Canada',
+       BillingPostalCode: 'B3S 1C5',
+       Total: 8.91 },
+     { InvoiceId: 19,
+       CustomerId: 40,
+       InvoiceDate: '2009-03-14 00:00:00',
+       BillingAddress: '8, Rue Hanovre',
+       BillingCity: 'Paris',
+       BillingState: null,
+       BillingCountry: 'France',
+       BillingPostalCode: '75002',
+       Total: 13.86 },
+     { InvoiceId: 20,
+       CustomerId: 54,
+       InvoiceDate: '2009-03-22 00:00:00',
+       BillingAddress: '110 Raeburn Pl',
+       BillingCity: 'Edinburgh ',
+       BillingState: null,
+       BillingCountry: 'United Kingdom',
+       BillingPostalCode: 'EH4 1HH',
+       Total: 0.99 },
+     { InvoiceId: 21,
+       CustomerId: 55,
+       InvoiceDate: '2009-04-04 00:00:00',
+       BillingAddress: '421 Bourke Street',
+       BillingCity: 'Sidney',
+       BillingState: 'NSW',
+       BillingCountry: 'Australia',
+       BillingPostalCode: '2010',
+       Total: 1.98 },
+     { InvoiceId: 22,
+       CustomerId: 57,
+       InvoiceDate: '2009-04-04 00:00:00',
+       BillingAddress: 'Calle Lira, 198',
+       BillingCity: 'Santiago',
+       BillingState: null,
+       BillingCountry: 'Chile',
+       BillingPostalCode: null,
+       Total: 1.98 },
+     { InvoiceId: 23,
+       CustomerId: 59,
+       InvoiceDate: '2009-04-05 00:00:00',
+       BillingAddress: '3,Raj Bhavan Road',
+       BillingCity: 'Bangalore',
+       BillingState: null,
+       BillingCountry: 'India',
+       BillingPostalCode: '560001',
+       Total: 3.96 },
+     { InvoiceId: 24,
+       CustomerId: 4,
+       InvoiceDate: '2009-04-06 00:00:00',
+       BillingAddress: 'Ullevålsveien 14',
+       BillingCity: 'Oslo',
+       BillingState: null,
+       BillingCountry: 'Norway',
+       BillingPostalCode: '0171',
+       Total: 5.94 },
+     { InvoiceId: 25,
+       CustomerId: 10,
+       InvoiceDate: '2009-04-09 00:00:00',
+       BillingAddress: 'Rua Dr. Falcão Filho, 155',
+       BillingCity: 'São Paulo',
+       BillingState: 'SP',
+       BillingCountry: 'Brazil',
+       BillingPostalCode: '01007-010',
+       Total: 8.91 },
+     { InvoiceId: 26,
+       CustomerId: 19,
+       InvoiceDate: '2009-04-14 00:00:00',
+       BillingAddress: '1 Infinite Loop',
+       BillingCity: 'Cupertino',
+       BillingState: 'CA',
+       BillingCountry: 'USA',
+       BillingPostalCode: '95014',
+       Total: 13.86 },
+     { InvoiceId: 27,
+       CustomerId: 33,
+       InvoiceDate: '2009-04-22 00:00:00',
+       BillingAddress: '5112 48 Street',
+       BillingCity: 'Yellowknife',
+       BillingState: 'NT',
+       BillingCountry: 'Canada',
+       BillingPostalCode: 'X1A 1N6',
+       Total: 0.99 },
+     { InvoiceId: 28,
+       CustomerId: 34,
+       InvoiceDate: '2009-05-05 00:00:00',
+       BillingAddress: 'Rua da Assunção 53',
+       BillingCity: 'Lisbon',
+       BillingState: null,
+       BillingCountry: 'Portugal',
+       BillingPostalCode: null,
+       Total: 1.98 },
+     { InvoiceId: 29,
+       CustomerId: 36,
+       InvoiceDate: '2009-05-05 00:00:00',
+       BillingAddress: 'Tauentzienstraße 8',
+       BillingCity: 'Berlin',
+       BillingState: null,
+       BillingCountry: 'Germany',
+       BillingPostalCode: '10789',
+       Total: 1.98 },
+     { InvoiceId: 30,
+       CustomerId: 38,
+       InvoiceDate: '2009-05-06 00:00:00',
+       BillingAddress: 'Barbarossastraße 19',
+       BillingCity: 'Berlin',
+       BillingState: null,
+       BillingCountry: 'Germany',
+       BillingPostalCode: '10779',
+       Total: 3.96 },
+     { InvoiceId: 31,
+       CustomerId: 42,
+       InvoiceDate: '2009-05-07 00:00:00',
+       BillingAddress: '9, Place Louis Barthou',
+       BillingCity: 'Bordeaux',
+       BillingState: null,
+       BillingCountry: 'France',
+       BillingPostalCode: '33000',
+       Total: 5.94 },
+     { InvoiceId: 32,
+       CustomerId: 48,
+       InvoiceDate: '2009-05-10 00:00:00',
+       BillingAddress: 'Lijnbaansgracht 120bg',
+       BillingCity: 'Amsterdam',
+       BillingState: 'VV',
+       BillingCountry: 'Netherlands',
+       BillingPostalCode: '1016',
+       Total: 8.91 },
+     { InvoiceId: 33,
+       CustomerId: 57,
+       InvoiceDate: '2009-05-15 00:00:00',
+       BillingAddress: 'Calle Lira, 198',
+       BillingCity: 'Santiago',
+       BillingState: null,
+       BillingCountry: 'Chile',
+       BillingPostalCode: null,
+       Total: 13.86 },
+     { InvoiceId: 34,
+       CustomerId: 12,
+       InvoiceDate: '2009-05-23 00:00:00',
+       BillingAddress: 'Praça Pio X, 119',
+       BillingCity: 'Rio de Janeiro',
+       BillingState: 'RJ',
+       BillingCountry: 'Brazil',
+       BillingPostalCode: '20040-020',
+       Total: 0.99 },
+     { InvoiceId: 35,
+       CustomerId: 13,
+       InvoiceDate: '2009-06-05 00:00:00',
+       BillingAddress: 'Qe 7 Bloco G',
+       BillingCity: 'Brasília',
+       BillingState: 'DF',
+       BillingCountry: 'Brazil',
+       BillingPostalCode: '71020-677',
+       Total: 1.98 },
+     { InvoiceId: 36,
+       CustomerId: 15,
+       InvoiceDate: '2009-06-05 00:00:00',
+       BillingAddress: '700 W Pender Street',
+       BillingCity: 'Vancouver',
+       BillingState: 'BC',
+       BillingCountry: 'Canada',
+       BillingPostalCode: 'V6C 1G8',
+       Total: 1.98 },
+     { InvoiceId: 37,
+       CustomerId: 17,
+       InvoiceDate: '2009-06-06 00:00:00',
+       BillingAddress: '1 Microsoft Way',
+       BillingCity: 'Redmond',
+       BillingState: 'WA',
+       BillingCountry: 'USA',
+       BillingPostalCode: '98052-8300',
+       Total: 3.96 },
+     { InvoiceId: 38,
+       CustomerId: 21,
+       InvoiceDate: '2009-06-07 00:00:00',
+       BillingAddress: '801 W 4th Street',
+       BillingCity: 'Reno',
+       BillingState: 'NV',
+       BillingCountry: 'USA',
+       BillingPostalCode: '89503',
+       Total: 5.94 },
+     { InvoiceId: 39,
+       CustomerId: 27,
+       InvoiceDate: '2009-06-10 00:00:00',
+       BillingAddress: '1033 N Park Ave',
+       BillingCity: 'Tucson',
+       BillingState: 'AZ',
+       BillingCountry: 'USA',
+       BillingPostalCode: '85719',
+       Total: 8.91 },
+     { InvoiceId: 40,
+       CustomerId: 36,
+       InvoiceDate: '2009-06-15 00:00:00',
+       BillingAddress: 'Tauentzienstraße 8',
+       BillingCity: 'Berlin',
+       BillingState: null,
+       BillingCountry: 'Germany',
+       BillingPostalCode: '10789',
+       Total: 13.86 },
+     { InvoiceId: 41,
+       CustomerId: 50,
+       InvoiceDate: '2009-06-23 00:00:00',
+       BillingAddress: 'C/ San Bernardo 85',
+       BillingCity: 'Madrid',
+       BillingState: null,
+       BillingCountry: 'Spain',
+       BillingPostalCode: '28015',
+       Total: 0.99 },
+     { InvoiceId: 42,
+       CustomerId: 51,
+       InvoiceDate: '2009-07-06 00:00:00',
+       BillingAddress: 'Celsiusg. 9',
+       BillingCity: 'Stockholm',
+       BillingState: null,
+       BillingCountry: 'Sweden',
+       BillingPostalCode: '11230',
+       Total: 1.98 },
+     { InvoiceId: 43,
+       CustomerId: 53,
+       InvoiceDate: '2009-07-06 00:00:00',
+       BillingAddress: '113 Lupus St',
+       BillingCity: 'London',
+       BillingState: null,
+       BillingCountry: 'United Kingdom',
+       BillingPostalCode: 'SW1V 3EN',
+       Total: 1.98 },
+     { InvoiceId: 44,
+       CustomerId: 55,
+       InvoiceDate: '2009-07-07 00:00:00',
+       BillingAddress: '421 Bourke Street',
+       BillingCity: 'Sidney',
+       BillingState: 'NSW',
+       BillingCountry: 'Australia',
+       BillingPostalCode: '2010',
+       Total: 3.96 },
+     { InvoiceId: 45,
+       CustomerId: 59,
+       InvoiceDate: '2009-07-08 00:00:00',
+       BillingAddress: '3,Raj Bhavan Road',
+       BillingCity: 'Bangalore',
+       BillingState: null,
+       BillingCountry: 'India',
+       BillingPostalCode: '560001',
+       Total: 5.94 },
+     { InvoiceId: 46,
+       CustomerId: 6,
+       InvoiceDate: '2009-07-11 00:00:00',
+       BillingAddress: 'Rilská 3174/6',
+       BillingCity: 'Prague',
+       BillingState: null,
+       BillingCountry: 'Czech Republic',
+       BillingPostalCode: '14300',
+       Total: 8.91 },
+     { InvoiceId: 47,
+       CustomerId: 15,
+       InvoiceDate: '2009-07-16 00:00:00',
+       BillingAddress: '700 W Pender Street',
+       BillingCity: 'Vancouver',
+       BillingState: 'BC',
+       BillingCountry: 'Canada',
+       BillingPostalCode: 'V6C 1G8',
+       Total: 13.86 },
+     { InvoiceId: 48,
+       CustomerId: 29,
+       InvoiceDate: '2009-07-24 00:00:00',
+       BillingAddress: '796 Dundas Street West',
+       BillingCity: 'Toronto',
+       BillingState: 'ON',
+       BillingCountry: 'Canada',
+       BillingPostalCode: 'M6J 1V1',
+       Total: 0.99 },
+     { InvoiceId: 49,
+       CustomerId: 30,
+       InvoiceDate: '2009-08-06 00:00:00',
+       BillingAddress: '230 Elgin Street',
+       BillingCity: 'Ottawa',
+       BillingState: 'ON',
+       BillingCountry: 'Canada',
+       BillingPostalCode: 'K2P 1L7',
+       Total: 1.98 },
+     { InvoiceId: 50,
+       CustomerId: 32,
+       InvoiceDate: '2009-08-06 00:00:00',
+       BillingAddress: '696 Osborne Street',
+       BillingCity: 'Winnipeg',
+       BillingState: 'MB',
+       BillingCountry: 'Canada',
+       BillingPostalCode: 'R3L 2B9',
+       Total: 1.98 },
+     { InvoiceId: 51,
+       CustomerId: 34,
+       InvoiceDate: '2009-08-07 00:00:00',
+       BillingAddress: 'Rua da Assunção 53',
+       BillingCity: 'Lisbon',
+       BillingState: null,
+       BillingCountry: 'Portugal',
+       BillingPostalCode: null,
+       Total: 3.96 },
+     { InvoiceId: 52,
+       CustomerId: 38,
+       InvoiceDate: '2009-08-08 00:00:00',
+       BillingAddress: 'Barbarossastraße 19',
+       BillingCity: 'Berlin',
+       BillingState: null,
+       BillingCountry: 'Germany',
+       BillingPostalCode: '10779',
+       Total: 5.94 },
+     { InvoiceId: 53,
+       CustomerId: 44,
+       InvoiceDate: '2009-08-11 00:00:00',
+       BillingAddress: 'Porthaninkatu 9',
+       BillingCity: 'Helsinki',
+       BillingState: null,
+       BillingCountry: 'Finland',
+       BillingPostalCode: '00530',
+       Total: 8.91 },
+     { InvoiceId: 54,
+       CustomerId: 53,
+       InvoiceDate: '2009-08-16 00:00:00',
+       BillingAddress: '113 Lupus St',
+       BillingCity: 'London',
+       BillingState: null,
+       BillingCountry: 'United Kingdom',
+       BillingPostalCode: 'SW1V 3EN',
+       Total: 13.86 },
+     { InvoiceId: 55,
+       CustomerId: 8,
+       InvoiceDate: '2009-08-24 00:00:00',
+       BillingAddress: 'Grétrystraat 63',
+       BillingCity: 'Brussels',
+       BillingState: null,
+       BillingCountry: 'Belgium',
+       BillingPostalCode: '1000',
+       Total: 0.99 },
+     { InvoiceId: 56,
+       CustomerId: 9,
+       InvoiceDate: '2009-09-06 00:00:00',
+       BillingAddress: 'Sønder Boulevard 51',
+       BillingCity: 'Copenhagen',
+       BillingState: null,
+       BillingCountry: 'Denmark',
+       BillingPostalCode: '1720',
+       Total: 1.98 },
+     { InvoiceId: 57,
+       CustomerId: 11,
+       InvoiceDate: '2009-09-06 00:00:00',
+       BillingAddress: 'Av. Paulista, 2022',
+       BillingCity: 'São Paulo',
+       BillingState: 'SP',
+       BillingCountry: 'Brazil',
+       BillingPostalCode: '01310-200',
+       Total: 1.98 },
+     { InvoiceId: 58,
+       CustomerId: 13,
+       InvoiceDate: '2009-09-07 00:00:00',
+       BillingAddress: 'Qe 7 Bloco G',
+       BillingCity: 'Brasília',
+       BillingState: 'DF',
+       BillingCountry: 'Brazil',
+       BillingPostalCode: '71020-677',
+       Total: 3.96 },
+     { InvoiceId: 59,
+       CustomerId: 17,
+       InvoiceDate: '2009-09-08 00:00:00',
+       BillingAddress: '1 Microsoft Way',
+       BillingCity: 'Redmond',
+       BillingState: 'WA',
+       BillingCountry: 'USA',
+       BillingPostalCode: '98052-8300',
+       Total: 5.94 },
+     { InvoiceId: 60,
+       CustomerId: 23,
+       InvoiceDate: '2009-09-11 00:00:00',
+       BillingAddress: '69 Salem Street',
+       BillingCity: 'Boston',
+       BillingState: 'MA',
+       BillingCountry: 'USA',
+       BillingPostalCode: '2113',
+       Total: 8.91 },
+     { InvoiceId: 61,
+       CustomerId: 32,
+       InvoiceDate: '2009-09-16 00:00:00',
+       BillingAddress: '696 Osborne Street',
+       BillingCity: 'Winnipeg',
+       BillingState: 'MB',
+       BillingCountry: 'Canada',
+       BillingPostalCode: 'R3L 2B9',
+       Total: 13.86 },
+     { InvoiceId: 62,
+       CustomerId: 46,
+       InvoiceDate: '2009-09-24 00:00:00',
+       BillingAddress: '3 Chatham Street',
+       BillingCity: 'Dublin',
+       BillingState: 'Dublin',
+       BillingCountry: 'Ireland',
+       BillingPostalCode: null,
+       Total: 0.99 },
+     { InvoiceId: 63,
+       CustomerId: 47,
+       InvoiceDate: '2009-10-07 00:00:00',
+       BillingAddress: 'Via Degli Scipioni, 43',
+       BillingCity: 'Rome',
+       BillingState: 'RM',
+       BillingCountry: 'Italy',
+       BillingPostalCode: '00192',
+       Total: 1.98 },
+     { InvoiceId: 64,
+       CustomerId: 49,
+       InvoiceDate: '2009-10-07 00:00:00',
+       BillingAddress: 'Ordynacka 10',
+       BillingCity: 'Warsaw',
+       BillingState: null,
+       BillingCountry: 'Poland',
+       BillingPostalCode: '00-358',
+       Total: 1.98 },
+     { InvoiceId: 65,
+       CustomerId: 51,
+       InvoiceDate: '2009-10-08 00:00:00',
+       BillingAddress: 'Celsiusg. 9',
+       BillingCity: 'Stockholm',
+       BillingState: null,
+       BillingCountry: 'Sweden',
+       BillingPostalCode: '11230',
+       Total: 3.96 },
+     { InvoiceId: 66,
+       CustomerId: 55,
+       InvoiceDate: '2009-10-09 00:00:00',
+       BillingAddress: '421 Bourke Street',
+       BillingCity: 'Sidney',
+       BillingState: 'NSW',
+       BillingCountry: 'Australia',
+       BillingPostalCode: '2010',
+       Total: 5.94 },
+     { InvoiceId: 67,
+       CustomerId: 2,
+       InvoiceDate: '2009-10-12 00:00:00',
+       BillingAddress: 'Theodor-Heuss-Straße 34',
+       BillingCity: 'Stuttgart',
+       BillingState: null,
+       BillingCountry: 'Germany',
+       BillingPostalCode: '70174',
+       Total: 8.91 },
+     { InvoiceId: 68,
+       CustomerId: 11,
+       InvoiceDate: '2009-10-17 00:00:00',
+       BillingAddress: 'Av. Paulista, 2022',
+       BillingCity: 'São Paulo',
+       BillingState: 'SP',
+       BillingCountry: 'Brazil',
+       BillingPostalCode: '01310-200',
+       Total: 13.86 },
+     { InvoiceId: 69,
+       CustomerId: 25,
+       InvoiceDate: '2009-10-25 00:00:00',
+       BillingAddress: '319 N. Frances Street',
+       BillingCity: 'Madison',
+       BillingState: 'WI',
+       BillingCountry: 'USA',
+       BillingPostalCode: '53703',
+       Total: 0.99 },
+     { InvoiceId: 70,
+       CustomerId: 26,
+       InvoiceDate: '2009-11-07 00:00:00',
+       BillingAddress: '2211 W Berry Street',
+       BillingCity: 'Fort Worth',
+       BillingState: 'TX',
+       BillingCountry: 'USA',
+       BillingPostalCode: '76110',
+       Total: 1.98 },
+     { InvoiceId: 71,
+       CustomerId: 28,
+       InvoiceDate: '2009-11-07 00:00:00',
+       BillingAddress: '302 S 700 E',
+       BillingCity: 'Salt Lake City',
+       BillingState: 'UT',
+       BillingCountry: 'USA',
+       BillingPostalCode: '84102',
+       Total: 1.98 },
+     { InvoiceId: 72,
+       CustomerId: 30,
+       InvoiceDate: '2009-11-08 00:00:00',
+       BillingAddress: '230 Elgin Street',
+       BillingCity: 'Ottawa',
+       BillingState: 'ON',
+       BillingCountry: 'Canada',
+       BillingPostalCode: 'K2P 1L7',
+       Total: 3.96 },
+     { InvoiceId: 73,
+       CustomerId: 34,
+       InvoiceDate: '2009-11-09 00:00:00',
+       BillingAddress: 'Rua da Assunção 53',
+       BillingCity: 'Lisbon',
+       BillingState: null,
+       BillingCountry: 'Portugal',
+       BillingPostalCode: null,
+       Total: 5.94 },
+     { InvoiceId: 74,
+       CustomerId: 40,
+       InvoiceDate: '2009-11-12 00:00:00',
+       BillingAddress: '8, Rue Hanovre',
+       BillingCity: 'Paris',
+       BillingState: null,
+       BillingCountry: 'France',
+       BillingPostalCode: '75002',
+       Total: 8.91 },
+     { InvoiceId: 75,
+       CustomerId: 49,
+       InvoiceDate: '2009-11-17 00:00:00',
+       BillingAddress: 'Ordynacka 10',
+       BillingCity: 'Warsaw',
+       BillingState: null,
+       BillingCountry: 'Poland',
+       BillingPostalCode: '00-358',
+       Total: 13.86 },
+     { InvoiceId: 76,
+       CustomerId: 4,
+       InvoiceDate: '2009-11-25 00:00:00',
+       BillingAddress: 'Ullevålsveien 14',
+       BillingCity: 'Oslo',
+       BillingState: null,
+       BillingCountry: 'Norway',
+       BillingPostalCode: '0171',
+       Total: 0.99 },
+     { InvoiceId: 77,
+       CustomerId: 5,
+       InvoiceDate: '2009-12-08 00:00:00',
+       BillingAddress: 'Klanova 9/506',
+       BillingCity: 'Prague',
+       BillingState: null,
+       BillingCountry: 'Czech Republic',
+       BillingPostalCode: '14700',
+       Total: 1.98 },
+     { InvoiceId: 78,
+       CustomerId: 7,
+       InvoiceDate: '2009-12-08 00:00:00',
+       BillingAddress: 'Rotenturmstraße 4, 1010 Innere Stadt',
+       BillingCity: 'Vienne',
+       BillingState: null,
+       BillingCountry: 'Austria',
+       BillingPostalCode: '1010',
+       Total: 1.98 },
+     { InvoiceId: 79,
+       CustomerId: 9,
+       InvoiceDate: '2009-12-09 00:00:00',
+       BillingAddress: 'Sønder Boulevard 51',
+       BillingCity: 'Copenhagen',
+       BillingState: null,
+       BillingCountry: 'Denmark',
+       BillingPostalCode: '1720',
+       Total: 3.96 },
+     { InvoiceId: 80,
+       CustomerId: 13,
+       InvoiceDate: '2009-12-10 00:00:00',
+       BillingAddress: 'Qe 7 Bloco G',
+       BillingCity: 'Brasília',
+       BillingState: 'DF',
+       BillingCountry: 'Brazil',
+       BillingPostalCode: '71020-677',
+       Total: 5.94 },
+     { InvoiceId: 81,
+       CustomerId: 19,
+       InvoiceDate: '2009-12-13 00:00:00',
+       BillingAddress: '1 Infinite Loop',
+       BillingCity: 'Cupertino',
+       BillingState: 'CA',
+       BillingCountry: 'USA',
+       BillingPostalCode: '95014',
+       Total: 8.91 },
+     { InvoiceId: 82,
+       CustomerId: 28,
+       InvoiceDate: '2009-12-18 00:00:00',
+       BillingAddress: '302 S 700 E',
+       BillingCity: 'Salt Lake City',
+       BillingState: 'UT',
+       BillingCountry: 'USA',
+       BillingPostalCode: '84102',
+       Total: 13.86 },
+     { InvoiceId: 83,
+       CustomerId: 42,
+       InvoiceDate: '2009-12-26 00:00:00',
+       BillingAddress: '9, Place Louis Barthou',
+       BillingCity: 'Bordeaux',
+       BillingState: null,
+       BillingCountry: 'France',
+       BillingPostalCode: '33000',
+       Total: 0.99 },
+     { InvoiceId: 84,
+       CustomerId: 43,
+       InvoiceDate: '2010-01-08 00:00:00',
+       BillingAddress: '68, Rue Jouvence',
+       BillingCity: 'Dijon',
+       BillingState: null,
+       BillingCountry: 'France',
+       BillingPostalCode: '21000',
+       Total: 1.98 },
+     { InvoiceId: 85,
+       CustomerId: 45,
+       InvoiceDate: '2010-01-08 00:00:00',
+       BillingAddress: 'Erzsébet krt. 58.',
+       BillingCity: 'Budapest',
+       BillingState: null,
+       BillingCountry: 'Hungary',
+       BillingPostalCode: 'H-1073',
+       Total: 1.98 },
+     { InvoiceId: 86,
+       CustomerId: 47,
+       InvoiceDate: '2010-01-09 00:00:00',
+       BillingAddress: 'Via Degli Scipioni, 43',
+       BillingCity: 'Rome',
+       BillingState: 'RM',
+       BillingCountry: 'Italy',
+       BillingPostalCode: '00192',
+       Total: 3.96 },
+     { InvoiceId: 87,
+       CustomerId: 51,
+       InvoiceDate: '2010-01-10 00:00:00',
+       BillingAddress: 'Celsiusg. 9',
+       BillingCity: 'Stockholm',
+       BillingState: null,
+       BillingCountry: 'Sweden',
+       BillingPostalCode: '11230',
+       Total: 6.94 },
+     { InvoiceId: 88,
+       CustomerId: 57,
+       InvoiceDate: '2010-01-13 00:00:00',
+       BillingAddress: 'Calle Lira, 198',
+       BillingCity: 'Santiago',
+       BillingState: null,
+       BillingCountry: 'Chile',
+       BillingPostalCode: null,
+       Total: 17.91 },
+     { InvoiceId: 89,
+       CustomerId: 7,
+       InvoiceDate: '2010-01-18 00:00:00',
+       BillingAddress: 'Rotenturmstraße 4, 1010 Innere Stadt',
+       BillingCity: 'Vienne',
+       BillingState: null,
+       BillingCountry: 'Austria',
+       BillingPostalCode: '1010',
+       Total: 18.86 },
+     { InvoiceId: 90,
+       CustomerId: 21,
+       InvoiceDate: '2010-01-26 00:00:00',
+       BillingAddress: '801 W 4th Street',
+       BillingCity: 'Reno',
+       BillingState: 'NV',
+       BillingCountry: 'USA',
+       BillingPostalCode: '89503',
+       Total: 0.99 },
+     { InvoiceId: 91,
+       CustomerId: 22,
+       InvoiceDate: '2010-02-08 00:00:00',
+       BillingAddress: '120 S Orange Ave',
+       BillingCity: 'Orlando',
+       BillingState: 'FL',
+       BillingCountry: 'USA',
+       BillingPostalCode: '32801',
+       Total: 1.98 },
+     { InvoiceId: 92,
+       CustomerId: 24,
+       InvoiceDate: '2010-02-08 00:00:00',
+       BillingAddress: '162 E Superior Street',
+       BillingCity: 'Chicago',
+       BillingState: 'IL',
+       BillingCountry: 'USA',
+       BillingPostalCode: '60611',
+       Total: 1.98 },
+     { InvoiceId: 93,
+       CustomerId: 26,
+       InvoiceDate: '2010-02-09 00:00:00',
+       BillingAddress: '2211 W Berry Street',
+       BillingCity: 'Fort Worth',
+       BillingState: 'TX',
+       BillingCountry: 'USA',
+       BillingPostalCode: '76110',
+       Total: 3.96 },
+     { InvoiceId: 94,
+       CustomerId: 30,
+       InvoiceDate: '2010-02-10 00:00:00',
+       BillingAddress: '230 Elgin Street',
+       BillingCity: 'Ottawa',
+       BillingState: 'ON',
+       BillingCountry: 'Canada',
+       BillingPostalCode: 'K2P 1L7',
+       Total: 5.94 },
+     { InvoiceId: 95,
+       CustomerId: 36,
+       InvoiceDate: '2010-02-13 00:00:00',
+       BillingAddress: 'Tauentzienstraße 8',
+       BillingCity: 'Berlin',
+       BillingState: null,
+       BillingCountry: 'Germany',
+       BillingPostalCode: '10789',
+       Total: 8.91 },
+     { InvoiceId: 96,
+       CustomerId: 45,
+       InvoiceDate: '2010-02-18 00:00:00',
+       BillingAddress: 'Erzsébet krt. 58.',
+       BillingCity: 'Budapest',
+       BillingState: null,
+       BillingCountry: 'Hungary',
+       BillingPostalCode: 'H-1073',
+       Total: 21.86 },
+     { InvoiceId: 97,
+       CustomerId: 59,
+       InvoiceDate: '2010-02-26 00:00:00',
+       BillingAddress: '3,Raj Bhavan Road',
+       BillingCity: 'Bangalore',
+       BillingState: null,
+       BillingCountry: 'India',
+       BillingPostalCode: '560001',
+       Total: 1.99 },
+     { InvoiceId: 98,
+       CustomerId: 1,
+       InvoiceDate: '2010-03-11 00:00:00',
+       BillingAddress: 'Av. Brigadeiro Faria Lima, 2170',
+       BillingCity: 'São José dos Campos',
+       BillingState: 'SP',
+       BillingCountry: 'Brazil',
+       BillingPostalCode: '12227-000',
+       Total: 3.98 },
+     { InvoiceId: 99,
+       CustomerId: 3,
+       InvoiceDate: '2010-03-11 00:00:00',
+       BillingAddress: '1498 rue Bélanger',
+       BillingCity: 'Montréal',
+       BillingState: 'QC',
+       BillingCountry: 'Canada',
+       BillingPostalCode: 'H2G 1A7',
+       Total: 3.98 },
+     { InvoiceId: 100,
+       CustomerId: 5,
+       InvoiceDate: '2010-03-12 00:00:00',
+       BillingAddress: 'Klanova 9/506',
+       BillingCity: 'Prague',
+       BillingState: null,
+       BillingCountry: 'Czech Republic',
+       BillingPostalCode: '14700',
+       Total: 3.96 },
+     ... 312 more items ],
+  graphTitleText: '',
+  graphTitleAnchor: 'Middle',
+  graphTitleAngle: 0,
+  graphBackgroundColorName: 'transparent',
+  graphBackgroundColor: 'transparent',
+  graphBorderColorName: 'lightgray',
+  graphBorderColor: 'lightgray',
+  graphTitleBaseline: 'Bottom',
+  graphTitleColorName: 'Gray',
+  graphTitleColor: 'Gray',
+  graphTitleFont: '',
+  graphTitleFontSize: 10,
+  graphTitleFontWeight: 400,
+  graphTitleLength: 0,
+  graphTitleOrientation: 'Top',
+  graphTransformations: 
+   [ { _id: '5c6c007f345ac2170072e632',
+       id: 0,
+       sequence: 0,
+       transformationType: '' } ],
+  graphCalculations: [],
+  graphFilters: [],
+  sampleNumberRows: 0,
+  titleText: 'Title of new Widget',
+  titleBackgroundColor: 'lightgray',
+  titleBackgroundColorName: 'lightgray',
+  titleBorder: '',
+  titleBorderName: '',
+  titleColor: 'black',
+  titleColorName: 'black',
+  titleFontsize: 12,
+  titleFontWeight: '',
+  titleHeight: 24,
+  titleMargin: '0',
+  titlePadding: '0 0 0 5px',
+  titleTextAlign: 'center',
+  titleWidth: 100,
+  graphHeight: 240,
+  graphLeft: 1,
+  graphTop: 1,
+  graphWidth: 240,
+  graphDimensionRight: 0,
+  graphDimensionLeft: 80,
+  graphDimensionBottom: 70,
+  graphGraphPadding: 1,
+  graphHasSignals: false,
+  graphFillColor: '',
+  graphHoverColor: '',
+  graphPanAndZoom: false,
+  graphSpecification: '',
+  graphDescription: '',
+  tableBackgroundColor: '',
+  tableBackgroundColorName: '',
+  tableColor: '',
+  tableColorName: '',
+  tableCols: 1,
+  fontSize: 12,
+  tableHeight: 1,
+  tableHideHeader: false,
+  tableLeft: 1,
+  tableLineHeight: 12,
+  tableRows: 1,
+  tableTop: 1,
+  tableWidth: 1,
+  slicerAddRest: false,
+  slicerAddRestValue: false,
+  slicerBins: null,
+  slicerColor: 'gray',
+  slicerFieldName: '',
+  slicerNumberToShow: '',
+  slicerSelection: null,
+  slicerSortField: '',
+  slicerSortFieldOrder: '',
+  slicerType: '',
+  shapeBullet: [],
+  shapeBulletStyleType: '',
+  shapeBulletsOrdered: false,
+  shapeBulletMarginBottom: 3,
+  shapeCorner: 15,
+  shapeFill: '',
+  shapeFillName: '',
+  shapeFontSize: 24,
+  shapeLineHeight: 'normal',
+  shapeFontFamily: '',
+  shapeImageUrl: '',
+  shapeIsBold: true,
+  shapeIsItalic: false,
+  shapeOpacity: 1,
+  shapeRotation: 0,
+  shapeSize: 1,
+  shapeStroke: '',
+  shapeStrokeName: '',
+  shapeStrokeWidth: '',
+  shapeSvgHeight: 30,
+  shapeSvgWidth: 30,
+  shapeText: '',
+  shapeTextDisplay: '',
+  shapeTextAlign: 'Left',
+  shapeTextColour: '',
+  shapeTextColourName: '',
+  shapeValue: '',
+  refreshMode: '',
+  refreshFrequency: 1,
+  widgetRefreshedOn: '',
+  widgetRefreshedBy: '',
+  widgetCreatedOn: null,
+  widgetCreatedBy: '',
+  widgetUpdatedOn: null,
+  widgetUpdatedBy: '',
+  __v: 0,
+  editor: '',
+  dateEdited: 2019-02-20T18:48:42.655Z }
+In updateTabs After push  149 263 1165
+xx At END return now
+## POST /canvasDashboardEdit?orignalDashboardID=116 200 - - 111.185 ms ON [2019-02-20T18:48:44.073Z] FROM ::ffff:127.0.0.1 - -
+##
+updateWidget post.Save
+Wed, 20 Feb 2019 18:48:44 GMT app:dev canvasDashboardEdit.router.js: New Widget added1171 1165
+updateWidget After .save
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 18:53:05 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 18:53:05 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 18:53:05 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 18:53:09 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 18:53:09 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 18:53:09 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:135
+        console.log('updateWidget pre.Save', newDraftWidget.)
+                                                            ^
+
+SyntaxError: Unexpected token )
+    at createScript (vm.js:80:10)
+    at Object.runInThisContext (vm.js:139:10)
+    at Module._compile (module.js:616:28)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+    at require (internal/module.js:11:18)
+    at Object.<anonymous> (/home/jannie/Projects/canvas-server/app.js:42:29)
+    at Module._compile (module.js:652:30)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 18:53:18 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 18:53:18 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 18:53:18 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 18:53:20 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 18:53:20 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 18:53:20 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:173
+}
+^
+
+SyntaxError: missing ) after argument list
+    at createScript (vm.js:80:10)
+    at Object.runInThisContext (vm.js:139:10)
+    at Module._compile (module.js:616:28)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+    at require (internal/module.js:11:18)
+    at Object.<anonymous> (/home/jannie/Projects/canvas-server/app.js:42:29)
+    at Module._compile (module.js:652:30)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 18:54:46 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 18:54:46 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 18:54:46 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 18:54:47 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 18:54:48 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 18:54:48 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+  Url: http://localhost:8000/canvasDashboardEdit%3ForignalDashboardID=116
+  Path: /canvasDashboardEdit
+Wed, 20 Feb 2019 18:57:20 GMT app:dev App.js In validateUser 
+Wed, 20 Feb 2019 18:57:20 GMT app:dev canvasDashboardEdit.router.js: ## --------------------------
+Wed, 20 Feb 2019 18:57:20 GMT app:dev canvasDashboardEdit.router.js: ## POST Starting with Editing Dashboard and related info for dashboard id: 116
+Wed, 20 Feb 2019 18:57:20 GMT app:dev canvasDashboardEdit.router.js: New Dashboard added150
+After find
+After push for tab 248
+Before promiseArray [ Promise { <pending> } ]
+Original Dashboard SAVED 116
+updateTab After .save
+Wed, 20 Feb 2019 18:57:20 GMT app:dev canvasDashboardEdit.router.js: New Tab added264 248
+updateTab After .find { dashboardID: 116, dashboardTabID: 248 } 1
+updateWidget Start
+updateWidget pre.Save
+In updateTabs After push  150 264 1165
+xx At END return now
+## POST /canvasDashboardEdit?orignalDashboardID=116 200 - - 142.884 ms ON [2019-02-20T18:57:20.951Z] FROM ::ffff:127.0.0.1 - -
+##
+updateWidget post.Save
+Wed, 20 Feb 2019 18:57:21 GMT app:dev canvasDashboardEdit.router.js: New Widget added1172 1165
+updateWidget After .save
