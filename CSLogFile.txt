@@ -114,3 +114,1501 @@ Canvas Server started ...
   Path: /canvasDashboardEdit
 ## PUT /canvasDashboardEdit?dashboardID=116 404 158 - 9.688 ms ON [2019-02-20T14:56:52.222Z] FROM ::ffff:127.0.0.1 - -
 ##
+  Url: http://localhost:8000/canvasDashboardEdit%3FdashboardID=116
+  Path: /canvasDashboardEdit
+Wed, 20 Feb 2019 17:22:31 GMT app:dev App.js In validateUser 
+Wed, 20 Feb 2019 17:22:31 GMT app:dev canvasDashboardEdit.router.js: ## --------------------------
+Wed, 20 Feb 2019 17:22:31 GMT app:dev canvasDashboardEdit.router.js: ## POST Starting with Editing Dashboard and related info for dashboard id: 116
+## POST /canvasDashboardEdit?dashboardID=116 200 92 - 243.135 ms ON [2019-02-20T17:22:31.640Z] FROM ::ffff:127.0.0.1 - -
+##
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:23:31 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:23:32 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:23:32 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+  Url: http://localhost:8000/canvasDashboardEdit%3FdashboardID=116
+  Path: /canvasDashboardEdit
+Wed, 20 Feb 2019 17:23:36 GMT app:dev App.js In validateUser 
+Wed, 20 Feb 2019 17:23:36 GMT app:dev canvasDashboardEdit.router.js: ## --------------------------
+Wed, 20 Feb 2019 17:23:36 GMT app:dev canvasDashboardEdit.router.js: ## POST Starting with Editing Dashboard and related info for dashboard id: 116
+## POST /canvasDashboardEdit?dashboardID=116 200 92 - 39.868 ms ON [2019-02-20T17:23:36.139Z] FROM ::ffff:127.0.0.1 - -
+##
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:23:51 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:23:51 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:23:51 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:23:55 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:23:55 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:23:55 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:23:57 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:23:57 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:23:57 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:24:03 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:24:03 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:24:03 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:24:06 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:24:06 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:24:06 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:24:13 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:24:13 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:24:13 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:24:15 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:24:15 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:24:15 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:24:19 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:24:19 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:24:19 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:24:21 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:24:21 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:24:21 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:24:25 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:24:25 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:24:25 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:24:38 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:24:38 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:24:38 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:24:40 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:24:40 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:24:40 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:24:52 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:24:52 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:24:52 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:24:55 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:24:55 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:24:55 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:47
+                resolve(addedDraftDashboard))
+                                            ^
+
+SyntaxError: Unexpected token )
+    at createScript (vm.js:80:10)
+    at Object.runInThisContext (vm.js:139:10)
+    at Module._compile (module.js:616:28)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+    at require (internal/module.js:11:18)
+    at Object.<anonymous> (/home/jannie/Projects/canvas-server/app.js:42:29)
+    at Module._compile (module.js:652:30)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:49
+                resolve(addedDraftDashboard))
+                                            ^
+
+SyntaxError: Unexpected token )
+    at createScript (vm.js:80:10)
+    at Object.runInThisContext (vm.js:139:10)
+    at Module._compile (module.js:616:28)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+    at require (internal/module.js:11:18)
+    at Object.<anonymous> (/home/jannie/Projects/canvas-server/app.js:42:29)
+    at Module._compile (module.js:652:30)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:49
+                resolve(addedDraftDashboard))
+                                            ^
+
+SyntaxError: Unexpected token )
+    at createScript (vm.js:80:10)
+    at Object.runInThisContext (vm.js:139:10)
+    at Module._compile (module.js:616:28)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+    at require (internal/module.js:11:18)
+    at Object.<anonymous> (/home/jannie/Projects/canvas-server/app.js:42:29)
+    at Module._compile (module.js:652:30)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:49
+                resolve(addedDraftDashboard))
+                                            ^
+
+SyntaxError: Unexpected token )
+    at createScript (vm.js:80:10)
+    at Object.runInThisContext (vm.js:139:10)
+    at Module._compile (module.js:616:28)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+    at require (internal/module.js:11:18)
+    at Object.<anonymous> (/home/jannie/Projects/canvas-server/app.js:42:29)
+    at Module._compile (module.js:652:30)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:25:21 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:25:21 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:25:21 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:25:25 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:25:25 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:25:25 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:53
+                reject(err));
+                           ^
+
+SyntaxError: Unexpected token )
+    at createScript (vm.js:80:10)
+    at Object.runInThisContext (vm.js:139:10)
+    at Module._compile (module.js:616:28)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+    at require (internal/module.js:11:18)
+    at Object.<anonymous> (/home/jannie/Projects/canvas-server/app.js:42:29)
+    at Module._compile (module.js:652:30)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:53
+                reject(err));
+                           ^
+
+SyntaxError: Unexpected token )
+    at createScript (vm.js:80:10)
+    at Object.runInThisContext (vm.js:139:10)
+    at Module._compile (module.js:616:28)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+    at require (internal/module.js:11:18)
+    at Object.<anonymous> (/home/jannie/Projects/canvas-server/app.js:42:29)
+    at Module._compile (module.js:652:30)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:53
+                reject(err))
+                           ^
+
+SyntaxError: Unexpected token )
+    at createScript (vm.js:80:10)
+    at Object.runInThisContext (vm.js:139:10)
+    at Module._compile (module.js:616:28)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+    at require (internal/module.js:11:18)
+    at Object.<anonymous> (/home/jannie/Projects/canvas-server/app.js:42:29)
+    at Module._compile (module.js:652:30)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:54
+                );
+                ^
+
+SyntaxError: Unexpected token )
+    at createScript (vm.js:80:10)
+    at Object.runInThisContext (vm.js:139:10)
+    at Module._compile (module.js:616:28)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+    at require (internal/module.js:11:18)
+    at Object.<anonymous> (/home/jannie/Projects/canvas-server/app.js:42:29)
+    at Module._compile (module.js:652:30)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:25:38 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:25:38 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:25:38 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+  Url: http://localhost:8000/canvasDashboardEdit%3FdashboardID=116
+  Path: /canvasDashboardEdit
+Wed, 20 Feb 2019 17:26:04 GMT app:dev App.js In validateUser 
+Wed, 20 Feb 2019 17:26:04 GMT app:dev canvasDashboardEdit.router.js: ## --------------------------
+Wed, 20 Feb 2019 17:26:04 GMT app:dev canvasDashboardEdit.router.js: ## POST Starting with Editing Dashboard and related info for dashboard id: 116
+1
+2
+addDraftDashboard Start
+## POST /canvasDashboardEdit?dashboardID=116 200 92 - 65.934 ms ON [2019-02-20T17:26:04.565Z] FROM ::ffff:127.0.0.1 - -
+##
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:27:09 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:27:09 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:27:09 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:27:13 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:27:13 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:27:13 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+  Url: http://localhost:8000/canvasDashboardEdit%3FdashboardID=116
+  Path: /canvasDashboardEdit
+Wed, 20 Feb 2019 17:27:18 GMT app:dev App.js In validateUser 
+Wed, 20 Feb 2019 17:27:18 GMT app:dev canvasDashboardEdit.router.js: ## --------------------------
+Wed, 20 Feb 2019 17:27:18 GMT app:dev canvasDashboardEdit.router.js: ## POST Starting with Editing Dashboard and related info for dashboard id: 116
+1
+2
+addDraftDashboard Start
+## POST /canvasDashboardEdit?dashboardID=116 200 92 - 76.864 ms ON [2019-02-20T17:27:19.044Z] FROM ::ffff:127.0.0.1 - -
+##
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:27:40 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:27:40 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:27:40 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:27:46 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:27:46 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:27:46 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:27:51 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:27:51 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:27:52 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:27:53 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:27:53 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:27:53 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+  Url: http://localhost:8000/canvasDashboardEdit%3FdashboardID=116
+  Path: /canvasDashboardEdit
+Wed, 20 Feb 2019 17:27:59 GMT app:dev App.js In validateUser 
+Wed, 20 Feb 2019 17:27:59 GMT app:dev canvasDashboardEdit.router.js: ## --------------------------
+Wed, 20 Feb 2019 17:27:59 GMT app:dev canvasDashboardEdit.router.js: ## POST Starting with Editing Dashboard and related info for dashboard id: 116
+1
+2
+addDraftDashboard Start
+addDraftDashboard 1
+addDraftDashboard 2
+## POST /canvasDashboardEdit?dashboardID=116 200 92 - 88.940 ms ON [2019-02-20T17:28:00.048Z] FROM ::ffff:127.0.0.1 - -
+##
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:28:23 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:28:23 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:28:23 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:28:26 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:28:26 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:28:26 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+  Url: http://localhost:8000/canvasDashboardEdit%3FdashboardID=116
+  Path: /canvasDashboardEdit
+Wed, 20 Feb 2019 17:28:28 GMT app:dev App.js In validateUser 
+Wed, 20 Feb 2019 17:28:28 GMT app:dev canvasDashboardEdit.router.js: ## --------------------------
+Wed, 20 Feb 2019 17:28:28 GMT app:dev canvasDashboardEdit.router.js: ## POST Starting with Editing Dashboard and related info for dashboard id: 116
+1
+2
+addDraftDashboard Start
+addDraftDashboard 1
+addDraftDashboard 2
+addDraftDashboard 3
+## POST /canvasDashboardEdit?dashboardID=116 200 92 - 61.961 ms ON [2019-02-20T17:28:28.212Z] FROM ::ffff:127.0.0.1 - -
+##
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:29:19 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:29:19 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:29:19 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:29:24 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:29:24 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:29:24 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:29:28 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:29:28 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:29:28 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:29:31 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:29:31 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:29:31 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:29:34 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:29:34 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:29:34 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+  Url: http://localhost:8000/canvasDashboardEdit%3FdashboardID=116
+  Path: /canvasDashboardEdit
+Wed, 20 Feb 2019 17:29:38 GMT app:dev App.js In validateUser 
+Wed, 20 Feb 2019 17:29:38 GMT app:dev canvasDashboardEdit.router.js: ## --------------------------
+Wed, 20 Feb 2019 17:29:38 GMT app:dev canvasDashboardEdit.router.js: ## POST Starting with Editing Dashboard and related info for dashboard id: 116
+1
+2
+addDraftDashboard Start
+addDraftDashboard 1
+addDraftDashboard 2
+addDraftDashboard 3
+addDraftDashboard Pre-Save
+addDraftDashboard Then
+Wed, 20 Feb 2019 17:29:38 GMT app:dev canvasDashboardEdit.router.js: New Dashboard added128
+3
+4
+5
+6
+xx At END return now
+## POST /canvasDashboardEdit?dashboardID=116 200 943 - 118.783 ms ON [2019-02-20T17:29:38.805Z] FROM ::ffff:127.0.0.1 - -
+##
+Original Dashboard SAVED 116
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:30:29 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:30:29 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:30:29 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:30:30 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:30:30 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:30:30 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:30:32 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:30:33 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:30:33 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:30:36 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:30:36 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:30:36 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:30:39 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:30:39 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:30:39 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:30:45 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:30:46 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:30:46 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:30:53 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:30:53 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:30:53 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:31:11 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:31:11 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:31:11 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:31:22 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:31:22 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:31:22 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:31:26 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:31:26 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:31:26 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:31:31 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:31:31 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:31:31 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:31:36 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:31:36 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:31:36 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+  Url: http://localhost:8000/canvasDashboardEdit%3FdashboardID=116
+  Path: /canvasDashboardEdit
+Wed, 20 Feb 2019 17:31:46 GMT app:dev App.js In validateUser 
+Wed, 20 Feb 2019 17:31:46 GMT app:dev canvasDashboardEdit.router.js: ## --------------------------
+Wed, 20 Feb 2019 17:31:46 GMT app:dev canvasDashboardEdit.router.js: ## POST Starting with Editing Dashboard and related info for dashboard id: 116
+Wed, 20 Feb 2019 17:31:46 GMT app:dev canvasDashboardEdit.router.js: New Dashboard added129
+4
+5
+## POST /canvasDashboardEdit?dashboardID=116 200 88 - 71.812 ms ON [2019-02-20T17:31:46.654Z] FROM ::ffff:127.0.0.1 - -
+##
+Original Dashboard SAVED 116
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:32:40 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:32:40 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:32:40 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:32:46 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:32:46 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:32:46 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:32:49 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:32:49 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:32:49 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:32:54 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:32:54 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:32:54 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:33:04 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:33:04 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:33:04 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:33:06 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:33:06 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:33:06 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:33:15 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:33:15 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:33:15 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:33:20 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:33:20 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:33:20 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:33:26 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:33:26 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:33:26 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:33:29 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:33:29 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:33:29 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:33:32 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:33:32 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:33:32 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:34:14 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:34:14 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:34:14 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:34:16 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:34:16 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:34:16 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:34:19 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:34:19 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:34:19 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:35:03 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:35:03 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:35:03 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:35:09 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:35:09 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:35:09 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:35:26 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:35:26 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:35:26 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:35:33 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:35:33 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:35:33 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+  Url: http://localhost:8000/canvasDashboardEdit%3FdashboardID=116
+  Path: /canvasDashboardEdit
+Wed, 20 Feb 2019 17:35:38 GMT app:dev App.js In validateUser 
+Wed, 20 Feb 2019 17:35:38 GMT app:dev canvasDashboardEdit.router.js: ## --------------------------
+Wed, 20 Feb 2019 17:35:38 GMT app:dev canvasDashboardEdit.router.js: ## POST Starting with Editing Dashboard and related info for dashboard id: 116
+Wed, 20 Feb 2019 17:35:38 GMT app:dev canvasDashboardEdit.router.js: New Dashboard added130
+5
+4
+4
+Error in Promise.all for ID: 116 ReferenceError: addedDraftDashboard is not defined
+    at Promise (/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:71:44)
+    at new Promise (<anonymous>)
+    at updateTabs (/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:66:12)
+    at tabs.forEach.tab (/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:234:55)
+    at Array.forEach (<anonymous>)
+    at dashboardTabModel.find.then.tabs (/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:231:38)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+## POST /canvasDashboardEdit?dashboardID=116 200 90 - 84.370 ms ON [2019-02-20T17:35:39.016Z] FROM ::ffff:127.0.0.1 - -
+##
+Original Dashboard SAVED 116
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:36:33 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:36:33 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:36:33 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:36:36 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:36:36 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:36:36 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:36:56 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:36:56 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:36:56 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:36:58 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:36:58 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:36:58 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+  Url: http://localhost:8000/canvasDashboardEdit%3FdashboardID=116
+  Path: /canvasDashboardEdit
+Wed, 20 Feb 2019 17:37:25 GMT app:dev App.js In validateUser 
+Wed, 20 Feb 2019 17:37:25 GMT app:dev canvasDashboardEdit.router.js: ## --------------------------
+Wed, 20 Feb 2019 17:37:25 GMT app:dev canvasDashboardEdit.router.js: ## POST Starting with Editing Dashboard and related info for dashboard id: 116
+Wed, 20 Feb 2019 17:37:25 GMT app:dev canvasDashboardEdit.router.js: New Dashboard added131
+Original Dashboard SAVED 116
+5
+6
+7 promiseArray [ Promise {
+    <rejected> ReferenceError: addedDraftDashboard is not defined
+    at Promise (/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:71:44)
+    at new Promise (<anonymous>)
+    at updateTabs (/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:66:12)
+    at tabs.forEach.tab (/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:234:55)
+    at Array.forEach (<anonymous>)
+    at dashboardTabModel.find.then.tabs (/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:231:38)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7) } ]
+Error in Promise.all for ID: 116 ReferenceError: addedDraftDashboard is not defined
+    at Promise (/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:71:44)
+    at new Promise (<anonymous>)
+    at updateTabs (/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:66:12)
+    at tabs.forEach.tab (/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:234:55)
+    at Array.forEach (<anonymous>)
+    at dashboardTabModel.find.then.tabs (/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:231:38)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+## POST /canvasDashboardEdit?dashboardID=116 200 90 - 100.649 ms ON [2019-02-20T17:37:26.007Z] FROM ::ffff:127.0.0.1 - -
+##
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:38:57 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:38:57 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:38:57 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:39:01 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:39:01 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:39:01 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:39:14 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:39:14 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:39:14 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:39:16 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:39:16 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:39:16 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+  Url: http://localhost:8000/canvasDashboardEdit%3FdashboardID=116
+  Path: /canvasDashboardEdit
+Wed, 20 Feb 2019 17:39:31 GMT app:dev App.js In validateUser 
+Wed, 20 Feb 2019 17:39:31 GMT app:dev canvasDashboardEdit.router.js: ## --------------------------
+Wed, 20 Feb 2019 17:39:31 GMT app:dev canvasDashboardEdit.router.js: ## POST Starting with Editing Dashboard and related info for dashboard id: 116
+Wed, 20 Feb 2019 17:39:31 GMT app:dev canvasDashboardEdit.router.js: New Dashboard added132
+5
+6
+7 promiseArray [ Promise {
+    <rejected> ReferenceError: addedDraftDashboard is not defined
+    at Promise (/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:71:44)
+    at new Promise (<anonymous>)
+    at updateTabs (/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:66:12)
+    at tabs.forEach.tab (/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:234:55)
+    at Array.forEach (<anonymous>)
+    at dashboardTabModel.find.then.tabs (/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:231:38)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7) } ]
+Error in Promise.all for ID: 116 ReferenceError: addedDraftDashboard is not defined
+    at Promise (/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:71:44)
+    at new Promise (<anonymous>)
+    at updateTabs (/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:66:12)
+    at tabs.forEach.tab (/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:234:55)
+    at Array.forEach (<anonymous>)
+    at dashboardTabModel.find.then.tabs (/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:231:38)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+## POST /canvasDashboardEdit?dashboardID=116 200 90 - 82.867 ms ON [2019-02-20T17:39:31.649Z] FROM ::ffff:127.0.0.1 - -
+##
+Original Dashboard SAVED 116
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:39:50 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:39:50 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:39:50 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+  Url: http://localhost:8000/canvasDashboardEdit%3FdashboardID=116
+  Path: /canvasDashboardEdit
+Wed, 20 Feb 2019 17:39:58 GMT app:dev App.js In validateUser 
+Wed, 20 Feb 2019 17:39:58 GMT app:dev canvasDashboardEdit.router.js: ## --------------------------
+Wed, 20 Feb 2019 17:39:58 GMT app:dev canvasDashboardEdit.router.js: ## POST Starting with Editing Dashboard and related info for dashboard id: 116
+Wed, 20 Feb 2019 17:39:58 GMT app:dev canvasDashboardEdit.router.js: New Dashboard added133
+Original Dashboard SAVED 116
+5
+6
+7 promiseArray [ Promise {
+    <rejected> ReferenceError: today is not defined
+    at Promise (/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:76:43)
+    at new Promise (<anonymous>)
+    at updateTabs (/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:66:12)
+    at tabs.forEach.tab (/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:234:55)
+    at Array.forEach (<anonymous>)
+    at dashboardTabModel.find.then.tabs (/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:231:38)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7) } ]
+Error in Promise.all for ID: 116 ReferenceError: today is not defined
+    at Promise (/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:76:43)
+    at new Promise (<anonymous>)
+    at updateTabs (/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:66:12)
+    at tabs.forEach.tab (/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:234:55)
+    at Array.forEach (<anonymous>)
+    at dashboardTabModel.find.then.tabs (/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:231:38)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+## POST /canvasDashboardEdit?dashboardID=116 200 90 - 90.184 ms ON [2019-02-20T17:39:58.611Z] FROM ::ffff:127.0.0.1 - -
+##
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:40:25 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:40:25 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:40:25 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 17:40:27 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 17:40:27 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 17:40:27 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+  Url: http://localhost:8000/canvasDashboardEdit%3FdashboardID=116
+  Path: /canvasDashboardEdit
+Wed, 20 Feb 2019 17:40:32 GMT app:dev App.js In validateUser 
+Wed, 20 Feb 2019 17:40:32 GMT app:dev canvasDashboardEdit.router.js: ## --------------------------
+Wed, 20 Feb 2019 17:40:32 GMT app:dev canvasDashboardEdit.router.js: ## POST Starting with Editing Dashboard and related info for dashboard id: 116
+Wed, 20 Feb 2019 17:40:32 GMT app:dev canvasDashboardEdit.router.js: New Dashboard added134
+Original Dashboard SAVED 116
+5
+6
+7 promiseArray [ Promise { <pending> } ]
+Wed, 20 Feb 2019 17:40:32 GMT app:dev canvasDashboardEdit.router.js: New Tab added249 248
+6
+xx At END return now
+## POST /canvasDashboardEdit?dashboardID=116 200 - - 163.525 ms ON [2019-02-20T17:40:32.423Z] FROM ::ffff:127.0.0.1 - -
+##

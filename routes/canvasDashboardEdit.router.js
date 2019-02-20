@@ -19,17 +19,24 @@ const widgetCheckpointSchema = '../models/widgetCheckpoints.model';
 const dashboardLayoutSchema = '../models/dashboardLayouts.model';
 const widgetLayoutSchema = '../models/widgetLayouts.model';
 
+const dashboardModel = require(dashboardSchema);
+const dashboardTabModel = require(dashboardTabSchema);
+const widgetModel = require(widgetSchema);
+const widgetCheckpointModel = require(widgetCheckpointSchema);
+const widgetLayoutModel = require(widgetLayoutSchema);
+
 var promiseArray = [];
 let returnDraftDashboardTabs = [];
 let returnWidgets = [];
 let returnWidgetCheckpoints = [];
+let today = new Date();
 
 function addDraftDashboard(dashboard) {
     return new Promise( (resolve, reject) => {
 
         // Create a new Draft Dashboard, pointing to the original
-        let today = new Date();
         let newDraftDashboard = JSON.parse(JSON.stringify(dashboard));
+
         newDraftDashboard._id = null;
         newDraftDashboard.id = null;
         newDraftDashboard.originalID = dashboard.id;
@@ -42,20 +49,26 @@ function addDraftDashboard(dashboard) {
         newDraftDashboard.state = 'Draft';
 
         let dashboardAdd = new dashboardModel(newDraftDashboard);
+
         dashboardAdd.save()
-            .then(addedDraftDashboard => resolve(addedDraftDashboard))
-            .catch(err => reject(err));
+            .then(addedDraftDashboard => {
+                resolve(addedDraftDashboard)
+            })
+            .catch(err => {
+                console.log('addDraftDashboard Error', err)
+                reject(err)
+            });
     })
 }
 
-function updateTabs(tab) {
+function updateTabs(dashboardID, tab) {
 
     return new Promise( (resolve, reject) => {
         // Create a new Tab, pointing to the original
         let newDraftDashboardTab = JSON.parse(JSON.stringify(tab));
         newDraftDashboardTab._id = null;
         newDraftDashboardTab.id = null;
-        newDraftDashboardTab.dashboardID = addedDraftDashboard.id;
+        newDraftDashboardTab.dashboardID = dashboardID;
         newDraftDashboardTab.originalID = tab.id;
 
         // TODO - add current user !!
@@ -73,7 +86,7 @@ function updateTabs(tab) {
                 widgetModel.find(widgetQuery)
                     .then( widgets => {
                         widgets.forEach( widget => {
-                            promiseArray.push(updateWidget(widget));
+                            // promiseArray.push(updateWidget(widget));
                         });
                         resolve();
                     })
@@ -167,12 +180,6 @@ router.post('/', (req, res, next) => {
 
     // Try, in case model file does not exist
     // try {
-        // Get the models
-        const dashboardModel = require(dashboardSchema);
-        const dashboardTabModel = require(dashboardTabSchema);
-        const widgetModel = require(widgetSchema);
-        const widgetCheckpointModel = require(widgetCheckpointSchema);
-        const widgetLayoutModel = require(widgetLayoutSchema);
 
         // Validations
         if (isNaN(dashboardID)) {
@@ -222,10 +229,17 @@ router.post('/', (req, res, next) => {
                         dashboardTabModel.find(dashboardIDQuery)
                             .then( tabs => {
                                 tabs.forEach( tab => {
-                                    promiseArray.push(updateTabs(tab));
+                                console.log('5')
+                                    
+                                    promiseArray.push(updateTabs(addedDraftDashboard.id, tab));
+                                    console.log('6')
+
                                 });
+                                console.log('7 promiseArray', promiseArray)
                                 Promise.all(promiseArray)
                                     .then( () => {
+                                        console.log('6')
+
                                         console.log('xx At END return now')
                                         // Return the data with metadata
                                         return res.json( createReturnObject(
@@ -250,15 +264,18 @@ router.post('/', (req, res, next) => {
 
                                     })
                                     .catch( err => {
+                                        console.log("Error in Promise.all for ID: " + dashboardID, err)
+
                                         return res.json(createErrorObject(
                                             "error",
-                                            "Error reading Tabs for ID: " + dashboardID,
+                                            "Error in Promise.all for ID: " + dashboardID,
                                             err
                                         ));
 
                                     })
                             })
                             .catch( err => {
+                                console.log("Error reading Tabs for ID: " + dashboardID, err)
                                 return res.json(createErrorObject(
                                     "error",
                                     "Error reading Tabs for ID: " + dashboardID,
@@ -269,18 +286,20 @@ router.post('/', (req, res, next) => {
 
                     })
                     .catch( err => {
+                        console.log("Error in addDraftDashboard.then for ID: " + dashboardID, err)
                         return res.json(createErrorObject(
                             "error",
-                            "Error Adding Dashboard for ID: " + dashboardID,
+                            "Error in addDraftDashboard.then for ID: " + dashboardID,
                             err
                         ));
 
                     })
             })
             .catch( err => {
+                console.log("Error in dashboardModel.findOne for ID: " + dashboardID, err)
                 return res.json(createErrorObject(
                     "error",
-                    "Error Adding Dashboard for ID: " + dashboardID,
+                    "Error in dashboardModel.findOne for ID: " + dashboardID,
                     err
                 ));
 
