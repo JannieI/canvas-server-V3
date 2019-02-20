@@ -434,11 +434,11 @@ router.post('/:resource', (req, res, next) => {
                 );
             })
             .catch(err => {
-                console.error(err)
+                console.error('Error with .SAVE: ', err)
                 return res.json(
                     createErrorObject(
                         "error",
-                        "Error: Could not add record for resource: " + resource,
+                        "Error for: " + resource + " - " + err.errmsg,
                         err
                     )
                 );
