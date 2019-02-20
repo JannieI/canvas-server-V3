@@ -56,8 +56,8 @@ router.put('/', (req, res, next) => {
     debugDev(moduleName + ": " + '## GET Starting with Discarding Draft Dashboard id:',
         draftDashboardID + ', OriginalID: ', originalDashboardID, draftDashboardQuery);
 
-    // Try
-    try {
+        // Try
+    // try {
         // Get the models
         const dashboardModel = require(dashboardSchema);
         const dashboardTabModel = require(dashboardTabSchema);
@@ -267,16 +267,16 @@ router.put('/', (req, res, next) => {
                     err
                 ));
             });
-    }
-    catch (error) {
-        debugDev(moduleName + ": " + 'Error in canvasDashboardSummary.router', error.message)
-        return res.status(400).json({
-            "statusCode": "error",
-            "message" : "Error retrieving Current Dashboard ID: " + draftDashboardID,
-            "data": null,
-            "error": error
-        });
-    };
+    // }
+    // catch (error) {
+    //     debugDev(moduleName + ": " + 'Error in canvasDashboardSummary.router', error.message)
+    //     return res.status(400).json({
+    //         "statusCode": "error",
+    //         "message" : "Error retrieving Current Dashboard ID: " + draftDashboardID,
+    //         "data": null,
+    //         "error": error
+    //     });
+    // };
 
 })
 
