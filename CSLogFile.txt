@@ -3874,3 +3874,324 @@ ReferenceError: req is not defined
     at Module.require (module.js:596:17)
     at require (internal/module.js:11:18)
 [31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:29
+const orignalDashboardID = req.query.orignalDashboardID;
+                           ^
+
+ReferenceError: req is not defined
+    at Object.<anonymous> (/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:29:28)
+    at Module._compile (module.js:652:30)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+    at require (internal/module.js:11:18)
+    at Object.<anonymous> (/home/jannie/Projects/canvas-server/app.js:42:29)
+    at Module._compile (module.js:652:30)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+    at require (internal/module.js:11:18)
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:29
+let orignalDashboardID = req.query.orignalDashboardID;
+                         ^
+
+ReferenceError: req is not defined
+    at Object.<anonymous> (/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:29:26)
+    at Module._compile (module.js:652:30)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+    at require (internal/module.js:11:18)
+    at Object.<anonymous> (/home/jannie/Projects/canvas-server/app.js:42:29)
+    at Module._compile (module.js:652:30)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+    at require (internal/module.js:11:18)
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:29
+let orignalDashboardID = req.query.orignalDashboardID;
+                         ^
+
+ReferenceError: req is not defined
+    at Object.<anonymous> (/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:29:26)
+    at Module._compile (module.js:652:30)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+    at require (internal/module.js:11:18)
+    at Object.<anonymous> (/home/jannie/Projects/canvas-server/app.js:42:29)
+    at Module._compile (module.js:652:30)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+    at require (internal/module.js:11:18)
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:29
+let orignalDashboardID = req.query.orignalDashboardID;
+                         ^
+
+ReferenceError: req is not defined
+    at Object.<anonymous> (/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:29:26)
+    at Module._compile (module.js:652:30)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+    at require (internal/module.js:11:18)
+    at Object.<anonymous> (/home/jannie/Projects/canvas-server/app.js:42:29)
+    at Module._compile (module.js:652:30)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+    at require (internal/module.js:11:18)
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:29
+let orignalDashboardID = req.query.orignalDashboardID;
+                         ^
+
+ReferenceError: req is not defined
+    at Object.<anonymous> (/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:29:26)
+    at Module._compile (module.js:652:30)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+    at require (internal/module.js:11:18)
+    at Object.<anonymous> (/home/jannie/Projects/canvas-server/app.js:42:29)
+    at Module._compile (module.js:652:30)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+    at require (internal/module.js:11:18)
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:29
+let orignalDashboardID = req.query.orignalDashboardID;
+                         ^
+
+ReferenceError: req is not defined
+    at Object.<anonymous> (/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:29:26)
+    at Module._compile (module.js:652:30)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+    at require (internal/module.js:11:18)
+    at Object.<anonymous> (/home/jannie/Projects/canvas-server/app.js:42:29)
+    at Module._compile (module.js:652:30)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+    at require (internal/module.js:11:18)
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:29
+let orignalDashboardID = req.query.orignalDashboardID;
+                         ^
+
+ReferenceError: req is not defined
+    at Object.<anonymous> (/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:29:26)
+    at Module._compile (module.js:652:30)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+    at require (internal/module.js:11:18)
+    at Object.<anonymous> (/home/jannie/Projects/canvas-server/app.js:42:29)
+    at Module._compile (module.js:652:30)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+    at require (internal/module.js:11:18)
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 18:21:24 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 18:21:25 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 18:21:25 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 18:21:26 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 18:21:26 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 18:21:26 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+  Url: http://localhost:8000/canvasDashboardEdit%3ForignalDashboardID=116
+  Path: /canvasDashboardEdit
+Wed, 20 Feb 2019 18:21:41 GMT app:dev App.js In validateUser 
+Wed, 20 Feb 2019 18:21:41 GMT app:dev canvasDashboardEdit.router.js: ## --------------------------
+Wed, 20 Feb 2019 18:21:41 GMT app:dev canvasDashboardEdit.router.js: ## POST Starting with Editing Dashboard and related info for dashboard id: 116
+Dashboard does not exist for ID: 116
+## POST /canvasDashboardEdit?orignalDashboardID=116 200 94 - 43.312 ms ON [2019-02-20T18:21:41.287Z] FROM ::ffff:127.0.0.1 - -
+##
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 18:23:15 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 18:23:15 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 18:23:15 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+  Url: http://localhost:8000/canvasDashboardEdit%3ForignalDashboardID=116
+  Path: /canvasDashboardEdit
+Wed, 20 Feb 2019 18:23:18 GMT app:dev App.js In validateUser 
+Wed, 20 Feb 2019 18:23:18 GMT app:dev canvasDashboardEdit.router.js: ## --------------------------
+Wed, 20 Feb 2019 18:23:18 GMT app:dev canvasDashboardEdit.router.js: ## POST Starting with Editing Dashboard and related info for dashboard id: 116
+Dashboard does not exist for ID: 116 { id: undefined }
+## POST /canvasDashboardEdit?orignalDashboardID=116 200 94 - 26.498 ms ON [2019-02-20T18:23:18.273Z] FROM ::ffff:127.0.0.1 - -
+##
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+/home/jannie/Projects/canvas-server/routes/canvasDashboardEdit.router.js:30
+;et originalDashboardQuery = { id: orignalDashboardID };
+    ^^^^^^^^^^^^^^^^^^^^^^
+
+SyntaxError: Unexpected identifier
+    at createScript (vm.js:80:10)
+    at Object.runInThisContext (vm.js:139:10)
+    at Module._compile (module.js:616:28)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+    at require (internal/module.js:11:18)
+    at Object.<anonymous> (/home/jannie/Projects/canvas-server/app.js:42:29)
+    at Module._compile (module.js:652:30)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 18:23:47 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 18:23:47 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 18:23:47 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 18:23:51 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 18:23:51 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 18:23:51 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 18:23:55 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 18:23:55 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 18:23:55 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Wed, 20 Feb 2019 18:23:58 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Wed, 20 Feb 2019 18:23:58 GMT app:dev mongoLocalDatabase: Database connection successful
+Wed, 20 Feb 2019 18:23:58 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+

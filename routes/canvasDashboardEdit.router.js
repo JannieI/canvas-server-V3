@@ -26,8 +26,8 @@ let returnWidgets = [];
 let returnWidgetCheckpoints = [];
 let today = new Date();
 
-const orignalDashboardID = +req.query.orignalDashboardID;
-const originalDashboardQuery = { id: orignalDashboardID };
+let orignalDashboardID;
+let originalDashboardQuery;
 
 function addDraftDashboard(originalDashboard) {
     return new Promise( (resolve, reject) => {
@@ -187,6 +187,10 @@ router.post('/', (req, res, next) => {
         moduleName = module.id.substring(startPos + 1);
     };
 
+    orignalDashboardID = req.query.orignalDashboardID;
+    orignalDashboardID = +orignalDashboardID;
+    originalDashboardQuery = { id: orignalDashboardID };
+    
     debugDev(moduleName + ": " + '## --------------------------');
     debugDev(moduleName + ": " + '## POST Starting with Editing Dashboard and related info for dashboard id:', orignalDashboardID);
 
@@ -209,7 +213,7 @@ router.post('/', (req, res, next) => {
 
                 // Could be null if nothing was found
                 if (originalDashboard == null) {
-                    console.log("Dashboard does not exist for ID: " + orignalDashboardID)
+                    console.log("Dashboard does not exist for ID: " + orignalDashboardID, originalDashboardQuery)
                     return res.json(createErrorObject(
                         "error",
                         "Dashboard does not exist for ID: " + orignalDashboardID,
