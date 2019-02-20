@@ -30,8 +30,8 @@ router.put('/', (req, res, next) => {
     debugDev(moduleName + ": " + '## Starting with marking CanvasMessages for userID :',
         userID);
 
-        // Try
-    // try {
+    // Try
+    try {
         // Get the models
         const canvasMessageModel = require(canvasMessageSchema);
 
@@ -39,7 +39,7 @@ router.put('/', (req, res, next) => {
         let today = new Date();
         canvasMessageModel.updateMany(
             {"recipients.userID": userID},
-            { $set: { "recipients.readOn": today } }
+            { $set: { "recipients.$.readOn": today } }
         ).exec()
 
         // Return with metaData
@@ -68,16 +68,16 @@ router.put('/', (req, res, next) => {
                 err
             ));
         });
-    // }
-    // catch (error) {
-    //     debugDev(moduleName + ": " + 'Error in canvasDataMarkMessagesAsRead.router', error.message)
-    //     return res.status(400).json({
-    //         "statusCode": "error",
-    //         "message" : "Error marking Messages as read for :" + userID,
-    //         "data": null,
-    //         "error": error
-    //     });
-    // };
+    }
+    catch (error) {
+        debugDev(moduleName + ": " + 'Error in canvasDataMarkMessagesAsRead.router', error.message)
+        return res.status(400).json({
+            "statusCode": "error",
+            "message" : "Error marking Messages as read for :" + userID,
+            "data": null,
+            "error": error
+        });
+    };
 
 })
 
