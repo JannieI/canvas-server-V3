@@ -6,24 +6,7 @@ const router = express.Router();
 const debugDev = require('debug')('app:dev');
 const createErrorObject = require('../utils/createErrorObject.util');
 const createReturnObject = require('../utils/createReturnObject.util');
-const dashboardSchema = '../models/dashboards.model';
-const dashboardTabSchema = '../models/dashboardTabs.model';
-const widgetSchema = '../models/widgets.model';
-const dashboardSnapshotSchema = '../models/dashboardSnapshots.model';
 const canvasMessageSchema = '../models/canvasMessages.model';
-const canvasCommentSchema = '../models/canvasComments.model';
-const dashboardScheduleSchema = '../models/dashboardSchedules.model';
-const dashboardSubscriptionSchema = '../models/dashboardSubscriptions.model';
-const DashboardTagSchema = '../models/dashboardTags.model';
-const dashboardPermissionSchema = '../models/dashboardPermissions.model';
-const widgetCheckpointSchema = '../models/widgetCheckpoints.model';
-const canvasUserSchema = '../models/canvasUsers.model';
-const dashboardLayoutSchema = '../models/dashboardLayouts.model';
-const widgetLayoutSchema = '../models/widgetLayouts.model';
-const dashboardRecentSchema = '../models/dashboardsRecent.model';
-const statusBarMessageLogSchema = '../models/statusBarMessageLogs.model';
-const dashboardScheduleLogSchema = '../models/dashboardScheduleLog.model';
-const canvasTasksSchema = '../models/canvasTasks.model';
 
 // PUT route
 router.put('/', (req, res, next) => {
@@ -34,239 +17,57 @@ router.put('/', (req, res, next) => {
     };
 
     // Get and validate parameters
-    const draftDashboardID = req.query.draftDashboardID;
-    const originalDashboardID = req.query.originalDashboardID;
-    const draftDashboardQuery = { "dashboardID": draftDashboardID };
-    if (draftDashboardID == null  || isNaN(draftDashboardID)) {
+    const userID = req.query.userID;
+    if (userID == null  ||  userID == '') {
         return res.json(createErrorObject(
             "error",
-            "Query parameter draftDashboardID not provided: " + draftDashboardID,
-            null
-        ));
-    };
-    if (originalDashboardID == null  || isNaN(originalDashboardID)) {
-        return res.json(createErrorObject(
-            "error",
-            "Query parameter originalDashboardID not provided: " + originalDashboardID,
+            "Query parameter userID not provided: " + userID,
             null
         ));
     };
 
     debugDev(moduleName + ": " + '## --------------------------');
-    debugDev(moduleName + ": " + '## GET Starting with Discarding Draft Dashboard id:',
-        draftDashboardID + ', OriginalID: ', originalDashboardID, draftDashboardQuery);
+    debugDev(moduleName + ": " + '## Starting with marking CanvasMessages for userID :',
+        userID);
 
         // Try
     // try {
         // Get the models
-        const dashboardModel = require(dashboardSchema);
-        const dashboardTabModel = require(dashboardTabSchema);
-        const widgetModel = require(widgetSchema);
-        const dashboardSnapshotModel = require(dashboardSnapshotSchema);
         const canvasMessageModel = require(canvasMessageSchema);
-        const canvasCommentModel = require(canvasCommentSchema);
-        const dashboardScheduleModel = require(dashboardScheduleSchema);
-        const dashboardSubscriptionModel = require(dashboardSubscriptionSchema);
-        const dashboardTagModel = require(DashboardTagSchema);
-        const dashboardPermissionModel = require(dashboardPermissionSchema);
-        const widgetCheckpointModel = require(widgetCheckpointSchema);
-        const canvasUserModel = require(canvasUserSchema);
-        const dashboardLayoutModel = require(dashboardLayoutSchema);
-        const widgetLayoutModel = require(widgetLayoutSchema);
-        const dashboardRecentModel = require(dashboardRecentSchema);
-        const statusBarMessageLogModel = require(statusBarMessageLogSchema);
-        const dashboardScheduleLogModel = require(dashboardScheduleLogSchema);
-        const canvasTasksModel = require(canvasTasksSchema);
 
-        // Update IDs on the Original Dashboard
-        dashboardModel.findOneAndUpdate(
-            { "id": originalDashboardID },
-            { $set: { "originalID": null, "draftID": null } }
+        // Update Messages as read for this user
+        let today = new Date();
+        canvasMessageModel.updateMany(
+            {"recipients.userID": userID},
+            { $set: { "recipients.readOn": today } }
         ).exec()
 
-            // Delete Core Dashboard Entities for Draft: Dashboard
-            .then(()=>{
-                dashboardModel.deleteOne(
-                    { "id": draftDashboardID }
-                ).exec()
-            })
-
-            // Delete Core Dashboard Entities for Draft: DashboardTab
-            .then(()=>{
-                dashboardTabModel.deleteMany(
-                    draftDashboardQuery
-                ).exec()
-            })
-
-            // Delete Core Dashboard Entities for Draft: Widgets
-            .then(()=>{
-                widgetModel.deleteMany(
-                    draftDashboardQuery
-                ).exec()
-            })
-
-            // Delete Core Dashboard Entities for Draft: WidgetCheckpoints
-            .then(()=>{
-                widgetCheckpointModel.deleteMany(
-                    draftDashboardQuery
-                ).exec()
-            })
-
-            // Delete Related Entities: Dashboard Snapshots
-            .then(()=>{
-                dashboardSnapshotModel.deleteMany(
-                    draftDashboardQuery
-                ).exec()
-            })
-
-            // Delete Related Entities: Dashboard Schedules
-            .then(()=>{
-                dashboardScheduleModel.deleteMany(
-                    draftDashboardQuery
-                ).exec()
-            })
-
-            // Delete Related Entities: Dashboard ScheduleLog
-            .then(()=>{
-                dashboardScheduleLogModel.deleteMany(
-                    draftDashboardQuery
-                ).exec()
-            })
-
-            // Delete Related Entities: Dashboard SubscriptionModel
-            .then(()=>{
-                dashboardSubscriptionModel.deleteMany(
-                    draftDashboardQuery
-                ).exec()
-            })
-
-            // Delete Related Entities: Dashboard Tags
-            .then(()=>{
-                dashboardTagModel.deleteMany(
-                    draftDashboardQuery
-                ).exec()
-            })
-
-            // Delete Related Entities: Dashboard Permissions
-            .then(()=>{
-                dashboardPermissionModel.deleteMany(
-                    draftDashboardQuery
-                ).exec()
-            })
-
-            // Related Entities: Remove this Dashboard used as Fav for Users
-            .then(()=>{
-                canvasUserModel.update(
-                    {},
-                    { $pull: { "favouriteDashboards": draftDashboardID } },
-                    { "multi": true }
-                ).exec();
-            })
-
-            // Delete Related Entities: Dashboard- and WidgetLayout
-            .then(()=>{
-                dashboardLayoutModel.findOne(draftDashboardQuery)
-                    .then((doc)=>{
-                        // Remove WidgetLayout for this DashboardLayout
-                        if (doc != null) {
-                            widgetLayoutModel.deleteMany({ dashboardLayoutID: doc.id }).exec();
-                            dashboardLayoutModel.deleteMany(draftDashboardQuery).exec();
-                        };
-                    });
-            })
-
-            // Move Linked Entities to Original: Comments
-            .then(()=>{
-                canvasCommentModel.updateMany(
-                    draftDashboardQuery,
-                    { $set: { dashboardID: originalDashboardID } }
-                ).exec()
-            })
-
-            // Move Linked Entities to Original: Message
-            .then(()=>{
-                canvasMessageModel.updateMany(
-                    draftDashboardQuery,
-                    { $set: { dashboardID: originalDashboardID } }
-                ).exec()
-            })
-
-            // Move Linked Entities to Original: Tasks
-            .then(()=>{
-                const taskDashboardQuery = { "linkedDashboardID": { $eq: draftDashboardID } };
-                canvasTasksModel.update(
-                    taskDashboardQuery,
-                    { $set: { linkedDashboardID: originalDashboardID } }
-                ).exec()
-            })
-
-            // Move Linked Entities to Original: Hyperlinked Widgets
-            .then(()=>{
-                let hyperlinkedQuery = {"hyperlinkDashboardID": { $eq: draftDashboardID } };
-                widgetModel.updateMany(
-                    hyperlinkedQuery,
-                    { $set: { hyperlinkDashboardID: originalDashboardID } }
-                ).exec();
-            })
-
-            // Move Linked Entities to Original: Startup for Users
-            .then(()=>{
-                let startupQuery = {"preferenceStartupDashboardID": { $eq: draftDashboardID } };
-                canvasUserModel.updateMany(
-                    startupQuery,
-                    { $set: { preferenceStartupDashboardID: originalDashboardID } }
-                ).exec();
-            })
-
-            // Move Linked Entities to Original: Template
-            .then(()=>{
-                let templateQuery = {"templateDashboardID": { $eq: draftDashboardID } };
-                dashboardModel.updateMany(
-                    templateQuery,
-                    { $set: { templateDashboardID: originalDashboardID } }
-                ).exec();
-            })
-
-            // Delete General Entities: Recent
-            .then(()=>{
-                dashboardRecentModel.deleteMany(
-                    draftDashboardQuery
-                ).exec()
-            })
-
-            // Delete General Entities: StatusBar
-            .then(()=>{
-                statusBarMessageLogModel.deleteMany(
-                    draftDashboardQuery
-                ).exec()
-            })
-
-            // Return with metaData
-            .then(()=>{
-                return res.json(
-                createReturnObject(
-                    "success",
-                    "Discarded Draft Dashboard ID: " + draftDashboardID,
-                    "Okay",
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    1,
-                    null,
-                    null
-                    )
-                );
-            })
-            .catch((err)=>{
-                console.log('Error discarding Draft Dashboard id:', draftDashboardID, err);
-                return res.json(createErrorObject(
-                    "error",
-                    "Error discarding Draft Dashboard id: " + draftDashboardID,
-                    err
-                ));
-            });
+        // Return with metaData
+        .then(()=>{
+            return res.json(
+            createReturnObject(
+                "success",
+                "Discarded Draft Dashboard ID: " + draftDashboardID,
+                "Okay",
+                null,
+                null,
+                null,
+                null,
+                null,
+                1,
+                null,
+                null
+                )
+            );
+        })
+        .catch((err)=>{
+            console.log('Error marking Messages as read for :', userID, err);
+            return res.json(createErrorObject(
+                "error",
+                "Error marking Messages as read for :" + userID,
+                err
+            ));
+        });
     // }
     // catch (error) {
     //     debugDev(moduleName + ": " + 'Error in canvasDashboardSummary.router', error.message)
