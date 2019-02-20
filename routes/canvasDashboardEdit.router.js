@@ -1,11 +1,6 @@
 // Router to Edits a Complete Dashboard and all core info, ie Tabs, Widgets, Wcheckpoints
 // It then recreates the structure of the linked IDs: D -> T -> W
 
-
-// NB - not working as yet - need to fix ASYNC (forEach is sync) with Promise.all
-
-
-
 // Imports
 const express = require('express');
 const router = express.Router();
@@ -31,17 +26,18 @@ let returnWidgets = [];
 let returnWidgetCheckpoints = [];
 let today = new Date();
 
-const originalDashboardQuery = { id: dashboardID };
+const orignalDashboardID = +req.query.orignalDashboardID;
+const originalDashboardQuery = { id: orignalDashboardID };
 
-function addDraftDashboard(dashboard) {
+function addDraftDashboard(originalDashboard) {
     return new Promise( (resolve, reject) => {
 
         // Create a new Draft Dashboard, pointing to the original
-        let newDraftDashboard = JSON.parse(JSON.stringify(dashboard));
+        let newDraftDashboard = JSON.parse(JSON.stringify(originalDashboard));
 
         newDraftDashboard._id = null;
         newDraftDashboard.id = null;
-        newDraftDashboard.originalID = dashboard.id;
+        newDraftDashboard.originalID = originalDashboard.id;
         newDraftDashboard.draftID = null;
 
         // TODO - add current user !!
@@ -63,17 +59,17 @@ function addDraftDashboard(dashboard) {
     })
 }
 
-function updateTabs(addedDashboardID, tab) {
+function updateTabs(addedDashboardID, originalDashboardTab) {
     // Add the given tab to the DB, and then loop all all its Widgets, adding 
     // their creation function to promiseArray
 
     return new Promise( (resolve, reject) => {
         // Create a new Tab, pointing to the original
-        let newDraftDashboardTab = JSON.parse(JSON.stringify(tab));
+        let newDraftDashboardTab = JSON.parse(JSON.stringify(originalDashboardTab));
         newDraftDashboardTab._id = null;
         newDraftDashboardTab.id = null;
         newDraftDashboardTab.dashboardID = addedDashboardID;
-        newDraftDashboardTab.originalID = tab.id;
+        newDraftDashboardTab.originalID = originalDashboardTab.id;
 
         // TODO - add current user !!
         newDraftDashboardTab.editor = '';
@@ -87,7 +83,11 @@ function updateTabs(addedDashboardID, tab) {
                 returnDraftDashboardTabs.push(addedDraftDashboardTab);
                 debugDev(moduleName + ": " + 'New Tab added' + addedDraftDashboardTab.id, addedDraftDashboardTab.originalID)
 
-                let widgetQuery = {dashboardID: addedDashboardID, dashboardTabID: tab.id}
+                // Get the Original Widgets
+                let widgetQuery = {
+                    dashboardID: originalDashboardID, 
+                    dashboardTabID: originalDashboardTab.id
+                };
                 widgetModel.find(widgetQuery)
                     .then( widgets => {
                         console.log('updateTab After .find', widgetQuery, widgets)
@@ -186,7 +186,6 @@ router.post('/', (req, res, next) => {
     if (startPos > 0  &&  startPos < module.id.length) {
         moduleName = module.id.substring(startPos + 1);
     };
-    const orignalDashboardID = +req.query.orignalDashboardID;
 
     debugDev(moduleName + ": " + '## --------------------------');
     debugDev(moduleName + ": " + '## POST Starting with Editing Dashboard and related info for dashboard id:', orignalDashboardID);
@@ -206,10 +205,10 @@ router.post('/', (req, res, next) => {
 
         // Find Original Dashboard
         dashboardModel.findOne(originalDashboardQuery)
-            .then((dashboard)=>{
+            .then((originalDashboard)=>{
 
                 // Could be null if nothing was found
-                if (dashboard == null) {
+                if (originalDashboard == null) {
                     console.log("Dashboard does not exist for ID: " + orignalDashboardID)
                     return res.json(createErrorObject(
                         "error",
@@ -218,17 +217,17 @@ router.post('/', (req, res, next) => {
                     ));
                 };
                 
-                addDraftDashboard(dashboard)
+                addDraftDashboard(originalDashboard)
                     .then(addedDraftDashboard => {
                         debugDev(moduleName + ": " + 'New Dashboard added' + addedDraftDashboard.id)
 
                         // Update the Original Dashboard to point to the Draft
                         // Note - can be done in background since we dont use it
-                        let originalDashboard = JSON.parse(JSON.stringify(dashboard));
-                        originalDashboard.draftID = addedDraftDashboard.id;
+                        let originalDashboardNew = JSON.parse(JSON.stringify(originalDashboardNew));
+                        originalDashboardNew.draftID = addedDraftDashboard.id;
                         dashboardModel.findOneAndUpdate(
                             originalDashboardQuery,
-                            originalDashboard,
+                            originalDashboardNew,
                             {
                                 new: true,                       // return updated doc
                                 runValidators: true              // validate before update
@@ -237,10 +236,10 @@ router.post('/', (req, res, next) => {
 
                         // Loop on Original Dashboard Tabs
                         dashboardTabModel.find({"dashboardID": { $eq: orignalDashboardID } })
-                            .then( originalDashboardTabs => {
+                            .then(originalDashboardTabs => {
                                 console.log('After find')
 
-                                originalDashboardTabs.forEach( originalDashboardTab => {
+                                originalDashboardTabs.forEach(originalDashboardTab => {
                                     promiseArray.push(
                                         updateTabs(
                                             addedDraftDashboard.id, 
