@@ -281,5 +281,5 @@ PUT {{host}}/canvasDashboardDiscard
 ###
 
 POST {{host}}/canvasDashboardEdit
-?orignalDashboardID=116
+?originalDashboardID=116
 ###

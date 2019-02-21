@@ -30,6 +30,8 @@ let today = new Date();
 
 let originalDashboardID;
 let originalDashboardQuery;
+let newName;
+let newState;
 
 function addDraftDashboard(originalDashboard) {
     return new Promise( (resolve, reject) => {
@@ -46,7 +48,8 @@ function addDraftDashboard(originalDashboard) {
         newDraftDashboard.editor = '';
         newDraftDashboard.dateEdited = today;
         newDraftDashboard.accessType = 'Private';
-        newDraftDashboard.state = 'Draft';
+        newDraftDashboard.state = newState;
+        newDraftDashboard.name = newName;
 
         let dashboardAdd = new dashboardModel(newDraftDashboard);
 
@@ -214,9 +217,11 @@ router.post('/', (req, res, next) => {
     returnWidgets = [];
     returnWidgetCheckpoints = [];
 
-    originalDashboardID = req.query.orignalDashboardID;
+    originalDashboardID = req.query.originalDashboardID;
     originalDashboardID = +originalDashboardID;
     originalDashboardQuery = { id: originalDashboardID };
+    newName = req.query.newName;
+    newState = req.query.newState;
     
     debugDev(moduleName + ": " + '## --------------------------');
     debugDev(moduleName + ": " + '## POST Starting with Editing Dashboard and related info for dashboard id:', originalDashboardID);
@@ -233,6 +238,21 @@ router.post('/', (req, res, next) => {
                 null
             ));
         };
+        if (newName == null  ||  newName == '') {
+            return res.json(createErrorObject(
+                "error",
+                "Query Parameter is compulsory",
+                null
+            ));
+        };
+        if (newState == null  ||  newState == '') {
+            return res.json(createErrorObject(
+                "error",
+                "Query Parameter is compulsory",
+                null
+            ));
+        };
+
 
         // Find Original Dashboard
         dashboardModel.findOne(originalDashboardQuery)
