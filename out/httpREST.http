@@ -280,6 +280,8 @@ PUT {{host}}/canvasDashboardDiscard
 &originalDashboardID=
 ###
 
-POST {{host}}/canvasDashboardEdit
+POST {{host}}/canvasDashboardCopy
 ?originalDashboardID=116
+&newName=Draft Thing
+&newState=xxx
 ###

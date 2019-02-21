@@ -241,18 +241,17 @@ router.post('/', (req, res, next) => {
         if (newName == null  ||  newName == '') {
             return res.json(createErrorObject(
                 "error",
-                "Query Parameter is compulsory",
+                "Query Parameter newName is compulsory",
                 null
             ));
         };
         if (newState == null  ||  newState == '') {
             return res.json(createErrorObject(
                 "error",
-                "Query Parameter is compulsory",
+                "Query Parameter newState is compulsory",
                 null
             ));
         };
-
 
         // Find Original Dashboard
         dashboardModel.findOne(originalDashboardQuery)
