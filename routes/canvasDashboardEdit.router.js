@@ -20,7 +20,9 @@ const widgetModel = require(widgetSchema);
 const widgetCheckpointModel = require(widgetCheckpointSchema);
 const widgetLayoutModel = require(widgetLayoutSchema);
 
-var promiseArray = [];
+var promiseArrayTabs = [];
+var promiseArrayWidgets = [];
+var promiseArrayWidgetCheckpoints = [];
 let returnDraftDashboardTabs = [];
 let returnWidgets = [];
 let returnWidgetCheckpoints = [];
@@ -61,7 +63,7 @@ function addDraftDashboard(originalDashboard) {
 
 function updateTabs(addedDashboardID, originalDashboardTab) {
     // Add the given tab to the DB, and then loop all all its Widgets, adding 
-    // their creation function to promiseArray
+    // their creation function to promiseArrayWidgets
 
     return new Promise( (resolve, reject) => {
         // Create a new Tab, pointing to the original
@@ -94,7 +96,7 @@ function updateTabs(addedDashboardID, originalDashboardTab) {
                         console.log('updateTab After .find', widgetQuery, originalWidgets.length)
 
                         originalWidgets.forEach(originalWidget => {
-                            promiseArray.push(updateWidget(
+                            promiseArrayWidgets.push(updateWidget(
                                 addedDashboardID, 
                                 addedDraftDashboardTab.id, 
                                 originalWidget
@@ -113,7 +115,7 @@ function updateTabs(addedDashboardID, originalDashboardTab) {
 
 function updateWidget(addedDashboardID, addedDashboardTabID, originalWidget) {
     // Add the given Widget to the DB, and then loop all all its WidgetCheckpointss, adding 
-    // their creation function to promiseArray
+    // their creation function to promiseArrayWidgetCheckpoints
     return new Promise( (resolve, reject) => {
         console.log('updateWidget Start')
         // Create a new Widget, pointing to the original
@@ -148,7 +150,7 @@ function updateWidget(addedDashboardID, addedDashboardTabID, originalWidget) {
                 widgetCheckpointModel.find(widgetCheckpointQuery)
                     .then(originalWidgetCheckpoints => {
                         originalWidgetCheckpoints.forEach( originalWidgetCheckpoint => {
-                            promiseArray.push(updateWidgetCheckpoint(
+                            promiseArrayWidgetCheckpoints.push(updateWidgetCheckpoint(
                                 addedDashboardID, 
                                 addedDashboardTabID, 
                                 addedDraftWidget.id, 
@@ -158,7 +160,10 @@ function updateWidget(addedDashboardID, addedDashboardTabID, originalWidget) {
                     })
                     .catch(err => reject(err))
             })
-            .catch(err => reject(err))
+            .catch(err => {
+                console.log('ERROR !!!');
+                reject(err)
+            });
     })
 
 }
@@ -261,7 +266,7 @@ router.post('/', (req, res, next) => {
                                 console.log('After find')
 
                                 originalDashboardTabs.forEach(originalDashboardTab => {
-                                    promiseArray.push(
+                                    promiseArrayTabs.push(
                                         updateTabs(
                                             addedDraftDashboard.id, 
                                             originalDashboardTab
@@ -269,39 +274,67 @@ router.post('/', (req, res, next) => {
                                     );
                                     console.log('After push for tab', originalDashboardTab.id)
                                 });
-                                console.log('Before promiseArray', promiseArray)
-                                Promise.all(promiseArray)
+                                console.log('Before promiseArray', promiseArrayTabs.length, 
+                                    promiseArrayWidgets.length, promiseArrayWidgetCheckpoints.length)
+                                Promise.all(promiseArrayTabs)
                                     .then( () => {
 
-                                        console.log('xx At END return now')
-                                        // Return the data with metadata
-                                        return res.json( createReturnObject(
-                                            "success",
-                                            "Edit: Draft Dashboard created with ID: " + originalDashboardID,
-                                            {
-                                                dashboard: addedDraftDashboard,
-                                                dashboardTabs: returnDraftDashboardTabs,
-                                                widgets: returnWidgets,
-                                                widgetCheckpoints: returnWidgetCheckpoints
-                                            },
-                                            null,
-                                            null,
-                                            null,
-                                            null,
-                                            null,
-                                            1,
-                                            null,
-                                            null
-                                            )
-                                        );
+                                        Promise.all(promiseArrayWidgets)
+                                        .then( () => {
 
+                                            Promise.all(promiseArrayWidgetCheckpoints)
+                                            .then( () => {
+
+                                                console.log('xx At END return now')
+                                                // Return the data with metadata
+                                                return res.json( createReturnObject(
+                                                    "success",
+                                                    "Edit: Draft Dashboard created with ID: " + originalDashboardID,
+                                                    {
+                                                        dashboard: addedDraftDashboard,
+                                                        dashboardTabs: returnDraftDashboardTabs,
+                                                        widgets: returnWidgets,
+                                                        widgetCheckpoints: returnWidgetCheckpoints
+                                                    },
+                                                    null,
+                                                    null,
+                                                    null,
+                                                    null,
+                                                    null,
+                                                    1,
+                                                    null,
+                                                    null
+                                                    )
+                                                );
+                                            })
+                                            .catch( err => {
+                                                console.log("Error in promiseArrayWidgetCheckpoints.all for ID: " + originalDashboardID, err)
+        
+                                                return res.json(createErrorObject(
+                                                    "error",
+                                                    "Error in promiseArrayWidgetCheckpoints.all for ID: " + originalDashboardID,
+                                                    err
+                                                ));
+        
+                                            })
+                                        })
+                                        .catch( err => {
+                                            console.log("Error in promiseArrayWidgets.all for ID: " + originalDashboardID, err)
+    
+                                            return res.json(createErrorObject(
+                                                "error",
+                                                "Error in promiseArrayWidgets.all for ID: " + originalDashboardID,
+                                                err
+                                            ));
+    
+                                        })
                                     })
                                     .catch( err => {
-                                        console.log("Error in Promise.all for ID: " + originalDashboardID, err)
+                                        console.log("Error in promiseArrayTabs.all for ID: " + originalDashboardID, err)
 
                                         return res.json(createErrorObject(
                                             "error",
-                                            "Error in Promise.all for ID: " + originalDashboardID,
+                                            "Error in promiseArrayTabs.all for ID: " + originalDashboardID,
                                             err
                                         ));
 
