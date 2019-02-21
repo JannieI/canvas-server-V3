@@ -285,3 +285,8 @@ POST {{host}}/canvasDashboardCopy
 &newName=Draft Thing
 &newState=xxx
 ###
+GET http://localhost:8000/canvasDashboardCopy
+?originalDashboardID=116
+&newName=null
+&newState=Draft
+###

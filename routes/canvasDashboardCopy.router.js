@@ -245,7 +245,7 @@ router.post('/', (req, res, next) => {
                 null
             ));
         };
-        if (newState == null  ||  newState == '') {
+        if (newState != 'Draft'  &&  newState != 'Complete') {
             return res.json(createErrorObject(
                 "error",
                 "Query Parameter newState is compulsory",
