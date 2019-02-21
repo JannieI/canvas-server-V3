@@ -49,7 +49,7 @@ function addDraftDashboard(originalDashboard) {
         newDraftDashboard.dateEdited = today;
         newDraftDashboard.accessType = 'Private';
         newDraftDashboard.state = newState;
-        newDraftDashboard.name = newName;
+        newDraftDashboard.name = newName != null?  newName  :  originalDashboard.name;
 
         let dashboardAdd = new dashboardModel(newDraftDashboard);
 
@@ -248,7 +248,7 @@ router.post('/', (req, res, next) => {
         if (newState != 'Draft'  &&  newState != 'Complete') {
             return res.json(createErrorObject(
                 "error",
-                "Query Parameter newState is compulsory",
+                "Query Parameter newState must be Draft or Complete",
                 null
             ));
         };
