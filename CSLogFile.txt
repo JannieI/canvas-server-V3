@@ -3482,3 +3482,31 @@ xx At END return now
 Thu, 21 Feb 2019 13:42:14 GMT app:ws Response to Sender
 Thu, 21 Feb 2019 13:42:15 GMT app:ws  Response to others (excluding Sender)
 Thu, 21 Feb 2019 13:42:16 GMT app:ws Broadcast to all users
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Thu, 21 Feb 2019 18:03:00 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Thu, 21 Feb 2019 18:03:00 GMT app:dev mongoLocalDatabase: Database connection successful
+Thu, 21 Feb 2019 18:03:01 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+Thu, 21 Feb 2019 18:03:04 GMT app:ws { data: 'First socket message' }
+Thu, 21 Feb 2019 18:03:11 GMT app:ws Response to Sender
+Thu, 21 Feb 2019 18:03:12 GMT app:ws  Response to others (excluding Sender)
+Thu, 21 Feb 2019 18:03:13 GMT app:ws Broadcast to all users

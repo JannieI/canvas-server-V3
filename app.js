@@ -39,7 +39,7 @@ const canvasCurrentDashboard = require('./routes/canvasCurrentDashboard.router')
 const canvasDatasource = require('./routes/canvasDatasource.router');
 const clientDataRouter = require('./routes/clientData.router');
 require('./auth/auth');
-const canvasDashboardEdit = require('./routes/canvasDashboardEdit.router');
+const canvasDashboardCopy = require('./routes/canvasDashboardCopy.router');
 const canvasDashboardDiscard = require('./routes/canvasDashboardDiscard.router');
 const canvasDashboardDelete = require('./routes/canvasDashboardDelete.router');
 const canvasDashboardSaveDraft = require('./routes/canvasDashboardSaveDraft.router');
@@ -199,7 +199,7 @@ app.use('/auth/google/', authGoogleRouter);
 
 // ALL Canvas data-related API calls
 app.use('/canvasCurrentDashboard', canvasCurrentDashboard);
-app.use('/canvasDashboardEdit', canvasDashboardEdit);
+app.use('/canvasDashboardCopy', canvasDashboardCopy);
 app.use('/canvasDashboardDiscard', canvasDashboardDiscard);
 app.use('/canvasDashboardDelete', canvasDashboardDelete);
 app.use('/canvasDashboardSaveDraft', canvasDashboardSaveDraft);
