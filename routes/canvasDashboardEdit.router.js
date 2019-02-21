@@ -209,6 +209,11 @@ router.post('/', (req, res, next) => {
         moduleName = module.id.substring(startPos + 1);
     };
 
+    // Reset 
+    returnDraftDashboardTabs = [];
+    returnWidgets = [];
+    returnWidgetCheckpoints = [];
+
     originalDashboardID = req.query.orignalDashboardID;
     originalDashboardID = +originalDashboardID;
     originalDashboardQuery = { id: originalDashboardID };
@@ -276,6 +281,12 @@ router.post('/', (req, res, next) => {
                                 });
                                 console.log('Before promiseArray', promiseArrayTabs.length, 
                                     promiseArrayWidgets.length, promiseArrayWidgetCheckpoints.length)
+
+                                // Note: the reason for the 3 different Promise Arrays is that it
+                                // did not work when using a single one - DB would be updated but
+                                // the execution did not continue after the last .then()  I guess
+                                // it is a timing issue - the .all believes all is done, and takes
+                                // over, but am not sure ...
                                 Promise.all(promiseArrayTabs)
                                     .then( () => {
 
