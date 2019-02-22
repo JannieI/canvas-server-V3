@@ -24,10 +24,20 @@ var serverMemoryCache =  {
     },
     add: function(varName, input) {
         if (varName == 'dashboards') {
-            serverMemoryCache.dashboards = serverMemoryCache.dashboards.concat(input);
+            if (serverMemoryCache.dashboards == null) {
+                serverMemoryCache.dashboards = [];
+                serverMemoryCache.dashboards.push(input)
+            } else {
+                serverMemoryCache.dashboards = serverMemoryCache.dashboards.concat(input);
+            };
         };
         if (varName == 'datasources') {
-            serverMemoryCache.datasources = serverMemoryCache.datasources.concat(input);
+            if (serverMemoryCache.datasources == null) {
+                serverMemoryCache.datasources = [];
+                serverMemoryCache.datasources.push(input)
+            } else {
+                serverMemoryCache.datasources = serverMemoryCache.datasources.concat(input);
+            };
         };
     },
     remove: function(varName, id) {
@@ -35,7 +45,7 @@ var serverMemoryCache =  {
             serverMemoryCache.dashboards = serverMemoryCache.dashboards.filter(d => d.id != id);
         };
         if (varName == 'datasources') {
-            serverMemoryCache.datasources = serverMemoryCache.datasources.concat(input);
+            serverMemoryCache.datasources = serverMemoryCache.datasources.filter(ds => ds.id != id);
         };
     }
 };
