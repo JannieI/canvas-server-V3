@@ -52,6 +52,16 @@ var serverMemoryCache = {
         if (varName == 'datasources') {
             serverMemoryCache.datasources = input;
         };
+    },
+    add: function(varName, input) {
+        console.log('xx preAdd len', serverMemoryCache.dashboards.length)
+        if (varName == 'dashboards') {
+            serverMemoryCache.dashboards = serverMemoryCache.dashboards.concat(input);
+            console.log('xx postAdd len', serverMemoryCache.dashboards.length)
+        };
+        if (varName == 'datasources') {
+            serverMemoryCache.datasources = serverMemoryCache.datasources.concat(input);
+        };
     }
 };
 
