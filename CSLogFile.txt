@@ -14125,3 +14125,431 @@ Fri, 22 Feb 2019 07:25:33 GMT app:dev canvasDashboardCopy.router.js: Added new D
 xx Just before return
 ## POST /canvasDashboardCopy?originalDashboardID=116&newName=&newState=Draft 200 - - 111.913 ms ON [2019-02-22T07:25:33.112Z] FROM ::ffff:127.0.0.1 - -
 ##
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Fri, 22 Feb 2019 07:26:01 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Fri, 22 Feb 2019 07:26:01 GMT app:dev mongoLocalDatabase: Database connection successful
+Fri, 22 Feb 2019 07:26:01 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Fri, 22 Feb 2019 07:26:03 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Fri, 22 Feb 2019 07:26:03 GMT app:dev mongoLocalDatabase: Database connection successful
+Fri, 22 Feb 2019 07:26:03 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Fri, 22 Feb 2019 07:26:05 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Fri, 22 Feb 2019 07:26:05 GMT app:dev mongoLocalDatabase: Database connection successful
+Fri, 22 Feb 2019 07:26:05 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+Fri, 22 Feb 2019 07:26:10 GMT app:ws { data: 'First socket message' }
+Fri, 22 Feb 2019 07:26:18 GMT app:ws Response to Sender
+Fri, 22 Feb 2019 07:26:19 GMT app:ws  Response to others (excluding Sender)
+Fri, 22 Feb 2019 07:26:20 GMT app:ws Broadcast to all users
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+/home/jannie/Projects/canvas-server/routes/canvasDashboardCopy.router.js:332
+                                                        debugDev(moduleName + ": " + 'Added ' + serverVariableName new Draft Dashboard to Cache', serverMemoryCache.get(serverVariableName).length)
+                                                                                                ^^^^^^^^^^^^^^^^^^
+
+SyntaxError: missing ) after argument list
+    at createScript (vm.js:80:10)
+    at Object.runInThisContext (vm.js:139:10)
+    at Module._compile (module.js:616:28)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+    at require (internal/module.js:11:18)
+    at Object.<anonymous> (/home/jannie/Projects/canvas-server/app.js:42:29)
+    at Module._compile (module.js:652:30)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+/home/jannie/Projects/canvas-server/routes/canvasDashboardCopy.router.js:332
+                                                        debugDev(moduleName + ": " + 'Added ' + serverVariableName  new Draft Dashboard to Cache', serverMemoryCache.get(serverVariableName).length)
+                                                                                                ^^^^^^^^^^^^^^^^^^
+
+SyntaxError: missing ) after argument list
+    at createScript (vm.js:80:10)
+    at Object.runInThisContext (vm.js:139:10)
+    at Module._compile (module.js:616:28)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+    at require (internal/module.js:11:18)
+    at Object.<anonymous> (/home/jannie/Projects/canvas-server/app.js:42:29)
+    at Module._compile (module.js:652:30)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+/home/jannie/Projects/canvas-server/routes/canvasDashboardCopy.router.js:332
+                                                        debugDev(moduleName + ": " + 'Added ' + serverVariableName + new Draft Dashboard to Cache', serverMemoryCache.get(serverVariableName).length)
+                                                                                                                         ^^^^^
+
+SyntaxError: missing ) after argument list
+    at createScript (vm.js:80:10)
+    at Object.runInThisContext (vm.js:139:10)
+    at Module._compile (module.js:616:28)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+    at require (internal/module.js:11:18)
+    at Object.<anonymous> (/home/jannie/Projects/canvas-server/app.js:42:29)
+    at Module._compile (module.js:652:30)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+/home/jannie/Projects/canvas-server/routes/canvasDashboardCopy.router.js:332
+                                                        debugDev(moduleName + ": " + 'Added ' + serverVariableName + ', length: ' new Draft Dashboard to Cache', serverMemoryCache.get(serverVariableName).length)
+                                                                                                                     ^^^^^^^^^^^^
+
+SyntaxError: missing ) after argument list
+    at createScript (vm.js:80:10)
+    at Object.runInThisContext (vm.js:139:10)
+    at Module._compile (module.js:616:28)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+    at require (internal/module.js:11:18)
+    at Object.<anonymous> (/home/jannie/Projects/canvas-server/app.js:42:29)
+    at Module._compile (module.js:652:30)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Fri, 22 Feb 2019 07:26:59 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Fri, 22 Feb 2019 07:26:59 GMT app:dev mongoLocalDatabase: Database connection successful
+Fri, 22 Feb 2019 07:26:59 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+Fri, 22 Feb 2019 07:27:06 GMT app:ws { data: 'First socket message' }
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Fri, 22 Feb 2019 07:27:08 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Fri, 22 Feb 2019 07:27:08 GMT app:dev mongoLocalDatabase: Database connection successful
+Fri, 22 Feb 2019 07:27:08 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+Fri, 22 Feb 2019 07:27:09 GMT app:ws { data: 'First socket message' }
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Fri, 22 Feb 2019 07:27:16 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Fri, 22 Feb 2019 07:27:16 GMT app:dev mongoLocalDatabase: Database connection successful
+Fri, 22 Feb 2019 07:27:16 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+Fri, 22 Feb 2019 07:27:17 GMT app:ws { data: 'First socket message' }
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Fri, 22 Feb 2019 07:27:17 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Fri, 22 Feb 2019 07:27:18 GMT app:dev mongoLocalDatabase: Database connection successful
+Fri, 22 Feb 2019 07:27:18 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+Fri, 22 Feb 2019 07:27:19 GMT app:ws { data: 'First socket message' }
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Fri, 22 Feb 2019 07:27:23 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Fri, 22 Feb 2019 07:27:23 GMT app:dev mongoLocalDatabase: Database connection successful
+Fri, 22 Feb 2019 07:27:23 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+Fri, 22 Feb 2019 07:27:24 GMT app:ws { data: 'First socket message' }
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Fri, 22 Feb 2019 07:27:32 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Fri, 22 Feb 2019 07:27:32 GMT app:dev mongoLocalDatabase: Database connection successful
+Fri, 22 Feb 2019 07:27:32 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+Fri, 22 Feb 2019 07:27:33 GMT app:ws { data: 'First socket message' }
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Fri, 22 Feb 2019 07:27:41 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Fri, 22 Feb 2019 07:27:41 GMT app:dev mongoLocalDatabase: Database connection successful
+Fri, 22 Feb 2019 07:27:41 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+Fri, 22 Feb 2019 07:27:43 GMT app:ws { data: 'First socket message' }
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Fri, 22 Feb 2019 07:27:51 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Fri, 22 Feb 2019 07:27:51 GMT app:dev mongoLocalDatabase: Database connection successful
+Fri, 22 Feb 2019 07:27:51 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+Fri, 22 Feb 2019 07:27:52 GMT app:ws { data: 'First socket message' }
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Fri, 22 Feb 2019 07:27:55 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Fri, 22 Feb 2019 07:27:55 GMT app:dev mongoLocalDatabase: Database connection successful
+Fri, 22 Feb 2019 07:27:55 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+Fri, 22 Feb 2019 07:27:58 GMT app:ws { data: 'First socket message' }
+Fri, 22 Feb 2019 07:28:06 GMT app:ws Response to Sender
+Fri, 22 Feb 2019 07:28:07 GMT app:ws  Response to others (excluding Sender)
+Fri, 22 Feb 2019 07:28:08 GMT app:ws Broadcast to all users
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+/home/jannie/Projects/canvas-server/routes/canvasDashboardCopy.router.js:339
+                                                let dataCachingTableArrayIndex = dataCachingTableArray.findIndex(dct => dct.key == serverVariableName);
+                                                    ^
+
+SyntaxError: Identifier 'dataCachingTableArrayIndex' has already been declared
+    at createScript (vm.js:80:10)
+    at Object.runInThisContext (vm.js:139:10)
+    at Module._compile (module.js:616:28)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+    at require (internal/module.js:11:18)
+    at Object.<anonymous> (/home/jannie/Projects/canvas-server/app.js:42:29)
+    at Module._compile (module.js:652:30)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+/home/jannie/Projects/canvas-server/routes/canvasDashboardCopy.router.js:339
+                                                let dataCachingTableArrayIndex = dataCachingTableArray.findIndex(dct => dct.key == serverVariableName);
+                                                    ^
+
+SyntaxError: Identifier 'dataCachingTableArrayIndex' has already been declared
+    at createScript (vm.js:80:10)
+    at Object.runInThisContext (vm.js:139:10)
+    at Module._compile (module.js:616:28)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+    at require (internal/module.js:11:18)
+    at Object.<anonymous> (/home/jannie/Projects/canvas-server/app.js:42:29)
+    at Module._compile (module.js:652:30)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+/home/jannie/Projects/canvas-server/routes/canvasDashboardCopy.router.js:339
+                                                let dataCachingTableArrayIndex = dataCachingTableArray.findIndex(dct => dct.key == serverVariableName);
+                                                    ^
+
+SyntaxError: Identifier 'dataCachingTableArrayIndex' has already been declared
+    at createScript (vm.js:80:10)
+    at Object.runInThisContext (vm.js:139:10)
+    at Module._compile (module.js:616:28)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+    at require (internal/module.js:11:18)
+    at Object.<anonymous> (/home/jannie/Projects/canvas-server/app.js:42:29)
+    at Module._compile (module.js:652:30)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+/home/jannie/Projects/canvas-server/routes/canvasDashboardCopy.router.js:338
+                                                let dataCachingTableArrayIndex = dataCachingTableArray.findIndex(dct => dct.key == serverVariableName);
+                                                    ^
+
+SyntaxError: Identifier 'dataCachingTableArrayIndex' has already been declared
+    at createScript (vm.js:80:10)
+    at Object.runInThisContext (vm.js:139:10)
+    at Module._compile (module.js:616:28)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+    at require (internal/module.js:11:18)
+    at Object.<anonymous> (/home/jannie/Projects/canvas-server/app.js:42:29)
+    at Module._compile (module.js:652:30)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Fri, 22 Feb 2019 07:29:43 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Fri, 22 Feb 2019 07:29:43 GMT app:dev mongoLocalDatabase: Database connection successful
+Fri, 22 Feb 2019 07:29:43 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+Fri, 22 Feb 2019 07:29:45 GMT app:ws { data: 'First socket message' }
+  Url: http://localhost:8000/canvasDashboardCopy%3ForiginalDashboardID=116&newName=&newState=Draft
+  Path: /canvasDashboardCopy
+Fri, 22 Feb 2019 07:29:48 GMT app:dev App.js In validateUser 
+Fri, 22 Feb 2019 07:29:48 GMT app:dev canvasDashboardCopy.router.js: ## --------------------------
+Fri, 22 Feb 2019 07:29:48 GMT app:dev canvasDashboardCopy.router.js: ## POST Starting with Editing Dashboard and related info for dashboard id: 116
+Fri, 22 Feb 2019 07:29:48 GMT app:dev canvasDashboardCopy.router.js: New Dashboard added: 182
+Original Dashboard SAVED 116
+Fri, 22 Feb 2019 07:29:48 GMT app:dev canvasDashboardCopy.router.js: New Tab added: 296 248
+Fri, 22 Feb 2019 07:29:48 GMT app:dev canvasDashboardCopy.router.js: New Widget added: 1204 1165
+Fri, 22 Feb 2019 07:29:48 GMT app:dev canvasDashboardCopy.router.js: Initialise dataCachingTableArray ...
+Fri, 22 Feb 2019 07:29:48 GMT app:dev canvasDashboardCopy.router.js: Added dashboards to cache, length:  1
+xx Just before return
+## POST /canvasDashboardCopy?originalDashboardID=116&newName=&newState=Draft 200 - - 284.657 ms ON [2019-02-22T07:29:48.954Z] FROM ::ffff:127.0.0.1 - -
+##
+Fri, 22 Feb 2019 07:29:53 GMT app:ws Response to Sender
+Fri, 22 Feb 2019 07:29:54 GMT app:ws  Response to others (excluding Sender)

@@ -93,7 +93,7 @@ function updateTabs(addedDashboardID, originalDashboardTab) {
         dashboardTabAdd.save()
             .then(addedDraftDashboardTab => {
                 returnDraftDashboardTabs.push(addedDraftDashboardTab);
-                debugDev(moduleName + ": " + 'New Tab added' + addedDraftDashboardTab.id, addedDraftDashboardTab.originalID)
+                debugDev(moduleName + ": " + 'New Tab added: ' + addedDraftDashboardTab.id, addedDraftDashboardTab.originalID)
 
                 // Get the Original Widgets
                 let widgetQuery = {
@@ -144,7 +144,7 @@ function updateWidget(addedDashboardID, addedDashboardTabID, originalWidget) {
         dashboardWidgetAdd.save()
             .then(addedDraftWidget => {
                 returnWidgets.push(addedDraftWidget);
-                debugDev(moduleName + ": " + 'New Widget added' + addedDraftWidget.id, originalWidget.id)
+                debugDev(moduleName + ": " + 'New Widget added: ' + addedDraftWidget.id, originalWidget.id)
 
                 // Find Original WidgetCheckpoints for the Original Widget
                 let widgetCheckpointQuery = {
@@ -198,7 +198,7 @@ function updateWidgetCheckpoint(
         dashboardWidgetCheckpointAdd.save()
             .then(addedDraftWidgetCheckpoint => {
                 returnWidgetCheckpoints.push(addedDraftWidgetCheckpoint);
-                debugDev(moduleName + ": " + 'New Widget Checkpoint added' + addedDraftWidgetCheckpoint.id, addedDraftDashboardTab.id)
+                debugDev(moduleName + ": " + 'New Widget Checkpoint added: ' + addedDraftWidgetCheckpoint.id, addedDraftDashboardTab.id)
                 resolve();
             })
             .catch(err => reject(err));
@@ -266,7 +266,7 @@ router.post('/', (req, res, next) => {
 
                 addDraftDashboard(originalDashboard)
                     .then(addedDraftDashboard => {
-                        debugDev(moduleName + ": " + 'New Dashboard added' + addedDraftDashboard.id)
+                        debugDev(moduleName + ": " + 'New Dashboard added: ' + addedDraftDashboard.id)
 
                         // Update the Original Dashboard to point to the Draft
                         // Note - can be done in background since we dont use it
@@ -317,6 +317,8 @@ router.post('/', (req, res, next) => {
                                                     dataCachingTableArray = [];
                                                 };
 
+                                                // TODO - we are not adjusting serverDataCachingTable.serverExpiryDateTime
+                                                //        Is this correct ??
                                                 // Add DATA to Cache if this resource is cached
                                                 serverVariableName = 'dashboards';
                                                 let dataCachingTableArrayIndex = dataCachingTableArray.findIndex(dct => dct.key == serverVariableName);
@@ -327,12 +329,27 @@ router.post('/', (req, res, next) => {
 
                                                     if (serverCacheableMemory) {
                                                         serverMemoryCache.add(serverVariableName, addedDraftDashboard);
-                                                        debugDev(moduleName + ": " + 'Added new Draft Dashboard to Cache', serverMemoryCache.get(serverVariableName).length)
-
-                                                        // TODO - we are not adjusting serverDataCachingTable.serverExpiryDateTime
-                                                        //        Is this correct ??
+                                                        debugDev(moduleName + ": " + 'Added ' + serverVariableName 
+                                                            + ' to cache, length: ', serverMemoryCache.get(serverVariableName).length)
                                                     };
                                                 };
+
+                                                serverVariableName = 'dashboardTabs';
+                                                dataCachingTableArrayIndex = dataCachingTableArray.findIndex(dct => dct.key == serverVariableName);
+
+                                                if (dataCachingTableArrayIndex >= 0) {
+                                                    serverDataCachingTable = dataCachingTableArray[dataCachingTableArrayIndex];
+                                                    serverCacheableMemory = serverDataCachingTable.serverCacheableMemory;
+
+                                                    if (serverCacheableMemory) {
+                                                        serverMemoryCache.add(serverVariableName, returnDraftDashboardTabs);
+                                                        debugDev(moduleName + ": " + 'Added ' + serverVariableName 
+                                                            + ' to cache, length: ', serverMemoryCache.get(serverVariableName).length)
+                                                    };
+                                                };
+
+
+
 
                                                 console.log('xx Just before return')
                                                 // Return the data with metadata
