@@ -30,51 +30,57 @@ var serverCacheableMemory;          // True if the current resource is cached - 
 var serverVariableName;             // Name in serverMemoryCache to store data for the current resource: cahced here - CURRENT VAR
 var isFresh;                        // True if the cache for the current resource is fresh (not expired) - CURRENT VAR
 
+
+// var serverMemoryCacheVariable = require('../utils/dataCachingDataMemory.util');
+// var serverMemoryCache = null;
+var serverMemoryCacheModule = require('../utils/dataCachingDataMemory.util');
+var serverMemoryCache = serverMemoryCacheModule.serverMemoryCache;
+
 // Variable to store the cached DATA.  Startup values are null.
 // TODO - expand to ALL resources, or do differently ...
-var serverMemoryCache = {
-    dashboards: null,               // Corresponds to serverVariableName in dataCachingTable, holds DATA
-    datasources: null,
+// var serverMemoryCache = {
+//     dashboards: null,               // Corresponds to serverVariableName in dataCachingTable, holds DATA
+//     datasources: null,
 
-    get: function(varName) {
-        if (varName == 'dashboards') {
-            return serverMemoryCache.dashboards;
-        };
-        if (varName == 'datasources') {
-            return serverMemoryCache.datasources;
-        };
-        return [];
-    },
-    set: function(varName, input) {
-        if (varName == 'dashboards') {
-            serverMemoryCache.dashboards = input;
-        };
-        if (varName == 'datasources') {
-            serverMemoryCache.datasources = input;
-        };
-    },
-    add: function(varName, input) {
-        console.log('xx preAdd len', serverMemoryCache.dashboards.length)
-        if (varName == 'dashboards') {
-            serverMemoryCache.dashboards = serverMemoryCache.dashboards.concat(input);
-            console.log('xx postAdd len', serverMemoryCache.dashboards.length)
-        };
-        if (varName == 'datasources') {
-            serverMemoryCache.datasources = serverMemoryCache.datasources.concat(input);
-        };
-    },
-    remove: function(varName, id) {
-        console.log('xx preRemove len', serverMemoryCache.dashboards.length)
-        if (varName == 'dashboards') {
-            serverMemoryCache.dashboards = serverMemoryCache.dashboards.filter(d => d.id != id);
-            console.log('xx postRemove len', serverMemoryCache.dashboards.length)
-        };
-        if (varName == 'datasources') {
-            serverMemoryCache.datasources = serverMemoryCache.datasources.concat(input);
-        };
-    }
+//     get: function(varName) {
+//         if (varName == 'dashboards') {
+//             return serverMemoryCache.dashboards;
+//         };
+//         if (varName == 'datasources') {
+//             return serverMemoryCache.datasources;
+//         };
+//         return [];
+//     },
+//     set: function(varName, input) {
+//         if (varName == 'dashboards') {
+//             serverMemoryCache.dashboards = input;
+//         };
+//         if (varName == 'datasources') {
+//             serverMemoryCache.datasources = input;
+//         };
+//     },
+//     add: function(varName, input) {
+//         console.log('xx preAdd len', serverMemoryCache.dashboards.length)
+//         if (varName == 'dashboards') {
+//             serverMemoryCache.dashboards = serverMemoryCache.dashboards.concat(input);
+//             console.log('xx postAdd len', serverMemoryCache.dashboards.length)
+//         };
+//         if (varName == 'datasources') {
+//             serverMemoryCache.datasources = serverMemoryCache.datasources.concat(input);
+//         };
+//     },
+//     remove: function(varName, id) {
+//         console.log('xx preRemove len', serverMemoryCache.dashboards.length)
+//         if (varName == 'dashboards') {
+//             serverMemoryCache.dashboards = serverMemoryCache.dashboards.filter(d => d.id != id);
+//             console.log('xx postRemove len', serverMemoryCache.dashboards.length)
+//         };
+//         if (varName == 'datasources') {
+//             serverMemoryCache.datasources = serverMemoryCache.datasources.concat(input);
+//         };
+//     }
 
-};
+// };
 
 // Validate route
 function validateRoute(route) {
@@ -126,7 +132,14 @@ function dateAdd(date, interval, units) {
 function initialLoadOfCachingTable () {
     debugDev(moduleName + ": " + 'Initialise dataCachingTableArray ...')
     dataCachingTableArray = dataCachingTableVariable.get();
+    console.log('xx AFTER')
 
+    // serverMemoryCache = serverMemoryCacheVariable.get();
+    console.log('xx serverMemoryCache', serverMemoryCache)
+    
+    
+    
+    
     // Safeguard
     if (dataCachingTableArray == null) {
         dataCachingTableArray = [];
@@ -282,7 +295,7 @@ router.get('/:resource', (req, res, next) => {
     };
 
     // Try, in case model file does not exist
-    try {
+    // try {
         // Get the model dynamically (take note of file spelling = resource)
         const canvasSchema = '../models/' + resource + '.model';
         debugDev(moduleName + ": " + 'Using Model ', canvasSchema, serverCacheableMemory?  'with caching'  :  'WITHOUT cache')
@@ -381,16 +394,16 @@ router.get('/:resource', (req, res, next) => {
                     )
             );
         });
-    }
-    catch (error) {
-        debugDev(moduleName + ": " + 'Error: ', error)
-        return res.status(400).json({
-            "statusCode": "error",
-            "message" : "No model file for resource: " + resource,
-            "data": null,
-            "error": error
-        });
-    };
+    // }
+    // catch (error) {
+    //     debugDev(moduleName + ": " + 'Error: ', error)
+    //     return res.status(400).json({
+    //         "statusCode": "error",
+    //         "message" : "No model file for resource: " + resource,
+    //         "data": null,
+    //         "error": error
+    //     });
+    // };
 
 })
 

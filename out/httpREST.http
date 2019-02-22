@@ -139,9 +139,8 @@ GET {{host}}/canvasdata/**************
 
 
 ###
-GET {{host}}/canvasDatasource
-// Testing canvasDatasource 
-?id=1
+GET {{host}}/canvasdata/datasources
+
 
 
 
