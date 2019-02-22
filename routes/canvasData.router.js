@@ -127,17 +127,17 @@ function initialLoadOfCachingTable () {
     debugDev(moduleName + ": " + 'Initialise dataCachingTableArray ...')
     dataCachingTableArray = dataCachingTableVariable.get();
 
+    // Safeguard
+    if (dataCachingTableArray == null) {
+        dataCachingTableArray = [];
+    };
+
     // Reset the serverExpiryDateTime to now.  This is used to determine if the DATA is fresh,
     // ie should be reloaded from the DB after the expiry data
     let dn = new Date();
     let tn = dn.getTime()
     for (var i = 0; i < dataCachingTableArray.length; i++) {
         dataCachingTableArray[i].serverExpiryDateTime = tn;
-    };
-
-    // Safeguard
-    if (dataCachingTableArray == null) {
-        dataCachingTableArray = [];
     };
 }
 
