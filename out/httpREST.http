@@ -282,5 +282,5 @@ PUT {{host}}/canvasDashboardDiscard
 POST {{host}}/canvasDashboardCopy
 ?originalDashboardID=116&newName=&newState=Draft
 ###
-GET {{host}}/canvasdata/datasources
+GET {{host}}/canvasdata/dashboards
 ###

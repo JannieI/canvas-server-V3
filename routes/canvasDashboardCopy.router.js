@@ -308,11 +308,6 @@ router.post('/', (req, res, next) => {
                                             Promise.all(promiseArrayWidgetCheckpoints)
                                             .then( () => {
 
-
-
-
-
-
                                                 // Load global variable for cachingTable STRUCTURE into an Array ONCE
                                                 debugDev(moduleName + ": " + 'Initialise dataCachingTableArray ...')
                                                 dataCachingTableArray = dataCachingTableVariable.get();
@@ -322,30 +317,17 @@ router.post('/', (req, res, next) => {
                                                     dataCachingTableArray = [];
                                                 };
 
-                                                console.log('xx xxxxxxxxxxxxxxxxxx')
-                                                console.log('xx serverMemoryCache', serverMemoryCache)
                                                 // Add DATA to Cache if this resource is cached
                                                 serverVariableName = 'dashboards';
                                                 let dataCachingTableArrayIndex = dataCachingTableArray.findIndex(dct => dct.key == serverVariableName);
-                                                console.log('xx dataCachingTableArrayIndex for dashboards', serverVariableName, dataCachingTableArrayIndex)
+
                                                 if (dataCachingTableArrayIndex >= 0) {
                                                     serverDataCachingTable = dataCachingTableArray[dataCachingTableArrayIndex];
-
                                                     serverCacheableMemory = serverDataCachingTable.serverCacheableMemory;
 
                                                     if (serverCacheableMemory) {
-                                                        let data = serverMemoryCache.get(serverVariableName);
-                                                        debugDev(moduleName + ": " +
-                                                            'PRe-Add new Draft Dashboard to cache, length: ',
-                                                            data
-                                                        );
                                                         serverMemoryCache.add(serverVariableName, addedDraftDashboard);
-                                                        
-                                                        data = serverMemoryCache.get(serverVariableName);
-                                                        debugDev(moduleName + ": " +
-                                                            'Added new Draft Dashboard to cache, length: ',
-                                                            data
-                                                        );
+                                                        debugDev(moduleName + ": " + 'Added new Draft Dashboard to Cache')
 
                                                         // TODO - we are not adjusting serverDataCachingTable.serverExpiryDateTime
                                                         //        Is this correct ??
