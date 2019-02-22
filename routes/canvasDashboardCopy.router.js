@@ -311,6 +311,55 @@ router.post('/', (req, res, next) => {
                                             Promise.all(promiseArrayWidgetCheckpoints)
                                             .then( () => {
 
+
+
+
+
+                                                const dataCachingTableVariable = require('../utils/dataCachingTableMemory.util');  // Var loaded at startup
+                                                var dataCachingTableArray = null;   // Local copy of dataCachingTable - STRUCTURE
+                                                var serverCacheableMemory;          // True if the current resource is cached - CURRENT VAR
+                                                var serverVariableName;             // Name in serverMemoryCache to store data for the current resource: cahced here - CURRENT VAR
+
+                                                // Load global variable for cachingTable STRUCTURE into an Array ONCE
+                                                debugDev(moduleName + ": " + 'Initialise dataCachingTableArray ...')
+                                                dataCachingTableArray = dataCachingTableVariable.get();
+
+                                                // Safeguard
+                                                if (dataCachingTableArray == null) {
+                                                    dataCachingTableArray = [];
+                                                };
+
+
+                                                // Add DATA to Cache if this resource is cached
+                                                let dataCachingTableArrayIndex = dataCachingTableArray.key == 'dashboards';
+                                                console.log('xx dataCachingTableArrayIndex for dashboards', dataCachingTableArrayIndex)
+                                                if (dataCachingTableArrayIndex >= 0) {
+                                                    serverDataCachingTable = dataCachingTableArray[dataCachingTableArrayIndex];
+                                                };
+
+                                                serverCacheableMemory = serverDataCachingTable.serverCacheableMemory;
+                                                serverVariableName = serverDataCachingTable.serverVariableName;
+                                                if (serverCacheableMemory) {
+                                                    serverMemoryCache.add(serverVariableName, addedDraftDashboard);
+
+                                                    debugDev(moduleName + ": " +
+                                                        'Added new Draft Dashboard to cache, length: ',
+                                                        serverMemoryCache.get(serverVariableName).length
+                                                    );
+
+                                                    // TODO - we are not adjusting serverDataCachingTable.serverExpiryDateTime
+                                                    //        Is this correct ??
+                                                };
+                
+
+
+
+
+
+
+
+
+
                                                 console.log('xx At END return now')
                                                 // Return the data with metadata
                                                 return res.json( createReturnObject(
