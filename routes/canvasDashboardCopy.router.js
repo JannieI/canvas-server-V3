@@ -348,6 +348,20 @@ router.post('/', (req, res, next) => {
                                                     };
                                                 };
 
+                                                serverVariableName = 'widgets';
+                                                dataCachingTableArrayIndex = dataCachingTableArray.findIndex(dct => dct.key == serverVariableName);
+
+                                                if (dataCachingTableArrayIndex >= 0) {
+                                                    serverDataCachingTable = dataCachingTableArray[dataCachingTableArrayIndex];
+                                                    serverCacheableMemory = serverDataCachingTable.serverCacheableMemory;
+
+                                                    if (serverCacheableMemory) {
+                                                        serverMemoryCache.add(serverVariableName, returnDraftDashboardTabs);
+                                                        debugDev(moduleName + ": " + 'Added ' + serverVariableName 
+                                                            + ' to cache, length: ', serverMemoryCache.get(serverVariableName).length)
+                                                    };
+                                                };
+
 
 
 
