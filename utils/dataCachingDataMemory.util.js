@@ -1,4 +1,5 @@
-// dataCacheDataMemory.js
+// dataCacheDataMemory.util.js stores the Server Cached Data in a global variable called
+// serverMemoryCache
 
 var serverMemoryCache =  {
     dashboards: null,               // Corresponds to serverVariableName in dataCachingTable, holds DATA

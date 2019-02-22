@@ -29,13 +29,10 @@ var dataCachingTableArray = null;   // Local copy of dataCachingTable - STRUCTUR
 var serverCacheableMemory;          // True if the current resource is cached - CURRENT VAR
 var serverVariableName;             // Name in serverMemoryCache to store data for the current resource: cahced here - CURRENT VAR
 var isFresh;                        // True if the cache for the current resource is fresh (not expired) - CURRENT VAR
-
-
-// var serverMemoryCacheVariable = require('../utils/dataCachingDataMemory.util');
-// var serverMemoryCache = null;
 var serverMemoryCacheModule = require('../utils/dataCachingDataMemory.util');
-var serverMemoryCache = serverMemoryCacheModule.serverMemoryCache;
+var serverMemoryCache = serverMemoryCacheModule.serverMemoryCache;  // Local Server Cache Data
 
+// TODO - delete when ready
 // Variable to store the cached DATA.  Startup values are null.
 // TODO - expand to ALL resources, or do differently ...
 // var serverMemoryCache = {
@@ -133,12 +130,6 @@ function initialLoadOfCachingTable () {
     debugDev(moduleName + ": " + 'Initialise dataCachingTableArray ...')
     dataCachingTableArray = dataCachingTableVariable.get();
     console.log('xx AFTER')
-
-    // serverMemoryCache = serverMemoryCacheVariable.get();
-    console.log('xx serverMemoryCache', serverMemoryCache)
-    
-    
-    
     
     // Safeguard
     if (dataCachingTableArray == null) {
@@ -295,7 +286,7 @@ router.get('/:resource', (req, res, next) => {
     };
 
     // Try, in case model file does not exist
-    // try {
+    try {
         // Get the model dynamically (take note of file spelling = resource)
         const canvasSchema = '../models/' + resource + '.model';
         debugDev(moduleName + ": " + 'Using Model ', canvasSchema, serverCacheableMemory?  'with caching'  :  'WITHOUT cache')
@@ -394,16 +385,16 @@ router.get('/:resource', (req, res, next) => {
                     )
             );
         });
-    // }
-    // catch (error) {
-    //     debugDev(moduleName + ": " + 'Error: ', error)
-    //     return res.status(400).json({
-    //         "statusCode": "error",
-    //         "message" : "No model file for resource: " + resource,
-    //         "data": null,
-    //         "error": error
-    //     });
-    // };
+    }
+    catch (error) {
+        debugDev(moduleName + ": " + 'Error: ', error)
+        return res.status(400).json({
+            "statusCode": "error",
+            "message" : "No model file for resource: " + resource,
+            "data": null,
+            "error": error
+        });
+    };
 
 })
 
