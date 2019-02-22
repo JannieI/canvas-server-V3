@@ -327,21 +327,12 @@ router.post('/', (req, res, next) => {
 
                                                     if (serverCacheableMemory) {
                                                         serverMemoryCache.add(serverVariableName, addedDraftDashboard);
-                                                        debugDev(moduleName + ": " + 'Added new Draft Dashboard to Cache')
+                                                        debugDev(moduleName + ": " + 'Added new Draft Dashboard to Cache', serverMemoryCache.get(serverVariableName).length)
 
                                                         // TODO - we are not adjusting serverDataCachingTable.serverExpiryDateTime
                                                         //        Is this correct ??
                                                     };
                                                 };
-                
-
-
-
-
-
-
-
-
 
                                                 console.log('xx Just before return')
                                                 // Return the data with metadata
