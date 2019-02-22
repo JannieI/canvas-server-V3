@@ -26,7 +26,9 @@ var serverMemoryCache =  {
         console.log('xx preAdd len', serverMemoryCache.dashboards.length)
         if (varName == 'dashboards') {
             serverMemoryCache.dashboards = serverMemoryCache.dashboards.concat(input);
-            console.log('xx postAdd len', serverMemoryCache.dashboards.length)
+            if (serverMemoryCache.dashboards != null) {
+                console.log('xx postAdd len', serverMemoryCache.dashboards.length)
+            };
         };
         if (varName == 'datasources') {
             serverMemoryCache.datasources = serverMemoryCache.datasources.concat(input);
@@ -36,7 +38,9 @@ var serverMemoryCache =  {
         console.log('xx preRemove len', serverMemoryCache.dashboards.length)
         if (varName == 'dashboards') {
             serverMemoryCache.dashboards = serverMemoryCache.dashboards.filter(d => d.id != id);
-            console.log('xx postRemove len', serverMemoryCache.dashboards.length)
+            if (serverMemoryCache.dashboards != null) {
+                console.log('xx postRemove len', serverMemoryCache.dashboards.length)
+            };
         };
         if (varName == 'datasources') {
             serverMemoryCache.datasources = serverMemoryCache.datasources.concat(input);
