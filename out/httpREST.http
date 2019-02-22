@@ -280,12 +280,7 @@ PUT {{host}}/canvasDashboardDiscard
 ###
 
 POST {{host}}/canvasDashboardCopy
-?originalDashboardID=116
-&newName=Draft Thing
-&newState=xxx
+?originalDashboardID=116&newName=&newState=Draft
 ###
-GET http://localhost:8000/canvasDashboardCopy
-?originalDashboardID=116
-&newName=null
-&newState=Draft
+GET {{host}}/canvasdata/datasources
 ###

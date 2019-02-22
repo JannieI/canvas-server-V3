@@ -20,6 +20,13 @@ const widgetModel = require(widgetSchema);
 const widgetCheckpointModel = require(widgetCheckpointSchema);
 const widgetLayoutModel = require(widgetLayoutSchema);
 
+const dataCachingTableVariable = require('../utils/dataCachingTableMemory.util');  // Var loaded at startup
+var dataCachingTableArray = null;   // Local copy of dataCachingTable - STRUCTURE
+var serverCacheableMemory;          // True if the current resource is cached - CURRENT VAR
+var serverVariableName;             // Name in serverMemoryCache to store data for the current resource: cahced here - CURRENT VAR
+var serverMemoryCacheModule = require('../utils/dataCachingDataMemory.util');
+var serverMemoryCache = serverMemoryCacheModule.serverMemoryCache;  // Local Server Cache Data
+
 var promiseArrayTabs = [];
 var promiseArrayWidgets = [];
 var promiseArrayWidgetCheckpoints = [];
@@ -58,7 +65,7 @@ function addDraftDashboard(originalDashboard) {
                 resolve(addedDraftDashboard)
             })
             .catch(err => {
-                console.log('addDraftDashboard Error', err)
+                console.error('addDraftDashboard Error', err)
                 reject(err)
             });
     })
@@ -85,7 +92,6 @@ function updateTabs(addedDashboardID, originalDashboardTab) {
         // Add new Draft Dashboard Tab
         dashboardTabAdd.save()
             .then(addedDraftDashboardTab => {
-                console.log('updateTab After .save')
                 returnDraftDashboardTabs.push(addedDraftDashboardTab);
                 debugDev(moduleName + ": " + 'New Tab added' + addedDraftDashboardTab.id, addedDraftDashboardTab.originalID)
 
@@ -96,7 +102,6 @@ function updateTabs(addedDashboardID, originalDashboardTab) {
                 };
                 widgetModel.find(widgetQuery)
                     .then( originalWidgets => {
-                        console.log('updateTab After .find', widgetQuery, originalWidgets.length)
 
                         originalWidgets.forEach(originalWidget => {
                             promiseArrayWidgets.push(updateWidget(
@@ -104,8 +109,7 @@ function updateTabs(addedDashboardID, originalDashboardTab) {
                                 addedDraftDashboardTab.id,
                                 originalWidget
                             ));
-                            console.log('In updateTabs After push ', addedDashboardID,
-                            addedDraftDashboardTab.id, originalWidget.id)
+
                         });
                         resolve();
                     })
@@ -120,7 +124,7 @@ function updateWidget(addedDashboardID, addedDashboardTabID, originalWidget) {
     // Add the given Widget to the DB, and then loop all all its WidgetCheckpointss, adding
     // their creation function to promiseArrayWidgetCheckpoints
     return new Promise( (resolve, reject) => {
-        console.log('updateWidget Start')
+
         // Create a new Widget, pointing to the original
         let newDraftWidget = JSON.parse(JSON.stringify(originalWidget));
         newDraftWidget._id = null;
@@ -137,13 +141,10 @@ function updateWidget(addedDashboardID, addedDashboardTabID, originalWidget) {
 
         // Add new Draft Widget
         let dashboardWidgetAdd = new widgetModel(newDraftWidget);
-        console.log('updateWidget pre.Save')
         dashboardWidgetAdd.save()
             .then(addedDraftWidget => {
-                console.log('updateWidget post.Save')
                 returnWidgets.push(addedDraftWidget);
                 debugDev(moduleName + ": " + 'New Widget added' + addedDraftWidget.id, originalWidget.id)
-                console.log('updateWidget After .save')
 
                 // Find Original WidgetCheckpoints for the Original Widget
                 let widgetCheckpointQuery = {
@@ -164,7 +165,7 @@ function updateWidget(addedDashboardID, addedDashboardTabID, originalWidget) {
                     .catch(err => reject(err))
             })
             .catch(err => {
-                console.log('ERROR !!!');
+                console.error('ERROR !!!');
                 reject(err)
             });
     })
@@ -255,7 +256,7 @@ router.post('/', (req, res, next) => {
 
                 // Could be null if nothing was found
                 if (originalDashboard == null) {
-                    console.log("Dashboard does not exist for ID: " + originalDashboardID, originalDashboardQuery)
+                    console.error("Dashboard does not exist for ID: " + originalDashboardID, originalDashboardQuery)
                     return res.json(createErrorObject(
                         "error",
                         "Dashboard does not exist for ID: " + originalDashboardID,
@@ -283,7 +284,6 @@ router.post('/', (req, res, next) => {
                         // Loop on Original Dashboard Tabs
                         dashboardTabModel.find({"dashboardID": { $eq: originalDashboardID } })
                             .then(originalDashboardTabs => {
-                                console.log('After find')
 
                                 originalDashboardTabs.forEach(originalDashboardTab => {
                                     promiseArrayTabs.push(
@@ -292,10 +292,7 @@ router.post('/', (req, res, next) => {
                                             originalDashboardTab
                                         )
                                     );
-                                    console.log('After push for tab', originalDashboardTab.id)
                                 });
-                                console.log('Before promiseArray', promiseArrayTabs.length,
-                                    promiseArrayWidgets.length, promiseArrayWidgetCheckpoints.length)
 
                                 // Note: the reason for the 3 different Promise Arrays is that it
                                 // did not work when using a single one - DB would be updated but
@@ -315,10 +312,6 @@ router.post('/', (req, res, next) => {
 
 
 
-                                                const dataCachingTableVariable = require('../utils/dataCachingTableMemory.util');  // Var loaded at startup
-                                                var dataCachingTableArray = null;   // Local copy of dataCachingTable - STRUCTURE
-                                                var serverCacheableMemory;          // True if the current resource is cached - CURRENT VAR
-                                                var serverVariableName;             // Name in serverMemoryCache to store data for the current resource: cahced here - CURRENT VAR
 
                                                 // Load global variable for cachingTable STRUCTURE into an Array ONCE
                                                 debugDev(moduleName + ": " + 'Initialise dataCachingTableArray ...')
@@ -329,26 +322,34 @@ router.post('/', (req, res, next) => {
                                                     dataCachingTableArray = [];
                                                 };
 
-
+                                                console.log('xx xxxxxxxxxxxxxxxxxx')
+                                                console.log('xx serverMemoryCache', serverMemoryCache)
                                                 // Add DATA to Cache if this resource is cached
-                                                let dataCachingTableArrayIndex = dataCachingTableArray.key == 'dashboards';
-                                                console.log('xx dataCachingTableArrayIndex for dashboards', dataCachingTableArrayIndex)
+                                                serverVariableName = 'dashboards';
+                                                let dataCachingTableArrayIndex = dataCachingTableArray.findIndex(dct => dct.key == serverVariableName);
+                                                console.log('xx dataCachingTableArrayIndex for dashboards', serverVariableName, dataCachingTableArrayIndex)
                                                 if (dataCachingTableArrayIndex >= 0) {
                                                     serverDataCachingTable = dataCachingTableArray[dataCachingTableArrayIndex];
-                                                };
 
-                                                serverCacheableMemory = serverDataCachingTable.serverCacheableMemory;
-                                                serverVariableName = serverDataCachingTable.serverVariableName;
-                                                if (serverCacheableMemory) {
-                                                    serverMemoryCache.add(serverVariableName, addedDraftDashboard);
+                                                    serverCacheableMemory = serverDataCachingTable.serverCacheableMemory;
 
-                                                    debugDev(moduleName + ": " +
-                                                        'Added new Draft Dashboard to cache, length: ',
-                                                        serverMemoryCache.get(serverVariableName).length
-                                                    );
+                                                    if (serverCacheableMemory) {
+                                                        let data = serverMemoryCache.get(serverVariableName);
+                                                        debugDev(moduleName + ": " +
+                                                            'PRe-Add new Draft Dashboard to cache, length: ',
+                                                            data
+                                                        );
+                                                        serverMemoryCache.add(serverVariableName, addedDraftDashboard);
+                                                        
+                                                        data = serverMemoryCache.get(serverVariableName);
+                                                        debugDev(moduleName + ": " +
+                                                            'Added new Draft Dashboard to cache, length: ',
+                                                            data
+                                                        );
 
-                                                    // TODO - we are not adjusting serverDataCachingTable.serverExpiryDateTime
-                                                    //        Is this correct ??
+                                                        // TODO - we are not adjusting serverDataCachingTable.serverExpiryDateTime
+                                                        //        Is this correct ??
+                                                    };
                                                 };
                 
 
@@ -360,7 +361,7 @@ router.post('/', (req, res, next) => {
 
 
 
-                                                console.log('xx At END return now')
+                                                console.log('xx Just before return')
                                                 // Return the data with metadata
                                                 return res.json( createReturnObject(
                                                     "success",
@@ -383,7 +384,7 @@ router.post('/', (req, res, next) => {
                                                 );
                                             })
                                             .catch( err => {
-                                                console.log("Error in promiseArrayWidgetCheckpoints.all for ID: " + originalDashboardID, err)
+                                                console.error("Error in promiseArrayWidgetCheckpoints.all for ID: " + originalDashboardID, err)
 
                                                 return res.json(createErrorObject(
                                                     "error",
@@ -394,7 +395,7 @@ router.post('/', (req, res, next) => {
                                             })
                                         })
                                         .catch( err => {
-                                            console.log("Error in promiseArrayWidgets.all for ID: " + originalDashboardID, err)
+                                            console.error("Error in promiseArrayWidgets.all for ID: " + originalDashboardID, err)
 
                                             return res.json(createErrorObject(
                                                 "error",
@@ -405,7 +406,7 @@ router.post('/', (req, res, next) => {
                                         })
                                     })
                                     .catch( err => {
-                                        console.log("Error in promiseArrayTabs.all for ID: " + originalDashboardID, err)
+                                        console.error("Error in promiseArrayTabs.all for ID: " + originalDashboardID, err)
 
                                         return res.json(createErrorObject(
                                             "error",
@@ -416,7 +417,7 @@ router.post('/', (req, res, next) => {
                                     })
                             })
                             .catch( err => {
-                                console.log("Error reading Tabs for ID: " + originalDashboardID, err)
+                                console.error("Error reading Tabs for ID: " + originalDashboardID, err)
                                 return res.json(createErrorObject(
                                     "error",
                                     "Error reading Tabs for ID: " + originalDashboardID,
@@ -427,7 +428,7 @@ router.post('/', (req, res, next) => {
 
                     })
                     .catch( err => {
-                        console.log("Error in addDraftDashboard.then for ID: " + originalDashboardID, err)
+                        console.error("Error in addDraftDashboard.then for ID: " + originalDashboardID, err)
                         return res.json(createErrorObject(
                             "error",
                             "Error in addDraftDashboard.then for ID: " + originalDashboardID,
@@ -437,7 +438,7 @@ router.post('/', (req, res, next) => {
                     })
             })
             .catch( err => {
-                console.log("Error in dashboardModel.findOne for ID: " + originalDashboardID, err)
+                console.error("Error in dashboardModel.findOne for ID: " + originalDashboardID, err)
                 return res.json(createErrorObject(
                     "error",
                     "Error in dashboardModel.findOne for ID: " + originalDashboardID,
