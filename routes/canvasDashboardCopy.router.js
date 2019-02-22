@@ -62,6 +62,23 @@ function addDraftDashboard(originalDashboard) {
 
         dashboardAdd.save()
             .then(addedDraftDashboard => {
+
+                serverVariableName = 'dashboards';
+                let dataCachingTableArrayIndex = dataCachingTableArray.findIndex(dct => dct.key == serverVariableName);
+
+                if (dataCachingTableArrayIndex >= 0) {
+                    serverDataCachingTable = dataCachingTableArray[dataCachingTableArrayIndex];
+                    serverCacheableMemory = serverDataCachingTable.serverCacheableMemory;
+
+                    if (serverCacheableMemory) {
+                        serverMemoryCache.add(serverVariableName, addedDraftDashboard);
+                        debugDev(moduleName + ": " + 'Updated ' + serverVariableName 
+                            + ' to cache, length: ', serverMemoryCache.get(serverVariableName).length)
+                    };
+                };
+
+
+
                 resolve(addedDraftDashboard)
             })
             .catch(err => {

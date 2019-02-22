@@ -37,7 +37,22 @@ var serverMemoryCache =  {
         if (varName == 'datasources') {
             serverMemoryCache.datasources = serverMemoryCache.datasources.filter(ds => ds.id != id);
         };
+    },
+    update: function(varName, id, inputObject) {
+        if (varName == 'dashboards') {
+            let serverMemoryCacheIndex = serverMemoryCache.dashboards.findIndex(d => d.id == id);
+            if (serverMemoryCacheIndex >= 0) {
+                serverMemoryCache.dashboards[serverMemoryCacheIndex] = inputObject;
+            };
+        };
+        if (varName == 'datasources') {
+            let serverMemoryCacheIndex = serverMemoryCache.dashboards.findIndex(d => d.id == id);
+            if (serverMemoryCacheIndex >= 0) {
+                serverMemoryCache.dashboards[serverMemoryCacheIndex] = inputObject;
+            };
+        };
     }
+
 };
 
 module.exports.serverMemoryCache = serverMemoryCache;
