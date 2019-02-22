@@ -283,16 +283,20 @@ router.post('/', (req, res, next) => {
                                 console.log('Original Dashboard SAVED', updatedOriginalDashboard.id)
 
                                 serverVariableName = 'dashboards';
-                                let dataCachingTableArrayIndex = dataCachingTableArray.findIndex(dct => dct.key == serverVariableName);
-                
-                                if (dataCachingTableArrayIndex >= 0) {
-                                    serverDataCachingTable = dataCachingTableArray[dataCachingTableArrayIndex];
-                                    serverCacheableMemory = serverDataCachingTable.serverCacheableMemory;
-                
-                                    if (serverCacheableMemory) {
-                                        serverMemoryCache.update(serverVariableName, originalDashboardID, updatedOriginalDashboard);
-                                        debugDev(moduleName + ": " + 'Updated ' + serverVariableName 
-                                            + ' for ID: ', originalDashboardID);
+                                if (dataCachingTableArray == null) {
+                                    serverMemoryCache.add(serverVariableName, originalDashboardID);
+                                } else {
+                                    let dataCachingTableArrayIndex = dataCachingTableArray.findIndex(dct => dct.key == serverVariableName);
+                    
+                                    if (dataCachingTableArrayIndex >= 0) {
+                                        serverDataCachingTable = dataCachingTableArray[dataCachingTableArrayIndex];
+                                        serverCacheableMemory = serverDataCachingTable.serverCacheableMemory;
+                    
+                                        if (serverCacheableMemory) {
+                                            serverMemoryCache.update(serverVariableName, originalDashboardID, updatedOriginalDashboard);
+                                            debugDev(moduleName + ": " + 'Updated ' + serverVariableName 
+                                                + ' for ID: ', originalDashboardID);
+                                        };
                                     };
                                 };
                             })
