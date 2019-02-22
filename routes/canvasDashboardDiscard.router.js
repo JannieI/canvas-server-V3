@@ -25,6 +25,13 @@ const statusBarMessageLogSchema = '../models/statusBarMessageLogs.model';
 const dashboardScheduleLogSchema = '../models/dashboardScheduleLog.model';
 const canvasTasksSchema = '../models/canvasTasks.model';
 
+const dataCachingTableVariable = require('../utils/dataCachingTableMemory.util');  // Var loaded at startup
+var dataCachingTableArray = null;   // Local copy of dataCachingTable - STRUCTURE
+var serverCacheableMemory;          // True if the current resource is cached - CURRENT VAR
+var serverVariableName;             // Name in serverMemoryCache to store data for the current resource: cahced here - CURRENT VAR
+var serverMemoryCacheModule = require('../utils/dataCachingDataMemory.util');
+var serverMemoryCache = serverMemoryCacheModule.serverMemoryCache;  // Local Server Cache Data
+
 // PUT route
 router.put('/', (req, res, next) => {
 
@@ -56,6 +63,10 @@ router.put('/', (req, res, next) => {
     debugDev(moduleName + ": " + '## GET Starting with Discarding Draft Dashboard id:',
         draftDashboardID + ', OriginalID: ', originalDashboardID, draftDashboardQuery);
 
+    // Load global variable for cachingTable STRUCTURE into an Array ONCE
+    debugDev(moduleName + ": " + 'Initialise dataCachingTableArray ...')
+    dataCachingTableArray = dataCachingTableVariable.get();
+
     // Try
     try {
         // Get the models
@@ -82,10 +93,26 @@ router.put('/', (req, res, next) => {
         dashboardModel.findOneAndUpdate(
             { "id": originalDashboardID },
             { $set: { "originalID": null, "draftID": null } }
+
         ).exec()
 
             // Delete Core Dashboard Entities for Draft: Dashboard
-            .then(()=>{
+            .then((updatedOriginalDashboard)=>{
+
+                serverVariableName = 'dashboards';
+                let dataCachingTableArrayIndex = dataCachingTableArray.findIndex(dct => dct.key == serverVariableName);
+    
+                if (dataCachingTableArrayIndex >= 0) {
+                    serverDataCachingTable = dataCachingTableArray[dataCachingTableArrayIndex];
+                    serverCacheableMemory = serverDataCachingTable.serverCacheableMemory;
+    
+                    if (serverCacheableMemory) {
+                        serverMemoryCache.update(serverVariableName, originalDashboardID, updatedOriginalDashboard);
+                        debugDev(moduleName + ": " + 'Updated ' + serverVariableName 
+                            + ' for ID: ', originalDashboardID);
+                    };
+                };
+
                 dashboardModel.deleteOne(
                     { "id": draftDashboardID }
                 ).exec()
@@ -93,6 +120,21 @@ router.put('/', (req, res, next) => {
 
             // Delete Core Dashboard Entities for Draft: DashboardTab
             .then(()=>{
+
+                serverVariableName = 'dashboards';
+                let dataCachingTableArrayIndex = dataCachingTableArray.findIndex(dct => dct.key == serverVariableName);
+    
+                if (dataCachingTableArrayIndex >= 0) {
+                    serverDataCachingTable = dataCachingTableArray[dataCachingTableArrayIndex];
+                    serverCacheableMemory = serverDataCachingTable.serverCacheableMemory;
+    
+                    if (serverCacheableMemory) {
+                        serverMemoryCache.remove(serverVariableName, originalDashboardID);
+                        debugDev(moduleName + ": " + 'Removed ' + serverVariableName 
+                            + ' for ID: ', originalDashboardID);
+                    };
+                };
+
                 dashboardTabModel.deleteMany(
                     draftDashboardQuery
                 ).exec()
