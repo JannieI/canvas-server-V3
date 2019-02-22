@@ -4,9 +4,9 @@ Starting Canvas Server ...
 [33m[nodemon] watching: *.*[39m
 [32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
 the options [useCreateIndex] is not supported
-Thu, 21 Feb 2019 18:52:21 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
-Thu, 21 Feb 2019 18:52:22 GMT app:dev mongoLocalDatabase: Database connection successful
-Thu, 21 Feb 2019 18:52:22 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+Thu, 21 Feb 2019 19:17:21 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Thu, 21 Feb 2019 19:17:21 GMT app:dev mongoLocalDatabase: Database connection successful
+Thu, 21 Feb 2019 19:17:21 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
 
 Canvas Server started ...
        Listening on port 8000
@@ -16,137 +16,472 @@ Canvas Server started ...
        Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
 ----------------------------------------------------------------
 
-Thu, 21 Feb 2019 18:52:22 GMT app:ws { data: 'First socket message' }
-Thu, 21 Feb 2019 18:52:30 GMT app:ws Response to Sender
-Thu, 21 Feb 2019 18:52:31 GMT app:ws  Response to others (excluding Sender)
-Thu, 21 Feb 2019 18:52:32 GMT app:ws Broadcast to all users
-  Url: http://localhost:8000/auth/local/verify
-  Path: /auth/local/verify
-## OPTIONS /auth/local/verify 200 4 - 3.964 ms ON [2019-02-21T18:52:37.173Z] FROM ::1 - -
+  Url: http://localhost:8000/canvasdata/dashboardSnapshots
+  Path: /canvasdata/dashboardSnapshots
+## OPTIONS /canvasdata/dashboardSnapshots 200 24 - 8.639 ms ON [2019-02-21T19:17:23.206Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 1.032 ms ON [2019-02-21T19:17:23.257Z] FROM ::1 - -
 ##
   Url: http://localhost:8000/auth/local/verify
   Path: /auth/local/verify
-Thu, 21 Feb 2019 18:52:37 GMT app:dev App.js In validateUser 
-## POST /auth/local/verify 200 4 - 156.704 ms ON [2019-02-21T18:52:37.339Z] FROM ::1 - -
+## OPTIONS /auth/local/verify 200 4 - 3.582 ms ON [2019-02-21T19:17:35.965Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/auth/local/verify
+  Path: /auth/local/verify
+Thu, 21 Feb 2019 19:17:35 GMT app:dev App.js In validateUser 
+## POST /auth/local/verify 200 4 - 16.868 ms ON [2019-02-21T19:17:35.998Z] FROM ::1 - -
 ##
   Url: http://localhost:8000/canvasdata/canvasGroups
   Path: /canvasdata/canvasGroups
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js: ## --------------------------
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js: ## GET Starting with resource: canvasGroups , query: {}
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js: Initialise dataCachingTableArray ...
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js: Using Model  ../models/canvasGroups.model WITHOUT cache
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js: ## --------------------------
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js: ## GET Starting with resource: canvasGroups , query: {}
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js: Initialise dataCachingTableArray ...
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js: Using Model  ../models/canvasGroups.model WITHOUT cache
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js:   Returned 6 records from DB
+## GET /canvasdata/canvasGroups 200 949 - 17.774 ms ON [2019-02-21T19:17:36.044Z] FROM ::1 - -
+##
   Url: http://localhost:8000/canvasdata/canvasUsers
   Path: /canvasdata/canvasUsers
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js:   Returned 6 records from DB
-## GET /canvasdata/canvasGroups 200 949 - 32.434 ms ON [2019-02-21T18:52:37.393Z] FROM ::1 - -
-##
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js: ## --------------------------
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js: ## GET Starting with resource: canvasUsers , query: {}
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js: Using Model  ../models/canvasUsers.model WITHOUT cache
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js:   Returned 4 records from DB
-## GET /canvasdata/canvasUsers 304 - - 16.922 ms ON [2019-02-21T18:52:37.405Z] FROM ::1 - -
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js: ## --------------------------
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js: ## GET Starting with resource: canvasUsers , query: {}
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js: Using Model  ../models/canvasUsers.model WITHOUT cache
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js:   Returned 4 records from DB
+## GET /canvasdata/canvasUsers 304 - - 17.409 ms ON [2019-02-21T19:17:36.064Z] FROM ::1 - -
 ##
   Url: http://localhost:8000/canvasdata/datasources
   Path: /canvasdata/datasources
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js: ## --------------------------
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js: ## GET Starting with resource: datasources , query: {}
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js: Using Model  ../models/datasources.model with caching
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js: ## --------------------------
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js: ## GET Starting with resource: datasources , query: {}
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js: Using Model  ../models/datasources.model with caching
   Url: http://localhost:8000/canvasdata/datasourcePermissions
   Path: /canvasdata/datasourcePermissions
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js: Loaded 46 records into cache for datasources
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js:   Returned 46 records from DB
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js: ## --------------------------
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js: ## GET Starting with resource: datasourcePermissions , query: {}
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js: Using Model  ../models/datasourcePermissions.model with caching
-Thu, 21 Feb 2019 18:52:37 GMT app:ws { data: 'First socket message' }
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js: Loaded 46 records into cache for datasources
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js:   Returned 46 records from DB
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js: ## --------------------------
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js: ## GET Starting with resource: datasourcePermissions , query: {}
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js: Using Model  ../models/datasourcePermissions.model with caching
   Url: http://localhost:8000/canvasdata/dataCachingTable
   Path: /canvasdata/dataCachingTable
   Url: http://localhost:8000/canvasdata/dashboards
   Path: /canvasdata/dashboards
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js: ## --------------------------
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js: ## GET Starting with resource: dataCachingTable , query: {}
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js: Using Model  ../models/dataCachingTable.model with caching
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js: ## --------------------------
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboards , query: {}
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js: Using Model  ../models/dashboards.model with caching
+Thu, 21 Feb 2019 19:17:36 GMT app:ws { data: 'First socket message' }
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js:   Returned 3 records from DB
+## GET /canvasdata/datasourcePermissions 304 - - 176.772 ms ON [2019-02-21T19:17:36.320Z] FROM ::1 - -
+##
+## GET /canvasdata/datasources 200 - - 172.424 ms ON [2019-02-21T19:17:36.321Z] FROM ::1 - -
+##
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js:   Returned 3 records from DB
+## GET /canvasdata/dataCachingTable 304 - - 21.963 ms ON [2019-02-21T19:17:36.325Z] FROM ::1 - -
+##
   Url: http://localhost:8000/canvasdata/canvasSettings
   Path: /canvasdata/canvasSettings
   Url: http://localhost:8000/canvasdata/canvasBackgroundcolors
   Path: /canvasdata/canvasBackgroundcolors
-## GET /canvasdata/datasources 200 - - 197.812 ms ON [2019-02-21T18:52:37.707Z] FROM ::1 - -
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js: ## --------------------------
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js: ## GET Starting with resource: canvasSettings , query: {}
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js: Using Model  ../models/canvasSettings.model with caching
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js: ## --------------------------
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js: ## GET Starting with resource: canvasBackgroundcolors , query: {}
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js: Using Model  ../models/canvasBackgroundcolors.model with caching
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js: Loaded 8 records into cache for dashboards
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js:   Returned 8 records from DB
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js:   Returned 1 records from DB
+## GET /canvasdata/canvasSettings 304 - - 26.641 ms ON [2019-02-21T19:17:36.353Z] FROM ::1 - -
 ##
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js: ## --------------------------
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js: ## GET Starting with resource: dataCachingTable , query: {}
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js: Using Model  ../models/dataCachingTable.model with caching
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js: ## --------------------------
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboards , query: {}
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js: Using Model  ../models/dashboards.model with caching
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js: ## --------------------------
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js: ## GET Starting with resource: canvasSettings , query: {}
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js: Using Model  ../models/canvasSettings.model with caching
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js: ## --------------------------
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js: ## GET Starting with resource: canvasBackgroundcolors , query: {}
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js: Using Model  ../models/canvasBackgroundcolors.model with caching
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js:   Returned 3 records from DB
-## GET /canvasdata/datasourcePermissions 304 - - 236.442 ms ON [2019-02-21T18:52:37.738Z] FROM ::1 - -
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js: Loaded 0 records into cache for backgroundcolors
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js:   Returned 171 records from DB
+## GET /canvasdata/dashboards 200 - - 47.537 ms ON [2019-02-21T19:17:36.408Z] FROM ::1 - -
 ##
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js:   Returned 3 records from DB
-## GET /canvasdata/dataCachingTable 304 - - 39.141 ms ON [2019-02-21T18:52:37.744Z] FROM ::1 - -
-##
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js: Loaded 7 records into cache for dashboards
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js:   Returned 7 records from DB
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js:   Returned 1 records from DB
-## GET /canvasdata/canvasSettings 304 - - 59.647 ms ON [2019-02-21T18:52:37.765Z] FROM ::1 - -
-##
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js: Loaded 0 records into cache for backgroundcolors
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js:   Returned 171 records from DB
-## GET /canvasdata/dashboards 200 - - 57.881 ms ON [2019-02-21T18:52:37.814Z] FROM ::1 - -
-##
-## GET /canvasdata/canvasBackgroundcolors 200 - - 107.059 ms ON [2019-02-21T18:52:37.816Z] FROM ::1 - -
+## GET /canvasdata/canvasBackgroundcolors 200 - - 79.649 ms ON [2019-02-21T19:17:36.413Z] FROM ::1 - -
 ##
   Url: http://localhost:8000/canvasdata/dashboardsRecent
   Path: /canvasdata/dashboardsRecent
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js: ## --------------------------
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboardsRecent , query: {}
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js: Using Model  ../models/dashboardsRecent.model with caching
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js:   Returned 4 records from DB
-## GET /canvasdata/dashboardsRecent 304 - - 20.747 ms ON [2019-02-21T18:52:37.868Z] FROM ::1 - -
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js: ## --------------------------
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboardsRecent , query: {}
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js: Using Model  ../models/dashboardsRecent.model with caching
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js:   Returned 4 records from DB
+## GET /canvasdata/dashboardsRecent 200 - - 6.504 ms ON [2019-02-21T19:17:36.492Z] FROM ::1 - -
 ##
   Url: http://localhost:8000/canvasdata/dashboardPermissions
   Path: /canvasdata/dashboardPermissions
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js: ## --------------------------
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboardPermissions , query: {}
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js: Using Model  ../models/dashboardPermissions.model with caching
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js:   Returned 0 records from DB
-## GET /canvasdata/dashboardPermissions 304 - - 10.253 ms ON [2019-02-21T18:52:37.907Z] FROM ::1 - -
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js: ## --------------------------
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboardPermissions , query: {}
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js: Using Model  ../models/dashboardPermissions.model with caching
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js:   Returned 0 records from DB
+## GET /canvasdata/dashboardPermissions 304 - - 3.971 ms ON [2019-02-21T19:17:36.564Z] FROM ::1 - -
 ##
   Url: http://localhost:8000/canvasdata/paletteButtonsSelecteds
   Path: /canvasdata/paletteButtonsSelecteds
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js: ## --------------------------
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js: ## GET Starting with resource: paletteButtonsSelecteds , query: {}
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js: Using Model  ../models/paletteButtonsSelecteds.model with caching
-Thu, 21 Feb 2019 18:52:37 GMT app:dev canvasData.router.js:   Returned 14 records from DB
-## GET /canvasdata/paletteButtonsSelecteds 304 - - 21.007 ms ON [2019-02-21T18:52:37.986Z] FROM ::1 - -
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js: ## --------------------------
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js: ## GET Starting with resource: paletteButtonsSelecteds , query: {}
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js: Using Model  ../models/paletteButtonsSelecteds.model with caching
+Thu, 21 Feb 2019 19:17:36 GMT app:dev canvasData.router.js:   Returned 14 records from DB
+## GET /canvasdata/paletteButtonsSelecteds 304 - - 15.462 ms ON [2019-02-21T19:17:36.644Z] FROM ::1 - -
 ##
-Thu, 21 Feb 2019 18:52:45 GMT app:ws Response to Sender
-Thu, 21 Feb 2019 18:52:46 GMT app:ws  Response to others (excluding Sender)
-Thu, 21 Feb 2019 18:52:47 GMT app:ws Broadcast to all users
+Thu, 21 Feb 2019 19:17:44 GMT app:ws Response to Sender
+Thu, 21 Feb 2019 19:17:45 GMT app:ws  Response to others (excluding Sender)
+Thu, 21 Feb 2019 19:17:46 GMT app:ws Broadcast to all users
+  Url: http://localhost:8000/canvasdata/dashboardSnapshots
+  Path: /canvasdata/dashboardSnapshots
+Thu, 21 Feb 2019 19:18:19 GMT app:dev canvasData.router.js: ## --------------------------
+Thu, 21 Feb 2019 19:18:19 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboardSnapshots , query: {}
+Thu, 21 Feb 2019 19:18:19 GMT app:dev canvasData.router.js: Using Model  ../models/dashboardSnapshots.model with caching
+Thu, 21 Feb 2019 19:18:19 GMT app:dev canvasData.router.js:   Returned 7 records from DB
+## GET /canvasdata/dashboardSnapshots 304 - - 384.802 ms ON [2019-02-21T19:18:19.460Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/dashboardTabs
+  Path: /canvasdata/dashboardTabs
+Thu, 21 Feb 2019 19:18:19 GMT app:dev canvasData.router.js: ## --------------------------
+Thu, 21 Feb 2019 19:18:19 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboardTabs , query: {}
+Thu, 21 Feb 2019 19:18:19 GMT app:dev canvasData.router.js: Using Model  ../models/dashboardTabs.model with caching
+Thu, 21 Feb 2019 19:18:19 GMT app:dev canvasData.router.js:   Returned 18 records from DB
+## GET /canvasdata/dashboardTabs 200 - - 54.573 ms ON [2019-02-21T19:18:19.517Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/dashboardPermissions
+  Path: /canvasdata/dashboardPermissions
+Thu, 21 Feb 2019 19:18:19 GMT app:dev canvasData.router.js: ## --------------------------
+Thu, 21 Feb 2019 19:18:19 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboardPermissions , query: {}
+Thu, 21 Feb 2019 19:18:19 GMT app:dev canvasData.router.js: Using Model  ../models/dashboardPermissions.model with caching
+Thu, 21 Feb 2019 19:18:19 GMT app:dev canvasData.router.js:   Returned 0 records from DB
+## GET /canvasdata/dashboardPermissions 304 - - 4.026 ms ON [2019-02-21T19:18:19.567Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/widgetCheckpoints
+  Path: /canvasdata/widgetCheckpoints
+Thu, 21 Feb 2019 19:18:19 GMT app:dev canvasData.router.js: ## --------------------------
+Thu, 21 Feb 2019 19:18:19 GMT app:dev canvasData.router.js: ## GET Starting with resource: widgetCheckpoints , query: {}
+Thu, 21 Feb 2019 19:18:19 GMT app:dev canvasData.router.js: Using Model  ../models/widgetCheckpoints.model with caching
+Thu, 21 Feb 2019 19:18:19 GMT app:dev canvasData.router.js:   Returned 2 records from DB
+## GET /canvasdata/widgetCheckpoints 304 - - 30.239 ms ON [2019-02-21T19:18:19.627Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/datasets
+  Path: /canvasdata/datasets
+Thu, 21 Feb 2019 19:18:19 GMT app:dev canvasData.router.js: ## --------------------------
+Thu, 21 Feb 2019 19:18:19 GMT app:dev canvasData.router.js: ## GET Starting with resource: datasets , query: {}
+Thu, 21 Feb 2019 19:18:19 GMT app:dev canvasData.router.js: Using Model  ../models/datasets.model with caching
+Thu, 21 Feb 2019 19:18:19 GMT app:dev canvasData.router.js:   Returned 46 records from DB
+## GET /canvasdata/datasets 304 - - 22.447 ms ON [2019-02-21T19:18:19.684Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/widgets
+  Path: /canvasdata/widgets
+Thu, 21 Feb 2019 19:18:19 GMT app:dev canvasData.router.js: ## --------------------------
+Thu, 21 Feb 2019 19:18:19 GMT app:dev canvasData.router.js: ## GET Starting with resource: widgets , query: {}
+Thu, 21 Feb 2019 19:18:19 GMT app:dev canvasData.router.js: Using Model  ../models/widgets.model with caching
+Thu, 21 Feb 2019 19:18:19 GMT app:dev canvasData.router.js:   Returned 64 records from DB
+## GET /canvasdata/widgets 200 - - 230.693 ms ON [2019-02-21T19:18:19.962Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/clientData/%3F&datasourceID=1
+  Path: /clientData/
+Thu, 21 Feb 2019 19:18:20 GMT app:dev clientData.router.js: Start clientData.router for datasourceID: 1
+Thu, 21 Feb 2019 19:18:20 GMT app:data clientData.router.js:  <- Getting data from Server Cache on Disc for ID: 1
+Thu, 21 Feb 2019 19:18:20 GMT app:data clientData.router.js: Using Schema clientData
+## GET /clientData/?&datasourceID=1 304 - - 37.496 ms ON [2019-02-21T19:18:20.395Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/dashboardsRecent
+  Path: /canvasdata/dashboardsRecent
+## OPTIONS /canvasdata/dashboardsRecent 200 24 - 0.962 ms ON [2019-02-21T19:18:20.458Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/dashboardLayouts%3FfilterObject={%22dashboardID%22:%20163}
+  Path: /canvasdata/dashboardLayouts
+Thu, 21 Feb 2019 19:18:20 GMT app:dev canvasData.router.js: ## --------------------------
+Thu, 21 Feb 2019 19:18:20 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboardLayouts , query: { filterObject: '{"dashboardID": 163}' }
+Thu, 21 Feb 2019 19:18:20 GMT app:dev canvasData.router.js: Using Model  ../models/dashboardLayouts.model with caching
+Thu, 21 Feb 2019 19:18:20 GMT app:dev canvasData.router.js:   Returned 0 records from DB
+## GET /canvasdata/dashboardLayouts?filterObject={%22dashboardID%22:%20163} 200 280 - 5.524 ms ON [2019-02-21T19:18:20.488Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/dashboardsRecent
+  Path: /canvasdata/dashboardsRecent
+Thu, 21 Feb 2019 19:18:20 GMT app:dev App.js In validateUser 
+Thu, 21 Feb 2019 19:18:20 GMT app:dev canvasData.router.js: Router: POST for resource: dashboardsRecent
+Thu, 21 Feb 2019 19:18:20 GMT app:dev canvasData.router.js: 
+Thu, 21 Feb 2019 19:18:20 GMT app:dev canvasData.router.js: Resource dashboardsRecent record NOT IN CACHING TABLE
+Thu, 21 Feb 2019 19:18:20 GMT app:dev canvasData.router.js: New record added in canvasRouter
+## POST /canvasdata/dashboardsRecent 200 487 - 27.556 ms ON [2019-02-21T19:18:20.828Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasDashboardDiscard%3FdraftDashboardID=163&originalDashboardID=116
+  Path: /canvasDashboardDiscard
+## OPTIONS /canvasDashboardDiscard?draftDashboardID=163&originalDashboardID=116 200 3 - 3.379 ms ON [2019-02-21T19:19:01.352Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasDashboardDiscard%3FdraftDashboardID=163&originalDashboardID=116
+  Path: /canvasDashboardDiscard
+Thu, 21 Feb 2019 19:19:01 GMT app:dev canvasDashboardDiscard.router.js: ## --------------------------
+Thu, 21 Feb 2019 19:19:01 GMT app:dev canvasDashboardDiscard.router.js: ## GET Starting with Discarding Draft Dashboard id: 163, OriginalID:  116 { dashboardID: '163' }
+## PUT /canvasDashboardDiscard?draftDashboardID=163&originalDashboardID=116 200 272 - 111.200 ms ON [2019-02-21T19:19:01.507Z] FROM ::1 - -
+##
+(node:24035) DeprecationWarning: collection.update is deprecated. Use updateOne, updateMany, or bulkWrite instead.
+  Url: http://localhost:8000/canvasdata/dashboardPermissions
+  Path: /canvasdata/dashboardPermissions
+Thu, 21 Feb 2019 19:19:01 GMT app:dev canvasData.router.js: ## --------------------------
+Thu, 21 Feb 2019 19:19:01 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboardPermissions , query: {}
+Thu, 21 Feb 2019 19:19:01 GMT app:dev canvasData.router.js: Using Model  ../models/dashboardPermissions.model with caching
+Thu, 21 Feb 2019 19:19:01 GMT app:dev canvasData.router.js:   Returned 0 records from DB
+## GET /canvasdata/dashboardPermissions 304 - - 3.536 ms ON [2019-02-21T19:19:01.533Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/dashboardsRecent%3Fid=80
+  Path: /canvasdata/dashboardsRecent
+## OPTIONS /canvasdata/dashboardsRecent?id=80 200 24 - 0.740 ms ON [2019-02-21T19:19:01.591Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/dashboardLayouts%3FfilterObject={%22dashboardID%22:%20116}
+  Path: /canvasdata/dashboardLayouts
+Thu, 21 Feb 2019 19:19:01 GMT app:dev canvasData.router.js: ## --------------------------
+Thu, 21 Feb 2019 19:19:01 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboardLayouts , query: { filterObject: '{"dashboardID": 116}' }
+Thu, 21 Feb 2019 19:19:01 GMT app:dev canvasData.router.js: Using Model  ../models/dashboardLayouts.model with caching
+Thu, 21 Feb 2019 19:19:01 GMT app:dev canvasData.router.js:   Returned 0 records from DB
+## GET /canvasdata/dashboardLayouts?filterObject={%22dashboardID%22:%20116} 304 - - 3.943 ms ON [2019-02-21T19:19:01.604Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/dashboardsRecent%3Fid=80
+  Path: /canvasdata/dashboardsRecent
+Thu, 21 Feb 2019 19:19:01 GMT app:dev canvasData.router.js: Resource dashboardsRecent record NOT IN CACHING TABLE
+Thu, 21 Feb 2019 19:19:01 GMT app:dev canvasData.router.js: dashboardsRecent updated ID: 80
+## PUT /canvasdata/dashboardsRecent?id=80 200 500 - 8.992 ms ON [2019-02-21T19:19:01.760Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 784.146 ms ON [2019-02-22T04:01:00.452Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+Fri, 22 Feb 2019 04:01:00 GMT app:dev App.js In validateUser 
+Fri, 22 Feb 2019 04:01:00 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
+Fri, 22 Feb 2019 04:01:00 GMT app:dev canvasData.router.js: 
+Fri, 22 Feb 2019 04:01:00 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
+Fri, 22 Feb 2019 04:01:06 GMT app:dev canvasData.router.js: New record added in canvasRouter
+## POST /canvasdata/statusBarMessageLogs 200 553 - 6126.153 ms ON [2019-02-22T04:01:06.862Z] FROM ::1 - -
+##
+Fri, 22 Feb 2019 04:01:08 GMT app:ws Response to Sender
+Fri, 22 Feb 2019 04:01:09 GMT app:ws  Response to others (excluding Sender)
+Fri, 22 Feb 2019 04:01:10 GMT app:ws Broadcast to all users
+Fri, 22 Feb 2019 04:01:12 GMT app:ws { data: 'First socket message' }
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.389 ms ON [2019-02-22T04:01:13.853Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.456 ms ON [2019-02-22T04:01:13.886Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.530 ms ON [2019-02-22T04:01:13.914Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.611 ms ON [2019-02-22T04:01:13.933Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+Fri, 22 Feb 2019 04:01:13 GMT app:dev App.js In validateUser 
+Fri, 22 Feb 2019 04:01:13 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
+Fri, 22 Feb 2019 04:01:13 GMT app:dev canvasData.router.js: 
+Fri, 22 Feb 2019 04:01:13 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
+Fri, 22 Feb 2019 04:01:13 GMT app:dev canvasData.router.js: New record added in canvasRouter
+## POST /canvasdata/statusBarMessageLogs 200 549 - 5.195 ms ON [2019-02-22T04:01:15.129Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+Fri, 22 Feb 2019 04:01:15 GMT app:dev App.js In validateUser 
+Fri, 22 Feb 2019 04:01:15 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
+Fri, 22 Feb 2019 04:01:15 GMT app:dev canvasData.router.js: 
+Fri, 22 Feb 2019 04:01:15 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+Fri, 22 Feb 2019 04:01:15 GMT app:dev App.js In validateUser 
+Fri, 22 Feb 2019 04:01:15 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
+Fri, 22 Feb 2019 04:01:15 GMT app:dev canvasData.router.js: 
+Fri, 22 Feb 2019 04:01:15 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+Fri, 22 Feb 2019 04:01:15 GMT app:dev App.js In validateUser 
+Fri, 22 Feb 2019 04:01:15 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
+Fri, 22 Feb 2019 04:01:15 GMT app:dev canvasData.router.js: 
+Fri, 22 Feb 2019 04:01:15 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
+Fri, 22 Feb 2019 04:01:15 GMT app:dev canvasData.router.js: New record added in canvasRouter
+## POST /canvasdata/statusBarMessageLogs 200 549 - 16.001 ms ON [2019-02-22T04:01:15.146Z] FROM ::1 - -
+##
+Fri, 22 Feb 2019 04:01:15 GMT app:dev canvasData.router.js: New record added in canvasRouter
+## POST /canvasdata/statusBarMessageLogs 200 549 - 14.722 ms ON [2019-02-22T04:01:15.148Z] FROM ::1 - -
+##
+Fri, 22 Feb 2019 04:01:15 GMT app:dev canvasData.router.js: New record added in canvasRouter
+## POST /canvasdata/statusBarMessageLogs 200 549 - 13.453 ms ON [2019-02-22T04:01:15.150Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/auth/local/verify
+  Path: /auth/local/verify
+## OPTIONS /auth/local/verify 200 4 - 767.546 ms ON [2019-02-22T04:03:24.841Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/auth/local/verify
+  Path: /auth/local/verify
+Fri, 22 Feb 2019 04:03:24 GMT app:dev App.js In validateUser 
+## POST /auth/local/verify 200 4 - 1168.766 ms ON [2019-02-22T04:03:26.024Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/canvasUsers
+  Path: /canvasdata/canvasUsers
+  Url: http://localhost:8000/canvasdata/canvasGroups
+  Path: /canvasdata/canvasGroups
+Fri, 22 Feb 2019 04:03:26 GMT app:dev canvasData.router.js: ## --------------------------
+Fri, 22 Feb 2019 04:03:26 GMT app:dev canvasData.router.js: ## GET Starting with resource: canvasUsers , query: {}
+Fri, 22 Feb 2019 04:03:26 GMT app:dev canvasData.router.js: Using Model  ../models/canvasUsers.model with caching
+Fri, 22 Feb 2019 04:03:26 GMT app:dev canvasData.router.js: ## --------------------------
+Fri, 22 Feb 2019 04:03:26 GMT app:dev canvasData.router.js: ## GET Starting with resource: canvasGroups , query: {}
+Fri, 22 Feb 2019 04:03:26 GMT app:dev canvasData.router.js: Using Model  ../models/canvasGroups.model with caching
+Fri, 22 Feb 2019 04:03:26 GMT app:dev canvasData.router.js:   Returned 4 records from DB
+## GET /canvasdata/canvasUsers 304 - - 71.164 ms ON [2019-02-22T04:03:26.184Z] FROM ::1 - -
+##
+Fri, 22 Feb 2019 04:03:26 GMT app:dev canvasData.router.js:   Returned 6 records from DB
+## GET /canvasdata/canvasGroups 200 949 - 44.333 ms ON [2019-02-22T04:03:26.187Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/canvasGroups
+  Path: /canvasdata/canvasGroups
+Fri, 22 Feb 2019 04:03:26 GMT app:dev canvasData.router.js: ## --------------------------
+Fri, 22 Feb 2019 04:03:26 GMT app:dev canvasData.router.js: ## GET Starting with resource: canvasGroups , query: {}
+Fri, 22 Feb 2019 04:03:26 GMT app:dev canvasData.router.js: Using Model  ../models/canvasGroups.model with caching
+Fri, 22 Feb 2019 04:03:26 GMT app:dev canvasData.router.js:   Returned 6 records from DB
+## GET /canvasdata/canvasGroups 200 949 - 3.764 ms ON [2019-02-22T04:03:26.309Z] FROM ::1 - -
+##
+Fri, 22 Feb 2019 04:03:26 GMT app:ws { data: 'First socket message' }
+  Url: http://localhost:8000/canvasdata/canvasBackgroundcolors
+  Path: /canvasdata/canvasBackgroundcolors
+Fri, 22 Feb 2019 04:03:26 GMT app:dev canvasData.router.js: ## --------------------------
+Fri, 22 Feb 2019 04:03:26 GMT app:dev canvasData.router.js: ## GET Starting with resource: canvasBackgroundcolors , query: {}
+Fri, 22 Feb 2019 04:03:26 GMT app:dev canvasData.router.js:   Returned 0 records from cache!
+## GET /canvasdata/canvasBackgroundcolors 200 302 - 5.944 ms ON [2019-02-22T04:03:26.490Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/datasources
+  Path: /canvasdata/datasources
+  Url: http://localhost:8000/canvasdata/datasourcePermissions
+  Path: /canvasdata/datasourcePermissions
+  Url: http://localhost:8000/canvasdata/dataCachingTable
+  Path: /canvasdata/dataCachingTable
+Fri, 22 Feb 2019 04:03:26 GMT app:dev canvasData.router.js: ## --------------------------
+Fri, 22 Feb 2019 04:03:26 GMT app:dev canvasData.router.js: ## GET Starting with resource: datasources , query: {}
+Fri, 22 Feb 2019 04:03:26 GMT app:dev canvasData.router.js:   Returned 46 records from cache!
+Fri, 22 Feb 2019 04:03:26 GMT app:dev canvasData.router.js: ## --------------------------
+Fri, 22 Feb 2019 04:03:26 GMT app:dev canvasData.router.js: ## GET Starting with resource: datasourcePermissions , query: {}
+Fri, 22 Feb 2019 04:03:26 GMT app:dev canvasData.router.js: Using Model  ../models/datasourcePermissions.model with caching
+Fri, 22 Feb 2019 04:03:26 GMT app:dev canvasData.router.js: ## --------------------------
+Fri, 22 Feb 2019 04:03:26 GMT app:dev canvasData.router.js: ## GET Starting with resource: dataCachingTable , query: {}
+Fri, 22 Feb 2019 04:03:26 GMT app:dev canvasData.router.js: Using Model  ../models/dataCachingTable.model with caching
+Fri, 22 Feb 2019 04:03:26 GMT app:dev canvasData.router.js:   Returned 3 records from DB
+## GET /canvasdata/datasourcePermissions 304 - - 51.211 ms ON [2019-02-22T04:03:26.576Z] FROM ::1 - -
+##
+Fri, 22 Feb 2019 04:03:26 GMT app:dev canvasData.router.js:   Returned 3 records from DB
+## GET /canvasdata/dataCachingTable 304 - - 90.356 ms ON [2019-02-22T04:03:26.617Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/canvasSettings
+  Path: /canvasdata/canvasSettings
+## GET /canvasdata/datasources 200 - - 39.614 ms ON [2019-02-22T04:03:26.618Z] FROM ::1 - -
+##
+Fri, 22 Feb 2019 04:03:26 GMT app:dev canvasData.router.js: ## --------------------------
+Fri, 22 Feb 2019 04:03:26 GMT app:dev canvasData.router.js: ## GET Starting with resource: canvasSettings , query: {}
+Fri, 22 Feb 2019 04:03:26 GMT app:dev canvasData.router.js: Using Model  ../models/canvasSettings.model with caching
+  Url: http://localhost:8000/canvasdata/dashboards
+  Path: /canvasdata/dashboards
+Fri, 22 Feb 2019 04:03:26 GMT app:dev canvasData.router.js: ## --------------------------
+Fri, 22 Feb 2019 04:03:26 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboards , query: {}
+Fri, 22 Feb 2019 04:03:26 GMT app:dev canvasData.router.js:   Returned 8 records from cache!
+Fri, 22 Feb 2019 04:03:26 GMT app:dev canvasData.router.js:   Returned 1 records from DB
+## GET /canvasdata/canvasSettings 304 - - 124.468 ms ON [2019-02-22T04:03:26.743Z] FROM ::1 - -
+##
+## GET /canvasdata/dashboards 200 - - 113.569 ms ON [2019-02-22T04:03:26.746Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/dashboardsRecent
+  Path: /canvasdata/dashboardsRecent
+Fri, 22 Feb 2019 04:03:26 GMT app:dev canvasData.router.js: ## --------------------------
+Fri, 22 Feb 2019 04:03:26 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboardsRecent , query: {}
+Fri, 22 Feb 2019 04:03:26 GMT app:dev canvasData.router.js: Using Model  ../models/dashboardsRecent.model with caching
+Fri, 22 Feb 2019 04:03:26 GMT app:dev canvasData.router.js:   Returned 4 records from DB
+## GET /canvasdata/dashboardsRecent 200 - - 4.981 ms ON [2019-02-22T04:03:26.850Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/dashboardPermissions
+  Path: /canvasdata/dashboardPermissions
+Fri, 22 Feb 2019 04:03:27 GMT app:dev canvasData.router.js: ## --------------------------
+Fri, 22 Feb 2019 04:03:27 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboardPermissions , query: {}
+Fri, 22 Feb 2019 04:03:27 GMT app:dev canvasData.router.js: Using Model  ../models/dashboardPermissions.model with caching
+Fri, 22 Feb 2019 04:03:27 GMT app:dev canvasData.router.js:   Returned 0 records from DB
+## GET /canvasdata/dashboardPermissions 304 - - 12.874 ms ON [2019-02-22T04:03:27.072Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/paletteButtonsSelecteds
+  Path: /canvasdata/paletteButtonsSelecteds
+Fri, 22 Feb 2019 04:03:27 GMT app:dev canvasData.router.js: ## --------------------------
+Fri, 22 Feb 2019 04:03:27 GMT app:dev canvasData.router.js: ## GET Starting with resource: paletteButtonsSelecteds , query: {}
+Fri, 22 Feb 2019 04:03:27 GMT app:dev canvasData.router.js: Using Model  ../models/paletteButtonsSelecteds.model with caching
+Fri, 22 Feb 2019 04:03:27 GMT app:dev canvasData.router.js:   Returned 14 records from DB
+## GET /canvasdata/paletteButtonsSelecteds 304 - - 9.737 ms ON [2019-02-22T04:03:27.302Z] FROM ::1 - -
+##
+Fri, 22 Feb 2019 04:03:34 GMT app:ws Response to Sender
+Fri, 22 Feb 2019 04:03:35 GMT app:ws  Response to others (excluding Sender)
+Fri, 22 Feb 2019 04:03:36 GMT app:ws Broadcast to all users
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
 [32m[nodemon] restarting due to changes...[39m
 [32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
 the options [useCreateIndex] is not supported
-Thu, 21 Feb 2019 18:54:09 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
-Thu, 21 Feb 2019 18:54:09 GMT app:dev mongoLocalDatabase: Database connection successful
-Thu, 21 Feb 2019 18:54:09 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
-
-Canvas Server started ...
-       Listening on port 8000
-       With data caching on server
-       morgan (HTTP method logging) is on
-       DEBUG var is app.*
-       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
-----------------------------------------------------------------
-
-Thu, 21 Feb 2019 18:54:10 GMT app:ws { data: 'First socket message' }
 [32m[nodemon] restarting due to changes...[39m
 [32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
 the options [useCreateIndex] is not supported
-Thu, 21 Feb 2019 18:54:13 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
-Thu, 21 Feb 2019 18:54:13 GMT app:dev mongoLocalDatabase: Database connection successful
-Thu, 21 Feb 2019 18:54:13 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+/home/jannie/Projects/canvas-server/routes/canvasDashboardCopy.router.js:242
+            newName = '') {
+                        ^
+
+SyntaxError: Unexpected token )
+    at createScript (vm.js:80:10)
+    at Object.runInThisContext (vm.js:139:10)
+    at Module._compile (module.js:616:28)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+    at require (internal/module.js:11:18)
+    at Object.<anonymous> (/home/jannie/Projects/canvas-server/app.js:42:29)
+    at Module._compile (module.js:652:30)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+/home/jannie/Projects/canvas-server/routes/canvasDashboardCopy.router.js:248
+        };
+        ^
+
+SyntaxError: missing ) after argument list
+    at createScript (vm.js:80:10)
+    at Object.runInThisContext (vm.js:139:10)
+    at Module._compile (module.js:616:28)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+    at require (internal/module.js:11:18)
+    at Object.<anonymous> (/home/jannie/Projects/canvas-server/app.js:42:29)
+    at Module._compile (module.js:652:30)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Fri, 22 Feb 2019 04:19:29 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Fri, 22 Feb 2019 04:19:30 GMT app:dev mongoLocalDatabase: Database connection successful
+Fri, 22 Feb 2019 04:19:30 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
 
 Canvas Server started ...
        Listening on port 8000
@@ -160,10 +495,10 @@ Canvas Server started ...
 [32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
 the options [useCreateIndex] is not supported
 /home/jannie/Projects/canvas-server/routes/canvasDashboardCopy.router.js:248
-        if (newState != 'Draft'    newState == '') {
-                                   ^^^^^^^^
+        };
+        ^
 
-SyntaxError: Unexpected identifier
+SyntaxError: missing ) after argument list
     at createScript (vm.js:80:10)
     at Object.runInThisContext (vm.js:139:10)
     at Module._compile (module.js:616:28)
@@ -184,127 +519,11 @@ SyntaxError: Unexpected identifier
 [32m[nodemon] restarting due to changes...[39m
 [32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
 the options [useCreateIndex] is not supported
-Thu, 21 Feb 2019 18:54:16 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
-Thu, 21 Feb 2019 18:54:16 GMT app:dev mongoLocalDatabase: Database connection successful
-Thu, 21 Feb 2019 18:54:16 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+/home/jannie/Projects/canvas-server/routes/canvasDashboardCopy.router.js:249
+        };
+        ^
 
-Canvas Server started ...
-       Listening on port 8000
-       With data caching on server
-       morgan (HTTP method logging) is on
-       DEBUG var is app.*
-       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
-----------------------------------------------------------------
-
-Thu, 21 Feb 2019 18:54:17 GMT app:ws { data: 'First socket message' }
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
-the options [useCreateIndex] is not supported
-Thu, 21 Feb 2019 18:54:19 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
-Thu, 21 Feb 2019 18:54:19 GMT app:dev mongoLocalDatabase: Database connection successful
-Thu, 21 Feb 2019 18:54:19 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
-
-Canvas Server started ...
-       Listening on port 8000
-       With data caching on server
-       morgan (HTTP method logging) is on
-       DEBUG var is app.*
-       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
-----------------------------------------------------------------
-
-[32m[nodemon] restarting due to changes...[39m
-Thu, 21 Feb 2019 18:54:22 GMT app:ws { data: 'First socket message' }
-[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
-the options [useCreateIndex] is not supported
-Thu, 21 Feb 2019 18:54:23 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
-Thu, 21 Feb 2019 18:54:23 GMT app:dev mongoLocalDatabase: Database connection successful
-Thu, 21 Feb 2019 18:54:23 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
-
-Canvas Server started ...
-       Listening on port 8000
-       With data caching on server
-       morgan (HTTP method logging) is on
-       DEBUG var is app.*
-       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
-----------------------------------------------------------------
-
-Thu, 21 Feb 2019 18:54:26 GMT app:ws { data: 'First socket message' }
-Thu, 21 Feb 2019 18:54:34 GMT app:ws Response to Sender
-Thu, 21 Feb 2019 18:54:35 GMT app:ws  Response to others (excluding Sender)
-Thu, 21 Feb 2019 18:54:36 GMT app:ws Broadcast to all users
-  Url: http://localhost:8000/canvasDashboardCopy%3ForiginalDashboardID=116&newName=Draft%20Thing&newState=xxx
-  Path: /canvasDashboardCopy
-Thu, 21 Feb 2019 18:57:46 GMT app:dev App.js In validateUser 
-Thu, 21 Feb 2019 18:57:46 GMT app:dev canvasDashboardCopy.router.js: ## --------------------------
-Thu, 21 Feb 2019 18:57:46 GMT app:dev canvasDashboardCopy.router.js: ## POST Starting with Editing Dashboard and related info for dashboard id: 116
-## POST /canvasDashboardCopy?originalDashboardID=116&newName=Draft%20Thing&newState=xxx 200 96 - 9.099 ms ON [2019-02-21T18:57:46.567Z] FROM ::ffff:127.0.0.1 - -
-##
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
-the options [useCreateIndex] is not supported
-Thu, 21 Feb 2019 18:58:02 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
-Thu, 21 Feb 2019 18:58:02 GMT app:dev mongoLocalDatabase: Database connection successful
-Thu, 21 Feb 2019 18:58:02 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
-
-Canvas Server started ...
-       Listening on port 8000
-       With data caching on server
-       morgan (HTTP method logging) is on
-       DEBUG var is app.*
-       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
-----------------------------------------------------------------
-
-Thu, 21 Feb 2019 18:58:05 GMT app:ws { data: 'First socket message' }
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
-the options [useCreateIndex] is not supported
-Thu, 21 Feb 2019 18:58:09 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
-Thu, 21 Feb 2019 18:58:09 GMT app:dev mongoLocalDatabase: Database connection successful
-Thu, 21 Feb 2019 18:58:09 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
-
-Canvas Server started ...
-       Listening on port 8000
-       With data caching on server
-       morgan (HTTP method logging) is on
-       DEBUG var is app.*
-       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
-----------------------------------------------------------------
-
-Thu, 21 Feb 2019 18:58:12 GMT app:ws { data: 'First socket message' }
-  Url: http://localhost:8000/canvasDashboardCopy%3ForiginalDashboardID=116&newName=Draft%20Thing&newState=xxx
-  Path: /canvasDashboardCopy
-Thu, 21 Feb 2019 18:58:12 GMT app:dev App.js In validateUser 
-Thu, 21 Feb 2019 18:58:12 GMT app:dev canvasDashboardCopy.router.js: ## --------------------------
-Thu, 21 Feb 2019 18:58:12 GMT app:dev canvasDashboardCopy.router.js: ## POST Starting with Editing Dashboard and related info for dashboard id: 116
-## POST /canvasDashboardCopy?originalDashboardID=116&newName=Draft%20Thing&newState=xxx 200 108 - 14.539 ms ON [2019-02-21T18:58:12.601Z] FROM ::ffff:127.0.0.1 - -
-##
-Thu, 21 Feb 2019 18:58:20 GMT app:ws Response to Sender
-Thu, 21 Feb 2019 18:58:21 GMT app:ws  Response to others (excluding Sender)
-Thu, 21 Feb 2019 18:58:22 GMT app:ws Broadcast to all users
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
-the options [useCreateIndex] is not supported
-Thu, 21 Feb 2019 18:59:32 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
-Thu, 21 Feb 2019 18:59:32 GMT app:dev mongoLocalDatabase: Database connection successful
-Thu, 21 Feb 2019 18:59:32 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
-
-Canvas Server started ...
-       Listening on port 8000
-       With data caching on server
-       morgan (HTTP method logging) is on
-       DEBUG var is app.*
-       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
-----------------------------------------------------------------
-
-Thu, 21 Feb 2019 18:59:32 GMT app:ws { data: 'First socket message' }
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
-the options [useCreateIndex] is not supported
-/home/jannie/Projects/canvas-server/routes/canvasDashboardCopy.router.js:51
-        newDraftDashboard.state = newState != null?;
-                                                   ^
-
-SyntaxError: Unexpected token ;
+SyntaxError: missing ) after argument list
     at createScript (vm.js:80:10)
     at Object.runInThisContext (vm.js:139:10)
     at Module._compile (module.js:616:28)
@@ -325,11 +544,11 @@ SyntaxError: Unexpected token ;
 [32m[nodemon] restarting due to changes...[39m
 [32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
 the options [useCreateIndex] is not supported
-/home/jannie/Projects/canvas-server/routes/canvasDashboardCopy.router.js:51
-        newDraftDashboard.state = newState != null?  ;
-                                                     ^
+/home/jannie/Projects/canvas-server/routes/canvasDashboardCopy.router.js:249
+        };
+        ^
 
-SyntaxError: Unexpected token ;
+SyntaxError: missing ) after argument list
     at createScript (vm.js:80:10)
     at Object.runInThisContext (vm.js:139:10)
     at Module._compile (module.js:616:28)
@@ -350,11 +569,11 @@ SyntaxError: Unexpected token ;
 [32m[nodemon] restarting due to changes...[39m
 [32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
 the options [useCreateIndex] is not supported
-/home/jannie/Projects/canvas-server/routes/canvasDashboardCopy.router.js:51
-        newDraftDashboard.state = newState != null?  newState  ;
-                                                               ^
+/home/jannie/Projects/canvas-server/routes/canvasDashboardCopy.router.js:249
+        };
+        ^
 
-SyntaxError: Unexpected token ;
+SyntaxError: missing ) after argument list
     at createScript (vm.js:80:10)
     at Object.runInThisContext (vm.js:139:10)
     at Module._compile (module.js:616:28)
@@ -375,9 +594,9 @@ SyntaxError: Unexpected token ;
 [32m[nodemon] restarting due to changes...[39m
 [32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
 the options [useCreateIndex] is not supported
-Thu, 21 Feb 2019 18:59:41 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
-Thu, 21 Feb 2019 18:59:41 GMT app:dev mongoLocalDatabase: Database connection successful
-Thu, 21 Feb 2019 18:59:41 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+Fri, 22 Feb 2019 04:19:45 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Fri, 22 Feb 2019 04:19:45 GMT app:dev mongoLocalDatabase: Database connection successful
+Fri, 22 Feb 2019 04:19:45 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
 
 Canvas Server started ...
        Listening on port 8000
@@ -387,14 +606,15 @@ Canvas Server started ...
        Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
 ----------------------------------------------------------------
 
-Thu, 21 Feb 2019 18:59:43 GMT app:ws { data: 'First socket message' }
-Thu, 21 Feb 2019 18:59:51 GMT app:ws Response to Sender
+Fri, 22 Feb 2019 04:19:48 GMT app:ws { data: 'First socket message' }
+Fri, 22 Feb 2019 04:19:56 GMT app:ws Response to Sender
+Fri, 22 Feb 2019 04:19:57 GMT app:ws  Response to others (excluding Sender)
 [32m[nodemon] restarting due to changes...[39m
 [32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
 the options [useCreateIndex] is not supported
-Thu, 21 Feb 2019 18:59:52 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
-Thu, 21 Feb 2019 18:59:52 GMT app:dev mongoLocalDatabase: Database connection successful
-Thu, 21 Feb 2019 18:59:52 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+Fri, 22 Feb 2019 04:19:58 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Fri, 22 Feb 2019 04:19:58 GMT app:dev mongoLocalDatabase: Database connection successful
+Fri, 22 Feb 2019 04:19:58 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
 
 Canvas Server started ...
        Listening on port 8000
@@ -404,13 +624,13 @@ Canvas Server started ...
        Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
 ----------------------------------------------------------------
 
-Thu, 21 Feb 2019 18:59:53 GMT app:ws { data: 'First socket message' }
+Fri, 22 Feb 2019 04:19:59 GMT app:ws { data: 'First socket message' }
 [32m[nodemon] restarting due to changes...[39m
 [32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
 the options [useCreateIndex] is not supported
-Thu, 21 Feb 2019 18:59:54 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
-Thu, 21 Feb 2019 18:59:54 GMT app:dev mongoLocalDatabase: Database connection successful
-Thu, 21 Feb 2019 18:59:54 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+Fri, 22 Feb 2019 04:20:01 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Fri, 22 Feb 2019 04:20:01 GMT app:dev mongoLocalDatabase: Database connection successful
+Fri, 22 Feb 2019 04:20:01 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
 
 Canvas Server started ...
        Listening on port 8000
@@ -420,13 +640,37 @@ Canvas Server started ...
        Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
 ----------------------------------------------------------------
 
-Thu, 21 Feb 2019 18:59:56 GMT app:ws { data: 'First socket message' }
 [32m[nodemon] restarting due to changes...[39m
 [32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
 the options [useCreateIndex] is not supported
-Thu, 21 Feb 2019 18:59:59 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
-Thu, 21 Feb 2019 18:59:59 GMT app:dev mongoLocalDatabase: Database connection successful
-Thu, 21 Feb 2019 18:59:59 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+/home/jannie/Projects/canvas-server/routes/canvasDashboardCopy.router.js:241
+        if (newName == null  ||  newName == null") {
+                                                ^^^^
+
+SyntaxError: Invalid or unexpected token
+    at createScript (vm.js:80:10)
+    at Object.runInThisContext (vm.js:139:10)
+    at Module._compile (module.js:616:28)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+    at require (internal/module.js:11:18)
+    at Object.<anonymous> (/home/jannie/Projects/canvas-server/app.js:42:29)
+    at Module._compile (module.js:652:30)
+    at Object.Module._extensions..js (module.js:663:10)
+    at Module.load (module.js:565:32)
+    at tryModuleLoad (module.js:505:12)
+    at Function.Module._load (module.js:497:3)
+    at Module.require (module.js:596:17)
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Fri, 22 Feb 2019 04:20:04 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Fri, 22 Feb 2019 04:20:04 GMT app:dev mongoLocalDatabase: Database connection successful
+Fri, 22 Feb 2019 04:20:04 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
 
 Canvas Server started ...
        Listening on port 8000
@@ -436,7 +680,23 @@ Canvas Server started ...
        Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
 ----------------------------------------------------------------
 
-Thu, 21 Feb 2019 19:00:02 GMT app:ws { data: 'First socket message' }
-Thu, 21 Feb 2019 19:00:10 GMT app:ws Response to Sender
-Thu, 21 Feb 2019 19:00:11 GMT app:ws  Response to others (excluding Sender)
-Thu, 21 Feb 2019 19:00:12 GMT app:ws Broadcast to all users
+Fri, 22 Feb 2019 04:20:06 GMT app:ws { data: 'First socket message' }
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Fri, 22 Feb 2019 04:20:09 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Fri, 22 Feb 2019 04:20:09 GMT app:dev mongoLocalDatabase: Database connection successful
+Fri, 22 Feb 2019 04:20:09 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+Fri, 22 Feb 2019 04:20:11 GMT app:ws { data: 'First socket message' }
+Fri, 22 Feb 2019 04:20:19 GMT app:ws Response to Sender
+Fri, 22 Feb 2019 04:20:20 GMT app:ws  Response to others (excluding Sender)
+Fri, 22 Feb 2019 04:20:21 GMT app:ws Broadcast to all users

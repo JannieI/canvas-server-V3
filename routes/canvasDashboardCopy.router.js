@@ -49,7 +49,7 @@ function addDraftDashboard(originalDashboard) {
         newDraftDashboard.dateEdited = today;
         newDraftDashboard.accessType = 'Private';
         newDraftDashboard.state = newState;
-        newDraftDashboard.name = newName != null?  newName  :  originalDashboard.name;
+        newDraftDashboard.name = newName != ""?  newName  :  originalDashboard.name;
 
         let dashboardAdd = new dashboardModel(newDraftDashboard);
 
@@ -65,7 +65,7 @@ function addDraftDashboard(originalDashboard) {
 }
 
 function updateTabs(addedDashboardID, originalDashboardTab) {
-    // Add the given tab to the DB, and then loop all all its Widgets, adding 
+    // Add the given tab to the DB, and then loop all all its Widgets, adding
     // their creation function to promiseArrayWidgets
 
     return new Promise( (resolve, reject) => {
@@ -91,7 +91,7 @@ function updateTabs(addedDashboardID, originalDashboardTab) {
 
                 // Get the Original Widgets
                 let widgetQuery = {
-                    dashboardID: originalDashboardID, 
+                    dashboardID: originalDashboardID,
                     dashboardTabID: originalDashboardTab.id
                 };
                 widgetModel.find(widgetQuery)
@@ -100,24 +100,24 @@ function updateTabs(addedDashboardID, originalDashboardTab) {
 
                         originalWidgets.forEach(originalWidget => {
                             promiseArrayWidgets.push(updateWidget(
-                                addedDashboardID, 
-                                addedDraftDashboardTab.id, 
+                                addedDashboardID,
+                                addedDraftDashboardTab.id,
                                 originalWidget
                             ));
-                            console.log('In updateTabs After push ', addedDashboardID, 
+                            console.log('In updateTabs After push ', addedDashboardID,
                             addedDraftDashboardTab.id, originalWidget.id)
                         });
                         resolve();
                     })
                     .catch(err => reject(err));
-            
+
             })
             .catch(err => reject(err));
     })
 }
 
 function updateWidget(addedDashboardID, addedDashboardTabID, originalWidget) {
-    // Add the given Widget to the DB, and then loop all all its WidgetCheckpointss, adding 
+    // Add the given Widget to the DB, and then loop all all its WidgetCheckpointss, adding
     // their creation function to promiseArrayWidgetCheckpoints
     return new Promise( (resolve, reject) => {
         console.log('updateWidget Start')
@@ -128,7 +128,7 @@ function updateWidget(addedDashboardID, addedDashboardTabID, originalWidget) {
         newDraftWidget.dashboardID = addedDashboardID;
         newDraftWidget.dashboardTabID = addedDashboardTabID;
         newDraftWidget.originalID = originalWidget.id;
-        newDraftWidget.dashboardTabIDs = []; 
+        newDraftWidget.dashboardTabIDs = [];
         newDraftWidget.dashboardTabIDs.push(addedDashboardTabID);
 
         // TODO - add current user !!
@@ -154,9 +154,9 @@ function updateWidget(addedDashboardID, addedDashboardTabID, originalWidget) {
                     .then(originalWidgetCheckpoints => {
                         originalWidgetCheckpoints.forEach( originalWidgetCheckpoint => {
                             promiseArrayWidgetCheckpoints.push(updateWidgetCheckpoint(
-                                addedDashboardID, 
-                                addedDashboardTabID, 
-                                addedDraftWidget.id, 
+                                addedDashboardID,
+                                addedDashboardTabID,
+                                addedDraftWidget.id,
                                 originalWidgetCheckpoint));
                         });
                         resolve();
@@ -172,8 +172,8 @@ function updateWidget(addedDashboardID, addedDashboardTabID, originalWidget) {
 }
 
 function updateWidgetCheckpoint(
-    addedDashboardID, 
-    addedDashboardTabID, 
+    addedDashboardID,
+    addedDashboardTabID,
     addedWidgetID,
     originalWidgetCheckpoint) {
 
@@ -200,7 +200,7 @@ function updateWidgetCheckpoint(
                 debugDev(moduleName + ": " + 'New Widget Checkpoint added' + addedDraftWidgetCheckpoint.id, addedDraftDashboardTab.id)
                 resolve();
             })
-            .catch(err => reject(err));                                                
+            .catch(err => reject(err));
     })
 }
 
@@ -212,7 +212,7 @@ router.post('/', (req, res, next) => {
         moduleName = module.id.substring(startPos + 1);
     };
 
-    // Reset 
+    // Reset
     returnDraftDashboardTabs = [];
     returnWidgets = [];
     returnWidgetCheckpoints = [];
@@ -222,7 +222,7 @@ router.post('/', (req, res, next) => {
     originalDashboardQuery = { id: originalDashboardID };
     newName = req.query.newName;
     newState = req.query.newState;
-    
+
     debugDev(moduleName + ": " + '## --------------------------');
     debugDev(moduleName + ": " + '## POST Starting with Editing Dashboard and related info for dashboard id:', originalDashboardID);
 
@@ -238,12 +238,8 @@ router.post('/', (req, res, next) => {
                 null
             ));
         };
-        if (newName == null  ||  newName == '') {
-            return res.json(createErrorObject(
-                "error",
-                "Query Parameter newName is compulsory",
-                null
-            ));
+        if (newName == null  ||  newName == 'null') {
+            newName = '';
         };
         if (newState != 'Draft'  &&  newState != 'Complete') {
             return res.json(createErrorObject(
@@ -266,7 +262,7 @@ router.post('/', (req, res, next) => {
                         null
                     ));
                 };
-                
+
                 addDraftDashboard(originalDashboard)
                     .then(addedDraftDashboard => {
                         debugDev(moduleName + ": " + 'New Dashboard added' + addedDraftDashboard.id)
@@ -292,13 +288,13 @@ router.post('/', (req, res, next) => {
                                 originalDashboardTabs.forEach(originalDashboardTab => {
                                     promiseArrayTabs.push(
                                         updateTabs(
-                                            addedDraftDashboard.id, 
+                                            addedDraftDashboard.id,
                                             originalDashboardTab
                                         )
                                     );
                                     console.log('After push for tab', originalDashboardTab.id)
                                 });
-                                console.log('Before promiseArray', promiseArrayTabs.length, 
+                                console.log('Before promiseArray', promiseArrayTabs.length,
                                     promiseArrayWidgets.length, promiseArrayWidgetCheckpoints.length)
 
                                 // Note: the reason for the 3 different Promise Arrays is that it
@@ -339,24 +335,24 @@ router.post('/', (req, res, next) => {
                                             })
                                             .catch( err => {
                                                 console.log("Error in promiseArrayWidgetCheckpoints.all for ID: " + originalDashboardID, err)
-        
+
                                                 return res.json(createErrorObject(
                                                     "error",
                                                     "Error in promiseArrayWidgetCheckpoints.all for ID: " + originalDashboardID,
                                                     err
                                                 ));
-        
+
                                             })
                                         })
                                         .catch( err => {
                                             console.log("Error in promiseArrayWidgets.all for ID: " + originalDashboardID, err)
-    
+
                                             return res.json(createErrorObject(
                                                 "error",
                                                 "Error in promiseArrayWidgets.all for ID: " + originalDashboardID,
                                                 err
                                             ));
-    
+
                                         })
                                     })
                                     .catch( err => {
@@ -401,7 +397,7 @@ router.post('/', (req, res, next) => {
 
             })
 
-    
+
     // }
     // catch (error) {
     //     debugDev(moduleName + ": " + 'Error in canvasDashboardSummary.router', error.message)
