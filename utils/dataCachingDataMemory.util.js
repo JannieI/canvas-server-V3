@@ -2,8 +2,8 @@
 // serverMemoryCache
 
 var serverMemoryCache =  {
-    dashboards: null,               // Corresponds to serverVariableName in dataCachingTable, holds DATA
-    datasources: null,
+    dashboards: [],               // Corresponds to serverVariableName in dataCachingTable, holds DATA
+    datasources: [],
 
     get: function(varName) {
         if (varName == 'dashboards') {
@@ -14,30 +14,20 @@ var serverMemoryCache =  {
         };
         return [];
     },
-    set: function(varName, input) {
+    set: function(varName, inputArray) {
         if (varName == 'dashboards') {
-            serverMemoryCache.dashboards = input;
+            serverMemoryCache.dashboards = inputArray;
         };
         if (varName == 'datasources') {
-            serverMemoryCache.datasources = input;
+            serverMemoryCache.datasources = inputArray;
         };
     },
     add: function(varName, input) {
         if (varName == 'dashboards') {
-            if (serverMemoryCache.dashboards == null) {
-                serverMemoryCache.dashboards = [];
-                serverMemoryCache.dashboards.push(input)
-            } else {
-                serverMemoryCache.dashboards = serverMemoryCache.dashboards.concat(input);
-            };
+            serverMemoryCache.dashboards = serverMemoryCache.dashboards.concat(input);
         };
         if (varName == 'datasources') {
-            if (serverMemoryCache.datasources == null) {
-                serverMemoryCache.datasources = [];
-                serverMemoryCache.datasources.push(input)
-            } else {
-                serverMemoryCache.datasources = serverMemoryCache.datasources.concat(input);
-            };
+            serverMemoryCache.datasources = serverMemoryCache.datasources.concat(input);
         };
     },
     remove: function(varName, id) {
