@@ -62,7 +62,18 @@ var serverMemoryCache = {
         if (varName == 'datasources') {
             serverMemoryCache.datasources = serverMemoryCache.datasources.concat(input);
         };
+    },
+    remove: function(varName, id) {
+        console.log('xx preRemove len', serverMemoryCache.dashboards.length)
+        if (varName == 'dashboards') {
+            serverMemoryCache.dashboards = serverMemoryCache.dashboards.filter(d => d.id != id);
+            console.log('xx postRemove len', serverMemoryCache.dashboards.length)
+        };
+        if (varName == 'datasources') {
+            serverMemoryCache.datasources = serverMemoryCache.datasources.concat(input);
+        };
     }
+
 };
 
 // Validate route
