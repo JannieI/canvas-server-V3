@@ -356,14 +356,25 @@ router.post('/', (req, res, next) => {
                                                     serverCacheableMemory = serverDataCachingTable.serverCacheableMemory;
 
                                                     if (serverCacheableMemory) {
-                                                        serverMemoryCache.add(serverVariableName, returnDraftDashboardTabs);
+                                                        serverMemoryCache.add(serverVariableName, returnWidgets);
                                                         debugDev(moduleName + ": " + 'Added ' + serverVariableName 
                                                             + ' to cache, length: ', serverMemoryCache.get(serverVariableName).length)
                                                     };
                                                 };
 
+                                                serverVariableName = 'widgetCheckpoints';
+                                                dataCachingTableArrayIndex = dataCachingTableArray.findIndex(dct => dct.key == serverVariableName);
 
+                                                if (dataCachingTableArrayIndex >= 0) {
+                                                    serverDataCachingTable = dataCachingTableArray[dataCachingTableArrayIndex];
+                                                    serverCacheableMemory = serverDataCachingTable.serverCacheableMemory;
 
+                                                    if (serverCacheableMemory) {
+                                                        serverMemoryCache.add(serverVariableName, returnWidgetCheckpoints);
+                                                        debugDev(moduleName + ": " + 'Added ' + serverVariableName 
+                                                            + ' to cache, length: ', serverMemoryCache.get(serverVariableName).length)
+                                                    };
+                                                };
 
                                                 console.log('xx Just before return')
                                                 // Return the data with metadata
