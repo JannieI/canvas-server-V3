@@ -62,23 +62,6 @@ function addDraftDashboard(originalDashboard) {
 
         dashboardAdd.save()
             .then(addedDraftDashboard => {
-
-                serverVariableName = 'dashboards';
-                let dataCachingTableArrayIndex = dataCachingTableArray.findIndex(dct => dct.key == serverVariableName);
-
-                if (dataCachingTableArrayIndex >= 0) {
-                    serverDataCachingTable = dataCachingTableArray[dataCachingTableArrayIndex];
-                    serverCacheableMemory = serverDataCachingTable.serverCacheableMemory;
-
-                    if (serverCacheableMemory) {
-                        serverMemoryCache.add(serverVariableName, addedDraftDashboard);
-                        debugDev(moduleName + ": " + 'Updated ' + serverVariableName 
-                            + ' to cache, length: ', serverMemoryCache.get(serverVariableName).length)
-                    };
-                };
-
-
-
                 resolve(addedDraftDashboard)
             })
             .catch(err => {
@@ -296,7 +279,32 @@ router.post('/', (req, res, next) => {
                                 new: true,                       // return updated doc
                                 runValidators: true              // validate before update
                             })
-                            .then( (doc) => console.log('Original Dashboard SAVED', doc.id))
+                            .then( (updatedOriginalDashboard) => { 
+                                console.log('Original Dashboard SAVED', updatedOriginalDashboard.id)
+
+                                serverVariableName = 'dashboards';
+                                let dataCachingTableArrayIndex = dataCachingTableArray.findIndex(dct => dct.key == serverVariableName);
+                
+                                if (dataCachingTableArrayIndex >= 0) {
+                                    serverDataCachingTable = dataCachingTableArray[dataCachingTableArrayIndex];
+                                    serverCacheableMemory = serverDataCachingTable.serverCacheableMemory;
+                
+                                    if (serverCacheableMemory) {
+                                        serverMemoryCache.update(serverVariableName, originalDashboardID, updatedOriginalDashboard);
+                                        debugDev(moduleName + ": " + 'Updated ' + serverVariableName 
+                                            + ' for ID: ', originalDashboardID);
+                                    };
+                                };
+                            })
+                            .catch( err => {
+                                console.error("Error updating Original Dashbord for ID: " + originalDashboardID, err)
+                                return res.json(createErrorObject(
+                                    "error",
+                                    "Error updating Original Dashbord for ID: " + originalDashboardID,
+                                    err
+                                ));
+
+                            })
 
                         // Loop on Original Dashboard Tabs
                         dashboardTabModel.find({"dashboardID": { $eq: originalDashboardID } })
