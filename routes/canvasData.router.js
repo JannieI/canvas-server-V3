@@ -32,53 +32,6 @@ var isFresh;                        // True if the cache for the current resourc
 var serverMemoryCacheModule = require('../utils/dataCachingDataMemory.util');
 var serverMemoryCache = serverMemoryCacheModule.serverMemoryCache;  // Local Server Cache Data
 
-// TODO - delete when ready
-// Variable to store the cached DATA.  Startup values are null.
-// TODO - expand to ALL resources, or do differently ...
-// var serverMemoryCache = {
-//     dashboards: null,               // Corresponds to serverVariableName in dataCachingTable, holds DATA
-//     datasources: null,
-
-//     get: function(varName) {
-//         if (varName == 'dashboards') {
-//             return serverMemoryCache.dashboards;
-//         };
-//         if (varName == 'datasources') {
-//             return serverMemoryCache.datasources;
-//         };
-//         return [];
-//     },
-//     set: function(varName, input) {
-//         if (varName == 'dashboards') {
-//             serverMemoryCache.dashboards = input;
-//         };
-//         if (varName == 'datasources') {
-//             serverMemoryCache.datasources = input;
-//         };
-//     },
-//     add: function(varName, input) {
-//         console.log('xx preAdd len', serverMemoryCache.dashboards.length)
-//         if (varName == 'dashboards') {
-//             serverMemoryCache.dashboards = serverMemoryCache.dashboards.concat(input);
-//             console.log('xx postAdd len', serverMemoryCache.dashboards.length)
-//         };
-//         if (varName == 'datasources') {
-//             serverMemoryCache.datasources = serverMemoryCache.datasources.concat(input);
-//         };
-//     },
-//     remove: function(varName, id) {
-//         console.log('xx preRemove len', serverMemoryCache.dashboards.length)
-//         if (varName == 'dashboards') {
-//             serverMemoryCache.dashboards = serverMemoryCache.dashboards.filter(d => d.id != id);
-//             console.log('xx postRemove len', serverMemoryCache.dashboards.length)
-//         };
-//         if (varName == 'datasources') {
-//             serverMemoryCache.datasources = serverMemoryCache.datasources.concat(input);
-//         };
-//     }
-
-// };
-
 // Validate route
 function validateRoute(route) {
 
@@ -129,7 +82,6 @@ function dateAdd(date, interval, units) {
 function initialLoadOfCachingTable () {
     debugDev(moduleName + ": " + 'Initialise dataCachingTableArray ...')
     dataCachingTableArray = dataCachingTableVariable.get();
-    console.log('xx AFTER')
     
     // Safeguard
     if (dataCachingTableArray == null) {
@@ -210,7 +162,6 @@ router.get('/:resource', (req, res, next) => {
         initialLoadOfCachingTable();
     };
 
-    console.log('xx dataCachingTableArray', dataCachingTableArray)
     // Single instance (row) in cachingTable for current resource
     let serverDataCachingTable = null;
 
@@ -241,8 +192,6 @@ router.get('/:resource', (req, res, next) => {
                 } else {
                     isFresh = false;
                 };
-
-                console.log('xx fresh info', {dateNow},{timeNow},{dateCaching},{timeCaching},{resource},serverDataCachingTable.serverExpiryDateTime)
 
                 // If cache is fresh, and DATA already loaded in cache
                 if (isFresh  &&  serverMemoryCache.get(serverVariableName) != null) {
