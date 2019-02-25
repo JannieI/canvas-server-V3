@@ -268,8 +268,7 @@ router.get('/:resource', (req, res, next) => {
                             'Loaded',
                             serverMemoryCache.get(serverVariableName).length,
                             'records into cache for',
-                            serverVariableName, docs.length, serverMemoryCache.get(serverVariableName)
-                            , serverMemoryCache
+                            serverVariableName
                         );
 
                         // TODO - fix hardcode
