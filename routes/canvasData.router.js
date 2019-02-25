@@ -210,6 +210,7 @@ router.get('/:resource', (req, res, next) => {
         initialLoadOfCachingTable();
     };
 
+    console.log('xx dataCachingTableArray', dataCachingTableArray)
     // Single instance (row) in cachingTable for current resource
     let serverDataCachingTable = null;
 
@@ -231,15 +232,17 @@ router.get('/:resource', (req, res, next) => {
             if (serverCacheableMemory  &&  serverVariableName != null) {
 
                 // Check if fresh (not expired).  The first time it will be expired by design.
-                let dn = new Date();
-                let tn = dn.getTime()
-                let dl = new Date(serverDataCachingTable.serverExpiryDateTime);
-                let tl = dl.getTime();
-                if (tl > tn) {
+                let dateNow = new Date();
+                let timeNow = dateNow.getTime()
+                let dateCaching = new Date(serverDataCachingTable.serverExpiryDateTime);
+                let timeCaching = dateCaching.getTime();
+                if (timeCaching > timeNow) {
                     isFresh = true;
                 } else {
                     isFresh = false;
                 };
+
+                console.log('xx fresh info', {dateNow},{timeNow},{dateCaching},{timeCaching},{resource},serverDataCachingTable.serverExpiryDateTime)
 
                 // If cache is fresh, and DATA already loaded in cache
                 if (isFresh  &&  serverMemoryCache.get(serverVariableName) != null) {
@@ -316,7 +319,8 @@ router.get('/:resource', (req, res, next) => {
                             'Loaded',
                             serverMemoryCache.get(serverVariableName).length,
                             'records into cache for',
-                            serverVariableName
+                            serverVariableName, docs.length, serverMemoryCache.get(serverVariableName)
+                            , serverMemoryCache
                         );
 
                         // TODO - fix hardcode

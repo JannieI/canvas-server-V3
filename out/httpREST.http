@@ -284,3 +284,5 @@ POST {{host}}/canvasDashboardCopy
 ###
 GET {{host}}/canvasdata/dashboards
 ###
+
+GET http://localhost:8000/canvasdata/canvasGroups
