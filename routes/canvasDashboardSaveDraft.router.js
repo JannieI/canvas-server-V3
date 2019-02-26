@@ -34,11 +34,12 @@ router.put('/', (req, res, next) => {
     };
 
     // Get and validate parameters
+    let deleteSnapshots = false;
     const draftDashboardID = req.query.draftDashboardID;
     const originalDashboardID = req.query.originalDashboardID;
     const draftDashboardQuery = { "dashboardID": draftDashboardID };
     const originalDashboardQuery = { "dashboardID": originalDashboardID };
-    const deleteSnapshots = req.query.deleteSnapshots;
+    deleteSnapshots = req.query.deleteSnapshots;
 
     if (draftDashboardID == null  || isNaN(draftDashboardID)) {
         return res.json(createErrorObject(
@@ -54,7 +55,7 @@ router.put('/', (req, res, next) => {
             null
         ));
     };
-    if (deleteSnapshots == null  ||  deleteSnapshots != true) {
+    if (deleteSnapshots != true) {
         deleteSnapshots = false;
     };
 
@@ -88,19 +89,39 @@ router.put('/', (req, res, next) => {
         // Update IDs on the Original Dashboard
         dashboardModel.findOne( { "id": draftDashboardID } )
             .then((draftDashboard)=>{
+                if (draftDashboard == null) {
+                    console.log('Error discarding Draft Dashboard as Draft id does not exit: ', draftDashboardID, err);
+                    return res.json(createErrorObject(
+                        "error",
+                        "Error discarding Draft Dashboard as Draft id does not exit: " + draftDashboardID,
+                        err
+                    ));
+                };
+                console.log('2 dashboardModel')
 
                 // Replace the content of the Original with that of the Draft
                 dashboardModel.findOne( { "id": originalDashboardID } )
                     .then((originalDashboard)=>{
+                        if (originalDashboard == null) {
+                            console.log('Error discarding Draft Dashboard as Original id does not exit: ', draftDashboardID, err);
+                            return res.json(createErrorObject(
+                                "error",
+                                "Error discarding Draft Dashboard as Original id does not exit: " + draftDashboardID,
+                                err
+                            ));
+                        };
+
                         originalDashboard.originalID = null;
                         originalDashboard.draftID = null;
                         originalDashboard.state = "Complete";
+                        console.log('3 dashboardModel')
                     
                         dashboardModel.findOneAndUpdate(
                             { "id": originalDashboardID },
                             originalDashboard
                         ).exec()
                     })
+                    console.log('4 draftDashboardQuery', draftDashboardQuery)
 
                     // Move Linked Entities to Original: Tabs
                     .then(()=>{
@@ -162,6 +183,7 @@ router.put('/', (req, res, next) => {
                             ).exec()
                         };
                     })
+                    console.log('15')
 
                     // Delete Related Entities: Dashboard Schedules
                     .then(()=>{
@@ -206,6 +228,7 @@ router.put('/', (req, res, next) => {
                             { "multi": true }
                         ).exec();
                     })
+                    console.log('21')
 
                     // Delete Related Entities: Dashboard- and WidgetLayout
                     .then(()=>{
@@ -270,6 +293,7 @@ router.put('/', (req, res, next) => {
                             { $set: { templateDashboardID: originalDashboardID } }
                         ).exec();
                     })
+                    console.log('31')
 
                     // Delete General Entities: Recent
                     .then(()=>{
@@ -284,6 +308,7 @@ router.put('/', (req, res, next) => {
                         ).exec()
 
                     })
+                    console.log('101')
 
                     // Delete General Entities: StatusBar
                     .then(()=>{

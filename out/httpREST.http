@@ -285,4 +285,6 @@ POST {{host}}/canvasDashboardCopy
 GET {{host}}/canvasdata/dashboards
 ###
 
-GET http://localhost:8000/canvasdata/canvasGroups
+PUT http://localhost:8000/canvasDashboardSaveDraft
+?draftDashboardID=205
+&originalDashboardID=116
