@@ -469,6 +469,10 @@ router.delete('/:resource', (req, res, next) => {
         const canvasSchema = '../models/' + resource + '.model';
         const canvasModel = require(canvasSchema);
 
+        // Load global variable for cachingTable STRUCTURE into an Array ONCE
+        if (dataCachingTableArray == null) {
+            initialLoadOfCachingTable();
+        };
         // Reset the expiryDateTime, so that the next read is from the DB (and not cache)
         let dataCachingTableIndex = dataCachingTableArray.findIndex(dc => dc.key == resource)
         if (dataCachingTableIndex >= 0) {
