@@ -375,23 +375,18 @@ router.post('/:resource', (req, res, next) => {
     };
 
     // Try, in case model file does not exist
-    // try {
+    try {
         // Get the model dynamically (take note of file spelling = resource)
-        console.log('0')
         const canvasSchema = '../models/' + resource + '.model';
-        console.log('1', canvasSchema)
         const canvasModel = require(canvasSchema);
-        console.log('2', canvasSchema)
 
         // Load global variable for cachingTable STRUCTURE into an Array ONCE
         if (dataCachingTableArray == null) {
             initialLoadOfCachingTable();
         };
-        console.log('2.2 dataCachingTableArray')
 
         // Reset the expiryDateTime, so that the next read is from the DB (and not cache)
         let dataCachingTableIndex = dataCachingTableArray.findIndex(dc => dc.key == resource);
-        console.log('2.5')
 
         if (dataCachingTableIndex >= 0) {
             dataCachingTableArray[dataCachingTableIndex].serverExpiryDateTime = new Date();
@@ -399,7 +394,6 @@ router.post('/:resource', (req, res, next) => {
         } else {
             debugDev(moduleName + ": " + 'Resource ' + resource + ' record NOT IN CACHING TABLE');
         };
-        console.log('3')
 
         // Create object and save to DB
         let canvasAdd = new canvasModel(body);
@@ -432,15 +426,15 @@ router.post('/:resource', (req, res, next) => {
                     )
                 );
         });
-    // }
-    // catch (error) {
-    //     return res.status(400).json({
-    //         "statusCode": "error",
-    //         "message" : "No model file for resource: " + resource,
-    //         "data": null,
-    //         "error": error
-    //     });
-    // };
+    }
+    catch (error) {
+        return res.status(400).json({
+            "statusCode": "error",
+            "message" : "No model file for resource: " + resource,
+            "data": null,
+            "error": error
+        });
+    };
 
 });
 
