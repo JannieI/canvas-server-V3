@@ -97,7 +97,6 @@ router.put('/', (req, res, next) => {
                         err
                     ));
                 };
-                console.log('2 dashboardModel')
 
                 // Replace the content of the Original with that of the Draft
                 dashboardModel.findOne( { "id": originalDashboardID } )
@@ -114,14 +113,12 @@ router.put('/', (req, res, next) => {
                         originalDashboard.originalID = null;
                         originalDashboard.draftID = null;
                         originalDashboard.state = "Complete";
-                        console.log('3 dashboardModel')
                     
                         dashboardModel.findOneAndUpdate(
                             { "id": originalDashboardID },
                             originalDashboard
                         ).exec()
                     })
-                    console.log('4 draftDashboardQuery', draftDashboardQuery)
 
                     // Move Linked Entities to Original: Tabs
                     .then(()=>{
@@ -177,13 +174,11 @@ router.put('/', (req, res, next) => {
                     // Delete Related Entities: Dashboard Snapshots (optional)
                     .then(()=>{
                         if (deleteSnapshots) {
-                            console.log('xxxx deleteSnapshotsdeleteSnapshots deleteSnapshots')
                             dashboardSnapshotModel.deleteMany(
                                 draftDashboardQuery
                             ).exec()
                         };
                     })
-                    console.log('15')
 
                     // Delete Related Entities: Dashboard Schedules
                     .then(()=>{
@@ -228,7 +223,6 @@ router.put('/', (req, res, next) => {
                             { "multi": true }
                         ).exec();
                     })
-                    console.log('21')
 
                     // Delete Related Entities: Dashboard- and WidgetLayout
                     .then(()=>{
@@ -293,7 +287,6 @@ router.put('/', (req, res, next) => {
                             { $set: { templateDashboardID: originalDashboardID } }
                         ).exec();
                     })
-                    console.log('31')
 
                     // Delete General Entities: Recent
                     .then(()=>{
@@ -308,7 +301,6 @@ router.put('/', (req, res, next) => {
                         ).exec()
 
                     })
-                    console.log('101')
 
                     // Delete General Entities: StatusBar
                     .then(()=>{
