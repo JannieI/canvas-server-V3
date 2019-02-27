@@ -7,16 +7,22 @@ const counterModel = require('./counters.model')
 
 // Schema
 const CanvasAuditTrailSchema = new Schema({
-    id: Number,                             // Unique ID
-    name: String,                           // Name
-    editedBy: String,                       // Last user who edited this task
-    editedOn: Date,                         // Date this task was last edited
-    createdBy: String,                      // UserID who created this task, can be System
-    createdOn: {                            // Date task was created
-        type: Date,
-        // `Date.now()` returns the current unix timestamp as a number
-        default: Date.now
-    }
+    id: Number,                             // Unique id per action
+    dashboardID: Number,                    // Where action took place
+    dashboardTabID: Number,                 // Where action took place
+    widgetID: Number,                       // If linked to a Widget
+
+    objectType: String,                     // Dashboard, Widget
+    actionType: String,                     // Add, Delete, Change, Open
+    action: String,                         // Sub action type, ie Move Widget
+    description: String,                    // Optional description, ie calling routine, etc
+
+    keyChanged: String,                     // Field / key that was changed
+    oldValue: any,                          // Value prior to change
+    newValue: any,                          // Value after change
+
+    userID: String,                         // User who made change
+    changedOn: Date                         // Date Time of log, when changes was made  
 });
 
 // This pre-hook is called before the information is saved into the database
