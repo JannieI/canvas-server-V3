@@ -573,6 +573,11 @@ router.put('/:resource', (req, res, next) => {
         const canvasSchema = '../models/' + resource + '.model';
         const canvasModel = require(canvasSchema);
 
+        // Load global variable for cachingTable STRUCTURE into an Array ONCE
+        if (dataCachingTableArray == null) {
+            initialLoadOfCachingTable();
+        };
+        
         // Get Caching Table
         dataCachingTableArray = dataCachingTableVariable.get();
 
