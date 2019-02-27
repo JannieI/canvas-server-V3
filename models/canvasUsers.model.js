@@ -67,6 +67,7 @@ const CanvasUserSchema = new Schema({
     cleanCacheOnLogout: Boolean,                // True to clean cache at logout
     preferencePaletteHorisontal: Boolean,                   // T/F - Palette Horisontal (else Vertial)
     preferencePlaySound: Boolean,                           // T/F - play a sound when showing a message on the StatusBar
+    preferenceConsoleLog: Boolean,                          // T/F - switch on/off console.log, used by Developers & Deguggers
     preferenceAutoSync: Boolean,                            // T/F - can auto sync
     preferenceShowOpenStartupMessage: Boolean,              // T/F - show open startup msg
     preferenceShowOpenDataCombinationMessage: Boolean,      // T/F - show msg on open combination form
