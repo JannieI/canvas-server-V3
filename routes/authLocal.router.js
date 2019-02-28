@@ -97,6 +97,7 @@ router.post('/signup', (req, res, next) => {
                     return res.json(
                         createReturnObject(
                             "success",
+                            "authLocalSignup",
                             "Signup successful",
                             user,
                             null,
@@ -186,6 +187,7 @@ router.post('/login', (req, res, next) => {
                     return res.json(
                         createReturnObject(
                             "success",
+                            "authLocalLogin",
                             "User Logged into Server",
                             [],
                             null,
@@ -219,6 +221,7 @@ router.get('/profile', (req, res, next) => {
     res.json(
         createReturnObject(
             "success",
+            "authLocalProfile",
             "You made it to the secure route",
             req.user,
             null,
