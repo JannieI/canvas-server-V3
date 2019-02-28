@@ -432,6 +432,7 @@ const WidgetSchema = new Schema({
     shapeIsItalic: Boolean,                 // True if text is italic
     shapeLineHeight: String,                // Line Height: normal, 1.6, 80%
     shapeLineLength: String,                // Length of the line in px
+    shapePath: String,                      // Concatenated SVG Path - to speed up rendering
     shapeOpacity: Number,                   // Opacity, between 0 and 1, ie of rectangle
     shapeRotation: Number,                  // Nr of degrees to rotate a Shape
     shapeSize: Number,                      // Size of shape, used in scale(). For now: 0-9
