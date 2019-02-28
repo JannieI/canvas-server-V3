@@ -247,6 +247,7 @@ module.exports = function getClientData(datasource, queryObject) {
                     // Return results with metadata according to the CanvasHttpResponse interface
                     resolve(createReturnObject(
                         "success",
+                        "getClientData",
                         "Retrieved data for id: " + datasourceID,
                         results,
                         host,

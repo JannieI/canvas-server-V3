@@ -1215,3 +1215,35 @@ Thu, 28 Feb 2019 08:05:32 GMT app:ws { data: 'First socket message' }
 Thu, 28 Feb 2019 08:05:40 GMT app:ws Response to Sender
 Thu, 28 Feb 2019 08:05:41 GMT app:ws  Response to others (excluding Sender)
 Thu, 28 Feb 2019 08:05:42 GMT app:ws Broadcast to all users
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Thu, 28 Feb 2019 08:05:52 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Thu, 28 Feb 2019 08:05:52 GMT app:dev mongoLocalDatabase: Database connection successful
+Thu, 28 Feb 2019 08:05:52 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+Thu, 28 Feb 2019 08:05:53 GMT app:ws { data: 'First socket message' }
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Thu, 28 Feb 2019 08:06:01 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Thu, 28 Feb 2019 08:06:01 GMT app:dev mongoLocalDatabase: Database connection successful
+Thu, 28 Feb 2019 08:06:01 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+Thu, 28 Feb 2019 08:06:01 GMT app:ws { data: 'First socket message' }
