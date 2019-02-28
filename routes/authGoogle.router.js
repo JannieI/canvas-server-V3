@@ -62,6 +62,7 @@ authGoogleRouter.get('/loginSuccess', (req, res, next) => {
     res.json(
         createReturnObject(
             "success",
+            "authGoogleLogin",
             "Login worked",
             [],
             null,
@@ -94,6 +95,7 @@ authGoogleRouter.get('/logout', (req, res, next) => {
         res.json(
             createReturnObject(
                 "success",
+                "authGoogleLogout",
                 "Logged out",
                 [],
                 null,
