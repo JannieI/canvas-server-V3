@@ -18,8 +18,8 @@ const CanvasAuditTrailSchema = new Schema({
     description: String,                    // Optional description, ie calling routine, etc
 
     keyChanged: String,                     // Field / key that was changed
-    oldValue: Mixed,                        // Value prior to change
-    newValue: Mixed,                        // Value after change
+    oldValue: String,                       // Value prior to change
+    newValue: String,                       // Value after change
 
     userID: String,                         // User who made change
     changedOn: Date                         // Date Time of log, when changes was made  

@@ -362,7 +362,7 @@ router.post('/:resource', (req, res, next) => {
     };
     const body = req.body;
     debugDev(moduleName + ": " + 'Router: POST for resource:', resource)
-    debugDev(moduleName + ": " + '');
+    debugDev(moduleName + ": " + '-------------------------');
 
     if (body == null) {
         return res.json(
@@ -375,7 +375,7 @@ router.post('/:resource', (req, res, next) => {
     };
 
     // Try, in case model file does not exist
-    try {
+    // try {
         // Get the model dynamically (take note of file spelling = resource)
         const canvasSchema = '../models/' + resource + '.model';
         const canvasModel = require(canvasSchema);
@@ -426,15 +426,15 @@ router.post('/:resource', (req, res, next) => {
                     )
                 );
         });
-    }
-    catch (error) {
-        return res.status(400).json({
-            "statusCode": "error",
-            "message" : "No model file for resource: " + resource,
-            "data": null,
-            "error": error
-        });
-    };
+    // }
+    // catch (error) {
+    //     return res.status(400).json({
+    //         "statusCode": "error",
+    //         "message" : "No model file for resource: " + resource,
+    //         "data": null,
+    //         "error": error
+    //     });
+    // };
 
 });
 
@@ -577,7 +577,7 @@ router.put('/:resource', (req, res, next) => {
         if (dataCachingTableArray == null) {
             initialLoadOfCachingTable();
         };
-        
+
         // Get Caching Table
         dataCachingTableArray = dataCachingTableVariable.get();
 
