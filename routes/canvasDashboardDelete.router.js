@@ -199,6 +199,7 @@ router.delete('/', (req, res, next) => {
                 return res.json(
                 createReturnObject(
                     "success",
+                    "dashboardDelete",
                     "Retrieved Summary for Dashboard ID: " ,
                     "Okay",
                     null,
