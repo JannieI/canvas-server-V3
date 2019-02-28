@@ -1247,3 +1247,73 @@ Canvas Server started ...
 ----------------------------------------------------------------
 
 Thu, 28 Feb 2019 08:06:01 GMT app:ws { data: 'First socket message' }
+Thu, 28 Feb 2019 08:06:09 GMT app:ws Response to Sender
+Thu, 28 Feb 2019 08:06:10 GMT app:ws  Response to others (excluding Sender)
+Thu, 28 Feb 2019 08:06:11 GMT app:ws Broadcast to all users
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Thu, 28 Feb 2019 08:06:15 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Thu, 28 Feb 2019 08:06:15 GMT app:dev mongoLocalDatabase: Database connection successful
+Thu, 28 Feb 2019 08:06:15 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+Thu, 28 Feb 2019 08:06:15 GMT app:ws { data: 'First socket message' }
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Thu, 28 Feb 2019 08:06:18 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Thu, 28 Feb 2019 08:06:18 GMT app:dev mongoLocalDatabase: Database connection successful
+Thu, 28 Feb 2019 08:06:18 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+Thu, 28 Feb 2019 08:06:18 GMT app:ws { data: 'First socket message' }
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Thu, 28 Feb 2019 08:06:23 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Thu, 28 Feb 2019 08:06:23 GMT app:dev mongoLocalDatabase: Database connection successful
+Thu, 28 Feb 2019 08:06:23 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+Thu, 28 Feb 2019 08:06:26 GMT app:ws { data: 'First socket message' }
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
+the options [useCreateIndex] is not supported
+Thu, 28 Feb 2019 08:06:27 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Thu, 28 Feb 2019 08:06:27 GMT app:dev mongoLocalDatabase: Database connection successful
+Thu, 28 Feb 2019 08:06:27 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+
+Canvas Server started ...
+       Listening on port 8000
+       With data caching on server
+       morgan (HTTP method logging) is on
+       DEBUG var is app.*
+       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
+----------------------------------------------------------------
+
+Thu, 28 Feb 2019 08:06:29 GMT app:ws { data: 'First socket message' }
+Thu, 28 Feb 2019 08:06:37 GMT app:ws Response to Sender
+Thu, 28 Feb 2019 08:06:38 GMT app:ws  Response to others (excluding Sender)
+Thu, 28 Feb 2019 08:06:39 GMT app:ws Broadcast to all users

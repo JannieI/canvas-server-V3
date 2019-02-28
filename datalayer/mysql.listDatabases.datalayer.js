@@ -101,6 +101,7 @@ module.exports = function listDatabases(queryObject) {
                     // Return results with metadata according to the CanvasHttpResponse interface
                     return resolve(createReturnObject(
                         "success",
+                        "mySQLlistDatabase",
                         "Retrieved Databases for Server : " + serverName,
                         results,
                         serverName,
