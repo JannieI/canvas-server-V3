@@ -9,6 +9,7 @@ var serverMemoryCache =  {
     dashboardTags: [],
     widgetGraphs: [],
     transformations: [],
+    canvasBackgroundcolors: [],
     get: function(varName) {
         if (varName == 'dashboards') {
             return serverMemoryCache.dashboards;
@@ -27,6 +28,9 @@ var serverMemoryCache =  {
         };
         if (varName == 'transformations') {
             return serverMemoryCache.transformations;
+        };
+        if (varName == 'canvasBackgroundcolors') {
+            return serverMemoryCache.canvasBackgroundcolors;
         };
         return [];
     },
@@ -50,6 +54,9 @@ var serverMemoryCache =  {
         if (varName == 'transformations') {
             serverMemoryCache.transformations = inputArray;
         };
+        if (varName == 'canvasBackgroundcolors') {
+            serverMemoryCache.canvasBackgroundcolors = inputArray;
+        };
     },
 
     add: function(varName, input) {
@@ -71,6 +78,9 @@ var serverMemoryCache =  {
         if (varName == 'transformations') {
             serverMemoryCache.transformations = serverMemoryCache.transformations.concat(input);
         };
+        if (varName == 'canvasBackgroundcolors') {
+            serverMemoryCache.canvasBackgroundcolors = serverMemoryCache.canvasBackgroundcolors.concat(input);
+        };
     },
 
     remove: function(varName, id) {
@@ -91,6 +101,9 @@ var serverMemoryCache =  {
         };
         if (varName == 'transformations') {
             serverMemoryCache.transformations = serverMemoryCache.transformations.filter(ds => ds.id != id);
+        };
+        if (varName == 'canvasBackgroundcolors') {
+            serverMemoryCache.canvasBackgroundcolors = serverMemoryCache.canvasBackgroundcolors.filter(ds => ds.id != id);
         };
     },
 
@@ -129,6 +142,12 @@ var serverMemoryCache =  {
             let serverMemoryCacheIndex = serverMemoryCache.transformations.findIndex(d => d.id == id);
             if (serverMemoryCacheIndex >= 0) {
                 serverMemoryCache.transformations[serverMemoryCacheIndex] = inputObject;
+            };
+        };
+        if (varName == 'canvasBackgroundcolors') {
+            let serverMemoryCacheIndex = serverMemoryCache.canvasBackgroundcolors.findIndex(d => d.id == id);
+            if (serverMemoryCacheIndex >= 0) {
+                serverMemoryCache.canvasBackgroundcolors[serverMemoryCacheIndex] = inputObject;
             };
         };
     }
