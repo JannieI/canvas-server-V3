@@ -122,6 +122,7 @@ router.get('/', (req, res, next) => {
                         return res.json(
                             createReturnObject(
                                 "success",
+                                "canvasCurrentDashboard",
                                 "Retrieved data for Current Dashboard ID: " + req.query.id,
                                 { 
                                     dashboards: dashboards,
