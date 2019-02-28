@@ -1,6 +1,7 @@
 // This routine takes input, and creates a Return object in CanvasHttpResponse format.
 module.exports = function createReturnObject(
     inputStatusCode, 
+    resourceOrRoute,
     inputReturnMessage, 
     inputDataObject,
     inputServerName,
@@ -62,6 +63,7 @@ module.exports = function createReturnObject(
     // Return an object in CanvasHttpResponse format
     return {
         "statusCode": statusCode,
+        "resourceOrRoute": resourceOrRoute,
         "message" : returnMessage,
         "data": dataObject,
         "metaData": {
