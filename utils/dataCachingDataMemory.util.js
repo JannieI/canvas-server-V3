@@ -10,7 +10,7 @@ var serverMemoryCache =  {
     widgetGraphs: [],
     transformations: [],
     canvasBackgroundcolors: [],
-    dashboardTags: [],
+    dashboardPermissions: [],
     get: function(varName) {
         if (varName == 'dashboards') {
             return serverMemoryCache.dashboards;
@@ -33,8 +33,8 @@ var serverMemoryCache =  {
         if (varName == 'canvasBackgroundcolors') {
             return serverMemoryCache.canvasBackgroundcolors;
         };
-        if (varName == 'dashboardTags') {
-            return serverMemoryCache.dashboardTags;
+        if (varName == 'dashboardPermissions') {
+            return serverMemoryCache.dashboardPermissions;
         };
         return [];
     },
@@ -61,8 +61,8 @@ var serverMemoryCache =  {
         if (varName == 'canvasBackgroundcolors') {
             serverMemoryCache.canvasBackgroundcolors = inputArray;
         };
-        if (varName == 'dashboardTags') {
-            serverMemoryCache.dashboardTags = inputArray;
+        if (varName == 'dashboardPermissions') {
+            serverMemoryCache.dashboardPermissions = inputArray;
         };
     },
 
@@ -88,8 +88,8 @@ var serverMemoryCache =  {
         if (varName == 'canvasBackgroundcolors') {
             serverMemoryCache.canvasBackgroundcolors = serverMemoryCache.canvasBackgroundcolors.concat(input);
         };
-        if (varName == 'dashboardTags') {
-            serverMemoryCache.dashboardTags = serverMemoryCache.dashboardTags.concat(input);
+        if (varName == 'dashboardPermissions') {
+            serverMemoryCache.dashboardPermissions = serverMemoryCache.dashboardPermissions.concat(input);
         };
     },
 
@@ -115,8 +115,8 @@ var serverMemoryCache =  {
         if (varName == 'canvasBackgroundcolors') {
             serverMemoryCache.canvasBackgroundcolors = serverMemoryCache.canvasBackgroundcolors.filter(ds => ds.id != id);
         };
-        if (varName == 'dashboardTags') {
-            serverMemoryCache.dashboardTags = serverMemoryCache.dashboardTags.filter(ds => ds.id != id);
+        if (varName == 'dashboardPermissions') {
+            serverMemoryCache.dashboardPermissions = serverMemoryCache.dashboardPermissions.filter(ds => ds.id != id);
         };
     },
 
@@ -163,10 +163,10 @@ var serverMemoryCache =  {
                 serverMemoryCache.canvasBackgroundcolors[serverMemoryCacheIndex] = inputObject;
             };
         };
-        if (varName == 'dashboardTags') {
-            let serverMemoryCacheIndex = serverMemoryCache.dashboardTags.findIndex(d => d.id == id);
+        if (varName == 'dashboardPermissions') {
+            let serverMemoryCacheIndex = serverMemoryCache.dashboardPermissions.findIndex(d => d.id == id);
             if (serverMemoryCacheIndex >= 0) {
-                serverMemoryCache.dashboardTags[serverMemoryCacheIndex] = inputObject;
+                serverMemoryCache.dashboardPermissions[serverMemoryCacheIndex] = inputObject;
             };
         };
     }

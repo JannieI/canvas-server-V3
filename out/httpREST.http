@@ -84,9 +84,11 @@ GET {{host}}/clientData/
 
 
 ###
-GET {{host}}/canvasdata/dashboardLayouts
-?filterObject={"dashboardID": 70}
-
+GET {{host}}/canvasdata/statusBarMessageLogs
+?filterObject={"userID": "JenS"}
+###
+http://localhost:8000/canvasdata/statusBarMessageLogs
+?filterObject={"userID":"JannieI"}
 ###
 // Databases
 GET {{host}}/clientData/listDatabases
