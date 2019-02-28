@@ -354,7 +354,6 @@ const WidgetSchema = new Schema({
     graphFillColor: String,                 // Fill colour of the graph area
     graphHoverColor: String,                //
     graphPanAndZoom: Boolean,               // True if selection = grid, with pan and zoom.  Only applies to single layer graphs
-    graphSpecification: Object,             // Vega specification
     graphDescription: String,               // Description of graph for users
 
     // Data
