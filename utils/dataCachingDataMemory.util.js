@@ -10,6 +10,7 @@ var serverMemoryCache =  {
     widgetGraphs: [],
     transformations: [],
     canvasBackgroundcolors: [],
+    dashboardTags: [],
     get: function(varName) {
         if (varName == 'dashboards') {
             return serverMemoryCache.dashboards;
@@ -31,6 +32,9 @@ var serverMemoryCache =  {
         };
         if (varName == 'canvasBackgroundcolors') {
             return serverMemoryCache.canvasBackgroundcolors;
+        };
+        if (varName == 'dashboardTags') {
+            return serverMemoryCache.dashboardTags;
         };
         return [];
     },
@@ -57,6 +61,9 @@ var serverMemoryCache =  {
         if (varName == 'canvasBackgroundcolors') {
             serverMemoryCache.canvasBackgroundcolors = inputArray;
         };
+        if (varName == 'dashboardTags') {
+            serverMemoryCache.dashboardTags = inputArray;
+        };
     },
 
     add: function(varName, input) {
@@ -81,6 +88,9 @@ var serverMemoryCache =  {
         if (varName == 'canvasBackgroundcolors') {
             serverMemoryCache.canvasBackgroundcolors = serverMemoryCache.canvasBackgroundcolors.concat(input);
         };
+        if (varName == 'dashboardTags') {
+            serverMemoryCache.dashboardTags = serverMemoryCache.dashboardTags.concat(input);
+        };
     },
 
     remove: function(varName, id) {
@@ -104,6 +114,9 @@ var serverMemoryCache =  {
         };
         if (varName == 'canvasBackgroundcolors') {
             serverMemoryCache.canvasBackgroundcolors = serverMemoryCache.canvasBackgroundcolors.filter(ds => ds.id != id);
+        };
+        if (varName == 'dashboardTags') {
+            serverMemoryCache.dashboardTags = serverMemoryCache.dashboardTags.filter(ds => ds.id != id);
         };
     },
 
@@ -148,6 +161,12 @@ var serverMemoryCache =  {
             let serverMemoryCacheIndex = serverMemoryCache.canvasBackgroundcolors.findIndex(d => d.id == id);
             if (serverMemoryCacheIndex >= 0) {
                 serverMemoryCache.canvasBackgroundcolors[serverMemoryCacheIndex] = inputObject;
+            };
+        };
+        if (varName == 'dashboardTags') {
+            let serverMemoryCacheIndex = serverMemoryCache.dashboardTags.findIndex(d => d.id == id);
+            if (serverMemoryCacheIndex >= 0) {
+                serverMemoryCache.dashboardTags[serverMemoryCacheIndex] = inputObject;
             };
         };
     }
