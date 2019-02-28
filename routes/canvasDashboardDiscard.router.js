@@ -288,6 +288,7 @@ router.put('/', (req, res, next) => {
                 return res.json(
                 createReturnObject(
                     "success",
+                    "dashboardDiscard",
                     "Discarded Draft Dashboard ID: " + draftDashboardID,
                     "Okay",
                     null,
