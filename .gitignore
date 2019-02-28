@@ -5,4 +5,4 @@ configuration/configPassportGoogle.js
 public/dist/
 out/access.log
 scripts/startCanvasServer.sh
-CSLogFile.txt
+./CSLogFile.txt

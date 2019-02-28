@@ -7,7 +7,8 @@ var serverMemoryCache =  {
     datasources: [],
     canvasGroups: [],
     dashboardTags: [],
-    widgetGraphs: []
+    widgetGraphs: [],
+    transformations: [],
     get: function(varName) {
         if (varName == 'dashboards') {
             return serverMemoryCache.dashboards;
@@ -23,6 +24,9 @@ var serverMemoryCache =  {
         };
         if (varName == 'widgetGraphs') {
             return serverMemoryCache.widgetGraphs;
+        };
+        if (varName == 'transformations') {
+            return serverMemoryCache.transformations;
         };
         return [];
     },
@@ -43,6 +47,9 @@ var serverMemoryCache =  {
         if (varName == 'widgetGraphs') {
             serverMemoryCache.widgetGraphs = inputArray;
         };
+        if (varName == 'transformations') {
+            serverMemoryCache.transformations = inputArray;
+        };
     },
 
     add: function(varName, input) {
@@ -61,6 +68,9 @@ var serverMemoryCache =  {
         if (varName == 'widgetGraphs') {
             serverMemoryCache.widgetGraphs = serverMemoryCache.widgetGraphs.concat(input);
         };
+        if (varName == 'transformations') {
+            serverMemoryCache.transformations = serverMemoryCache.transformations.concat(input);
+        };
     },
 
     remove: function(varName, id) {
@@ -78,6 +88,9 @@ var serverMemoryCache =  {
         };
         if (varName == 'widgetGraphs') {
             serverMemoryCache.widgetGraphs = serverMemoryCache.widgetGraphs.filter(ds => ds.id != id);
+        };
+        if (varName == 'transformations') {
+            serverMemoryCache.transformations = serverMemoryCache.transformations.filter(ds => ds.id != id);
         };
     },
 
@@ -110,6 +123,12 @@ var serverMemoryCache =  {
             let serverMemoryCacheIndex = serverMemoryCache.widgetGraphs.findIndex(d => d.id == id);
             if (serverMemoryCacheIndex >= 0) {
                 serverMemoryCache.widgetGraphs[serverMemoryCacheIndex] = inputObject;
+            };
+        };
+        if (varName == 'transformations') {
+            let serverMemoryCacheIndex = serverMemoryCache.transformations.findIndex(d => d.id == id);
+            if (serverMemoryCacheIndex >= 0) {
+                serverMemoryCache.transformations[serverMemoryCacheIndex] = inputObject;
             };
         };
     }
