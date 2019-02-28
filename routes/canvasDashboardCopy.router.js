@@ -409,6 +409,7 @@ router.post('/', (req, res, next) => {
                                                 // Return the data with metadata
                                                 return res.json( createReturnObject(
                                                     "success",
+                                                    "dashboardCopy",
                                                     "Edit: Draft Dashboard created with ID: " + originalDashboardID,
                                                     {
                                                         dashboard: addedDraftDashboard,
