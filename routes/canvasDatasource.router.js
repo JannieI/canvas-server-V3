@@ -81,6 +81,7 @@ router.get('/', (req, res, next) => {
                     return res.json(
                         createReturnObject(
                             "success",
+                            "canvasDatasource",
                             "Retrieved data for Current Dashboard ID: " + req.query.id,
                             {
                                 datasources: datasources,
@@ -256,6 +257,7 @@ router.put('/', (req, res, next) => {
                                     return res.json(
                                         createReturnObject(
                                             "success",
+                                            "canvasDatasource",
                                             "Updated ALL records for datasource, ID: " + datasourceAdded.id,
                                             [],
                                             null,
@@ -368,6 +370,7 @@ router.put('/', (req, res, next) => {
                                     return res.json(
                                         createReturnObject(
                                             "success",
+                                            "canvasDatasource",
                                             "Added ALL records for datasource, ID: " + datasourceAdded.id,
                                             {
                                                     datasource: datasourceAdded,
@@ -538,6 +541,7 @@ router.post('/', (req, res, next) => {
                                     return res.json(
                                         createReturnObject(
                                             "success",
+                                            "canvasDatasource",
                                             "Added ALL records for datasource, ID: " + datasourceAdded.id,
                                             {
                                                     datasource: datasourceAdded,
@@ -656,6 +660,7 @@ router.post('/', (req, res, next) => {
                                     return res.json(
                                         createReturnObject(
                                             "success",
+                                            "canvasDatasource",
                                             "Added ALL records for datasource, ID: " + datasourceAdded.id,
                                             {
                                                     datasource: datasourceAdded,
