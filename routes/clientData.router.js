@@ -449,6 +449,7 @@ router.get('/', (req, res, next) => {
             return res.json(
                 createReturnObject(
                     "success",
+                    "clientData",
                     "No Datasource exists for the datasourceID provided:" + datasourceID,
                     [],
                     null,
@@ -531,6 +532,7 @@ router.get('/', (req, res, next) => {
                 return res.json(
                     createReturnObject(
                         "success",
+                        "clientData",
                         "Retrieved data for id: " + datasourceID,
                         results,
                         null,
