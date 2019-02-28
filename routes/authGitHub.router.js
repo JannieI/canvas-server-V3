@@ -56,6 +56,7 @@ authGitHubRouter.get('/loginSuccess', (req, res, next) => {
     res.json(
         createReturnObject(
             "success",
+            "authGitHubLogin",
             "Login worked",
             [],
             null,
@@ -88,6 +89,7 @@ authGitHubRouter.get('/logout', (req, res, next) => {
         res.json(
             createReturnObject(
                 "success",
+                "authGitHubLogout",
                 "Logged out",
                 [],
                 null,
