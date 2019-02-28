@@ -220,6 +220,7 @@ router.get('/', (req, res, next) => {
                                                                         return res.json(
                                                                             createReturnObject(
                                                                                 "success",
+                                                                                "dashboardSummary",
                                                                                 "Retrieved Summary for Dashboard ID: " + hyperlinkedQuery,
                                                                                 { 
                                                                                     dashboardID: id,
