@@ -102,6 +102,7 @@ module.exports = function listFields(queryObject) {
                     // Return results with metadata according to the CanvasHttpResponse interface
                     return resolve(createReturnObject(
                         "success",
+                        "mySQLlistFields",
                         "Retrieved Fields for Table for database : " + databaseName + ' on ' + serverName,
                         results,
                         serverName,
