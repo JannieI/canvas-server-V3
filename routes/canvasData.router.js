@@ -220,6 +220,7 @@ router.get('/:resource', (req, res, next) => {
                     return res.json(
                         createReturnObject(
                             "success",
+                            resource, 
                             "Retrieved data for resource: " + resource,
                             data.results,
                             null,
@@ -324,6 +325,7 @@ router.get('/:resource', (req, res, next) => {
             return res.json(
                 createReturnObject(
                     "success",
+                    resource,
                     "Retrieved data for resource: " + resource,
                     returnSet.results,
                     null,
@@ -403,6 +405,7 @@ router.post('/:resource', (req, res, next) => {
                 return res.json(
                     createReturnObject(
                         "success",
+                        resource,
                         "Added record for resource: " + resource,
                         doc,
                         null,
@@ -491,6 +494,7 @@ router.delete('/:resource', (req, res, next) => {
                     return res.json(
                         createReturnObject(
                             "success",
+                            resource,
                             "Record not found for resource: " + resource + ', id: ', id,
                             doc,
                             null,
@@ -507,6 +511,7 @@ router.delete('/:resource', (req, res, next) => {
                     return res.json(
                         createReturnObject(
                             "success",
+                            resource,
                             "Deleted record for resource: " + resource + ', id: ', id,
                             doc,
                             null,
@@ -608,6 +613,7 @@ router.put('/:resource', (req, res, next) => {
                 return res.json(
                     createReturnObject(
                         "success",
+                        resource,
                         "Updated record for resource: " + resource + 'id: ', id,
                         doc,
                         null,
