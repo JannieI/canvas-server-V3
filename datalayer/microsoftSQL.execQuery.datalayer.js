@@ -221,7 +221,7 @@ module.exports = function execQueryMicrosoftSQL(queryObject) {
             // Return results with metadata according to the CanvasHttpResponse interface
             return resolve(createReturnObject(
                 "success",
-                "microsoftSQLexect",
+                "microsoftSQLexecQuery",
                 "Ran query ' + sqlStatement + ' for database : " + databaseName + ' on ' + serverName,
                 results,
                 serverName,

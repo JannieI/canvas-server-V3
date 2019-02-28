@@ -103,6 +103,7 @@ module.exports = function execQueryMySQL(queryObject) {
                     // Return results with metadata according to the CanvasHttpResponse interface
                     return resolve(createReturnObject(
                         "success",
+                        "mySQLexecQuery",
                         "Ran query ' + sqlStatement + ' for database : " + databaseName + ' on ' + serverName,
                         results,
                         serverName,
