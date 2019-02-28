@@ -47,6 +47,7 @@ router.put('/', (req, res, next) => {
             return res.json(
             createReturnObject(
                 "success",
+                "markMessageRead",
                 "Marked Messages as read for : " + userID,
                 "Okay",
                 null,
