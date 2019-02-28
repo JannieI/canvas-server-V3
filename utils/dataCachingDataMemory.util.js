@@ -7,6 +7,7 @@ var serverMemoryCache =  {
     datasources: [],
     canvasGroups: [],
     dashboardTags: [],
+    widgetGraphs: []
     get: function(varName) {
         if (varName == 'dashboards') {
             return serverMemoryCache.dashboards;
@@ -19,6 +20,9 @@ var serverMemoryCache =  {
         };
         if (varName == 'dashboardTags') {
             return serverMemoryCache.dashboardTags;
+        };
+        if (varName == 'widgetGraphs') {
+            return serverMemoryCache.widgetGraphs;
         };
         return [];
     },
@@ -36,6 +40,9 @@ var serverMemoryCache =  {
         if (varName == 'dashboardTags') {
             serverMemoryCache.dashboardTags = inputArray;
         };
+        if (varName == 'widgetGraphs') {
+            serverMemoryCache.widgetGraphs = inputArray;
+        };
     },
 
     add: function(varName, input) {
@@ -51,6 +58,9 @@ var serverMemoryCache =  {
         if (varName == 'dashboardTags') {
             serverMemoryCache.dashboardTags = serverMemoryCache.dashboardTags.concat(input);
         };
+        if (varName == 'widgetGraphs') {
+            serverMemoryCache.widgetGraphs = serverMemoryCache.widgetGraphs.concat(input);
+        };
     },
 
     remove: function(varName, id) {
@@ -65,6 +75,9 @@ var serverMemoryCache =  {
         };
         if (varName == 'dashboardTags') {
             serverMemoryCache.dashboardTags = serverMemoryCache.dashboardTags.filter(ds => ds.id != id);
+        };
+        if (varName == 'widgetGraphs') {
+            serverMemoryCache.widgetGraphs = serverMemoryCache.widgetGraphs.filter(ds => ds.id != id);
         };
     },
 
@@ -91,6 +104,12 @@ var serverMemoryCache =  {
             let serverMemoryCacheIndex = serverMemoryCache.dashboardTags.findIndex(d => d.id == id);
             if (serverMemoryCacheIndex >= 0) {
                 serverMemoryCache.dashboardTags[serverMemoryCacheIndex] = inputObject;
+            };
+        };
+        if (varName == 'widgetGraphs') {
+            let serverMemoryCacheIndex = serverMemoryCache.widgetGraphs.findIndex(d => d.id == id);
+            if (serverMemoryCacheIndex >= 0) {
+                serverMemoryCache.widgetGraphs[serverMemoryCacheIndex] = inputObject;
             };
         };
     }
