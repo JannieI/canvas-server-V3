@@ -287,4 +287,16 @@ POST {{host}}/canvasDashboardCopy
 GET {{host}}/canvasdata/dashboards
 ###
 
-GET http://localhost:8000/canvasData/dashboards
+POST {{host}}/canvasData/dashboardsRecent
+content-type: application/json 
+
+{
+  "id": null,
+  "userID": "JannieI",
+  "dashboardID": 212,
+  "dashboardTabID": 340,
+  "editMode": true,
+  "accessed": "2019-03-01T06:45:20.000Z",
+  "stateAtRunTime": "Draft",
+  "nameAtRunTime": "Test1"
+}

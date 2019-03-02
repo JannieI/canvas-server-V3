@@ -32,13 +32,25 @@ const CanvasUserSchema = new Schema({
     workNumber: String,                     // Work Telephone number
     cellNumber: String,                     // Cell number
     groups: [{type: String}],               // Groups to which user belongs
-    isSuperuser: Boolean,                   // Systems supervisor - has ALL powers
-    isStaff: Boolean,                       // Is a staff member (and not Guest)
+    isSuperuser:                    // Systems supervisor - has ALL powers
+    {
+        type: Boolean,
+        default: false
+    },
+    isStaff:                        // Is a staff member (and not Guest)
+    {
+        type: Boolean,
+        default: false
+    },
     isActive: Boolean,                      // When False, cannot work on system (ie left company)
     dateJoined: Date,                       // Dt when first registered
     lastLogin: Date,                        // Dt last logged in
     colorScheme: String,                    // Color scheme for Canvas - for later use
-    gridSize: Number,                       // Size of Grid on Dashboard in px
+    gridSize:                        // Size of Grid on Dashboard in px
+    {
+        type: Number,
+        default: 3
+    },
     environment: String,                    // Live, Test-Environment-Name
     profilePicture: String,                     
     queryRuntimeWarning: Number,            // Minutes: Warn user if a report is known to run longer
@@ -47,19 +59,70 @@ const CanvasUserSchema = new Schema({
     isFirstTimeUser: Boolean,               // True if not created a D
     isAdministrator: Boolean,               // Role can add/delete users to the group,
         // and assign roles).  Must be at least one administrator role at all times.
-    dashboardCanCreateRole: Boolean,            // Role can create Dashboards
-    dashboardCanViewRole: Boolean,              // Role can view Dashboards
-    dashboardCanEditRole: Boolean,              // Role can change / edit Dashboards
-    dashboardCanSaveRole : Boolean,             // Role can save changes to a Dashboards
-    dashboardCanDeleteRole: Boolean,            // Role can delete a Dashboard
-    dashboardCanGrantAccessRole: Boolean,       // Role can change access to a Dashboard
-    dashboardCanAddDatasourceRole: Boolean,     // Role can change add DS to a Dashboard
-    datasourceCanCreateRole: Boolean,           // Role can create Datasource
-    datasourceCanViewRole: Boolean,             // Role can view Datasource
-    datasourceCanEditRole: Boolean,             // Role can change / edit Datasource
-    datasourceCanDeleteRole: Boolean,           // Role can delete a Datasource
-    datasourceCanGrantAccessRole: Boolean,      // Role can change access to a Datasource
-    canManageGroupRole: Boolean,                // Role can add/delete users to Group
+    dashboardCanCreateRole: {               // Role can create Dashboards
+        type: Boolean,
+        default: false
+    },
+    dashboardCanViewRole:                   // Role can view Dashboards
+    {
+        type: Boolean,
+        default: false
+    },
+    dashboardCanEditRole:                   // Role can change / edit Dashboards
+    {
+        type: Boolean,
+        default: false
+    },
+    dashboardCanSaveRole:                   // Role can save changes to a Dashboards
+    {
+        type: Boolean,
+        default: false
+    },
+    dashboardCanDeleteRole:                 // Role can delete a Dashboard
+    {
+        type: Boolean,
+        default: false
+    },
+    dashboardCanGrantAccessRole:            // Role can change access to a Dashboard
+    {
+        type: Boolean,
+        default: false
+    },
+    dashboardCanAddDatasourceRole:          // Role can change add DS to a Dashboard
+    {
+        type: Boolean,
+        default: false
+    },
+    datasourceCanCreateRole:                // Role can create Datasource
+    {
+        type: Boolean,
+        default: false
+    },
+    datasourceCanViewRole:                  // Role can view Datasource
+    {
+        type: Boolean,
+        default: false
+    },
+    datasourceCanEditRole:                  // Role can change / edit Datasource
+    {
+        type: Boolean,
+        default: false
+    },
+    datasourceCanDeleteRole:                // Role can delete a Datasource
+    {
+        type: Boolean,
+        default: false
+    },
+    datasourceCanGrantAccessRole:           // Role can change access to a Datasource
+    {
+        type: Boolean,
+        default: false
+    },
+    canManageGroupRole:                     // Role can add/delete users to Group
+    {
+        type: Boolean,
+        default: false
+    },
     lastPaletteLeft: Number,                    // Last value saved
     lastPaletteTop: Number,                     // Last value saved
     lastAppShowPopupMessageGotIt: Boolean,      // Last value saved
