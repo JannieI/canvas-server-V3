@@ -13,6 +13,9 @@ module.exports = function sortFilterFieldsAggregate(inputResults, queryObject) {
 
         // 2. If (SORT_OBJECT) then results = results.sort()
         // Sort ASC on given field, -field means DESC
+        // NB: this is NOT mongoose notation with {field: 1}, it is ONE
+        //     field, ie sortObject=-createdOn       
+
         // TODO - return sortOrder = 1 depending on - in field, see TypeScript
         if (sortObject != null  &&  results != null) {
 

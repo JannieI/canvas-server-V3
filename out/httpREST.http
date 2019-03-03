@@ -84,11 +84,13 @@ GET {{host}}/clientData/
 
 
 ###
-GET {{host}}/canvasdata/statusBarMessageLogs
-?filterObject={"userID": "JenS"}
+GET {{host}}/canvasdata/dashboardSnapshots
+?filterObject={"dashboardID": 116}
+&sortObject=-createdOn
+&nrRowsToReturn=1
 ###
 http://localhost:8000/canvasdata/statusBarMessageLogs
-?filterObject={"userID":"JannieI"}
+?filterObject={"isSample":true}
 ###
 // Databases
 GET {{host}}/clientData/listDatabases
