@@ -84,9 +84,11 @@ GET {{host}}/clientData/
 
 
 ###
+# Dsnapshots - just testing
 GET {{host}}/canvasdata/dashboardSnapshots
 ?filterObject={"dashboardID": 116}
 &sortObject=-createdOn
+&fields=createdOn
 &nrRowsToReturn=1
 ###
 http://localhost:8000/canvasdata/statusBarMessageLogs
@@ -276,7 +278,6 @@ https://dev.virtualearth.net/REST/v1/Routes/DistanceMatrixAsync
 &startTime=2017-06-15T13:00:00-07:00
 &key=An32WT6o1FBmePyg2qOelW0-eby7-hW9H1YmxfAw9yVrEvPloQ9Wte1l0n3h1DED
 
-
 ###
 PUT {{host}}/canvasDashboardDiscard
 ?draftDashboardID=
@@ -289,16 +290,13 @@ POST {{host}}/canvasDashboardCopy
 GET {{host}}/canvasdata/dashboards
 ###
 
-POST {{host}}/canvasData/dashboardsRecent
-content-type: application/json 
-
-{
-  "id": null,
-  "userID": "JannieI",
-  "dashboardID": 212,
-  "dashboardTabID": 340,
-  "editMode": true,
-  "accessed": "2019-03-01T06:45:20.000Z",
-  "stateAtRunTime": "Draft",
-  "nameAtRunTime": "Test1"
-}
+###
+# TESTING - Works
+// NOTE spaces in fields !!!
+GET {{host}}/clientData/
+?datasourceID=49
+&sortObject=-Month
+&fields=Month
+&filterObject={"Month":"January"}
+&aggregationObject=aggregationObject
+###

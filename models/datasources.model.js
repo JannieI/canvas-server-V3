@@ -129,7 +129,6 @@ const DatasourceSchema = new Schema({
     dataNoSQLStatement: String,             // NoSQL Statement to extract data with
     dataNeo4jStatement: String,             // Cypher Statement to extract data with
     dataGraphQLStatement: String,           // GraphQL Statement to extract data with
-    dataOverlaySpecification: Object,       // Overlay Specification to extract data with
 
     // Where: Updated at runtime
     nrWidgets: Number,                      // Nr of Ws linked to this DS (at the moment)
