@@ -287,7 +287,8 @@ PUT {{host}}/canvasDashboardDiscard
 POST {{host}}/canvasDashboardCopy
 ?originalDashboardID=116&newName=&newState=Draft
 ###
-GET {{host}}/canvasdata/dashboards
+GET {{host}}/canvasdata/dashboardTabs
+?filterObject={"id": 162}
 ###
 
 ###
