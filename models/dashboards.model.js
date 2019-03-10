@@ -35,9 +35,10 @@ const DashboardSchema = new Schema(
         isSample: Boolean,                      // True if this is a sample
 
         // Overlay looks
-        backgroundColor: String,    
-        backgroundImage: String,
-        templateDashboardID: Number,
+    backgroundColor: String,                    // Actual color of X gridline in hex, rgb, etc    
+        backgroundColorName: String,            // Name of color for X gridlines
+        backgroundImage: String,                // Image 
+        templateDashboardID: Number,            // ID of template Dashboard shown behind this Dashboard
 
         // Creation, update and refresh
         creator: String,                        // Creator UserID
