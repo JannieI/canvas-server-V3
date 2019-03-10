@@ -296,6 +296,7 @@ const WidgetSchema = new Schema({
     containerBackgroundcolor: String,       // Actual colour (CSS name or HEX code)
     containerBackgroundcolorName: String,   // Name - CSS (ie black) or Custome Name (Our company blue)
     containerBorder: String,                // HTML Border def, is 1px solid gray
+    containerBorderColour: String;          // Actual colour (CSS name or HEX code)
     containerBorderColourName: String,      // Name - CSS (ie black) or Custome Name (Our company blue)
     containerBorderRadius: String,          // Border radius of container in px
     containerBoxshadow: String,             // HTML shadow def, is 2px 2px gray
