@@ -405,7 +405,6 @@ router.post('/', (req, res, next) => {
                                                     };
                                                 };
 
-                                                console.log('xx Just before return')
                                                 // Return the data with metadata
                                                 return res.json( createReturnObject(
                                                     "success",

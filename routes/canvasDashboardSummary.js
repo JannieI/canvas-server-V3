@@ -86,7 +86,6 @@ router.get('/', (req, res, next) => {
                     let numberDatasources = widgets.map(x => x.datasourceID);
                     numberDatasources = numberDatasources.filter(x => x != null);
                     numberDatasources = [...new Set(numberDatasources)];
-                    console.log('xx widgetUniqueList', numberDatasources)
                   
                     // Count DashboardSnapshots
                     dashboardSnapshotModel.find(dashboardIDQuery).count( (err, numberDashboardSnapshots) => {

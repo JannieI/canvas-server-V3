@@ -80,7 +80,6 @@ router.get('/', (req, res, next) => {
                             };
                         };
                     };
-                    console.log('xx datasourceIDincludeArray', datasourceIDincludeArray)
 
                     // Get Array of Datasource IDs to exclude.  This is an optional parameter from Workstation
                     // and used in case it already has some Datasources (ie from a previous Tab)
@@ -103,7 +102,6 @@ router.get('/', (req, res, next) => {
                     let datasourceQuery = { 
                         id: { "$in": datasourceIDincludeArray }
                     }
-                    console.log('xx datasourceQuery', datasourceQuery)
                  
                     datasourceModel.find( datasourceQuery, (err, datasources) => {
 
