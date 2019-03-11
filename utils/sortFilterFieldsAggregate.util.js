@@ -11,7 +11,22 @@ module.exports = function sortFilterFieldsAggregate(inputResults, queryObject) {
         let nrRowsToReturn = queryObject.nrRowsToReturn;
         const aggregationObject = queryObject.aggregationObject;
 
-        // 2. If (SORT_OBJECT) then results = results.sort()
+        // 2. If (FILTER_OBJECT) then results = results.filter()
+        //    Do this first, to reduce the dataset.  Also, else some fields may be deleted later.
+        if (filterObject != null  &&  results != null) {
+            filterObject = JSON.parse(filterObject)
+            Object.keys(filterObject).forEach( key => {
+                // Get the key-value pair
+                let value = filterObject[key];
+                results = results.filter(r => {
+                    return value == r[key];
+                });
+            });
+        };
+        console.log('xx post filter', filterObject)
+        results.forEach(r => console.log('id', r.id))
+
+        // 3. If (SORT_OBJECT) then results = results.sort()
         // Sort ASC on given field, -field means DESC
         // NB: this is NOT mongoose notation with {field: 1}, it is ONE
         //     field, ie sortObject=-createdOn       
@@ -44,8 +59,10 @@ module.exports = function sortFilterFieldsAggregate(inputResults, queryObject) {
                 });
             };
         };
+        console.log('xx post sort', sortObject )
+        results.forEach(r => console.log('id', r.id, r.createdOn))
 
-        // 3. If (FIELDS_STRING) then results = results[fields]
+        // 4. If (FIELDS_STRING) then results = results[fields]
         if (fieldsObject != null  && results != null) {
 
             // Create Array of Fields, un-trimmed
@@ -53,7 +70,7 @@ module.exports = function sortFilterFieldsAggregate(inputResults, queryObject) {
             for (var i = 0; i < fieldsArray.length; i++) {
                 fieldsArray[i] = fieldsArray[i].trim();
             };
-            
+            console.log('xx fieldsArray', fieldsArray)
             // TODO - must be a better way in TS, or Mongo
             // Loop on keys in Object = row 1, delete field from each element in array if not
             // in fieldsArray
@@ -64,18 +81,6 @@ module.exports = function sortFilterFieldsAggregate(inputResults, queryObject) {
                         delete results[i][key];
                     };
                 };
-            });
-        };
-
-        // 4. If (FILTER_OBJECT) then results = results.filter()
-        if (filterObject != null  &&  results != null) {
-            filterObject = JSON.parse(filterObject)
-            Object.keys(filterObject).forEach( key => {
-                // Get the key-value pair
-                let value = filterObject[key];
-                results = results.filter(r => {
-                    return value == r[key];
-                });
             });
         };
 
