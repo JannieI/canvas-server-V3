@@ -145,7 +145,7 @@ GET {{host}}/canvasdata/**************
 
 
 ###
-GET {{host}}/canvasdata/datasources
+GET {{host}}/canvasdata/dashboardTabs
 
 
 

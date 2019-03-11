@@ -71,15 +71,17 @@ module.exports = function sortFilterFieldsAggregate(inputResults, queryObject) {
             // TODO - must be a better way in TS, or Mongo
             // Loop on keys in Object = row 1, delete field from each element in array if not
             // in fieldsArray.  Using results[i] renders unuseful keys - need to JSON it
-            Object.keys(JSON.parse(JSON.stringify(results[0]))).forEach(key => {
-                if (parseInt(fieldsArray.indexOf(key)) < 0) {
-                    for (var i = 0; i < results.length; i++) {
-                        results[i] = JSON.parse(JSON.stringify(results[i]));
-                  
-                        delete results[i][key];
-                  
+            if (results.length > 0) {
+                Object.keys(JSON.parse(JSON.stringify(results[0]))).forEach(key => {
+                    if (parseInt(fieldsArray.indexOf(key)) < 0) {
+                        for (var i = 0; i < results.length; i++) {
+                            results[i] = JSON.parse(JSON.stringify(results[i]));
+                    
+                            delete results[i][key];
+                    
+                        };
                     };
-                };
+                });
             });
         };
 
