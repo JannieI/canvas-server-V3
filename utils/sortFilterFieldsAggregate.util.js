@@ -37,7 +37,7 @@ module.exports = function sortFilterFieldsAggregate(inputResults, queryObject) {
             // DESC, and take off -
             if (sortObject[0] === "-") {
                 sortOrder = 1;
-                sortObject = sortObject.substr(1);
+                sortObject = sortObject.substr(1).trim();
                 results.sort( (a,b) => {
                     if (a[sortObject] > b[sortObject]) {
                         return -1;
@@ -48,6 +48,7 @@ module.exports = function sortFilterFieldsAggregate(inputResults, queryObject) {
                     return 0;
                 });
             } else {
+                sortObject = sortObject.trim();
                 results.sort( (a,b) => {
                     if (a[sortObject] > b[sortObject]) {
                         return 1;

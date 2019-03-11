@@ -4,9 +4,9 @@ Starting Canvas Server ...
 [33m[nodemon] watching: *.*[39m
 [32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
 the options [useCreateIndex] is not supported
-Mon, 11 Mar 2019 09:58:40 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
-Mon, 11 Mar 2019 09:58:40 GMT app:dev mongoLocalDatabase: Database connection successful
-Mon, 11 Mar 2019 09:58:40 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+Mon, 11 Mar 2019 10:18:13 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Mon, 11 Mar 2019 10:18:13 GMT app:dev mongoLocalDatabase: Database connection successful
+Mon, 11 Mar 2019 10:18:13 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
 
 Canvas Server started ...
        Listening on port 8000
@@ -16,1420 +16,592 @@ Canvas Server started ...
        Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
 ----------------------------------------------------------------
 
-Mon, 11 Mar 2019 09:58:41 GMT app:ws { data: 'First socket message' }
-Mon, 11 Mar 2019 09:58:49 GMT app:ws Response to Sender
+Mon, 11 Mar 2019 10:18:15 GMT app:ws { data: 'First socket message' }
+Mon, 11 Mar 2019 10:18:22 GMT app:ws Response to Sender
   Url: http://localhost:8000/canvasdata/statusBarMessageLogs
   Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 7.844 ms ON [2019-03-11T09:58:49.519Z] FROM ::1 - -
+## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 12.042 ms ON [2019-03-11T10:18:23.048Z] FROM ::1 - -
 ##
   Url: http://localhost:8000/canvasdata/statusBarMessageLogs
   Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.886 ms ON [2019-03-11T09:58:49.525Z] FROM ::1 - -
+## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 2.937 ms ON [2019-03-11T10:18:23.063Z] FROM ::1 - -
 ##
   Url: http://localhost:8000/canvasdata/statusBarMessageLogs
   Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 09:58:49 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 09:58:49 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 09:58:49 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 09:58:49 GMT app:dev canvasData.router.js: Initialise dataCachingTableArray ...
-Mon, 11 Mar 2019 09:58:49 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 09:58:49 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 09:58:49 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 09:58:49 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 09:58:49 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Mon, 11 Mar 2019 09:58:49 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 86.927 ms ON [2019-03-11T09:58:49.620Z] FROM ::1 - -
-##
-Mon, 11 Mar 2019 09:58:49 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 24.893 ms ON [2019-03-11T09:58:49.625Z] FROM ::1 - -
-##
-Mon, 11 Mar 2019 09:58:50 GMT app:ws  Response to others (excluding Sender)
-Mon, 11 Mar 2019 09:58:51 GMT app:ws Broadcast to all users
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 09:58:51 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 09:58:51 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 09:58:51 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 09:58:51 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Mon, 11 Mar 2019 09:58:51 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 8.414 ms ON [2019-03-11T09:58:51.503Z] FROM ::1 - -
+## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 1.096 ms ON [2019-03-11T10:18:23.077Z] FROM ::1 - -
 ##
   Url: http://localhost:8000/canvasdata/statusBarMessageLogs
   Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 09:58:51 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 09:58:51 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 09:58:51 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 09:58:51 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Mon, 11 Mar 2019 09:58:51 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 6.825 ms ON [2019-03-11T09:58:51.511Z] FROM ::1 - -
+## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.531 ms ON [2019-03-11T10:18:23.094Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.611 ms ON [2019-03-11T10:18:23.109Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.677 ms ON [2019-03-11T10:18:23.125Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.577 ms ON [2019-03-11T10:18:23.143Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.653 ms ON [2019-03-11T10:18:23.160Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.818 ms ON [2019-03-11T10:18:23.182Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.818 ms ON [2019-03-11T10:18:23.201Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.630 ms ON [2019-03-11T10:18:23.221Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.741 ms ON [2019-03-11T10:18:23.243Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.554 ms ON [2019-03-11T10:18:23.254Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 1.592 ms ON [2019-03-11T10:18:23.271Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.577 ms ON [2019-03-11T10:18:23.283Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.656 ms ON [2019-03-11T10:18:23.298Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.612 ms ON [2019-03-11T10:18:23.311Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:23 GMT app:dev App.js In validateUser 
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: -------------------------
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: Initialise dataCachingTableArray ...
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: New record added in canvasRouter
+## POST /canvasdata/statusBarMessageLogs 200 590 - 65.208 ms ON [2019-03-11T10:18:23.397Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:23 GMT app:dev App.js In validateUser 
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: -------------------------
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:23 GMT app:dev App.js In validateUser 
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: -------------------------
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:23 GMT app:dev App.js In validateUser 
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: -------------------------
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:23 GMT app:dev App.js In validateUser 
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: -------------------------
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:23 GMT app:dev App.js In validateUser 
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: -------------------------
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:23 GMT app:dev App.js In validateUser 
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: -------------------------
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: New record added in canvasRouter
+## POST /canvasdata/statusBarMessageLogs 200 590 - 43.995 ms ON [2019-03-11T10:18:23.462Z] FROM ::1 - -
+##
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: New record added in canvasRouter
+## POST /canvasdata/statusBarMessageLogs 200 590 - 53.550 ms ON [2019-03-11T10:18:23.463Z] FROM ::1 - -
+##
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: New record added in canvasRouter
+## POST /canvasdata/statusBarMessageLogs 200 590 - 39.475 ms ON [2019-03-11T10:18:23.466Z] FROM ::1 - -
+##
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: New record added in canvasRouter
+## POST /canvasdata/statusBarMessageLogs 200 590 - 24.181 ms ON [2019-03-11T10:18:23.469Z] FROM ::1 - -
+##
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: New record added in canvasRouter
+## POST /canvasdata/statusBarMessageLogs 200 590 - 35.763 ms ON [2019-03-11T10:18:23.471Z] FROM ::1 - -
+##
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: New record added in canvasRouter
+## POST /canvasdata/statusBarMessageLogs 200 590 - 33.751 ms ON [2019-03-11T10:18:23.475Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:23 GMT app:dev App.js In validateUser 
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: -------------------------
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:23 GMT app:dev App.js In validateUser 
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: -------------------------
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:23 GMT app:dev App.js In validateUser 
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: -------------------------
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:23 GMT app:dev App.js In validateUser 
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: -------------------------
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:23 GMT app:dev App.js In validateUser 
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: -------------------------
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:23 GMT app:dev App.js In validateUser 
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: -------------------------
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: New record added in canvasRouter
+## POST /canvasdata/statusBarMessageLogs 200 590 - 14.601 ms ON [2019-03-11T10:18:23.517Z] FROM ::1 - -
+##
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: New record added in canvasRouter
+## POST /canvasdata/statusBarMessageLogs 200 590 - 46.997 ms ON [2019-03-11T10:18:23.527Z] FROM ::1 - -
+##
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: New record added in canvasRouter
+## POST /canvasdata/statusBarMessageLogs 200 590 - 44.632 ms ON [2019-03-11T10:18:23.529Z] FROM ::1 - -
+##
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: New record added in canvasRouter
+## POST /canvasdata/statusBarMessageLogs 200 590 - 42.716 ms ON [2019-03-11T10:18:23.530Z] FROM ::1 - -
+##
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: New record added in canvasRouter
+## POST /canvasdata/statusBarMessageLogs 200 590 - 39.282 ms ON [2019-03-11T10:18:23.533Z] FROM ::1 - -
+##
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: New record added in canvasRouter
+## POST /canvasdata/statusBarMessageLogs 200 590 - 36.365 ms ON [2019-03-11T10:18:23.534Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:23 GMT app:dev App.js In validateUser 
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: -------------------------
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:23 GMT app:dev App.js In validateUser 
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: -------------------------
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:23 GMT app:dev App.js In validateUser 
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: -------------------------
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:23 GMT app:dev App.js In validateUser 
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: -------------------------
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: New record added in canvasRouter
+## POST /canvasdata/statusBarMessageLogs 200 590 - 26.873 ms ON [2019-03-11T10:18:23.562Z] FROM ::1 - -
+##
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: New record added in canvasRouter
+## POST /canvasdata/statusBarMessageLogs 200 590 - 26.729 ms ON [2019-03-11T10:18:23.569Z] FROM ::1 - -
+##
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: New record added in canvasRouter
+## POST /canvasdata/statusBarMessageLogs 200 590 - 23.822 ms ON [2019-03-11T10:18:23.571Z] FROM ::1 - -
+##
+Mon, 11 Mar 2019 10:18:23 GMT app:dev canvasData.router.js: New record added in canvasRouter
+## POST /canvasdata/statusBarMessageLogs 200 590 - 21.364 ms ON [2019-03-11T10:18:23.573Z] FROM ::1 - -
+##
+Mon, 11 Mar 2019 10:18:23 GMT app:ws  Response to others (excluding Sender)
+Mon, 11 Mar 2019 10:18:24 GMT app:ws Broadcast to all users
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:24 GMT app:dev App.js In validateUser 
+Mon, 11 Mar 2019 10:18:24 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:24 GMT app:dev canvasData.router.js: -------------------------
+Mon, 11 Mar 2019 10:18:24 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
+Mon, 11 Mar 2019 10:18:24 GMT app:dev canvasData.router.js: New record added in canvasRouter
+## POST /canvasdata/statusBarMessageLogs 200 590 - 5.682 ms ON [2019-03-11T10:18:24.995Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:25 GMT app:dev App.js In validateUser 
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: -------------------------
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: New record added in canvasRouter
+## POST /canvasdata/statusBarMessageLogs 200 590 - 7.933 ms ON [2019-03-11T10:18:25.021Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:25 GMT app:dev App.js In validateUser 
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: -------------------------
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: New record added in canvasRouter
+## POST /canvasdata/statusBarMessageLogs 200 590 - 7.042 ms ON [2019-03-11T10:18:25.036Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:25 GMT app:dev App.js In validateUser 
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: -------------------------
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: New record added in canvasRouter
+## POST /canvasdata/statusBarMessageLogs 200 590 - 6.921 ms ON [2019-03-11T10:18:25.069Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:25 GMT app:dev App.js In validateUser 
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: -------------------------
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:25 GMT app:dev App.js In validateUser 
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: -------------------------
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:25 GMT app:dev App.js In validateUser 
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: -------------------------
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:25 GMT app:dev App.js In validateUser 
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: -------------------------
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:25 GMT app:dev App.js In validateUser 
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: -------------------------
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: New record added in canvasRouter
+## POST /canvasdata/statusBarMessageLogs 200 590 - 35.214 ms ON [2019-03-11T10:18:25.115Z] FROM ::1 - -
+##
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: New record added in canvasRouter
+## POST /canvasdata/statusBarMessageLogs 200 590 - 41.980 ms ON [2019-03-11T10:18:25.117Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:25 GMT app:dev App.js In validateUser 
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: -------------------------
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: New record added in canvasRouter
+## POST /canvasdata/statusBarMessageLogs 200 590 - 34.766 ms ON [2019-03-11T10:18:25.126Z] FROM ::1 - -
+##
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: New record added in canvasRouter
+## POST /canvasdata/statusBarMessageLogs 200 590 - 30.031 ms ON [2019-03-11T10:18:25.131Z] FROM ::1 - -
+##
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: New record added in canvasRouter
+## POST /canvasdata/statusBarMessageLogs 200 590 - 27.346 ms ON [2019-03-11T10:18:25.135Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:25 GMT app:dev App.js In validateUser 
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: -------------------------
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:25 GMT app:dev App.js In validateUser 
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: -------------------------
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: New record added in canvasRouter
+## POST /canvasdata/statusBarMessageLogs 200 590 - 26.836 ms ON [2019-03-11T10:18:25.147Z] FROM ::1 - -
+##
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: New record added in canvasRouter
+## POST /canvasdata/statusBarMessageLogs 200 590 - 12.116 ms ON [2019-03-11T10:18:25.148Z] FROM ::1 - -
+##
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: New record added in canvasRouter
+## POST /canvasdata/statusBarMessageLogs 200 590 - 12.964 ms ON [2019-03-11T10:18:25.153Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:25 GMT app:dev App.js In validateUser 
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: -------------------------
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:25 GMT app:dev App.js In validateUser 
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: -------------------------
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:25 GMT app:dev App.js In validateUser 
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: -------------------------
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:25 GMT app:dev App.js In validateUser 
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: -------------------------
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:25 GMT app:dev App.js In validateUser 
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: -------------------------
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: New record added in canvasRouter
+## POST /canvasdata/statusBarMessageLogs 200 590 - 38.457 ms ON [2019-03-11T10:18:25.193Z] FROM ::1 - -
+##
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: New record added in canvasRouter
+## POST /canvasdata/statusBarMessageLogs 200 590 - 34.470 ms ON [2019-03-11T10:18:25.194Z] FROM ::1 - -
+##
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: New record added in canvasRouter
+## POST /canvasdata/statusBarMessageLogs 200 590 - 30.092 ms ON [2019-03-11T10:18:25.196Z] FROM ::1 - -
+##
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: New record added in canvasRouter
+## POST /canvasdata/statusBarMessageLogs 200 590 - 26.433 ms ON [2019-03-11T10:18:25.200Z] FROM ::1 - -
+##
+Mon, 11 Mar 2019 10:18:25 GMT app:dev canvasData.router.js: New record added in canvasRouter
+## POST /canvasdata/statusBarMessageLogs 200 590 - 25.788 ms ON [2019-03-11T10:18:25.203Z] FROM ::1 - -
 ##
   Url: http://localhost:8000/canvasdata/dashboardSnapshots%3FfilterObject={%22dashboardID%22:%20210}%20&sortObject=-createdOn%20&nrRowsToReturn=1&fields=snapshotComment
   Path: /canvasdata/dashboardSnapshots
-Mon, 11 Mar 2019 10:00:01 GMT app:dev canvasData.router.js: ## --------------------------
-Mon, 11 Mar 2019 10:00:01 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboardSnapshots , query: { filterObject: '{"dashboardID": 210} ',
+Mon, 11 Mar 2019 10:18:27 GMT app:dev canvasData.router.js: ## --------------------------
+Mon, 11 Mar 2019 10:18:27 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboardSnapshots , query: { filterObject: '{"dashboardID": 210} ',
   sortObject: '-createdOn ',
   nrRowsToReturn: '1',
   fields: 'snapshotComment' }
-Mon, 11 Mar 2019 10:00:01 GMT app:dev canvasData.router.js: Using Model  ../models/dashboardSnapshots.model WITHOUT cache
+Mon, 11 Mar 2019 10:18:27 GMT app:dev canvasData.router.js: Using Model  ../models/dashboardSnapshots.model WITHOUT cache
   Url: http://localhost:8000/canvasdata/dashboardsRecent%3Fid=145
   Path: /canvasdata/dashboardsRecent
-## OPTIONS /canvasdata/dashboardsRecent?id=145 200 24 - 3.104 ms ON [2019-03-11T10:00:01.215Z] FROM ::1 - -
+## OPTIONS /canvasdata/dashboardsRecent?id=145 200 24 - 5.068 ms ON [2019-03-11T10:18:28.042Z] FROM ::1 - -
 ##
   Url: http://localhost:8000/canvasdata/dashboardLayouts%3FfilterObject={%22dashboardID%22:%20210}
   Path: /canvasdata/dashboardLayouts
-Mon, 11 Mar 2019 10:00:02 GMT app:dev canvasData.router.js: ## --------------------------
-Mon, 11 Mar 2019 10:00:02 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboardLayouts , query: { filterObject: '{"dashboardID": 210}' }
-Mon, 11 Mar 2019 10:00:02 GMT app:dev canvasData.router.js: Using Model  ../models/dashboardLayouts.model WITHOUT cache
+Mon, 11 Mar 2019 10:18:28 GMT app:dev canvasData.router.js: ## --------------------------
+Mon, 11 Mar 2019 10:18:28 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboardLayouts , query: { filterObject: '{"dashboardID": 210}' }
+Mon, 11 Mar 2019 10:18:28 GMT app:dev canvasData.router.js: Using Model  ../models/dashboardLayouts.model WITHOUT cache
+xx post filter { dashboardID: 210 }
+xx post sort undefined
+Mon, 11 Mar 2019 10:18:28 GMT app:dev canvasData.router.js:   Returned 0 records from DB
+## GET /canvasdata/dashboardLayouts?filterObject={%22dashboardID%22:%20210} 304 - - 61.108 ms ON [2019-03-11T10:18:28.110Z] FROM ::1 - -
+##
   Url: http://localhost:8000/canvasdata/dashboardsRecent%3Fid=145
   Path: /canvasdata/dashboardsRecent
-Mon, 11 Mar 2019 10:00:02 GMT app:dev canvasData.router.js: Resource dashboardsRecent serverExpiryDateTime updated in Caching Table
-xx post sort createdOn 
-id 61
-id 1
-id 4
-id 5
-id 20
-id 21
-id 22
-id 23
-id 24
-id 25
-id 26
-id 27
-id 28
-id 29
-id 30
-id 31
-id 32
-id 33
-id 34
-id 35
-id 36
-id 37
-id 38
-id 39
-id 40
-id 41
-id 42
-id 43
-id 44
-id 45
-id 46
-id 48
-id 49
-id 52
-id 53
-id 55
-id 56
-id 57
-id 58
-id 59
-id 60
-id 2
-id 62
-id 63
-id 64
-id 65
-id 67
-id 68
-id 69
-id 72
-id 134
-id 136
-id 137
-id 145
-id 162
-id 164
-id 165
-id 166
-id 184
-id 185
-id 194
-id 195
-id 196
-id 197
-id 198
-id 389
-id 391
-id 398
-id 400
-id 409
-id 411
-id 413
-id 415
-id 417
-id 418
-id 419
-id 420
-id 421
-id 431
-id 487
+Mon, 11 Mar 2019 10:18:28 GMT app:dev canvasData.router.js: Resource dashboardsRecent serverExpiryDateTime updated in Caching Table
+xx post filter { dashboardID: 210 }
 id 492
 id 493
 id 494
+id 495
+xx post sort createdOn
+id 495 2019-03-11T10:14:54.289Z
+id 494 2019-03-11T09:43:55.462Z
+id 493 2019-03-11T09:43:15.759Z
+id 492 2019-03-11T09:42:34.280Z
 xx fieldsArray [ 'snapshotComment' ]
-## GET /canvasdata/dashboardSnapshots?filterObject={%22dashboardID%22:%20210}%20&sortObject=-createdOn%20&nrRowsToReturn=1&fields=snapshotComment 400 104 - 1004.082 ms ON [2019-03-11T10:00:02.108Z] FROM ::1 - -
+Mon, 11 Mar 2019 10:18:28 GMT app:dev canvasData.router.js:   Returned 1 records from DB
+## GET /canvasdata/dashboardSnapshots?filterObject={%22dashboardID%22:%20210}%20&sortObject=-createdOn%20&nrRowsToReturn=1&fields=snapshotComment 304 - - 959.488 ms ON [2019-03-11T10:18:28.940Z] FROM ::1 - -
 ##
-xx post sort undefined
-id 3
-xx post filter { dashboardID: 210 }
-Mon, 11 Mar 2019 10:00:02 GMT app:dev canvasData.router.js:   Returned 0 records from DB
-## GET /canvasdata/dashboardLayouts?filterObject={%22dashboardID%22:%20210} 304 - - 894.639 ms ON [2019-03-11T10:00:02.111Z] FROM ::1 - -
+Mon, 11 Mar 2019 10:18:28 GMT app:dev canvasData.router.js: dashboardsRecent updated ID: 145
+## PUT /canvasdata/dashboardsRecent?id=145 200 537 - 100.565 ms ON [2019-03-11T10:18:28.943Z] FROM ::1 - -
 ##
-Mon, 11 Mar 2019 10:00:02 GMT app:dev canvasData.router.js: dashboardsRecent updated ID: 145
-## PUT /canvasdata/dashboardsRecent?id=145 200 537 - 74.013 ms ON [2019-03-11T10:00:02.115Z] FROM ::1 - -
+  Url: http://localhost:8000/canvasdata/dashboardSnapshots
+  Path: /canvasdata/dashboardSnapshots
+## OPTIONS /canvasdata/dashboardSnapshots 200 24 - 0.830 ms ON [2019-03-11T10:18:28.968Z] FROM ::1 - -
 ##
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
-the options [useCreateIndex] is not supported
-Mon, 11 Mar 2019 10:01:39 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
-Mon, 11 Mar 2019 10:01:39 GMT app:dev mongoLocalDatabase: Database connection successful
-Mon, 11 Mar 2019 10:01:39 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
-
-Canvas Server started ...
-       Listening on port 8000
-       With data caching on server
-       morgan (HTTP method logging) is on
-       DEBUG var is app.*
-       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
-----------------------------------------------------------------
-
-Mon, 11 Mar 2019 10:01:39 GMT app:ws { data: 'First socket message' }
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
-the options [useCreateIndex] is not supported
-Mon, 11 Mar 2019 10:01:42 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
-Mon, 11 Mar 2019 10:01:42 GMT app:dev mongoLocalDatabase: Database connection successful
-Mon, 11 Mar 2019 10:01:42 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
-
-Canvas Server started ...
-       Listening on port 8000
-       With data caching on server
-       morgan (HTTP method logging) is on
-       DEBUG var is app.*
-       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
-----------------------------------------------------------------
-
-Mon, 11 Mar 2019 10:01:42 GMT app:ws { data: 'First socket message' }
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
-the options [useCreateIndex] is not supported
-/home/jannie/Projects/canvas-server/utils/sortFilterFieldsAggregate.util.js:48
-        results.forEach(r => console.log('id', r.id, r.))
-                                                       ^
-
-SyntaxError: Unexpected token )
-    at createScript (vm.js:80:10)
-    at Object.runInThisContext (vm.js:139:10)
-    at Module._compile (module.js:616:28)
-    at Object.Module._extensions..js (module.js:663:10)
-    at Module.load (module.js:565:32)
-    at tryModuleLoad (module.js:505:12)
-    at Function.Module._load (module.js:497:3)
-    at Module.require (module.js:596:17)
-    at require (internal/module.js:11:18)
-    at Object.<anonymous> (/home/jannie/Projects/canvas-server/routes/canvasData.router.js:10:35)
-    at Module._compile (module.js:652:30)
-    at Object.Module._extensions..js (module.js:663:10)
-    at Module.load (module.js:565:32)
-    at tryModuleLoad (module.js:505:12)
-    at Function.Module._load (module.js:497:3)
-    at Module.require (module.js:596:17)
-[31m[nodemon] app crashed - waiting for file changes before starting...[39m
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
-the options [useCreateIndex] is not supported
-Mon, 11 Mar 2019 10:01:47 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
-Mon, 11 Mar 2019 10:01:47 GMT app:dev mongoLocalDatabase: Database connection successful
-Mon, 11 Mar 2019 10:01:47 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
-
-Canvas Server started ...
-       Listening on port 8000
-       With data caching on server
-       morgan (HTTP method logging) is on
-       DEBUG var is app.*
-       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
-----------------------------------------------------------------
-
-Mon, 11 Mar 2019 10:01:48 GMT app:ws { data: 'First socket message' }
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
-the options [useCreateIndex] is not supported
-Mon, 11 Mar 2019 10:01:49 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
-Mon, 11 Mar 2019 10:01:49 GMT app:dev mongoLocalDatabase: Database connection successful
-Mon, 11 Mar 2019 10:01:49 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
-
-Canvas Server started ...
-       Listening on port 8000
-       With data caching on server
-       morgan (HTTP method logging) is on
-       DEBUG var is app.*
-       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
-----------------------------------------------------------------
-
-Mon, 11 Mar 2019 10:01:51 GMT app:ws { data: 'First socket message' }
-Mon, 11 Mar 2019 10:01:59 GMT app:ws Response to Sender
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 8.612 ms ON [2019-03-11T10:01:59.866Z] FROM ::1 - -
+  Url: http://localhost:8000/canvasdata/dashboardSnapshots
+  Path: /canvasdata/dashboardSnapshots
+Mon, 11 Mar 2019 10:18:29 GMT app:dev App.js In validateUser 
+Mon, 11 Mar 2019 10:18:29 GMT app:dev canvasData.router.js: Router: POST for resource: dashboardSnapshots
+Mon, 11 Mar 2019 10:18:29 GMT app:dev canvasData.router.js: -------------------------
+Mon, 11 Mar 2019 10:18:29 GMT app:dev canvasData.router.js: Resource dashboardSnapshots record NOT IN CACHING TABLE
+Mon, 11 Mar 2019 10:18:29 GMT app:dev canvasData.router.js: New record added in canvasRouter
+## POST /canvasdata/dashboardSnapshots 200 - - 167.083 ms ON [2019-03-11T10:18:29.192Z] FROM ::1 - -
 ##
   Url: http://localhost:8000/canvasdata/statusBarMessageLogs
   Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 1.424 ms ON [2019-03-11T10:01:59.873Z] FROM ::1 - -
+## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 2.188 ms ON [2019-03-11T10:18:29.212Z] FROM ::1 - -
 ##
   Url: http://localhost:8000/canvasdata/statusBarMessageLogs
   Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.816 ms ON [2019-03-11T10:01:59.887Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.771 ms ON [2019-03-11T10:01:59.904Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 1.778 ms ON [2019-03-11T10:01:59.928Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.743 ms ON [2019-03-11T10:01:59.949Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:01:59 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:01:59 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:01:59 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:01:59 GMT app:dev canvasData.router.js: Initialise dataCachingTableArray ...
-Mon, 11 Mar 2019 10:02:00 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:02:00 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:02:00 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:02:00 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:02:00 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:02:00 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:02:00 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:02:00 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:02:00 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:02:00 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:02:00 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:02:00 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:02:00 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:02:00 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:02:00 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:02:00 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:02:00 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:02:00 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:02:00 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:02:00 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:02:00 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Mon, 11 Mar 2019 10:02:00 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 92.607 ms ON [2019-03-11T10:02:00.064Z] FROM ::1 - -
-##
-Mon, 11 Mar 2019 10:02:00 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 40.166 ms ON [2019-03-11T10:02:00.074Z] FROM ::1 - -
-##
-Mon, 11 Mar 2019 10:02:00 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 23.378 ms ON [2019-03-11T10:02:00.075Z] FROM ::1 - -
-##
-Mon, 11 Mar 2019 10:02:00 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 23.636 ms ON [2019-03-11T10:02:00.079Z] FROM ::1 - -
-##
-Mon, 11 Mar 2019 10:02:00 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 74.992 ms ON [2019-03-11T10:02:00.117Z] FROM ::1 - -
-##
-Mon, 11 Mar 2019 10:02:00 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 71.016 ms ON [2019-03-11T10:02:00.119Z] FROM ::1 - -
-##
-Mon, 11 Mar 2019 10:02:00 GMT app:ws  Response to others (excluding Sender)
-Mon, 11 Mar 2019 10:02:01 GMT app:ws Broadcast to all users
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:02:01 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:02:01 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:02:01 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:02:01 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Mon, 11 Mar 2019 10:02:01 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 33.808 ms ON [2019-03-11T10:02:01.875Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:02:01 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:02:01 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:02:01 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:02:01 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Mon, 11 Mar 2019 10:02:01 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 10.461 ms ON [2019-03-11T10:02:01.896Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:02:01 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:02:01 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:02:01 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:02:01 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Mon, 11 Mar 2019 10:02:01 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 14.316 ms ON [2019-03-11T10:02:01.916Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:02:01 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:02:01 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:02:01 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:02:01 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Mon, 11 Mar 2019 10:02:01 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 9.784 ms ON [2019-03-11T10:02:01.935Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:02:01 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:02:01 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:02:01 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:02:01 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Mon, 11 Mar 2019 10:02:01 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 10.213 ms ON [2019-03-11T10:02:01.957Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:02:01 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:02:01 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:02:01 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:02:01 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Mon, 11 Mar 2019 10:02:01 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 12.891 ms ON [2019-03-11T10:02:01.990Z] FROM ::1 - -
+Mon, 11 Mar 2019 10:18:29 GMT app:dev App.js In validateUser 
+Mon, 11 Mar 2019 10:18:29 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
+Mon, 11 Mar 2019 10:18:29 GMT app:dev canvasData.router.js: -------------------------
+Mon, 11 Mar 2019 10:18:29 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
+Mon, 11 Mar 2019 10:18:29 GMT app:dev canvasData.router.js: New record added in canvasRouter
+## POST /canvasdata/statusBarMessageLogs 200 610 - 5.804 ms ON [2019-03-11T10:18:29.232Z] FROM ::1 - -
 ##
   Url: http://localhost:8000/canvasdata/dashboardSnapshots%3FfilterObject={%22dashboardID%22:%20210}%20&sortObject=-createdOn%20&nrRowsToReturn=1&fields=snapshotComment
   Path: /canvasdata/dashboardSnapshots
-Mon, 11 Mar 2019 10:02:18 GMT app:dev canvasData.router.js: ## --------------------------
-Mon, 11 Mar 2019 10:02:18 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboardSnapshots , query: { filterObject: '{"dashboardID": 210} ',
+Mon, 11 Mar 2019 10:19:41 GMT app:dev canvasData.router.js: ## --------------------------
+Mon, 11 Mar 2019 10:19:41 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboardSnapshots , query: { filterObject: '{"dashboardID": 210} ',
   sortObject: '-createdOn ',
   nrRowsToReturn: '1',
   fields: 'snapshotComment' }
-Mon, 11 Mar 2019 10:02:18 GMT app:dev canvasData.router.js: Using Model  ../models/dashboardSnapshots.model WITHOUT cache
-xx post sort createdOn 
-id 61 2019-03-03T09:22:16.218Z
-id 1 2019-02-01T11:58:06.637Z
-id 4 2019-02-06T05:01:41.406Z
-id 5 2019-02-06T05:02:39.766Z
-id 20 2019-02-21T19:13:04.481Z
-id 21 2019-02-21T19:16:06.335Z
-id 22 2019-02-22T07:44:11.999Z
-id 23 2019-02-22T08:18:40.512Z
-id 24 2019-02-22T09:28:16.698Z
-id 25 2019-02-22T09:28:29.936Z
-id 26 2019-02-22T09:37:38.895Z
-id 27 2019-02-22T10:09:29.275Z
-id 28 2019-02-22T10:12:02.407Z
-id 29 2019-02-22T10:23:08.083Z
-id 30 2019-02-22T10:23:59.572Z
-id 31 2019-02-22T10:24:03.496Z
-id 32 2019-02-22T10:31:04.186Z
-id 33 2019-02-22T11:41:58.541Z
-id 34 2019-02-22T11:43:02.454Z
-id 35 2019-02-22T11:43:17.912Z
-id 36 2019-02-22T11:45:58.216Z
-id 37 2019-02-22T15:20:06.493Z
-id 38 2019-02-22T15:33:34.350Z
-id 39 2019-02-22T16:50:09.516Z
-id 40 2019-02-22T16:50:24.002Z
-id 41 2019-02-22T16:58:45.417Z
-id 42 2019-02-22T17:16:08.930Z
-id 43 2019-02-22T17:16:14.888Z
-id 44 2019-02-22T17:19:19.980Z
-id 45 2019-04-22T17:19:49.052Z
-id 46 2019-03-22T18:07:49.105Z
-id 48 2019-02-22T18:49:55.039Z
-id 49 2019-02-22T19:15:06.672Z
-id 52 2019-02-27T05:01:40.218Z
-id 53 2019-02-27T05:11:56.680Z
-id 55 2019-02-27T05:46:11.154Z
-id 56 2019-02-27T05:53:20.636Z
-id 57 2019-03-03T08:29:43.236Z
-id 58 2019-03-03T08:47:29.548Z
-id 59 2019-03-03T08:55:23.977Z
-id 60 2019-03-03T09:03:28.726Z
-id 2 2019-02-05T19:37:09.801Z
-id 62 2019-03-03T10:16:33.369Z
-id 63 2019-03-03T10:45:45.722Z
-id 64 2019-03-03T10:46:22.516Z
-id 65 2019-03-03T10:46:36.249Z
-id 67 2019-03-03T10:54:32.874Z
-id 68 2019-03-03T10:57:51.341Z
-id 69 2019-03-03T10:58:40.777Z
-id 72 2019-03-03T10:59:15.243Z
-id 134 2019-03-04T08:16:52.724Z
-id 136 2019-03-04T08:19:09.984Z
-id 137 2019-03-04T08:19:23.350Z
-id 145 2019-03-04T08:45:27.682Z
-id 162 2019-03-04T13:18:19.804Z
-id 164 2019-03-04T17:19:37.169Z
-id 165 2019-03-04T17:22:01.968Z
-id 166 2019-03-04T17:23:22.065Z
-id 184 2019-03-04T18:35:03.204Z
-id 185 2019-03-04T18:37:28.671Z
-id 194 2019-03-05T04:53:52.409Z
-id 195 2019-03-05T05:28:36.440Z
-id 196 2019-03-05T05:38:27.428Z
-id 197 2019-03-05T05:39:32.412Z
-id 198 2019-03-05T05:41:31.094Z
-id 389 2019-03-09T09:32:41.398Z
-id 391 2019-03-09T09:53:32.722Z
-id 398 2019-03-09T18:49:26.752Z
-id 400 2019-03-09T18:49:57.869Z
-id 409 2019-03-09T19:17:06.782Z
-id 411 2019-03-09T19:17:49.060Z
-id 413 2019-03-09T19:18:42.702Z
-id 415 2019-03-09T19:20:29.220Z
-id 417 2019-03-09T19:23:44.395Z
-id 418 2019-03-09T19:24:39.909Z
-id 419 2019-03-09T19:34:01.473Z
-id 420 2019-03-09T19:35:58.369Z
-id 421 2019-03-09T19:44:13.597Z
-id 431 2019-03-10T09:27:57.649Z
-id 487 2019-03-11T09:27:10.241Z
-id 492 2019-03-11T09:42:34.280Z
-id 493 2019-03-11T09:43:15.759Z
-id 494 2019-03-11T09:43:55.462Z
-xx fieldsArray [ 'snapshotComment' ]
-## GET /canvasdata/dashboardSnapshots?filterObject={%22dashboardID%22:%20210}%20&sortObject=-createdOn%20&nrRowsToReturn=1&fields=snapshotComment 400 104 - 889.636 ms ON [2019-03-11T10:02:19.010Z] FROM ::1 - -
-##
+Mon, 11 Mar 2019 10:19:41 GMT app:dev canvasData.router.js: Using Model  ../models/dashboardSnapshots.model WITHOUT cache
   Url: http://localhost:8000/canvasdata/dashboardsRecent%3Fid=145
   Path: /canvasdata/dashboardsRecent
-## OPTIONS /canvasdata/dashboardsRecent?id=145 200 24 - 0.844 ms ON [2019-03-11T10:02:19.012Z] FROM ::1 - -
+## OPTIONS /canvasdata/dashboardsRecent?id=145 200 24 - 2.619 ms ON [2019-03-11T10:19:41.608Z] FROM ::1 - -
 ##
   Url: http://localhost:8000/canvasdata/dashboardLayouts%3FfilterObject={%22dashboardID%22:%20210}
   Path: /canvasdata/dashboardLayouts
-Mon, 11 Mar 2019 10:02:19 GMT app:dev canvasData.router.js: ## --------------------------
-Mon, 11 Mar 2019 10:02:19 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboardLayouts , query: { filterObject: '{"dashboardID": 210}' }
-Mon, 11 Mar 2019 10:02:19 GMT app:dev canvasData.router.js: Using Model  ../models/dashboardLayouts.model WITHOUT cache
-xx post sort undefined
-id 3 undefined
+Mon, 11 Mar 2019 10:19:41 GMT app:dev canvasData.router.js: ## --------------------------
+Mon, 11 Mar 2019 10:19:41 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboardLayouts , query: { filterObject: '{"dashboardID": 210}' }
+Mon, 11 Mar 2019 10:19:41 GMT app:dev canvasData.router.js: Using Model  ../models/dashboardLayouts.model WITHOUT cache
 xx post filter { dashboardID: 210 }
-Mon, 11 Mar 2019 10:02:19 GMT app:dev canvasData.router.js:   Returned 0 records from DB
-## GET /canvasdata/dashboardLayouts?filterObject={%22dashboardID%22:%20210} 304 - - 7.844 ms ON [2019-03-11T10:02:19.021Z] FROM ::1 - -
+xx post sort undefined
+Mon, 11 Mar 2019 10:19:42 GMT app:dev canvasData.router.js:   Returned 0 records from DB
+## GET /canvasdata/dashboardLayouts?filterObject={%22dashboardID%22:%20210} 304 - - 688.915 ms ON [2019-03-11T10:19:42.299Z] FROM ::1 - -
 ##
   Url: http://localhost:8000/canvasdata/dashboardsRecent%3Fid=145
   Path: /canvasdata/dashboardsRecent
-Mon, 11 Mar 2019 10:02:19 GMT app:dev canvasData.router.js: Resource dashboardsRecent serverExpiryDateTime updated in Caching Table
-Mon, 11 Mar 2019 10:02:19 GMT app:dev canvasData.router.js: dashboardsRecent updated ID: 145
-## PUT /canvasdata/dashboardsRecent?id=145 200 537 - 10.436 ms ON [2019-03-11T10:02:19.038Z] FROM ::1 - -
+Mon, 11 Mar 2019 10:19:42 GMT app:dev canvasData.router.js: Resource dashboardsRecent serverExpiryDateTime updated in Caching Table
+xx post filter { dashboardID: 210 }
+id 492
+id 493
+id 494
+id 495
+id 496
+xx post sort createdOn
+id 496 2019-03-11T10:18:28.950Z
+id 495 2019-03-11T10:14:54.289Z
+id 494 2019-03-11T09:43:55.462Z
+id 493 2019-03-11T09:43:15.759Z
+id 492 2019-03-11T09:42:34.280Z
+xx fieldsArray [ 'snapshotComment' ]
+Mon, 11 Mar 2019 10:19:42 GMT app:dev canvasData.router.js:   Returned 1 records from DB
+## GET /canvasdata/dashboardSnapshots?filterObject={%22dashboardID%22:%20210}%20&sortObject=-createdOn%20&nrRowsToReturn=1&fields=snapshotComment 304 - - 877.381 ms ON [2019-03-11T10:19:42.399Z] FROM ::1 - -
+##
+Mon, 11 Mar 2019 10:19:42 GMT app:dev canvasData.router.js: dashboardsRecent updated ID: 145
+## PUT /canvasdata/dashboardsRecent?id=145 200 537 - 101.535 ms ON [2019-03-11T10:19:42.402Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/dashboardSnapshots
+  Path: /canvasdata/dashboardSnapshots
+## OPTIONS /canvasdata/dashboardSnapshots 200 24 - 1.199 ms ON [2019-03-11T10:19:42.424Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/dashboardSnapshots
+  Path: /canvasdata/dashboardSnapshots
+Mon, 11 Mar 2019 10:19:42 GMT app:dev App.js In validateUser 
+Mon, 11 Mar 2019 10:19:42 GMT app:dev canvasData.router.js: Router: POST for resource: dashboardSnapshots
+Mon, 11 Mar 2019 10:19:42 GMT app:dev canvasData.router.js: -------------------------
+Mon, 11 Mar 2019 10:19:42 GMT app:dev canvasData.router.js: Resource dashboardSnapshots record NOT IN CACHING TABLE
+Mon, 11 Mar 2019 10:19:42 GMT app:dev canvasData.router.js: New record added in canvasRouter
+## POST /canvasdata/dashboardSnapshots 200 - - 176.142 ms ON [2019-03-11T10:19:42.645Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 10.044 ms ON [2019-03-11T10:19:42.717Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+Mon, 11 Mar 2019 10:19:42 GMT app:dev App.js In validateUser 
+Mon, 11 Mar 2019 10:19:42 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
+Mon, 11 Mar 2019 10:19:42 GMT app:dev canvasData.router.js: -------------------------
+Mon, 11 Mar 2019 10:19:42 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
+Mon, 11 Mar 2019 10:19:42 GMT app:dev canvasData.router.js: New record added in canvasRouter
+## POST /canvasdata/statusBarMessageLogs 200 610 - 8.810 ms ON [2019-03-11T10:19:42.742Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/dashboardSnapshots%3FfilterObject={%22dashboardID%22:%20210}%20&sortObject=-createdOn%20&nrRowsToReturn=1&fields=snapshotComment
+  Path: /canvasdata/dashboardSnapshots
+Mon, 11 Mar 2019 10:19:56 GMT app:dev canvasData.router.js: ## --------------------------
+Mon, 11 Mar 2019 10:19:56 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboardSnapshots , query: { filterObject: '{"dashboardID": 210} ',
+  sortObject: '-createdOn ',
+  nrRowsToReturn: '1',
+  fields: 'snapshotComment' }
+Mon, 11 Mar 2019 10:19:56 GMT app:dev canvasData.router.js: Using Model  ../models/dashboardSnapshots.model WITHOUT cache
+  Url: http://localhost:8000/canvasdata/dashboardsRecent%3Fid=145
+  Path: /canvasdata/dashboardsRecent
+## OPTIONS /canvasdata/dashboardsRecent?id=145 200 24 - 0.966 ms ON [2019-03-11T10:19:56.885Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/dashboardLayouts%3FfilterObject={%22dashboardID%22:%20210}
+  Path: /canvasdata/dashboardLayouts
+Mon, 11 Mar 2019 10:19:56 GMT app:dev canvasData.router.js: ## --------------------------
+Mon, 11 Mar 2019 10:19:56 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboardLayouts , query: { filterObject: '{"dashboardID": 210}' }
+Mon, 11 Mar 2019 10:19:56 GMT app:dev canvasData.router.js: Using Model  ../models/dashboardLayouts.model WITHOUT cache
+xx post filter { dashboardID: 210 }
+id 492
+id 493
+id 494
+id 495
+id 496
+id 497
+xx post sort createdOn
+id 497 2019-03-11T10:19:42.408Z
+id 496 2019-03-11T10:18:28.950Z
+id 495 2019-03-11T10:14:54.289Z
+id 494 2019-03-11T09:43:55.462Z
+id 493 2019-03-11T09:43:15.759Z
+id 492 2019-03-11T09:42:34.280Z
+xx fieldsArray [ 'snapshotComment' ]
+Mon, 11 Mar 2019 10:19:56 GMT app:dev canvasData.router.js:   Returned 1 records from DB
+## GET /canvasdata/dashboardSnapshots?filterObject={%22dashboardID%22:%20210}%20&sortObject=-createdOn%20&nrRowsToReturn=1&fields=snapshotComment 304 - - 843.731 ms ON [2019-03-11T10:19:56.987Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/dashboardsRecent%3Fid=145
+  Path: /canvasdata/dashboardsRecent
+Mon, 11 Mar 2019 10:19:56 GMT app:dev canvasData.router.js: Resource dashboardsRecent serverExpiryDateTime updated in Caching Table
+xx post filter { dashboardID: 210 }
+xx post sort undefined
+Mon, 11 Mar 2019 10:19:56 GMT app:dev canvasData.router.js:   Returned 0 records from DB
+## GET /canvasdata/dashboardLayouts?filterObject={%22dashboardID%22:%20210} 304 - - 106.599 ms ON [2019-03-11T10:19:56.993Z] FROM ::1 - -
+##
+Mon, 11 Mar 2019 10:19:56 GMT app:dev canvasData.router.js: dashboardsRecent updated ID: 145
+## PUT /canvasdata/dashboardsRecent?id=145 200 537 - 6.747 ms ON [2019-03-11T10:19:56.995Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/dashboardSnapshots
+  Path: /canvasdata/dashboardSnapshots
+## OPTIONS /canvasdata/dashboardSnapshots 200 24 - 0.739 ms ON [2019-03-11T10:19:57.030Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/dashboardSnapshots
+  Path: /canvasdata/dashboardSnapshots
+Mon, 11 Mar 2019 10:19:57 GMT app:dev App.js In validateUser 
+Mon, 11 Mar 2019 10:19:57 GMT app:dev canvasData.router.js: Router: POST for resource: dashboardSnapshots
+Mon, 11 Mar 2019 10:19:57 GMT app:dev canvasData.router.js: -------------------------
+Mon, 11 Mar 2019 10:19:57 GMT app:dev canvasData.router.js: Resource dashboardSnapshots record NOT IN CACHING TABLE
+Mon, 11 Mar 2019 10:19:57 GMT app:dev canvasData.router.js: New record added in canvasRouter
+## POST /canvasdata/dashboardSnapshots 200 - - 123.372 ms ON [2019-03-11T10:19:57.241Z] FROM ::1 - -
 ##
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
-the options [useCreateIndex] is not supported
-Mon, 11 Mar 2019 10:12:52 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
-Mon, 11 Mar 2019 10:12:52 GMT app:dev mongoLocalDatabase: Database connection successful
-Mon, 11 Mar 2019 10:12:52 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
-
-Canvas Server started ...
-       Listening on port 8000
-       With data caching on server
-       morgan (HTTP method logging) is on
-       DEBUG var is app.*
-       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
-----------------------------------------------------------------
-
-Mon, 11 Mar 2019 10:12:53 GMT app:ws { data: 'First socket message' }
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
-the options [useCreateIndex] is not supported
-Mon, 11 Mar 2019 10:12:58 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
-Mon, 11 Mar 2019 10:12:58 GMT app:dev mongoLocalDatabase: Database connection successful
-Mon, 11 Mar 2019 10:12:58 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
-
-Canvas Server started ...
-       Listening on port 8000
-       With data caching on server
-       morgan (HTTP method logging) is on
-       DEBUG var is app.*
-       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
-----------------------------------------------------------------
-
-Mon, 11 Mar 2019 10:12:58 GMT app:ws { data: 'First socket message' }
-Mon, 11 Mar 2019 10:13:06 GMT app:ws Response to Sender
   Url: http://localhost:8000/canvasdata/statusBarMessageLogs
   Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 8.094 ms ON [2019-03-11T10:13:06.866Z] FROM ::1 - -
+## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.812 ms ON [2019-03-11T10:19:57.266Z] FROM ::1 - -
 ##
   Url: http://localhost:8000/canvasdata/statusBarMessageLogs
   Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 3.276 ms ON [2019-03-11T10:13:06.885Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.882 ms ON [2019-03-11T10:13:06.908Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.726 ms ON [2019-03-11T10:13:06.929Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.504 ms ON [2019-03-11T10:13:06.944Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.526 ms ON [2019-03-11T10:13:06.964Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.578 ms ON [2019-03-11T10:13:06.992Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.683 ms ON [2019-03-11T10:13:07.017Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:07 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:07 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:07 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:07 GMT app:dev canvasData.router.js: Initialise dataCachingTableArray ...
-Mon, 11 Mar 2019 10:13:07 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:07 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:07 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:07 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:07 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:07 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:07 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:07 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:07 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:07 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:07 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:07 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:07 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:07 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:07 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:07 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:07 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:07 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:07 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:07 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:07 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Mon, 11 Mar 2019 10:13:07 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 84.655 ms ON [2019-03-11T10:13:07.121Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:07 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:07 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:07 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:07 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Mon, 11 Mar 2019 10:13:07 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 34.272 ms ON [2019-03-11T10:13:07.140Z] FROM ::1 - -
-##
-Mon, 11 Mar 2019 10:13:07 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 41.895 ms ON [2019-03-11T10:13:07.144Z] FROM ::1 - -
-##
-Mon, 11 Mar 2019 10:13:07 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 49.616 ms ON [2019-03-11T10:13:07.145Z] FROM ::1 - -
-##
-Mon, 11 Mar 2019 10:13:07 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 34.723 ms ON [2019-03-11T10:13:07.148Z] FROM ::1 - -
-##
-Mon, 11 Mar 2019 10:13:07 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 40.050 ms ON [2019-03-11T10:13:07.150Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:07 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:07 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:07 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:07 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Mon, 11 Mar 2019 10:13:07 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 29.240 ms ON [2019-03-11T10:13:07.160Z] FROM ::1 - -
-##
-Mon, 11 Mar 2019 10:13:07 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 9.861 ms ON [2019-03-11T10:13:07.163Z] FROM ::1 - -
-##
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
-the options [useCreateIndex] is not supported
-Mon, 11 Mar 2019 10:13:08 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
-Mon, 11 Mar 2019 10:13:08 GMT app:dev mongoLocalDatabase: Database connection successful
-Mon, 11 Mar 2019 10:13:08 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
-
-Canvas Server started ...
-       Listening on port 8000
-       With data caching on server
-       morgan (HTTP method logging) is on
-       DEBUG var is app.*
-       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
-----------------------------------------------------------------
-
-Mon, 11 Mar 2019 10:13:08 GMT app:ws { data: 'First socket message' }
-Mon, 11 Mar 2019 10:13:16 GMT app:ws Response to Sender
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 11.507 ms ON [2019-03-11T10:13:16.876Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 1.289 ms ON [2019-03-11T10:13:16.903Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 1.137 ms ON [2019-03-11T10:13:16.930Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.744 ms ON [2019-03-11T10:13:16.947Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.789 ms ON [2019-03-11T10:13:16.963Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.677 ms ON [2019-03-11T10:13:16.979Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.618 ms ON [2019-03-11T10:13:17.007Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.699 ms ON [2019-03-11T10:13:17.027Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.646 ms ON [2019-03-11T10:13:17.044Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:17 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:17 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:17 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:17 GMT app:dev canvasData.router.js: Initialise dataCachingTableArray ...
-Mon, 11 Mar 2019 10:13:17 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:17 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:17 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:17 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:17 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:17 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:17 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:17 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:17 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:17 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:17 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:17 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:17 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:17 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:17 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:17 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:17 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:17 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:17 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:17 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:17 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Mon, 11 Mar 2019 10:13:17 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 80.197 ms ON [2019-03-11T10:13:17.152Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:17 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:17 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:17 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:17 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Mon, 11 Mar 2019 10:13:17 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 37.439 ms ON [2019-03-11T10:13:17.172Z] FROM ::1 - -
-##
-Mon, 11 Mar 2019 10:13:17 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 35.390 ms ON [2019-03-11T10:13:17.174Z] FROM ::1 - -
-##
-Mon, 11 Mar 2019 10:13:17 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 44.999 ms ON [2019-03-11T10:13:17.175Z] FROM ::1 - -
-##
-Mon, 11 Mar 2019 10:13:17 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 35.080 ms ON [2019-03-11T10:13:17.180Z] FROM ::1 - -
-##
-Mon, 11 Mar 2019 10:13:17 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 39.890 ms ON [2019-03-11T10:13:17.181Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:17 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:17 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:17 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:17 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:17 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:17 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:17 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:17 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Mon, 11 Mar 2019 10:13:17 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 30.287 ms ON [2019-03-11T10:13:17.191Z] FROM ::1 - -
-##
-Mon, 11 Mar 2019 10:13:17 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 18.974 ms ON [2019-03-11T10:13:17.201Z] FROM ::1 - -
-##
-Mon, 11 Mar 2019 10:13:17 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 16.503 ms ON [2019-03-11T10:13:17.203Z] FROM ::1 - -
-##
-Mon, 11 Mar 2019 10:13:17 GMT app:ws  Response to others (excluding Sender)
-Mon, 11 Mar 2019 10:13:18 GMT app:ws Broadcast to all users
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:18 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:18 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:18 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:18 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Mon, 11 Mar 2019 10:13:18 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 11.087 ms ON [2019-03-11T10:13:18.865Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:18 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:18 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:18 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:18 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Mon, 11 Mar 2019 10:13:18 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 18.601 ms ON [2019-03-11T10:13:18.901Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:18 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:18 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:18 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:18 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Mon, 11 Mar 2019 10:13:18 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 11.094 ms ON [2019-03-11T10:13:18.927Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:18 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:18 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:18 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:18 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Mon, 11 Mar 2019 10:13:18 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 7.250 ms ON [2019-03-11T10:13:18.951Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:18 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:18 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:18 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:18 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Mon, 11 Mar 2019 10:13:18 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 7.823 ms ON [2019-03-11T10:13:18.972Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:18 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:18 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:18 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:18 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Mon, 11 Mar 2019 10:13:18 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 8.013 ms ON [2019-03-11T10:13:18.989Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:18 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:18 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:18 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:18 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Mon, 11 Mar 2019 10:13:19 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 9.137 ms ON [2019-03-11T10:13:19.006Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:19 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:19 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:19 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:19 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Mon, 11 Mar 2019 10:13:19 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 14.361 ms ON [2019-03-11T10:13:19.022Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:19 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:19 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:19 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:19 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Mon, 11 Mar 2019 10:13:19 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 12.887 ms ON [2019-03-11T10:13:19.036Z] FROM ::1 - -
-##
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
-the options [useCreateIndex] is not supported
-Mon, 11 Mar 2019 10:13:26 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
-Mon, 11 Mar 2019 10:13:26 GMT app:dev mongoLocalDatabase: Database connection successful
-Mon, 11 Mar 2019 10:13:26 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
-
-Canvas Server started ...
-       Listening on port 8000
-       With data caching on server
-       morgan (HTTP method logging) is on
-       DEBUG var is app.*
-       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
-----------------------------------------------------------------
-
-Mon, 11 Mar 2019 10:13:28 GMT app:ws { data: 'First socket message' }
-Mon, 11 Mar 2019 10:13:36 GMT app:ws Response to Sender
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 8.191 ms ON [2019-03-11T10:13:36.564Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 1.185 ms ON [2019-03-11T10:13:36.580Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.924 ms ON [2019-03-11T10:13:36.599Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.803 ms ON [2019-03-11T10:13:36.617Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.844 ms ON [2019-03-11T10:13:36.640Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.723 ms ON [2019-03-11T10:13:36.657Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.690 ms ON [2019-03-11T10:13:36.678Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.545 ms ON [2019-03-11T10:13:36.692Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.661 ms ON [2019-03-11T10:13:36.715Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.728 ms ON [2019-03-11T10:13:36.733Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:36 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:36 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:36 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:36 GMT app:dev canvasData.router.js: Initialise dataCachingTableArray ...
-Mon, 11 Mar 2019 10:13:36 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Mon, 11 Mar 2019 10:13:36 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 57.563 ms ON [2019-03-11T10:13:36.805Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:36 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:36 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:36 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:36 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:36 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:36 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:36 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:36 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:36 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:36 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:36 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:36 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:36 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:36 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:36 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:36 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:36 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:36 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:36 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:36 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:36 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:36 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:36 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:36 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Mon, 11 Mar 2019 10:13:36 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 29.069 ms ON [2019-03-11T10:13:36.841Z] FROM ::1 - -
-##
-Mon, 11 Mar 2019 10:13:36 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 37.713 ms ON [2019-03-11T10:13:36.845Z] FROM ::1 - -
-##
-Mon, 11 Mar 2019 10:13:36 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 27.380 ms ON [2019-03-11T10:13:36.847Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:36 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:36 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:36 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:36 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Mon, 11 Mar 2019 10:13:36 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 36.459 ms ON [2019-03-11T10:13:36.852Z] FROM ::1 - -
-##
-Mon, 11 Mar 2019 10:13:36 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 31.115 ms ON [2019-03-11T10:13:36.854Z] FROM ::1 - -
-##
-Mon, 11 Mar 2019 10:13:36 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 23.500 ms ON [2019-03-11T10:13:36.855Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:36 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:36 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:36 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:36 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:36 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:36 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:36 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:36 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Mon, 11 Mar 2019 10:13:36 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 18.458 ms ON [2019-03-11T10:13:36.866Z] FROM ::1 - -
-##
-Mon, 11 Mar 2019 10:13:36 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 11.938 ms ON [2019-03-11T10:13:36.868Z] FROM ::1 - -
-##
-Mon, 11 Mar 2019 10:13:36 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 16.253 ms ON [2019-03-11T10:13:36.875Z] FROM ::1 - -
-##
-Mon, 11 Mar 2019 10:13:37 GMT app:ws  Response to others (excluding Sender)
-Mon, 11 Mar 2019 10:13:38 GMT app:ws Broadcast to all users
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:38 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:38 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:38 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:38 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:38 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:38 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:38 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:38 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Mon, 11 Mar 2019 10:13:38 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 37.397 ms ON [2019-03-11T10:13:38.580Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:38 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:38 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:38 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:38 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Mon, 11 Mar 2019 10:13:38 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 21.857 ms ON [2019-03-11T10:13:38.589Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:38 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:38 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:38 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:38 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Mon, 11 Mar 2019 10:13:38 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 16.219 ms ON [2019-03-11T10:13:38.599Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:38 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:38 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:38 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:38 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Mon, 11 Mar 2019 10:13:38 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 24.910 ms ON [2019-03-11T10:13:38.617Z] FROM ::1 - -
-##
-Mon, 11 Mar 2019 10:13:38 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 18.073 ms ON [2019-03-11T10:13:38.619Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:38 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:38 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:38 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:38 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:38 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:38 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:38 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:38 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:38 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:38 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:38 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:38 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:38 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:38 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:38 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:38 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Mon, 11 Mar 2019 10:13:38 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 32.341 ms ON [2019-03-11T10:13:38.672Z] FROM ::1 - -
-##
-Mon, 11 Mar 2019 10:13:38 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 29.363 ms ON [2019-03-11T10:13:38.673Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:38 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:38 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:38 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:38 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Mon, 11 Mar 2019 10:13:38 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 35.039 ms ON [2019-03-11T10:13:38.687Z] FROM ::1 - -
-##
-Mon, 11 Mar 2019 10:13:38 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 13.929 ms ON [2019-03-11T10:13:38.688Z] FROM ::1 - -
-##
-Mon, 11 Mar 2019 10:13:38 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 32.695 ms ON [2019-03-11T10:13:38.690Z] FROM ::1 - -
-##
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
-the options [useCreateIndex] is not supported
-Mon, 11 Mar 2019 10:13:45 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
-Mon, 11 Mar 2019 10:13:45 GMT app:dev mongoLocalDatabase: Database connection successful
-Mon, 11 Mar 2019 10:13:45 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
-
-Canvas Server started ...
-       Listening on port 8000
-       With data caching on server
-       morgan (HTTP method logging) is on
-       DEBUG var is app.*
-       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
-----------------------------------------------------------------
-
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
-the options [useCreateIndex] is not supported
-Mon, 11 Mar 2019 10:13:47 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
-Mon, 11 Mar 2019 10:13:47 GMT app:dev mongoLocalDatabase: Database connection successful
-Mon, 11 Mar 2019 10:13:47 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
-
-Canvas Server started ...
-       Listening on port 8000
-       With data caching on server
-       morgan (HTTP method logging) is on
-       DEBUG var is app.*
-       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
-----------------------------------------------------------------
-
-Mon, 11 Mar 2019 10:13:48 GMT app:ws { data: 'First socket message' }
-[32m[nodemon] restarting due to changes...[39m
-[32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
-the options [useCreateIndex] is not supported
-Mon, 11 Mar 2019 10:13:50 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
-Mon, 11 Mar 2019 10:13:50 GMT app:dev mongoLocalDatabase: Database connection successful
-Mon, 11 Mar 2019 10:13:50 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
-
-Canvas Server started ...
-       Listening on port 8000
-       With data caching on server
-       morgan (HTTP method logging) is on
-       DEBUG var is app.*
-       Log file in /home/jannie/Projects/canvas-server/CSLogFile.txt - Edit with sudo nano ~/.bashrc
-----------------------------------------------------------------
-
-Mon, 11 Mar 2019 10:13:51 GMT app:ws { data: 'First socket message' }
-Mon, 11 Mar 2019 10:13:59 GMT app:ws Response to Sender
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 9.032 ms ON [2019-03-11T10:13:59.225Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.854 ms ON [2019-03-11T10:13:59.238Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.533 ms ON [2019-03-11T10:13:59.261Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.737 ms ON [2019-03-11T10:13:59.279Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 1.315 ms ON [2019-03-11T10:13:59.297Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 1.279 ms ON [2019-03-11T10:13:59.312Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.786 ms ON [2019-03-11T10:13:59.326Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.787 ms ON [2019-03-11T10:13:59.342Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.784 ms ON [2019-03-11T10:13:59.402Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.816 ms ON [2019-03-11T10:13:59.404Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.664 ms ON [2019-03-11T10:13:59.408Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.706 ms ON [2019-03-11T10:13:59.419Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:59 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: Initialise dataCachingTableArray ...
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:59 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:59 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:59 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:59 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:59 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 33.812 ms ON [2019-03-11T10:13:59.512Z] FROM ::1 - -
-##
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 82.937 ms ON [2019-03-11T10:13:59.514Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:59 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:59 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 31.674 ms ON [2019-03-11T10:13:59.531Z] FROM ::1 - -
-##
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 41.995 ms ON [2019-03-11T10:13:59.533Z] FROM ::1 - -
-##
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 41.489 ms ON [2019-03-11T10:13:59.537Z] FROM ::1 - -
-##
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 36.314 ms ON [2019-03-11T10:13:59.541Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:59 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:59 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 34.614 ms ON [2019-03-11T10:13:59.555Z] FROM ::1 - -
-##
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 33.409 ms ON [2019-03-11T10:13:59.557Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:59 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:59 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 28.815 ms ON [2019-03-11T10:13:59.573Z] FROM ::1 - -
-##
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 32.611 ms ON [2019-03-11T10:13:59.581Z] FROM ::1 - -
-##
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 24.493 ms ON [2019-03-11T10:13:59.582Z] FROM ::1 - -
-##
-Mon, 11 Mar 2019 10:13:59 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 19.948 ms ON [2019-03-11T10:13:59.584Z] FROM ::1 - -
-##
-Mon, 11 Mar 2019 10:14:00 GMT app:ws  Response to others (excluding Sender)
-Mon, 11 Mar 2019 10:14:01 GMT app:ws Broadcast to all users
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:14:01 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 35.841 ms ON [2019-03-11T10:14:01.242Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:14:01 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 15.598 ms ON [2019-03-11T10:14:01.277Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:14:01 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 13.524 ms ON [2019-03-11T10:14:01.292Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:14:01 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:14:01 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:14:01 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:14:01 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:14:01 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 38.803 ms ON [2019-03-11T10:14:01.350Z] FROM ::1 - -
-##
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 29.908 ms ON [2019-03-11T10:14:01.353Z] FROM ::1 - -
-##
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 38.980 ms ON [2019-03-11T10:14:01.355Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:14:01 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 27.815 ms ON [2019-03-11T10:14:01.364Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:14:01 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 30.515 ms ON [2019-03-11T10:14:01.373Z] FROM ::1 - -
-##
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 17.930 ms ON [2019-03-11T10:14:01.374Z] FROM ::1 - -
-##
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 12.657 ms ON [2019-03-11T10:14:01.377Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:14:01 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Mon, 11 Mar 2019 10:14:01 GMT app:dev App.js In validateUser 
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: -------------------------
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 16.674 ms ON [2019-03-11T10:14:01.402Z] FROM ::1 - -
-##
-Mon, 11 Mar 2019 10:14:01 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 9.617 ms ON [2019-03-11T10:14:01.406Z] FROM ::1 - -
+Mon, 11 Mar 2019 10:19:57 GMT app:dev App.js In validateUser 
+Mon, 11 Mar 2019 10:19:57 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
+Mon, 11 Mar 2019 10:19:57 GMT app:dev canvasData.router.js: -------------------------
+Mon, 11 Mar 2019 10:19:57 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
+Mon, 11 Mar 2019 10:19:57 GMT app:dev canvasData.router.js: New record added in canvasRouter
+## POST /canvasdata/statusBarMessageLogs 200 610 - 8.399 ms ON [2019-03-11T10:19:57.285Z] FROM ::1 - -
 ##
