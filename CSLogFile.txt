@@ -4,9 +4,9 @@ Starting Canvas Server ...
 [33m[nodemon] watching: *.*[39m
 [32m[nodemon] starting `node --max-old-space-size=4096 ./bin/server.js`[39m
 the options [useCreateIndex] is not supported
-Tue, 12 Mar 2019 08:36:31 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
-Tue, 12 Mar 2019 08:36:32 GMT app:dev mongoLocalDatabase: Database connection successful
-Tue, 12 Mar 2019 08:36:32 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
+Thu, 14 Mar 2019 10:35:37 GMT app:dev Example of reading the Config, app: Canvas - Development "mongoServer address:" 127.0.0.1:27017
+Thu, 14 Mar 2019 10:35:38 GMT app:dev mongoLocalDatabase: Database connection successful
+Thu, 14 Mar 2019 10:35:38 GMT app:db Mongo connected to server/database:  mongodb://127.0.0.1:27017 / Canvas
 
 Canvas Server started ...
        Listening on port 8000
@@ -18,640 +18,266 @@ Canvas Server started ...
 
   Url: http://localhost:8000/auth/local/verify
   Path: /auth/local/verify
-## OPTIONS /auth/local/verify 200 4 - 10.339 ms ON [2019-03-12T08:42:29.078Z] FROM ::1 - -
+## OPTIONS /auth/local/verify 200 4 - 5.108 ms ON [2019-03-14T10:47:43.229Z] FROM ::1 - -
 ##
   Url: http://localhost:8000/auth/local/verify
   Path: /auth/local/verify
-Tue, 12 Mar 2019 08:42:29 GMT app:dev App.js In validateUser 
-## POST /auth/local/verify 200 4 - 183.090 ms ON [2019-03-12T08:42:29.269Z] FROM ::1 - -
+Thu, 14 Mar 2019 10:47:43 GMT app:dev App.js In validateUser 
+## POST /auth/local/verify 200 4 - 477.597 ms ON [2019-03-14T10:47:43.719Z] FROM ::1 - -
 ##
   Url: http://localhost:8000/canvasdata/dataCachingTable
   Path: /canvasdata/dataCachingTable
-Tue, 12 Mar 2019 08:42:30 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:42:30 GMT app:dev canvasData.router.js: ## GET Starting with resource: dataCachingTable , query: {}
-Tue, 12 Mar 2019 08:42:30 GMT app:dev canvasData.router.js: Initialise dataCachingTableArray ...
-Tue, 12 Mar 2019 08:42:30 GMT app:dev canvasData.router.js: Using Model  ../models/dataCachingTable.model WITHOUT cache
-Tue, 12 Mar 2019 08:42:30 GMT app:dev canvasData.router.js:   Returned 17 records from DB
-## GET /canvasdata/dataCachingTable 304 - - 32.099 ms ON [2019-03-12T08:42:30.208Z] FROM ::1 - -
+Thu, 14 Mar 2019 10:47:43 GMT app:dev canvasData.router.js: ## --------------------------
+Thu, 14 Mar 2019 10:47:43 GMT app:dev canvasData.router.js: ## GET Starting with resource: dataCachingTable , query: {}
+Thu, 14 Mar 2019 10:47:43 GMT app:dev canvasData.router.js: Initialise dataCachingTableArray ...
+Thu, 14 Mar 2019 10:47:43 GMT app:dev canvasData.router.js: Using Model  ../models/dataCachingTable.model WITHOUT cache
+Thu, 14 Mar 2019 10:47:43 GMT app:dev canvasData.router.js:   Returned 17 records from DB
+## GET /canvasdata/dataCachingTable 304 - - 26.973 ms ON [2019-03-14T10:47:43.790Z] FROM ::1 - -
 ##
   Url: http://localhost:8000/canvasdata/canvasUsers
   Path: /canvasdata/canvasUsers
-Tue, 12 Mar 2019 08:42:30 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:42:30 GMT app:dev canvasData.router.js: ## GET Starting with resource: canvasUsers , query: {}
-Tue, 12 Mar 2019 08:42:30 GMT app:dev canvasData.router.js: Using Model  ../models/canvasUsers.model WITHOUT cache
-Tue, 12 Mar 2019 08:42:30 GMT app:dev canvasData.router.js:   Returned 4 records from DB
-## GET /canvasdata/canvasUsers 304 - - 20.020 ms ON [2019-03-12T08:42:30.285Z] FROM ::1 - -
+Thu, 14 Mar 2019 10:47:43 GMT app:dev canvasData.router.js: ## --------------------------
+Thu, 14 Mar 2019 10:47:43 GMT app:dev canvasData.router.js: ## GET Starting with resource: canvasUsers , query: {}
+Thu, 14 Mar 2019 10:47:43 GMT app:dev canvasData.router.js: Using Model  ../models/canvasUsers.model WITHOUT cache
+Thu, 14 Mar 2019 10:47:43 GMT app:dev canvasData.router.js:   Returned 4 records from DB
+## GET /canvasdata/canvasUsers 304 - - 13.155 ms ON [2019-03-14T10:47:43.823Z] FROM ::1 - -
 ##
   Url: http://localhost:8000/canvasdata/canvasGroups
   Path: /canvasdata/canvasGroups
-Tue, 12 Mar 2019 08:42:30 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:42:30 GMT app:dev canvasData.router.js: ## GET Starting with resource: canvasGroups , query: {}
-Tue, 12 Mar 2019 08:42:30 GMT app:dev canvasData.router.js: Using Model  ../models/canvasGroups.model WITHOUT cache
+Thu, 14 Mar 2019 10:47:43 GMT app:dev canvasData.router.js: ## --------------------------
+Thu, 14 Mar 2019 10:47:43 GMT app:dev canvasData.router.js: ## GET Starting with resource: canvasGroups , query: {}
+Thu, 14 Mar 2019 10:47:43 GMT app:dev canvasData.router.js: Using Model  ../models/canvasGroups.model WITHOUT cache
+Thu, 14 Mar 2019 10:47:43 GMT app:dev canvasData.router.js:   Returned 6 records from DB
+## GET /canvasdata/canvasGroups 200 - - 24.443 ms ON [2019-03-14T10:47:43.978Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/datasourcePermissions
+  Path: /canvasdata/datasourcePermissions
   Url: http://localhost:8000/canvasdata/datasources
   Path: /canvasdata/datasources
-Tue, 12 Mar 2019 08:42:30 GMT app:dev canvasData.router.js:   Returned 6 records from DB
-Tue, 12 Mar 2019 08:42:30 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:42:30 GMT app:dev canvasData.router.js: ## GET Starting with resource: datasources , query: {}
-Tue, 12 Mar 2019 08:42:30 GMT app:dev canvasData.router.js: Using Model  ../models/datasources.model WITHOUT cache
-## GET /canvasdata/canvasGroups 200 - - 41.034 ms ON [2019-03-12T08:42:30.651Z] FROM ::1 - -
-##
-Tue, 12 Mar 2019 08:42:30 GMT app:ws { data: 'First socket message' }
-Tue, 12 Mar 2019 08:42:30 GMT app:dev canvasData.router.js:   Returned 40 records from DB
-## GET /canvasdata/datasources 304 - - 358.599 ms ON [2019-03-12T08:42:30.809Z] FROM ::1 - -
-##
+Thu, 14 Mar 2019 10:47:43 GMT app:dev canvasData.router.js: ## --------------------------
+Thu, 14 Mar 2019 10:47:43 GMT app:dev canvasData.router.js: ## GET Starting with resource: datasourcePermissions , query: {}
+Thu, 14 Mar 2019 10:47:43 GMT app:dev canvasData.router.js: Using Model  ../models/datasourcePermissions.model WITHOUT cache
+Thu, 14 Mar 2019 10:47:44 GMT app:dev canvasData.router.js: ## --------------------------
+Thu, 14 Mar 2019 10:47:44 GMT app:dev canvasData.router.js: ## GET Starting with resource: datasources , query: {}
+Thu, 14 Mar 2019 10:47:44 GMT app:dev canvasData.router.js: Using Model  ../models/datasources.model WITHOUT cache
   Url: http://localhost:8000/canvasdata/canvasSettings
   Path: /canvasdata/canvasSettings
+Thu, 14 Mar 2019 10:47:44 GMT app:ws { data: 'First socket message' }
+Thu, 14 Mar 2019 10:47:44 GMT app:dev canvasData.router.js:   Returned 3 records from DB
+## GET /canvasdata/datasourcePermissions 304 - - 139.239 ms ON [2019-03-14T10:47:44.119Z] FROM ::1 - -
+##
+Thu, 14 Mar 2019 10:47:44 GMT app:dev canvasData.router.js:   Returned 40 records from DB
+## GET /canvasdata/datasources 304 - - 280.210 ms ON [2019-03-14T10:47:44.263Z] FROM ::1 - -
+##
+Thu, 14 Mar 2019 10:47:44 GMT app:dev canvasData.router.js: ## --------------------------
+Thu, 14 Mar 2019 10:47:44 GMT app:dev canvasData.router.js: ## GET Starting with resource: canvasSettings , query: {}
+Thu, 14 Mar 2019 10:47:44 GMT app:dev canvasData.router.js: Using Model  ../models/canvasSettings.model WITHOUT cache
+  Url: http://localhost:8000/canvasdata/dashboards
+  Path: /canvasdata/dashboards
+Thu, 14 Mar 2019 10:47:44 GMT app:dev canvasData.router.js: ## --------------------------
+Thu, 14 Mar 2019 10:47:44 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboards , query: {}
+Thu, 14 Mar 2019 10:47:44 GMT app:dev canvasData.router.js: Using Model  ../models/dashboards.model WITHOUT cache
+Thu, 14 Mar 2019 10:47:44 GMT app:dev canvasData.router.js:   Returned 1 records from DB
+## GET /canvasdata/canvasSettings 304 - - 240.383 ms ON [2019-03-14T10:47:44.338Z] FROM ::1 - -
+##
+Thu, 14 Mar 2019 10:47:44 GMT app:dev canvasData.router.js:   Returned 9 records from DB
+## GET /canvasdata/dashboards 304 - - 28.212 ms ON [2019-03-14T10:47:44.353Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/dashboardsRecent
+  Path: /canvasdata/dashboardsRecent
+Thu, 14 Mar 2019 10:47:44 GMT app:dev canvasData.router.js: ## --------------------------
+Thu, 14 Mar 2019 10:47:44 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboardsRecent , query: {}
+Thu, 14 Mar 2019 10:47:44 GMT app:dev canvasData.router.js: Using Model  ../models/dashboardsRecent.model WITHOUT cache
+Thu, 14 Mar 2019 10:47:44 GMT app:dev canvasData.router.js:   Returned 4 records from DB
+## GET /canvasdata/dashboardsRecent 200 - - 30.133 ms ON [2019-03-14T10:47:44.524Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/dashboardPermissions
+  Path: /canvasdata/dashboardPermissions
+Thu, 14 Mar 2019 10:47:44 GMT app:dev canvasData.router.js: ## --------------------------
+Thu, 14 Mar 2019 10:47:44 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboardPermissions , query: {}
+Thu, 14 Mar 2019 10:47:44 GMT app:dev canvasData.router.js: Using Model  ../models/dashboardPermissions.model WITHOUT cache
+Thu, 14 Mar 2019 10:47:44 GMT app:dev canvasData.router.js:   Returned 0 records from DB
+## GET /canvasdata/dashboardPermissions 304 - - 23.009 ms ON [2019-03-14T10:47:44.622Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/paletteButtonsSelecteds
+  Path: /canvasdata/paletteButtonsSelecteds
+Thu, 14 Mar 2019 10:47:44 GMT app:dev canvasData.router.js: ## --------------------------
+Thu, 14 Mar 2019 10:47:44 GMT app:dev canvasData.router.js: ## GET Starting with resource: paletteButtonsSelecteds , query: {}
+Thu, 14 Mar 2019 10:47:44 GMT app:dev canvasData.router.js: Using Model  ../models/paletteButtonsSelecteds.model WITHOUT cache
+Thu, 14 Mar 2019 10:47:44 GMT app:dev canvasData.router.js:   Returned 20 records from DB
+## GET /canvasdata/paletteButtonsSelecteds 304 - - 56.822 ms ON [2019-03-14T10:47:44.756Z] FROM ::1 - -
+##
+Thu, 14 Mar 2019 10:47:51 GMT app:ws Response to Sender
+  Url: http://localhost:8000/canvasdata/dashboardSnapshots%3FfilterObject={%22dashboardID%22:%20213}%20&sortObject=-createdOn%20&nrRowsToReturn=1&fields=id,%20comment
+  Path: /canvasdata/dashboardSnapshots
+Thu, 14 Mar 2019 10:47:52 GMT app:dev canvasData.router.js: ## --------------------------
+Thu, 14 Mar 2019 10:47:52 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboardSnapshots , query: { filterObject: '{"dashboardID": 213} ',
+  sortObject: '-createdOn ',
+  nrRowsToReturn: '1',
+  fields: 'id, comment' }
+Thu, 14 Mar 2019 10:47:52 GMT app:dev canvasData.router.js: Using Model  ../models/dashboardSnapshots.model WITHOUT cache
+  Url: http://localhost:8000/canvasdata/dashboardTabs
+  Path: /canvasdata/dashboardTabs
+Thu, 14 Mar 2019 10:47:52 GMT app:dev canvasData.router.js: ## --------------------------
+Thu, 14 Mar 2019 10:47:52 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboardTabs , query: {}
+Thu, 14 Mar 2019 10:47:52 GMT app:dev canvasData.router.js: Using Model  ../models/dashboardTabs.model WITHOUT cache
+Thu, 14 Mar 2019 10:47:52 GMT app:dev canvasData.router.js:   Returned 21 records from DB
+## GET /canvasdata/dashboardTabs 304 - - 22.725 ms ON [2019-03-14T10:47:52.837Z] FROM ::1 - -
+##
+Thu, 14 Mar 2019 10:47:52 GMT app:ws  Response to others (excluding Sender)
+  Url: http://localhost:8000/canvasdata/widgetCheckpoints
+  Path: /canvasdata/widgetCheckpoints
+Thu, 14 Mar 2019 10:47:52 GMT app:dev canvasData.router.js: ## --------------------------
+Thu, 14 Mar 2019 10:47:52 GMT app:dev canvasData.router.js: ## GET Starting with resource: widgetCheckpoints , query: {}
+Thu, 14 Mar 2019 10:47:52 GMT app:dev canvasData.router.js: Using Model  ../models/widgetCheckpoints.model WITHOUT cache
+Thu, 14 Mar 2019 10:47:53 GMT app:dev canvasData.router.js:   Returned 4 records from DB
+## GET /canvasdata/widgetCheckpoints 304 - - 241.641 ms ON [2019-03-14T10:47:53.197Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/datasets
+  Path: /canvasdata/datasets
+Thu, 14 Mar 2019 10:47:53 GMT app:dev canvasData.router.js: ## --------------------------
+Thu, 14 Mar 2019 10:47:53 GMT app:dev canvasData.router.js: ## GET Starting with resource: datasets , query: {}
+Thu, 14 Mar 2019 10:47:53 GMT app:dev canvasData.router.js: Using Model  ../models/datasets.model WITHOUT cache
+Thu, 14 Mar 2019 10:47:53 GMT app:dev canvasData.router.js:   Returned 40 records from DB
+## GET /canvasdata/datasets 304 - - 121.282 ms ON [2019-03-14T10:47:53.569Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/widgets
+  Path: /canvasdata/widgets
+Thu, 14 Mar 2019 10:47:53 GMT app:dev canvasData.router.js: ## --------------------------
+Thu, 14 Mar 2019 10:47:53 GMT app:dev canvasData.router.js: ## GET Starting with resource: widgets , query: {}
+Thu, 14 Mar 2019 10:47:53 GMT app:dev canvasData.router.js: Using Model  ../models/widgets.model WITHOUT cache
+Thu, 14 Mar 2019 10:47:54 GMT app:ws Broadcast to all users
+Thu, 14 Mar 2019 10:47:54 GMT app:dev canvasData.router.js:   Returned 94 records from DB
+## GET /canvasdata/widgets 304 - - 1079.788 ms ON [2019-03-14T10:47:54.720Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.885 ms ON [2019-03-14T10:47:54.727Z] FROM ::1 - -
+##
+Thu, 14 Mar 2019 10:47:54 GMT app:dev canvasData.router.js:   Returned 1 records from DB
+## GET /canvasdata/dashboardSnapshots?filterObject={%22dashboardID%22:%20213}%20&sortObject=-createdOn%20&nrRowsToReturn=1&fields=id,%20comment 304 - - 2129.038 ms ON [2019-03-14T10:47:54.934Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
+  Path: /canvasdata/statusBarMessageLogs
+Thu, 14 Mar 2019 10:47:54 GMT app:dev App.js In validateUser 
+Thu, 14 Mar 2019 10:47:54 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
+Thu, 14 Mar 2019 10:47:54 GMT app:dev canvasData.router.js: -------------------------
+Thu, 14 Mar 2019 10:47:55 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
+  Url: http://localhost:8000/clientData/%3F&datasourceID=1
+  Path: /clientData/
+Thu, 14 Mar 2019 10:47:55 GMT app:dev clientData.router.js: Start clientData.router for datasourceID: 1
+Thu, 14 Mar 2019 10:47:55 GMT app:data clientData.router.js:  <- Getting data from Server Cache on Disc for ID: 1
+Thu, 14 Mar 2019 10:47:55 GMT app:data clientData.router.js: Using Schema clientData
+Thu, 14 Mar 2019 10:47:55 GMT app:dev canvasData.router.js: New record added in canvasRouter
+## POST /canvasdata/statusBarMessageLogs 200 590 - 811.538 ms ON [2019-03-14T10:47:55.749Z] FROM ::1 - -
+##
+## GET /clientData/?&datasourceID=1 304 - - 489.789 ms ON [2019-03-14T10:47:55.961Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/dashboardsRecent%3Fid=147
+  Path: /canvasdata/dashboardsRecent
+## OPTIONS /canvasdata/dashboardsRecent?id=147 200 24 - 1.131 ms ON [2019-03-14T10:47:56.040Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/dashboardLayouts%3FfilterObject={%22dashboardID%22:%20213}
+  Path: /canvasdata/dashboardLayouts
+Thu, 14 Mar 2019 10:47:56 GMT app:dev canvasData.router.js: ## --------------------------
+Thu, 14 Mar 2019 10:47:56 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboardLayouts , query: { filterObject: '{"dashboardID": 213}' }
+Thu, 14 Mar 2019 10:47:56 GMT app:dev canvasData.router.js: Using Model  ../models/dashboardLayouts.model WITHOUT cache
+Thu, 14 Mar 2019 10:47:56 GMT app:dev canvasData.router.js:   Returned 0 records from DB
+## GET /canvasdata/dashboardLayouts?filterObject={%22dashboardID%22:%20213} 304 - - 26.592 ms ON [2019-03-14T10:47:56.084Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/dashboardsRecent%3Fid=147
+  Path: /canvasdata/dashboardsRecent
+Thu, 14 Mar 2019 10:47:56 GMT app:dev canvasData.router.js: Resource dashboardsRecent serverExpiryDateTime updated in Caching Table
+Thu, 14 Mar 2019 10:47:56 GMT app:dev canvasData.router.js: dashboardsRecent updated ID: 147
+## PUT /canvasdata/dashboardsRecent?id=147 200 535 - 8.612 ms ON [2019-03-14T10:47:56.176Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/auth/local/verify
+  Path: /auth/local/verify
+## OPTIONS /auth/local/verify 200 4 - 1.934 ms ON [2019-03-14T10:51:01.085Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/auth/local/verify
+  Path: /auth/local/verify
+Thu, 14 Mar 2019 10:51:01 GMT app:dev App.js In validateUser 
+## POST /auth/local/verify 200 4 - 9.716 ms ON [2019-03-14T10:51:01.102Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/dataCachingTable
+  Path: /canvasdata/dataCachingTable
+Thu, 14 Mar 2019 10:51:01 GMT app:dev canvasData.router.js: ## --------------------------
+Thu, 14 Mar 2019 10:51:01 GMT app:dev canvasData.router.js: ## GET Starting with resource: dataCachingTable , query: {}
+Thu, 14 Mar 2019 10:51:01 GMT app:dev canvasData.router.js: Using Model  ../models/dataCachingTable.model WITHOUT cache
+Thu, 14 Mar 2019 10:51:01 GMT app:dev canvasData.router.js:   Returned 17 records from DB
+## GET /canvasdata/dataCachingTable 304 - - 12.672 ms ON [2019-03-14T10:51:01.154Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/canvasUsers
+  Path: /canvasdata/canvasUsers
+Thu, 14 Mar 2019 10:51:01 GMT app:dev canvasData.router.js: ## --------------------------
+Thu, 14 Mar 2019 10:51:01 GMT app:dev canvasData.router.js: ## GET Starting with resource: canvasUsers , query: {}
+Thu, 14 Mar 2019 10:51:01 GMT app:dev canvasData.router.js: Using Model  ../models/canvasUsers.model WITHOUT cache
+Thu, 14 Mar 2019 10:51:01 GMT app:dev canvasData.router.js:   Returned 4 records from DB
+## GET /canvasdata/canvasUsers 304 - - 9.634 ms ON [2019-03-14T10:51:01.231Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/canvasGroups
+  Path: /canvasdata/canvasGroups
+Thu, 14 Mar 2019 10:51:01 GMT app:dev canvasData.router.js: ## --------------------------
+Thu, 14 Mar 2019 10:51:01 GMT app:dev canvasData.router.js: ## GET Starting with resource: canvasGroups , query: {}
+Thu, 14 Mar 2019 10:51:01 GMT app:dev canvasData.router.js: Using Model  ../models/canvasGroups.model WITHOUT cache
+Thu, 14 Mar 2019 10:51:01 GMT app:dev canvasData.router.js:   Returned 6 records from DB
+## GET /canvasdata/canvasGroups 200 - - 8.252 ms ON [2019-03-14T10:51:01.389Z] FROM ::1 - -
+##
+  Url: http://localhost:8000/canvasdata/datasources
+  Path: /canvasdata/datasources
+Thu, 14 Mar 2019 10:51:01 GMT app:dev canvasData.router.js: ## --------------------------
+Thu, 14 Mar 2019 10:51:01 GMT app:dev canvasData.router.js: ## GET Starting with resource: datasources , query: {}
+Thu, 14 Mar 2019 10:51:01 GMT app:dev canvasData.router.js: Using Model  ../models/datasources.model WITHOUT cache
+Thu, 14 Mar 2019 10:51:01 GMT app:dev canvasData.router.js:   Returned 40 records from DB
+## GET /canvasdata/datasources 304 - - 125.104 ms ON [2019-03-14T10:51:01.536Z] FROM ::1 - -
+##
+Thu, 14 Mar 2019 10:51:01 GMT app:ws { data: 'First socket message' }
   Url: http://localhost:8000/canvasdata/datasourcePermissions
   Path: /canvasdata/datasourcePermissions
   Url: http://localhost:8000/canvasdata/dashboards
   Path: /canvasdata/dashboards
-Tue, 12 Mar 2019 08:42:30 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:42:30 GMT app:dev canvasData.router.js: ## GET Starting with resource: canvasSettings , query: {}
-Tue, 12 Mar 2019 08:42:30 GMT app:dev canvasData.router.js: Using Model  ../models/canvasSettings.model WITHOUT cache
-Tue, 12 Mar 2019 08:42:30 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:42:30 GMT app:dev canvasData.router.js: ## GET Starting with resource: datasourcePermissions , query: {}
-Tue, 12 Mar 2019 08:42:30 GMT app:dev canvasData.router.js: Using Model  ../models/datasourcePermissions.model WITHOUT cache
-Tue, 12 Mar 2019 08:42:30 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:42:30 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboards , query: {}
-Tue, 12 Mar 2019 08:42:30 GMT app:dev canvasData.router.js: Using Model  ../models/dashboards.model WITHOUT cache
-Tue, 12 Mar 2019 08:42:30 GMT app:dev canvasData.router.js:   Returned 1 records from DB
-## GET /canvasdata/canvasSettings 304 - - 80.538 ms ON [2019-03-12T08:42:30.892Z] FROM ::1 - -
-##
-Tue, 12 Mar 2019 08:42:30 GMT app:dev canvasData.router.js:   Returned 3 records from DB
-## GET /canvasdata/datasourcePermissions 304 - - 82.824 ms ON [2019-03-12T08:42:30.895Z] FROM ::1 - -
-##
-Tue, 12 Mar 2019 08:42:30 GMT app:dev canvasData.router.js:   Returned 11 records from DB
-## GET /canvasdata/dashboards 304 - - 113.100 ms ON [2019-03-12T08:42:30.927Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/dashboardsRecent
-  Path: /canvasdata/dashboardsRecent
-Tue, 12 Mar 2019 08:42:31 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:42:31 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboardsRecent , query: {}
-Tue, 12 Mar 2019 08:42:31 GMT app:dev canvasData.router.js: Using Model  ../models/dashboardsRecent.model WITHOUT cache
-Tue, 12 Mar 2019 08:42:31 GMT app:dev canvasData.router.js:   Returned 4 records from DB
-## GET /canvasdata/dashboardsRecent 304 - - 43.757 ms ON [2019-03-12T08:42:31.797Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/dashboardPermissions
-  Path: /canvasdata/dashboardPermissions
-Tue, 12 Mar 2019 08:42:32 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:42:32 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboardPermissions , query: {}
-Tue, 12 Mar 2019 08:42:32 GMT app:dev canvasData.router.js: Using Model  ../models/dashboardPermissions.model WITHOUT cache
-Tue, 12 Mar 2019 08:42:32 GMT app:dev canvasData.router.js:   Returned 0 records from DB
-## GET /canvasdata/dashboardPermissions 304 - - 47.247 ms ON [2019-03-12T08:42:32.061Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/paletteButtonsSelecteds
-  Path: /canvasdata/paletteButtonsSelecteds
-Tue, 12 Mar 2019 08:42:32 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:42:32 GMT app:dev canvasData.router.js: ## GET Starting with resource: paletteButtonsSelecteds , query: {}
-Tue, 12 Mar 2019 08:42:32 GMT app:dev canvasData.router.js: Using Model  ../models/paletteButtonsSelecteds.model WITHOUT cache
-Tue, 12 Mar 2019 08:42:32 GMT app:dev canvasData.router.js:   Returned 20 records from DB
-## GET /canvasdata/paletteButtonsSelecteds 304 - - 55.711 ms ON [2019-03-12T08:42:32.253Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/dashboardSnapshots%3FfilterObject={%22dashboardID%22:%20238}%20&sortObject=-createdOn%20&nrRowsToReturn=1&fields=id,%20comment
-  Path: /canvasdata/dashboardSnapshots
-Tue, 12 Mar 2019 08:42:36 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:42:36 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboardSnapshots , query: { filterObject: '{"dashboardID": 238} ',
-  sortObject: '-createdOn ',
-  nrRowsToReturn: '1',
-  fields: 'id, comment' }
-Tue, 12 Mar 2019 08:42:36 GMT app:dev canvasData.router.js: Using Model  ../models/dashboardSnapshots.model WITHOUT cache
-  Url: http://localhost:8000/canvasdata/dashboardTabs
-  Path: /canvasdata/dashboardTabs
-Tue, 12 Mar 2019 08:42:36 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:42:36 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboardTabs , query: {}
-Tue, 12 Mar 2019 08:42:36 GMT app:dev canvasData.router.js: Using Model  ../models/dashboardTabs.model WITHOUT cache
-Tue, 12 Mar 2019 08:42:36 GMT app:dev canvasData.router.js:   Returned 23 records from DB
-## GET /canvasdata/dashboardTabs 304 - - 24.746 ms ON [2019-03-12T08:42:36.523Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/widgetCheckpoints
-  Path: /canvasdata/widgetCheckpoints
-Tue, 12 Mar 2019 08:42:36 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:42:36 GMT app:dev canvasData.router.js: ## GET Starting with resource: widgetCheckpoints , query: {}
-Tue, 12 Mar 2019 08:42:36 GMT app:dev canvasData.router.js: Using Model  ../models/widgetCheckpoints.model WITHOUT cache
-Tue, 12 Mar 2019 08:42:36 GMT app:dev canvasData.router.js:   Returned 4 records from DB
-## GET /canvasdata/widgetCheckpoints 304 - - 270.384 ms ON [2019-03-12T08:42:37.036Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/datasets
-  Path: /canvasdata/datasets
-Tue, 12 Mar 2019 08:42:37 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:42:37 GMT app:dev canvasData.router.js: ## GET Starting with resource: datasets , query: {}
-Tue, 12 Mar 2019 08:42:37 GMT app:dev canvasData.router.js: Using Model  ../models/datasets.model WITHOUT cache
-Tue, 12 Mar 2019 08:42:37 GMT app:dev canvasData.router.js:   Returned 40 records from DB
-## GET /canvasdata/datasets 304 - - 31.719 ms ON [2019-03-12T08:42:37.916Z] FROM ::1 - -
-##
-Tue, 12 Mar 2019 08:42:38 GMT app:dev canvasData.router.js:   Returned 1 records from DB
-## GET /canvasdata/dashboardSnapshots?filterObject={%22dashboardID%22:%20238}%20&sortObject=-createdOn%20&nrRowsToReturn=1&fields=id,%20comment 304 - - 1772.940 ms ON [2019-03-12T08:42:38.220Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/widgets
-  Path: /canvasdata/widgets
-Tue, 12 Mar 2019 08:42:38 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:42:38 GMT app:dev canvasData.router.js: ## GET Starting with resource: widgets , query: {}
-Tue, 12 Mar 2019 08:42:38 GMT app:dev canvasData.router.js: Using Model  ../models/widgets.model WITHOUT cache
-Tue, 12 Mar 2019 08:42:38 GMT app:dev canvasData.router.js:   Returned 97 records from DB
-## GET /canvasdata/widgets 304 - - 481.386 ms ON [2019-03-12T08:42:38.704Z] FROM ::1 - -
-##
-Tue, 12 Mar 2019 08:42:38 GMT app:ws Response to Sender
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.890 ms ON [2019-03-12T08:42:38.723Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Tue, 12 Mar 2019 08:42:38 GMT app:dev App.js In validateUser 
-Tue, 12 Mar 2019 08:42:38 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Tue, 12 Mar 2019 08:42:38 GMT app:dev canvasData.router.js: -------------------------
-Tue, 12 Mar 2019 08:42:38 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-  Url: http://localhost:8000/clientData/%3F&datasourceID=49
-  Path: /clientData/
-Tue, 12 Mar 2019 08:42:39 GMT app:dev clientData.router.js: Start clientData.router for datasourceID: 49
-Tue, 12 Mar 2019 08:42:39 GMT app:data clientData.router.js:  <- Getting data from Server Cache on Disc for ID: 49
-Tue, 12 Mar 2019 08:42:39 GMT app:data clientData.router.js: Using Schema clientData
-Tue, 12 Mar 2019 08:42:39 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 400.642 ms ON [2019-03-12T08:42:39.142Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/clientData/%3F&datasourceID=1
-  Path: /clientData/
-Tue, 12 Mar 2019 08:42:39 GMT app:dev clientData.router.js: Start clientData.router for datasourceID: 1
-Tue, 12 Mar 2019 08:42:39 GMT app:data clientData.router.js:  <- Getting data from Server Cache on Disc for ID: 1
-Tue, 12 Mar 2019 08:42:39 GMT app:data clientData.router.js: Using Schema clientData
-## GET /clientData/?&datasourceID=49 304 - - 215.355 ms ON [2019-03-12T08:42:39.287Z] FROM ::1 - -
-##
-## GET /clientData/?&datasourceID=1 304 - - 149.011 ms ON [2019-03-12T08:42:39.292Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/dashboardsRecent%3Fid=157
-  Path: /canvasdata/dashboardsRecent
-## OPTIONS /canvasdata/dashboardsRecent?id=157 200 24 - 0.566 ms ON [2019-03-12T08:42:39.320Z] FROM ::1 - -
-##
-Tue, 12 Mar 2019 08:42:39 GMT app:ws  Response to others (excluding Sender)
-  Url: http://localhost:8000/canvasdata/dashboardLayouts%3FfilterObject={%22dashboardID%22:%20238}
-  Path: /canvasdata/dashboardLayouts
-Tue, 12 Mar 2019 08:42:39 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:42:39 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboardLayouts , query: { filterObject: '{"dashboardID": 238}' }
-Tue, 12 Mar 2019 08:42:39 GMT app:dev canvasData.router.js: Using Model  ../models/dashboardLayouts.model WITHOUT cache
-Tue, 12 Mar 2019 08:42:39 GMT app:dev canvasData.router.js:   Returned 0 records from DB
-## GET /canvasdata/dashboardLayouts?filterObject={%22dashboardID%22:%20238} 304 - - 25.568 ms ON [2019-03-12T08:42:39.400Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/dashboardsRecent%3Fid=157
-  Path: /canvasdata/dashboardsRecent
-Tue, 12 Mar 2019 08:42:39 GMT app:dev canvasData.router.js: Resource dashboardsRecent serverExpiryDateTime updated in Caching Table
-Tue, 12 Mar 2019 08:42:39 GMT app:dev canvasData.router.js: dashboardsRecent updated ID: 157
-## PUT /canvasdata/dashboardsRecent?id=157 200 534 - 7.763 ms ON [2019-03-12T08:42:39.673Z] FROM ::1 - -
-##
-Tue, 12 Mar 2019 08:42:40 GMT app:ws Broadcast to all users
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Tue, 12 Mar 2019 08:42:40 GMT app:dev App.js In validateUser 
-Tue, 12 Mar 2019 08:42:40 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Tue, 12 Mar 2019 08:42:40 GMT app:dev canvasData.router.js: -------------------------
-Tue, 12 Mar 2019 08:42:40 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Tue, 12 Mar 2019 08:42:40 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 6.900 ms ON [2019-03-12T08:42:40.387Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/canvasBackgroundcolors
-  Path: /canvasdata/canvasBackgroundcolors
-Tue, 12 Mar 2019 08:42:43 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:42:43 GMT app:dev canvasData.router.js: ## GET Starting with resource: canvasBackgroundcolors , query: {}
-Tue, 12 Mar 2019 08:42:43 GMT app:dev canvasData.router.js: Using Model  ../models/canvasBackgroundcolors.model WITHOUT cache
-  Url: http://localhost:8000/canvasdata/widgetGraphs
-  Path: /canvasdata/widgetGraphs
-Tue, 12 Mar 2019 08:42:43 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:42:43 GMT app:dev canvasData.router.js: ## GET Starting with resource: widgetGraphs , query: {}
-Tue, 12 Mar 2019 08:42:43 GMT app:dev canvasData.router.js: Using Model  ../models/widgetGraphs.model WITHOUT cache
-Tue, 12 Mar 2019 08:42:43 GMT app:dev canvasData.router.js:   Returned 171 records from DB
-## GET /canvasdata/canvasBackgroundcolors 304 - - 169.239 ms ON [2019-03-12T08:42:43.867Z] FROM ::1 - -
-##
-Tue, 12 Mar 2019 08:42:43 GMT app:dev canvasData.router.js:   Returned 22 records from DB
-## GET /canvasdata/widgetGraphs 304 - - 81.920 ms ON [2019-03-12T08:42:43.877Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/auth/local/verify
-  Path: /auth/local/verify
-## OPTIONS /auth/local/verify 200 4 - 0.814 ms ON [2019-03-12T08:44:16.282Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/auth/local/verify
-  Path: /auth/local/verify
-Tue, 12 Mar 2019 08:44:16 GMT app:dev App.js In validateUser 
-## POST /auth/local/verify 200 4 - 8.970 ms ON [2019-03-12T08:44:16.299Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/dataCachingTable
-  Path: /canvasdata/dataCachingTable
-Tue, 12 Mar 2019 08:44:16 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:44:16 GMT app:dev canvasData.router.js: ## GET Starting with resource: dataCachingTable , query: {}
-Tue, 12 Mar 2019 08:44:16 GMT app:dev canvasData.router.js: Using Model  ../models/dataCachingTable.model WITHOUT cache
-Tue, 12 Mar 2019 08:44:16 GMT app:dev canvasData.router.js:   Returned 17 records from DB
-## GET /canvasdata/dataCachingTable 304 - - 21.454 ms ON [2019-03-12T08:44:16.342Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/canvasUsers
-  Path: /canvasdata/canvasUsers
-Tue, 12 Mar 2019 08:44:16 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:44:16 GMT app:dev canvasData.router.js: ## GET Starting with resource: canvasUsers , query: {}
-Tue, 12 Mar 2019 08:44:16 GMT app:dev canvasData.router.js: Using Model  ../models/canvasUsers.model WITHOUT cache
-Tue, 12 Mar 2019 08:44:16 GMT app:dev canvasData.router.js:   Returned 4 records from DB
-## GET /canvasdata/canvasUsers 304 - - 12.045 ms ON [2019-03-12T08:44:16.380Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/canvasGroups
-  Path: /canvasdata/canvasGroups
-Tue, 12 Mar 2019 08:44:16 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:44:16 GMT app:dev canvasData.router.js: ## GET Starting with resource: canvasGroups , query: {}
-Tue, 12 Mar 2019 08:44:16 GMT app:dev canvasData.router.js: Using Model  ../models/canvasGroups.model WITHOUT cache
-Tue, 12 Mar 2019 08:44:16 GMT app:dev canvasData.router.js:   Returned 6 records from DB
-## GET /canvasdata/canvasGroups 200 - - 5.838 ms ON [2019-03-12T08:44:16.488Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/datasources
-  Path: /canvasdata/datasources
-Tue, 12 Mar 2019 08:44:16 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:44:16 GMT app:dev canvasData.router.js: ## GET Starting with resource: datasources , query: {}
-Tue, 12 Mar 2019 08:44:16 GMT app:dev canvasData.router.js: Using Model  ../models/datasources.model WITHOUT cache
-Tue, 12 Mar 2019 08:44:16 GMT app:dev canvasData.router.js:   Returned 40 records from DB
-## GET /canvasdata/datasources 304 - - 92.576 ms ON [2019-03-12T08:44:16.615Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/datasourcePermissions
-  Path: /canvasdata/datasourcePermissions
-  Url: http://localhost:8000/canvasdata/dashboards
-  Path: /canvasdata/dashboards
-Tue, 12 Mar 2019 08:44:16 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:44:16 GMT app:dev canvasData.router.js: ## GET Starting with resource: datasourcePermissions , query: {}
-Tue, 12 Mar 2019 08:44:16 GMT app:dev canvasData.router.js: Using Model  ../models/datasourcePermissions.model WITHOUT cache
-Tue, 12 Mar 2019 08:44:16 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:44:16 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboards , query: {}
-Tue, 12 Mar 2019 08:44:16 GMT app:dev canvasData.router.js: Using Model  ../models/dashboards.model WITHOUT cache
-Tue, 12 Mar 2019 08:44:16 GMT app:dev canvasData.router.js:   Returned 3 records from DB
-## GET /canvasdata/datasourcePermissions 304 - - 7.749 ms ON [2019-03-12T08:44:16.624Z] FROM ::1 - -
-##
-Tue, 12 Mar 2019 08:44:16 GMT app:dev canvasData.router.js:   Returned 11 records from DB
-## GET /canvasdata/dashboards 304 - - 17.433 ms ON [2019-03-12T08:44:16.635Z] FROM ::1 - -
-##
   Url: http://localhost:8000/canvasdata/canvasSettings
   Path: /canvasdata/canvasSettings
-Tue, 12 Mar 2019 08:44:16 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:44:16 GMT app:dev canvasData.router.js: ## GET Starting with resource: canvasSettings , query: {}
-Tue, 12 Mar 2019 08:44:16 GMT app:dev canvasData.router.js: Using Model  ../models/canvasSettings.model WITHOUT cache
-Tue, 12 Mar 2019 08:44:16 GMT app:dev canvasData.router.js:   Returned 1 records from DB
-## GET /canvasdata/canvasSettings 304 - - 5.098 ms ON [2019-03-12T08:44:16.671Z] FROM ::1 - -
+Thu, 14 Mar 2019 10:51:01 GMT app:dev canvasData.router.js: ## --------------------------
+Thu, 14 Mar 2019 10:51:01 GMT app:dev canvasData.router.js: ## GET Starting with resource: datasourcePermissions , query: {}
+Thu, 14 Mar 2019 10:51:01 GMT app:dev canvasData.router.js: Using Model  ../models/datasourcePermissions.model WITHOUT cache
+Thu, 14 Mar 2019 10:51:01 GMT app:dev canvasData.router.js: ## --------------------------
+Thu, 14 Mar 2019 10:51:01 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboards , query: {}
+Thu, 14 Mar 2019 10:51:01 GMT app:dev canvasData.router.js: Using Model  ../models/dashboards.model WITHOUT cache
+Thu, 14 Mar 2019 10:51:01 GMT app:dev canvasData.router.js: ## --------------------------
+Thu, 14 Mar 2019 10:51:01 GMT app:dev canvasData.router.js: ## GET Starting with resource: canvasSettings , query: {}
+Thu, 14 Mar 2019 10:51:01 GMT app:dev canvasData.router.js: Using Model  ../models/canvasSettings.model WITHOUT cache
+Thu, 14 Mar 2019 10:51:01 GMT app:dev canvasData.router.js:   Returned 3 records from DB
+## GET /canvasdata/datasourcePermissions 304 - - 17.084 ms ON [2019-03-14T10:51:01.556Z] FROM ::1 - -
 ##
-Tue, 12 Mar 2019 08:44:16 GMT app:ws { data: 'First socket message' }
+Thu, 14 Mar 2019 10:51:01 GMT app:dev canvasData.router.js:   Returned 9 records from DB
+## GET /canvasdata/dashboards 304 - - 25.311 ms ON [2019-03-14T10:51:01.566Z] FROM ::1 - -
+##
+Thu, 14 Mar 2019 10:51:01 GMT app:dev canvasData.router.js:   Returned 1 records from DB
+## GET /canvasdata/canvasSettings 304 - - 27.295 ms ON [2019-03-14T10:51:01.568Z] FROM ::1 - -
+##
   Url: http://localhost:8000/canvasdata/dashboardsRecent
   Path: /canvasdata/dashboardsRecent
-Tue, 12 Mar 2019 08:44:16 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:44:16 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboardsRecent , query: {}
-Tue, 12 Mar 2019 08:44:16 GMT app:dev canvasData.router.js: Using Model  ../models/dashboardsRecent.model WITHOUT cache
-Tue, 12 Mar 2019 08:44:16 GMT app:dev canvasData.router.js:   Returned 4 records from DB
-## GET /canvasdata/dashboardsRecent 200 - - 6.014 ms ON [2019-03-12T08:44:16.973Z] FROM ::1 - -
+Thu, 14 Mar 2019 10:51:01 GMT app:dev canvasData.router.js: ## --------------------------
+Thu, 14 Mar 2019 10:51:01 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboardsRecent , query: {}
+Thu, 14 Mar 2019 10:51:01 GMT app:dev canvasData.router.js: Using Model  ../models/dashboardsRecent.model WITHOUT cache
+Thu, 14 Mar 2019 10:51:01 GMT app:dev canvasData.router.js:   Returned 4 records from DB
+## GET /canvasdata/dashboardsRecent 200 - - 3.743 ms ON [2019-03-14T10:51:01.714Z] FROM ::1 - -
 ##
   Url: http://localhost:8000/canvasdata/dashboardPermissions
   Path: /canvasdata/dashboardPermissions
-Tue, 12 Mar 2019 08:44:17 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:44:17 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboardPermissions , query: {}
-Tue, 12 Mar 2019 08:44:17 GMT app:dev canvasData.router.js: Using Model  ../models/dashboardPermissions.model WITHOUT cache
-Tue, 12 Mar 2019 08:44:17 GMT app:dev canvasData.router.js:   Returned 0 records from DB
-## GET /canvasdata/dashboardPermissions 304 - - 6.627 ms ON [2019-03-12T08:44:17.122Z] FROM ::1 - -
+Thu, 14 Mar 2019 10:51:01 GMT app:dev canvasData.router.js: ## --------------------------
+Thu, 14 Mar 2019 10:51:01 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboardPermissions , query: {}
+Thu, 14 Mar 2019 10:51:01 GMT app:dev canvasData.router.js: Using Model  ../models/dashboardPermissions.model WITHOUT cache
+Thu, 14 Mar 2019 10:51:01 GMT app:dev canvasData.router.js:   Returned 0 records from DB
+## GET /canvasdata/dashboardPermissions 304 - - 3.151 ms ON [2019-03-14T10:51:01.844Z] FROM ::1 - -
 ##
   Url: http://localhost:8000/canvasdata/paletteButtonsSelecteds
   Path: /canvasdata/paletteButtonsSelecteds
-Tue, 12 Mar 2019 08:44:17 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:44:17 GMT app:dev canvasData.router.js: ## GET Starting with resource: paletteButtonsSelecteds , query: {}
-Tue, 12 Mar 2019 08:44:17 GMT app:dev canvasData.router.js: Using Model  ../models/paletteButtonsSelecteds.model WITHOUT cache
-Tue, 12 Mar 2019 08:44:17 GMT app:dev canvasData.router.js:   Returned 20 records from DB
-## GET /canvasdata/paletteButtonsSelecteds 304 - - 12.122 ms ON [2019-03-12T08:44:17.304Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/dashboardSnapshots%3FfilterObject={%22dashboardID%22:%20238}%20&sortObject=-createdOn%20&nrRowsToReturn=1&fields=id,%20comment
-  Path: /canvasdata/dashboardSnapshots
-Tue, 12 Mar 2019 08:44:18 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:44:18 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboardSnapshots , query: { filterObject: '{"dashboardID": 238} ',
-  sortObject: '-createdOn ',
-  nrRowsToReturn: '1',
-  fields: 'id, comment' }
-Tue, 12 Mar 2019 08:44:18 GMT app:dev canvasData.router.js: Using Model  ../models/dashboardSnapshots.model WITHOUT cache
-  Url: http://localhost:8000/canvasdata/dashboardTabs
-  Path: /canvasdata/dashboardTabs
-Tue, 12 Mar 2019 08:44:18 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:44:18 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboardTabs , query: {}
-Tue, 12 Mar 2019 08:44:18 GMT app:dev canvasData.router.js: Using Model  ../models/dashboardTabs.model WITHOUT cache
-Tue, 12 Mar 2019 08:44:18 GMT app:dev canvasData.router.js:   Returned 23 records from DB
-## GET /canvasdata/dashboardTabs 304 - - 15.435 ms ON [2019-03-12T08:44:18.538Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/widgetCheckpoints
-  Path: /canvasdata/widgetCheckpoints
-Tue, 12 Mar 2019 08:44:19 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:44:19 GMT app:dev canvasData.router.js: ## GET Starting with resource: widgetCheckpoints , query: {}
-Tue, 12 Mar 2019 08:44:19 GMT app:dev canvasData.router.js: Using Model  ../models/widgetCheckpoints.model WITHOUT cache
-Tue, 12 Mar 2019 08:44:19 GMT app:dev canvasData.router.js:   Returned 4 records from DB
-## GET /canvasdata/widgetCheckpoints 304 - - 60.964 ms ON [2019-03-12T08:44:19.461Z] FROM ::1 - -
-##
-Tue, 12 Mar 2019 08:44:19 GMT app:dev canvasData.router.js:   Returned 1 records from DB
-## GET /canvasdata/dashboardSnapshots?filterObject={%22dashboardID%22:%20238}%20&sortObject=-createdOn%20&nrRowsToReturn=1&fields=id,%20comment 304 - - 1187.833 ms ON [2019-03-12T08:44:19.704Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/datasets
-  Path: /canvasdata/datasets
-Tue, 12 Mar 2019 08:44:19 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:44:19 GMT app:dev canvasData.router.js: ## GET Starting with resource: datasets , query: {}
-Tue, 12 Mar 2019 08:44:19 GMT app:dev canvasData.router.js: Using Model  ../models/datasets.model WITHOUT cache
-Tue, 12 Mar 2019 08:44:19 GMT app:dev canvasData.router.js:   Returned 40 records from DB
-## GET /canvasdata/datasets 304 - - 12.567 ms ON [2019-03-12T08:44:19.718Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/widgets
-  Path: /canvasdata/widgets
-Tue, 12 Mar 2019 08:44:19 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:44:19 GMT app:dev canvasData.router.js: ## GET Starting with resource: widgets , query: {}
-Tue, 12 Mar 2019 08:44:19 GMT app:dev canvasData.router.js: Using Model  ../models/widgets.model WITHOUT cache
-Tue, 12 Mar 2019 08:44:20 GMT app:dev canvasData.router.js:   Returned 97 records from DB
-## GET /canvasdata/widgets 304 - - 471.054 ms ON [2019-03-12T08:44:20.230Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/clientData/%3F&datasourceID=1
-  Path: /clientData/
-Tue, 12 Mar 2019 08:44:20 GMT app:dev clientData.router.js: Start clientData.router for datasourceID: 1
-Tue, 12 Mar 2019 08:44:20 GMT app:data clientData.router.js:  <- Getting data from Server Cache on Disc for ID: 1
-Tue, 12 Mar 2019 08:44:20 GMT app:data clientData.router.js: Using Schema clientData
-  Url: http://localhost:8000/clientData/%3F&datasourceID=49
-  Path: /clientData/
-## GET /clientData/?&datasourceID=1 304 - - 24.824 ms ON [2019-03-12T08:44:20.346Z] FROM ::1 - -
-##
-Tue, 12 Mar 2019 08:44:20 GMT app:dev clientData.router.js: Start clientData.router for datasourceID: 49
-Tue, 12 Mar 2019 08:44:20 GMT app:data clientData.router.js:  <- Getting data from Server Cache on Disc for ID: 49
-Tue, 12 Mar 2019 08:44:20 GMT app:data clientData.router.js: Using Schema clientData
-## GET /clientData/?&datasourceID=49 304 - - 16.027 ms ON [2019-03-12T08:44:20.351Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/dashboardsRecent%3Fid=157
-  Path: /canvasdata/dashboardsRecent
-## OPTIONS /canvasdata/dashboardsRecent?id=157 200 24 - 0.522 ms ON [2019-03-12T08:44:20.418Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/dashboardLayouts%3FfilterObject={%22dashboardID%22:%20238}
-  Path: /canvasdata/dashboardLayouts
-Tue, 12 Mar 2019 08:44:20 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:44:20 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboardLayouts , query: { filterObject: '{"dashboardID": 238}' }
-Tue, 12 Mar 2019 08:44:20 GMT app:dev canvasData.router.js: Using Model  ../models/dashboardLayouts.model WITHOUT cache
-Tue, 12 Mar 2019 08:44:20 GMT app:dev canvasData.router.js:   Returned 0 records from DB
-## GET /canvasdata/dashboardLayouts?filterObject={%22dashboardID%22:%20238} 304 - - 3.069 ms ON [2019-03-12T08:44:20.434Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/dashboardsRecent%3Fid=157
-  Path: /canvasdata/dashboardsRecent
-Tue, 12 Mar 2019 08:44:20 GMT app:dev canvasData.router.js: Resource dashboardsRecent serverExpiryDateTime updated in Caching Table
-Tue, 12 Mar 2019 08:44:20 GMT app:dev canvasData.router.js: dashboardsRecent updated ID: 157
-## PUT /canvasdata/dashboardsRecent?id=157 200 534 - 5.121 ms ON [2019-03-12T08:44:20.771Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/canvasBackgroundcolors
-  Path: /canvasdata/canvasBackgroundcolors
-Tue, 12 Mar 2019 08:44:23 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:44:23 GMT app:dev canvasData.router.js: ## GET Starting with resource: canvasBackgroundcolors , query: {}
-Tue, 12 Mar 2019 08:44:23 GMT app:dev canvasData.router.js: Using Model  ../models/canvasBackgroundcolors.model WITHOUT cache
-Tue, 12 Mar 2019 08:44:23 GMT app:dev canvasData.router.js:   Returned 171 records from DB
-## GET /canvasdata/canvasBackgroundcolors 304 - - 28.510 ms ON [2019-03-12T08:44:24.004Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/widgetGraphs
-  Path: /canvasdata/widgetGraphs
-Tue, 12 Mar 2019 08:44:24 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:44:24 GMT app:dev canvasData.router.js: ## GET Starting with resource: widgetGraphs , query: {}
-Tue, 12 Mar 2019 08:44:24 GMT app:dev canvasData.router.js: Using Model  ../models/widgetGraphs.model WITHOUT cache
-Tue, 12 Mar 2019 08:44:24 GMT app:dev canvasData.router.js:   Returned 22 records from DB
-## GET /canvasdata/widgetGraphs 304 - - 18.972 ms ON [2019-03-12T08:44:24.065Z] FROM ::1 - -
-##
-Tue, 12 Mar 2019 08:44:24 GMT app:ws Response to Sender
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.857 ms ON [2019-03-12T08:44:24.454Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Tue, 12 Mar 2019 08:44:24 GMT app:dev App.js In validateUser 
-Tue, 12 Mar 2019 08:44:24 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Tue, 12 Mar 2019 08:44:24 GMT app:dev canvasData.router.js: -------------------------
-Tue, 12 Mar 2019 08:44:24 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Tue, 12 Mar 2019 08:44:24 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 14.167 ms ON [2019-03-12T08:44:24.532Z] FROM ::1 - -
-##
-Tue, 12 Mar 2019 08:44:25 GMT app:ws  Response to others (excluding Sender)
-Tue, 12 Mar 2019 08:44:26 GMT app:ws Broadcast to all users
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Tue, 12 Mar 2019 08:44:26 GMT app:dev App.js In validateUser 
-Tue, 12 Mar 2019 08:44:26 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Tue, 12 Mar 2019 08:44:26 GMT app:dev canvasData.router.js: -------------------------
-Tue, 12 Mar 2019 08:44:26 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Tue, 12 Mar 2019 08:44:26 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 5.666 ms ON [2019-03-12T08:44:26.451Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/canvasUsers%3Fid=1
-  Path: /canvasdata/canvasUsers
-## OPTIONS /canvasdata/canvasUsers?id=1 200 24 - 0.726 ms ON [2019-03-12T08:44:45.469Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/canvasUsers%3Fid=1
-  Path: /canvasdata/canvasUsers
-Tue, 12 Mar 2019 08:44:45 GMT app:dev canvasData.router.js: Resource canvasUsers serverExpiryDateTime updated in Caching Table
-Tue, 12 Mar 2019 08:44:45 GMT app:dev canvasData.router.js: canvasUsers updated ID: 1
-## PUT /canvasdata/canvasUsers?id=1 200 - - 14.650 ms ON [2019-03-12T08:44:45.693Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/auth/local/verify
-  Path: /auth/local/verify
-## OPTIONS /auth/local/verify 200 4 - 0.767 ms ON [2019-03-12T08:47:35.476Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/auth/local/verify
-  Path: /auth/local/verify
-Tue, 12 Mar 2019 08:47:35 GMT app:dev App.js In validateUser 
-## POST /auth/local/verify 200 4 - 6.420 ms ON [2019-03-12T08:47:35.502Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/dataCachingTable
-  Path: /canvasdata/dataCachingTable
-Tue, 12 Mar 2019 08:47:35 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:47:35 GMT app:dev canvasData.router.js: ## GET Starting with resource: dataCachingTable , query: {}
-Tue, 12 Mar 2019 08:47:35 GMT app:dev canvasData.router.js: Using Model  ../models/dataCachingTable.model WITHOUT cache
-Tue, 12 Mar 2019 08:47:35 GMT app:dev canvasData.router.js:   Returned 17 records from DB
-## GET /canvasdata/dataCachingTable 304 - - 15.341 ms ON [2019-03-12T08:47:35.542Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/canvasUsers
-  Path: /canvasdata/canvasUsers
-Tue, 12 Mar 2019 08:47:35 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:47:35 GMT app:dev canvasData.router.js: ## GET Starting with resource: canvasUsers , query: {}
-Tue, 12 Mar 2019 08:47:35 GMT app:dev canvasData.router.js: Using Model  ../models/canvasUsers.model WITHOUT cache
-Tue, 12 Mar 2019 08:47:35 GMT app:dev canvasData.router.js:   Returned 4 records from DB
-## GET /canvasdata/canvasUsers 304 - - 19.051 ms ON [2019-03-12T08:47:35.599Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/canvasGroups
-  Path: /canvasdata/canvasGroups
-Tue, 12 Mar 2019 08:47:35 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:47:35 GMT app:dev canvasData.router.js: ## GET Starting with resource: canvasGroups , query: {}
-Tue, 12 Mar 2019 08:47:35 GMT app:dev canvasData.router.js: Using Model  ../models/canvasGroups.model WITHOUT cache
-Tue, 12 Mar 2019 08:47:35 GMT app:dev canvasData.router.js:   Returned 6 records from DB
-## GET /canvasdata/canvasGroups 200 - - 6.702 ms ON [2019-03-12T08:47:35.685Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/datasources
-  Path: /canvasdata/datasources
-Tue, 12 Mar 2019 08:47:35 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:47:35 GMT app:dev canvasData.router.js: ## GET Starting with resource: datasources , query: {}
-Tue, 12 Mar 2019 08:47:35 GMT app:dev canvasData.router.js: Using Model  ../models/datasources.model WITHOUT cache
-Tue, 12 Mar 2019 08:47:35 GMT app:dev canvasData.router.js:   Returned 40 records from DB
-## GET /canvasdata/datasources 304 - - 94.537 ms ON [2019-03-12T08:47:35.806Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/datasourcePermissions
-  Path: /canvasdata/datasourcePermissions
-  Url: http://localhost:8000/canvasdata/dashboards
-  Path: /canvasdata/dashboards
-Tue, 12 Mar 2019 08:47:35 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:47:35 GMT app:dev canvasData.router.js: ## GET Starting with resource: datasourcePermissions , query: {}
-Tue, 12 Mar 2019 08:47:35 GMT app:dev canvasData.router.js: Using Model  ../models/datasourcePermissions.model WITHOUT cache
-Tue, 12 Mar 2019 08:47:35 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:47:35 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboards , query: {}
-Tue, 12 Mar 2019 08:47:35 GMT app:dev canvasData.router.js: Using Model  ../models/dashboards.model WITHOUT cache
-Tue, 12 Mar 2019 08:47:35 GMT app:dev canvasData.router.js:   Returned 3 records from DB
-## GET /canvasdata/datasourcePermissions 304 - - 11.132 ms ON [2019-03-12T08:47:35.821Z] FROM ::1 - -
-##
-Tue, 12 Mar 2019 08:47:35 GMT app:dev canvasData.router.js:   Returned 11 records from DB
-## GET /canvasdata/dashboards 304 - - 21.770 ms ON [2019-03-12T08:47:35.836Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/canvasSettings
-  Path: /canvasdata/canvasSettings
-Tue, 12 Mar 2019 08:47:35 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:47:35 GMT app:dev canvasData.router.js: ## GET Starting with resource: canvasSettings , query: {}
-Tue, 12 Mar 2019 08:47:35 GMT app:dev canvasData.router.js: Using Model  ../models/canvasSettings.model WITHOUT cache
-Tue, 12 Mar 2019 08:47:35 GMT app:dev canvasData.router.js:   Returned 1 records from DB
-## GET /canvasdata/canvasSettings 304 - - 5.144 ms ON [2019-03-12T08:47:35.860Z] FROM ::1 - -
-##
-Tue, 12 Mar 2019 08:47:35 GMT app:ws { data: 'First socket message' }
-  Url: http://localhost:8000/canvasdata/dashboardsRecent
-  Path: /canvasdata/dashboardsRecent
-Tue, 12 Mar 2019 08:47:36 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:47:36 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboardsRecent , query: {}
-Tue, 12 Mar 2019 08:47:36 GMT app:dev canvasData.router.js: Using Model  ../models/dashboardsRecent.model WITHOUT cache
-Tue, 12 Mar 2019 08:47:36 GMT app:dev canvasData.router.js:   Returned 4 records from DB
-## GET /canvasdata/dashboardsRecent 200 - - 4.076 ms ON [2019-03-12T08:47:36.116Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/dashboardPermissions
-  Path: /canvasdata/dashboardPermissions
-Tue, 12 Mar 2019 08:47:36 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:47:36 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboardPermissions , query: {}
-Tue, 12 Mar 2019 08:47:36 GMT app:dev canvasData.router.js: Using Model  ../models/dashboardPermissions.model WITHOUT cache
-Tue, 12 Mar 2019 08:47:36 GMT app:dev canvasData.router.js:   Returned 0 records from DB
-## GET /canvasdata/dashboardPermissions 304 - - 3.620 ms ON [2019-03-12T08:47:36.362Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/paletteButtonsSelecteds
-  Path: /canvasdata/paletteButtonsSelecteds
-Tue, 12 Mar 2019 08:47:36 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:47:36 GMT app:dev canvasData.router.js: ## GET Starting with resource: paletteButtonsSelecteds , query: {}
-Tue, 12 Mar 2019 08:47:36 GMT app:dev canvasData.router.js: Using Model  ../models/paletteButtonsSelecteds.model WITHOUT cache
-Tue, 12 Mar 2019 08:47:36 GMT app:dev canvasData.router.js:   Returned 20 records from DB
-## GET /canvasdata/paletteButtonsSelecteds 304 - - 9.863 ms ON [2019-03-12T08:47:36.547Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/dashboardSnapshots%3FfilterObject={%22dashboardID%22:%20238}%20&sortObject=-createdOn%20&nrRowsToReturn=1&fields=id,%20comment
-  Path: /canvasdata/dashboardSnapshots
-Tue, 12 Mar 2019 08:47:37 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:47:37 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboardSnapshots , query: { filterObject: '{"dashboardID": 238} ',
-  sortObject: '-createdOn ',
-  nrRowsToReturn: '1',
-  fields: 'id, comment' }
-Tue, 12 Mar 2019 08:47:37 GMT app:dev canvasData.router.js: Using Model  ../models/dashboardSnapshots.model WITHOUT cache
-  Url: http://localhost:8000/canvasdata/dashboardTabs
-  Path: /canvasdata/dashboardTabs
-Tue, 12 Mar 2019 08:47:37 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:47:37 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboardTabs , query: {}
-Tue, 12 Mar 2019 08:47:37 GMT app:dev canvasData.router.js: Using Model  ../models/dashboardTabs.model WITHOUT cache
-Tue, 12 Mar 2019 08:47:37 GMT app:dev canvasData.router.js:   Returned 23 records from DB
-## GET /canvasdata/dashboardTabs 304 - - 28.267 ms ON [2019-03-12T08:47:37.816Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/widgetCheckpoints
-  Path: /canvasdata/widgetCheckpoints
-Tue, 12 Mar 2019 08:47:37 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:47:37 GMT app:dev canvasData.router.js: ## GET Starting with resource: widgetCheckpoints , query: {}
-Tue, 12 Mar 2019 08:47:37 GMT app:dev canvasData.router.js: Using Model  ../models/widgetCheckpoints.model WITHOUT cache
-Tue, 12 Mar 2019 08:47:37 GMT app:dev canvasData.router.js:   Returned 4 records from DB
-## GET /canvasdata/widgetCheckpoints 304 - - 70.925 ms ON [2019-03-12T08:47:37.944Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/datasets
-  Path: /canvasdata/datasets
-Tue, 12 Mar 2019 08:47:38 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:47:38 GMT app:dev canvasData.router.js: ## GET Starting with resource: datasets , query: {}
-Tue, 12 Mar 2019 08:47:38 GMT app:dev canvasData.router.js: Using Model  ../models/datasets.model WITHOUT cache
-Tue, 12 Mar 2019 08:47:38 GMT app:dev canvasData.router.js:   Returned 40 records from DB
-## GET /canvasdata/datasets 304 - - 19.606 ms ON [2019-03-12T08:47:38.720Z] FROM ::1 - -
-##
-Tue, 12 Mar 2019 08:47:38 GMT app:dev canvasData.router.js:   Returned 1 records from DB
-## GET /canvasdata/dashboardSnapshots?filterObject={%22dashboardID%22:%20238}%20&sortObject=-createdOn%20&nrRowsToReturn=1&fields=id,%20comment 304 - - 1219.725 ms ON [2019-03-12T08:47:38.997Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/widgets
-  Path: /canvasdata/widgets
-Tue, 12 Mar 2019 08:47:39 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:47:39 GMT app:dev canvasData.router.js: ## GET Starting with resource: widgets , query: {}
-Tue, 12 Mar 2019 08:47:39 GMT app:dev canvasData.router.js: Using Model  ../models/widgets.model WITHOUT cache
-Tue, 12 Mar 2019 08:47:39 GMT app:dev canvasData.router.js:   Returned 97 records from DB
-## GET /canvasdata/widgets 304 - - 440.911 ms ON [2019-03-12T08:47:39.480Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/clientData/%3F&datasourceID=1
-  Path: /clientData/
-Tue, 12 Mar 2019 08:47:39 GMT app:dev clientData.router.js: Start clientData.router for datasourceID: 1
-Tue, 12 Mar 2019 08:47:39 GMT app:data clientData.router.js:  <- Getting data from Server Cache on Disc for ID: 1
-Tue, 12 Mar 2019 08:47:39 GMT app:data clientData.router.js: Using Schema clientData
-## GET /clientData/?&datasourceID=1 304 - - 12.829 ms ON [2019-03-12T08:47:39.578Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/clientData/%3F&datasourceID=49
-  Path: /clientData/
-Tue, 12 Mar 2019 08:47:39 GMT app:dev clientData.router.js: Start clientData.router for datasourceID: 49
-Tue, 12 Mar 2019 08:47:39 GMT app:data clientData.router.js:  <- Getting data from Server Cache on Disc for ID: 49
-Tue, 12 Mar 2019 08:47:39 GMT app:data clientData.router.js: Using Schema clientData
-## GET /clientData/?&datasourceID=49 304 - - 5.239 ms ON [2019-03-12T08:47:39.589Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/dashboardsRecent%3Fid=157
-  Path: /canvasdata/dashboardsRecent
-## OPTIONS /canvasdata/dashboardsRecent?id=157 200 24 - 0.723 ms ON [2019-03-12T08:47:39.635Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/dashboardLayouts%3FfilterObject={%22dashboardID%22:%20238}
-  Path: /canvasdata/dashboardLayouts
-Tue, 12 Mar 2019 08:47:39 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:47:39 GMT app:dev canvasData.router.js: ## GET Starting with resource: dashboardLayouts , query: { filterObject: '{"dashboardID": 238}' }
-Tue, 12 Mar 2019 08:47:39 GMT app:dev canvasData.router.js: Using Model  ../models/dashboardLayouts.model WITHOUT cache
-Tue, 12 Mar 2019 08:47:39 GMT app:dev canvasData.router.js:   Returned 0 records from DB
-## GET /canvasdata/dashboardLayouts?filterObject={%22dashboardID%22:%20238} 304 - - 3.613 ms ON [2019-03-12T08:47:39.652Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/dashboardsRecent%3Fid=157
-  Path: /canvasdata/dashboardsRecent
-Tue, 12 Mar 2019 08:47:40 GMT app:dev canvasData.router.js: Resource dashboardsRecent serverExpiryDateTime updated in Caching Table
-Tue, 12 Mar 2019 08:47:40 GMT app:dev canvasData.router.js: dashboardsRecent updated ID: 157
-## PUT /canvasdata/dashboardsRecent?id=157 200 534 - 5.941 ms ON [2019-03-12T08:47:40.034Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/canvasBackgroundcolors
-  Path: /canvasdata/canvasBackgroundcolors
-Tue, 12 Mar 2019 08:47:41 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:47:41 GMT app:dev canvasData.router.js: ## GET Starting with resource: canvasBackgroundcolors , query: {}
-Tue, 12 Mar 2019 08:47:41 GMT app:dev canvasData.router.js: Using Model  ../models/canvasBackgroundcolors.model WITHOUT cache
-Tue, 12 Mar 2019 08:47:41 GMT app:dev canvasData.router.js:   Returned 171 records from DB
-## GET /canvasdata/canvasBackgroundcolors 304 - - 23.038 ms ON [2019-03-12T08:47:41.376Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/widgetGraphs
-  Path: /canvasdata/widgetGraphs
-Tue, 12 Mar 2019 08:47:41 GMT app:dev canvasData.router.js: ## --------------------------
-Tue, 12 Mar 2019 08:47:41 GMT app:dev canvasData.router.js: ## GET Starting with resource: widgetGraphs , query: {}
-Tue, 12 Mar 2019 08:47:41 GMT app:dev canvasData.router.js: Using Model  ../models/widgetGraphs.model WITHOUT cache
-Tue, 12 Mar 2019 08:47:41 GMT app:dev canvasData.router.js:   Returned 22 records from DB
-## GET /canvasdata/widgetGraphs 304 - - 21.397 ms ON [2019-03-12T08:47:41.433Z] FROM ::1 - -
-##
-Tue, 12 Mar 2019 08:47:43 GMT app:ws Response to Sender
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-## OPTIONS /canvasdata/statusBarMessageLogs 200 24 - 0.896 ms ON [2019-03-12T08:47:43.653Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Tue, 12 Mar 2019 08:47:43 GMT app:dev App.js In validateUser 
-Tue, 12 Mar 2019 08:47:43 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Tue, 12 Mar 2019 08:47:43 GMT app:dev canvasData.router.js: -------------------------
-Tue, 12 Mar 2019 08:47:43 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Tue, 12 Mar 2019 08:47:43 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 18.781 ms ON [2019-03-12T08:47:43.706Z] FROM ::1 - -
-##
-Tue, 12 Mar 2019 08:47:44 GMT app:ws  Response to others (excluding Sender)
-Tue, 12 Mar 2019 08:47:45 GMT app:ws Broadcast to all users
-  Url: http://localhost:8000/canvasdata/statusBarMessageLogs
-  Path: /canvasdata/statusBarMessageLogs
-Tue, 12 Mar 2019 08:47:45 GMT app:dev App.js In validateUser 
-Tue, 12 Mar 2019 08:47:45 GMT app:dev canvasData.router.js: Router: POST for resource: statusBarMessageLogs
-Tue, 12 Mar 2019 08:47:45 GMT app:dev canvasData.router.js: -------------------------
-Tue, 12 Mar 2019 08:47:45 GMT app:dev canvasData.router.js: Resource statusBarMessageLogs record NOT IN CACHING TABLE
-Tue, 12 Mar 2019 08:47:45 GMT app:dev canvasData.router.js: New record added in canvasRouter
-## POST /canvasdata/statusBarMessageLogs 200 590 - 6.236 ms ON [2019-03-12T08:47:45.657Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/canvasUsers%3Fid=1
-  Path: /canvasdata/canvasUsers
-## OPTIONS /canvasdata/canvasUsers?id=1 200 24 - 0.518 ms ON [2019-03-12T08:47:52.524Z] FROM ::1 - -
-##
-  Url: http://localhost:8000/canvasdata/canvasUsers%3Fid=1
-  Path: /canvasdata/canvasUsers
-Tue, 12 Mar 2019 08:47:52 GMT app:dev canvasData.router.js: Resource canvasUsers serverExpiryDateTime updated in Caching Table
-Tue, 12 Mar 2019 08:47:52 GMT app:dev canvasData.router.js: canvasUsers updated ID: 1
-## PUT /canvasdata/canvasUsers?id=1 200 - - 21.025 ms ON [2019-03-12T08:47:52.620Z] FROM ::1 - -
+Thu, 14 Mar 2019 10:51:01 GMT app:dev canvasData.router.js: ## --------------------------
+Thu, 14 Mar 2019 10:51:01 GMT app:dev canvasData.router.js: ## GET Starting with resource: paletteButtonsSelecteds , query: {}
+Thu, 14 Mar 2019 10:51:01 GMT app:dev canvasData.router.js: Using Model  ../models/paletteButtonsSelecteds.model WITHOUT cache
+Thu, 14 Mar 2019 10:51:01 GMT app:dev canvasData.router.js:   Returned 20 records from DB
+## GET /canvasdata/paletteButtonsSelecteds 304 - - 10.195 ms ON [2019-03-14T10:51:01.907Z] FROM ::1 - -
 ##
