@@ -132,6 +132,7 @@ const CanvasUserSchema = new Schema({
     preferencePlaySound: Boolean,                           // T/F - play a sound when showing a message on the StatusBar
     preferenceDebugSession: Boolean,                        // T/F - switch on/off console.log, used by Developers & Deguggers
     preferenceAutoSync: Boolean,                            // T/F - can auto sync
+    preferenceSnapToGrid: Boolean,                          // T/F - snap Widgets to grid 
     preferenceShowOpenStartupMessage: Boolean,              // T/F - show open startup msg
     preferenceShowOpenDataCombinationMessage: Boolean,      // T/F - show msg on open combination form
     preferenceShowViewStartupMessage: Boolean,              // T/F - show msg on open view form
