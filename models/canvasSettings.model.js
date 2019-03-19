@@ -15,7 +15,6 @@ const CanvasSettingSchema = new Schema({
     widgetsMinZindex: Number,               // Widgets Min Zindex
     widgetsMaxZindex: Number,               // Widgets Max Zindex
     gridSize: Number,                       // Size of the Grid
-    snapToGrid: Boolean,                    // Snap to grid (T/F)
     printDefault: String,                   // Deflt: Local HP
     printSize: String,                      // Deflt Page Size: A4
     printLayout: String,                    // Deflt Layout: Single page, B and W
