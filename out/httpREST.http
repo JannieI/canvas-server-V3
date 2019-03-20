@@ -145,8 +145,7 @@ GET {{host}}/canvasdata/**************
 
 
 ###
-GET {{host}}/canvasdata/dashboardTabs
-
+GET {{host}}/canvasdata/datasourceScheduleLogs
 
 
 

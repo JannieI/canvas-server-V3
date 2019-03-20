@@ -32,7 +32,7 @@
         "datasourcePermissions",
         "datasources",
         "datasourceSchedules",
-        "datasourceScheduleLog",
+        "datasourceScheduleLogs",
         "datasourceTransformations",
         "dataTables",
         "paletteButtonBars",
