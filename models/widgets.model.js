@@ -241,7 +241,8 @@ const WidgetSchema = new Schema({
     // Where W lives
     dashboardID: Number,                    // FK to DashboardID to which widget belongs
     dashboardTabID: Number,                 // FKs to Tabs where the widget lives
-    dashboardTabIDs: [ { type: Number } ],  // FKs to Tabs where the widget lives
+    // ** TABIDS
+    // dashboardTabIDs: [ { type: Number } ],  // FKs to Tabs where the widget lives
 
     // Locking
     isLocked: Boolean,                      // True if this W is temporary locked
