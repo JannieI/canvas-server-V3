@@ -36,7 +36,6 @@ router.get('/', (req, res, next) => {
 
         // Find Datasource
         const datasourceQuery = { id: datasourceID };
-
         datasourceModel.find( datasourceQuery, (err, datasources) => {
 
             if (err) {

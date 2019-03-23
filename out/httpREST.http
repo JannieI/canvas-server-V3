@@ -152,7 +152,8 @@ GET {{host}}/canvasdata/datasourceScheduleLogs
 ###
 // Testing canvasDashboardCore 
 GET {{host}}/canvasDashboardCore
-?id=208
+?id=213
+&dashboardTabID=347
 
 
 

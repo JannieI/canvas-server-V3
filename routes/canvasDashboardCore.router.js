@@ -28,11 +28,9 @@ router.get('/', (req, res, next) => {
     if (startPos > 0  &&  startPos < module.id.length) {
         moduleName = module.id.substring(startPos + 1);
     };
-    console.log('xx 1')
 
     debugDev(moduleName + ": " + '## --------------------------');
     debugDev(moduleName + ": " + '## GET Starting with canvasDashboardCore with query:', req.query);
-    console.log('xx 1')
     
     // Try
     // try {
@@ -47,7 +45,6 @@ router.get('/', (req, res, next) => {
         // Find Dashboard
         const dashboardQuery = { id: req.query.id };
         dashboardModel.find( dashboardQuery, (err, dashboards) => {
-            console.log('xx 1')
 
             if (err) {
                 return res.json(createErrorObject(
@@ -81,16 +78,15 @@ router.get('/', (req, res, next) => {
                 });
 
                 // Find Widgets (all, else filter if dashboardTabID was provided)
-                const widgetQuery = { dashboardID: req.query.id }
+                let widgetQuery = { dashboardID: req.query.id }
                 if (dashboardTabID != null) {
                     widgetQuery = { 
                         dashboardID: req.query.id,  
                         dashboardTabID: dashboardTabID
                     }
                 };
-                console.log('xx widgetQuery', widgetQuery)
+
                 widgetModel.find( widgetQuery, (err, widgets) => {
-                    console.log('xx w.len', widgets.length)
                     if (err) {
                         return res.json(createErrorObject(
                             "error",
