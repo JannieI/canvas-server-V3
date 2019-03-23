@@ -359,7 +359,7 @@ const WidgetSchema = new Schema({
 
     // Data
     graphUrl: String,                       // URL of data
-    graphData: Object,                      // Actual data as an Array
+    dataFiltered: Object,                      // Actual data as an Array
 
     // Title
     graphTitleText: String,                 // Text to show in Title
