@@ -64,7 +64,18 @@ router.get('/', (req, res, next) => {
                         err
                     ));
                 };
-        
+
+                // Sort D-Tabs
+                dashboardTabs = dashboardTabs.sort( (obj1,obj2) => {
+                    if (obj1.displayOrder > obj2.displayOrder) {
+                        return 1;
+                    };
+                    if (obj1.displayOrder < obj2.displayOrder) {
+                        return -1;
+                    };
+                    return 0;
+                });
+
                 // Find Widgets
                 const widgetQuery = { dashboardID: req.query.id }
                 widgetModel.find( widgetQuery, (err, widgets) => {
