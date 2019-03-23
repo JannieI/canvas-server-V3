@@ -6,6 +6,9 @@
 //      WidgetCheckpoints
 //      WidgetLayouts
 
+// Input:
+// - dashboardID (compulsory)
+// - dashboardTabID - optional, in which case only Widgets for this TabID is returned
 // Imports
 const express = require('express');
 const router = express.Router();
@@ -39,6 +42,7 @@ router.get('/', (req, res, next) => {
         const widgetModel = require(widgetSchema);
         const widgetCheckpointModel = require(widgetCheckpointSchema);
         const widgetLayoutModel = require(widgetLayoutSchema);
+        const dashboardTabID = req.query.dashboardTabID;
 
         // Find Dashboard
         const dashboardQuery = { id: req.query.id };
@@ -76,10 +80,17 @@ router.get('/', (req, res, next) => {
                     return 0;
                 });
 
-                // Find Widgets
+                // Find Widgets (all, else filter if dashboardTabID was provided)
                 const widgetQuery = { dashboardID: req.query.id }
+                if (dashboardTabID != null) {
+                    widgetQuery = { 
+                        dashboardID: req.query.id,  
+                        dashboardTabID: dashboardTabID
+                    }
+                };
+                console.log('xx widgetQuery', widgetQuery)
                 widgetModel.find( widgetQuery, (err, widgets) => {
-
+                    console.log('xx w.len', widgets.length)
                     if (err) {
                         return res.json(createErrorObject(
                             "error",
