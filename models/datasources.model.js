@@ -160,10 +160,6 @@ const DatasourceSchema = new Schema({
 
     // WHAT
 
-	// What: Dashboard-applicable Filters
-    datasourceFilters: [ DatasourceFilter ],    // Optional Array of DS-Filters per Dashboard
-    datasourceFilterForThisDashboard: Boolean,  // @ RunTime, changes: true if THIS D has filters on THIS DS
-
     // What: MetaData (describes the What)
     dataFields: [ { type: String } ],       // FieldNames, in order to display
     dataFieldTypes: [ { type: String } ],   // Field Types, same order as dataFields
@@ -179,6 +175,14 @@ const DatasourceSchema = new Schema({
     dataErrorMessage: String,               // Error returned by Canvas Server
     nrRecordsReturned: Number,              // Nr of records returned by Canvas Server
     sourceLocation: String,                 // Source, CanvasCacheDisc, CanvasCacheMemory
+
+
+    // DATA
+    
+    // Data is loaded at @Runtime
+    datasourceFilters: [ DatasourceFilter ],    // Optional Array of DS-Filters per Dashboard
+	dataFull: Object,                           // Full array of data, filled @Runtime
+	dataFiltered: Object                        // Filtered array of data, based on DS-Filter. Filled @Runtime
 
 });
 
