@@ -150,10 +150,10 @@ GET {{host}}/canvasdata/datasourceScheduleLogs
 
 
 ###
-// Testing canvasCurrentDashboard 
-GET {{host}}/canvasCurrentDashboard
-?id=112
-&dashboardTabID=250
+// Testing canvasDashboardCore 
+GET {{host}}/canvasDashboardCore
+?id=208
+
 
 
 ###

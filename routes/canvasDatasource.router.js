@@ -23,7 +23,7 @@ router.get('/', (req, res, next) => {
     };
 
     debugDev(moduleName + ": " + '## --------------------------', constants.SERVER_MICROSOFT_SQL);
-    debugDev(moduleName + ": " + '## GET Starting with CurrentDashboard with query:', req.query);
+    debugDev(moduleName + ": " + '## GET Starting with canvasDatasource with query:', req.query);
 
     // Try
     try {
