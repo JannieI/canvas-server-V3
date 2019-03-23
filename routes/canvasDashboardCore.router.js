@@ -1,4 +1,10 @@
-// Router for Current Canvas Dashboard, with all required info for Widgets, etc
+// Router for Current Canvas Dashboard.  It returns the Core Entities in the Dashboard
+// WITHOUT data.  The data is readied by WS:
+//      Dashboards
+//      DashboardTabs
+//      Widgets
+//      WidgetCheckpoints
+//      WidgetLayouts
 
 // Imports
 const express = require('express');
@@ -9,6 +15,7 @@ const createReturnObject = require('../utils/createReturnObject.util');
 const dashboardSchema = '../models/dashboards.model';
 const dashboardTabSchema = '../models/dashboardTabs.model';
 const widgetSchema = '../models/widgets.model';
+const dashboardPersmissionSchema = '../models/dashboardPermissions.model';
 const datasourceSchema = '../models/datasources.model';
 
 // GET route
@@ -28,6 +35,7 @@ router.get('/', (req, res, next) => {
         const dashboardModel = require(dashboardSchema);
         const dashboardTabModel = require(dashboardTabSchema);
         const widgetModel = require(widgetSchema);
+        const dashboardPersmissionModel = require(dashboardPersmissionSchema);
         const datasourceModel = require(datasourceSchema);
 
         // Find Dashboard
@@ -120,7 +128,7 @@ router.get('/', (req, res, next) => {
                         return res.json(
                             createReturnObject(
                                 "success",
-                                "canvasCurrentDashboard",
+                                "canvasDashboardCore",
                                 "Retrieved data for Current Dashboard ID: " + req.query.id,
                                 { 
                                     dashboards: dashboards,
@@ -144,7 +152,7 @@ router.get('/', (req, res, next) => {
         });
     }
     catch (error) {
-        debugDev(moduleName + ": " + 'Error in canvasCurrentDashboard.router', error.message)
+        debugDev(moduleName + ": " + 'Error in canvasDashboardCore.router', error.message)
         return res.status(400).json({
             "statusCode": "error",
             "message" : "Error retrieving Current Dashboard ID: " + req.query.id,

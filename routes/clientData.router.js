@@ -420,7 +420,7 @@ router.get('/', (req, res, next) => {
     const datasourceModel = require(datasourceSchema);
     const datasourceIDQuery = { id: datasourceID };
 
-    datasourceModel.find( datasourceIDQuery, (err, datasourceArray) => {
+    datasourceModel.find(datasourceIDQuery, (err, datasourceArray) => {
         if (err) {
             debugData(moduleName + ": " + 'Error:', err)
             res.json(
