@@ -15,7 +15,8 @@ const createReturnObject = require('../utils/createReturnObject.util');
 const dashboardSchema = '../models/dashboards.model';
 const dashboardTabSchema = '../models/dashboardTabs.model';
 const widgetSchema = '../models/widgets.model';
-const dashboardPersmissionSchema = '../models/dashboardPermissions.model';
+const widgetCheckpointSchema = '../models/widgetCheckpoints.model';
+const widgetLayoutSchema = '../models/widgetLayouts.model.model';
 const datasourceSchema = '../models/datasources.model';
 
 // GET route
@@ -35,7 +36,8 @@ router.get('/', (req, res, next) => {
         const dashboardModel = require(dashboardSchema);
         const dashboardTabModel = require(dashboardTabSchema);
         const widgetModel = require(widgetSchema);
-        const dashboardPersmissionModel = require(dashboardPersmissionSchema);
+        const widgetCheckpointModel = require(widgetCheckpointSchema);
+        const widgetLayoutModel = require(widgetLayoutSchema);
         const datasourceModel = require(datasourceSchema);
 
         // Find Dashboard
@@ -64,7 +66,7 @@ router.get('/', (req, res, next) => {
         
                 // Find Widgets
                 const widgetQuery = { dashboardID: req.query.id }
-                widgetModel.find( dashboardTabQuery, (err, widgets) => {
+                widgetModel.find( widgetQuery, (err, widgets) => {
 
                     if (err) {
                         return res.json(createErrorObject(
@@ -76,55 +78,74 @@ router.get('/', (req, res, next) => {
                     if (widgets == null) { 
                         widgets = [];
                     };
-
-                    // Load an Array of Datasource IDs in use by the Widgets on this Tab
-                    let datasourceIDincludeArray = [];
-                    for (var i = 0; i < widgets.length; i++) {
-
-                        // Exclude Shapes that does not use Datasources
-                        if (widgets[i].datasourceID != null) {
-                            if (datasourceIDincludeArray.indexOf(widgets[i].datasourceID) < 0) {
-                                datasourceIDincludeArray.push(widgets[i].datasourceID)
-                            };
-                        };
-                    };
-
-                    // Get Array of Datasource IDs to exclude.  This is an optional parameter from Workstation
-                    // and used in case it already has some Datasources (ie from a previous Tab)
-                    const datasourceIDexclude = req.query.datasourceIDexclude;
-                    let datasourceIDexcludeArray = [];
-                    if (datasourceIDexclude != null) {
-                        datasourceIDexcludeArray = datasourceIDexclude.split(",");
-                        for (var i = 0; i < datasourceIDexcludeArray.length; i++) {
-                            datasourceIDexcludeArray[i] = +datasourceIDexcludeArray[i];
-                        };
-                    };
-
-                    // Exclude requested Datasource IDs
-                    if (datasourceIDexcludeArray.length > 0) {
-                        datasourceIDincludeArray = datasourceIDincludeArray
-                            .filter(x => datasourceIDexcludeArray.indexOf(x) < 0);
-                    };
-
-                    // Create query object to filter on
-                    let datasourceQuery = { 
-                        id: { "$in": datasourceIDincludeArray }
-                    }
-                 
-                    datasourceModel.find( datasourceQuery, (err, datasources) => {
+            
+                    // Find Widget Checkpoints
+                    const widgetCheckpointQuery = { dashboardID: req.query.id }
+                    widgetCheckpointModel.find( widgetCheckpointQuery, (err, widgetCheckpoints) => {
 
                         if (err) {
                             return res.json(createErrorObject(
                                 "error",
-                                "Error retrieving Datasource for ID: " + req.query.id,
+                                "Error retrieving Widget Checkpoints for ID: " + req.query.id,
                                 err
                             ));
                         };
-                        if (datasources == null) { 
-                            datasources = [];
+                        if (widgetCheckpoints == null) { 
+                            widgetCheckpoints = [];
                         };
+        
+                    // TODO - Find Widget Layouts
+                    // Left out for now since it has to be redesigned
 
-                    // Return the data with metadata
+                    // Old code - getting certain DS
+                    // // Load an Array of Datasource IDs in use by the Widgets on this Tab
+                    // let datasourceIDincludeArray = [];
+                    // for (var i = 0; i < widgets.length; i++) {
+
+                    //     // Exclude Shapes that does not use Datasources
+                    //     if (widgets[i].datasourceID != null) {
+                    //         if (datasourceIDincludeArray.indexOf(widgets[i].datasourceID) < 0) {
+                    //             datasourceIDincludeArray.push(widgets[i].datasourceID)
+                    //         };
+                    //     };
+                    // };
+
+                    // // Get Array of Datasource IDs to exclude.  This is an optional parameter from Workstation
+                    // // and used in case it already has some Datasources (ie from a previous Tab)
+                    // const datasourceIDexclude = req.query.datasourceIDexclude;
+                    // let datasourceIDexcludeArray = [];
+                    // if (datasourceIDexclude != null) {
+                    //     datasourceIDexcludeArray = datasourceIDexclude.split(",");
+                    //     for (var i = 0; i < datasourceIDexcludeArray.length; i++) {
+                    //         datasourceIDexcludeArray[i] = +datasourceIDexcludeArray[i];
+                    //     };
+                    // };
+
+                    // // Exclude requested Datasource IDs
+                    // if (datasourceIDexcludeArray.length > 0) {
+                    //     datasourceIDincludeArray = datasourceIDincludeArray
+                    //         .filter(x => datasourceIDexcludeArray.indexOf(x) < 0);
+                    // };
+
+                    // // Create query object to filter on
+                    // let datasourceQuery = { 
+                    //     id: { "$in": datasourceIDincludeArray }
+                    // }
+                
+                    // datasourceModel.find( datasourceQuery, (err, datasources) => {
+
+                    //     if (err) {
+                    //         return res.json(createErrorObject(
+                    //             "error",
+                    //             "Error retrieving Datasource for ID: " + req.query.id,
+                    //             err
+                    //         ));
+                    //     };
+                    //     if (datasources == null) { 
+                    //         datasources = [];
+                    //     };
+
+                        // Return the data with metadata
                         return res.json(
                             createReturnObject(
                                 "success",
@@ -134,7 +155,7 @@ router.get('/', (req, res, next) => {
                                     dashboards: dashboards,
                                     dashboardTabs: dashboardTabs,
                                     widgets: widgets,
-                                    datasources: datasources
+                                    widgetCheckpoints: widgetCheckpoints
                                 },
                                 null,
                                 null,
