@@ -26,7 +26,7 @@ router.get('/', (req, res, next) => {
 
     // Try
     try {
-        // Get the model dynamically
+        // Get the models
         const datasourceModel = require(datasourceSchema);
         const clientDataModel = require(clientDataSchema);
 
@@ -111,7 +111,7 @@ router.put('/', (req, res, next) => {
 
     // Try
     try {
-        // Get the model dynamically
+        // Get the models
         const datasourceModel = require(datasourceSchema);
         const clientDataModel = require(clientDataSchema);
 
@@ -389,7 +389,7 @@ router.post('/', (req, res, next) => {
 
     // Try
     try {
-        // Get the model dynamically
+        // Get the models
         const datasourceModel = require(datasourceSchema);
         const clientDataModel = require(clientDataSchema);
 
@@ -628,6 +628,140 @@ router.post('/', (req, res, next) => {
         );
     };
 })
+
+
+
+
+
+
+
+// DELETE route
+router.delete('/', (req, res, next) => {
+
+    const startPos = module.id.lastIndexOf("/");
+    if (startPos > 0  &&  startPos < module.id.length) {
+        moduleName = module.id.substring(startPos + 1);
+    };
+
+    debugDev(moduleName + ": " + '## --------------------------');
+    debugDev(moduleName + ": " + '## DELETE Starting with canvasDatasources with query:', req.query);
+
+    const datasourceID = req.query.id;
+
+    if (datasourceID == null) {
+        return res.json(
+            createErrorObject(
+                "failed",
+                "Error: no ID provided in canvasDatasource to delete",
+                null
+            )
+        );
+    };
+
+    // Try, in case model file does not exist
+    try {
+        // Get the models
+        const datasourceModel = require(datasourceSchema);
+        const clientDataModel = require(clientDataSchema);
+
+        // Load global variable for cachingTable STRUCTURE into an Array ONCE
+        if (dataCachingTableArray == null) {
+            initialLoadOfCachingTable();
+        };
+        // Reset the expiryDateTime, so that the next read is from the DB (and not cache)
+        let dataCachingTableIndex = dataCachingTableArray.findIndex(dc => dc.key == 'datasources')
+        if (dataCachingTableIndex >= 0) {
+            dataCachingTableArray[dataCachingTableIndex].serverExpiryDateTime = new Date();
+            debugDev(moduleName + ": " + 'datasources serverExpiryDateTime updated in Caching Table');
+        } else {
+            debugDev(moduleName + ": " + 'datasources record NOT IN CACHING TABLE');
+        };
+
+        // Find and Delete from DB
+        datasourceModel.findOneAndRemove({id: datasourceID})
+            .then(doc => {
+                debugDev(moduleName + ": " + resource + ' deleted ID: ' + id)
+
+                if (doc == null) {
+                    return res.json(
+                        createReturnObject(
+                            "success",
+                            "datasources",
+                            "Record not found for datasource, id: ", datasourceID,
+                            doc,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            )
+                    );
+                } else {
+
+                // Find and Delete from DB
+                clientDataModel.findOneAndRemove({datasourceID: datasourceID})
+                    .then(doc => {
+                        debugDev(moduleName + ": " + resource + ' deleted ID: ' + id)
+
+                        return res.json(
+                            createReturnObject(
+                                "success",
+                                "datasources",
+                                "Deleted record and data for datasource, id: ", datasourceID,
+                                doc,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                null,
+                                )
+                        );
+                    })
+                    .catch(err => {
+                        console.error(err)
+                        return res.json(
+                            createErrorObject(
+                                "error",
+                                "Error: Could not delete record for resource: " + resource + ', id: ', id,
+                                err
+                            )
+                        );
+                    });
+                };
+            })
+            .catch(err => {
+                console.error(err)
+                return res.json(
+                    createErrorObject(
+                        "error",
+                        "Error: Could not delete record for resource: " + resource + ', id: ', id,
+                        err
+                    )
+                );
+            });
+    }
+    catch (error) {
+        return res.status(400).json({
+            "statusCode": "error",
+            "message" : "No model file for resource: " + resource,
+            "data": null,
+            "error": error
+        });
+    };
+
+});
+
+
+
+
+
+
 
 // Export
 module.exports = router;
