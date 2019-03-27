@@ -29,7 +29,6 @@ router.get('/', (req, res, next) => {
     try {
         // Get the model dynamically
         const datasourceModel = require(datasourceSchema);
-        const datasetModel = require(datasetSchema);
         const clientDataModel = require(clientDataSchema);
 
         const datasourceID = req.query.id;
@@ -49,56 +48,52 @@ router.get('/', (req, res, next) => {
                 datasources = [];
             };
 
-            // Find Datasets
-            const datasetQuery = { datasourceID: datasourceID }
-            datasetModel.find( datasetQuery, (err, datasets) => {
+            if (err) {
+                return res.json(createErrorObject(
+                    "error",
+                    "Error retrieving Datasets for ID: " + datasourceID,
+                    err
+                ));
+            };
+
+            // Find Data
+            const dataQuery = { id: datasourceID }
+            clientDataModel.find( dataQuery, (err, clientData) => {
 
                 if (err) {
                     return res.json(createErrorObject(
                         "error",
-                        "Error retrieving Datasets for ID: " + datasourceID,
+                        "Error retrieving Data for ID: " + req.query.id,
                         err
                     ));
                 };
+                if (clientData == null) {
+                    clientData = [];
+                };
 
-                // Find Data
-                const dataQuery = { id: datasourceID }
-                clientDataModel.find( dataQuery, (err, clientData) => {
-
-                    if (err) {
-                        return res.json(createErrorObject(
-                            "error",
-                            "Error retrieving Data for ID: " + req.query.id,
-                            err
-                        ));
-                    };
-                    if (clientData == null) {
-                        clientData = [];
-                    };
-
-                    // Return the data with metadata
-                    return res.json(
-                        createReturnObject(
-                            "success",
-                            "canvasDatasource",
-                            "Retrieved data for Current Dashboard ID: " + req.query.id,
-                            {
-                                datasources: datasources,
-                                datasets: datasets,
-                                clientData: clientData
-                            },
-                            null,
-                            null,
-                            null,
-                            null,
-                            null,
-                            datasources.length,
-                            null,
-                            null
-                            )
-                    );
-                });
+                // Return the data with metadata
+                return res.json(
+                    createReturnObject(
+                        "success",
+                        "canvasDatasource",
+                        "Retrieved data for Current Dashboard ID: " + req.query.id,
+                        {
+                            datasources: datasources,
+                            datasets: datasets,
+                            clientData: clientData
+                        },
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        datasources.length,
+                        null,
+                        null
+                        )
+                );
             });
+        
         });
     }
     catch (error) {
