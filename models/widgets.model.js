@@ -277,10 +277,6 @@ const WidgetSchema = new Schema({
     // Data related
     datasourceID: Number,                   // Specific ID that this W points to.  For a W,
 
-    // this is the dSet that contains its data.  For a Sl, it is the dSet that it filters.
-    datasetID: Number,                      // Specific ID that this W points to.  For a W,
-    // this is the dSet that contains its data.  For a Sl, it is the dSet that it filters.
-    // For a W, -1 = latest dataset of the DS-id.  For now, Sl must have a datsetID <> -1
     dataFields: [ { type: String } ],                   // Optional - can copy [fieldNames] into table
     dataFieldTypes: [ { type: String } ],               // Optional - can copy [fieldTypes] into table
     dataFieldLengths: [ { type: Number } ],             // Optional - can copy [fieldLengths] into table
