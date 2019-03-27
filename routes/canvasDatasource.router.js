@@ -128,12 +128,10 @@ router.put('/', (req, res, next) => {
     try {
         // Get the model dynamically
         const datasourceModel = require(datasourceSchema);
-        const datasetModel = require(datasetSchema);
         const clientDataModel = require(clientDataSchema);
 
         const bodyInput = JSON.parse(JSON.stringify(req.body))
         const datasourceInput = bodyInput.datasourceInput;
-        const datasetInput = bodyInput.datasetInput;
         const clientDataInput = bodyInput.clientDataInput;
 
         // Validation
@@ -143,16 +141,6 @@ router.put('/', (req, res, next) => {
                 createErrorObject(
                     "error",
                     "Error: input datasourceInput variable is empty",
-                    null
-                )
-            );
-        };
-        if (datasetInput == null) {
-            debugDev(moduleName + ": " + 'Error: input datasetInput variable is empty')
-            return res.json(
-                createErrorObject(
-                    "error",
-                    "Error: input datasetInput variable is empty",
                     null
                 )
             );
@@ -202,216 +190,197 @@ router.put('/', (req, res, next) => {
 
                 debugDev(moduleName + ": " + 'Datasource record updated in canvasDatasourceRouter for ID: ' + datasourceInput.id);
  
-                // Add Dataset - for now we use the same id: DS - dSet - Data
-                datasetInput.id = datasourceInput.id;
-                datasetInput.datasourceID = datasourceInput.id;
+                // Error if not found
+                if (datasetAdded == null) {
+                    debugDev(moduleName + ": " + 'Error updating record for datasource: ' + datasourceInput.id)
+                    return res.json(
+                        createErrorObject(
+                            "error",
+                            "Error: Could not find record for dataset: " + datasourceInput.id,
+                            null
+                        )
+                    );
+                };
 
-                datasetModel.findOneAndUpdate(
-                    { id: datasetInput.id },
-                    datasetInput).then(datasetAdded => {
+                debugDev(moduleName + ": " + 'Dataset record updated in canvasDatasourceRouter');
 
-                        // Error if not found
-                        if (datasetAdded == null) {
-                            debugDev(moduleName + ": " + 'Error updating record for datasource: ' + datasourceInput.id)
+                // Add Data - for now we use the same id: DS - dSet - Data
+                clientDataInput.id = datasourceAdded.id;
+
+                if (datasourceAdded.createMethod == 'directFileCSV'){
+                    debugDev(moduleName + ": " + 'Start createMethod directFileCSV');
+                    
+                    // let dataAdd = new clientDataModel(clientDataInput);
+                    // dataAdd.save()
+                    //     .then(clientDataAdded => {
+
+                    clientDataModel.findOneAndUpdate(
+                        { id: clientDataInput.id },
+                        clientDataInput).then(clientDataAdded => {
+            
+                            // Error if not found
+                            if (clientDataAdded == null) {
+                                debugDev(moduleName + ": " + 'Error updating record for datasource: ' + datasourceInput.id)
+                                return res.json(
+                                    createErrorObject(
+                                        "error",
+                                        "Error: Could not find record for clientData: " + datasourceInput.id,
+                                        null
+                                    )
+                                );
+                            };
+
+                            debugDev(moduleName + ": " + 'ClientDataset record updated in canvasDatasourceRouter', clientDataInput.id , clientDataAdded.data[0]);
+
+                            // Return
+                            return res.json(
+                                createReturnObject(
+                                    "success",
+                                    "canvasDatasource",
+                                    "Updated ALL records for datasource, ID: " + datasourceAdded.id,
+                                    [],
+                                    null,
+                                    null,
+                                    null,
+                                    null,
+                                    null,
+                                    null,
+                                    null,
+                                    null,
+                                )
+                            );
+                        })
+                        .catch(err => {
+
+                            debugDev(moduleName + ": " + 'Error updating record for datasource: ' + datasourceInput.id, err)
                             return res.json(
                                 createErrorObject(
                                     "error",
-                                    "Error: Could not find record for dataset: " + datasourceInput.id,
-                                    null
+                                    "Error: Could not update record for datasource: " + datasourceInput.id,
+                                    err
                                 )
                             );
-                        };
+                        });
+    
+                };
 
-                        debugDev(moduleName + ": " + 'Dataset record updated in canvasDatasourceRouter');
+                if (datasourceAdded.createMethod == 'directSQLEditor') {
+                    debugDev(moduleName + ": " + 'Start createMethod directSQLEditor');
 
-                        // Add Data - for now we use the same id: DS - dSet - Data
-                        clientDataInput.id = datasourceAdded.id;
-
-                        if (datasourceAdded.createMethod == 'directFileCSV'){
-                            debugDev(moduleName + ": " + 'Start createMethod directFileCSV');
-                            
-                            // let dataAdd = new clientDataModel(clientDataInput);
-                            // dataAdd.save()
-                            //     .then(clientDataAdded => {
-
-                            clientDataModel.findOneAndUpdate(
-                                { id: clientDataInput.id },
-                                clientDataInput).then(clientDataAdded => {
-                    
-                                    // Error if not found
-                                    if (clientDataAdded == null) {
-                                        debugDev(moduleName + ": " + 'Error updating record for datasource: ' + datasourceInput.id)
-                                        return res.json(
-                                            createErrorObject(
-                                                "error",
-                                                "Error: Could not find record for clientData: " + datasourceInput.id,
-                                                null
-                                            )
-                                        );
-                                    };
-
-                                    debugDev(moduleName + ": " + 'ClientDataset record updated in canvasDatasourceRouter', clientDataInput.id , clientDataAdded.data[0]);
-
-                                    // Return
-                                    return res.json(
-                                        createReturnObject(
-                                            "success",
-                                            "canvasDatasource",
-                                            "Updated ALL records for datasource, ID: " + datasourceAdded.id,
-                                            [],
-                                            null,
-                                            null,
-                                            null,
-                                            null,
-                                            null,
-                                            null,
-                                            null,
-                                            null,
-                                        )
-                                    );
-                                })
-                                .catch(err => {
-
-                                    debugDev(moduleName + ": " + 'Error updating record for datasource: ' + datasourceInput.id, err)
-                                    return res.json(
-                                        createErrorObject(
-                                            "error",
-                                            "Error: Could not update record for datasource: " + datasourceInput.id,
-                                            err
-                                        )
-                                    );
-                                });
-            
-                        };
-
-                        if (datasourceAdded.createMethod == 'directSQLEditor') {
-                            debugDev(moduleName + ": " + 'Start createMethod directSQLEditor');
-
-                            if (serverType == constants.SERVER_MYSQL) {
-                                debugData(moduleName + ": " + 'MysQL connector not Activated');
-                                return res.json(
-                                    createErrorObject(
-                                        "error",
-                                        "MysQL connector not Activated",
-                                        null
-                                    )
-                                );
-                            };
-                            if (serverType == constants.SERVER_MICROSOFT_SASS) {
-                                debugData(moduleName + ": " + 'Microsoft SSAS connector not Activated');
-                                return res.json(
-                                    createErrorObject(
-                                        "error",
-                                        "MicrosoftSSAS connector not Activated",
-                                        null
-                                    )
-                                );
-                            };
-                            if (serverType == constants.SERVER_POSTGRESS) {
-                                debugData(moduleName + ": " + 'Error PostgresSQL connector not Activated');
-                                return res.json(
-                                    createErrorObject(
-                                        "error",
-                                        "PostgresSQL connector not Activated",
-                                        null
-                                    )
-                                );
-                            };
-                            if (serverType == constants.SERVER_SQLITE) {
-                                debugData(moduleName + ": " + 'Error SQLite connector not Activated')
-                                return res.json(
-                                    createErrorObject(
-                                        "error",
-                                        "SQLite connector not Activated",
-                                        null
-                                    )
-                                );
-                            };
-                            if (serverType == constants.SERVER_ORACLE) {
-                                debugData(moduleName + ": " + 'Error Oracle connector not Activated')
-                                return res.json(
-                                    createErrorObject(
-                                        "error",
-                                        "Oracle connector not Activated",
-                                        null
-                                    )
-                                );
-                            };
-                            if (serverType == constants.SERVER_MONGO) {
-                                debugData(moduleName + ": " + 'Mongo connector not Activated')
-                                return res.json(
-                                    createErrorObject(
-                                        "error",
-                                        "Mongo connector not Activated",
-                                        null
-                                    )
-                                );
-                            };
-                            if (serverType == constants.SERVER_MICROSOFT_SQL) {
-
-                                // Add ClientData
-                                debugDev(moduleName + ": " + 'Start Microsoft SQL connector');
-                                execQueryMicrosoftSQL({
-                                    serverType: datasourceInput.serverType,
-                                    serverName: datasourceInput.serverName,
-                                    databaseName: datasourceInput.databaseName,
-                                    sqlStatement: datasourceInput.dataSQLStatement,
-                                    port: datasourceInput.port,
-                                    username: datasourceInput.username,
-                                    password: datasourceInput.password,
-                                    nrRowsToReturn: 1,
-                                    datasourceID: datasourceAdded.id
-                                }).then(clientDataAdded => {
-
-                                    debugDev(moduleName + ": " + 'New ClientDataset record added via Microsoft SQL in canvasDatasourceRouter');
-
-                                    // Return
-                                    return res.json(
-                                        createReturnObject(
-                                            "success",
-                                            "canvasDatasource",
-                                            "Added ALL records for datasource, ID: " + datasourceAdded.id,
-                                            {
-                                                    datasource: datasourceAdded,
-                                                    datasets: datasetAdded,
-                                                    clientData: clientDataAdded
-                                            },
-                                            null,
-                                            null,
-                                            null,
-                                            null,
-                                            null,
-                                            null,
-                                            null,
-                                            null,
-                                        )
-                                    );
-
-                                })
-                                .catch(err => {
-
-                                    debugDev(moduleName + ": " + 'Error Adding new ClientData', err)
-                                    return res.json(
-                                        createErrorObject(
-                                            "error",
-                                            "Error: Could not add record for datasource: " + datasourceInput.id,
-                                            err
-                                        )
-                                    );
-                                });
-                            };
-                        };
-                    })
-                    .catch(err => {
-                        debugDev(moduleName + ": " + 'Error Adding new Datasource', err)
+                    if (serverType == constants.SERVER_MYSQL) {
+                        debugData(moduleName + ": " + 'MysQL connector not Activated');
                         return res.json(
                             createErrorObject(
                                 "error",
-                                "Error: Could not add record for datasource: " + datasourceInput.id,
-                                err
+                                "MysQL connector not Activated",
+                                null
                             )
                         );
-                    });
+                    };
+                    if (serverType == constants.SERVER_MICROSOFT_SASS) {
+                        debugData(moduleName + ": " + 'Microsoft SSAS connector not Activated');
+                        return res.json(
+                            createErrorObject(
+                                "error",
+                                "MicrosoftSSAS connector not Activated",
+                                null
+                            )
+                        );
+                    };
+                    if (serverType == constants.SERVER_POSTGRESS) {
+                        debugData(moduleName + ": " + 'Error PostgresSQL connector not Activated');
+                        return res.json(
+                            createErrorObject(
+                                "error",
+                                "PostgresSQL connector not Activated",
+                                null
+                            )
+                        );
+                    };
+                    if (serverType == constants.SERVER_SQLITE) {
+                        debugData(moduleName + ": " + 'Error SQLite connector not Activated')
+                        return res.json(
+                            createErrorObject(
+                                "error",
+                                "SQLite connector not Activated",
+                                null
+                            )
+                        );
+                    };
+                    if (serverType == constants.SERVER_ORACLE) {
+                        debugData(moduleName + ": " + 'Error Oracle connector not Activated')
+                        return res.json(
+                            createErrorObject(
+                                "error",
+                                "Oracle connector not Activated",
+                                null
+                            )
+                        );
+                    };
+                    if (serverType == constants.SERVER_MONGO) {
+                        debugData(moduleName + ": " + 'Mongo connector not Activated')
+                        return res.json(
+                            createErrorObject(
+                                "error",
+                                "Mongo connector not Activated",
+                                null
+                            )
+                        );
+                    };
+                    if (serverType == constants.SERVER_MICROSOFT_SQL) {
+
+                        // Add ClientData
+                        debugDev(moduleName + ": " + 'Start Microsoft SQL connector');
+                        execQueryMicrosoftSQL({
+                            serverType: datasourceInput.serverType,
+                            serverName: datasourceInput.serverName,
+                            databaseName: datasourceInput.databaseName,
+                            sqlStatement: datasourceInput.dataSQLStatement,
+                            port: datasourceInput.port,
+                            username: datasourceInput.username,
+                            password: datasourceInput.password,
+                            nrRowsToReturn: 1,
+                            datasourceID: datasourceAdded.id
+                        }).then(clientDataAdded => {
+
+                            debugDev(moduleName + ": " + 'New ClientDataset record added via Microsoft SQL in canvasDatasourceRouter');
+
+                            // Return
+                            return res.json(
+                                createReturnObject(
+                                    "success",
+                                    "canvasDatasource",
+                                    "Added ALL records for datasource, ID: " + datasourceAdded.id,
+                                    {
+                                            datasource: datasourceAdded,
+                                            datasets: datasetAdded,
+                                            clientData: clientDataAdded
+                                    },
+                                    null,
+                                    null,
+                                    null,
+                                    null,
+                                    null,
+                                    null,
+                                    null,
+                                    null,
+                                )
+                            );
+
+                        })
+                        .catch(err => {
+
+                            debugDev(moduleName + ": " + 'Error Adding new ClientData', err)
+                            return res.json(
+                                createErrorObject(
+                                    "error",
+                                    "Error: Could not add record for datasource: " + datasourceInput.id,
+                                    err
+                                )
+                            );
+                        });
+                    };
+                };
                 
             })
             .catch(err => {
