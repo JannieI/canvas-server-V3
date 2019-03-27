@@ -1,5 +1,5 @@
 // Router for Canvas Datasource
-// Treats the Datasource - Dataset - Data objects in one go to keep i sync, and with same IDs
+// Treats the Datasource - Data objects in one go to keep i sync, and with same IDs
 
 // Imports
 const express = require('express');
@@ -8,7 +8,6 @@ const debugDev = require('debug')('app:dev');
 const createErrorObject = require('../utils/createErrorObject.util');
 const createReturnObject = require('../utils/createReturnObject.util');
 const datasourceSchema = '../models/datasources.model';
-const datasetSchema = '../models/datasets.model';
 const clientDataSchema = '../models/clientData.model';
 const execQueryMicrosoftSQL = require('../datalayer/microsoftSQL.execQuery.datalayer');
 var constants = require('../utils/constants');
@@ -48,14 +47,6 @@ router.get('/', (req, res, next) => {
                 datasources = [];
             };
 
-            if (err) {
-                return res.json(createErrorObject(
-                    "error",
-                    "Error retrieving Datasets for ID: " + datasourceID,
-                    err
-                ));
-            };
-
             // Find Data
             const dataQuery = { id: datasourceID }
             clientDataModel.find( dataQuery, (err, clientData) => {
@@ -79,7 +70,6 @@ router.get('/', (req, res, next) => {
                         "Retrieved data for Current Dashboard ID: " + req.query.id,
                         {
                             datasources: datasources,
-                            datasets: datasets,
                             clientData: clientData
                         },
                         null,
@@ -185,20 +175,6 @@ router.put('/', (req, res, next) => {
 
                 debugDev(moduleName + ": " + 'Datasource record updated in canvasDatasourceRouter for ID: ' + datasourceInput.id);
  
-                // Error if not found
-                if (datasetAdded == null) {
-                    debugDev(moduleName + ": " + 'Error updating record for datasource: ' + datasourceInput.id)
-                    return res.json(
-                        createErrorObject(
-                            "error",
-                            "Error: Could not find record for dataset: " + datasourceInput.id,
-                            null
-                        )
-                    );
-                };
-
-                debugDev(moduleName + ": " + 'Dataset record updated in canvasDatasourceRouter');
-
                 // Add Data - for now we use the same id: DS - dSet - Data
                 clientDataInput.id = datasourceAdded.id;
 
@@ -225,7 +201,7 @@ router.put('/', (req, res, next) => {
                                 );
                             };
 
-                            debugDev(moduleName + ": " + 'ClientDataset record updated in canvasDatasourceRouter', clientDataInput.id , clientDataAdded.data[0]);
+                            debugDev(moduleName + ": " + 'ClientData record updated in canvasDatasourceRouter', clientDataInput.id , clientDataAdded.data[0]);
 
                             // Return
                             return res.json(
@@ -338,7 +314,7 @@ router.put('/', (req, res, next) => {
                             datasourceID: datasourceAdded.id
                         }).then(clientDataAdded => {
 
-                            debugDev(moduleName + ": " + 'New ClientDataset record added via Microsoft SQL in canvasDatasourceRouter');
+                            debugDev(moduleName + ": " + 'New ClientData record added via Microsoft SQL in canvasDatasourceRouter');
 
                             // Return
                             return res.json(
@@ -348,7 +324,6 @@ router.put('/', (req, res, next) => {
                                     "Added ALL records for datasource, ID: " + datasourceAdded.id,
                                     {
                                             datasource: datasourceAdded,
-                                            datasets: datasetAdded,
                                             clientData: clientDataAdded
                                     },
                                     null,
@@ -477,7 +452,7 @@ router.post('/', (req, res, next) => {
                         dataAdd.save()
                             .then(clientDataAdded => {
 
-                                debugDev(moduleName + ": " + 'New ClientDataset record added in canvasDatasourceRouter');
+                                debugDev(moduleName + ": " + 'New ClientData record added in canvasDatasourceRouter');
 
                                 // Return
                                 return res.json(
@@ -487,7 +462,6 @@ router.post('/', (req, res, next) => {
                                         "Added ALL records for datasource, ID: " + datasourceAdded.id,
                                         {
                                                 datasource: datasourceAdded,
-                                                datasets: datasetAdded,
                                                 clientData: clientDataAdded
                                         },
                                         null,
@@ -594,7 +568,7 @@ router.post('/', (req, res, next) => {
                                 datasourceID: datasourceAdded.id
                             }).then(clientDataAdded => {
 
-                                debugDev(moduleName + ": " + 'New ClientDataset record added via Microsoft SQL in canvasDatasourceRouter');
+                                debugDev(moduleName + ": " + 'New ClientData record added via Microsoft SQL in canvasDatasourceRouter');
 
                                 // Return
                                 return res.json(
@@ -604,7 +578,6 @@ router.post('/', (req, res, next) => {
                                         "Added ALL records for datasource, ID: " + datasourceAdded.id,
                                         {
                                                 datasource: datasourceAdded,
-                                                datasets: datasetAdded,
                                                 clientData: clientDataAdded
                                         },
                                         null,
