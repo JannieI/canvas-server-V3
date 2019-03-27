@@ -15,7 +15,6 @@ const DashboardSnapshotSchema = new Schema({
     dashboards: Array,                      // Array of D used (can include a Template) - Dashboard[]
     dashboardTabs: Array,                   // Ts of D - DashboardTab[]
     widgets: Array,                         // W of D - Widget[]
-    datasets: Array,                        // dSets of D - Dataset[]
     datasources: Array,                     // DS of D - Datasource[]
     widgetCheckpoints: Array,               // Checkpoints of W - WidgetCheckpoint[]
 
