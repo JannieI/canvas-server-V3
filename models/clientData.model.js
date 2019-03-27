@@ -8,6 +8,7 @@ const counterModel = require('./counters.model')
 // Schema
 const ClientDataSchema = new Schema({
     id: Number,                             // Unique record / document ID
+    datasourceID: Number,                   // FK to DS this data belongs to
     data: Array,                            // Data Array (of json objects)
 });
 
