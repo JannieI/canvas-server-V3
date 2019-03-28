@@ -396,6 +396,7 @@ router.post('/', (req, res, next) => {
         const bodyInput = JSON.parse(JSON.stringify(req.body))
         const datasourceInput = bodyInput.datasourceInput;
         const clientDataInput = bodyInput.clientDataInput;
+        // Note: the input data is just an array 
 
         // Validation
         if (datasourceInput == null  ||  datasourceInput == undefined) {
@@ -442,8 +443,9 @@ router.post('/', (req, res, next) => {
 
                 debugDev(moduleName + ": " + 'New Datasource record added in canvasDatasourceRouter for ID: ' + datasourceAdded.id);
  
-                    // Add Data - for now we use the same id: DS - dSet - Data
+                    // Add Data - for now we use the same id: DS - Data
                     clientDataInput.id = datasourceAdded.id;
+                    clientDataInput.datasourceID = datasourceAdded.id;
 
                     if (datasourceAdded.createMethod == 'directFileCSV'){
                         debugDev(moduleName + ": " + 'Start createMethod directFileCSV');
@@ -630,11 +632,6 @@ router.post('/', (req, res, next) => {
 })
 
 
-
-
-
-
-
 // DELETE route
 router.delete('/', (req, res, next) => {
 
@@ -728,7 +725,7 @@ router.delete('/', (req, res, next) => {
                         return res.json(
                             createErrorObject(
                                 "error",
-                                "Error: Could not delete record for resource: " + resource + ', id: ', id,
+                                "Error: Could not delete clientData for datasourceID: " + datasourceID ,
                                 err
                             )
                         );
@@ -740,7 +737,7 @@ router.delete('/', (req, res, next) => {
                 return res.json(
                     createErrorObject(
                         "error",
-                        "Error: Could not delete record for resource: " + resource + ', id: ', id,
+                        "Error: Could not delete record for datasource, id: " + datasourceID,
                         err
                     )
                 );
@@ -749,7 +746,7 @@ router.delete('/', (req, res, next) => {
     catch (error) {
         return res.status(400).json({
             "statusCode": "error",
-            "message" : "No model file for resource: " + resource,
+            "message" : "Error in TRY block for delete datasource, id:" + datasourceID,
             "data": null,
             "error": error
         });
