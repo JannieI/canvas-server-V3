@@ -28,7 +28,6 @@
         "dataFields",
         "dataOwnerships",
         "dataQualityIssues",
-        "datasets",
         "datasourcePermissions",
         "datasources",
         "datasourceSchedules",
