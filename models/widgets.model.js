@@ -34,7 +34,7 @@ const GraphCalculation = new Schema({
     calculatedDataType: String              // Data type of newly calculated field
 })
 
-const GraphFilter = new Schema({
+const WidgetFilter = new Schema({
     id: Number,                             // Unique ID
     sequence: Number,                       // Sequence Nr - for LATER user
     filterType: String,                     // CrossFilter, WidgetFilter, SoftFilter
@@ -380,7 +380,7 @@ const WidgetSchema = new Schema({
     graphCalculations: [ GraphCalculation ],  // Array of calculations
 
     // Transformations: Filter
-    graphFilters: [ GraphFilter ],            // Array of filters
+    widgetFilters: [ WidgetFilter ],            // Array of filters
     sampleNumberRows: Number,               // Random rows to sample EACH time, 0 means all rows
 
     // Layers
