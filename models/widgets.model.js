@@ -39,7 +39,7 @@ const WidgetFilter = new Schema({
     sequence: Number,                       // Sequence Nr - for LATER user
     filterType: String,                     // CrossFilter, WidgetFilter, SoftFilter
     sourceWidgetID: Number,                 // For CrossFilter, source Widget
-    sourceDatasourceField: Number,          // For CrossFilter, source Field
+    sourceDatasourceField: String,          // For CrossFilter, source Field
     filterFieldName: String,                // Name (text) of field
     filterOperator: String,                 // ie Equal, Less Than, etc
     filterTimeUnit: String,                 // ie Year, Month, Day
