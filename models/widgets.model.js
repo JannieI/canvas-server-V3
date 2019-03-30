@@ -38,7 +38,7 @@ const WidgetFilter = new Schema({
     id: Number,                             // Unique ID
     sequence: Number,                       // Sequence Nr - for LATER user
     filterType: String,                     // CrossFilter, WidgetFilter, SoftFilter
-    sourceDatasourceID: Number,             // For CrossFilter, source DSid
+    sourceWidgetID: Number,                 // For CrossFilter, source Widget
     sourceDatasourceField: Number,          // For CrossFilter, source Field
     filterFieldName: String,                // Name (text) of field
     filterOperator: String,                 // ie Equal, Less Than, etc
@@ -380,7 +380,7 @@ const WidgetSchema = new Schema({
     graphCalculations: [ GraphCalculation ],  // Array of calculations
 
     // Transformations: Filter
-    widgetFilters: [ WidgetFilter ],            // Array of filters
+    widgetFilters: [ WidgetFilter ],        // Array of filters
     sampleNumberRows: Number,               // Random rows to sample EACH time, 0 means all rows
 
     // Layers
