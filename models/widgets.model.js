@@ -37,6 +37,9 @@ const GraphCalculation = new Schema({
 const GraphFilter = new Schema({
     id: Number,                             // Unique ID
     sequence: Number,                       // Sequence Nr - for LATER user
+    filterType: String,                     // CrossFilter, WidgetFilter, SoftFilter
+    sourceDatasourceID: Number,             // For CrossFilter, source DSid
+    sourceDatasourceField: Number,          // For CrossFilter, source Field
     filterFieldName: String,                // Name (text) of field
     filterOperator: String,                 // ie Equal, Less Than, etc
     filterTimeUnit: String,                 // ie Year, Month, Day
