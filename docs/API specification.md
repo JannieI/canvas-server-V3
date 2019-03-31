@@ -194,7 +194,6 @@ This list is not exhaustive, but will remain unchanged until we do the redesign:
 ### Client data related:
     dataOwnerships
     dataQualityIssues
-    datasets
     data
     dataConnections
     dataTables
