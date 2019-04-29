@@ -445,12 +445,18 @@ const WidgetSchema = new Schema({
     shapeTextColourName: String,            // Name - CSS (ie black) or Custome Name (Our company blue)
     shapeValue: String,                     // Value to display
 
+    // Navigator
+    navigatorSelectParentNodeType: String,  // Last Parent Node Type selected
+    navigatorSelectParentNodeName: String,  // Last Parent Node Name selected
+    navigatorSelectRelationship: String,    // Last Relationship selected
+    navigatorSelectView: String,            // Last View used
+
     // Created, updated and refreshed
     refreshMode: String,                    // For later use: Manual, OnOpen, Repeatedly
     refreshFrequency: Number,               // For later use: Nr of seconds if RefreshMode = Repeatedly
     widgetRefreshedOn: String,              // Data Refreshed on
     widgetRefreshedBy: String,              // Date Refreshed by
-    widgetCreatedOn: {                            // Date task was created
+    widgetCreatedOn: {                      // Date task was created
         type: Date,
         // `Date.now()` returns the current unix timestamp as a Number,        default: Date.now
     },
