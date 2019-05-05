@@ -32,7 +32,7 @@ NavigatorNetworkSchema.pre('save', function(next) {
 
     // Find in the counters collection, increment and update
     counterModel.findOneAndUpdate(
-        {_id: 'datasources.id'},
+        {_id: 'navigatorNetworks.id'},
         {$inc: { seq: 1} },
         { upsert: true, new: true },
         function(error, counter)   {
