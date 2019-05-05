@@ -34,6 +34,7 @@
         "datasourceScheduleLogs",
         "datasourceTransformations",
         "dataTables",
+        "navigatorNetwork",
         "paletteButtonBars",
         "paletteButtonsSelecteds",
         "statusBarMessageLogs",
