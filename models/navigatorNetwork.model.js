@@ -27,7 +27,7 @@ const NavigatorNetworkSchema = new Schema({
 });
 
 // This pre-hook is called before the information is saved into the database
-DatasourceSchema.pre('save', function(next) {
+NavigatorNetworkSchema.pre('save', function(next) {
     var doc = this;
 
     // Find in the counters collection, increment and update
@@ -46,46 +46,11 @@ DatasourceSchema.pre('save', function(next) {
     );
 });
 
-DatasourceSchema.pre('save', function(next) {
-    var doc = this;
-
-    let datasourceHistory = new datasourceHistoryModel({
-        createdBy: doc.createdBy,
-        createdOn: doc.createdOn,
-        datasource: doc
-    });
-
-    // Store history copy to database
-    datasourceHistory.save(function(error, result)   {
-        if(error) {
-            return next(error);
-        };
-
-        next();
-    });
-
-    // Find in the counters collection, increment and update
-    datasourceHistoryModel.findOneAndUpdate( {name: "Testing Trigger Via REST b"},
-        function(error, counter)   {
-            if(error) {
-                console.log('ERRORRRRRR')
-                return next(error);
-            };
-
-            console.log('DONNNNNNNNE')
-            next();
-        }
-    );
-
-    
-
-});
-
 // Create Model: modelName, schema, collection
-const DatasourceModel = mongoose.model('datasources', DatasourceSchema, 'datasources');
+const NavigatorNetworkModel = mongoose.model('navigatorNetworks', NavigatorNetworkSchema, 'navigatorNetworks');
 
 // Export
-module.exports = DatasourceModel;
+module.exports = NavigatorNetworkModel;
 
 
  
