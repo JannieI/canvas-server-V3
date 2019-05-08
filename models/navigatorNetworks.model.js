@@ -14,7 +14,8 @@ const NavigatorNetworkSchema = new Schema({
     description: String,                    // Description of the DS
     
     accessType: String,                     // How to access D: Private, Public, AccessList
-    subDatasources: [ { type: Number } ],   // Array of related sub DS ids, used for networks
+    relationshipDatasourceID: Number,       // ID for the DS that contains the relationships
+    propertiesDatasourceID: Number,         // ID for DS that contains the Properties
  
     createdBy: String,                      // Creator
     createdOn: {                            // Date task was created

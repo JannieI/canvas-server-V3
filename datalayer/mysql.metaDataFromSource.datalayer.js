@@ -8,7 +8,7 @@ module.exports = function metaDataFromSource(dataRow) {
     let metaDataFields = [];
 
     // Loop on the data row
-    Object.keys(dataRow).forEach( key => {
+    Object.keys(dataRow).forEach(key => {
         // Get the key-value pair
         let value = dataRow[key];
 
