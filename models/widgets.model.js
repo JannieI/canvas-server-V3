@@ -446,6 +446,7 @@ const WidgetSchema = new Schema({
     shapeValue: String,                     // Value to display
 
     // Navigator
+    navigatorNetworkID: Number,             // ID of network that poinst to data (Rel and Prop DS)
     navigatorSelectParentNodeType: String,  // Last Parent Node Type selected
     navigatorSelectParentNodeName: String,  // Last Parent Node Name selected
     navigatorSelectRelationship: String,    // Last Relationship selected
