@@ -701,7 +701,7 @@ router.delete('/', (req, res, next) => {
                 // Find and Delete from DB
                 clientDataModel.findOneAndRemove({datasourceID: datasourceID})
                     .then(doc => {
-                        debugDev(moduleName + ": " + resource + ' deleted ID: ' + id)
+                        debugDev(moduleName + ': clientData deleted ID: ' + datasourceID)
 
                         return res.json(
                             createReturnObject(
