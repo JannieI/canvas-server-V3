@@ -237,8 +237,6 @@ DatasourceSchema.pre('save', function(next) {
         }
     );
 
-    
-
 });
 
 // Create Model: modelName, schema, collection

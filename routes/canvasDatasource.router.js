@@ -677,7 +677,7 @@ router.delete('/', (req, res, next) => {
         // Find and Delete from DB
         datasourceModel.findOneAndRemove({id: datasourceID})
             .then(doc => {
-                debugDev(moduleName + ": " + resource + ' deleted ID: ' + id)
+                debugDev(moduleName + ': Datasouce deleted ID: ' + datasourceID)
 
                 if (doc == null) {
                     return res.json(
