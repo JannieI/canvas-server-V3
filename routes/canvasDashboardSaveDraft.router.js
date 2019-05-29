@@ -316,7 +316,7 @@ router.put('/', (req, res, next) => {
                             "success",
                             "dashboardSaveDraft",
                             "Discarded Draft Dashboard ID: " + draftDashboardID,
-                            "Okay",
+                            [],
                             null,
                             null,
                             null,

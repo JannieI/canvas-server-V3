@@ -164,12 +164,12 @@ router.get('/', (req, res, next) => {
                                 "success",
                                 "canvasDashboardCore",
                                 "Retrieved data for Current Dashboard ID: " + req.query.id,
-                                { 
+                                [{ 
                                     dashboards: dashboards,
                                     dashboardTabs: dashboardTabs,
                                     widgets: widgets,
                                     widgetCheckpoints: widgetCheckpoints
-                                },
+                                }],
                                 null,
                                 null,
                                 null,

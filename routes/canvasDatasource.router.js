@@ -68,10 +68,10 @@ router.get('/', (req, res, next) => {
                         "success",
                         "canvasDatasource",
                         "Retrieved data for Current Dashboard ID: " + req.query.id,
-                        {
+                        [{
                             datasources: datasources,
                             clientData: clientData
-                        },
+                        }],
                         null,
                         null,
                         null,
@@ -322,10 +322,10 @@ router.put('/', (req, res, next) => {
                                     "success",
                                     "canvasDatasource",
                                     "Added ALL records for datasource, ID: " + datasourceAdded.id,
-                                    {
+                                    [{
                                             datasource: datasourceAdded,
                                             clientData: clientDataAdded
-                                    },
+                                    }],
                                     null,
                                     null,
                                     null,
@@ -462,10 +462,10 @@ router.post('/', (req, res, next) => {
                                         "success",
                                         "canvasDatasource",
                                         "Added ALL records for datasource, ID: " + datasourceAdded.id,
-                                        {
+                                        [{
                                                 datasource: datasourceAdded,
                                                 clientData: clientDataAdded
-                                        },
+                                        }],
                                         null,
                                         null,
                                         null,
@@ -578,10 +578,10 @@ router.post('/', (req, res, next) => {
                                         "success",
                                         "canvasDatasource",
                                         "Added ALL records for datasource, ID: " + datasourceAdded.id,
-                                        {
+                                        [{
                                                 datasource: datasourceAdded,
                                                 clientData: clientDataAdded
-                                        },
+                                        }],
                                         null,
                                         null,
                                         null,
@@ -685,7 +685,7 @@ router.delete('/', (req, res, next) => {
                             "success",
                             "datasources",
                             "Record not found for datasource, id: ", datasourceID,
-                            doc,
+                            [doc],
                             null,
                             null,
                             null,
@@ -708,7 +708,7 @@ router.delete('/', (req, res, next) => {
                                 "success",
                                 "datasources",
                                 "Deleted record and data for datasource, id: ", datasourceID,
-                                doc,
+                                [doc],
                                 null,
                                 null,
                                 null,

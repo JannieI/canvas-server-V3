@@ -290,7 +290,7 @@ router.put('/', (req, res, next) => {
                     "success",
                     "dashboardDiscard",
                     "Discarded Draft Dashboard ID: " + draftDashboardID,
-                    "Okay",
+                    [],
                     null,
                     null,
                     null,

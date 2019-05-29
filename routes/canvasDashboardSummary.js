@@ -221,7 +221,7 @@ router.get('/', (req, res, next) => {
                                                                                 "success",
                                                                                 "dashboardSummary",
                                                                                 "Retrieved Summary for Dashboard ID: " + hyperlinkedQuery,
-                                                                                { 
+                                                                                [{ 
                                                                                     dashboardID: id,
                                                                                     numberDashboards: numberDashboards,
                                                                                     numberDashboardTabs: numberDashboardTabs,
@@ -239,7 +239,7 @@ router.get('/', (req, res, next) => {
                                                                                     numberUsedAsTemplate: numberUsedAsTemplate,
                                                                                     numberUsedAsStartup: numberUsedAsStartup,
                                                                                     numberUsedAsFav: numberUsedAsFav
-                                                                                },
+                                                                                }],
                                                                                 null,
                                                                                 null,
                                                                                 null,

@@ -49,7 +49,7 @@ router.put('/', (req, res, next) => {
                 "success",
                 "markMessageRead",
                 "Marked Messages as read for : " + userID,
-                "Okay",
+                [],
                 null,
                 null,
                 null,

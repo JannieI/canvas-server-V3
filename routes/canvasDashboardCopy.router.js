@@ -410,12 +410,12 @@ router.post('/', (req, res, next) => {
                                                     "success",
                                                     "dashboardCopy",
                                                     "Edit: Draft Dashboard created with ID: " + originalDashboardID,
-                                                    {
+                                                    [{
                                                         dashboard: addedDraftDashboard,
                                                         dashboardTabs: returnDraftDashboardTabs,
                                                         widgets: returnWidgets,
                                                         widgetCheckpoints: returnWidgetCheckpoints
-                                                    },
+                                                    }],
                                                     null,
                                                     null,
                                                     null,

@@ -201,7 +201,7 @@ router.delete('/', (req, res, next) => {
                     "success",
                     "dashboardDelete",
                     "Retrieved Summary for Dashboard ID: " ,
-                    "Okay",
+                    [],
                     null,
                     null,
                     null,
