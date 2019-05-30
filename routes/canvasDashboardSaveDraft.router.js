@@ -120,6 +120,27 @@ router.put('/', (req, res, next) => {
                         ).exec()
                     })
 
+                    // Delete Core Dashboard Entities for Original: DashboardTab
+                    .then(()=>{
+                        dashboardTabModel.deleteMany(
+                            originalDashboardQuery
+                        ).exec()
+                    })
+
+                    // Delete Core Dashboard Entities for Original: Widgets
+                    .then(()=>{
+                        widgetModel.deleteMany(
+                            originalDashboardQuery
+                        ).exec()
+                    })
+
+                    // Delete Core Dashboard Entities for Original: WidgetCheckpoints
+                    .then(()=>{
+                        widgetCheckpointModel.deleteMany(
+                            originalDashboardQuery
+                        ).exec()
+                    })
+
                     // Move Linked Entities to Original: Tabs
                     .then(()=>{
                         dashboardTabModel.updateMany(
@@ -147,27 +168,6 @@ router.put('/', (req, res, next) => {
                     .then(()=>{
                         dashboardModel.deleteOne(
                             { "id": draftDashboardID }
-                        ).exec()
-                    })
-
-                    // Delete Core Dashboard Entities for Original: DashboardTab
-                    .then(()=>{
-                        dashboardTabModel.deleteMany(
-                            originalDashboardQuery
-                        ).exec()
-                    })
-
-                    // Delete Core Dashboard Entities for Original: Widgets
-                    .then(()=>{
-                        widgetModel.deleteMany(
-                            originalDashboardQuery
-                        ).exec()
-                    })
-
-                    // Delete Core Dashboard Entities for Original: WidgetCheckpoints
-                    .then(()=>{
-                        widgetCheckpointModel.deleteMany(
-                            originalDashboardQuery
                         ).exec()
                     })
 
